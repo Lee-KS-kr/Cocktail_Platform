@@ -13,7 +13,7 @@ create table memberPerson (
     	isChannel       varchar2(1)         default 'N' check (isChannel in ('Y', 'N')), 					--소셜로그인
     	channel         varchar2(20)        default null check (channel in ('kakao', 'naver', 'google', null)), --채널
     	memberType      varchar2(20)        default 'privateMem' check (memberType in ('privateMem', 'clientMem', 'admin')), --회원종류
-    	created_date    date                default sysdate, 												--가입
+    	createDate      date                default sysdate, 												--가입
     	isEnable        number(1)           default 0 check (isEnable in (0, 1)), 							--상태
 );
 
@@ -90,7 +90,8 @@ create table reservation (
 		memberid          	varchar(20)     references memberPerson(memberId),                				--개인 회원ID
     	reserveDate       	date            default sysdate check (reserveDate > sysdate),    				--예약 날짜
 		reserveHead       	number(2)       check (reserveHead> 0 and reserveHead≤ 기업 설정 최대 인원), 		--예약 인원 
-		reserveState      	varchar2(6)     check (reserveState in (’정상’, ‘취소’, ‘완료’))   					-예약 상태  
+		reserveState      	varchar2(6)     check (reserveState in (’정상’, ‘취소’, ‘완료’)),   				--예약 상태 
+		request             varchar2        not null                                                        --요구사항
 );
 
 -- 코드 정보 codesInfo 테이블
