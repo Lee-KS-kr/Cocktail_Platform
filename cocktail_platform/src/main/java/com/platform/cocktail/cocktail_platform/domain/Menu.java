@@ -19,6 +19,6 @@ public class Menu {
 	boolean canOrder;
 	
 	enum Category{
-		pre_dining, main, after_meal, non_alcohol, alcohol
+		food, beverage, side
 	}
 }
