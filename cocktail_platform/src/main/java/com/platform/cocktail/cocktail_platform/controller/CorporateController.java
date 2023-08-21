@@ -14,14 +14,4 @@ public class CorporateController {
 	public String home() {
 		return "corporateView/mainHome";
 	}
-	
-	@GetMapping("login")
-	public String login() {
-		return "";
-	}
-	
-	@GetMapping("join")
-	public String join() {
-		return "";
-	}
 }
