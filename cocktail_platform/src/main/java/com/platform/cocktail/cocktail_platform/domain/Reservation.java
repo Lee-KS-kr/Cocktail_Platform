@@ -12,6 +12,7 @@ public class Reservation {
 	int storeCode;
 	String memberId;
 	String reserveDate;
+	String memo;
 	int reserveHead;
 	String reserveState;
 }
