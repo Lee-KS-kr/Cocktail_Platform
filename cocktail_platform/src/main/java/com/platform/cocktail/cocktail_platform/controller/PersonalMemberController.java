@@ -2,6 +2,7 @@ package com.platform.cocktail.cocktail_platform.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -9,12 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.MemberPerson;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.Taste;
+import com.platform.cocktail.cocktail_platform.service.EmailService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,6 +25,10 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("personal/member")
 public class PersonalMemberController {
+	
+	@Autowired
+	EmailService emailService;
+	
 	@GetMapping("join")
 	public String join() {
 		return "";
@@ -33,9 +40,17 @@ public class PersonalMemberController {
 		return "redirect:/personal/home";
 	}
 	
+	@ResponseBody
 	@GetMapping("checkId")
 	public boolean checkId(String memberId) {
 		return true;
+	}
+	
+	@ResponseBody
+	@PostMapping("emailConfirm")
+	public String emailConfirm(String email) throws Exception {
+		String confirm = emailService.sendSimpleMessage(email);
+		return confirm;
 	}
 	
 	@GetMapping("login")
