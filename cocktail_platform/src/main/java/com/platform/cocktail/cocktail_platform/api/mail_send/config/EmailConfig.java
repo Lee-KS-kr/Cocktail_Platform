@@ -1,4 +1,4 @@
-package com.platform.cocktail.cocktail_platform.util;
+package com.platform.cocktail.cocktail_platform.api.mail_send.config;
 
 import java.util.Properties;
 
