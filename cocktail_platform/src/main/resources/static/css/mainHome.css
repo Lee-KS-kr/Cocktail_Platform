@@ -1,8 +1,8 @@
 .navi {
-  width: 100%;
-  height: 80px;
+  width: 100;
+  height: 60px;
   border: 1px solid #232323;
-  margin-bottom: 200px;
+  margin-bottom: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +23,8 @@ body {
   width: 300px;
   height: 400px;
   background-color: #f17878;
-  margin: 60px;
   box-shadow: 3px 3px 15px #d1d1d1;
   border-radius: 8px;
+  margin-left: 5%;
+  margin-right: 5%;
 }
