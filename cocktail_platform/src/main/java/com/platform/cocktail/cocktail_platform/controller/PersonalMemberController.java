@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.platform.cocktail.cocktail_platform.api.mail_send.service.EmailService;
 import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.MemberPerson;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.Taste;
-import com.platform.cocktail.cocktail_platform.service.EmailService;
 
 import lombok.extern.slf4j.Slf4j;
 

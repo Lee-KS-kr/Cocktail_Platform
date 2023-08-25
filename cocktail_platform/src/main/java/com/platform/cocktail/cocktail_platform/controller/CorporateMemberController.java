@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.platform.cocktail.cocktail_platform.api.mail_send.service.EmailService;
 import com.platform.cocktail.cocktail_platform.domain.MemberCorporate;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
-import com.platform.cocktail.cocktail_platform.service.EmailService;
 
 import lombok.extern.slf4j.Slf4j;
 

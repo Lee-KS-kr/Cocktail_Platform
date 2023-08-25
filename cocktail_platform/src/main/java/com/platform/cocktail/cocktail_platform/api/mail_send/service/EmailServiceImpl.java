@@ -1,4 +1,4 @@
-package com.platform.cocktail.cocktail_platform.service;
+package com.platform.cocktail.cocktail_platform.api.mail_send.service;
 
 import java.util.Random;
 
