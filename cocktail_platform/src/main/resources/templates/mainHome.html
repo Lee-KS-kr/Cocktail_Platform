@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html	xmlns:th="http://thymeleaf.org"
-		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta charset="UTF-8">
-<title>Cocktails</title>
-<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
-</head>
-<body>
-<h1>[ Top Home ]</h1>
-<p><a th:href="@{/corporate/home}">기업 홈으로</a></p>
-<p><a th:href="@{/personal/home}">개인 홈으로</a></p>
-</body>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cocktails</title>
+    <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+    <link rel="stylesheet" href="reset.css" />
+    <link
+      rel="stylesheet"
+      href="/fittail/cocktail_platform/src/main/resources/static/css/mainHome.css"
+    />
+  </head>
+  <body>
+    <div class="navi">
+      <div class="logo">핏테일</div>
+    </div>
+    <div class="body">
+      <div class="box 1">
+        <div>개인회원페이지</div>
+        <div><a th:href="@{/personal/home}">개인 홈으로</a></div>
+      </div>
+      <div class="box 2">
+        <div>기업회원페이지</div>
+        <div><a th:href="@{/corporate/home}">기업 홈으로</a></div>
+      </div>
+    </div>
+  </body>
 </html>
