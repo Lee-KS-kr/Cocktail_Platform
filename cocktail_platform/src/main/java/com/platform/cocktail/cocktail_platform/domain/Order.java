@@ -14,5 +14,5 @@ public class Order {
 	String memberId;
 	int totalPrice;
 	String menuList;
-	String orderState;
+	OrderState orderState;
 }

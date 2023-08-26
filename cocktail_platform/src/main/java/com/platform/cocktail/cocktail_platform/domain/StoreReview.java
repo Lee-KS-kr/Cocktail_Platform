@@ -7,14 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Menu {
-	int menuNum;
+public class StoreReview {
+	int storeReviewNum;
 	int storeCode;
-	String menuName;
-	int price;
-	Category data;
-	String menuInfo;
+	String memberid;
+	int storeReviewScore;
+	String storeReviewText;
+	String reviewDate;
 	String originFilename;
 	String savedFilename;
-	boolean canOrder;
 }

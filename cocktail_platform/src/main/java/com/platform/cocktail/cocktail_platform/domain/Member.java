@@ -10,13 +10,9 @@ import lombok.NoArgsConstructor;
 public abstract class Member implements UserDetails{
 	String memberId;
 	String memberPw;
+	String memberName;
 	MemberType memberType;
 	String phone;
 	String email;
-	String name;
 	boolean isEnable;
-	
-	enum MemberType{
-		admin, personal, corporate
-	}
 }
