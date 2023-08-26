@@ -34,6 +34,7 @@ public class PersonalController {
 	
 	@GetMapping("cocktails")
 	public String cocktails(@AuthenticationPrincipal UserDetails user, Model m) {
+		// 추천 알고리즘 구현 이후
 		ArrayList<Cocktails> cocktailList = new ArrayList<>();
 		m.addAttribute("cocktailList", cocktailList);
 		return "";

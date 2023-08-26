@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.platform.cocktail.cocktail_platform.api.mail_send.service.EmailService;
 import com.platform.cocktail.cocktail_platform.domain.MemberCorporate;
+import com.platform.cocktail.cocktail_platform.domain.MemberPerson;
+import com.platform.cocktail.cocktail_platform.domain.MemberType;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
+import com.platform.cocktail.cocktail_platform.service.MemberService;
+import com.platform.cocktail.cocktail_platform.service.StoreService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,9 +27,10 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("corporate/member")
 public class CorporateMemberController {
-	
 	@Autowired
-	EmailService emailService;
+	private MemberService mService;
+	@Autowired
+	private StoreService sService;
 	
 	@GetMapping("join")
 	public String join() {
@@ -34,32 +39,16 @@ public class CorporateMemberController {
 	
 	@PostMapping("join")
 	public String join(MemberCorporate m) {
+		log.debug("들어온 값 : {}", m);
+		mService.insertMember(m);
+		
 		return "";
 	}
-	
-	@ResponseBody
-	@GetMapping("checkId")
-	public boolean checkId(String memberId) {
-		boolean canUse = true;
-		return canUse;
-	}
-	
-	@ResponseBody
-	@PostMapping("emailConfirm")
-	public String emailConfirm(String email) throws Exception {
-		String confirm = emailService.sendSimpleMessage(email);
-		return confirm;
-	}
-	
+
 	@GetMapping("login")
 	public String login() {
 		return "";
 	}
-	
-//	@PostMapping("login")
-//	public String login(MemberCorporate m) {
-//		return "";
-//	}
 	
 	@GetMapping("findId")
 	public String findId() {
@@ -67,7 +56,9 @@ public class CorporateMemberController {
 	}
 	
 	@PostMapping("findId")
-	public String findId(Model m) {
+	public String findId(String email, Model m) {
+		MemberCorporate mem = (MemberCorporate) mService.findMemberByEmail(email, MemberType.clientMem);
+		m.addAttribute("memberId", mem.getMemberId());
 		return "";
 	}
 	
@@ -77,26 +68,45 @@ public class CorporateMemberController {
 	}
 	
 	@PostMapping("resetPw")
-	public String resetPw(Model m) {
+	public String resetPw(MemberCorporate m) {
+		mService.resetPw(m);
+		return "";
+	}
+	
+	@GetMapping("editPrivacyInfo")
+	public String editPrivacyInfo(@AuthenticationPrincipal UserDetails user, Model m) {
+		MemberCorporate mem = (MemberCorporate) mService.findMemberById(user.getUsername(), MemberType.clientMem);
+		mem.setMemberId(user.getUsername());
+		m.addAttribute("member", mem);
+		return "";
+	}
+	
+	@PostMapping("editPrivacyInfo")
+	public String editPrivacyInfo(MemberCorporate mem, @AuthenticationPrincipal UserDetails user, Model m) {
+		mem.setMemberId(user.getUsername());
+		mService.updateMember(mem);
+		
 		return "";
 	}
 	
 	@GetMapping("storePage")
 	public String storePage(@AuthenticationPrincipal UserDetails user, Model m) {
-		StoreInfo store = new StoreInfo();
+		StoreInfo store = sService.getStoreById(user.getUsername());
 		m.addAttribute("store", store);
 		return "";
 	}
 	
 	@GetMapping("editStorepage")
 	public String editStorepage(@AuthenticationPrincipal UserDetails user, Model m) {
-		StoreInfo store = new StoreInfo();
+		StoreInfo store = sService.getStoreById(user.getUsername());
 		m.addAttribute("store", store);
 		return "";
 	}
 	
 	@PostMapping("editStorepage")
-	public String editStorepage(StoreInfo store) {
+	public String editStorepage(@AuthenticationPrincipal UserDetails user, StoreInfo store) {
+		store.setMemberId(user.getUsername());
+		sService.updateStoreinfo(store);
 		return "";
 	}
 }

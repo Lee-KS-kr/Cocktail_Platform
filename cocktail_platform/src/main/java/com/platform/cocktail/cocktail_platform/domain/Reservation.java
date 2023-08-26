@@ -14,5 +14,5 @@ public class Reservation {
 	String reserveDate;
 	String memo;
 	int reserveHead;
-	String reserveState;
+	ReservationState reserveState;
 }

@@ -1,4 +1,4 @@
-package com.platform.cocktail.cocktail_platform.security;
+package com.platform.cocktail.cocktail_platform.config;
 
 import javax.sql.DataSource;
 
@@ -27,6 +27,7 @@ public class WebSecurityConfig {
         .antMatchers("/", 
         		"/corporate/home",
         		"/personal/home",
+        		"/preferencetest",
                 "/image/**",
                 "/CSS/**",
                 "/JavaScript/**",
@@ -68,7 +69,6 @@ public class WebSecurityConfig {
     }
 
     // 단방향 비밀번호 암호화
-    @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
