@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MenuPreference {
 	int menuPreferenceNum;
+	String memberId;
 	int menuNum;
-	String weather;
-	String ageGroup;
-	String companion;
-	String event;
+	int weather;
+	int ageGroup;
+	int companion;
+	int event;
 }
