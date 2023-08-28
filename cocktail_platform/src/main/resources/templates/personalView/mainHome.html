@@ -9,41 +9,41 @@
     <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
     <script>
       $(document).ready(function () {});
-    </script>
-    <link rel="stylesheet" th:href="@{/CSS/personalmain.css}" />
-  </head>
-  <body>
-    <!-- ======= Header ======= -->
-    <header id="header" class="header">
-      <nav id="navbar" class="navbar">
-        <div class="search">
-          <a th:href="@{/search}" class="search_logo">
-            <img th:src="@{/image/btn_search.png}" alt="검색" />
-          </a>
-        </div>
-
-        <div id="logo">
-          <a th:href="@{/personal/home}" class="navbar_logo">
-            <img th:src="@{/image/logo.png}" alt="logo" />
-            <span>FitTail</span>
-          </a>
-        </div>
-
-        <div class="navbar_right">
-          <div sec:authorize="!isAuthenticated()">
-            <a th:href="@{/logout}" id="login">로그인</a>
-            <a th:href="@{/logout}" id="join">회원가입</a>
-          </div>
-          <div sec:authorize="isAuthenticated()">
-            <p><span th:text="${#authentication.name}"></span>님 환영합니다</p>
-            <a th:href="@{/logout}">로그아웃</a>
-            <a th:href="@{/mypage}">마이페이지</a>
-          </div>
-        </div>
-      </nav>
-      <!-- End navbar -->
-    </header>
-    <!-- End Header -->
+</script>
+<link rel="stylesheet" th:href="@{/CSS/personalmain.css}">
+</head>
+<body>
+	<!-- ======= Header ======= -->
+	<header id="header" class="header">
+	  <nav id="navbar" class="navbar">
+	    <div class="search">
+	   		<a th:href="@{/search}" class="search_logo">
+	    		<img th:src="@{/image/btn_search.png}" alt="검색">
+	    	</a>
+	    </div>
+	    
+	    <div id="logo">
+	    	<a th:href="@{/personal/home}" class="navbar_logo">
+	       		<img th:src="@{/image/logo.png}" alt="logo">
+	       		<span>FitTail</span>
+	     	</a>
+	    </div>
+	
+	    <div class="navbar_right">
+	    	<div sec:authorize="!isAuthenticated()">
+		    	<a th:href="@{/personal/member/loginForm}" id="login">로그인</a>
+		    	<a th:href="@{/personal/member/join}" id="join">회원가입</a>
+	    	</div>
+	    	<div sec:authorize="isAuthenticated()">
+	    		<p><span th:text="${#authentication.name}"></span>님 환영합니다</p>
+	    		<a th:href="@{/personal/member/logout}">로그아웃</a>
+	    		<a th:href="@{/personal/member/myPage}">마이페이지</a>
+	    	</div>
+	    </div>
+	  </nav>
+	  <!-- End navbar -->
+	</header>
+	<!-- End Header -->
 
     <!-- ======= main ======= -->
     <main id="main">

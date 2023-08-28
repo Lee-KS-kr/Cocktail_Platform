@@ -1,2 +1,131 @@
+function loginPop(){
+	window.open("loginForm.html", "login", "width=400, height=300, left=100, top=50"); 
+}
 
-엉엉
+</script>
+<link rel="stylesheet" th:href="@{/CSS/corpMain.css}">
+</head>
+<body>
+<!-- ======= Header ======= -->
+	<header id="header" class="header">
+	  <nav id="navbar" class="navbar">
+	    <div class="search">
+	   		<a th:href="@{/search}" class="search_logo">
+	    		<img th:src="@{/image/btn_search.png}" alt="검색">
+	    	</a>
+	    </div>
+	    
+	    <div id="logo">
+	    	<a th:href="@{/corporate/home}" class="navbar_logo">
+	       		<img th:src="@{/image/logo.png}" alt="logo">
+	       		<span>FitTail</span>
+	     	</a>
+	    </div>
+	
+	    <div class="navbar_right">
+    		<div sec:authorize="!isAuthenticated()">
+	    		<span><a th:href="@{/corporate/member/loginForm}">로그인</a></span>
+	    	</div>
+	    	<div sec:authorize="isAuthenticated()">
+	    		<span><a th:href="@{/corporate/member/logout}">로그아웃</a></span>
+	    		<span><a th:href="@{/corporate/member/myPage}">마이페이지</a></span>
+	    	</div>
+	   </div>
+	  </nav>
+	  <!-- End navbar -->
+	</header>
+	<!-- End Header -->
+<!-- ======= main ======= -->
+<!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+	        <!-- Sidebar - profile -->
+	        <div class="profile">
+	         <div class="profile-icon">
+	         	<img th:src="@{/image/profile-icon.svg}" alt="프로필">
+	         </div>
+	         <div class="profile-text">
+	         <p>dd님 환영합니다.</p>
+	         <p>ID: <span th:text="${#authentication.name}"></span></p>
+	         </div>
+	        </div>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Quick Menu -->
+            <div class="quickmenu">
+	            <ul>
+	         		<li><a th:href="@{/}">예약 확인</a></li>
+	           		<li><a th:href="@{/}">메뉴 관리</a></li>
+	           		<li><a th:href="@{/}">매장정보 관리</a></li>
+	           	</ul>
+			</div>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+			
+            <!-- Nav Item - menu list -->
+            <li class="nav-item">
+            	<ul>
+           	 		<li>
+           	 			<a th:href="@{/}"><span>주문 관리</span></a>
+           	 		</li>
+           	 		<li>
+           	 			<a th:href="@{/}"><span>매출 관리</span></a>
+           	 		</li>
+           	 		<li>
+           	 			<a th:href="@{/}"><span>내 정보 관리</span></a>
+           	 		</li>
+            	</ul>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+			
+			<!-- Nav Item - logout, deleteId -->
+			<a th:href="@{/logout}"><span>로그아웃</span></a>
+			<a th:href="@{/quitMember}"><span>회원 탈퇴</span></a>
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="row">
+				<div class="banner">
+					<img th:src="@{/image/banner.jpg}" class="bannerimg">
+				</div>
+			</div>
+			<div class="contentbox">
+				<div class="row">
+					<div class="col-8">
+						<a th:href="@{/}"><span>주문 페이지</span></a>
+					</div>
+					<div class="col-4">
+						<a th:href="@{/}"><span>공지사항</span></a>
+					</div>
+				</div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; FitTail 2023</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+
+</body>
+</html>

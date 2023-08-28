@@ -47,7 +47,7 @@ public class CorporateMemberController {
 
 	@GetMapping("login")
 	public String login() {
-		return "";
+		return "corporateView/loginForm";
 	}
 	
 	@GetMapping("findId")
