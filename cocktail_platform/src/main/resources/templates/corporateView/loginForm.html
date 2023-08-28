@@ -39,8 +39,8 @@ function idChk(){
 
     if(!regId.test(id)){
 		$('#output1').html('아이디는 6~12자리 영문자/숫자를 포함해야합니다.');
-        id == '';
-        id.focus();
+		$('#id').val('');
+        $('#id').focus();
 		return false;
 	}
     else{
@@ -55,8 +55,8 @@ function pwChk(){
 
     if(!regPw.test(pw)){
         $('#output2').html('비밀번호는 8~15자리 숫자/문자/특수문자를 포함해야합니다.');
-        pw == '';
-        pw.focus();
+        $('#pw').val('');
+        $('#pw').focus();
 		return false;
     }else{
     	$('#output2').html('');
