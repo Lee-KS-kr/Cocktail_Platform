@@ -39,8 +39,6 @@ function idChk(){
 
     if(!regId.test(id)){
 		$('#output1').html('아이디는 6~12자리 영문자/숫자를 포함해야합니다.');
-		$('#id').val('');
-        $('#id').focus();
 		return false;
 	}
     else{
@@ -55,8 +53,6 @@ function pwChk(){
 
     if(!regPw.test(pw)){
         $('#output2').html('비밀번호는 8~15자리 숫자/문자/특수문자를 포함해야합니다.');
-        $('#pw').val('');
-        $('#pw').focus();
 		return false;
     }else{
     	$('#output2').html('');
@@ -76,7 +72,7 @@ function pwChk(){
         <form class="corpLogin" th:action="@{/loginForm}" method="post">
             <div class="form-group">
                 <input type="text" class="form-control form-control-user"
-                    id="id" placeholder="ID를 입력해주세요." onkeyup="iDChk()" required>
+                    id="id" placeholder="ID를 입력해주세요." onkeyup="idChk()" required>
                 <span id="output1"></span>
             </div>
             <div class="form-group">
