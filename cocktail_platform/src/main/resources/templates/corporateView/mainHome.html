@@ -35,11 +35,14 @@ function loginPop(){
 	    </div>
 	
 	    <div class="navbar_right">
-	    	<!-- <div sec:authorize="isAuthenticated()"> -->
-	    		<span><a th:href="@{/logout}">로그아웃</a></span>
-	    		<span><a th:href="@{/myPage}">마이페이지</a></span>
+    		<div sec:authorize="!isAuthenticated()">
+	    		<span><a th:href="@{/corporate/member/loginForm}">로그인</a></span>
 	    	</div>
-	   <!-- </div> --> 
+	    	<div sec:authorize="isAuthenticated()">
+	    		<span><a th:href="@{/corporate/member/logout}">로그아웃</a></span>
+	    		<span><a th:href="@{/corporate/member/myPage}">마이페이지</a></span>
+	    	</div>
+	   </div>
 	  </nav>
 	  <!-- End navbar -->
 	</header>
