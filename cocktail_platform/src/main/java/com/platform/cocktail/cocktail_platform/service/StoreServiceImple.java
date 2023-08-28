@@ -2,10 +2,15 @@ package com.platform.cocktail.cocktail_platform.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.platform.cocktail.cocktail_platform.config.CodeConfig;
 import com.platform.cocktail.cocktail_platform.dao.StoreDAO;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.MenuPreference;
@@ -23,6 +28,8 @@ import lombok.extern.slf4j.Slf4j;
 public class StoreServiceImple implements StoreService {
 	@Autowired
 	private StoreDAO dao;
+	@Autowired
+	private HashMap<String, Integer> map;
 
 	@Override
 	public StoreInfo getStoreById(String memberId) {
@@ -120,12 +127,13 @@ public class StoreServiceImple implements StoreService {
 			MenuPreference mp 
 				= MenuPreference.builder()
 								.menuNum(menuNum[i])
-								.weather(weather[i])
-								.ageGroup(ageGroup[i])
-								.companion(companion[i])
-								.event(event[i])
+								.memberId(review.getMemberid())
+								.weather(map.get(weather[i]))
+								.ageGroup(map.get(ageGroup[i]))
+								.companion(map.get(companion[i]))
+								.event(map.get(event[i]))
 								.build();
-			 
+			
 			list.add(mp);
 		}
 		
