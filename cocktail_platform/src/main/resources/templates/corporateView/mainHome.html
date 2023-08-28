@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html	xmlns:th="http://thymeleaf.org"
-		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta charset="UTF-8">
-<title>Cocktails</title>
-<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
-<script>
-$(document).ready(function(){
-	$('#login').click(loginPop);
-});
-
 function loginPop(){
 	window.open("loginForm.html", "login", "width=400, height=300, left=100, top=50"); 
 }
