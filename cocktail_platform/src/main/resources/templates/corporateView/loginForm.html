@@ -33,11 +33,9 @@ function submitChk(){
 
 }
 
-function loginChk(){
+function idChk(){
     let id = $('#id').val();
-    let pw = $('#pw').val();
     let regId = /^[a-z]+[a-z0-9]{5,11}$/g;
-    let regPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 
     if(!regId.test(id)){
 		$('#output1').html('아이디는 6~12자리 영문자/숫자를 포함해야합니다.');
@@ -45,14 +43,28 @@ function loginChk(){
         id.focus();
 		return false;
 	}
-    else if(!regPw.test(pw)){
+    else{
+        $('#output1').html('');
+     	return true;
+    }
+}
+
+function pwChk(){
+    let pw = $('#pw').val();
+    let regPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+
+    if(!regPw.test(pw)){
         $('#output2').html('비밀번호는 8~15자리 숫자/문자/특수문자를 포함해야합니다.');
         pw == '';
         pw.focus();
 		return false;
+    }else{
+    	$('#output2').html('');
+    	return true;
     }
-    return true;
 }
+
+
 </script>
 <link rel="stylesheet" th:href="@{/CSS/login.css}">
 </head>
@@ -64,12 +76,12 @@ function loginChk(){
         <form class="corpLogin" th:action="@{/loginForm}" method="post">
             <div class="form-group">
                 <input type="text" class="form-control form-control-user"
-                    id="id" placeholder="ID를 입력해주세요." onkeyup="loginChk()" required>
+                    id="id" placeholder="ID를 입력해주세요." onkeyup="iDChk()" required>
                 <span id="output1"></span>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control form-control-user"
-                    id="pw" placeholder="비밀번호를 입력해주세요." onkeyup="loginChk()" required>
+                    id="pw" placeholder="비밀번호를 입력해주세요." onkeyup="pwChk()" required>
                 <span id="output2"></span>
             </div>
             <input type="button" value="로그인" class="bottom" onclick="submitChk()">
