@@ -1,5 +1,414 @@
- 
- 
- 
- 
- 엉엉
+<!DOCTYPE html>
+<html	xmlns:th="http://thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Cocktails</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script>
+$(document).ready(function(){
+
+});
+
+</script>
+<link rel="stylesheet" th:href="@{/css/personalmain.css}">
+</head>
+<body>
+	<!-- ======= Header ======= -->
+	<header id="header" class="header">
+	  <nav id="navbar" class="navbar">
+	    <div class="search">
+	   		<a th:href="@{/search}" class="search_logo">
+	    		<img th:src="@{/image/btn_search.png}" alt="검색">
+	    	</a>
+	    </div>
+	    
+	    <div id="logo">
+	    	<a th:href="@{/personal/home}" class="navbar_logo">
+	       		<img th:src="@{/image/logo.png}" alt="logo">
+	       		<span>FitTail</span>
+	     	</a>
+	    </div>
+	
+	    <div class="navbar_right">
+	    	<div sec:authorize="!isAuthenticated()">
+		    	<a th:href="@{/logout}" id="login">로그인</a>
+		    	<a th:href="@{/logout}" id="join">회원가입</a>
+	    	</div>
+	    	<div sec:authorize="isAuthenticated()">
+	    		<p><span th:text="${#authentication.name}"></span>님 환영합니다</p>
+	    		<a th:href="@{/logout}">로그아웃</a>
+	    		<a th:href="@{/mypage}">마이페이지</a>
+	    	</div>
+	    </div>
+	  </nav>
+	  <!-- End navbar -->
+	</header>
+	<!-- End Header -->
+	
+    <!-- ======= main ======= -->
+	<main id="main">
+		<div class="marketlist">
+			<a th:href="@{/}">매장 전체보기</a>
+		</div>
+ 		<!-- ======= mainbox1 : 인기상품 ======= -->
+    	<section id="mainbox1" class="mainbox1">
+			<div class="best_prd">
+				<div class="main_title">
+	           		<a th:href="@{/}">
+						<strong>인기 상품</strong>           		
+	           		</a>
+				</div>
+         	<div class="row">
+           	<div class="box">
+             <a th:href="@{/}">
+             	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="인기 상품">
+             </a>
+           	<p><b>칵테일대모험</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">얼린 초딩</strong>
+             </a>
+             <p>
+               Eum ad dolor et. Autem aut fugiat debitis voluptatem
+               consequuntur sit. Et veritatis id.
+             </p>
+           </div>
+             
+           <div class="box">
+             <a th:href="@{/}">
+            	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="인기 상품">
+            </a>
+             <p><b>칵테일대모험</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">슈의 미용실</strong>
+             </a>
+             <p>
+               Repudiandae amet nihil natus in distinctio suscipit id.
+               Doloremque ducimus ea sit non.
+             </p>
+           </div>
+           
+          	<div class="box">
+             <a th:href="@{/}">
+            	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="인기 상품">
+            </a> 
+             <p><b>칵테일대모험</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">농협은행</strong>
+             </a>
+             <p>
+               Quam rem vitae est autem molestias explicabo debitis sint.
+               Vero aliquid quidem commodi.
+             </p>
+           </div>
+         </div>
+       </div>
+     </section>
+     <!-- ======= End mainbox1 : 인기상품 ======= -->
+     <!-- ======= mainbox2 : 추천상품 ======= -->
+     <section id="mainbox2" class="mainbox2">
+		<div class="recommend_prd">
+			<div class="main_title">
+           		<a th:href="@{/}">
+					<strong>ㅇㅇ님을 위한 추천 상품</strong>           		
+           		</a>
+			</div>
+			<div class="prd_ctg">
+				<span>#맑음</span>
+				<span>#20대</span>
+				<span>#혼술</span>
+				<span>#특별한 순간을 위해</span>
+			</div>
+         	<div class="row">
+           	<div class="box">
+             <a th:href="@{/}">
+             	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="추천 상품">
+             </a>
+           	<p><b>알중제조기</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">마라엽떡민초</strong>
+             </a>
+             <p>
+               Eum ad dolor et. Autem aut fugiat debitis voluptatem
+               consequuntur sit. Et veritatis id.
+             </p>
+           </div>
+             
+           <div class="box">
+             <a th:href="@{/}">
+	            	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="추천 상품">
+	            </a>
+             <p><b>알중제조기</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">토마토마토</strong>
+             </a>
+             <p>
+               Repudiandae amet nihil natus in distinctio suscipit id.
+               Doloremque ducimus ea sit non.
+             </p>
+           </div>
+           
+          	<div class="box">
+             <a th:href="@{/}">
+	            	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="추천 상품">
+	            </a>
+             <p><b>알중제조기</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">초코비</strong>
+             </a>
+             <p>
+               Quam rem vitae est autem molestias explicabo debitis sint.
+               Vero aliquid quidem commodi.
+             </p>
+           </div>
+         </div>
+       </div>
+     </section>
+     <!-- ======= End mainbox2 : 추천상품 ======= -->
+     <!-- ======= mainbox3 : 추천상품(날씨) ======= -->
+     <section id="mainbox3" class="mainbox3">
+		<div class="recommend_prd">
+			<div class="main_title">
+           		<a th:href="@{/}">
+					<strong>오늘같이 비가 오는 날에는?</strong>           		
+           		</a>
+			</div>
+			<div class="prd_ctg">
+				<span>#맑음</span>
+				<span>#흐림</span>
+				<span>#비</span>
+				<span>#눈</span>
+			</div>
+         	<div class="row">
+           	<div class="box">
+             <a th:href="@{/}">
+             	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="날씨별 추천상품">
+             </a>
+           	<p><b>칵테일대마왕</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">코코볼냠냠</strong>
+             </a>
+             <p>
+               Eum ad dolor et. Autem aut fugiat debitis voluptatem
+               consequuntur sit. Et veritatis id.
+             </p>
+           </div>
+             
+           <div class="box">
+	           <a th:href="@{/}">
+	           	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="날씨별 추천상품">
+	           </a>
+	           <p><b>칵테일대마왕</b></p>
+	           <a th:href="@{/}">
+	         		<strong class="pd_title">오이헤이터모임</strong>
+	           </a>
+	           <p>
+	             Repudiandae amet nihil natus in distinctio suscipit id.
+	             Doloremque ducimus ea sit non.
+	           </p>
+           </div>
+           
+          	<div class="box">
+	            <a th:href="@{/}">
+	            	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="날씨별 추천상품">
+	            </a>
+	            <p><b>칵테일대마왕</b></p>
+	            <a th:href="@{/}">
+	          		<strong class="pd_title">탱탱볼</strong>
+	            </a>
+	            <p>
+	              Quam rem vitae est autem molestias explicabo debitis sint.
+	              Vero aliquid quidem commodi.
+	            </p>
+           </div>
+         </div>
+       </div>
+     </section>
+     <!-- ======= End mainbox3 : 추천상품(날씨) ======= -->
+     <!-- ======= mainbox4 : 추천상품(연령대) ======= -->
+     <section id="mainbox4" class="mainbox4">
+		<div class="recommend_prd">
+			<div class="main_title">
+           		<a th:href="@{/}">
+					<strong>00님과 비슷한 20대가 많이 찾아요</strong>           		
+           		</a>
+			</div>
+			<div class="prd_ctg">
+				<span>#20대</span>
+				<span>#30대</span>
+				<span>#40대</span>
+				<span>#50대 이상</span>
+			</div>
+         	<div class="row">
+           	<div class="box">
+             <a th:href="@{/}">
+             	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="연령대별 추천 상품">
+             </a>
+           	<p><b>오타쿠모임</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">눈아나오늘석식스파게티</strong>
+             </a>
+             <p>
+               Eum ad dolor et. Autem aut fugiat debitis voluptatem
+               consequuntur sit. Et veritatis id.
+             </p>
+           </div>
+             
+           <div class="box">
+             <a th:href="@{/}">
+             	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="연령대별 추천 상품">
+             </a>
+             <p><b>오타쿠모임</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">오이는 싫은데 피클은 좋아</strong>
+             </a>
+             <p>
+               Repudiandae amet nihil natus in distinctio suscipit id.
+               Doloremque ducimus ea sit non.
+             </p>
+           </div>
+           
+          	<div class="box">
+             <a th:href="@{/}">
+             	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="연령대별 추천 상품">
+             </a>
+             <p><b>오타쿠모임</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">눈아내여자닉가</strong>
+             </a>
+             <p>
+               Quam rem vitae est autem molestias explicabo debitis sint.
+               Vero aliquid quidem commodi.
+             </p>
+           </div>
+         </div>
+       </div>
+     </section>
+     <!-- ======= End mainbox4 : 추천상품(연령대) ======= -->
+     <!-- ======= mainbox5 : 추천상품(상대) ======= -->
+     <section id="mainbox5" class="mainbox5">
+		<div class="recommend_prd">
+			<div class="main_title">
+           		<a th:href="@{/}">
+					<strong>친구와 많이 마셔요</strong>           		
+           		</a>
+			</div>
+			<div class="prd_ctg">
+				<span>#혼술</span>
+				<span>#친구</span>
+				<span>#연인</span>
+				<span>#가족</span>
+				<span>#그 외</span>
+			</div>
+         	<div class="row">
+           	<div class="box">
+             <a th:href="@{/}">
+             	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="상대별 추천 상품">
+             </a>
+           	<p><b>포켓몬마스터</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">하트사탕공예마휘핑</strong>
+             </a>
+             <p>
+               Eum ad dolor et. Autem aut fugiat debitis voluptatem
+               consequuntur sit. Et veritatis id.
+             </p>
+           </div>
+             
+           <div class="box">
+             <a th:href="@{/}">
+             	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="상대별 추천 상품">
+             </a>
+             <p><b>포켓몬마스터</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">이상해씨풀꽃</strong>
+             </a>
+             <p>
+               Repudiandae amet nihil natus in distinctio suscipit id.
+               Doloremque ducimus ea sit non.
+             </p>
+           </div>
+           
+          	<div class="box">
+             <a th:href="@{/}">
+             	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="상대별 추천 상품">
+             </a>
+             <p><b>포켓몬마스터</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">푸푸린푸리리린</strong>
+             </a>
+             <p>
+               Quam rem vitae est autem molestias explicabo debitis sint.
+               Vero aliquid quidem commodi.
+             </p>
+           </div>
+         </div>
+       </div>
+     </section>
+     <!-- ======= End mainbox5 : 추천상품(상대) ======= -->
+     <!-- ======= mainbox6 : 추천상품(이벤트) ======= -->
+     <section id="mainbox6" class="mainbox6">
+		<div class="recommend_prd">
+			<div class="main_title">
+           		<a th:href="@{/}">
+					<strong>특별한 순간을 즐기고 싶을 때는?</strong>           		
+           		</a>
+			</div>
+			<div class="prd_ctg">
+				<span>#칵테일을 즐기기 위해</span>
+				<span>#분위기를 즐기기 위해</span>
+				<span>#친목을 위해</span>
+				<span>#특별한 순간을 위해</span>
+			</div>
+         	<div class="row">
+           	<div class="box">
+             <a th:href="@{/}">
+             	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="이벤트별 추천 상품">
+             </a>
+           	<p><b>케이팝노인정</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">코요태짱이찌</strong>
+             </a>
+             <p>
+               Eum ad dolor et. Autem aut fugiat debitis voluptatem
+               consequuntur sit. Et veritatis id.
+             </p>
+           </div>
+             
+           <div class="box">
+             <a th:href="@{/}">
+             	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="이벤트별 추천 상품">
+             </a>
+             <p><b>케이팝노인정</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">겨자케챱치킨막걸리</strong>
+             </a>
+             <p>
+               Repudiandae amet nihil natus in distinctio suscipit id.
+               Doloremque ducimus ea sit non.
+             </p>
+           </div>
+           
+          	<div class="box">
+             <a th:href="@{/}">
+             	<img th:src="@{/image/temp.jpg}" class="boxImg" alt="이벤트별 추천 상품">
+             </a>
+             <p><b>케이팝노인정</b></p>
+             <a th:href="@{/}">
+           		<strong class="pd_title">가라가라갇혀확갇혀</strong>
+             </a>
+             <p>
+               Quam rem vitae est autem molestias explicabo debitis sint.
+               Vero aliquid quidem commodi.
+             </p>
+           </div>
+         </div>
+       </div>
+     </section>
+     <!-- ======= End mainbox6: 추천상품(이벤트) ======= -->
+   </main>
+   
+   <footer>
+   </footer>
+</body>
+</html>
