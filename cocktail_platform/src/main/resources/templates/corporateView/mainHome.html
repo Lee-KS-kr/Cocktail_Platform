@@ -37,7 +37,7 @@ function loginPop(){
 	    <div class="navbar_right">
 	    	<!-- <div sec:authorize="isAuthenticated()"> -->
 	    		<span><a th:href="@{/logout}">로그아웃</a></span>
-	    		<span><a th:href="@{/mypage}">마이페이지</a></span>
+	    		<span><a th:href="@{/myPage}">마이페이지</a></span>
 	    	</div>
 	   <!-- </div> --> 
 	  </nav>
@@ -95,8 +95,8 @@ function loginPop(){
             <hr class="sidebar-divider">
 			
 			<!-- Nav Item - logout, deleteId -->
-			<a th:href="@{/}"><span>로그아웃</span></a>
-			<a th:href="@{/}"><span>회원 탈퇴</span></a>
+			<a th:href="@{/logout}"><span>로그아웃</span></a>
+			<a th:href="@{/quitMember}"><span>회원 탈퇴</span></a>
         </ul>
         <!-- End of Sidebar -->
 
