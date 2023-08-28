@@ -35,10 +35,10 @@ function submitChk(){
 
 function idChk(){
     let id = $('#id').val();
-    let regId = /^[a-z]+[a-z0-9]{5,11}$/g;
+    let regId = /^[a-z]{6,12}$/g
 
     if(!regId.test(id)){
-		$('#output1').html('아이디는 6~12자리 영문자/숫자를 포함해야합니다.');
+		$('#output1').html('아이디는 6~12자리 영문자를 포함해야합니다.');
 		return false;
 	}
     else{
