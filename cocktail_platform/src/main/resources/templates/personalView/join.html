@@ -3,7 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>join</title>
   </head>
-  <body></body>
+  <body>
+    <div>
+      <!-- 입력받기란 -->
+      <div>
+        <table>
+          <tr>
+            <th>아이디</th>
+            <td>
+              <input
+                type="text"
+                name="memberid"
+                id="memberid"
+                th:value="${board.memberid}"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>비밀번호</th>
+            <td>
+              <input
+                type="text"
+                name="memberpw"
+                id="memberpw"
+                th:value="${board.memberpw}"
+              /><br />
+              <input
+                type="password"
+                id="memberpw2"
+                placeholder="비밀번호 다시 입력"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>비밀번호 확인</th>
+            <td>
+              <input
+                type="text"
+                name="memberpw"
+                id="memberpw"
+                th:value="${board.memberpw}"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>전화번호</th>
+            <td>
+              <input type="text" name="phone" placeholder="전화번호 입력" />
+            </td>
+          </tr>
+          <tr>
+            <th>이메일</th>
+            <td>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                placeholder="이메일 입력"
+              />
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div>
+        <!-- BT -->
+        <input type="reset" value="취소" />
+        <input type="submit" value="가입" />
+      </div>
+    </div>
+  </body>
 </html>
