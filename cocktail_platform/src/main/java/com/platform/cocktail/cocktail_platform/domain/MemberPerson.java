@@ -22,7 +22,7 @@ public class MemberPerson extends Member {
 	@Override
 	public String toString() {
 		return "MemberPerson [" + "memberId=" + memberId + ", memberPw=" + memberPw + ", memberType=" + memberType 
-				+ ", phone=" + phone + ", email=" + email + ", name=" + name + ", isEnable=" + isEnable 
+				+ ", phone=" + phone + ", email=" + email + ", memberName=" + memberName + ", isEnable=" + isEnable 
 				+  "gender=" + gender + ", birthday=" + birthday + ", point=" + point + ", isChannel="
 				+ isChannel + ", channel=" + channel + ", createdDate=" + createdDate + "]";
 	}
