@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-public abstract class Member implements UserDetails{
+public abstract class Member{
 	String memberId;
 	String memberPw;
 	String memberName;

@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.platform.cocktail.cocktail_platform.config.CodeConfig;
 import com.platform.cocktail.cocktail_platform.dao.StoreDAO;
@@ -18,6 +19,7 @@ import com.platform.cocktail.cocktail_platform.domain.OrderState;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
 import com.platform.cocktail.cocktail_platform.domain.ReservationState;
+import com.platform.cocktail.cocktail_platform.domain.Schedule;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.domain.StoreReview;
 
@@ -25,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@Transactional
 public class StoreServiceImple implements StoreService {
 	@Autowired
 	private StoreDAO dao;
@@ -141,6 +144,28 @@ public class StoreServiceImple implements StoreService {
 		int n = dao.insertMenuPreference(list);
 		
 		return n;
+	}
+
+	@Override
+	public HashMap<String, Boolean> getCapacityByDateTime(int storeCode, String date) {
+		HashMap<String, Boolean> resultMap = new HashMap<>();
+		Schedule s = getScheduleByCode(storeCode);
+		String[] timeArr = s.getTimes().split(",");
+		int capacity = dao.getCapacityByCode(storeCode);
+		
+		for (String str : timeArr) {
+			String datetime = date + str;
+			boolean canReserve = capacity > dao.getReservedCountByDatetime(datetime);
+			resultMap.put(datetime, canReserve);
+		}
+		
+		return resultMap;
+	}
+
+	@Override
+	public Schedule getScheduleByCode(int storeCode) {
+		Schedule s = dao.getScheduleByCode(storeCode);
+		return s;
 	}
 	
 	

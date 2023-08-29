@@ -34,7 +34,7 @@ public class CorporateMemberController {
 	
 	@GetMapping("join")
 	public String join() {
-		return "";
+		return "corporateView/joinForm";
 	}
 	
 	@PostMapping("join")
@@ -42,10 +42,10 @@ public class CorporateMemberController {
 		log.debug("들어온 값 : {}", m);
 		mService.insertMember(m);
 		
-		return "";
+		return "redirect:/corporate/home";
 	}
 
-	@GetMapping("login")
+	@GetMapping("loginForm")
 	public String login() {
 		return "corporateView/loginForm";
 	}
