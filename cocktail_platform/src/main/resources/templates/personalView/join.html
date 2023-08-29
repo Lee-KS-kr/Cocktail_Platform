@@ -4,73 +4,89 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>join</title>
+    <script>
+      function check() {
+        let memberid = document.getElementById('memberid');
+        let memberpw = document.getElementById('memberpw');
+        let memberpw2 = document.getElementById('memberpw2');
+        let membername = document.getElementById('membername');
+        
+        if (memberid.value.length < 3 || memberid.value.length > 10) {
+          alert("ID는 3~10자로 입력하세요.");
+          return false;
+        }
+        if (memberpw.value.length < 3 || memberpw.value.length > 10) {
+          alert("비밀번호는 3~10자로 입력하세요.");
+          return false;
+        }
+        if (memberpw.value != memberpw2.value) {
+          alert("비밀번호를 정확하게 입력하세요.");
+          return false;
+        } 
+        if (membername.value == '') {
+          alert("이름을 입력하세요.");
+          return false;
+        }
+        return true;
+      }
+      
+      let w = null;
+      function idFormOpen() {
+        window.open('idcheck', 'idwin', 'top=200,left=500,width=400,height=300');
+      }
+      </script>
   </head>
   <body>
+    <h1>회원가입</h1>
     <div>
-      <!-- 입력받기란 -->
-      <div>
+      <div><!-- 입력받기란 -->
         <table>
           <tr>
             <th>아이디</th>
             <td>
-              <input
-                type="text"
-                name="memberid"
-                id="memberid"
-                th:value="${board.memberid}"
-              />
+              <input type="text" name="memberid" id="memberid" th:value="${board.memberid}"/>
+              <input type="button" value="ID중복확인" onclick="idFormOpen()">
             </td>
           </tr>
           <tr>
             <th>비밀번호</th>
             <td>
-              <input
-                type="text"
-                name="memberpw"
-                id="memberpw"
-                th:value="${board.memberpw}"
-              /><br />
-              <input
-                type="password"
-                id="memberpw2"
-                placeholder="비밀번호 다시 입력"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>비밀번호 확인</th>
-            <td>
-              <input
-                type="text"
-                name="memberpw"
-                id="memberpw"
-                th:value="${board.memberpw}"
-              />
+              <input type="text" name="memberpw" id="memberpw" th:value="${board.memberpw}"/><br />
+              <input type="password" id="memberpw2" placeholder="비밀번호 다시 입력"/>
             </td>
           </tr>
           <tr>
             <th>전화번호</th>
             <td>
-              <input type="text" name="phone" placeholder="전화번호 입력" />
+              <input type="tel" name="phone" placeholder="전화번호 입력" />
             </td>
           </tr>
           <tr>
             <th>이메일</th>
             <td>
-              <input
-                type="text"
-                name="email"
-                id="email"
-                placeholder="이메일 입력"
-              />
+              <input type="email" name="email" id="email" placeholder="이메일 입력" />
+              <input type="button" value="이메일 인증" onclick="emailFormOpen()">
             </td>
+          </tr>
+          <tr>
+            <th>생년월일</th>
+            <td>
+              <input type="text" name="email" id="email" placeholder="이메일 입력" />
+            </td>
+          </tr>
+          <tr>
+            <th>성별</th>
+            <td><select name="gender">
+              <option value="N" selected>선택안함</option>
+              <option value="M">남자</option>
+              <option value="F">여자</option>
+          </select></td>
           </tr>
         </table>
       </div>
     </div>
     <div>
-      <div>
-        <!-- BT -->
+      <div><!-- BT -->
         <input type="reset" value="취소" />
         <input type="submit" value="가입" />
       </div>
