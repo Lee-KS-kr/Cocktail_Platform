@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Id</title>
+</head>
+<body>
+    <!--타이틀-->
+    <div>
+        <img src="" alt="">
+    </div>
+    <div>
+        <div>
+            <table>
+                <tr>
+                  <th>이름</th>
+                  <td>
+                    <input type="text" name="membername" id="membername" th:value="${board.membername}"/>
+                  </td>
+                </tr>
+                <tr>
+                  <th>이메일</th>
+                  <td>
+                    <input type="number" name="phone" id="phone" th:value="${board.memberpw}"/><br />
+                    <input type="button" value="이메일 인증" onclick="emailFormOpen()">
+                  </td>
+                </tr>
+                <tr>
+                  <th>이메일</th>
+                  <td>
+                    <input type="text" name="email" id="email" placeholder="이메일 입력" />
+                  </td>
+                </tr>
+              </table>
+        </div>
+    </div>
+</body>
+</html>
