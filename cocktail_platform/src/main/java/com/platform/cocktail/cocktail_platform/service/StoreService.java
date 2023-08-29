@@ -1,11 +1,13 @@
 package com.platform.cocktail.cocktail_platform.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.OrderState;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
 import com.platform.cocktail.cocktail_platform.domain.ReservationState;
+import com.platform.cocktail.cocktail_platform.domain.Schedule;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.domain.StoreReview;
 
@@ -37,6 +39,10 @@ public interface StoreService {
 
 	int insertReview(StoreReview review, int[] menuNum, String[] weather, String[] ageGroup, String[] companion,
 			String[] event);
+
+	HashMap<String, Boolean> getCapacityByDateTime(int storeCode, String date);
+
+	Schedule getScheduleByCode(int storeCode);
 
 
 }

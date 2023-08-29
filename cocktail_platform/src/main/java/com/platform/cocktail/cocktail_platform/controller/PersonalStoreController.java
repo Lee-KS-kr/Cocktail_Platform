@@ -1,6 +1,7 @@
 package com.platform.cocktail.cocktail_platform.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
@@ -53,13 +55,19 @@ public class PersonalStoreController {
 	}
 	
 	@GetMapping("reserve")
-	public String reserve(int storeCode, String date, String time, Model m) {
-		// 로직 고민중...
-		Schedule schedule = new Schedule();
-		boolean canReserve = true;
+	public String reserve(int storeCode, String date, Model m) {
+		Schedule schedule = sService.getScheduleByCode(storeCode);
+		HashMap<String, Boolean> capacity = checkCapacity(storeCode, date);
+		
 		m.addAttribute("schedule", schedule);
-		m.addAttribute("canReserve", canReserve);
+		m.addAttribute("capacity", capacity);
 		return "";
+	}
+	
+	@ResponseBody
+	@GetMapping("checkCapacity")
+	public HashMap<String, Boolean> checkCapacity(int storeCode, String date) {
+		return sService.getCapacityByDateTime(storeCode, date);
 	}
 	
 	@PostMapping("reserve")

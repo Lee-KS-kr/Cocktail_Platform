@@ -41,7 +41,7 @@ public class PersonalMemberController {
 	
 	@GetMapping("join")
 	public String join() {
-		return "";
+		return "personalView/join";
 	}
 	
 	@PostMapping("join")
@@ -49,17 +49,28 @@ public class PersonalMemberController {
 		log.debug("들어온 값 : {}", m);
 		mService.insertMember(m);
 		
+		return "redirect:/personal/taste?memberId=" + m.getMemberId();
+	}
+	
+	@GetMapping("taste")
+	public String taste(String memberId, Model m) {
+		m.addAttribute("memberId", memberId);
+		return "personalView/taste";
+	}
+	
+	@PostMapping("taste")
+	public String taste(Taste t) {
 		return "redirect:/personal/home";
 	}
 	
-	@GetMapping("login")
+	@GetMapping("loginForm")
 	public String login() {
-		return "";
+		return "personalView/login_popup";
 	}
 	
 	@GetMapping("findId")
 	public String findId() {
-		return "";
+		return "personalView/FindID";
 	}
 	
 	@PostMapping("findId")

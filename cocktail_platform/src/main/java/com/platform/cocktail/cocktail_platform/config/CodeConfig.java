@@ -86,7 +86,7 @@ public class CodeConfig {
 		put("green", 3064);
 		put("blue", 3128);
 		put("purple", 3256);
-		put("multi", 3516);
+		put("multi", 3512);
 		
 		// 도수 관련 코드
 		put("beer", 4001);
