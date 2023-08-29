@@ -5,63 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>login</title>
     <script>
-      $(document).ready(function(){
-          
-      });
+     //로그인폼 확인
+    function validation() {
+      let id = document.getElementById('memberid');
+      let password = document.getElementById('memberpw');
       
-      function submitChk(){
-          let id = $('#id').val();
-          let pw = $('#pw').val();
-      
-          $.ajax({
-                  url:'checkId', 
-                  type:'post', 
-                  data:{id:id},
-                  success:function(cnt){ 
-                      if(cnt == 0){  
-                          alert("아이디를 다시 입력해주세요");
-                          id == '';
-                      } else { 
-                          submit();
-                      }
-                  },
-                  error:function(){
-                      alert("에러입니다");
-                  }
-              });
-      
+      if (id.value == '' || password.value == '') {
+        alert('ID와 비밀번호를 입력하세요.');
+        return false;
       }
-      
-      function idChk(){
-          let id = $('#id').val();
-          let regId = /^[a-z]{6,12}$/g
-      
-          if(!regId.test(id)){
-          $('#output1').html('아이디는 6~12자리 영문자를 포함해야합니다.');
-          return false;
-        }
-          else{
-              $('#output1').html('');
-             return true;
-          }
-      }
-      
-      function pwChk(){
-          let pw = $('#pw').val();
-          let regPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-      
-          if(!regPw.test(pw)){
-              $('#output2').html('비밀번호는 8~15자리 숫자/문자/특수문자를 포함해야합니다.');
-          return false;
-          }else{
-            $('#output2').html('');
-            return true;
-          }
-      }
-      
-      
-      </script>
-      <link rel="stylesheet" th:href="@{/CSS/login.css}">
+      return true;
+    }
+    </script>
+    <link rel="stylesheet" th:href="@{/CSS/login.css}">
   </head>
   <body></body>
 </html>
