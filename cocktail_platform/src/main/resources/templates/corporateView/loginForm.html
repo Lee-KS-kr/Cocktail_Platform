@@ -12,7 +12,6 @@ $(document).ready(function(){
 
 function submitChk(){
     let id = $('#id').val();
-    let pw = $('#pw').val();
 
     $.ajax({
             url:'checkId', 
@@ -23,7 +22,7 @@ function submitChk(){
                     alert("아이디를 다시 입력해주세요");
                     id == '';
                 } else { 
-                    submit();
+                	$('#corpLogin').submit();
                 }
             },
             error:function(){
@@ -35,7 +34,7 @@ function submitChk(){
 
 function idChk(){
     let id = $('#id').val();
-    let regId = /^[a-z]{6,12}$/g
+    let regId = /^[a-z]{6,12}$/g;
 
     if(!regId.test(id)){
 		$('#output1').html('아이디는 6~12자리 영문자를 포함해야합니다.');
@@ -52,7 +51,7 @@ function pwChk(){
     let regPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 
     if(!regPw.test(pw)){
-        $('#output2').html('비밀번호는 8~15자리 숫자/문자/특수문자를 포함해야합니다.');
+        $('#output2').html('비밀번호는 8-15자리 문자/숫자/특수문자를 포함해야합니다.');
 		return false;
     }else{
     	$('#output2').html('');
@@ -69,16 +68,16 @@ function pwChk(){
         <div class="title">
             <h1 class="title">로그인</h1>
         </div>
-        <form class="corpLogin" th:action="@{/loginForm}" method="post">
+        <form id="corpLogin" th:action="@{/loginForm}" method="post">
             <div class="form-group">
                 <input type="text" class="form-control form-control-user"
                     id="id" placeholder="ID를 입력해주세요." onkeyup="idChk()" required>
-                <span id="output1"></span>
+                <p id="output1"></p>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control form-control-user"
                     id="pw" placeholder="비밀번호를 입력해주세요." onkeyup="pwChk()" required>
-                <span id="output2"></span>
+                <p id="output2"></p>
             </div>
             <input type="button" value="로그인" class="bottom" onclick="submitChk()">
             
