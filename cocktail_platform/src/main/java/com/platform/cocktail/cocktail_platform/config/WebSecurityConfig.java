@@ -25,8 +25,7 @@ public class WebSecurityConfig {
         http.csrf().disable()
         .authorizeRequests()
         .antMatchers("/", 
-        		"/corporate/**",
-        		"/personal/**",
+        		"/**",
                 "/image/**",
                 "/CSS/**",
                 "/JavaScript/**",
@@ -41,7 +40,17 @@ public class WebSecurityConfig {
         .and()
         .logout()
         .logoutUrl("/corporate/member/logout")		//로그아웃 처리 URL
-        .logoutSuccessUrl("/").permitAll()	//로그아웃시에 이동할 경로
+        .logoutSuccessUrl("/corporate/home").permitAll()	//로그아웃시에 이동할 경로
+        .and()
+        .formLogin()
+        .loginPage("/personal/member/loginForm")
+        .loginProcessingUrl("/personal/member/login").permitAll()
+        .usernameParameter("memberId")
+        .passwordParameter("memberPw")
+        .and()
+        .logout()
+        .logoutUrl("/personal/member/logout")
+        .logoutSuccessUrl("/personal/home")
         .and()
         .cors()
         .and()
