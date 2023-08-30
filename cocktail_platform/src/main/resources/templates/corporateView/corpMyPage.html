@@ -98,20 +98,21 @@ function storeChg(){
 
 		<hr class="sidebar-divider">
 
-		<!-- 사이드바: 퀵 메뉴 -->
-		<div class="quickmenu">
-			<ul>
-     			<li><a th:href="@{/store/reservePage}">예약 확인</a></li>
-       			<li><a th:href="@{/}">메뉴 관리</a></li>
-       			<li><a th:href="@{member/editStorepage}">가게 정보 관리</a></li>
-			</ul>
-		</div>
-
-		<hr class="sidebar-divider">
-	
 		<!-- 사이드바: 메뉴 리스트 -->
         <div class="nav-item">
 			<ul>
+				<li>
+					<a th:href="@{/store/reservePage}">예약 확인</a>
+					<ul>
+						<li><a th:href="@{/store/reserveInput}">예약 수기 입력</a></li>
+					</ul>
+				</li>
+       			<li>
+       				<a th:href="@{/}">메뉴 관리</a>
+     			</li>
+       			<li>
+       				<a th:href="@{member/editStorepage}">가게 정보 관리</a>
+      			</li>
 				<li>
 					<a th:href="@{/store/orderList}">주문 관리</a>
 				</li>
@@ -133,18 +134,19 @@ function storeChg(){
 	<!-- 메인 섹션 시작 -->
 	<section>
 		<h1>마이페이지</h1>
-		<div id="memberInformation">
+		<div class="memberInformation">
 			<h2>회원 정보</h2>
 			<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
 				<input type="text" th:value="${member.memberId}" readonly="readonly"><br>
-				<input type="text" th:value="${member.memberPw}" readonly="readonly"><br>
+				<input type="text" th:value="${member.memberPw}" readonly="readonly">
+				<input type="button" id="pwChangeBtn" value="변경" onclick="location.href='corporate/member/resetPw.html'"><br>
 				<input type="text" th:value="${member.email}" readonly="readonly"><br>
 				<input type="text" th:value="${member.memberName}"><br>
 				<input type="text" th:value="${member.phone}">
 				<input type="button" id="memberChangeBtn" value="변경">
 			</form>
 		</div>
-		<div id="storeInformation">
+		<div class="storeInformation">
 			<h2>매장 정보</h2>
 			<form id="memberInfoForm" th:action="@{/member/editStorepage}" method="post">
 				휴일 <input type="text" th:value="${store.dayOff}">
