@@ -138,7 +138,7 @@ function storeChg(){
 			<h2>회원 정보</h2>
 			<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
 				<input type="text" th:value="${member.memberId}" readonly="readonly"><br>
-				<input type="text" th:value="${member.memberPw}" readonly="readonly">
+				<input type="password" readonly="readonly">
 				<input type="button" id="pwChangeBtn" value="변경" onclick="location.href='corporate/member/resetPw.html'"><br>
 				<input type="text" th:value="${member.email}" readonly="readonly"><br>
 				<input type="text" th:value="${member.memberName}"><br>
