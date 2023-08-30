@@ -21,10 +21,10 @@ function submitChk(){
     $.ajax({
             url:'checkId', 
             type:'post', 
-            data:{id:id},
+            data:{id:id, pw:pw},
             success:function(cnt){ 
                 if(cnt == 0){  
-                    alert("아이디를 다시 입력해주세요");
+                    alert("아이디와 비밀번호를 확인해주세요");
                     id == '';
                 } else { 
                 	$('#corpLogin').submit();
