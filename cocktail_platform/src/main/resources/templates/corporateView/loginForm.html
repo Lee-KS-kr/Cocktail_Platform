@@ -16,10 +16,10 @@ function submitChk(){
     $.ajax({
             url:'checkId', 
             type:'post', 
-            data:{id:id},
+            data:{memberId:id},
             success:function(cnt){ 
                 if(cnt == 0){  
-                    alert("아이디를 다시 입력해주세요");
+                    alert("아이디를 확인해주세요");
                     id == '';
                 } else { 
                 	$('#corpLogin').submit();
@@ -29,34 +29,6 @@ function submitChk(){
                 alert("에러입니다");
             }
         });
-
-}
-
-function idChk(){
-    let id = $('#id').val();
-    let regId = /^[a-z]{6,12}$/g;
-
-    if(!regId.test(id)){
-		$('#output1').html('아이디는 6~12자리 영문자를 포함해야합니다.');
-		return false;
-	}
-    else{
-        $('#output1').html('');
-     	return true;
-    }
-}
-
-function pwChk(){
-    let pw = $('#pw').val();
-    let regPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-
-    if(!regPw.test(pw)){
-        $('#output2').html('비밀번호는 8-15자리 문자/숫자/특수문자를 포함해야합니다.');
-		return false;
-    }else{
-    	$('#output2').html('');
-    	return true;
-    }
 }
 
 
@@ -64,20 +36,18 @@ function pwChk(){
 <link rel="stylesheet" th:href="@{/CSS/login.css}">
 </head>
 <body>
-	<div class="container">
+	<main>
         <div class="title">
             <h1 class="title">로그인</h1>
         </div>
         <form id="corpLogin" th:action="@{/loginForm}" method="post">
             <div class="form-group">
-                <input type="text" class="form-control form-control-user"
-                    id="id" placeholder="ID를 입력해주세요." onkeyup="idChk()" required>
-                <p id="output1"></p>
+                <input type="text" class="form-text"
+                    id="memberId" placeholder="ID를 입력해주세요." required>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control form-control-user"
-                    id="pw" placeholder="비밀번호를 입력해주세요." onkeyup="pwChk()" required>
-                <p id="output2"></p>
+                <input type="password" class="form-text"
+                    id="memberPw" placeholder="비밀번호를 입력해주세요." required>
             </div>
             <input type="button" value="로그인" class="bottom" onclick="submitChk()">
             
@@ -85,8 +55,8 @@ function pwChk(){
         <hr>
         <div class="text-bottom-container">
             <a class="text-bottom" href="forgot-password.html">아이디·비밀번호 찾기</a>
-            <a class="text-bottom" href="register.html">회원가입</a>
+            <a class="text-bottom" th:href="@{/member/join}">회원가입</a>
         </div>
-    </div>
+    </main>
 </body>
 </html>
