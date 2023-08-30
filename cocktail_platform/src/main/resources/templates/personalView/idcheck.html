@@ -6,7 +6,7 @@
 <link rel="stylesheet" th:href="@{cocktail_platform\src\main\resources\static\CSS\personal\idcheck.css}">
 <script>
 function check() {
-	let id = document.getElementById('searchid');
+	let id = document.getElementById('searchId');
 	if (id.value == '') {
 		alert("검색할 ID를 입력하세요.");
 		return false;
@@ -16,7 +16,7 @@ function check() {
 
 //가입폼에 검색한 아이디 입력
 function inputId() {
-	opener.document.getElementById('memberid').value = '[[${searchid}]]';
+	opener.document.getElementById('memberid').value = '[[${searchId}]]';
 	this.close();
 }
 </script>
@@ -28,8 +28,8 @@ function inputId() {
 	<section>
 	<form th:action="@{/personalView/idcheck}"  method="post" onsubmit="return check();">
 		검색할 ID
-		<input type="text" name="searchid" id="searchid" th:value="${searchid}">
-		<input type="submit" value="검색">
+		<input type="text" name="searchId" id="searchId" />
+		<input type="submit" value="검색"/>
 	</form>	
 	<!-- 검색 후에만 출력 -->
 	<div th:if="${result != null}">

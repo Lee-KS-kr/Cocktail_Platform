@@ -40,19 +40,20 @@
     <h1>회원가입</h1>
     <div>
       <div><!-- 입력받기란 -->
+        <form action="">
         <table>
           <tr>
             <th>아이디</th>
             <td>
-              <input type="text" name="memberid" id="memberid" th:value="${board.memberid}"/>
+              <input type="text" name="memberId" id="memberId" />
               <input type="button" value="ID중복확인" onclick="idFormOpen()">
             </td>
           </tr>
           <tr>
             <th>비밀번호</th>
             <td>
-              <input type="text" name="memberpw" id="memberpw" th:value="${board.memberpw}"/><br />
-              <input type="password" id="memberpw2" placeholder="비밀번호 다시 입력"/>
+              <input type="text" name="memberPw" id="memberPw"/><br />
+              <input type="password" id="memberPw2" placeholder="비밀번호 다시 입력"/>
             </td>
           </tr>
           <tr>
@@ -66,6 +67,7 @@
             <td>
               <input type="email" name="email" id="email" placeholder="이메일 입력" />
               <input type="button" value="이메일 인증" onclick="emailFormOpen()">
+              <input type="text" id="email2" placeholder="인증번호 입력"/>
             </td>
           </tr>
           <tr>
@@ -83,6 +85,7 @@
           </select></td>
           </tr>
         </table>
+      </form>
       </div>
     </div>
     <div>
