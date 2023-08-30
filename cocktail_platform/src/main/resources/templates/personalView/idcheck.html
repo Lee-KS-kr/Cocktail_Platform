@@ -28,8 +28,8 @@ function inputId() {
 	<section>
 	<form th:action="@{/personalView/idcheck}"  method="post" onsubmit="return check();">
 		검색할 ID
-		<input type="text" name="searchid" id="searchid" th:value="${searchid}">
-		<input type="submit" value="검색">
+		<input type="text" name="searchid" id="searchid" />
+		<input type="submit" value="검색"/>
 	</form>	
 	<!-- 검색 후에만 출력 -->
 	<div th:if="${result != null}">

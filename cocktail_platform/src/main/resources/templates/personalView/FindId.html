@@ -16,14 +16,15 @@
                 <tr>
                   <th>이름</th>
                   <td>
-                    <input type="text" name="membername" id="membername" th:value="${board.membername}"/>
+                    <input type="text" name="membername" id="memberName"/>
                   </td>
                 </tr>
                 <tr>
                   <th>이메일</th>
                   <td>
-                    <input type="number" name="phone" id="phone" th:value="${board.memberpw}"/><br />
+                    <input type="number" name="phone" id="phone" /><br />
                     <input type="button" value="이메일 인증" onclick="emailFormOpen()">
+                    <input type="text" id="email2" placeholder="인증번호 입력"/>
                   </td>
                 </tr>
                 <tr>
