@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <script>
+     //로그인폼 확인
+    function validation() {
+      let id = document.getElementById('memberid');
+      let password = document.getElementById('memberpw');
+      
+      if (id.value == '' || password.value == '') {
+        alert('ID와 비밀번호를 입력하세요.');
+        return false; 
+      }
+      return true;
+    }
+    </script>
+    <link rel="stylesheet" th:href="@{/CSS/login.css}">
+  </head>
+  <body></body>
+</html>
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+  </head>
+  <body>
+    <div>
+      <!-- 내비게이션 -->
+      <div id="navi">
+        <img src="" alt="logo" />
+      </div>
+      <div id="body">
+        <!-- 아이디, 비밀번호, 확인 BT -->
+        <div>
+          <input type="text" id="memberid" name="memberid" placeholder="아이디"/>
+          <input type="password" id="memberpw" name="memberpw" placeholder="비밀번호"/>
+          <input type="submit" value="로그인" />
+        </div>
+        <!-- SNS 로그인 BT -->
+        <div>
+          <div>
+            <p>SNS 로그인</p>
+          </div>
+          <div>
+            <img src="" alt="sns_icon1" />
+            <img src="" alt="sns_icon2" />
+            <img src="" alt="sns_icon3" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="bt">
+      <p><a th:href="/corporate/member/join">회원가입</a></p>
+      <p><a th:href="/corporate/member/findId">아이디 찾기</a></p>
+      <p><a th:href="/corporate/member/resetPw">비밀번호 찾기</a></p>
+    </div>
+  </body>
+</html>
