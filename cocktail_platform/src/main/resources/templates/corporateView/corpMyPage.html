@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>My Page</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script>
+$(document).ready(function(){
+    $('#memberChangeBtn').click(memberChg);
+    $('#storeChangeBtn').click(storeChg);
+});
+
+function memberChg(){
+	let memberName = $('#memberName').val();
+	let phone =  $('#phone').val();
+	
+	$.ajax({
+		url: 'editPrivacyInfo',
+		type: 'post',
+		data: {memberName: memberName, phone: phone},		
+		success: function(){
+			alert('저장되었습니다.');
+		},
+		error: function(e){
+			alert(e.statusText);
+		}
+	});
+}
+
+function storeChg(){
+	let dayOff = $('#dayOff').val();
+	let runningTime = $('#runningTime').val();
+	let info = $('#info').val();
+	
+	$.ajax({
+		url: 'editStorepage',
+		type: 'post',
+		data: {dayOff: dayOff, runningTime: runningTime, info: info},		
+		success: function(){
+			alert('저장되었습니다.');
+		},
+		error: function(e){
+			alert(e.statusText);
+		}
+	});
+}
+
+
+</script>
+<link rel="stylesheet" th:href="@{/CSS/}">
+</head>
+<body>
+<!-- 헤더 -->
+<header id="header" class="header">
+	<!-- 네비게이션바 -->
+	<nav id="navbar" class="navbar">
+    	<div class="search">
+   			<a th:href="@{/search}" class="search_logo">
+    			<img th:src="@{/image/btn_search.png}" alt="검색">
+    		</a>
+    	</div>
+    
+	    <div id="logo">
+	    	<a th:href="@{/corporate/home}" class="navbar_logo">
+	       		<img th:src="@{/image/logo.png}" alt="logo">
+	       		<span>FitTail</span>
+	     	</a>
+	    </div>
+	
+    	<div class="navbar_right">
+    		<div sec:authorize="!isAuthenticated()">
+	    		<span id="login">로그인</span>
+	    	</div>
+	    	<div sec:authorize="isAuthenticated()">
+	    		<a th:href="@{/corporate/member/logout}">로그아웃</a>
+	    		<a th:href="@{/corporate/member/myPage}">마이페이지</a>
+	    	</div>
+	   </div>
+  </nav>
+  <!-- 네비게이션바 끝 -->
+</header>
+<!-- 헤더 끝 -->
+<!-- 메인 시작 -->
+ <main>
+	<!-- 사이드바 -->
+	<section class="sidebar" id="sidebar">
+		<!-- 사이드바: 프로필 -->
+		<div class="profile">
+			<div class="profile-icon">
+	 			<img th:src="@{/image/profile-icon.svg}" alt="프로필">
+	 		</div>
+		 	<div class="profile-text">
+		 		<p>dd님 환영합니다.</p>
+		 		<p>ID: <span th:text="${#authentication.name}"></span></p>
+		 	</div>
+	 	</div>
+
+		<hr class="sidebar-divider">
+
+		<!-- 사이드바: 퀵 메뉴 -->
+		<div class="quickmenu">
+			<ul>
+     			<li><a th:href="@{/store/reservePage}">예약 확인</a></li>
+       			<li><a th:href="@{/}">메뉴 관리</a></li>
+       			<li><a th:href="@{member/editStorepage}">가게 정보 관리</a></li>
+			</ul>
+		</div>
+
+		<hr class="sidebar-divider">
+	
+		<!-- 사이드바: 메뉴 리스트 -->
+        <div class="nav-item">
+			<ul>
+				<li>
+					<a th:href="@{/store/orderList}">주문 관리</a>
+				</li>
+				<li>
+					<a th:href="@{/store/salesMng}">매출 관리</a>
+				</li>
+				<li>
+					<a th:href="@{/member/editPrivacyInfo}">내 정보 관리</a>
+				</li>
+			</ul>
+		</div>
+        
+        <hr class="sidebar-divider">
+	
+		<!-- 사이드바: 회원 탈퇴 -->
+		<a th:href="@{/member/quitMember}">회원 탈퇴</a>
+	</section>
+	<!-- 사이드바 끝 -->
+	<!-- 메인 섹션 시작 -->
+	<section>
+		<h1>마이페이지</h1>
+		<div id="memberInformation">
+			<h2>회원 정보</h2>
+			<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
+				<input type="text" th:value="${member.memberId}" readonly="readonly"><br>
+				<input type="text" th:value="${member.memberPw}" readonly="readonly"><br>
+				<input type="text" th:value="${member.email}" readonly="readonly"><br>
+				<input type="text" th:value="${member.memberName}"><br>
+				<input type="text" th:value="${member.phone}">
+				<input type="button" id="memberChangeBtn" value="변경">
+			</form>
+		</div>
+		<div id="storeInformation">
+			<h2>매장 정보</h2>
+			<form id="memberInfoForm" th:action="@{/member/editStorepage}" method="post">
+				휴일 <input type="text" th:value="${store.dayOff}">
+				영업 시간 <input type="text" th:value="${store.runningTime}">
+				매장 소개 <input type="text" th:value="${store.info}">
+				<input type="button" id="storeChangeBtn" value="변경">
+			</form>
+		</div>
+	</section>
+</main>
+</body>
+</html>
