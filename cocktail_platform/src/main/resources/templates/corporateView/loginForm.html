@@ -54,7 +54,8 @@ function submitChk(){
         </form>
         <hr>
         <div class="text-bottom-container">
-            <a class="text-bottom" href="forgot-password.html">아이디·비밀번호 찾기</a>
+            <a class="text-bottom" th:href="@{/member/findId}">아이디 찾기·비밀번호 찾기</a>
+            <a class="text-bottom" th:href="@{/member/resetPw}">비밀번호 찾기</a>
             <a class="text-bottom" th:href="@{/member/join}">회원가입</a>
         </div>
     </main>
