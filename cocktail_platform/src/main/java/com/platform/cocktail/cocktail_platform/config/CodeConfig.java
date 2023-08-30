@@ -1,160 +1,191 @@
 package com.platform.cocktail.cocktail_platform.config;
 
+import java.util.HashMap;
+
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import com.platform.cocktail.cocktail_platform.domain.CodeInfo;
 
+@Configuration
 public class CodeConfig {
-	public static final CodeInfo taste1001 = new CodeInfo("sweet", 1001);
-	public static final CodeInfo taste1002 = new CodeInfo("sour", 1002);
-	public static final CodeInfo taste1004 = new CodeInfo("bitter", 1004);
-	public static final CodeInfo taste1008 = new CodeInfo("salty", 1008);
-	public static final CodeInfo taste1003 = new CodeInfo("sweet,sour", 1003);
-	public static final CodeInfo taste1005 = new CodeInfo("sweet,bitter", 1005);
-	public static final CodeInfo taste1009 = new CodeInfo("sweet,salty", 1009);
-	public static final CodeInfo taste1006 = new CodeInfo("sour,bitter", 1006);
-	public static final CodeInfo taste1010 = new CodeInfo("sour,salty", 1010);
-	public static final CodeInfo taste1012 = new CodeInfo("bitter,salty", 1012);
-	public static final CodeInfo taste1007 = new CodeInfo("sweet,sour,bitter", 1007);
-	public static final CodeInfo taste1011 = new CodeInfo("sweet,sour,salty", 1011);
-	public static final CodeInfo taste1013 = new CodeInfo("sweet,bitter,salty", 1013);
-	public static final CodeInfo taste1014 = new CodeInfo("sour,bitter,salty", 1014);
-	public static final CodeInfo taste1015 = new CodeInfo("weet,sour,bitter,salty", 1015);
 	
-	public static final CodeInfo flavor2001 = new CodeInfo("alcohol", 2001);
-	public static final CodeInfo flavor2002 = new CodeInfo("coffee&chocolate", 2002);
-	public static final CodeInfo flavor2004 = new CodeInfo("general", 2004);
-	public static final CodeInfo flavor2008 = new CodeInfo("citrus", 2008);
-	public static final CodeInfo flavor2016 = new CodeInfo("tropical", 2016);
-	public static final CodeInfo flavor2003 = new CodeInfo("alcohol,coffee&chocolate", 2003);
-	public static final CodeInfo flavor2005 = new CodeInfo("alcohol,general", 2005);
-	public static final CodeInfo flavor2009 = new CodeInfo("alcohol,citrus", 2009);
-	public static final CodeInfo flavor2017 = new CodeInfo("alcohol,tropical", 2017);
-	public static final CodeInfo flavor2006 = new CodeInfo("coffee&chocolate,general", 2006);
-	public static final CodeInfo flavor2010 = new CodeInfo("coffee&chocolate,citrus", 2010);
-	public static final CodeInfo flavor2018 = new CodeInfo("coffee&chocolate,tropical", 2018);
-	public static final CodeInfo flavor2012 = new CodeInfo("general,citrus", 2012);
-	public static final CodeInfo flavor2020 = new CodeInfo("general,tropical", 2020);
-	public static final CodeInfo flavor2024 = new CodeInfo("citrus,tropical", 2024);
-	public static final CodeInfo flavor2007 = new CodeInfo("alcohol,coffee&chocolate,general", 2007);
-	public static final CodeInfo flavor2011 = new CodeInfo("alcohol,coffee&chocolate,citrus", 2011);
-	public static final CodeInfo flavor2019 = new CodeInfo("alcohol,coffee&chocolate,tropical", 2019);
-	public static final CodeInfo flavor2013 = new CodeInfo("alcohol,general,citrus", 2013);
-	public static final CodeInfo flavor2021 = new CodeInfo("alcohol,general,tropical", 2021);
-	public static final CodeInfo flavor2025 = new CodeInfo("alcohol,citrus,tropical", 2025);
-	public static final CodeInfo flavor2014 = new CodeInfo("coffee&chocolate,general,citrus", 2014);
-	public static final CodeInfo flavor2022 = new CodeInfo("coffee&chocolate,general,tropical", 2022);
-	public static final CodeInfo flavor2026 = new CodeInfo("coffee&chocolate,citrus,tropical", 2026);
-	public static final CodeInfo flavor2028 = new CodeInfo("general,citrus,tropical", 2028);
-	public static final CodeInfo flavor2015 = new CodeInfo("alcohol,coffee&chocolate,general,citrus", 2015);
-	public static final CodeInfo flavor2023 = new CodeInfo("alcohol,coffee&chocolate,general,tropical", 2023);
-	public static final CodeInfo flavor2027 = new CodeInfo("alcohol,coffee&chocolate,citrus,tropical", 2027);
-	public static final CodeInfo flavor2029 = new CodeInfo("alcohol,general,citrus,tropical", 2029);
-	public static final CodeInfo flavor2030 = new CodeInfo("coffee&chocolate,general,citrus,tropical", 2030);
-	public static final CodeInfo flavor2031 = new CodeInfo("alcohol,coffee&chocolate,general,citrus,tropical", 2031);
+//	int foundInt = map.get(weather[i]);
+//	Set<String> foundStrs = map.entrySet()
+//							.stream()
+//							.filter(entry -> Objects.equals(entry.getValue(), foundInt))
+//							.map(Map.Entry::getKey)
+//							.collect(Collectors.toSet());
+//	
+//	log.debug("{}, {}", foundInt, foundStrs);
 	
-	// 511개를 써야 하는 걸까?
-	public static final CodeInfo color3001 = new CodeInfo("transparent", 3001);
-	public static final CodeInfo color3002 = new CodeInfo("white", 3002);
-	public static final CodeInfo color3004 = new CodeInfo("black", 3004);
-	public static final CodeInfo color3008 = new CodeInfo("red", 3008);
-	public static final CodeInfo color3016 = new CodeInfo("orange", 3016);
-	public static final CodeInfo color3032 = new CodeInfo("yellow", 3032);
-	public static final CodeInfo color3064 = new CodeInfo("green", 3064);
-	public static final CodeInfo color3128 = new CodeInfo("blue", 3128);
-	public static final CodeInfo color3256 = new CodeInfo("purple", 3256);
+	@Bean
+	public HashMap<String, Integer> codeMap(){
+		return map;
+	}
+	
+	private final HashMap<String, Integer> map = new HashMap<String, Integer>() {{
+		
+		// 맛 관련 코드
+		put("sweet", 1001);
+		put("sour", 1002);
+		put("bitter", 1004);
+		put("salty", 1008);
+		put("sweet,sour", 1003);
+		put("sweet,bitter", 1005);
+		put("sweet,salty", 1009);
+		put("sour,bitter", 1006);
+		put("sour,salty", 1010);
+		put("bitter,salty", 1012);
+		put("sweet,sour,bitter", 1007);
+		put("sweet,sour,salty", 1011);
+		put("sweet,bitter,salty", 1013);
+		put("sour,bitter,salty", 1014);
+		put("sweet,sour,bitter,salty", 1015);
+		
+		// 향 관련 코드
+		put("alcohol", 2001);
+		put("coffee&chocolate", 2002);
+		put("general", 2004);
+		put("citrus", 2008);
+		put("tropical", 2016);
+		put("alcohol,coffee&chocolate", 2003);
+		put("alcohol,general", 2005);
+		put("alcohol,citrus", 2009);
+		put("alcohol,tropical", 2017);
+		put("coffee&chocolate,general", 2006);
+		put("coffee&chocolate,citrus", 2010);
+		put("coffee&chocolate,tropical", 2018);
+		put("general,citrus", 2012);
+		put("general,tropical", 2020);
+		put("citrus,tropical", 2024);
+		put("alcohol,coffee&chocolate,general", 2007);
+		put("alcohol,coffee&chocolate,citrus", 2011);
+		put("alcohol,coffee&chocolate,tropical", 2019);
+		put("alcohol,general,citrus", 2013);
+		put("alcohol,general,tropical", 2021);
+		put("alcohol,citrus,tropical", 2025);
+		put("coffee&chocolate,general,citrus", 2014);
+		put("coffee&chocolate,general,tropical", 2022);
+		put("coffee&chocolate,citrus,tropical", 2026);
+		put("general,citrus,tropical", 2028);
+		put("alcohol,coffee&chocolate,general,citrus", 2015);
+		put("alcohol,coffee&chocolate,general,tropical", 2023);
+		put("alcohol,coffee&chocolate,citrus,tropical", 2027);
+		put("alcohol,general,citrus,tropical", 2029);
+		put("coffee&chocolate,general,citrus,tropical", 2030);
+		put("alcohol,coffee&chocolate,general,citrus,tropical", 2031);
 
-	public static final CodeInfo alcohol4001 = new CodeInfo("beer", 4001);
-	public static final CodeInfo alcohol4002 = new CodeInfo("makgeoli", 4002);
-	public static final CodeInfo alcohol4004 = new CodeInfo("whitewine", 4004);
-	public static final CodeInfo alcohol4008 = new CodeInfo("redwine", 4008);
-	public static final CodeInfo alcohol4016 = new CodeInfo("soju", 4016);
-	public static final CodeInfo alcohol4032 = new CodeInfo("whiskey", 4032);
-	public static final CodeInfo alcohol4000 = new CodeInfo("under beer", 4000);
-	public static final CodeInfo alcohol4003 = new CodeInfo("beer,makgeoli", 4003);
-	public static final CodeInfo alcohol4006 = new CodeInfo("makgeoli,whitewine", 4006);
-	public static final CodeInfo alcohol4012 = new CodeInfo("whitewine,redwine", 4012);
-	public static final CodeInfo alcohol4024 = new CodeInfo("redwine,soju", 4024);
-	public static final CodeInfo alcohol4048 = new CodeInfo("soju,whiskey", 4048);
-	public static final CodeInfo alcohol4096 = new CodeInfo("over whiskey", 4096);
+		// 색 관련 코드
+		put("transparent", 3001);
+		put("white", 3002);
+		put("black", 3004);
+		put("red", 3008);
+		put("orange", 3016);
+		put("yellow", 3032);
+		put("green", 3064);
+		put("blue", 3128);
+		put("purple", 3256);
+		put("multi", 3512);
+		
+		// 도수 관련 코드
+		put("beer", 4001);
+		put("makgeoli", 4002);
+		put("whitewine", 4004);
+		put("redwine", 4008);
+		put("soju", 4016);
+		put("whiskey", 4032);
+		put("under beer", 4000);
+		put("beer,makgeoli", 4003);
+		put("makgeoli,whitewine", 4006);
+		put("whitewine,redwine", 4012);
+		put("redwine,soju", 4024);
+		put("soju,whiskey", 4048);
+		put("over whiskey", 4096);
+		
+		// 날씨 관련 코드
+		put("sunny", 5001);
+		put("cloudy", 5002);
+		put("rainy", 5004);
+		put("snowy", 5008);
+		put("sunny,cloudy", 5003);
+		put("sunny,rainy", 5005);
+		put("sunny,snowy", 5009);
+		put("cloudy,rainy", 5006);
+		put("cloudy,snowy", 5010);
+		put("rainy,snowy", 5012);
+		put("sunny,cloudy,rainy", 5007);
+		put("sunny,cloudy,snowy", 5011);
+		put("sunny,rainy,snowy", 5013);
+		put("cloudy,rainy,snowy", 5014);
+		put("sunny,cloudy,rainy,snowy", 5015);
 
-	public static final CodeInfo weather5001 = new CodeInfo("sunny", 5001);
-	public static final CodeInfo weather5002 = new CodeInfo("cloudy", 5002);
-	public static final CodeInfo weather5004 = new CodeInfo("rainy", 5004);
-	public static final CodeInfo weather5008 = new CodeInfo("snowy", 5008);
-	public static final CodeInfo weather5003 = new CodeInfo("sunny,cloudy", 5003);
-	public static final CodeInfo weather5005 = new CodeInfo("sunny,rainy", 5005);
-	public static final CodeInfo weather5009 = new CodeInfo("sunny,snowy", 5009);
-	public static final CodeInfo weather5006 = new CodeInfo("cloudy,rainy", 5006);
-	public static final CodeInfo weather5010 = new CodeInfo("cloudy,snowy", 5010);
-	public static final CodeInfo weather5012 = new CodeInfo("rainy,snowy", 5012);
-	public static final CodeInfo weather5007 = new CodeInfo("sunny,cloudy,rainy", 5007);
-	public static final CodeInfo weather5011 = new CodeInfo("sunny,cloudy,snowy", 5011);
-	public static final CodeInfo weather5013 = new CodeInfo("sunny,rainy,snowy", 5013);
-	public static final CodeInfo weather5014 = new CodeInfo("cloudy,rainy,snowy", 5014);
-	public static final CodeInfo weather5015 = new CodeInfo("sunny,cloudy,rainy,snowy", 5015);
-
-	public static final CodeInfo ageGroup5001 = new CodeInfo("20", 5001);
-	public static final CodeInfo ageGroup5002 = new CodeInfo("30", 5002);
-	public static final CodeInfo ageGroup5004 = new CodeInfo("40", 5004);
-	public static final CodeInfo ageGroup5008 = new CodeInfo("50", 5008);
-	public static final CodeInfo ageGroup5003 = new CodeInfo("20,30", 5003);
-	public static final CodeInfo ageGroup5005 = new CodeInfo("20,40", 5005);
-	public static final CodeInfo ageGroup5009 = new CodeInfo("20,50", 5009);
-	public static final CodeInfo ageGroup5006 = new CodeInfo("30,40", 5006);
-	public static final CodeInfo ageGroup5010 = new CodeInfo("30,50", 5010);
-	public static final CodeInfo ageGroup5012 = new CodeInfo("40,50", 5012);
-	public static final CodeInfo ageGroup5007 = new CodeInfo("20,30,40", 5007);
-	public static final CodeInfo ageGroup5011 = new CodeInfo("20,30,50", 5011);
-	public static final CodeInfo ageGroup5013 = new CodeInfo("20,40,50", 5013);
-	public static final CodeInfo ageGroup5014 = new CodeInfo("30,40,50", 5014);
-	public static final CodeInfo ageGroup5015 = new CodeInfo("20,30,40,50", 5015);
-	
-	public static final CodeInfo companion6001 = new CodeInfo("alone", 6001);
-	public static final CodeInfo companion6002 = new CodeInfo("friend", 6002);
-	public static final CodeInfo companion6004 = new CodeInfo("family", 6004);
-	public static final CodeInfo companion6008 = new CodeInfo("lover", 6008);
-	public static final CodeInfo companion6016 = new CodeInfo("etc", 6016);
-	public static final CodeInfo companion6003 = new CodeInfo("alone,friend", 6003);
-	public static final CodeInfo companion6005 = new CodeInfo("alone,family", 6005);
-	public static final CodeInfo companion6009 = new CodeInfo("alone,lover", 6009);
-	public static final CodeInfo companion6017 = new CodeInfo("alone,etc", 6017);
-	public static final CodeInfo companion6006 = new CodeInfo("friend,family", 6006);
-	public static final CodeInfo companion6010 = new CodeInfo("friend,lover", 6010);
-	public static final CodeInfo companion6018 = new CodeInfo("friend,etc", 6018);
-	public static final CodeInfo companion6012 = new CodeInfo("family,lover", 6012);
-	public static final CodeInfo companion6020 = new CodeInfo("family,etc", 6020);
-	public static final CodeInfo companion6024 = new CodeInfo("lover,etc", 6024);
-	public static final CodeInfo companion6007 = new CodeInfo("alone,friend,family", 6007);
-	public static final CodeInfo companion6011 = new CodeInfo("alone,friend,lover", 6011);
-	public static final CodeInfo companion6019 = new CodeInfo("alone,friend,etc", 6019);
-	public static final CodeInfo companion6013 = new CodeInfo("alone,family,lover", 6013);
-	public static final CodeInfo companion6021 = new CodeInfo("alone,family,etc", 6021);
-	public static final CodeInfo companion6025 = new CodeInfo("alone,lover,etc", 6025);
-	public static final CodeInfo companion6014 = new CodeInfo("friend,family,lover", 6014);
-	public static final CodeInfo companion6022 = new CodeInfo("friend,family,etc", 6022);
-	public static final CodeInfo companion6026 = new CodeInfo("friend,lover,etc", 6026);
-	public static final CodeInfo companion6028 = new CodeInfo("family,lover,etc", 6028);
-	public static final CodeInfo companion6015 = new CodeInfo("alone,friend,family,lover", 6015);
-	public static final CodeInfo companion6023 = new CodeInfo("alone,friend,family,etc", 6023);
-	public static final CodeInfo companion6027 = new CodeInfo("alone,friend,lover,etc", 6027);
-	public static final CodeInfo companion6029 = new CodeInfo("alone,family,lover,etc", 6029);
-	public static final CodeInfo companion6030 = new CodeInfo("friend,family,lover,etc", 6030);
-	public static final CodeInfo companion6031 = new CodeInfo("alone,friend,family,lover,etc", 6031);
-	
-	public static final CodeInfo event7001 = new CodeInfo("cocktail", 7001);
-	public static final CodeInfo event7002 = new CodeInfo("atmosphere", 7002);
-	public static final CodeInfo event7004 = new CodeInfo("friendship", 7004);
-	public static final CodeInfo event7008 = new CodeInfo("celebrate", 7008);
-	public static final CodeInfo event7003 = new CodeInfo("cocktail,atmosphere", 7003);
-	public static final CodeInfo event7005 = new CodeInfo("cocktail,friendship", 7005);
-	public static final CodeInfo event7009 = new CodeInfo("cocktail,celebrate", 7009);
-	public static final CodeInfo event7006 = new CodeInfo("atmosphere,friendship", 7006);
-	public static final CodeInfo event7010 = new CodeInfo("atmosphere,celebrate", 7010);
-	public static final CodeInfo event7012 = new CodeInfo("friendship,celebrate", 7012);
-	public static final CodeInfo event7007 = new CodeInfo("cocktail,atmosphere,friendship", 7007);
-	public static final CodeInfo event7011 = new CodeInfo("cocktail,atmosphere,celebrate", 7011);
-	public static final CodeInfo event7013 = new CodeInfo("cocktail,friendship,celebrate", 7013);
-	public static final CodeInfo event7014 = new CodeInfo("atmosphere,friendship,celebrate", 7014);
-	public static final CodeInfo event7015 = new CodeInfo("cocktail,atmosphere,friendship,celebrate", 7015);
+		// 연령대 관련 코드
+		put("20", 6001);
+		put("30", 6002);
+		put("40", 6004);
+		put("50", 6008);
+		put("20,30", 6003);
+		put("20,40", 6005);
+		put("20,50", 6009);
+		put("30,40", 6006);
+		put("30,50", 6010);
+		put("40,50", 6012);
+		put("20,30,40", 6007);
+		put("20,30,50", 6011);
+		put("20,40,50", 6013);
+		put("30,40,50", 6014);
+		put("20,30,40,50", 6015);
+		
+		// 동행인 관련 코드
+		put("alone", 7001);
+		put("friend", 7002);
+		put("family", 7004);
+		put("lover", 7008);
+		put("etc", 7016);
+		put("alone,friend", 7003);
+		put("alone,family", 7005);
+		put("alone,lover", 7009);
+		put("alone,etc", 7017);
+		put("friend,family", 7006);
+		put("friend,lover", 7010);
+		put("friend,etc", 7018);
+		put("family,lover", 7012);
+		put("family,etc", 7020);
+		put("lover,etc", 7024);
+		put("alone,friend,family", 7007);
+		put("alone,friend,lover", 7011);
+		put("alone,friend,etc", 7019);
+		put("alone,family,lover", 7013);
+		put("alone,family,etc", 7021);
+		put("alone,lover,etc", 7025);
+		put("friend,family,lover", 7014);
+		put("friend,family,etc", 7022);
+		put("friend,lover,etc", 7026);
+		put("family,lover,etc", 7028);
+		put("alone,friend,family,lover", 7015);
+		put("alone,friend,family,etc", 7023);
+		put("alone,friend,lover,etc", 7027);
+		put("alone,family,lover,etc", 7029);
+		put("friend,family,lover,etc", 7030);
+		put("alone,friend,family,lover,etc", 7031);
+		
+		// 이벤트 관련 코드
+		put("cocktail", 8001);
+		put("atmosphere", 8002);
+		put("friendship", 8004);
+		put("celebrate", 8008);
+		put("cocktail,atmosphere", 8003);
+		put("cocktail,friendship", 8005);
+		put("cocktail,celebrate", 8009);
+		put("atmosphere,friendship", 8006);
+		put("atmosphere,celebrate", 8010);
+		put("friendship,celebrate", 8012);
+		put("cocktail,atmosphere,friendship", 8007);
+		put("cocktail,atmosphere,celebrate", 8011);
+		put("cocktail,friendship,celebrate", 8013);
+		put("atmosphere,friendship,celebrate", 8014);
+		put("cocktail,atmosphere,friendship,celebrate", 8015);
+		
+	}};
 }

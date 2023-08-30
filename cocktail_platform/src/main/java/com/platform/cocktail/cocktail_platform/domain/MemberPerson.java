@@ -5,13 +5,22 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberPerson extends Member {
+	String memberId;
+	String memberPw;
+	String memberName;
+	MemberType memberType;
+	String phone;
+	String email;
+	boolean isEnable;
 	String gender;
 	String birthday;
 	int point;
@@ -25,40 +34,5 @@ public class MemberPerson extends Member {
 				+ ", phone=" + phone + ", email=" + email + ", memberName=" + memberName + ", isEnable=" + isEnable 
 				+  "gender=" + gender + ", birthday=" + birthday + ", point=" + point + ", isChannel="
 				+ isChannel + ", channel=" + channel + ", createdDate=" + createdDate + "]";
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
-	}
-
-	@Override
-	public String getPassword() {
-		return this.memberPw;
-	}
-
-	@Override
-	public String getUsername() {
-		return this.memberId;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return this.isEnable;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return this.isEnable;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return this.isEnable;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return this.isEnable;
 	}
 }

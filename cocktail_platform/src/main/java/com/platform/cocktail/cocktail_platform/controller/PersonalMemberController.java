@@ -2,6 +2,7 @@ package com.platform.cocktail.cocktail_platform.controller;
 
 import java.util.ArrayList;
 
+import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,7 +41,7 @@ public class PersonalMemberController {
 	
 	@GetMapping("join")
 	public String join() {
-		return "";
+		return "personalView/join";
 	}
 	
 	@PostMapping("join")
@@ -48,17 +49,28 @@ public class PersonalMemberController {
 		log.debug("들어온 값 : {}", m);
 		mService.insertMember(m);
 		
+		return "redirect:/personal/taste?memberId=" + m.getMemberId();
+	}
+	
+	@GetMapping("taste")
+	public String taste(String memberId, Model m) {
+		m.addAttribute("memberId", memberId);
+		return "personalView/taste";
+	}
+	
+	@PostMapping("taste")
+	public String taste(Taste t) {
 		return "redirect:/personal/home";
 	}
 	
-	@GetMapping("login")
+	@GetMapping("loginForm")
 	public String login() {
-		return "";
+		return "personalView/login_popup";
 	}
 	
 	@GetMapping("findId")
 	public String findId() {
-		return "";
+		return "personalView/FindID";
 	}
 	
 	@PostMapping("findId")
@@ -141,6 +153,24 @@ public class PersonalMemberController {
 	@PostMapping("evaluation")
 	public String evaluation(@AuthenticationPrincipal UserDetails user, StoreReview review
 			, int[] menuNum, String[] weather, String[] ageGroup, String[] companion, String[] event) {
+		if(menuNum.length == 1) {
+			String str = StringUtils.join(weather);
+			weather = new String[1];
+			weather[0] = str;
+			
+			str = StringUtils.join(ageGroup);
+			ageGroup = new String[1];
+			ageGroup[0] = str;
+			
+			str = StringUtils.join(companion);
+			companion = new String[1];
+			companion[0] = str;
+			
+			str = StringUtils.join(event);
+			event = new String[1];
+			event[0] = str;
+		}
+		
 		review.setMemberid(user.getUsername());
 		sService.insertReview(review, menuNum, weather, ageGroup, companion, event);
 		return "";

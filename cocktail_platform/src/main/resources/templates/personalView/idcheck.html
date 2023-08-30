@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>spring5</title>
+<link rel="stylesheet" th:href="@{cocktail_platform\src\main\resources\static\CSS\personal\idcheck.css}">
+<script>
+function check() {
+	let id = document.getElementById('searchId');
+	if (id.value == '') {
+		alert("검색할 ID를 입력하세요.");
+		return false;
+	}
+	return true;
+}
+
+//가입폼에 검색한 아이디 입력
+function inputId() {
+	opener.document.getElementById('memberid').value = '[[${searchId}]]';
+	this.close();
+}
+</script>
+</head>
+<body>
+	<header>
+	<h1>ID 중복 확인 </h1>
+	</header>
+	<section>
+	<form th:action="@{/personalView/idcheck}"  method="post" onsubmit="return check();">
+		검색할 ID
+		<input type="text" name="searchId" id="searchId" />
+		<input type="submit" value="검색"/>
+	</form>	
+	<!-- 검색 후에만 출력 -->
+	<div th:if="${result != null}">
+		<!-- 사용 가능한 경우 -->
+		<div th:if="${result}">
+			<p>사용 가능한 아이디입니다.</p>
+			<p><input type="button" value="ID사용하기" onclick="inputId()"></p>
+		</div>
+		<!-- 사용 불가능한 경우 -->
+		<div th:if="${not result}">
+			<p>이미 사용중인 아이디입니다.</p>
+		</div>
+	</div>
+	
+	</section>
+	
+</body>
+</html>

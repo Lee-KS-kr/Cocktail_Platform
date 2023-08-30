@@ -2,10 +2,16 @@ package com.platform.cocktail.cocktail_platform.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.platform.cocktail.cocktail_platform.config.CodeConfig;
 import com.platform.cocktail.cocktail_platform.dao.StoreDAO;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.MenuPreference;
@@ -13,6 +19,7 @@ import com.platform.cocktail.cocktail_platform.domain.OrderState;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
 import com.platform.cocktail.cocktail_platform.domain.ReservationState;
+import com.platform.cocktail.cocktail_platform.domain.Schedule;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.domain.StoreReview;
 
@@ -20,9 +27,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@Transactional
 public class StoreServiceImple implements StoreService {
 	@Autowired
 	private StoreDAO dao;
+	@Autowired
+	private HashMap<String, Integer> map;
 
 	@Override
 	public StoreInfo getStoreById(String memberId) {
@@ -120,12 +130,13 @@ public class StoreServiceImple implements StoreService {
 			MenuPreference mp 
 				= MenuPreference.builder()
 								.menuNum(menuNum[i])
-								.weather(weather[i])
-								.ageGroup(ageGroup[i])
-								.companion(companion[i])
-								.event(event[i])
+								.memberId(review.getMemberid())
+								.weather(map.get(weather[i]))
+								.ageGroup(map.get(ageGroup[i]))
+								.companion(map.get(companion[i]))
+								.event(map.get(event[i]))
 								.build();
-			 
+			
 			list.add(mp);
 		}
 		
@@ -133,6 +144,28 @@ public class StoreServiceImple implements StoreService {
 		int n = dao.insertMenuPreference(list);
 		
 		return n;
+	}
+
+	@Override
+	public HashMap<String, Boolean> getCapacityByDateTime(int storeCode, String date) {
+		HashMap<String, Boolean> resultMap = new HashMap<>();
+		Schedule s = getScheduleByCode(storeCode);
+		String[] timeArr = s.getTimes().split(",");
+		int capacity = dao.getCapacityByCode(storeCode);
+		
+		for (String str : timeArr) {
+			String datetime = date + str;
+			boolean canReserve = capacity > dao.getReservedCountByDatetime(datetime);
+			resultMap.put(datetime, canReserve);
+		}
+		
+		return resultMap;
+	}
+
+	@Override
+	public Schedule getScheduleByCode(int storeCode) {
+		Schedule s = dao.getScheduleByCode(storeCode);
+		return s;
 	}
 	
 	

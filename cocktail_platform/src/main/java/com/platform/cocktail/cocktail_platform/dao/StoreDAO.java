@@ -9,6 +9,7 @@ import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.MenuPreference;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
+import com.platform.cocktail.cocktail_platform.domain.Schedule;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.domain.StoreReview;
 
@@ -46,4 +47,10 @@ public interface StoreDAO {
 	int insertStoreReview(StoreReview review);
 
 	int insertMenuPreference(ArrayList<MenuPreference> list);
+
+	int getCapacityByCode(int storeCode);
+
+	int getReservedCountByDatetime(String time);
+
+	Schedule getScheduleByCode(int storeCode);
 }
