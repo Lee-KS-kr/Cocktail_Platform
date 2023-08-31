@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.platform.cocktail.cocktail_platform.api.mail_send.service.EmailService;
-import com.platform.cocktail.cocktail_platform.domain.MemberType;
 import com.platform.cocktail.cocktail_platform.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +24,7 @@ public class CorporateAjaxController {
 	
 	@GetMapping("checkId")
 	public boolean checkId(String memberId) {
-		return service.findMemberById(memberId, MemberType.clientMem) == null;
+		return service.findMemberById(memberId) == null;
 	}
 	
 	@PostMapping("emailConfirm")

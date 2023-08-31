@@ -5,37 +5,22 @@ import java.util.HashMap;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.platform.cocktail.cocktail_platform.domain.Member;
-import com.platform.cocktail.cocktail_platform.domain.MemberCorporate;
-import com.platform.cocktail.cocktail_platform.domain.MemberPerson;
 import com.platform.cocktail.cocktail_platform.domain.StoreReview;
 
 @Mapper
 public interface MemberDAO {
 
-	int insertMemberPerson(MemberPerson m);
+	int insertMember(Member m);
 
-	int insertMemberCorporate(MemberCorporate m);
-
-	MemberPerson findMemberPersonById(String memberId);
-
-	MemberCorporate findMemberCorporateById(String memberId);
+	Member findMemberById(String memberId);
 	
-	MemberPerson findMemberPersonByEmail(String email);
-	
-	MemberCorporate findMemberCorporateByEmail(String email);
+	Member findMemberByEmail(String email);
 
-	int resetPersonPw(MemberPerson m);
+	int resetMemberPw(Member m);
 
-	int resetCorporatePw(MemberCorporate m);
-
-	int updateMemberPerson(MemberPerson m);
-
-	int updateMemberCorporate(MemberCorporate m);
+	int updateMember(Member m);
 
 	int updateTaste();
 
 	int unableMember(String memberId);
-
-
-
 }

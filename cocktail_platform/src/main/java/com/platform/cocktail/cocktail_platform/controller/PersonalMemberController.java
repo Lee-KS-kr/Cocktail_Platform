@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.platform.cocktail.cocktail_platform.api.mail_send.service.EmailService;
 import com.platform.cocktail.cocktail_platform.domain.Member;
-import com.platform.cocktail.cocktail_platform.domain.MemberPerson;
 import com.platform.cocktail.cocktail_platform.domain.MemberType;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
@@ -45,7 +44,8 @@ public class PersonalMemberController {
 	}
 	
 	@PostMapping("join")
-	public String join(MemberPerson m) {
+	public String join(Member m) {
+		m.setMemberType(MemberType.privateMem);
 		log.debug("들어온 값 : {}", m);
 		mService.insertMember(m);
 		
@@ -75,7 +75,7 @@ public class PersonalMemberController {
 	
 	@PostMapping("findId")
 	public String findId(String email, Model m) {
-		MemberPerson mem = (MemberPerson) mService.findMemberByEmail(email, MemberType.privateMem);
+		Member mem = mService.findMemberByEmail(email);
 		m.addAttribute("memberId", mem.getMemberId());
 		return "";
 	}
@@ -86,28 +86,28 @@ public class PersonalMemberController {
 	}
 	
 	@PostMapping("resetPw")
-	public String resetPw(MemberPerson m) {
+	public String resetPw(Member m) {
 		mService.resetPw(m);
 		return "";
 	}
 	
 	@GetMapping("myPage")
 	public String myPage(@AuthenticationPrincipal UserDetails user, Model m) {
-		MemberPerson mem = (MemberPerson) mService.findMemberById(user.getUsername(), MemberType.privateMem);
+		Member mem = mService.findMemberById(user.getUsername());
 		m.addAttribute("member", mem);
 		return "";
 	}
 	
 	@GetMapping("editPrivacyInfo")
 	public String editPrivacyInfo(@AuthenticationPrincipal UserDetails user, Model m) {
-		MemberPerson mem = (MemberPerson) mService.findMemberById(user.getUsername(), MemberType.privateMem);
+		Member mem = mService.findMemberById(user.getUsername());
 		mem.setMemberId(user.getUsername());
 		m.addAttribute("member", mem);
 		return "";
 	}
 	
 	@PostMapping("editPrivacyInfo")
-	public String editPrivacyInfo(MemberPerson mem, @AuthenticationPrincipal UserDetails user, Model m) {
+	public String editPrivacyInfo(Member mem, @AuthenticationPrincipal UserDetails user, Model m) {
 		mem.setMemberId(user.getUsername());
 		mService.updateMember(mem);
 		

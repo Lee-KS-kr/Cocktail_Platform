@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.platform.cocktail.cocktail_platform.domain.MemberPerson;
+import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
@@ -35,7 +35,7 @@ public class CorporateOrderController {
 	}
 	
 	@PostMapping("login")
-	public String login(int storeCode, MemberPerson m) {
+	public String login(int storeCode, Member m) {
 		Order o = oService.makeNewOrder(storeCode, m.getMemberId());
 		return "";
 	}

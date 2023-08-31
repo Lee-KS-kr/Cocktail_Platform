@@ -1,6 +1,9 @@
 package com.platform.cocktail.cocktail_platform.config;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,19 +12,19 @@ import com.platform.cocktail.cocktail_platform.domain.CodeInfo;
 
 @Configuration
 public class CodeConfig {
-	
-//	int foundInt = map.get(weather[i]);
-//	Set<String> foundStrs = map.entrySet()
-//							.stream()
-//							.filter(entry -> Objects.equals(entry.getValue(), foundInt))
-//							.map(Map.Entry::getKey)
-//							.collect(Collectors.toSet());
-//	
-//	log.debug("{}, {}", foundInt, foundStrs);
-	
 	@Bean
 	public HashMap<String, Integer> codeMap(){
 		return map;
+	}
+	
+	public String getKey(int num) {
+		String str = map.entrySet().stream()
+						.filter(entry -> Objects.equals(entry.getValue(), num))
+						.map(Map.Entry::getKey)
+						.collect(Collectors.toList())
+						.get(0);
+		
+		return str;
 	}
 	
 	private final HashMap<String, Integer> map = new HashMap<String, Integer>() {{
