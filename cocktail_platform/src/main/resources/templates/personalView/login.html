@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -55,9 +58,9 @@
       </div>
     </div>
     <div id="bt">
-      <p><a th:href="/corporate/member/join">회원가입</a></p>
-      <p><a th:href="/corporate/member/findId">아이디 찾기</a></p>
-      <p><a th:href="/corporate/member/resetPw">비밀번호 찾기</a></p>
+      <p><a th:href="@{/personal/member/join}">회원가입</a></p>
+      <p><a th:href="@{/personal/member/findId}">아이디 찾기</a></p>
+      <p><a th:href="@{/personal/member/resetPw}">비밀번호 찾기</a></p>
     </div>
   </body>
 </html>
