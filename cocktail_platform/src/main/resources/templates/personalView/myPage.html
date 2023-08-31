@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- navi -->
+    <div> 
+        <img src="" alt="search">
+        <img src="" alt="logo">
+    </div>
+    <!-- main -->
+    <div>
+        <!-- sidebar-->
+        <div>
+            <!-- sec1 start-->
+            <div>
+                <div>
+                    <div>내 정보 관리</div>
+                    <div>공지 <br> 사항</div>
+                </div>
+                
+                <div>
+                    <input type="button" value="주문내역" class="bottom" onclick="orderlist()">
+                    <input type="button" value="주문내역" class="bottom" onclick="orderlist()">
+                    <input type="button" value="주문내역" class="bottom" onclick="orderlist()">
+                </div>
+                <div>
+                    <a th:href="@{/}">탈퇴하기</a>
+                </div>
+            </div>
+
+            <!-- sec2 start-->
+            <div>
+                <div>마이페이지</div>
+                <div>
+                    <p>기본정보</p>
+                    <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
+                        <table th:each="member : ${member}">
+                            <tr>
+                                <th>아이디</th>
+                                <td th:text="${member.memberid}"></td>
+                            </tr>
+                            <tr>
+                                <th>이름</th>
+                                <td th:text="${member.membername}"></td>
+                            </tr>
+                            <tr>
+                                <th>이메일</th>
+                                <td><input type="text" name="email" th:value="${member.email}"></td>
+                            </tr>
+                            
+                        </table>
+                            <input type="text" value="전화번호"><br>
+                            <input type="text" value="생년월일"><br>
+                            <input type="button" value="비밀번호 변경"><br>
+                         
+                        </form>	
+                   
+                    
+                </div>
+            </div>
+        </div>
+        <!-- section -->
+        <div>
+
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- 
+    추가해야할 것들:
+    생일 변경 
+
+-->
