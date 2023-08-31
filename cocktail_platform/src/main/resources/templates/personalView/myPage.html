@@ -44,25 +44,37 @@
                         <table th:each="member : ${member}">
                             <tr>
                                 <th>아이디</th>
-                                <td th:text="${member.memberid}"></td>
+                                <td th:text="${member.memberId}"></td>
                             </tr>
                             <tr>
                                 <th>이름</th>
-                                <td th:text="${member.membername}"></td>
+                                <td th:text="${member.memberName}"></td>
                             </tr>
                             <tr>
                                 <th>이메일</th>
-                                <td><input type="text" name="email" th:value="${member.email}"></td>
+                                <td th:text="${member.email}"></td>
+                                <td><input type="button" name="email" th:value="${member.email}" value="변경"></td>
                             </tr>
-                            
+                            <tr>
+                                <th>전화번호</th>
+                                <td th:text="${member.phone}"></td>
+                                <td><input type="button" name="email" th:value="${member.email}" value="변경"></td>
+                            </tr>
+                            <tr>
+                                <th>생년월일</th>
+                                <td th:text="${member.birth}"></td>
+                                <td><input type="button" name="email" th:value="${member.email}" value="변경"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="button" name="email" th:value="${member.email}" value="비밀번호 변경"></td>
+                            </tr>
+
+                            <tr>
+                                <th>내 취향 태그</th>
+                                <td><input type="button" name="email" th:value="${member.email}" value="비밀번호 변경"></td>
+                            </tr>
                         </table>
-                            <input type="text" value="전화번호"><br>
-                            <input type="text" value="생년월일"><br>
-                            <input type="button" value="비밀번호 변경"><br>
-                         
                         </form>	
-                   
-                    
                 </div>
             </div>
         </div>
@@ -77,5 +89,7 @@
 <!-- 
     추가해야할 것들:
     생일 변경 
+
+    <td><input type="text" name="email" th:value="${member.email}"></td>
 
 -->
