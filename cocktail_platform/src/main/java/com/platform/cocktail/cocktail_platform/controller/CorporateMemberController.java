@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.platform.cocktail.cocktail_platform.api.mail_send.service.EmailService;
-import com.platform.cocktail.cocktail_platform.domain.MemberCorporate;
-import com.platform.cocktail.cocktail_platform.domain.MemberPerson;
+import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.MemberType;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
@@ -38,7 +37,8 @@ public class CorporateMemberController {
 	}
 	
 	@PostMapping("join")
-	public String join(MemberCorporate m) {
+	public String join(Member m) {
+		m.setMemberType(MemberType.clientMem);
 		log.debug("들어온 값 : {}", m);
 		mService.insertMember(m);
 		
@@ -57,7 +57,7 @@ public class CorporateMemberController {
 	
 	@PostMapping("findId")
 	public String findId(String email, Model m) {
-		MemberCorporate mem = (MemberCorporate) mService.findMemberByEmail(email, MemberType.clientMem);
+		Member mem = mService.findMemberByEmail(email);
 		m.addAttribute("memberId", mem.getMemberId());
 		return "";
 	}
@@ -68,21 +68,21 @@ public class CorporateMemberController {
 	}
 	
 	@PostMapping("resetPw")
-	public String resetPw(MemberCorporate m) {
+	public String resetPw(Member m) {
 		mService.resetPw(m);
 		return "";
 	}
 	
 	@GetMapping("editPrivacyInfo")
 	public String editPrivacyInfo(@AuthenticationPrincipal UserDetails user, Model m) {
-		MemberCorporate mem = (MemberCorporate) mService.findMemberById(user.getUsername(), MemberType.clientMem);
+		Member mem = mService.findMemberById(user.getUsername());
 		mem.setMemberId(user.getUsername());
 		m.addAttribute("member", mem);
 		return "";
 	}
 	
 	@PostMapping("editPrivacyInfo")
-	public String editPrivacyInfo(MemberCorporate mem, @AuthenticationPrincipal UserDetails user, Model m) {
+	public String editPrivacyInfo(Member mem, @AuthenticationPrincipal UserDetails user, Model m) {
 		mem.setMemberId(user.getUsername());
 		mService.updateMember(mem);
 		

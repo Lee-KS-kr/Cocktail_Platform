@@ -8,18 +8,19 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import com.platform.cocktail.cocktail_platform.domain.MemberPerson;
+import com.platform.cocktail.cocktail_platform.domain.Member;
+
 
 public class PrincipalDetails implements UserDetails, OAuth2User {
 	
-	private MemberPerson user;
+	private Member user;
 	private Map<String, Object> attributes;
 	
-	public PrincipalDetails(MemberPerson user) {
+	public PrincipalDetails(Member user) {
 		this.user = user;
 	}
 	
-	public PrincipalDetails(MemberPerson user, Map<String, Object> attributes) {
+	public PrincipalDetails(Member user, Map<String, Object> attributes) {
 		this.user = user;
 		this.attributes = attributes;
 	}

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.platform.cocktail.cocktail_platform.api.mail_send.service.EmailService;
-import com.platform.cocktail.cocktail_platform.domain.MemberType;
 import com.platform.cocktail.cocktail_platform.service.MemberService;
 import com.platform.cocktail.cocktail_platform.service.StoreService;
 
@@ -31,7 +30,7 @@ public class PersonalAjaxController {
 	
 	@GetMapping("checkId")
 	public boolean checkId(String memberId) {
-		return mService.findMemberById(memberId, MemberType.privateMem) == null;
+		return mService.findMemberById(memberId) == null;
 	}
 	
 	@GetMapping("checkReviewed")
