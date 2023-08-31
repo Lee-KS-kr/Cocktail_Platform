@@ -1,20 +1,32 @@
-function loginPop(){
-	window.open("loginForm", "login", "width=400, height=300, left=100, top=50"); 
-}
+<!DOCTYPE html>
+<html	xmlns:th="http://thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Cocktails</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script>
+$(document).ready(function(){
+	init();
+});
 
+function init(){
+	let win = window.open("/loginForm.html","login_popup","width=500px, height=300px");
+}
 </script>
 <link rel="stylesheet" th:href="@{/CSS/corpMain.css}">
 </head>
 <body>
-<!-- ======= Header ======= -->
-	<header id="header" class="header">
-	  <nav id="navbar" class="navbar">
-	    <div class="search">
-	   		<a th:href="@{/search}" class="search_logo">
-	    		<img th:src="@{/image/btn_search.png}" alt="검색">
-	    	</a>
-	    </div>
-	    
+<!-- 헤더 -->
+<header id="header" class="header">
+	<!-- 네비게이션바 -->
+	<nav id="navbar" class="navbar">
+    	<div class="search">
+   			<a th:href="@{/search}" class="search_logo">
+    			<img th:src="@{/image/btn_search.png}" alt="검색">
+    		</a>
+    	</div>
+    
 	    <div id="logo">
 	    	<a th:href="@{/corporate/home}" class="navbar_logo">
 	       		<img th:src="@{/image/logo.png}" alt="logo">
@@ -22,110 +34,89 @@ function loginPop(){
 	     	</a>
 	    </div>
 	
-	    <div class="navbar_right">
+    	<div class="navbar_right">
     		<div sec:authorize="!isAuthenticated()">
-	    		<span><a th:href="@{/corporate/member/loginForm}">로그인</a></span>
+	    		<a th:href="@{/corporate/member/login}">로그인</a>
 	    	</div>
 	    	<div sec:authorize="isAuthenticated()">
 	    		<span><a th:href="@{/corporate/member/logout}">로그아웃</a></span>
 	    		<span><a th:href="@{/corporate/member/myPage}">마이페이지</a></span>
 	    	</div>
 	   </div>
-	  </nav>
-	  <!-- End navbar -->
-	</header>
-	<!-- End Header -->
-<!-- ======= main ======= -->
-<!-- Page Wrapper -->
-    <div id="wrapper">
+  </nav>
+  <!-- 네비게이션바 끝 -->
+</header>
+<!-- 헤더 끝 -->
+<!-- 메인 시작 -->
+ <main>
+	<!-- 사이드바 -->
+	<section class="sidebar" id="sidebar">
+		<!-- 사이드바: 프로필 -->
+		<div class="profile">
+			<div class="profile-icon">
+	 			<img th:src="@{/image/profile-icon.svg}" alt="프로필">
+	 		</div>
+		 	<div class="profile-text">
+		 		<p>dd님 환영합니다.</p>
+		 		<p>ID: <span th:text="${#authentication.name}"></span></p>
+		 	</div>
+	 	</div>
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+		<hr class="sidebar-divider">
 
-	        <!-- Sidebar - profile -->
-	        <div class="profile">
-	         <div class="profile-icon">
-	         	<img th:src="@{/image/profile-icon.svg}" alt="프로필">
-	         </div>
-	         <div class="profile-text">
-	         <p>dd님 환영합니다.</p>
-	         <p>ID: <span th:text="${#authentication.name}"></span></p>
-	         </div>
-	        </div>
+		<!-- 사이드바: 메뉴 리스트 -->
+        <div class="nav-item">
+			<ul>
+				<li>
+					<a th:href="@{/store/reservePage}">예약 확인</a>
+					<ul>
+						<li><a th:href="@{/store/reserveInput}">예약 수기 입력</a></li>
+					</ul>
+				</li>
+       			<li>
+       				<a th:href="@{/store/}">메뉴 관리</a>
+     			</li>
+       			<li>
+       				<a th:href="@{member/editStorepage}">가게 정보 관리</a>
+      			</li>
+				<li>
+					<a th:href="@{/store/orderList}">주문 관리</a>
+				</li>
+				<li>
+					<a th:href="@{/store/salesMng}">매출 관리</a>
+				</li>
+				<li>
+					<a th:href="@{/member/editPrivacyInfo}">내 정보 관리</a>
+				</li>
+			</ul>
+		</div>
+        
+        <hr class="sidebar-divider">
+	
+		<!-- 사이드바: 회원 탈퇴 -->
+		<a th:href="@{/member/quitMember}">회원 탈퇴</a>
+	</section>
+	
+	<!-- 메인 섹션 시작 -->
+	<section>
+		<div class="banner">
+			<img th:src="@{/image/banner.jpg}" class="bannerimg">
+		</div>
+		<div class="box">
+			<a th:href="@{/store/orderList}">주문 확인 페이지</a>
+		</div>
+	</section>
+</main>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Quick Menu -->
-            <div class="quickmenu">
-	            <ul>
-	         		<li><a th:href="@{/}">예약 확인</a></li>
-	           		<li><a th:href="@{/}">메뉴 관리</a></li>
-	           		<li><a th:href="@{/}">매장정보 관리</a></li>
-	           	</ul>
-			</div>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-			
-            <!-- Nav Item - menu list -->
-            <li class="nav-item">
-            	<ul>
-           	 		<li>
-           	 			<a th:href="@{/}"><span>주문 관리</span></a>
-           	 		</li>
-           	 		<li>
-           	 			<a th:href="@{/}"><span>매출 관리</span></a>
-           	 		</li>
-           	 		<li>
-           	 			<a th:href="@{/}"><span>내 정보 관리</span></a>
-           	 		</li>
-            	</ul>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-			
-			<!-- Nav Item - logout, deleteId -->
-			<a th:href="@{/logout}"><span>로그아웃</span></a>
-			<a th:href="@{/quitMember}"><span>회원 탈퇴</span></a>
-        </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="row">
-				<div class="banner">
-					<img th:src="@{/image/banner.jpg}" class="bannerimg">
-				</div>
-			</div>
-			<div class="contentbox">
-				<div class="row">
-					<div class="col-8">
-						<a th:href="@{/}"><span>주문 페이지</span></a>
-					</div>
-					<div class="col-4">
-						<a th:href="@{/}"><span>공지사항</span></a>
-					</div>
-				</div>
-            <!-- End of Main Content -->
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; FitTail 2023</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-
+   <!-- Footer -->
+   <footer class="sticky-footer">
+       <div class="container">
+           <div class="copyright">
+               <span>Copyright &copy; FitTail 2023</span>
+           </div>
+       </div>
+   </footer>
+   <!-- Footer 끝 -->
+    
 </body>
 </html>
