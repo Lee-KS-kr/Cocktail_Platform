@@ -65,7 +65,7 @@ public class PersonalMemberController {
 	
 	@GetMapping("loginForm")
 	public String login() {
-		return "personalView/login_popup";
+		return "personalView/login";
 	}
 	
 	@GetMapping("findId")
@@ -77,25 +77,25 @@ public class PersonalMemberController {
 	public String findId(String email, Model m) {
 		Member mem = mService.findMemberByEmail(email);
 		m.addAttribute("memberId", mem.getMemberId());
-		return "";
+		return "redirect:/personal/findId";
 	}
 	
 	@GetMapping("resetPw")
 	public String resetPw() {
-		return "";
+		return "personalView/FindPw";
 	}
 	
 	@PostMapping("resetPw")
 	public String resetPw(Member m) {
 		mService.resetPw(m);
-		return "";
+		return "redirect:/personal/home";
 	}
 	
 	@GetMapping("myPage")
 	public String myPage(@AuthenticationPrincipal UserDetails user, Model m) {
 		Member mem = mService.findMemberById(user.getUsername());
 		m.addAttribute("member", mem);
-		return "";
+		return "personalView/mypPage";
 	}
 	
 	@GetMapping("editPrivacyInfo")
@@ -111,7 +111,7 @@ public class PersonalMemberController {
 		mem.setMemberId(user.getUsername());
 		mService.updateMember(mem);
 		
-		return "";
+		return "redirect:/personal/myPage";
 	}
 	
 	@GetMapping("orderLists")
