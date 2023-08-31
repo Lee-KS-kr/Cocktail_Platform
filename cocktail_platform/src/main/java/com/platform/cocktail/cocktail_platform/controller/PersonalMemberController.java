@@ -49,7 +49,7 @@ public class PersonalMemberController {
 		log.debug("들어온 값 : {}", m);
 		mService.insertMember(m);
 		
-		return "redirect:/personal/taste?memberId=" + m.getMemberId();
+		return "redirect:/personal/member/taste?memberId=" + m.getMemberId();
 	}
 	
 	@GetMapping("taste")
@@ -59,7 +59,9 @@ public class PersonalMemberController {
 	}
 	
 	@PostMapping("taste")
-	public String taste(Taste t) {
+	public String taste(String memberId, Taste t) {
+		t.setMemberId(memberId);
+		mService.insertTaste(t);
 		return "redirect:/personal/home";
 	}
 	
@@ -139,7 +141,7 @@ public class PersonalMemberController {
 	@PostMapping("resetTaste")
 	public String resetTaste(@AuthenticationPrincipal UserDetails user, Taste t) {
 		t.setMemberId(user.getUsername());
-		mService.updateTaste();
+		mService.updateTaste(t);
 		return "";
 	}
 	
