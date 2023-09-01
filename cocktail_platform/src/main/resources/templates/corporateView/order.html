@@ -6,6 +6,21 @@
 <title>주문 페이지</title>
 <script>
 
+
+//추천 메뉴 리스트 출력
+function recMenuList(list){
+	let str = '<table>';
+	$(list).each(function(i,item){
+		str += '<tr>';
+		str += '<td>' + item.savedFilename + '</td>';
+		str += '<td>' + item.menuName + '</td>';
+		str += '<td>' + item.price + '</td>';
+		str += '</tr>';
+	});
+	str += '</table>';
+	$('#recommendList').html(str);
+}
+
 //전체 메뉴 리스트 출력
 function menuList(list){
 	let str = '<table>';
@@ -17,7 +32,7 @@ function menuList(list){
 		str += '</tr>';
 	});
 	str += '</table>';
-	$('#menulist').html(str);
+	$('#menuList').html(str);
 }
 </script>
 </head>
@@ -55,25 +70,35 @@ function menuList(list){
 	<!-- 메인 시작 -->
  	<main>
  		<nav>
- 			<img th:src="@{/image/hbg_icon.png}" width="80px" alt="햄버거메뉴아이콘">
+ 			<a th:href="">
+ 				<img th:src="@{/image/hbg_icon.png}" width="80px" alt="햄버거메뉴아이콘">
+ 			</a>
  			<p>테이블</p>
- 			<span><a th:href="">주류</a></span>
- 			<span><a th:href="">안주류</a></span>
+ 			<span><a th:href="|javascript:catView('bevarage')|">주류</a></span>
+ 			<span><a th:href="|javascript:catView('food')|">안주류</a></span>
  		</nav>
  		<section>
  			<div sec:authorize="isAuthenticated()">
- 				<p>회원님을 위한 추천 상품</p>
-	 			<span id=""></span>
-	 			<span id=""></span>
-	 			<span id=""></span>
-	 			<span id=""></span>
+ 				<p><span th:text="${#authentication.name}"></span>님을 위한 추천 상품</p>
+	 			#<span th:text="${taste.cocktailTaste}"></span>
+	 			#<span th:text="${taste.cocktailFlavor}"></span>
 	 			<div id="recommendList"></div>
  			</div>
  		</section>
  		<hr><br>
- 		
- 		<p>전체상품</p>
- 		<div id="menulist"></div> <br>
+ 		<section>
+	 		<p>전체상품</p>
+	 		<div id="menuList"></div> <br>
+ 		</section>
+ 		<section id="sidebar">
+ 			<a><span>장바구니</span></a>
+ 			<a><span>주문 내역 확인</span></a>
+ 			<div id="orderList">
+ 			
+ 			</div>
+ 			<p><a>주문하기</a></p>
+ 			<p><a>결제하기</a></p>
+ 		</section>
 	</main>
 	<footer>
 	</footer>
