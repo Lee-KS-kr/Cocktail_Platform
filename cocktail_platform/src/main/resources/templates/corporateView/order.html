@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>주문 페이지</title>
+<script>
+
+//전체 메뉴 리스트 출력
+function menuList(list){
+	let str = '<table>';
+	$(list).each(function(i,item){
+		str += '<tr>';
+		str += '<td>' + item.savedFilename + '</td>';
+		str += '<td>' + item.menuName + '</td>';
+		str += '<td>' + item.price + '</td>';
+		str += '</tr>';
+	});
+	str += '</table>';
+	$('#menulist').html(str);
+}
+</script>
+</head>
+<body>
+	<!-- 헤더 -->
+	<header id="header" class="header">
+		<!-- 네비게이션바 -->
+		<nav id="navbar" class="navbar">
+	    	<div class="search">
+	   			<a th:href="@{/search}" class="search_logo">
+	    			<img th:src="@{/image/btn_search.png}" alt="검색">
+	    		</a>
+	    	</div>
+	    
+		    <div id="logo">
+		    	<a th:href="@{/corporate/home}" class="navbar_logo">
+		       		<img th:src="@{/image/logo.png}" alt="logo">
+		       		<span>FitTail</span>
+		     	</a>
+		    </div>
+		
+	    	<div class="navbar_right">
+	    		<div sec:authorize="!isAuthenticated()">
+		    		<a th:href="@{/corporate/member/login}">로그인</a>
+		    	</div>
+		    	<div sec:authorize="isAuthenticated()">
+		    		<span><a th:href="@{/corporate/member/logout}">로그아웃</a></span>
+		    		<span><a th:href="@{/corporate/member/myPage}">마이페이지</a></span>
+		    	</div>
+		   </div>
+	  </nav>
+  	<!-- 네비게이션바 끝 -->
+	</header>
+	<!-- 헤더 끝 -->
+	<!-- 메인 시작 -->
+ 	<main>
+ 		<nav>
+ 			<img th:src="@{/image/hbg_icon.png}" width="80px" alt="햄버거메뉴아이콘">
+ 			<p>테이블</p>
+ 			<span><a th:href="">주류</a></span>
+ 			<span><a th:href="">안주류</a></span>
+ 		</nav>
+ 		<section>
+ 			<div sec:authorize="isAuthenticated()">
+ 				<p>회원님을 위한 추천 상품</p>
+	 			<span id=""></span>
+	 			<span id=""></span>
+	 			<span id=""></span>
+	 			<span id=""></span>
+	 			<div id="recommendList"></div>
+ 			</div>
+ 		</section>
+ 		<hr><br>
+ 		
+ 		<p>전체상품</p>
+ 		<div id="menulist"></div> <br>
+	</main>
+	<footer>
+	</footer>
+</body>
+</html>
