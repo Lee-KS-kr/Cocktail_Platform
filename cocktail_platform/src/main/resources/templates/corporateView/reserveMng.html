@@ -25,11 +25,19 @@ function init(){
 	});
 }
 
-//예약 취소
-function reserveRefuse(reserveCode){
+//예약 수락
+function reserveAccept(reserveCode, storeCode){
 	let result = confirm("예약을 취소하시겠습니까?");
 	if(result == true){
-		location.href="reserveRefuse?reserveCode="+reserveCode;
+		location.href="reserveAccept?reserveCode="+reserveCode+ ',storeCode=' + storeCode;
+	}
+}
+
+//예약 취소
+function reserveRefuse(reserveCode, storeCode){
+	let result = confirm("예약을 취소하시겠습니까?");
+	if(result == true){
+		location.href="reserveRefuse?reserveCode="+reserveCode + ',storeCode=' + storeCode;
 	}
 }
 
@@ -40,7 +48,8 @@ function getList(list){
 		str += '<tr>';
 		str += '<td>' + item.reserveCode + '</td>';
 		str += '<td>' + item.reservationName + '</td>';
-		str += '<td><a href="|javascript:reserveRefuse(reserveCode=' + item.reserveCode + ')|">x</a></td>';
+		str += '<td><a href="|javascript:reserveAccept(reserveCode=' + item.reserveCode + ',storeCode=' + item.storeCode + ')|">수락</a></td>';
+		str += '<td><a href="|javascript:reserveRefuse(reserveCode=' + item.reserveCode + ',storeCode=' + item.storeCode + ')|">거절</a></td>';
 		str += '<td>' + item.reservationPhone + '</td>';
 		str += '<td>' + item.reserveDate + '</td>';
 		str += '<td>' + item.reserveState + '</td>';
