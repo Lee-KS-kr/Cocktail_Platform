@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.tab_title li {
+  list-style: none;
+  float: left;
+  width: 100px;
+  padding: 10px 15px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #bebebe;
+}
+
+.tab_title li.on {
+  background-color: #ffb715;
+  font-weight: bold;
+}
+
+.tab_cont {
+  clear: both;
+  border: 1px solid #dedede;
+  height: 130px;
+  background-color: #cecece;
+}
+
+.tab_cont div {
+  display: none;
+  text-align: center;
+}
+
+.tab_cont div.on {
+  display: block;
+}

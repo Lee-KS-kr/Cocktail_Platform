@@ -41,6 +41,23 @@ function validChk(){
         }
     });
 	
+	$.ajax({
+        url:'checkEmail', 
+        type:'post', 
+        data:{email:email},
+        success:function(cnt){ 
+            if(cnt != 0){  
+                alert('중복된 이메일 주소입니다.');
+                email  == '';
+            } else { 
+            	$('#errMsg5').html('사용 가능한 이메일 주소입니다.');
+            }
+        },
+        error:function(){
+            alert("에러입니다");
+        }
+    });
+	
 	if(!regId.test(id)){
 		$('#errMsg1').html('아이디는 6-12자 영문/숫자를 포함해야 합니다.');
 		target.disabled = true;
@@ -74,10 +91,6 @@ function validChk(){
 	}
 }
 
-function emailChk(){
-	let win = window.open("emailCheck","email_popup","width=500px, height=300px");
-}
-
 </script>
 <link rel="stylesheet" th:href="@{/CSS/}">
 </head>
@@ -86,33 +99,33 @@ function emailChk(){
 		<h1 class="title">회원 가입</h1>
 		<form id="joinForm" th:action="@{/member/join}" method="post">
 				ID
-				<input type="text" name="memberId" id="memberId"
-				placeholder="ID(6-12자리 이내, 영문/숫자 사용 가능)" required="required" onkeyup="validChk()">
+				<input type="text" name="memberId" id="memberId" placeholder="ID(6-12자리 이내, 영문/숫자 사용 가능)"
+				size="25" required="required" onkeyup="validChk()">
 				<p id="errMsg1"></p>
 				<br>
 				비밀번호
-				<input type="password" name="memberPw" id="memberPw"
-				placeholder="비밀번호(8-15자리 문자/숫자/기호 사용 가능)" required="required" onkeyup="validChk()">
+				<input type="password" name="memberPw" id="memberPw" placeholder="비밀번호(8-15자리 문자/숫자/기호 사용 가능)" 
+				size="25" required="required" onkeyup="validChk()">
 				<p id="errMsg2"></p>
 				<br>
-				<input type="password" id="memberPw2"
-				placeholder="비밀번호 다시 입력" required="required" onkeyup="validChk()">
+				비밀번호 재입력
+				<input type="password" id="memberPw2" placeholder="비밀번호 다시 입력"
+				size="25" required="required" onkeyup="validChk()">
 				<p id="errMsg3"></p>
 				<br>
 				이름
-				<input type="text" name="memberName" id="memberName" 
-				placeholder="이름(필수)" required="required" onkeyup="validChk()">				
+				<input type="text" name="memberName" id="memberName" placeholder="이름(필수)"
+				size="25" required="required" onkeyup="validChk()">				
 				<p id="errMsg4"></p>
 				<br>
 				이메일
-				<input type="text" name="email" id="email"
-				placeholder="이메일(필수, 아이디 확인에 이용됩니다.)" required="required">
-				<input type="button" value="이메일 중복 확인" onclick="emailChk()" onkeyup="validChk()">			
+				<input type="text" name="email" id="email" placeholder="이메일(필수, 아이디 확인에 이용됩니다.)" 
+				size="25" required="required" onkeyup="validChk()">
 				<p id="errMsg5"></p>
 				<br>
 				핸드폰번호
 				<input type="text" name="phone" id="phone" placeholder="전화번호(-빼고 숫자만 입력)" 
-				required="required" onkeyup="validChk()">
+				size="25" required="required" onkeyup="validChk()">
 				<p id="errMsg6"></p>
 				<br>
 				<div class="bottom-container">
