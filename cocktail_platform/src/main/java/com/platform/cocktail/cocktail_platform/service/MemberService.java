@@ -28,5 +28,4 @@ public interface MemberService {
 
 	int unableMember(String memberId);
 
-
 }
