@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<head xmlns:th="http://thymeleaf.org"
+<head xmlns:th="http://www.thymeleaf.org/"
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" th:href="@{/CSS/login2.css}">
     <link rel="stylesheet" href="/CSS/reset.css">
     <script>
      //로그인폼 확인
@@ -19,8 +19,6 @@
       return true;
     }
     </script>
-    
-    
 </head>
 <body>
     <div class="body">
