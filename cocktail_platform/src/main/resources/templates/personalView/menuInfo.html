@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/CSS/menuInfo.css}">
+<title>Insert title here</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script>
+$(document).ready(function(){
+    init();
+    $(".tab_title li").click(getIndex())
+});
+
+//전체 목록 받아오기
+function init(){
+	$.ajax({
+		url: "menuList",
+		type: "get",
+		dataType: "json",
+		success: function(list){
+			getList(list);
+		},
+		error: function(){
+			alert('error');
+		}
+	});
+}
+
+//리스트 출력
+function getList(list){
+	let str = '<table><tr>';
+	$(list).each(function(i,item){
+		str += '<td>' + item.menuName + '</td>';
+		str += '<td>' + item.menuInfo + '</td>';
+		str += '<td>' + item.price + '</td></tr>';
+		str += '<tr><td rowspan="4">' + item.savedFilename + '</td>';
+		str += '</tr>';
+	});
+	str += '</table>';
+	$('#menunList').html(str);
+}
+
+//인덱스
+function getIndex(){
+	//(.tab_title li를 누르면)선택된 요소의 index 얻어서 idx라는 변수에 넣어주기
+	var idx = $(this).index();
+    //li에서 on이라는 클래스를 없앤다.
+    $(".tab_title li").removeClass("on");
+    //선택한 요소의 인덱스 번호에 해당하는 요소를 찾아서 on이라는 클래스를 붙여준다.
+    $(".tab_title li").eq(idx).addClass("on");
+    //tab_cont 클래스의 div(전체 탭의 내용물)를 다 감춘다.
+    $(".tab_cont > div").hide();
+    //인덱스 번호에 해당하는 tab_cont 클래스의 div(선택한 탭의 내용물)를 보여준다. 
+    $(".tab_cont > div").eq(idx).show();
+}
+
+</script>
+</head>
+<body>
+<!-- 헤더 -->
+<header id="header" class="header">
+	<!-- 네비게이션바 -->
+	<nav id="navbar" class="navbar">
+    	<div class="search">
+   			<a th:href="@{/search}" class="search_logo">
+    			<img th:src="@{/image/btn_search.png}" alt="검색">
+    		</a>
+    	</div>
+    
+	    <div id="logo">
+	    	<a th:href="@{/corporate/home}" class="navbar_logo">
+	       		<img th:src="@{/image/logo.png}" alt="logo">
+	       		<span>FitTail</span>
+	     	</a>
+	    </div>
+	
+    	<div class="navbar_right">
+    		<div sec:authorize="!isAuthenticated()">
+	    		<span id="login">로그인</span>
+	    	</div>
+	    	<div sec:authorize="isAuthenticated()">
+	    		<a th:href="@{/corporate/member/logout}">로그아웃</a>
+	    		<a th:href="@{/corporate/member/myPage}">마이페이지</a>
+	    	</div>
+	   </div>
+  </nav>
+  <!-- 네비게이션바 끝 -->
+</header>
+<main>
+	<section>
+		<div>
+			<a></a>
+			<p th:text="${store.storeName}"></p>
+		</div>
+		<div class="tab_title">
+			<ul>
+				<li class="on">메뉴</li>
+				<li>리뷰</li>
+				<li>매장 정보</li>
+				<li>예약하기</li>
+			</ul>
+		</div>
+		<div class="tab_cont">
+			<div id="tab_menu" class="on">
+		        <div id="menu_img">
+					<img th:src="">
+					<img th:src="">
+					<img th:src="">
+					<img th:src="">
+				</div>
+				<div id="menu_list">
+					<p>인기 메뉴</p>
+					<div id="popularList"></div>
+					<p>전체 메뉴</p>
+					<div id="menuList"></div>
+				</div>
+			</div>
+      		<div id="tab_review">
+        		<p>리뷰탭 내용</p>
+      		</div>
+      		<div id="tab_storeInfo">
+        		<p>매장정보탭 내용</p>
+      		</div>
+      		<div id="tab_reserve">
+        		<p>예약탭 내용</p>
+      		</div>
+		</div>
+	</section>
+</main>
+</body>
+</html>
