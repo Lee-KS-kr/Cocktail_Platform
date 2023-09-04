@@ -17,16 +17,6 @@ public class CodeConfig {
 		return map;
 	}
 	
-	public String getKey(int num) {
-		String str = map.entrySet().stream()
-						.filter(entry -> Objects.equals(entry.getValue(), num))
-						.map(Map.Entry::getKey)
-						.collect(Collectors.toList())
-						.get(0);
-		
-		return str;
-	}
-	
 	private final HashMap<String, Integer> map = new HashMap<String, Integer>() {{
 		
 		// 맛 관련 코드

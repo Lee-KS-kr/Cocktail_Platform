@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.OrderState;
@@ -50,11 +51,16 @@ public class CorporateStoreController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("reserveList")
-	public String reserveList(int storeCode, Model m) {
-		ArrayList<Reservation> reserveList = sService.getReservelistByCode(storeCode);
-		m.addAttribute("reserveList", reserveList);
+	@GetMapping("reservePage")
+	public String reservePage(int storeCode) {
 		return "";
+	}
+	
+	@ResponseBody
+	@GetMapping("reserveList")
+	public ArrayList<Reservation> reserveList(int storeCode, Model m) {
+		ArrayList<Reservation> reserveList = sService.getReservelistByCode(storeCode);
+		return reserveList;
 	}
 	
 	@GetMapping("reserveAccept")
