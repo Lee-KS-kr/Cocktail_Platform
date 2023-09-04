@@ -4,6 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script>
+	function test() {
+		let role = $("input[name='memberType']:checked").val();
+		alert(role);
+	}
+</script>
 <link rel="stylesheet" th:href="@{/CSS/}">
 <title>Join</title>
 
@@ -42,10 +48,9 @@
 				<p id="errMsg6"></p>
 				<br>
 				회원구분
-				
-				<input type="radio" name="memberType" id="personal" value="personal">개인회원
-				<input type="radio" name="memberType" id="corporate" value="corporate">기업회원
-				<p id="errMsg7"></p>
+    			<input type="radio" name="memberType" id="ROLE_PERSONAL" value="ROLE_PERSONAL">개인회원
+    			<input type="radio" name="memberType" id="ROLE_CORPORATE" value="ROLE_CORPORATE">기업회원
+    			<p id="errMsg7"></p>
 				
 				<br>
 				

@@ -35,7 +35,6 @@ public class MemberController {
 	
 	@PostMapping("join")
 	public String join(Member m) {
-		m.setMemberType(MemberType.personal);
 		log.debug("들어온 값 : {}", m);
 		mService.insertMember(m);
 		

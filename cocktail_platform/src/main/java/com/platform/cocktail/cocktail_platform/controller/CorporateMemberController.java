@@ -35,7 +35,7 @@ public class CorporateMemberController {
 	
 	@PostMapping("join")
 	public String join(Member m) {
-		m.setMemberType(MemberType.personal);
+		m.setMemberType(MemberType.ROLE_PERSONAL);
 		log.debug("들어온 값 : {}", m);
 		mService.insertMember(m);
 		
