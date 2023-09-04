@@ -1,5 +1,5 @@
 package com.platform.cocktail.cocktail_platform.domain;
 
 public enum MemberType {
-	personal, corporate, admin
+	ROLE_PERSONAL, ROLE_CORPORATE, ROLE_ADMIN
 }

@@ -7,14 +7,18 @@ create table member (
         gender          varchar2(1)         default 'F' check (gender in ('M', 'F', 'N')),      --성별
         birthday        varchar2(20)        not null,                                           --생일
         email           varchar2(100)       not null unique,                                    --이메일
-        point           number             default 0 check (point >= 0),                       --포인트
+        point           number              default 0 check (point >= 0),                       --포인트
         isChannel       varchar2(1)         default 'N' check (isChannel in ('Y', 'N')),        --소셜로그인
         channel         varchar2(20)        default null check (channel in ('kakao', 'naver', 'google', null)), --채널
-        memberType      varchar2(20)        default 'personal' check (memberType in ('personal', 'corporate', 'admin')), --회원종류
+        memberType      varchar2(20)        default 'ROLE_PERSONAL' check (memberType in ('ROLE_PERSONAL', 'ROLE_CORPORATE', 'ROLE_ADMIN')), --회원종류
         createdDate     date                default sysdate,                                    --가입
         isEnable        number(1)           default 1 check (isEnable in (0, 1))                --상태
 );
 DROP TABLE member CASCADE CONSTRAINTS PURGE;
+commit;
+
+insert into member (memberId, memberPw, memberName, phone, gender, birthday, email)
+values ('aaa', 'aaa', 'test', '010-111-1111', 'F', '19941030', 'aaa@gmail.com');
 
 -- 가게 정보 storeInfo 테이블
 create table storeInfo (
@@ -31,6 +35,7 @@ create table storeInfo (
         originFilename varchar2(300),                                                                       --파일원본명
         svaedFilename  varchar2(100)                                                                        --파일변화본명
 );
+drop table storeInfo;
 
 -- 메뉴  menu 테이블
  create table menu (
@@ -44,6 +49,7 @@ create table storeInfo (
         savedFilename   varchar2(100),                                                                      --메뉴 사진 변화본명
         canOrder        number(1)           default 0 check (canOrder in (0, 1))                            --주문 가능 상태(0:가능 1:불가능)
 );
+drop table menu;
 
 --  주문 order 테이블
 create table orders (
@@ -55,6 +61,7 @@ create table orders (
         menuList        varchar2(4000),                                                                     --메뉴 리스트
         orderState      varchar2(6)       default 'done' check (orderState in ('done', 'cancel'))           --주문 상태
 );
+drop table orders;
 
 --  임시 주문 orderTemp 테이블
 create table orderTemp (
@@ -65,6 +72,7 @@ create table orderTemp (
 		pricePerOne      number(7),                                                                         --메뉴 단가
 		orderCount       number(2)        default 1 check(orderCount > 0)                                   --주문 수량
 );
+drop table orderTemp;
 
 -- 예약 스케줄 schedule 테이블
 create table schedule (
@@ -77,6 +85,7 @@ create table schedule (
 		regularHoliday   number(1)     default 0 check (regularHoliday >= 0 and regularHoliday <= 6),      --정기 휴무
 		vacation	     varchar2(100)                                                                     --휴무
 );
+drop table schedule;
 
 -- 예약 상태 reservation 테이블
 create table reservation (
@@ -90,18 +99,21 @@ create table reservation (
         reserveState       varchar2(6)      check (reserveState in ('정상', '취소', '완료')),                    --예약 상태
         request            varchar2(4000)   not null                                                        --요구사항
 );
+drop table reservation;
 
 -- 코드 정보 codesInfo 테이블
 create table codeInfo (
 		cocktailInfo       number(4)       primary key,                                                     --칵테일 정보
 		infoName           varchar2(4000)  default '정상' not null                                           --칵테일 정보이름
 );
+drop table codeInfo;
 
 -- 재료 ingredients 테이블
 create table ingredients (
 		ingredientNum        number           primary key,                                                  --재료 코드
 		ingredientName       varchar2(100)    not null                                                      --재료명
 );
+drop table ingredients;
 
 -- 취향 taste 테이블
 create table taste (
@@ -112,6 +124,7 @@ create table taste (
         cocktailTaste       number          not null,                                                       --맛 정보
         cocktailFlavor      number          not null                                                        --향 정보
 );
+drop table taste;
 
 -- 칵테일 cocktails 테이블
 create table cocktails (
@@ -129,6 +142,7 @@ create table cocktails (
 		originFilename      varchar2(300),                                                                --칵테일원본사진
 		savedFilename       varchar2(100)                                                                 --칵테일수정본사진
 );
+drop table cocktails;
 
 -- 즐겨찾기 favorite 테이블
 create table favorite (
@@ -137,6 +151,7 @@ create table favorite (
 		storeCode       number              not null,                                                       --가게 코드
 		favDate         date                default sysdate                                                 --생성일자
 );
+drop table favorite;
 
 -- 가게리뷰 storeReview 테이블
 create table storeReview (
@@ -149,6 +164,7 @@ create table storeReview (
  		originFilename        varchar2(300),
 		savedFilename         varchar2(100) 
 );
+drop table storeReview;
 
 -- 메뉴평가 menuPreference 테이블
 create table menuPreference (
@@ -159,4 +175,5 @@ create table menuPreference (
 		ageGroup             varchar2(20)  check (ageGroup < 7000),
 		companion            varchar2(20)  check (companion< 8000),
 		event                number        check (event < 9000)
-);
+); 
+drop table menuPreference;
