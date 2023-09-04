@@ -7,6 +7,7 @@
 <script>
 $(document).ready(function(){
 	allList();
+	$(".tab_title li").click(getIndex());
 });
 
 //전체 목록 출력
@@ -51,6 +52,37 @@ function menuList(list){
 	str += '</table>';
 	$('#menuList').html(str);
 }
+
+//카테고리별로 메뉴 보기
+function menuCategory(category){
+	$.ajax({
+		url: "menuCategory",
+		type: "post",
+		data: {category : category},
+		dataType: "json",
+		success: function(list){
+			getList(list);
+		},
+		error: function(){
+			alert('error');
+		}
+	});
+}
+
+//인덱스
+function getIndex(){
+	//(.tab_title li를 누르면)선택된 요소의 index 얻어서 idx라는 변수에 넣어주기
+	var idx = $(this).index();
+    //li에서 on이라는 클래스를 없앤다.
+    $(".tab_title li").removeClass("on");
+    //선택한 요소의 인덱스 번호에 해당하는 요소를 찾아서 on이라는 클래스를 붙여준다.
+    $(".tab_title li").eq(idx).addClass("on");
+    //tab_cont 클래스의 div(전체 탭의 내용물)를 다 감춘다.
+    $(".tab_cont > div").hide();
+    //인덱스 번호에 해당하는 tab_cont 클래스의 div(선택한 탭의 내용물)를 보여준다. 
+    $(".tab_cont > div").eq(idx).show();
+}
+
 </script>
 </head>
 <body>
@@ -59,7 +91,7 @@ function menuList(list){
 		<!-- 네비게이션바 -->
 		<nav id="navbar" class="navbar">
 	    	<div class="search">
-	   			<a th:href="@{/search}" class="search_logo">
+	   			<a th:href="@{/personal/search}" class="search_logo">
 	    			<img th:src="@{/image/btn_search.png}" alt="검색">
 	    		</a>
 	    	</div>
@@ -73,11 +105,11 @@ function menuList(list){
 		
 	    	<div class="navbar_right">
 	    		<div sec:authorize="!isAuthenticated()">
-		    		<a th:href="@{/corporate/member/login}">로그인</a>
+		    		<a th:href="@{/member/login}">로그인</a>
 		    	</div>
 		    	<div sec:authorize="isAuthenticated()">
-		    		<span><a th:href="@{/corporate/member/logout}">로그아웃</a></span>
-		    		<span><a th:href="@{/corporate/member/myPage}">마이페이지</a></span>
+		    		<span><a th:href="@{/member/logout}">로그아웃</a></span>
+		    		<span><a th:href="@{/corporate/member/mypage}">마이페이지</a></span>
 		    	</div>
 		   </div>
 	  </nav>
@@ -91,14 +123,15 @@ function menuList(list){
  				<img th:src="@{/image/hbg_icon.png}" width="60px" alt="햄버거메뉴아이콘">
  			</a>
  			<p>테이블</p>
- 			<span><a th:href="|javascript:catView('bevarage')|">주류</a></span>
- 			<span><a th:href="|javascript:catView('food')|">안주류</a></span>
+ 			<span><a th:href="|javascript:menuCategory('bevarage')|">주류</a></span>
+ 			<span><a th:href="|javascript:menuCategory('food')|">안주류</a></span>
  		</nav>
  		<section>
  			<div sec:authorize="isAuthenticated()">
  				<p><span th:text="${#authentication.name}"></span>님을 위한 추천 상품</p>
 	 			#<span th:text="${taste.cocktailTaste}"></span>
 	 			#<span th:text="${taste.cocktailFlavor}"></span>
+	 			<!-- 추천 메뉴 출력 -->
 	 			<div id="recommendList"></div>
  			</div>
  		</section>
@@ -106,16 +139,28 @@ function menuList(list){
  		<section>
 	 		<p>전체상품</p>
 	 		<!-- 전체 메뉴 출력 -->
-	 		<div id="menuList"></div> <br>
+	 		<div id="menuList"></div><br>
  		</section>
  		<section id="sidebar">
- 			<a><span>장바구니</span></a>
- 			<a><span>주문 내역 확인</span></a>
- 			<div id="orderList">
- 			
+ 			<div class="tab_title">
+ 				<ul>
+ 					<li class="on">장바구니</li>
+ 					<li>주문 내역 확인</li>
+ 				</ul>
  			</div>
- 			<p><a>주문하기</a></p>
- 			<span><a>직원 호출</a></span>
+ 			<div class="tab_cont">
+ 				<div id="tab_cart" class="on">
+ 					<!-- 카트에 담은 메뉴 출력 -->
+ 					<div id="cartList"></div>
+ 				</div>
+ 				<div id="tab_orderList">
+ 					<!-- 주문 내역 출력 -->
+ 					<div id="orderList"></div>
+ 				</div>
+ 			</div>
+ 			
+ 			<p><a th:href="@{/corporate/order/orderMenu}">주문하기</a></p>
+ 			<span><a th:href="@{/corporate/order/callStaff}">직원 호출</a></span>
  			<p><a th:href="@{/corporate/order/payment}">결제하기</a></p>
  		</section>
 	</main>
