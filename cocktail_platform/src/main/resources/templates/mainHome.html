@@ -35,9 +35,11 @@
         <!-- 작업중ㅠㅠ 09.04 16:20 -->
         <div sec:authorize="isAuthenticated()">
         	<a th:href="@{/member/logout}">로그아웃</a><br>
-        	<p th:text="${#authentication.principal.authorities}"></p>
         	<a th:href="@{/personal/home}">개인회원 서비스 이용하기</a>
-        	<p sec:authorize="hasRole('personal')">일반사용자입니다.</p>
+        	<p sec:authorize="hasRole('personal')">
+        		<a th:href="@{/personal/home}">개인회원 서비스 이용하기</a>
+        	</p>
+        	<p th:text="${#authentication.principal.authorities}"></p>
         </div>
       </div>
     </div>
