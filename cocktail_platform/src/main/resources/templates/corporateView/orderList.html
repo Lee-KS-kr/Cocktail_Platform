@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>reserve list</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script>
+$(document).ready(function(){
+	init();
+});
+
+//전체 목록 받아오기
+function init(){
+	$.ajax({
+		url: "orderList",
+		type: "get",
+		dataType: "json",
+		success: function(list){
+			getList(list);
+		},
+		error: function(){
+			alert('error');
+		}
+	});
+}
+
+//주문 수락
+function orderAccept(reserveCode){
+	let result = confirm("주문을 수락하시겠습니까?");
+	if(result == true){
+		location.href="orderAccept?orderCode="+orderCode;
+	}
+}
+
+//주문 취소
+function orderRefuse(ordercode){
+	let result = confirm("주문을 취소하시겠습니까?");
+	if(result == true){
+		location.href="orderRefuse?orderCode="+orderCode;
+	}
+}
+
+//리스트 출력
+function getList(list){
+	let str = '<table><tr><th>번호</th><th>메뉴</th><th>주문 수량</th><th>총 금액</th><th>현황</th></tr>';
+	$(list).each(function(i,item){
+		str += '<tr>';
+		str += '<td>' + item.orderCode + '</td>';
+		str += '<td>' + item.menuNum + '</td>';
+		str += '<td>' + item.orderCount + '</td>';
+		str += '<td>' + item.pricePerOne + '</td>';
+		str += '<td><a href="|javascript:orderAccept(orderCode=' + item.orderCode + ')|">수락</a></td>';
+		str += '<td><a href="|javascript:orderRefuse(orderCode=' + item.orderCode + ')|">거절</a></td>';
+		str += '</tr>';
+	});
+	str += '</table>';
+	$('#orderList').html(str);
+}	
+</script>
+<link rel="stylesheet" th:href="@{/CSS/}">
+</head>
+<body>
+	<!-- 헤더 -->
+	<header id="header" class="header">
+		<!-- 네비게이션바 -->
+		<nav id="navbar" class="navbar">
+	    	<div class="search">
+	   			<a th:href="@{/search}" class="search_logo">
+	    			<img th:src="@{/image/btn_search.png}" alt="검색">
+	    		</a>
+	    	</div>
+	    
+		    <div id="logo">
+		    	<a th:href="@{/corporate/home}" class="navbar_logo">
+		       		<img th:src="@{/image/logo.png}" alt="logo">
+		       		<span>FitTail</span>
+		     	</a>
+		    </div>
+		
+	    	<div class="navbar_right">
+	    		<div sec:authorize="!isAuthenticated()">
+		    		<span id="login">로그인</span>
+		    	</div>
+		    	<div sec:authorize="isAuthenticated()">
+		    		<a th:href="@{/corporate/member/logout}">로그아웃</a>
+		    		<a th:href="@{/corporate/member/myPage}">마이페이지</a>
+		    	</div>
+		   </div>
+	  </nav>
+	  <!-- 네비게이션바 끝 -->
+	</header>
+	<!-- 헤더 끝 -->
+	<!-- 메인 시작 -->
+ <main>
+	<!-- 사이드바 -->
+	<section class="sidebar" id="sidebar">
+		<!-- 사이드바: 프로필 -->
+		<div class="profile">
+			<div class="profile-icon">
+	 			<img th:src="@{/image/profile-icon.svg}" alt="프로필">
+	 		</div>
+		 	<div class="profile-text">
+		 		<p>ID: <span th:text="${#authentication.name}"></span>님 환영합니다.</p>
+		 	</div>
+	 	</div>
+
+		<hr class="sidebar-divider">
+
+		<!-- 사이드바: 메뉴 리스트 -->
+        <div class="nav-item">
+			<ul>
+				<li>
+					<a th:href="@{/store/reserveList}">예약 확인</a>
+					<ul>
+						<li><a th:href="@{/store/reserveInput}">예약 수기 입력</a></li>
+					</ul>
+				</li>
+       			<li>
+       				<a th:href="@{/store/menuMng}">메뉴 관리</a>
+     			</li>
+       			<li>
+       				<a th:href="@{member/editStorepage}">가게 정보 관리</a>
+      			</li>
+				<li>
+					<a th:href="@{/store/orderList}">주문 관리</a>
+				</li>
+				<li>
+					<a th:href="@{/store/salesMng}">매출 관리</a>
+				</li>
+				<li>
+					<a th:href="@{/member/editPrivacyInfo}">내 정보 관리</a>
+				</li>
+			</ul>
+		</div>
+        
+        <hr class="sidebar-divider">
+	
+		<!-- 사이드바: 회원 탈퇴 -->
+		<a th:href="@{/member/quitMember}">회원 탈퇴</a>
+	</section>
+	<!-- 사이드바 끝 -->
+	<!-- 메인 섹션 시작 -->
+	<section>
+		<h1>주문 확인</h1>
+		<!-- 주문 리스트 -->
+		총 <span></span>건 검색되었습니다.
+		<div id="orderList"></div>
+	</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>reserve list</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script>
+$(document).ready(function(){
+	init();
+});
+
+//전체 목록 받아오기
+function init(){
+	$.ajax({
+		url: "menuList",
+		type: "get",
+		dataType: "json",
+		success: function(list){
+			getList(list);
+		},
+		error: function(){
+			alert('error');
+		}
+	});
+}
+
+//메뉴 수정
+function editMenu(reserveCode, storeCode){
+	let result = confirm("메뉴를 수정하시겠습니까?");
+	if(result == true){
+		location.href="reserveAccept?reserveCode="+reserveCode+ ',storeCode=' + storeCode;
+	}
+}
+
+//메뉴 삭제
+function deleteMenu(reserveCode, storeCode){
+	let result = confirm("메뉴를 삭제하시겠습니까?");
+	if(result == true){
+		location.href="reserveRefuse?reserveCode="+reserveCode + ',storeCode=' + storeCode;
+	}
+}
+
+//리스트 출력
+function getList(list){
+	let str = '<table><tr><th>메뉴 번호</th><th>카테고리</th><th>이름</th><th>가격</th><th>상태</th></tr>';
+	$(list).each(function(i,item){
+		str += '<tr>';
+		str += '<td>' + item.menuNum + '</td>';
+		str += '<td>' + item.category + '</td>';
+		str += '<td>' + item.menuName + '</td>';
+		str += '<td>' + item.price + '</td>';
+		str += '<td>' + item.canOrder + '</td>';
+		str += '<td><a href="|javascript:editMenu(reserveCode=' + item.reserveCode + ',storeCode=' + item.storeCode + ')|">수정</a></td>';
+		str += '<td><a href="|javascript:deleteMenu(reserveCode=' + item.reserveCode + ',storeCode=' + item.storeCode + ')|">삭제</a></td>';
+		str += '</tr>';
+	});
+	str += '</table>';
+	$('#menuList').html(str);
+}
+
+//페이지 이동
+function pagingFormSubmit(currentPage){
+		let form = document.getElementById("pagingForm");
+		let page = document.getElementById("page");
+		page.value = currentPage;
+		form.submit();
+}
+	
+</script>
+<link rel="stylesheet" th:href="@{/CSS/}">
+</head>
+<body>
+	<!-- 헤더 -->
+	<header id="header" class="header">
+		<!-- 네비게이션바 -->
+		<nav id="navbar" class="navbar">
+	    	<div class="search">
+	   			<a th:href="@{/search}" class="search_logo">
+	    			<img th:src="@{/image/btn_search.png}" alt="검색">
+	    		</a>
+	    	</div>
+	    
+		    <div id="logo">
+		    	<a th:href="@{/corporate/home}" class="navbar_logo">
+		       		<img th:src="@{/image/logo.png}" alt="logo">
+		       		<span>FitTail</span>
+		     	</a>
+		    </div>
+		
+	    	<div class="navbar_right">
+	    		<div sec:authorize="!isAuthenticated()">
+		    		<span id="login">로그인</span>
+		    	</div>
+		    	<div sec:authorize="isAuthenticated()">
+		    		<a th:href="@{/corporate/member/logout}">로그아웃</a>
+		    		<a th:href="@{/corporate/member/myPage}">마이페이지</a>
+		    	</div>
+		   </div>
+	  </nav>
+	  <!-- 네비게이션바 끝 -->
+	</header>
+	<!-- 헤더 끝 -->
+	<!-- 메인 시작 -->
+ <main>
+	<!-- 사이드바 -->
+	<section class="sidebar" id="sidebar">
+		<!-- 사이드바: 프로필 -->
+		<div class="profile">
+			<div class="profile-icon">
+	 			<img th:src="@{/image/profile-icon.svg}" alt="프로필">
+	 		</div>
+		 	<div class="profile-text">
+		 		<p>ID: <span th:text="${#authentication.name}"></span>님 환영합니다.</p>
+		 	</div>
+	 	</div>
+
+		<hr class="sidebar-divider">
+
+		<!-- 사이드바: 메뉴 리스트 -->
+        <div class="nav-item">
+			<ul>
+				<li>
+					<a th:href="@{/store/reserveList}">예약 확인</a>
+					<ul>
+						<li><a th:href="@{/store/reserveInput}">예약 수기 입력</a></li>
+					</ul>
+				</li>
+       			<li>
+       				<a th:href="@{/store/menuMng}">메뉴 관리</a>
+     			</li>
+       			<li>
+       				<a th:href="@{member/editStorepage}">가게 정보 관리</a>
+      			</li>
+				<li>
+					<a th:href="@{/store/orderList}">주문 관리</a>
+				</li>
+				<li>
+					<a th:href="@{/store/salesMng}">매출 관리</a>
+				</li>
+				<li>
+					<a th:href="@{/member/editPrivacyInfo}">내 정보 관리</a>
+				</li>
+			</ul>
+		</div>
+        
+        <hr class="sidebar-divider">
+	
+		<!-- 사이드바: 회원 탈퇴 -->
+		<a th:href="@{/member/quitMember}">회원 탈퇴</a>
+	</section>
+	<!-- 사이드바 끝 -->
+	<!-- 메인 섹션 시작 -->
+	<section>
+		<h1>메뉴 리스트</h1>
+		<!-- 메뉴 검색 -->
+		<form id="menuSearch" th:action="@{/}" method="get">
+		검색 <select id="type" name="type">
+            	<option value="">주류</option>
+            	<option value="">안주</option>
+        	</select>
+		<input type="text" name="">
+		<input type="button" value="검색" onclick="">
+		</form>
+	</section>
+	<!-- 메뉴 리스트 -->
+	<section>
+		총 <span></span>개 검색되었습니다.
+		<button>추가</button>
+		<div id="menuList"></div>
+	</section>
+	<!-- 페이지 넘버 -->
+	<section>
+		<div id="pagenum">
+            <br>
+            <!-- 페이지 이동 링크 -->
+            <a th:href="|javascript:pagingFormSubmit(${navi.currentPage - navi.pagePerGroup})|">◁◁</a>
+            <a th:href="|javascript:pagingFormSubmit(${navi.currentPage - 1})|">◀</a>
+            
+            <!-- numbers.sequence: 수열 만들어내기 -->
+            <span th:each="counter : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+            	<th:block th:if="${counter == navi.currentPage}"></th:block>
+					<a th:text="${counter}" th:href="|javascript:pagingFormSubmit(${counter})|"></a>&nbsp;
+				<th:block th:if="${counter == navi.currentPage}"></th:block>
+            </span>
+            
+            <a th:href="|javascript:pagingFormSubmit(${navi.currentPage + 1})|">▶</a>
+            <a th:href="|javascript:pagingFormSubmit(${navi.currentPage + navi.pagePerGroup})|">▷▷</a>
+        </div>
+        <br>
+	</section>
+</main>
+</body>
+</html>

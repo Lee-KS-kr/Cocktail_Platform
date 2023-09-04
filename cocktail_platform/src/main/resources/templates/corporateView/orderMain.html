@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>order Main</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<link rel="stylesheet" th:href="@{/CSS/}">
+</head>
+<body>
+	<main>
+		<img th:src="@{/image/logo.png}" alt="logo">
+		
+		<div>
+			<a th:href="@{/member/login}">개인 회원 주문</a>
+			<a th:href="@{/corporate/order/orderMenu}">비회원 주문</a>
+		</div>
+	</main>
+</body>
+</html>

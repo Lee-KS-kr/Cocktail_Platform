@@ -26,19 +26,56 @@ function validChk(){
 	let regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	let regPhone = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
 	
+	$.ajax({
+        url:'checkId', 
+        type:'post', 
+        data:{memberId:id},
+        success:function(cnt){ 
+            if(cnt != 0){  
+                alert('중복된 아이디입니다.');
+                id == '';
+            } else { 
+            	$('#errMsg1').html('사용 가능한 아이디입니다.');
+            }
+        },
+        error:function(){
+            alert("에러입니다");
+        }
+    });
+	
+	$.ajax({
+        url:'checkEmail', 
+        type:'post', 
+        data:{email:email},
+        success:function(cnt){ 
+            if(cnt != 0){  
+                alert('이미 사용 중인 이메일 주소입니다.');
+                email  == '';
+            } else { 
+            	$('#errMsg5').html('사용 가능한 이메일 주소입니다.');
+            }
+        },
+        error:function(){
+            alert("에러입니다");
+        }
+    });
+	
 	if(!regId.test(id)){
 		$('#errMsg1').html('아이디는 6-12자 영문/숫자를 포함해야 합니다.');
 		target.disabled = true;
 	}
 	else if(!regPw.test(pw1)){
+		$('#errMsg1').html('');
 		$('#errMsg2').html('비밀번호는 8-15자리 문자/숫자/특수문자를 포함해야 합니다.');
 		target.disabled = true;
 	}
 	else if(pw1 !== pw2){
+		$('#errMsg2').html('');
 		$('#errMsg3').html('비밀번호가 일치하지 않습니다.');
 		target.disabled = true;
 	}
 	else if(name < 1 || name > 9){
+		$('#errMsg3').html('');
 		$('#errMsg4').html('이름은 2-10자로 입력해주세요.');
 		target.disabled = true;
 	}else if(!regPw.test(email)){
@@ -56,10 +93,6 @@ function validChk(){
 	}
 }
 
-function emailChk(){
-	let win = window.open("emailCheck","email_popup","width=500px, height=300px");
-}
-
 </script>
 <link rel="stylesheet" th:href="@{/CSS/}">
 </head>
@@ -68,34 +101,34 @@ function emailChk(){
 		<h1 class="title">회원 가입</h1>
 		<form id="joinForm" th:action="@{/member/join}" method="post">
 				ID
-				<input type="text" name="memberId" id="memberId"
-				placeholder="ID(6-12자리 이내, 영문 사용 가능)" readonly="readonly" required="required">
-				<input type="button" value="아이디 중복 확인" onkeyup="validChk()">
-				<br>
-				비밀번호
-				<input type="password" name="memberPw" id="memberPw"
-				placeholder="비밀번호(8-15자리 문자/숫자/기호 사용 가능)" required="required" onkeyup="validChk()">
+				<input type="text" name="memberId" id="memberId" placeholder="ID(6-12자리 이내, 영문/숫자 사용 가능)"
+				size="25" required="required" onkeyup="validChk()">
 				<p id="errMsg1"></p>
 				<br>
-				<input type="password" id="memberPw2"
-				placeholder="비밀번호 다시 입력" required="required" onkeyup="validChk()">
+				비밀번호
+				<input type="password" name="memberPw" id="memberPw" placeholder="비밀번호(8-15자리 문자/숫자/기호 사용 가능)" 
+				size="25" required="required" onkeyup="validChk()">
 				<p id="errMsg2"></p>
 				<br>
-				이름
-				<input type="text" name="memberName" id="memberName" 
-				placeholder="이름(필수)" required="required" onkeyup="validChk()">				
+				비밀번호 재입력
+				<input type="password" id="memberPw2" placeholder="비밀번호 다시 입력"
+				size="25" required="required" onkeyup="validChk()">
 				<p id="errMsg3"></p>
 				<br>
-				이메일
-				<input type="text" name="email" id="email"
-				placeholder="이메일(필수, 아이디 확인에 이용됩니다.)" required="required">
-				<input type="button" value="이메일 중복 확인" onclick="emailChk()" onkeyup="validChk()">			
+				이름
+				<input type="text" name="memberName" id="memberName" placeholder="이름(필수)"
+				size="25" required="required" onkeyup="validChk()">				
 				<p id="errMsg4"></p>
+				<br>
+				이메일
+				<input type="text" name="email" id="email" placeholder="이메일(필수, 아이디 확인에 이용됩니다.)" 
+				size="25" required="required" onkeyup="validChk()">
+				<p id="errMsg5"></p>
 				<br>
 				핸드폰번호
 				<input type="text" name="phone" id="phone" placeholder="전화번호(-빼고 숫자만 입력)" 
-				required="required" onkeyup="validChk()">
-				<p id="errMsg5"></p>
+				size="25" required="required" onkeyup="validChk()">
+				<p id="errMsg6"></p>
 				<br>
 				<div class="bottom-container">
 					<input type="submit" id="subBtn" class="bottom" value="가입 완료" disabled="disabled">

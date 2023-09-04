@@ -107,10 +107,10 @@ public class StoreServiceImple implements StoreService {
 
 	@Override
 	public StoreReview findReviewByCodeAndId(String memberid, int orderCode) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("memberid", memberid);
-		map.put("orderCode", orderCode);
-		StoreReview reivew = dao.findReviewByCodeAndId(map);
+		HashMap<String, Object> idCodeMap = new HashMap<>();
+		idCodeMap.put("memberid", memberid);
+		idCodeMap.put("orderCode", orderCode);
+		StoreReview reivew = dao.findReviewByCodeAndId(idCodeMap);
 		
 		return reivew;
 	}

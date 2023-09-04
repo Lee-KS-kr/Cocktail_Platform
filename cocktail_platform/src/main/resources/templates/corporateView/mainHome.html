@@ -7,12 +7,9 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-	init();
+
 });
 
-function init(){
-	let win = window.open("/loginForm.html","login_popup","width=500px, height=300px");
-}
 </script>
 <link rel="stylesheet" th:href="@{/CSS/corpMain.css}">
 </head>
@@ -36,11 +33,11 @@ function init(){
 	
     	<div class="navbar_right">
     		<div sec:authorize="!isAuthenticated()">
-	    		<a th:href="@{/corporate/member/login}">로그인</a>
+	    		<a th:href="@{/member/login}">로그인</a>
 	    	</div>
 	    	<div sec:authorize="isAuthenticated()">
-	    		<span><a th:href="@{/corporate/member/logout}">로그아웃</a></span>
-	    		<span><a th:href="@{/corporate/member/myPage}">마이페이지</a></span>
+	    		<span><a th:href="@{/member/logout}">로그아웃</a></span>
+	    		<span><a th:href="@{/corporate/member/mypage}">마이페이지</a></span>
 	    	</div>
 	   </div>
   </nav>
@@ -57,8 +54,7 @@ function init(){
 	 			<img th:src="@{/image/profile-icon.svg}" alt="프로필">
 	 		</div>
 		 	<div class="profile-text">
-		 		<p>dd님 환영합니다.</p>
-		 		<p>ID: <span th:text="${#authentication.name}"></span></p>
+		 		<p><span th:text="${#authentication.name}"></span>님 환영합니다.</p>
 		 	</div>
 	 	</div>
 
@@ -68,25 +64,19 @@ function init(){
         <div class="nav-item">
 			<ul>
 				<li>
-					<a th:href="@{/store/reservePage}">예약 확인</a>
+					<a th:href="@{/corporate/store/reserveList}">예약 확인</a>
 					<ul>
-						<li><a th:href="@{/store/reserveInput}">예약 수기 입력</a></li>
+						<li><a th:href="@{/corporate/store/reserveInput}">예약 수기 입력</a></li>
 					</ul>
 				</li>
        			<li>
-       				<a th:href="@{/store/}">메뉴 관리</a>
+       				<a th:href="@{/corporate/store/menuMng}">메뉴 관리</a>
      			</li>
-       			<li>
-       				<a th:href="@{member/editStorepage}">가게 정보 관리</a>
-      			</li>
 				<li>
-					<a th:href="@{/store/orderList}">주문 관리</a>
+					<a th:href="@{/corporate/store/orderList}">주문 관리</a>
 				</li>
 				<li>
-					<a th:href="@{/store/salesMng}">매출 관리</a>
-				</li>
-				<li>
-					<a th:href="@{/member/editPrivacyInfo}">내 정보 관리</a>
+					<a th:href="@{/corporate/store/salesMng}">매출 관리</a>
 				</li>
 			</ul>
 		</div>
@@ -94,7 +84,7 @@ function init(){
         <hr class="sidebar-divider">
 	
 		<!-- 사이드바: 회원 탈퇴 -->
-		<a th:href="@{/member/quitMember}">회원 탈퇴</a>
+		<a th:href="@{/corporate/member/quitMember}">회원 탈퇴</a>
 	</section>
 	
 	<!-- 메인 섹션 시작 -->
@@ -103,7 +93,7 @@ function init(){
 			<img th:src="@{/image/banner.jpg}" class="bannerimg">
 		</div>
 		<div class="box">
-			<a th:href="@{/store/orderList}">주문 확인 페이지</a>
+			<a th:href="@{/corporate/order/login}">주문 확인 페이지</a>
 		</div>
 	</section>
 </main>

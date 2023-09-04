@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taste</title>
+    <script th:src="@{/CSS/personal/taste}"></script>
+
 </head>
 <body>
     <h1>개인 취향 선택</h1>
     <div>
         <p>#맛</p>
         <form>
-            단맛 <input type="checkbox"  name="taste" value="sweet">
+            단맛 <input type="checkbox"  name="taste" value="sweet" class="btn btn-primary" for="btn-check">
             
             신맛<input type="checkbox"  name="taste" value="sour">
             
@@ -44,7 +49,7 @@
         </form>
     </div>
     <div>
-        <input type="submit" value="저장">
+        <input type="submit" value="가입">
     </div>
 </body>
 </html>

@@ -50,7 +50,7 @@ public class PersonalMemberController {
 		log.debug("들어온 값 : {}", m);
 		mService.insertMember(m);
 		
-		return "redirect:/personal/taste?memberId=" + m.getMemberId();
+		return "redirect:/personal/member/taste?memberId=" + m.getMemberId();
 	}
 	*/
 	
@@ -61,13 +61,15 @@ public class PersonalMemberController {
 	}
 	
 	@PostMapping("taste")
-	public String taste(Taste t) {
+	public String taste(String memberId, Taste t) {
+		t.setMemberId(memberId);
+		mService.insertTaste(t);
 		return "redirect:/personal/home";
 	}
 	
 	@GetMapping("loginForm")
 	public String login() {
-		return "personalView/login_popup";
+		return "personalView/login";
 	}
 	
 	@GetMapping("findId")
@@ -79,25 +81,29 @@ public class PersonalMemberController {
 	public String findId(String email, Model m) {
 		Member mem = mService.findMemberByEmail(email);
 		m.addAttribute("memberId", mem.getMemberId());
-		return "";
+		return "redirect:/personal/findId";
 	}
 	
 	@GetMapping("resetPw")
 	public String resetPw() {
-		return "";
+		return "personalView/FindPw";
 	}
 	
 	@PostMapping("resetPw")
 	public String resetPw(Member m) {
 		mService.resetPw(m);
-		return "";
+		return "redirect:/personal/home";
 	}
 	
 	@GetMapping("myPage")
 	public String myPage(@AuthenticationPrincipal UserDetails user, Model m) {
 		Member mem = mService.findMemberById(user.getUsername());
+		Taste t = mService.findTasteById(user.getUsername());
+		
 		m.addAttribute("member", mem);
-		return "";
+		m.addAttribute("taste", t);
+		
+		return "personalView/mypPage";
 	}
 	
 	@GetMapping("editPrivacyInfo")
@@ -113,7 +119,7 @@ public class PersonalMemberController {
 		mem.setMemberId(user.getUsername());
 		mService.updateMember(mem);
 		
-		return "";
+		return "redirect:/personal/myPage";
 	}
 	
 	@GetMapping("orderLists")
@@ -141,7 +147,7 @@ public class PersonalMemberController {
 	@PostMapping("resetTaste")
 	public String resetTaste(@AuthenticationPrincipal UserDetails user, Taste t) {
 		t.setMemberId(user.getUsername());
-		mService.updateTaste();
+		mService.updateTaste(t);
 		return "";
 	}
 	
