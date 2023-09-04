@@ -76,7 +76,7 @@ function pagingFormSubmit(currentPage){
 		<!-- 네비게이션바 -->
 		<nav id="navbar" class="navbar">
 	    	<div class="search">
-	   			<a th:href="@{/search}" class="search_logo">
+	   			<a th:href="@{/personal/search}" class="search_logo">
 	    			<img th:src="@{/image/btn_search.png}" alt="검색">
 	    		</a>
 	    	</div>
@@ -90,11 +90,11 @@ function pagingFormSubmit(currentPage){
 		
 	    	<div class="navbar_right">
 	    		<div sec:authorize="!isAuthenticated()">
-		    		<span id="login">로그인</span>
+		    		<a th:href="@{/member/login}">로그인</a>
 		    	</div>
 		    	<div sec:authorize="isAuthenticated()">
-		    		<a th:href="@{/corporate/member/logout}">로그아웃</a>
-		    		<a th:href="@{/corporate/member/myPage}">마이페이지</a>
+		    		<a th:href="@{/member/logout}">로그아웃</a>
+		    		<a th:href="@{/corporate/member/mypage}">마이페이지</a>
 		    	</div>
 		   </div>
 	  </nav>
@@ -121,22 +121,22 @@ function pagingFormSubmit(currentPage){
         <div class="nav-item">
 			<ul>
 				<li>
-					<a th:href="@{/store/reserveList}">예약 확인</a>
+					<a th:href="@{/corporate/store/reserveList}">예약 확인</a>
 					<ul>
-						<li><a th:href="@{/store/reserveInput}">예약 수기 입력</a></li>
+						<li><a th:href="@{/corporate/store/reserveInput}">예약 수기 입력</a></li>
 					</ul>
 				</li>
        			<li>
-       				<a th:href="@{/store/menuMng}">메뉴 관리</a>
+       				<a th:href="@{/corporate/store/menuMng}">메뉴 관리</a>
      			</li>
        			<li>
-       				<a th:href="@{member/editStorepage}">가게 정보 관리</a>
+       				<a th:href="@{/corporate/member/getStoreinfo}">가게 정보 관리</a>
       			</li>
 				<li>
-					<a th:href="@{/store/orderList}">주문 관리</a>
+					<a th:href="@{/corporate/store/orderList}">주문 관리</a>
 				</li>
 				<li>
-					<a th:href="@{/store/salesMng}">매출 관리</a>
+					<a th:href="@{/corporate/store/salesMng}">매출 관리</a>
 				</li>
 				<li>
 					<a th:href="@{/member/editPrivacyInfo}">내 정보 관리</a>
