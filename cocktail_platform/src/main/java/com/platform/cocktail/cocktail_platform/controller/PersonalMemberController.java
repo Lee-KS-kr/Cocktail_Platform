@@ -38,6 +38,7 @@ public class PersonalMemberController {
 	@Autowired
 	private StoreService sService;
 	
+	/*
 	@GetMapping("join")
 	public String join() {
 		return "personalView/join";
@@ -51,6 +52,7 @@ public class PersonalMemberController {
 		
 		return "redirect:/personal/taste?memberId=" + m.getMemberId();
 	}
+	*/
 	
 	@GetMapping("taste")
 	public String taste(String memberId, Model m) {

@@ -31,6 +31,7 @@ public class CorporateMemberController {
 	@Autowired
 	private StoreService sService;
 	
+
 	@GetMapping("join")
 	public String join() {
 		return "corporateView/joinForm";
@@ -38,13 +39,14 @@ public class CorporateMemberController {
 	
 	@PostMapping("join")
 	public String join(Member m) {
-		m.setMemberType(MemberType.clientMem);
+		m.setMemberType(MemberType.personal);
 		log.debug("들어온 값 : {}", m);
 		mService.insertMember(m);
 		
-		return "redirect:/corporate/home";
+		return "redirect:/member/login";
 	}
 
+	
 	@GetMapping("loginForm")
 	public String login() {
 		return "corporateView/loginForm";
