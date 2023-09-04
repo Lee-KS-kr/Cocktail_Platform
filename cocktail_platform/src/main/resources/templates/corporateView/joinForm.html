@@ -47,7 +47,7 @@ function validChk(){
         data:{email:email},
         success:function(cnt){ 
             if(cnt != 0){  
-                alert('중복된 이메일 주소입니다.');
+                alert('이미 사용 중인 이메일 주소입니다.');
                 email  == '';
             } else { 
             	$('#errMsg5').html('사용 가능한 이메일 주소입니다.');

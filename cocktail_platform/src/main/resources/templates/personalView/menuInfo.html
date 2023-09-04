@@ -9,7 +9,7 @@
 <script>
 $(document).ready(function(){
     init();
-    $(".tab_title li").click(getIndex())
+    $(".tab_title li").click(getIndex());
 });
 
 //전체 목록 받아오기
@@ -63,7 +63,7 @@ function getIndex(){
 	<!-- 네비게이션바 -->
 	<nav id="navbar" class="navbar">
     	<div class="search">
-   			<a th:href="@{/search}" class="search_logo">
+   			<a th:href="@{/personal/search}" class="search_logo">
     			<img th:src="@{/image/btn_search.png}" alt="검색">
     		</a>
     	</div>
@@ -77,11 +77,11 @@ function getIndex(){
 	
     	<div class="navbar_right">
     		<div sec:authorize="!isAuthenticated()">
-	    		<span id="login">로그인</span>
+	    		<a th:href="@{/member/login}">로그인</a>
 	    	</div>
 	    	<div sec:authorize="isAuthenticated()">
-	    		<a th:href="@{/corporate/member/logout}">로그아웃</a>
-	    		<a th:href="@{/corporate/member/myPage}">마이페이지</a>
+	    		<a th:href="@{/member/logout}">로그아웃</a>
+	    		<a th:href="@{/corporate/member/mypage}">마이페이지</a>
 	    	</div>
 	   </div>
   </nav>
