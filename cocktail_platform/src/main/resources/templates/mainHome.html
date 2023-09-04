@@ -4,25 +4,43 @@
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Cocktails</title>
     <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
     <link
       rel="stylesheet" href="CSS/reset.css"/>
-    <link rel="stylesheet" href="CSS/mainHome.css" />
+    <link rel="stylesheet" href="CSS/mainHome.css">
   </head>
   <body>
+  <div sec:authorize="isAuthenticated()">
+		<h3><span th:text="${#authentication.name}"></span>님 환영합니다.</h3>
+	</div>
+  
     <div class="navi">
       <div class="logo">핏테일</div>
     </div>
     <div class="body">
+    
       <div class="box 1">
-        <div>개인회원페이지</div>
-        <div><a th:href="@{/personal/home}">개인 홈으로</a></div>
+        <div>비회원페이지</div><br>
+        <div><a th:href="@{/personal/home}">개인비회원 홈으로</a></div>
       </div>
+      
       <div class="box 2">
-        <div>기업회원페이지</div>
-        <div><a th:href="@{/corporate/home}">기업 홈으로</a></div>
+        <div>개인/기업회원페이지</div><br>
+        <div sec:authorize="!isAuthenticated()">
+        	<a th:href="@{/member/login}">회원 로그인</a>
+        </div>
+        
+        <!-- 작업중ㅠㅠ 09.04 16:20 -->
+        <div sec:authorize="isAuthenticated()">
+        	<a th:href="@{/member/logout}">로그아웃</a><br>
+        	<a th:href="@{/personal/home}">개인회원 서비스 이용하기</a>
+        	<p sec:authorize="hasRole('personal')">
+        		<a th:href="@{/personal/home}">개인회원 서비스 이용하기</a>
+        	</p>
+        	<p th:text="${#authentication.principal.authorities}"></p>
+        </div>
       </div>
     </div>
   </body>

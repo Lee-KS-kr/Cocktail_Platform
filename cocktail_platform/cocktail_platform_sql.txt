@@ -10,9 +10,9 @@ create table member (
         point           number             default 0 check (point >= 0),                       --포인트
         isChannel       varchar2(1)         default 'N' check (isChannel in ('Y', 'N')),        --소셜로그인
         channel         varchar2(20)        default null check (channel in ('kakao', 'naver', 'google', null)), --채널
-        memberType      varchar2(20)        default 'privateMem' check (memberType in ('privateMem', 'clientMem', 'admin')), --회원종류
+        memberType      varchar2(20)        default 'personal' check (memberType in ('personal', 'corporate', 'admin')), --회원종류
         createdDate     date                default sysdate,                                    --가입
-        isEnable        number(1)           default 0 check (isEnable in (0, 1))                --상태
+        isEnable        number(1)           default 1 check (isEnable in (0, 1))                --상태
 );
 DROP TABLE member CASCADE CONSTRAINTS PURGE;
 
