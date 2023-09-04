@@ -35,7 +35,7 @@ public class CorporateStoreController {
 	public String salesMng(int storeCode, Model m) {
 		ArrayList<Order> orderList = oService.getOrderListsByCode(storeCode);
 		m.addAttribute("orderList", orderList);
-		return "";
+		return "coporateView/";
 	}
 	
 	@GetMapping("salesInput")
@@ -48,12 +48,12 @@ public class CorporateStoreController {
 		log.debug("{}, {}, {}, {}, {}", storeCode, menuNum, menuName, price, orderCount);
 		oService.inputOrder(storeCode, null, null, menuNum, menuName, price, orderCount);
 		
-		return "redirect:/";
+		return "redirect:/coporate/home";
 	}
 	
 	@GetMapping("reservePage")
 	public String reservePage(int storeCode) {
-		return "";
+		return "coporateView/reserveMng";
 	}
 	
 	@ResponseBody
