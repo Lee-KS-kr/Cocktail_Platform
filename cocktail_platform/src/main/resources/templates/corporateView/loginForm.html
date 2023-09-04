@@ -5,34 +5,6 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
-<script>
-$(document).ready(function(){
-    
-});
-
-function submitChk(){
-    let id = $('#id').val();
-
-    $.ajax({
-            url:'checkId', 
-            type:'post', 
-            data:{memberId:id},
-            success:function(cnt){ 
-                if(cnt == 0){  
-                    alert("아이디를 확인해주세요");
-                    id == '';
-                } else { 
-                	$('#corpLogin').submit();
-                }
-            },
-            error:function(){
-                alert("에러입니다");
-            }
-        });
-}
-
-
-</script>
 <link rel="stylesheet" th:href="@{/CSS/login.css}">
 </head>
 <body>
@@ -41,15 +13,16 @@ function submitChk(){
             <h1 class="title">로그인</h1>
         </div>
         <form id="corpLogin" th:action="@{/member/login}" method="post">
+
             <div class="form-group">
-                <input type="text" class="form-text"
+                <input type="text" class="form-text" name="memberId"
                     id="memberId" placeholder="ID를 입력해주세요." required>
             </div>
             <div class="form-group">
-                <input type="password" class="form-text"
+                <input type="password" class="form-text" name="memberPw"
                     id="memberPw" placeholder="비밀번호를 입력해주세요." required>
             </div>
-            <input type="button" value="로그인" class="bottom" onclick="submitChk()">
+            <input type="submit" value="login" class="bottom">
             
         </form>
         <hr>

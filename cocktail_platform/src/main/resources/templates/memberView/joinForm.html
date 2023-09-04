@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<link rel="stylesheet" th:href="@{/CSS/}">
+<title>Join</title>
+
+</head>
+<body>
+	<main>
+		<h1 class="title">회원 가입</h1>
+		<form id="joinForm" th:action="@{/member/join}" method="post">
+				ID
+				<input type="text" name="memberId" id="memberId"
+				placeholder="ID(6-12자리 이내, 영문 사용 가능)" required="required">
+				<p id="errMsg1"></p>
+				<br>
+				비밀번호
+				<input type="password" name="memberPw" id="memberPw"
+				placeholder="비밀번호(8-15자리 문자/숫자/기호 사용 가능)" required="required" onkeyup="validChk()">
+				<p id="errMsg2"></p>
+				<br>
+				이름
+				<input type="text" name="memberName" id="memberName" 
+				placeholder="이름(필수)" required="required" onkeyup="validChk()">				
+				<p id="errMsg3"></p>
+				<br>
+				이메일
+				<input type="text" name="email" id="email"
+				placeholder="이메일(필수, 아이디 확인에 이용됩니다.)" required="required">
+				<p id="errMsg4"></p>
+				<br>
+				핸드폰번호
+				<input type="text" name="phone" id="phone" placeholder="전화번호(-빼고 숫자만 입력)" 
+				required="required" onkeyup="validChk()">
+				<p id="errMsg5"></p>
+				<br>
+				생일
+				<input type="text" name="birthday" id="birthday" required="required">
+				<p id="errMsg6"></p>
+				<br>
+				회원구분
+				
+				<input type="radio" name="memberType" id="personal" value="personal">개인회원
+				<input type="radio" name="memberType" id="corporate" value="corporate">기업회원
+				<p id="errMsg7"></p>
+				
+				<br>
+				
+				<div class="bottom-container">
+					<input type="submit" id="subBtn" class="bottom" value="가입 완료">
+					<input type="reset" class="bottom" value="다시 쓰기">
+				</div>
+		</form>
+	</main>
+</body>
+</html>

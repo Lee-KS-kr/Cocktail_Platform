@@ -9,7 +9,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import com.platform.cocktail.cocktail_platform.dao.MemberDAO;
-import com.platform.cocktail.cocktail_platform.domain.MemberPerson;
+import com.platform.cocktail.cocktail_platform.domain.Member;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,9 +34,9 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 		String loginId = provider + "_" + providerId;
 		String loginPw = encoder.encode(loginId);
 		
-		MemberPerson user = dao.findMemberPersonById(loginId);
+		Member user = dao.findMemberById(loginId);
 		if(user == null) {
-			user = MemberPerson.builder()
+			user = Member.builder()
 								.memberId(loginId)
 								.memberPw(loginPw)
 								.memberName(oAuth2User.getAttribute("name"))
@@ -46,7 +46,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 								.email(email)
 								.build();
 			
-			dao.insertMemberPerson(user);
+			dao.insertMember(user);
 		}
 		
 		return new PrincipalDetails(user, oAuth2User.getAttributes());

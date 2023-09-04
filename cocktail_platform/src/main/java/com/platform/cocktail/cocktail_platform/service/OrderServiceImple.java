@@ -99,14 +99,14 @@ public class OrderServiceImple implements OrderService {
 		
 		ArrayList<OrderTemp> list = new ArrayList<>();
 		for (int i = 0; i < menuNum.length; i++) {
-			OrderTemp t = new OrderTemp();
-			t.builder()
-				.orderCode(o.getOrderCode())
-				.menuNum(menuNum[i])
-				.menuName(menuName[i])
-				.price(price[i])
-				.orderCount(orderCount[i])
-				.build();
+			OrderTemp t = 
+				OrderTemp.builder()
+					.orderCode(o.getOrderCode())
+					.menuNum(menuNum[i])
+					.menuName(menuName[i])
+					.price(price[i])
+					.orderCount(orderCount[i])
+					.build();
 			
 			menuList.append(t.getMenuName());
 			totalPrice += t.getPrice() * t.getOrderCount();

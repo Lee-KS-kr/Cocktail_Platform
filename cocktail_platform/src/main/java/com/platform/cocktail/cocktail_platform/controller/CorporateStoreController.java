@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.OrderState;
@@ -34,7 +35,7 @@ public class CorporateStoreController {
 	public String salesMng(int storeCode, Model m) {
 		ArrayList<Order> orderList = oService.getOrderListsByCode(storeCode);
 		m.addAttribute("orderList", orderList);
-		return "";
+		return "coporateView/";
 	}
 	
 	@GetMapping("salesInput")
@@ -47,14 +48,19 @@ public class CorporateStoreController {
 		log.debug("{}, {}, {}, {}, {}", storeCode, menuNum, menuName, price, orderCount);
 		oService.inputOrder(storeCode, null, null, menuNum, menuName, price, orderCount);
 		
-		return "redirect:/";
+		return "redirect:/coporate/home";
 	}
 	
+	@GetMapping("reservePage")
+	public String reservePage(int storeCode) {
+		return "coporateView/reserveMng";
+	}
+	
+	@ResponseBody
 	@GetMapping("reserveList")
-	public String reserveList(int storeCode, Model m) {
+	public ArrayList<Reservation> reserveList(int storeCode, Model m) {
 		ArrayList<Reservation> reserveList = sService.getReservelistByCode(storeCode);
-		m.addAttribute("reserveList", reserveList);
-		return "";
+		return reserveList;
 	}
 	
 	@GetMapping("reserveAccept")

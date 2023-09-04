@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Pw</title>
+</head>
+<body>
+    <!--타이틀-->
+    <div>
+      <img src="" alt="logo">
+    </div>
+    <div>
+        <div>
+          <h1>비밀번호 찾기</h1>
+          <p>회원정보에 등록한 이메일과 입력한 이메일 정보가 같아야 인증번호를 받을 수 있습니다.</p>
+          <form action="">
+            <table>
+                <tr>
+                    <th>아이디</th>
+                    <td>
+                      <input type="text" name="memberId" id="memberId"/>
+                    </td>
+                  </tr>
+                <tr>
+                  <th>이름</th>
+                  <td>
+                    <input type="text" name="memberName" id="memberName"/>
+                  </td>
+                </tr>
+                <tr>
+                  <th>이메일</th>
+                  <td>
+                    <input type="text" name="email" id="email" placeholder="이메일 입력" />
+                    <input type="button" value="인증번호 받기" onclick="emailFormOpen()"><br>
+                    <input type="text" id="email2" placeholder="인증번호 입력"/>
+                    <input type="button" value="확인" onclick="emailcheck()">
+                  </td>
+                </tr>
+              </table>
+            </form>
+              <p>- 인증번호가 오지 않는다면?</p>
+              <p>스팸메일로 등록되어있는지 확인해주세요. <br>
+                스팸메일로 등록되어있지 않다면 '인증번호 받기'를 다시 눌러주세요.
+              </p>
+        </div>
+    </div>
+</body>
+</html>

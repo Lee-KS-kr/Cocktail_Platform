@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.platform.cocktail.cocktail_platform.api.mail_send.service.EmailService;
 import com.platform.cocktail.cocktail_platform.domain.Member;
-import com.platform.cocktail.cocktail_platform.domain.MemberPerson;
 import com.platform.cocktail.cocktail_platform.domain.MemberType;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
@@ -39,18 +38,21 @@ public class PersonalMemberController {
 	@Autowired
 	private StoreService sService;
 	
+	/*
 	@GetMapping("join")
 	public String join() {
 		return "personalView/join";
 	}
 	
 	@PostMapping("join")
-	public String join(MemberPerson m) {
+	public String join(Member m) {
+		m.setMemberType(MemberType.privateMem);
 		log.debug("들어온 값 : {}", m);
 		mService.insertMember(m);
 		
-		return "redirect:/personal/taste?memberId=" + m.getMemberId();
+		return "redirect:/personal/member/taste?memberId=" + m.getMemberId();
 	}
+	*/
 	
 	@GetMapping("taste")
 	public String taste(String memberId, Model m) {
@@ -59,13 +61,15 @@ public class PersonalMemberController {
 	}
 	
 	@PostMapping("taste")
-	public String taste(Taste t) {
+	public String taste(String memberId, Taste t) {
+		t.setMemberId(memberId);
+		mService.insertTaste(t);
 		return "redirect:/personal/home";
 	}
 	
 	@GetMapping("loginForm")
 	public String login() {
-		return "personalView/login_popup";
+		return "personalView/login";
 	}
 	
 	@GetMapping("findId")
@@ -75,43 +79,47 @@ public class PersonalMemberController {
 	
 	@PostMapping("findId")
 	public String findId(String email, Model m) {
-		MemberPerson mem = (MemberPerson) mService.findMemberByEmail(email, MemberType.privateMem);
+		Member mem = mService.findMemberByEmail(email);
 		m.addAttribute("memberId", mem.getMemberId());
-		return "";
+		return "redirect:/personal/findId";
 	}
 	
 	@GetMapping("resetPw")
 	public String resetPw() {
-		return "";
+		return "personalView/FindPw";
 	}
 	
 	@PostMapping("resetPw")
-	public String resetPw(MemberPerson m) {
+	public String resetPw(Member m) {
 		mService.resetPw(m);
-		return "";
+		return "redirect:/personal/home";
 	}
 	
 	@GetMapping("myPage")
 	public String myPage(@AuthenticationPrincipal UserDetails user, Model m) {
-		MemberPerson mem = (MemberPerson) mService.findMemberById(user.getUsername(), MemberType.privateMem);
+		Member mem = mService.findMemberById(user.getUsername());
+		Taste t = mService.findTasteById(user.getUsername());
+		
 		m.addAttribute("member", mem);
-		return "";
+		m.addAttribute("taste", t);
+		
+		return "personalView/mypPage";
 	}
 	
 	@GetMapping("editPrivacyInfo")
 	public String editPrivacyInfo(@AuthenticationPrincipal UserDetails user, Model m) {
-		MemberPerson mem = (MemberPerson) mService.findMemberById(user.getUsername(), MemberType.privateMem);
+		Member mem = mService.findMemberById(user.getUsername());
 		mem.setMemberId(user.getUsername());
 		m.addAttribute("member", mem);
 		return "";
 	}
 	
 	@PostMapping("editPrivacyInfo")
-	public String editPrivacyInfo(MemberPerson mem, @AuthenticationPrincipal UserDetails user, Model m) {
+	public String editPrivacyInfo(Member mem, @AuthenticationPrincipal UserDetails user, Model m) {
 		mem.setMemberId(user.getUsername());
 		mService.updateMember(mem);
 		
-		return "";
+		return "redirect:/personal/myPage";
 	}
 	
 	@GetMapping("orderLists")
@@ -139,7 +147,7 @@ public class PersonalMemberController {
 	@PostMapping("resetTaste")
 	public String resetTaste(@AuthenticationPrincipal UserDetails user, Taste t) {
 		t.setMemberId(user.getUsername());
-		mService.updateTaste();
+		mService.updateTaste(t);
 		return "";
 	}
 	

@@ -3,5 +3,39 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.platform.cocktail.cocktail_platform.dao.MemberDAO">
+	<!-- 통합 회원정보 저장 -->
+	<insert id="insertMember" parameterType="Member">
+		insert into member (memberId, memberPw, memberName, phone, birthday, email, memberType)
+		values (#{memberId}, #{memberPw}, #{memberName}, #{phone}, #{birthday}, #{email}, #{memberType})
+	</insert>
 	
+	<!-- Id로 회원 정보 찾기 -->
+	<select id="findMemberById" parameterType="String">
+		select * from member where memberId = #{memberId}
+	</select>
+	
+	<!-- Email로 회원 정보 찾기 -->
+	<select id="findMemberByEmail" parameterType="String">
+		select * from member where memberId = #{memberId}
+	</select>
+	
+	<!-- 회원 비밀번호 초기화 -->
+	<update id="resetMemberPw" parameterType="Member">
+		update member set memberPw = #{memberPw} where memberId = #{memberId}
+	</update>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="updateMember" parameterType="Member">
+		update member set memberPw = #{memberPw} where memberId = #{memberId}
+	</update>
+	
+	<!-- 취향 정보 수정 -->
+	<update id="updateTaste">
+		update taste set hasAllergy = #{hasAllergy}, allergyType = #{allergyType}, cocktailTaste = #{cocktailTaste}, cocktailFlavor = #{cocktailFlavor} where memberId = #{memberId}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="unableMember" parameterType="Member">
+		delete from member where memberId = #{memberId}
+	</delete>
 </mapper>
