@@ -90,8 +90,7 @@ function storeChg(){
 	 			<img th:src="@{/image/profile-icon.svg}" alt="프로필">
 	 		</div>
 		 	<div class="profile-text">
-		 		<p>dd님 환영합니다.</p>
-		 		<p>ID: <span th:text="${#authentication.name}"></span></p>
+		 		<p><span th:text="${#authentication.name}"></span>님 환영합니다.</p>
 		 	</div>
 	 	</div>
 

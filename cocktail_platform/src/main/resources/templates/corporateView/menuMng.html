@@ -93,7 +93,7 @@ function pagingFormSubmit(currentPage){
 		    		<span id="login">로그인</span>
 		    	</div>
 		    	<div sec:authorize="isAuthenticated()">
-		    		<a th:href="@{/corporate/member/logout}">로그아웃</a>
+		    		<a th:href="@{/member/logout}">로그아웃</a>
 		    		<a th:href="@{/corporate/member/myPage}">마이페이지</a>
 		    	</div>
 		   </div>
@@ -111,7 +111,7 @@ function pagingFormSubmit(currentPage){
 	 			<img th:src="@{/image/profile-icon.svg}" alt="프로필">
 	 		</div>
 		 	<div class="profile-text">
-		 		<p>ID: <span th:text="${#authentication.name}"></span>님 환영합니다.</p>
+		 		<p><span th:text="${#authentication.name}"></span>님 환영합니다.</p>
 		 	</div>
 	 	</div>
 
@@ -121,25 +121,19 @@ function pagingFormSubmit(currentPage){
         <div class="nav-item">
 			<ul>
 				<li>
-					<a th:href="@{/store/reserveList}">예약 확인</a>
+					<a th:href="@{/corporate/store/reserveList}">예약 확인</a>
 					<ul>
-						<li><a th:href="@{/store/reserveInput}">예약 수기 입력</a></li>
+						<li><a th:href="@{/corporate/store/reserveInput}">예약 수기 입력</a></li>
 					</ul>
 				</li>
        			<li>
-       				<a th:href="@{/store/menuMng}">메뉴 관리</a>
+       				<a th:href="@{/corporate/store/menuMng}">메뉴 관리</a>
      			</li>
-       			<li>
-       				<a th:href="@{member/editStorepage}">가게 정보 관리</a>
-      			</li>
 				<li>
-					<a th:href="@{/store/orderList}">주문 관리</a>
+					<a th:href="@{/corporate/store/orderList}">주문 관리</a>
 				</li>
 				<li>
-					<a th:href="@{/store/salesMng}">매출 관리</a>
-				</li>
-				<li>
-					<a th:href="@{/member/editPrivacyInfo}">내 정보 관리</a>
+					<a th:href="@{/corporate/store/salesMng}">매출 관리</a>
 				</li>
 			</ul>
 		</div>
