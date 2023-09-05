@@ -14,7 +14,8 @@ $(document).ready(function(){
 function allList(){
 	$.ajax({
 		url: "menuInfo",
-		type: "get",
+		type: "post",
+		data: {storeCode : storeCode},
 		dataType: "json",
 		success: function(list){
 			menuList(list);
@@ -58,7 +59,7 @@ function menuCategory(category){
 	$.ajax({
 		url: "menuCategory",
 		type: "post",
-		data: {category : category},
+		data: {category : category, searchWord : searchWord},
 		dataType: "json",
 		success: function(list){
 			getList(list);
