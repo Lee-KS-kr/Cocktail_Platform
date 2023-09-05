@@ -1,4 +1,4 @@
-package com.platform.cocktail.cocktail_platform.controller;
+package com.platform.cocktail.cocktail_platform.controller.corporate;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class CorporateOrderController {
 	
 	@GetMapping("login")
 	public String login() {
-		return "";
+		return "corporateView/orderMain";
 	}
 	
 	@PostMapping("login")

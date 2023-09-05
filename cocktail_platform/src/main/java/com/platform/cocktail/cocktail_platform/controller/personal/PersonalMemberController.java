@@ -1,4 +1,4 @@
-package com.platform.cocktail.cocktail_platform.controller;
+package com.platform.cocktail.cocktail_platform.controller.personal;
 
 import java.util.ArrayList;
 
