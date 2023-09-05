@@ -11,6 +11,20 @@ $(document).ready(function(){
     $('#storeChangeBtn').click(storeChg);
 });
 
+function getMemberInfo(){
+	$.ajax({
+		url: 'getPrivacy',
+		type: 'get',
+		dataType: "json",
+		success: function(){
+			
+		},
+		error: function(e){
+			alert(e.statusText);
+		}
+	});
+}
+
 function memberChg(){
 	let memberName = $('#memberName').val();
 	let phone =  $('#phone').val();
@@ -21,6 +35,20 @@ function memberChg(){
 		data: {memberName: memberName, phone: phone},		
 		success: function(){
 			alert('저장되었습니다.');
+		},
+		error: function(e){
+			alert(e.statusText);
+		}
+	});
+}
+
+function getStoreInfo(){
+	$.ajax({
+		url: 'getStoreInfo',
+		type: 'get',
+		dataType: "json",
+		success: function(){
+			
 		},
 		error: function(e){
 			alert(e.statusText);
@@ -140,7 +168,7 @@ function storeChg(){
 		</div>
 		<div class="storeInformation">
 			<h2>매장 정보</h2>
-			<form id="memberInfoForm" th:action="@{/corporate/member/editStorepage}" method="post">
+			<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post">
 				휴일 <input type="text" th:value="${store.dayOff}">
 				영업 시간 <input type="text" th:value="${store.runningTime}">
 				매장 소개 <input type="text" th:value="${store.info}">

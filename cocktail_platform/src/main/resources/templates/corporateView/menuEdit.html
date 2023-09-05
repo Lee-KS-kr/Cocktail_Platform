@@ -3,61 +3,23 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>주문 관리 페이지</title>
+<title>메뉴 수정</title>
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-	init();
+	
 });
 
-//전체 목록 받아오기
-function init(){
-	$.ajax({
-		url: "orderList",
-		type: "post",
-		data: {storecode: storeCode},
-		dataType: "json",
-		success: function(list){
-			getList(list);
-		},
-		error: function(){
-			alert('error');
-		}
-	});
-}
-
-//주문 수락
-function orderAccept(tempOrderkey){
-	let result = confirm("주문을 수락하시겠습니까?");
+//메뉴 수정
+function editSub(){
+	let result = confirm("메뉴를 수정하시겠습니까?");
+	let form = document.getElementById("editMenuForm");
+	
 	if(result == true){
-		location.href="orderAccept?tempOrderkey="+tempOrderkey;
+		form.submit();
 	}
 }
 
-//주문 취소
-function orderRefuse(tempOrderkey){
-	let result = confirm("주문을 취소하시겠습니까?");
-	if(result == true){
-		location.href="orderRefuse?tempOrderkey="+tempOrderkey;
-	}
-}
-
-//리스트 출력
-function getList(list){
-	let str = '<table><tr><th>번호</th><th>메뉴</th><th>주문 수량</th><th>총 금액</th><th>현황</th></tr>';
-	$(list).each(function(i,item){
-		str += '<tr>';
-		str += '<td>' + item.orderCode + '</td>';
-		str += '<td>' + item.menuNum + '</td>';
-		str += '<td>' + item.orderCount + '</td>';
-		str += '<td>' + item.pricePerOne + '</td>';
-		str += '<td><a href="|javascript:orderAccept(tempOrderkey=' + item.tempOrderkey + ')|">수락</a></td>';
-		str += '<td><a href="|javascript:orderRefuse(tempOrderkey=' + item.tempOrderkey + ')|">거절</a></td>';
-		str += '</tr>';
-	});
-	str += '</table>';
-	$('#orderList').html(str);
-}	
 </script>
 <link rel="stylesheet" th:href="@{/CSS/}">
 </head>
@@ -67,7 +29,7 @@ function getList(list){
 		<!-- 네비게이션바 -->
 		<nav id="navbar" class="navbar">
 	    	<div class="search">
-	   			<a th:href="@{/personal/search}" class="search_logo">
+	   			<a th:href="@{/search}" class="search_logo">
 	    			<img th:src="@{/image/btn_search.png}" alt="검색">
 	    		</a>
 	    	</div>
@@ -137,10 +99,32 @@ function getList(list){
 	<!-- 사이드바 끝 -->
 	<!-- 메인 섹션 시작 -->
 	<section>
-		<h1>주문 확인</h1>
-		<!-- 주문 리스트 -->
-		총 <span th:text="${navi.totalRecordsCount}"></span>건 검색되었습니다.
-		<div id="orderList"></div>
+		<h1>메뉴 수정</h1>
+		<!-- 메뉴 수정 폼 -->
+		<form id="editMenuForm" th:action="@{/corporate/store/editMenu}" method="post"
+		enctype="multipart/form-data">
+		카테고리<br>
+		<select id="category" name="category">
+        	<option value="beverage" selected>주류</option>
+        	<option value="food">안주</option>
+    	</select><br>
+		메뉴명<br>
+		<input type="text" name="menuName" th:value="${menu.menuName}"><br>
+		설명<br>
+    	<input type="text" name="menuInfo" th:value="${menu.menuInfo}"><br>
+		가격<br>
+    	<input type="text" name="price" th:value="${menu.price}"><br>
+    	품절<br>
+    	<select id="canOrder" name="canOrder">
+        	<option value="1" selected>판매중</option>
+        	<option value="0">품절</option>
+    	</select><br>
+    	이미지<br>
+    	<input type="file" name="추가하기"><br>
+    	
+    	<input type="reset" class="bottom" value="다시 쓰기">
+    	<input type="button" value="수정" onclick="editSub()">
+		</form>
 	</section>
 </main>
 </body>
