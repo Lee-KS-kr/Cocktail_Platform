@@ -113,3 +113,6 @@ img[alt=sns_icon1]{width: 30px;;}
 img[alt=sns_icon2]{width: 30px;;}
 img[alt=sns_icon3]{width: 30px;;}
 
+a:link { color: #232323; }
+a:visited { color:#454545; }
+a:hover { color:#232323; }
