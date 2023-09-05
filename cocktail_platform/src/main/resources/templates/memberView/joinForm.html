@@ -17,6 +17,18 @@ function idChk(){
 	let id = $('#memberId').val();
 	let regId = /^[a-z]+[a-z0-9]{5,19}$/g;
 	
+	if(!regId.test(id)){
+		$('#errMsg1').html('아이디는 6-12자 영문/숫자를 포함해야 합니다.');
+		check = false;
+	}
+	else {
+		idDuplicateChk();
+	}
+}
+
+function idDuplicateChk(){
+	let id = $('#memberId').val();
+	
 	$.ajax({
         url:'checkId', 
         type:'post', 
@@ -24,24 +36,17 @@ function idChk(){
         success:function(cnt){ 
             if(cnt != 0){  
                 alert('중복된 아이디입니다.');
-                id == '';
+                id = '';
+                check = false;
             } else { 
-            	$('#errMsg1').html('사용 가능한 아이디입니다.');
+            	$('#errMsg1').html('');
+        		check = true
             }
         },
         error:function(){
             alert("에러입니다");
         }
     });
-	
-	if(!regId.test(id)){
-		$('#errMsg1').html('아이디는 6-12자 영문/숫자를 포함해야 합니다.');
-		check = false;
-	}
-	else {
-		$('#errMsg1').html('');
-		check = true
-	}
 }
 
 function pwChk(){
