@@ -18,7 +18,7 @@
         <div class="inner_body">
           <form id="login" th:action="@{/member/login}" method="post">
 	          <div class="input">
-	            <input type="text" id="memberId" name="memberId" placeholder="아이디" required>
+	            <input type="text" id="memberId" name="memberId" placeholder="아이디" required> <br>
 	            <input type="password" id="memberPw" name="memberPw" placeholder="비밀번호" required>
 	            <input type="submit" value="로그인">
 	          </div>
@@ -39,9 +39,9 @@
       </div>
       <!-- sec1 끝 -->
       <div class="sec2">
-        <p><a th:href="@{/personal/member/findId}">아이디 찾기 &nbsp;</a></p>
-        <p><a th:href="@{/personal/member/resetPw}">| 비밀번호 찾기 &nbsp;</a></p>
-        <p><a th:href="@{/personal/member/join}">| 회원가입 &nbsp;</a></p>
+        <p><a th:href="@{/member/findId}">| 아이디 찾기 &nbsp;</a></p>
+        <p><a th:href="@{/member/resetPw}">| 비밀번호 찾기 &nbsp;</a></p>
+        <p><a th:href="@{/member/join}">회원가입 &nbsp;</a></p>
       </div>
       <!-- sec2 끝 -->
     </main>
