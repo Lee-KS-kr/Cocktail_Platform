@@ -130,6 +130,22 @@ function validChk(){
 				size="25" required="required" onkeyup="validChk()">
 				<p id="errMsg6"></p>
 				<br>
+				생일
+				<input type="date" name="birthday" id="birthday" required="required">
+				<p id="errMsg6"></p>
+				<br>
+				회원구분
+				<input type="radio" name="memberType" id="personal" value="personal">개인회원
+				<input type="radio" name="memberType" id="corporate" value="corporate">기업회원
+				<p id="errMsg7"></p>
+				<br>
+				성별
+              	<select name="gender">
+                	<option value="N" selected>선택안함</option>
+                	<option value="M">남자</option>
+                	<option value="F">여자</option>
+                </select>
+                <br>
 				<div class="bottom-container">
 					<input type="submit" id="subBtn" class="bottom" value="가입 완료" disabled="disabled">
 					<input type="reset" class="bottom" value="다시 쓰기">

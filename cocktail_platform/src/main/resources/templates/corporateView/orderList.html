@@ -84,7 +84,7 @@ function getList(list){
 		    	</div>
 		    	<div sec:authorize="isAuthenticated()">
 		    		<a th:href="@{/member/logout}">로그아웃</a>
-		    		<a th:href="@{/corporate/member/myPage}">마이페이지</a>
+		    		<a th:href="@{/corporate/myPage}">마이페이지</a>
 		    	</div>
 		   </div>
 	  </nav>
@@ -101,7 +101,7 @@ function getList(list){
 	 			<img th:src="@{/image/profile-icon.svg}" alt="프로필">
 	 		</div>
 		 	<div class="profile-text">
-		 		<p>ID: <span th:text="${#authentication.name}"></span>님 환영합니다.</p>
+		 		<p><span th:text="${#authentication.name}"></span>님 환영합니다.</p>
 		 	</div>
 	 	</div>
 
