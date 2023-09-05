@@ -148,7 +148,7 @@ function pagingFormSubmit(currentPage){
 	<section>
 		<h1>메뉴 리스트</h1>
 		<!-- 메뉴 검색 -->
-		<form id="menuSearch" th:action="@{/}" method="get">
+		<form id="menuSearch" th:action="@{/corporate/store/menuSearch}" method="get">
 		검색 <select id="type" name="type">
             	<option value="" th:selected="${type} == ''">주류</option>
             	<option value="" th:selected="${type} == ''">안주</option>
