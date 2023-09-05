@@ -1,4 +1,4 @@
-package com.platform.cocktail.cocktail_platform.controller;
+package com.platform.cocktail.cocktail_platform.controller.general;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.platform.cocktail.cocktail_platform.controller;
+package com.platform.cocktail.cocktail_platform.controller.corporate;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.OrderState;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
@@ -51,16 +52,11 @@ public class CorporateStoreController {
 		return "redirect:/coporate/home";
 	}
 	
-	@GetMapping("reservePage")
-	public String reservePage(int storeCode) {
-		return "coporateView/reserveMng";
-	}
-	
-	@ResponseBody
 	@GetMapping("reserveList")
-	public ArrayList<Reservation> reserveList(int storeCode, Model m) {
+	public String reserveList(int storeCode, Model m) {
 		ArrayList<Reservation> reserveList = sService.getReservelistByCode(storeCode);
-		return reserveList;
+		m.addAttribute("reserveList", reserveList);
+		return "coporateView/reserveMng";
 	}
 	
 	@GetMapping("reserveAccept")
@@ -87,21 +83,14 @@ public class CorporateStoreController {
 	}
 	
 	@GetMapping("orderList")
-	public String orderList(int storeCode, Model m) {
-		ArrayList<OrderTemp> orderList = oService.getTemporderlistByCode(storeCode);
-		m.addAttribute("orderList", orderList);
-		return "";
+	public String orderList() {
+		return "coporateView/orderList";
 	}
 	
-	@GetMapping("orderAccept")
-	public String orderAccept(int tempOrderkey) {
-		sService.changeOrderState(tempOrderkey, OrderState.received);
-		return "";
-	}
-	
-	@GetMapping("orderRefuse")
-	public String orderRefuse(int tempOrderkey) {
-		sService.changeOrderState(tempOrderkey, OrderState.refuesed);
-		return "";
+	@GetMapping("menuMng")
+	public String menuMng(int storeCode, Model m) {
+		ArrayList<Menu> menuList = sService.getMenulistByCode(storeCode);
+		m.addAttribute("menuList", menuList);
+		return "coporateView/menuMng";
 	}
 }

@@ -29,6 +29,7 @@ public class WebSecurityConfig {
         		"/member/findId",
         		"/member/resetPw",
         		"/member/checkId",
+        		"/member/checkEmail",
         		"/member/emailConfirm",
         		"/personal/home",
                 "/image/**",

@@ -1,4 +1,4 @@
-package com.platform.cocktail.cocktail_platform.controller;
+package com.platform.cocktail.cocktail_platform.controller.general;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +23,13 @@ public class MemberAjaxController {
 	private EmailService emailService;
 	
 	@PostMapping("checkId")
-	public boolean checkId(String memberId) {
-		return service.findMemberById(memberId) == null;
+	public int checkId(String memberId) {
+		return service.findMemberById(memberId) == null ? 0 : 1;
+	}
+
+	@PostMapping("checkEmail")
+	public int checkEmail(String email) {
+		return service.findMemberByEmail(email) == null ? 0 : 1;
 	}
 	
 	@PostMapping("emailConfirm")
