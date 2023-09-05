@@ -149,12 +149,15 @@ function pagingFormSubmit(currentPage){
 		<h1>예약 리스트</h1>
 		<!-- 예약 검색 -->
 		<form id="reserveSearch" th:action="@{/}" method="get">
-		예약 기간 <input type="text">
+		예약 기간 <input type="date" th:field="*{start}">
+    			~
+   				<input type="date" th:field="*{end}">
 		검색 <select id="type" name="type">
-            	<option value="">예약자</option>
-            	<option value="">예약 일시</option>
-            	<option value="">처리 현황</option>
+            	<option value="reservationName" th:selected="${type} == 'reservationName'">예약자</option>
+            	<option value="reserveState" th:selected="${type} == 'reserveState'">처리 현황</option>
+            	<option value="all" th:selected="${type} == 'all'">전체</option>
         	</select>
+        	<input type="text" name="searchWord" th:value="${searchWord}">
 		<input type="button" value="검색" onclick="">
 		</form>
 	</section>

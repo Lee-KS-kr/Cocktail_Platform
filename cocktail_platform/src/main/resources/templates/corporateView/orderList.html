@@ -14,7 +14,8 @@ $(document).ready(function(){
 function init(){
 	$.ajax({
 		url: "orderList",
-		type: "get",
+		type: "post",
+		data: {storecode: storeCode},
 		dataType: "json",
 		success: function(list){
 			getList(list);
@@ -26,18 +27,18 @@ function init(){
 }
 
 //주문 수락
-function orderAccept(reserveCode){
+function orderAccept(tempOrderkey){
 	let result = confirm("주문을 수락하시겠습니까?");
 	if(result == true){
-		location.href="orderAccept?orderCode="+orderCode;
+		location.href="orderAccept?tempOrderkey="+tempOrderkey;
 	}
 }
 
 //주문 취소
-function orderRefuse(ordercode){
+function orderRefuse(tempOrderkey){
 	let result = confirm("주문을 취소하시겠습니까?");
 	if(result == true){
-		location.href="orderRefuse?orderCode="+orderCode;
+		location.href="orderRefuse?tempOrderkey="+tempOrderkey;
 	}
 }
 
@@ -50,8 +51,8 @@ function getList(list){
 		str += '<td>' + item.menuNum + '</td>';
 		str += '<td>' + item.orderCount + '</td>';
 		str += '<td>' + item.pricePerOne + '</td>';
-		str += '<td><a href="|javascript:orderAccept(orderCode=' + item.orderCode + ')|">수락</a></td>';
-		str += '<td><a href="|javascript:orderRefuse(orderCode=' + item.orderCode + ')|">거절</a></td>';
+		str += '<td><a href="|javascript:orderAccept(tempOrderkey=' + item.tempOrderkey + ')|">수락</a></td>';
+		str += '<td><a href="|javascript:orderRefuse(tempOrderkey=' + item.tempOrderkey + ')|">거절</a></td>';
 		str += '</tr>';
 	});
 	str += '</table>';

@@ -1,4 +1,4 @@
-package com.platform.cocktail.cocktail_platform.controller;
+package com.platform.cocktail.cocktail_platform.controller.personal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

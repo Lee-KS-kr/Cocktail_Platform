@@ -29,7 +29,7 @@ function init(){
 function editMenu(reserveCode, storeCode){
 	let result = confirm("메뉴를 수정하시겠습니까?");
 	if(result == true){
-		location.href="reserveAccept?reserveCode="+reserveCode+ ',storeCode=' + storeCode;
+		location.href="reserveAccept?menuNum="+menuNum+ ',storeCode=' + storeCode;
 	}
 }
 
@@ -37,7 +37,7 @@ function editMenu(reserveCode, storeCode){
 function deleteMenu(reserveCode, storeCode){
 	let result = confirm("메뉴를 삭제하시겠습니까?");
 	if(result == true){
-		location.href="reserveRefuse?reserveCode="+reserveCode + ',storeCode=' + storeCode;
+		location.href="reserveRefuse?menuNum="+menuNum + ',storeCode=' + storeCode;
 	}
 }
 
@@ -51,8 +51,8 @@ function getList(list){
 		str += '<td>' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
 		str += '<td>' + item.canOrder + '</td>';
-		str += '<td><a href="|javascript:editMenu(reserveCode=' + item.reserveCode + ',storeCode=' + item.storeCode + ')|">수정</a></td>';
-		str += '<td><a href="|javascript:deleteMenu(reserveCode=' + item.reserveCode + ',storeCode=' + item.storeCode + ')|">삭제</a></td>';
+		str += '<td><a href="|javascript:editMenu(menuNum=' + item.menuNum + ',storeCode=' + item.storeCode + ')|">수정</a></td>';
+		str += '<td><a href="|javascript:deleteMenu(menuNum=' + item.menuNum + ',storeCode=' + item.storeCode + ')|">삭제</a></td>';
 		str += '</tr>';
 	});
 	str += '</table>';
@@ -94,7 +94,7 @@ function pagingFormSubmit(currentPage){
 		    	</div>
 		    	<div sec:authorize="isAuthenticated()">
 		    		<a th:href="@{/member/logout}">로그아웃</a>
-		    		<a th:href="@{/corporate/member/myPage}">마이페이지</a>
+		    		<a th:href="@{/corporate/myPage}">마이페이지</a>
 		    	</div>
 		   </div>
 	  </nav>
@@ -148,12 +148,12 @@ function pagingFormSubmit(currentPage){
 	<section>
 		<h1>메뉴 리스트</h1>
 		<!-- 메뉴 검색 -->
-		<form id="menuSearch" th:action="@{/}" method="get">
+		<form id="menuSearch" th:action="@{/corporate/store/menuSearch}" method="get">
 		검색 <select id="type" name="type">
-            	<option value="">주류</option>
-            	<option value="">안주</option>
+            	<option value="" th:selected="${type} == ''">주류</option>
+            	<option value="" th:selected="${type} == ''">안주</option>
         	</select>
-		<input type="text" name="">
+		<input type="text" name="searchWord" th:value="${searchWord}">
 		<input type="button" value="검색" onclick="">
 		</form>
 	</section>
