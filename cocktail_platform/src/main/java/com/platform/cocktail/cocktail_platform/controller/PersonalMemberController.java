@@ -38,22 +38,6 @@ public class PersonalMemberController {
 	@Autowired
 	private StoreService sService;
 	
-	/*
-	@GetMapping("join")
-	public String join() {
-		return "personalView/join";
-	}
-	
-	@PostMapping("join")
-	public String join(Member m) {
-		m.setMemberType(MemberType.privateMem);
-		log.debug("들어온 값 : {}", m);
-		mService.insertMember(m);
-		
-		return "redirect:/personal/member/taste?memberId=" + m.getMemberId();
-	}
-	*/
-	
 	@GetMapping("taste")
 	public String taste(String memberId, Model m) {
 		m.addAttribute("memberId", memberId);
@@ -64,25 +48,25 @@ public class PersonalMemberController {
 	public String taste(String memberId, Taste t) {
 		t.setMemberId(memberId);
 		mService.insertTaste(t);
-		return "redirect:/personal/home";
+		return "redirect:/";
 	}
 	
-	@GetMapping("loginForm")
-	public String login() {
-		return "personalView/login";
-	}
-	
-	@GetMapping("findId")
-	public String findId() {
-		return "personalView/FindID";
-	}
-	
-	@PostMapping("findId")
-	public String findId(String email, Model m) {
-		Member mem = mService.findMemberByEmail(email);
-		m.addAttribute("memberId", mem.getMemberId());
-		return "redirect:/personal/findId";
-	}
+//	@GetMapping("loginForm")
+//	public String login() {
+//		return "personalView/login";
+//	}
+//	
+//	@GetMapping("findId")
+//	public String findId() {
+//		return "personalView/FindID";
+//	}
+//	
+//	@PostMapping("findId")
+//	public String findId(String email, Model m) {
+//		Member mem = mService.findMemberByEmail(email);
+//		m.addAttribute("memberId", mem.getMemberId());
+//		return "redirect:/personal/findId";
+//	}
 	
 	@GetMapping("resetPw")
 	public String resetPw() {

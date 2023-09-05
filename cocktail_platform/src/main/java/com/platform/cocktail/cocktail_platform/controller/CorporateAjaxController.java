@@ -26,21 +26,7 @@ public class CorporateAjaxController {
 	
 	@Autowired
 	private StoreService sService;
-	
-	@Autowired
-	private EmailService emailService;
-	
-	@GetMapping("checkId")
-	public boolean checkId(String memberId) {
-		return service.findMemberById(memberId) == null;
-	}
-	
-	@PostMapping("emailConfirm")
-	public String emailConfirm(String email) throws Exception {
-		String confirm = emailService.sendSimpleMessage(email);
-		return confirm;
-	}
-	
+
 	@GetMapping("getPrivacy")
 	public Member getPrivacy(@AuthenticationPrincipal UserDetails user) {
 		Member m = service.findMemberById(user.getUsername());

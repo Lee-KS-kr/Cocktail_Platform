@@ -2,6 +2,7 @@ package com.platform.cocktail.cocktail_platform.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,11 +39,21 @@ public class MemberController {
 		log.debug("들어온 값 : {}", m);
 		mService.insertMember(m);
 		
-		return "redirect:/member/login";
+		if(m.getMemberType() == MemberType.ROLE_PERSONAL)
+			return "redirect:/personal/member/taste";
+		else
+			return "redirect:/";
 	}
 	
 	@GetMapping("findId")	
 	public String findId() {
+		return "memberView/findIdForm";
+	}	
+	
+	@PostMapping("findId")
+	public String findId(String email, Model m) {
+		Member mem = mService.findMemberByEmail(email);
+		m.addAttribute("memberId", mem.getMemberId());
 		return "memberView/findIdForm";
 	}
 	
@@ -51,6 +62,10 @@ public class MemberController {
 		return "memberView/findPwForm";
 	}
 	
-	
+	@PostMapping("resetPw")
+	public String resetPw(Member m) {
+		mService.resetPw(m);
+		return "redirect:/";
+	}
 	
 }
