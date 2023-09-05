@@ -44,11 +44,15 @@ table {
   border-spacing: 0;
 }
 
+
 /*=========================================================*/
 p{color: #6c6c6c;
 margin-top: 5px;
-
+text-decoration: none;
 }
+
+a{text-decoration: none;}
+
 .navi{
     width: 100%;
     height: 60px;
