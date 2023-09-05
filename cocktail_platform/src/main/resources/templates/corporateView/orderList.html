@@ -14,7 +14,7 @@ $(document).ready(function(){
 function init(){
 	$.ajax({
 		url: "orderList",
-		type: "get",
+		type: "post",
 		dataType: "json",
 		success: function(list){
 			getList(list);
@@ -29,7 +29,7 @@ function init(){
 function orderAccept(reserveCode){
 	let result = confirm("주문을 수락하시겠습니까?");
 	if(result == true){
-		location.href="orderAccept?orderCode="+orderCode;
+		location.href="orderAccept?storeCode="+storeCode;
 	}
 }
 
@@ -37,7 +37,7 @@ function orderAccept(reserveCode){
 function orderRefuse(ordercode){
 	let result = confirm("주문을 취소하시겠습니까?");
 	if(result == true){
-		location.href="orderRefuse?orderCode="+orderCode;
+		location.href="orderRefuse?storeCode="+storeCode;
 	}
 }
 
@@ -50,8 +50,8 @@ function getList(list){
 		str += '<td>' + item.menuNum + '</td>';
 		str += '<td>' + item.orderCount + '</td>';
 		str += '<td>' + item.pricePerOne + '</td>';
-		str += '<td><a href="|javascript:orderAccept(orderCode=' + item.orderCode + ')|">수락</a></td>';
-		str += '<td><a href="|javascript:orderRefuse(orderCode=' + item.orderCode + ')|">거절</a></td>';
+		str += '<td><a href="|javascript:orderAccept(storeCode=' + item.storeCode + ')|">수락</a></td>';
+		str += '<td><a href="|javascript:orderRefuse(storeCode=' + item.storeCode + ')|">거절</a></td>';
 		str += '</tr>';
 	});
 	str += '</table>';
