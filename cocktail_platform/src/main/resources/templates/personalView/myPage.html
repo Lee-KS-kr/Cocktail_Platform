@@ -7,13 +7,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" th:href="@{/CSS/personal/myPage.css}">
+    <link rel="stylesheet" href="myPage.css">
 </head>
 <body>
    
     <div class="navi">  <!-- navi   -->
-        <img src="" alt="search">
-        <img src="" alt="logo">
+        <div class="navi1">
+            <img src="/cocktail_platform/src/main/resources/static/image/logo44.png" alt="logo">
+        </div>
+        <div class="navi2">
+            <p th:text="${member.memberId}">님 환영합니다.  &nbsp;</p>
+            <a>로그아웃  &nbsp;</a>
+            <a>마이페이지  &nbsp; &nbsp;</a>
+            <a><img src="/cocktail_platform/src/main/resources/static/image/btn_search.png" alt="search"></a>
+        </div>
     </div>
     <!-- main -->
     <div class="main">
@@ -22,47 +29,51 @@
             <!-- sec1 start-->
             <div class="sec1">
                 <div>
-                    <div>내 정보 관리</div>
-                    <div>공지 <br> 사항</div>
+                    <p class="title1">내 정보 관리</p>
                 </div>
                 
-                <div>
-                    <input type="button" value="주문내역" class="bottom" onclick="orderlist()">
-                    <input type="button" value="주문내역" class="bottom" onclick="orderlist()">
-                    <input type="button" value="주문내역" class="bottom" onclick="orderlist()">
+                <div class="order">
+                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
+                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
+                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
+                </div>
+                <div class="order">
+                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
+                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
+                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
                 </div>
                 <div>
-                    <a th:href="@{/}">탈퇴하기</a>
+                    <a th:href="@{/}" name="out">탈퇴하기</a>
                 </div>
             </div>
             <!-- sec2 start-->
             <div class="sec2">
-                <div>마이페이지</div>
+                <div class="title2">마이페이지</div>
                 <div>
                     <p>기본정보</p>
                     <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
                         <table th:each="member : ${member}">
                             <tr>
                                 <th>아이디</th>
-                                <td th:text="${member.memberId}"></td>
+                                <td th:text="${member.memberId}">qweqweqweqweqw</td>
                             </tr>
                             <tr>
                                 <th>이름</th>
-                                <td th:text="${member.memberName}"></td>
+                                <td th:text="${member.memberName}">qweqweqweqweqw</td>
                             </tr>
                             <tr>
                                 <th>이메일</th>
-                                <td th:text="${member.email}"></td>
+                                <td th:text="${member.email}">qweqweqweqweqw</td>
                                 <td><input type="button" name="email" th:value="${member.email}" value="변경"></td>
                             </tr>
                             <tr>
                                 <th>전화번호</th>
-                                <td th:text="${member.phone}"></td>
+                                <td th:text="${member.phone}">qweqweqweqweqw</td>
                                 <td><input type="button" name="phone" th:value="${member.phone}" value="변경"></td>
                             </tr>
                             <tr>
                                 <th>생년월일</th>
-                                <td th:text="${member.birthday}"></td>
+                                <td th:text="${member.birthday}">qweqweqweqweqw</td>
                                 <td><input type="button" name="birthday" th:value="${member.birthday}" value="변경"></td>
                             </tr>
                             <tr>
