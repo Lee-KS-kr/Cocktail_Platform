@@ -30,7 +30,7 @@
     <!-- main -->
     <div class="main">
         <!-- sidebar-->
-        <div class="body">
+        <div class="sideber">
             <!-- sec1 start-->
             <div class="sec1">
                 <div>
@@ -53,10 +53,11 @@
             </div>
             <!-- sec2 start-->
             <div class="sec2">
-                <div class="title2">마이페이지</div> <!--이름 변경 시 수정해주세요.-->
-                <p>기본정보</p>
-                <div class="con1">
-                    <form th:action="@{/member/update}"  method="post" onsubmit="return check();" >
+
+                <div class="title2">마이페이지</div>
+                <div>
+                    <p>기본정보</p>
+                    <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
                         <table th:each="member : ${member}">
                             <tr>
                                 <th>아이디</th>
@@ -102,6 +103,10 @@
                     </table>
                 </div>
             </div>
+        </div>
+        <!-- section -->
+        <div class="sections">
+                dhfgdgfdgf
         </div>
     </div>
 </body>

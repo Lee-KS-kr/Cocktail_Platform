@@ -11,6 +11,20 @@ $(document).ready(function(){
     $('#storeChangeBtn').click(storeChg);
 });
 
+function getMemberInfo(){
+	$.ajax({
+		url: 'getPrivacy',
+		type: 'get',
+		dataType: "json",
+		success: function(){
+			
+		},
+		error: function(e){
+			alert(e.statusText);
+		}
+	});
+}
+
 function memberChg(){
 	let memberName = $('#memberName').val();
 	let phone =  $('#phone').val();
@@ -21,6 +35,20 @@ function memberChg(){
 		data: {memberName: memberName, phone: phone},		
 		success: function(){
 			alert('저장되었습니다.');
+		},
+		error: function(e){
+			alert(e.statusText);
+		}
+	});
+}
+
+function getStoreInfo(){
+	$.ajax({
+		url: 'getStoreInfo',
+		type: 'get',
+		dataType: "json",
+		success: function(){
+			
 		},
 		error: function(e){
 			alert(e.statusText);
@@ -129,18 +157,26 @@ function storeChg(){
 		<div class="memberInformation">
 			<h2>회원 정보</h2>
 			<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
+				아이디
 				<input type="text" th:value="${member.memberId}" readonly="readonly"><br>
+				비밀번호
 				<input type="password" readonly="readonly">
 				<input type="button" id="pwChangeBtn" value="변경" onclick="location.href='corporate/member/resetPw.html'"><br>
+				이메일
 				<input type="text" th:value="${member.email}" readonly="readonly"><br>
+				이름
 				<input type="text" th:value="${member.memberName}"><br>
-				<input type="text" th:value="${member.phone}">
+				휴대폰 번호
+				<input type="text" th:value="${member.phone}"><br>
+				사업자 번호
+				<input type="text" th:value="${member.brn}"><br>
+				
 				<input type="button" id="memberChangeBtn" value="변경">
 			</form>
 		</div>
 		<div class="storeInformation">
 			<h2>매장 정보</h2>
-			<form id="memberInfoForm" th:action="@{/corporate/member/editStorepage}" method="post">
+			<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post">
 				휴일 <input type="text" th:value="${store.dayOff}">
 				영업 시간 <input type="text" th:value="${store.runningTime}">
 				매장 소개 <input type="text" th:value="${store.info}">

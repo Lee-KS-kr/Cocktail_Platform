@@ -3,7 +3,7 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>reserve list</title>
+<title>메뉴 관리</title>
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
@@ -15,6 +15,7 @@ function init(){
 	$.ajax({
 		url: "menuList",
 		type: "get",
+		data: {storecode: storeCode},
 		dataType: "json",
 		success: function(list){
 			getList(list);
@@ -25,22 +26,6 @@ function init(){
 	});
 }
 
-//메뉴 수정
-function editMenu(reserveCode, storeCode){
-	let result = confirm("메뉴를 수정하시겠습니까?");
-	if(result == true){
-		location.href="reserveAccept?menuNum="+menuNum+ ',storeCode=' + storeCode;
-	}
-}
-
-//메뉴 삭제
-function deleteMenu(reserveCode, storeCode){
-	let result = confirm("메뉴를 삭제하시겠습니까?");
-	if(result == true){
-		location.href="reserveRefuse?menuNum="+menuNum + ',storeCode=' + storeCode;
-	}
-}
-
 //리스트 출력
 function getList(list){
 	let str = '<table><tr><th>메뉴 번호</th><th>카테고리</th><th>이름</th><th>가격</th><th>상태</th></tr>';
@@ -48,15 +33,62 @@ function getList(list){
 		str += '<tr>';
 		str += '<td>' + item.menuNum + '</td>';
 		str += '<td>' + item.category + '</td>';
-		str += '<td>' + item.menuName + '</td>';
+		str += '<td><a href="/corporate/store/editMenu(menuNum=' + item.menuNum + ',storeCode=' + item.storeCode + ')|">' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
 		str += '<td>' + item.canOrder + '</td>';
-		str += '<td><a href="|javascript:editMenu(menuNum=' + item.menuNum + ',storeCode=' + item.storeCode + ')|">수정</a></td>';
-		str += '<td><a href="|javascript:deleteMenu(menuNum=' + item.menuNum + ',storeCode=' + item.storeCode + ')|">삭제</a></td>';
+		str += '<td><a href="|javascript:deleteMenu(menuNum=' + item.menuNum + ',storeCode=' + item.storeCode + ')|">x</a></td>';
 		str += '</tr>';
 	});
 	str += '</table>';
 	$('#menuList').html(str);
+}
+
+//메뉴 삭제
+function deleteMenu(menuNum, storeCode){
+	let result = confirm("메뉴를 삭제하시겠습니까?");
+	if(result == true){
+		location.href="deleteMenu?menuNum="+menuNum + ',storeCode=' + storeCode;
+	}
+}
+
+//메뉴 추가 폼 표시
+function addMenu(){
+	$('#addMenuDiv').show();
+}
+
+//메뉴 추가 폼 보내기
+function addSub(){
+	
+	$.ajax({
+        url: 'addMenu',
+        method: 'post',
+        data: $('#addMenuForm').serialize(),
+        success: function() {
+           alert('추가되었습니다.');
+        },
+        error: function() {
+           alert('error');
+        }
+     });
+}
+
+//검색어,타입 주고 결과 받아오기
+function menuSearch() {
+	var searchWord = $("#searchWord").val();
+	var category = $("select[name='${category}']").val();
+	
+	$.ajax({
+		url: 'menuSearch',
+		type:'post',
+		dataType: 'json',
+		data: {searchWord: searchWord, category: category},
+		success: function(list) {
+			getList(list);
+		},
+		error: function(){
+			init();
+		}
+	});
 }
 
 //페이지 이동
@@ -90,7 +122,7 @@ function pagingFormSubmit(currentPage){
 		
 	    	<div class="navbar_right">
 	    		<div sec:authorize="!isAuthenticated()">
-		    		<span id="login">로그인</span>
+		    		<a th:href="@{/member/login}">로그인</a>
 		    	</div>
 		    	<div sec:authorize="isAuthenticated()">
 		    		<a th:href="@{/member/logout}">로그아웃</a>
@@ -148,20 +180,43 @@ function pagingFormSubmit(currentPage){
 	<section>
 		<h1>메뉴 리스트</h1>
 		<!-- 메뉴 검색 -->
-		<form id="menuSearch" th:action="@{/corporate/store/menuSearch}" method="get">
-		검색 <select id="type" name="type">
-            	<option value="" th:selected="${type} == ''">주류</option>
-            	<option value="" th:selected="${type} == ''">안주</option>
+		<form id="menuSearch" th:action="@{/corporate/store/menuSearch}" method="post">
+		검색 <select id="category" name="category">
+            	<option value="beverage" th:selected="${category} == 'beverage'">주류</option>
+            	<option value="food" th:selected="${category} == 'food'">안주</option>
         	</select>
-		<input type="text" name="searchWord" th:value="${searchWord}">
+		<input type="search" name="searchWord" th:value="${searchWord}">
 		<input type="button" value="검색" onclick="">
 		</form>
 	</section>
 	<!-- 메뉴 리스트 -->
 	<section>
-		총 <span></span>개 검색되었습니다.
-		<button>추가</button>
+		총 <span th:text="${navi.totalRecordsCount}"></span>개 검색되었습니다.
+		<button onclick="addMenu()">추가</button>
 		<div id="menuList"></div>
+		
+		<!-- 메뉴 추가 폼(추가버튼 클릭 시에만 보임) -->
+		<div id="addMenuDiv" style="display:none;">
+			<form id="addMenuForm" th:action="@{/corporate/store/addMenu}" method="post"
+			enctype="multipart/form-data">
+				카테고리<br>
+				<select id="category" name="category">
+		        	<option value="beverage" selected>주류</option>
+		        	<option value="food">안주</option>
+		    	</select><br>
+				메뉴명<br>
+				<input type="text" name="menuName"><br>
+				설명<br>
+		    	<input type="text" name="menuInfo"><br>
+				가격<br>
+		    	<input type="text" name="price"><br>
+		    	이미지<br>
+		    	<input type="file" name="추가하기"><br>
+		    	
+		    	<input type="reset" class="bottom" value="다시 쓰기">
+		    	<input type="button" value="저장" onclick="addSub()">
+			</form>
+		</div>
 	</section>
 	<!-- 페이지 넘버 -->
 	<section>
