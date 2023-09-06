@@ -91,8 +91,9 @@ function nameChk(){
 function emailChk(){
 	let email = $('#email').val();
 	let regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	let btn = document.getElementById('emailConfirmBtn')
 	
-	if(!regPw.test(email)){
+	if(!regEmail.test(email)){
         $('#errMsg5').html('이메일은 xxx@xxx.xxx 형식으로 입력해야 합니다.');
         check = false;
 	}
@@ -110,6 +111,7 @@ function emailChk(){
 	                check = false;
 	            } else { 
 	            	$('#errMsg5').html('');
+	            	btn.disabled = false;
 	            }
 	        },
 	        error:function(){
@@ -125,7 +127,7 @@ let authCode = '';
 //이메일 인증
 function emailConfirm(){
 	let email = $('#email').val();
-	let inputCode = $('emailInputCode').val();
+	let inputCode = $('#emailInputCode').val();
 	
 	$.ajax({
 		url : "emailConfirm",
@@ -172,9 +174,8 @@ function phoneChk(){
 
 //멤버타입 유효성 검사
 function memTypeChk(){
-	let regMemberType = $('input:radio[name=memberType]:checked').val();
 	
-	if(!regMemberType){
+	if(!memberType.checked){
 		$('#errMsg8').html('회원 구분을 선택해주십시오.');
 		check = false;
 	}
@@ -222,10 +223,10 @@ function subBtnVisible(){
 				이메일<br>
 				<input type="email" name="email" id="email"
 				placeholder="이메일(필수, 아이디 확인에 이용됩니다.)" required="required" onkeyup="emailChk()">
-				<input type="button" value="이메일 인증하기" onclick="emailConfirm()"><br>
+				<input type="button" id="emailConfirmBtn" value="이메일 인증하기" onclick="emailConfirm()" disabled><br>
 				<p id="errMsg5"></p>
 				<input type="text" name="emailInputCode" id="emailInputCode" 
-				placeholder="인증번호 입력" maxlength="7" required="required"><br>
+				placeholder="인증번호 입력" required="required"><br>
 				<p id="errMsg6"></p>
 				
 				핸드폰번호<br>
@@ -238,7 +239,7 @@ function subBtnVisible(){
 				<br>
 				
 				회원구분<br>
-    			<input type="radio" name="memberType" id="ROLE_PERSONAL" value="ROLE_PERSONAL">개인회원
+    			<input type="radio" name="memberType" id="ROLE_PERSONAL" value="ROLE_PERSONAL" checked>개인회원
     			<input type="radio" name="memberType" id="ROLE_CORPORATE" value="ROLE_CORPORATE">기업회원<br>
     			<p id="errMsg8"></p>
 				

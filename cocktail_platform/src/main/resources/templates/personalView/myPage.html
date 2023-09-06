@@ -7,12 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../static/CSS/personal/myPage.css">
-    
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gasoek+One&family=Schoolbell&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="myPage.css">
 </head>
 <body>
    
@@ -30,7 +25,7 @@
     <!-- main -->
     <div class="main">
         <!-- sidebar-->
-        <div class="body">
+        <div class="sideber">
             <!-- sec1 start-->
             <div class="sec1">
                 <div>
@@ -53,10 +48,10 @@
             </div>
             <!-- sec2 start-->
             <div class="sec2">
-                <div class="title2">마이페이지</div> <!--타이틀 변경 시 수정해주세요.-->
-                <p>기본정보</p>
-                <div class="con1">
-                    <form th:action="@{/member/update}"  method="post" onsubmit="return check();" >
+                <div class="title2">마이페이지</div>
+                <div>
+                    <p>기본정보</p>
+                    <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
                         <table th:each="member : ${member}">
                             <tr>
                                 <th>아이디</th>
@@ -88,20 +83,19 @@
                         </form>	
                 </div>
                 <!-- 취향  -->
-                <p>내 취향 태그</p>
-                <div class="con2">
-                    
+                <div>
+                    <p>내 취향 태그</p>
                     <p>skdjfsd</p>
                     <p>skdjfsd</p>
                     <p>skdjfsd</p>
                     <p>skdjfsd</p>
                     
-                </div>
-                <!-- section -->
-                <div class="con3">
-                    dhfgdgfdgf
                 </div>
             </div>
+        </div>
+        <!-- section -->
+        <div class="sections">
+                dhfgdgfdgf
         </div>
     </div>
 </body>

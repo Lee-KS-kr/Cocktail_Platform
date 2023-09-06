@@ -45,19 +45,6 @@ border-collapse: collapse;
 border-spacing: 0;
 }
 
-
-@font-face {
-      
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Gasoek One', sans-serif;
-    font-family: 'Schoolbell', cursive;
-	
-    font-family: 'PilseungGothic';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/PilseungGothic.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
 /*=========================================================*/
 
 .navi{
@@ -69,15 +56,18 @@ display: flex;
 justify-content: center;
 }
 
-/*logo*/
 .navi1{
     width: 50%;
     padding-left: 40px;
     padding-top: 5px;
     justify-content: center;
+<<<<<<< HEAD:cocktail_platform/src/main/resources/templates/personalView/myPage.css
+    background-color: #F7F7F7;
+=======
     background-color: #fff;
+>>>>>>> 9d5028e90b2866cd9cf88cd6f5a23b486044bf5b:cocktail_platform/src/main/resources/static/css/personal/myPage.css
 }
-/*~님 환영합니다, 로그아웃, 마이페이지, 검색Icon*/
+
 .navi2{
     width: 50%;
     background-color:#fff;
@@ -89,12 +79,34 @@ justify-content: center;
     margin: auto;
 }
 
+<<<<<<< HEAD:cocktail_platform/src/main/resources/templates/personalView/myPage.css
+.sideber{
+    padding: 0px 117px;
+    display: flex;
+    border: 5px solid #ff3fd6;
+}
+=======
 .body{ display: flex; }
+>>>>>>> 9d5028e90b2866cd9cf88cd6f5a23b486044bf5b:cocktail_platform/src/main/resources/static/css/personal/myPage.css
 
 .sec1{
 width: 250px;
 height: 700px;
 padding: 15px;
+<<<<<<< HEAD:cocktail_platform/src/main/resources/templates/personalView/myPage.css
+background-color: #F7F7F7;
+position:relative;
+}
+
+.sec2{
+    width: 100%;
+    padding-left: 36px;
+    padding-right: 36px;
+    background-color: rgb(255, 165, 169);
+}
+
+.title2{font-size: 17pt; height: 70px; background-color: rgb(36, 255, 32); display: flex; align-items: center; }
+=======
 border:1px solid #d3d3d3;
 background-color: #fff;
 position:relative;
@@ -107,6 +119,7 @@ position:relative;
 .title2{font-size: 17pt; height: 70px; margin:30px 0px; padding-left: 15px; 
     border: 1px solid #d3d3d3; border-radius: 5px; background-color: #fff; 
     display: flex; align-items: center; }
+>>>>>>> 9d5028e90b2866cd9cf88cd6f5a23b486044bf5b:cocktail_platform/src/main/resources/static/css/personal/myPage.css
 
 .sections{background-color: #406fcd;}
 
@@ -121,9 +134,14 @@ img[alt=icon]{width: 20px; display: flex;}
     height: 35px;
     margin: 5px;
     padding-left: 15px;
+<<<<<<< HEAD:cocktail_platform/src/main/resources/templates/personalView/myPage.css
+    border-radius: 6px;
+    background-color: #f6f7fa;
+=======
     border-radius: 5px;
     background-color: #FFF;
 
+>>>>>>> 9d5028e90b2866cd9cf88cd6f5a23b486044bf5b:cocktail_platform/src/main/resources/static/css/personal/myPage.css
     text-align: start;
     opacity: 0.7;
 }
@@ -132,14 +150,23 @@ img[alt=icon]{width: 20px; display: flex;}
     height: 35px;
     margin: 5px;
     padding-left: 15px;
+<<<<<<< HEAD:cocktail_platform/src/main/resources/templates/personalView/myPage.css
+    border-radius: 6px;
+    background-color: #e5e5e5;
+=======
     border-radius: 5px;
     background-color: #FF661A;
     color: #fff;
+>>>>>>> 9d5028e90b2866cd9cf88cd6f5a23b486044bf5b:cocktail_platform/src/main/resources/static/css/personal/myPage.css
     border: 1px solid #e5e5e5;
     text-align: start;
     opacity: 1;
 }
 
+<<<<<<< HEAD:cocktail_platform/src/main/resources/templates/personalView/myPage.css
+a[name=out] {position: absolute; bottom: 20px;}
+
+=======
 a[name=out] {padding-left: 20px; position: absolute; bottom: 100px; font-size: 9px;}
 
 .con1, .con2, .con3{ border: 1px solid #d3d3d3; border-radius: 5px; margin: 5px 0px; padding: 15px; background-color: #fff;
@@ -169,3 +196,4 @@ input[value="변경"]:hover, input[value="비밀번호 변경"]:hover {
     border-radius: 3px;
     background-color: #ff9560; 
 }
+>>>>>>> 9d5028e90b2866cd9cf88cd6f5a23b486044bf5b:cocktail_platform/src/main/resources/static/css/personal/myPage.css
