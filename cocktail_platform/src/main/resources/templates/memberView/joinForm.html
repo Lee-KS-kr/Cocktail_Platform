@@ -144,16 +144,15 @@ function emailConfirm(){
 		}
 	});
 	
-	//이메일 인증 번호 대조
-	$('emailInputCode').keyup(function(){
-		if(authCode != inputCode){  
-        	$('#errMsg6').html('인증번호가 불일치 합니다. 다시 확인해주세요.');
-        	check = false;
-		}
-		else {
-			$('#errMsg6').html('');
-			check = true;
-		}
+	// 이메일 인증 번호 대조
+	$('#emailInputCode').keyup(function(){
+	    if(authCode !== inputCode){  
+	        $('#errMsg6').html('인증번호가 불일치합니다. 다시 확인해주세요.');
+	        check = false;
+	    } else {
+	        $('#errMsg6').html('');
+	        check = true;
+	    }
 	});
 }
 
@@ -205,25 +204,27 @@ function birthChk(){
        	$('#errMsg8').html(year + "년 2월은  " + day + "일이 없습니다.");
        	check = false;
        }
- }
+   }
+}
 
 //멤버타입 유효성 검사
-function memTypeChk(){
-	
-	if(!memberType.checked){
-		$('#errMsg9').html('회원 구분을 선택해주십시오.');
-		check = false;
-	}
-	else{
-		$('#errMsg9').html('');
-		check = true;
-	}
-}
+  function memTypeChk(){
+      if ($('input[name="memberType"]:checked').length === 0) {
+          $('#errMsg9').html('회원 구분을 선택해주세요.');
+          check = false;
+      } else {
+          $('#errMsg9').html('');
+          check = true;
+      }
+  }
 
 //제출 버튼 활성화/비활성화
 function subBtnVisible(){
-	if(check == true) target.disabled = false;
-	else target.disabled = true;
+    if (check === true) {
+        $('#subBtn').prop('disabled', false);
+    } else {
+        $('#subBtn').prop('disabled', true);
+    }
 }
 
 </script>
