@@ -174,7 +174,7 @@ function phoneChk(){
 function memTypeChk(){
 	let regMemberType = $('input:radio[name=memberType]').is(":checked");
 	
-	if(regMemberType != true){
+	if(!regMemberType){
 		$('#errMsg8').html('회원 구분을 선택해주십시오.');
 		check = false;
 	}
@@ -222,8 +222,8 @@ function subBtnVisible(){
 				이메일<br>
 				<input type="email" name="email" id="email"
 				placeholder="이메일(필수, 아이디 확인에 이용됩니다.)" required="required" onkeyup="emailChk()">
-				<p id="errMsg5"></p>
 				<input type="button" value="이메일 인증하기" onclick="emailConfirm()"><br>
+				<p id="errMsg5"></p>
 				<input type="text" name="emailInputCode" id="emailInputCode" 
 				placeholder="인증번호 입력" maxlength="7" required="required"><br>
 				<p id="errMsg6"></p>
