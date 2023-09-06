@@ -93,7 +93,7 @@ function emailChk(){
 	let regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	let btn = document.getElementById('emailConfirmBtn')
 	
-	if(!regPw.test(email)){
+	if(!regEmail.test(email)){
         $('#errMsg5').html('이메일은 xxx@xxx.xxx 형식으로 입력해야 합니다.');
         check = false;
 	}
