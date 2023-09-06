@@ -172,7 +172,7 @@ function phoneChk(){
 
 //멤버타입 유효성 검사
 function memTypeChk(){
-	let regMemberType = $('input:radio[name=memberType]').is(":checked");
+	let regMemberType = $('input:radio[name=memberType]:checked').val();
 	
 	if(!regMemberType){
 		$('#errMsg8').html('회원 구분을 선택해주십시오.');
@@ -249,7 +249,7 @@ function subBtnVisible(){
                 </select><br>
                 <br>
 				<div class="bottom-container">
-					<input type="submit" id="subBtn" class="bottom" value="가입하기">
+					<input type="submit" id="subBtn" class="bottom" value="가입하기" disabled>
 					<input type="reset" class="bottom" value="다시 쓰기">
 				</div>
 		</form>
