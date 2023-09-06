@@ -6,20 +6,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="myPage.css">
+    <title>MyPage</title>
+    <link rel="stylesheet" th:href="@{/CSS/personal/myPage}">
+    
+<link rel="preconnect" th:href="https://fonts.googleapis.com">
+<link rel="preconnect" th:href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gasoek+One&family=Schoolbell&display=swap" rel="stylesheet">
+
 </head>
 <body>
    
     <div class="navi">  <!-- navi   -->
         <div class="navi1">
-            <img src="/cocktail_platform/src/main/resources/static/image/logo44.png" alt="logo">
+            <img src="@{/image/logo44.png}" alt="logo">
         </div>
         <div class="navi2">
             <p th:text="${member.memberId}">님 환영합니다.  &nbsp;</p>
             <a>로그아웃  &nbsp;</a>
             <a>마이페이지  &nbsp; &nbsp;</a>
-            <a><img src="/cocktail_platform/src/main/resources/static/image/btn_search.png" alt="search"></a>
+            <a><img src="@{/image/btn_search.png}" alt="search"></a>
         </div>
     </div>
     <!-- main -->
@@ -48,6 +53,7 @@
             </div>
             <!-- sec2 start-->
             <div class="sec2">
+
                 <div class="title2">마이페이지</div>
                 <div>
                     <p>기본정보</p>
@@ -77,19 +83,24 @@
                                 <td><input type="button" name="birthday" th:value="${member.birthday}" value="변경"></td>
                             </tr>
                             <tr>
-                                <td><input type="button" name="memberPw" th:value="${member.memberPw}" value="비밀번호 변경"></td>
+                                <td><input type="button" name="memberPw" th:value="${member.memberPw}" value="비밀번호 변경" class="resetpw"></td>
                             </tr>
                         </table>
                         </form>	
                 </div>
                 <!-- 취향  -->
-                <div>
-                    <p>내 취향 태그</p>
-                    <p>skdjfsd</p>
-                    <p>skdjfsd</p>
-                    <p>skdjfsd</p>
-                    <p>skdjfsd</p>
-                    
+                <p>내 취향 태그</p>
+                <div class="con2">
+                    <table>
+                        <tr>
+                            <th>향</th>
+                            <td th:text="${member.memberName}">qweqweqweqweqw</td>
+                        </tr>
+                        <tr>
+                            <th>맛</th>
+                            <td th:text="${member.memberName}">qweqweqweqweqw</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -100,10 +111,3 @@
     </div>
 </body>
 </html>
-
-<!-- 
-    추가해야할 것들:
-    생일 변경 
-
-    <td><input type="text" name="email" th:value="${member.email}"></td>
--->
