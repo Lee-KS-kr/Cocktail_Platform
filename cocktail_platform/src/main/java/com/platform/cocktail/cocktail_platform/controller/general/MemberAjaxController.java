@@ -24,16 +24,19 @@ public class MemberAjaxController {
 	
 	@PostMapping("checkId")
 	public int checkId(String memberId) {
+		log.debug("check id : {}", memberId);
 		return service.findMemberById(memberId) == null ? 0 : 1;
 	}
 
 	@PostMapping("checkEmail")
 	public int checkEmail(String email) {
+		log.debug("check email : {}", email);
 		return service.findMemberByEmail(email) == null ? 0 : 1;
 	}
 	
 	@PostMapping("emailConfirm")
 	public String emailConfirm(String email) throws Exception {
+		log.debug("email confirm : {}", email);
 		String confirm = emailService.sendSimpleMessage(email);
 		return confirm;
 	}
