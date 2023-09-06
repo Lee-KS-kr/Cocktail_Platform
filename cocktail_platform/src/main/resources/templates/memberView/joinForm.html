@@ -10,9 +10,11 @@ $(document).ready(function(){
 	subBtnVisible();
 });
 
+//제출 버튼
 const target = document.getElementById('subBtn');
 let check = true;
 
+//아이디 유효성 검사
 function idChk(){
 	let id = $('#memberId').val();
 	let regId = /^[a-z]+[a-z0-9]{5,19}$/g;
@@ -26,6 +28,7 @@ function idChk(){
 	}
 }
 
+//아이디 중복 검사
 function idDuplicateChk(){
 	let id = $('#memberId').val();
 	
@@ -49,26 +52,28 @@ function idDuplicateChk(){
     });
 }
 
+//비밀번호 유효성 검사
 function pwChk(){
 	let pw1 = $('#memberPw').val();
 	let pw2 = $('#memberPw2').val();
 	let regPw =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 	
-	if(!regPw.test(pw1)){
-		$('#errMsg2').html('비밀번호는 8-15자리 문자/숫자/특수문자를 포함해야 합니다.');
-		check = false;
-	}
-	else if(pw1 !== pw2){
-		$('#errMsg3').html('비밀번호가 일치하지 않습니다.');
-		check = false;
-	}
-	else{
-		$('#errMsg2').html('');
-		$('#errMsg3').html('');
-		check = true
-	}
+	if(!regPw.test(pw1)) {
+	    $('#errMsg2').html('비밀번호는 8-15자리 문자/숫자/특수문자를 포함해야 합니다.');
+	    check = false;
+	  } else {
+	    $('#errMsg2').html('');
+	  }
+
+	 if(pw1 !== pw2) {
+	    $('#errMsg3').html('비밀번호가 일치하지 않습니다.');
+	    check = false;
+	  } else {
+	    $('#errMsg3').html('');
+	  }
 }
 
+//이름 유효성 검사
 function nameChk(){
 	let name = $('#memberName').val();
 	
@@ -82,64 +87,105 @@ function nameChk(){
 	}
 }
 
+//이메일 유효성 검사
 function emailChk(){
 	let email = $('#email').val();
 	let regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	let btn = document.getElementById('emailConfirmBtn')
 	
-	$.ajax({
-        url:'checkEmail', 
-        type:'post', 
-        data:{email:email},
-        success:function(cnt){ 
-            if(cnt != 0){  
-                alert('이미 사용 중인 이메일 주소입니다.');
-                email  == '';
-            } else { 
-            	$('#errMsg5').html('사용 가능한 이메일 주소입니다.');
-            }
-        },
-        error:function(){
-            alert("에러입니다");
-        }
-    });
-	
-	if(!regPw.test(email)){
+	if(!regEmail.test(email)){
         $('#errMsg5').html('이메일은 xxx@xxx.xxx 형식으로 입력해야 합니다.');
         check = false;
 	}
 	else{
 		$('#errMsg5').html('');
-		check = true
+
+		$.ajax({
+	        url:'checkEmail', 
+	        type:'post', 
+	        data:{email:email},
+	        success:function(cnt){ 
+	            if(cnt != 0){  
+	            	$('#errMsg5').html('이미 사용 중인 이메일 주소입니다.');
+	                email  == '';
+	                check = false;
+	            } else { 
+	            	$('#errMsg5').html('');
+	            	btn.disabled = false;
+	            }
+	        },
+	        error:function(){
+	            alert("에러입니다");
+	        }
+	    });
 	}
 }
 
+//이메일 인증 코드 변수
+let authCode = '';
+
+//이메일 인증
+function emailConfirm(){
+	let email = $('#email').val();
+	let inputCode = $('#emailInputCode').val();
+	
+	$.ajax({
+		url : "emailConfirm",
+		type : "POST",
+		data : {email : email},
+		dataType: 'text',
+		success: function(code){
+			alert("인증메일이 발송되었습니다.");
+			authCode = code;
+		},
+		error: function(code){
+			alert("메일 발송에 실패했습니다.");
+			check = false;
+		}
+	});
+	
+	//이메일 인증 번호 대조
+	$('emailInputCode').keyup(function(){
+		if(authCode != inputCode){  
+        	$('#errMsg6').html('인증번호가 불일치 합니다. 다시 확인해주세요.');
+        	check = false;
+		}
+		else {
+			$('#errMsg6').html('');
+			check = true;
+		}
+	});
+}
+
+//휴대폰 번호 유효성 검사
 function phoneChk(){
 	let phone = $('#phone').val();
 	let regPhone = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
 	
 	if(!regPhone.test(phone)){
-        $('#errMsg6').html('전화번호 형식이 올바르지 않습니다.');
+        $('#errMsg7').html('전화번호 형식이 올바르지 않습니다.');
         check = false;
     }
 	else{
-		$('#errMsg6').html('');
-		check = true
+		$('#errMsg7').html('');
+		check = true;
 	}
 } 
 
+//멤버타입 유효성 검사
 function memTypeChk(){
-	let regMemberType = $('input:radio[name=memberType]').is(":checked");
 	
-	if(regMemberType != true){
-		$('#errMsg7').html('회원 구분을 선택해주십시오.');
+	if(!memberType.checked){
+		$('#errMsg8').html('회원 구분을 선택해주십시오.');
 		check = false;
 	}
 	else{
-		$('#errMsg7').html('');
-		check = true
+		$('#errMsg8').html('');
+		check = true;
 	}
 }
 
+//제출 버튼 활성화/비활성화
 function subBtnVisible(){
 	if(check == true) target.disabled = false;
 	else target.disabled = true;
@@ -147,53 +193,57 @@ function subBtnVisible(){
 
 </script>
 <link rel="stylesheet" th:href="@{/CSS/}">
-<title>Join</title>
+<title>통합 회원 가입</title>
 
 </head>
 <body>
 	<main>
-		<h1 class="title">회원 가입</h1>
+		<h1 class="title">통합 회원 가입</h1>
 		<form id="joinForm" th:action="@{/member/join}" method="post">
-				ID
+				ID<br>
 				<input type="text" name="memberId" id="memberId"
 				placeholder="ID(6-12자리 이내, 영문 사용 가능)" required="required" onkeyup="idChk()">
 				<p id="errMsg1"></p>
-				<br>
-				비밀번호
+				
+				비밀번호<br>
 				<input type="password" name="memberPw" id="memberPw"
 				placeholder="비밀번호(8-15자리 문자/숫자/기호 사용 가능)" required="required" onkeyup="pwChk()">
 				<p id="errMsg2"></p>
-				<br>
-				비밀번호 확인
-				<input type="password" name="memberPw" id="memberPw"
+				
+				비밀번호 확인<br>
+				<input type="password" name="memberPw2" id="memberPw2"
 				placeholder="비밀번호 확인" required="required" onkeyup="pwChk()">
 				<p id="errMsg3"></p>
-				<br>
-				이름
+				
+				이름<br>
 				<input type="text" name="memberName" id="memberName" 
 				placeholder="이름(필수)" required="required" onkeyup="nameChk()">				
 				<p id="errMsg4"></p>
-				<br>
-				이메일
-				<input type="text" name="email" id="email"
+				
+				이메일<br>
+				<input type="email" name="email" id="email"
 				placeholder="이메일(필수, 아이디 확인에 이용됩니다.)" required="required" onkeyup="emailChk()">
-				<input type="button" value="이메일 인증하기">
+				<input type="button" id="emailConfirmBtn" value="이메일 인증하기" onclick="emailConfirm()" disabled><br>
 				<p id="errMsg5"></p>
-				<br>
-				핸드폰번호
-				<input type="text" name="phone" id="phone" placeholder="전화번호(-빼고 숫자만 입력)" 
-				required="required" onkeyup="phoneChk()">
+				<input type="text" name="emailInputCode" id="emailInputCode" 
+				placeholder="인증번호 입력" required="required"><br>
 				<p id="errMsg6"></p>
-				<br>
-				생일
+				
+				핸드폰번호<br>
+				<input type="tel" name="phone" id="phone" placeholder="전화번호" 
+				required="required" onkeyup="phoneChk()">
+				<p id="errMsg7"></p>
+				
+				생일<br>
 				<input type="date" name="birthday" id="birthday" required="required">
 				<br>
-				회원구분
-    			<input type="radio" name="memberType" id="ROLE_PERSONAL" value="ROLE_PERSONAL">개인회원
+				
+				회원구분<br>
+    			<input type="radio" name="memberType" id="ROLE_PERSONAL" value="ROLE_PERSONAL" checked>개인회원
     			<input type="radio" name="memberType" id="ROLE_CORPORATE" value="ROLE_CORPORATE">기업회원<br>
-    			<p id="errMsg7"></p>
-				<br>
-				성별
+    			<p id="errMsg8"></p>
+				
+				성별<br>
               	<select name="gender">
                 	<option value="N" selected>선택안함</option>
                 	<option value="M">남자</option>
@@ -201,7 +251,7 @@ function subBtnVisible(){
                 </select><br>
                 <br>
 				<div class="bottom-container">
-					<input type="submit" id="subBtn" class="bottom" value="가입하기">
+					<input type="submit" id="subBtn" class="bottom" value="가입하기" disabled>
 					<input type="reset" class="bottom" value="다시 쓰기">
 				</div>
 		</form>
