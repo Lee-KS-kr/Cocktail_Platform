@@ -127,7 +127,7 @@ let authCode = '';
 //이메일 인증
 function emailConfirm(){
 	let email = $('#email').val();
-	let inputCode = $('emailInputCode').val();
+	let inputCode = $('#emailInputCode').val();
 	
 	$.ajax({
 		url : "emailConfirm",
