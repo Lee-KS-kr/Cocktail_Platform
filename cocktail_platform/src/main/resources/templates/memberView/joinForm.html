@@ -170,17 +170,52 @@ function phoneChk(){
 		$('#errMsg7').html('');
 		check = true;
 	}
-} 
+}
+
+//생년월일 유효성 검사
+function birthChk(){
+   let birthday = $('#birthday').val();
+
+   var year = Number(birthday.substr(0, 4));
+   var month = Number(birthday.substr(4, 2));
+   var day = Number(birthday.substr(6, 2));
+   var today = new Date();
+   var yearNow = today.getFullYear();
+   var adultYear = yearNow - 20;
+
+   if (year < 1900 || year > adultYear){
+   	$('#errMsg8').html("년도를 확인하세요. "+adultYear+"년생 이전 출생자만 등록 가능합니다.");
+   	check = false;
+   }
+   if (month < 1 || month > 12) { 
+   	$('#errMsg8').html("달은 1월부터 12월까지 입력 가능합니다.");
+   	check = false;
+   }
+   if (day < 1 || day > 31) {
+   	$('#errMsg8').html("일은 1일부터 31일까지 입력가능합니다.");
+   	check = false;
+   }
+   if ((month == 4 || month == 6 || month == 9 || month == 11) && day == 31) {
+   	$('#errMsg8').html(month + "월은 31일이 존재하지 않습니다.");
+   	check = false;
+   }
+   if (month == 2) {
+       var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+       if (day > 29 || (day == 29 && !isleap)) {
+       	$('#errMsg8').html(year + "년 2월은  " + day + "일이 없습니다.");
+       	check = false;
+       }
+ }
 
 //멤버타입 유효성 검사
 function memTypeChk(){
 	
 	if(!memberType.checked){
-		$('#errMsg8').html('회원 구분을 선택해주십시오.');
+		$('#errMsg9').html('회원 구분을 선택해주십시오.');
 		check = false;
 	}
 	else{
-		$('#errMsg8').html('');
+		$('#errMsg9').html('');
 		check = true;
 	}
 }
@@ -234,14 +269,16 @@ function subBtnVisible(){
 				required="required" onkeyup="phoneChk()">
 				<p id="errMsg7"></p>
 				
-				생일<br>
-				<input type="text" name="birthday" id="birthday" required="required">
+				생년월일<br>
+				<input type="text" name="birthday" id="birthday" placeholder="생년월일(8자리)"
+				required="required" onkeyup="birthChk()">
+				<p id="errMsg8"></p>
 				<br>
 				
 				회원구분<br>
     			<input type="radio" name="memberType" id="ROLE_PERSONAL" value="ROLE_PERSONAL" checked>개인회원
     			<input type="radio" name="memberType" id="ROLE_CORPORATE" value="ROLE_CORPORATE">기업회원<br>
-    			<p id="errMsg8"></p>
+    			<p id="errMsg9"></p>
 				
 				성별<br>
               	<select name="gender">
