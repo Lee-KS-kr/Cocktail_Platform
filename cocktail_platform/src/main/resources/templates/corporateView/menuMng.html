@@ -58,17 +58,13 @@ function addMenu(){
 
 //메뉴 추가 폼 보내기
 function addSub(){
-	let category = $("select[name='${category}']").val();
-	let menuName = $("#menuName").val();
-	let menuInfo = $("#menuInfo").val();
-	let price = $("#price").val();
 	
 	$.ajax({
         url: 'addMenu',
         method: 'post',
-        data: {category: category, menuName: menuName, menuInfo: menuInfo, price: price},
+        data: $('#addMenuForm').serialize(),
         success: function() {
-           
+           alert('추가되었습니다.');
         },
         error: function() {
            alert('error');
@@ -189,7 +185,7 @@ function pagingFormSubmit(currentPage){
             	<option value="beverage" th:selected="${category} == 'beverage'">주류</option>
             	<option value="food" th:selected="${category} == 'food'">안주</option>
         	</select>
-		<input type="text" name="searchWord" th:value="${searchWord}">
+		<input type="search" name="searchWord" th:value="${searchWord}">
 		<input type="button" value="검색" onclick="">
 		</form>
 	</section>
@@ -201,7 +197,7 @@ function pagingFormSubmit(currentPage){
 		
 		<!-- 메뉴 추가 폼(추가버튼 클릭 시에만 보임) -->
 		<div id="addMenuDiv" style="display:none;">
-			<form id="" th:action="@{/corporate/store/addMenu}" method="post"
+			<form id="addMenuForm" th:action="@{/corporate/store/addMenu}" method="post"
 			enctype="multipart/form-data">
 				카테고리<br>
 				<select id="category" name="category">
