@@ -159,10 +159,14 @@ function emailConfirm(){
 //휴대폰 번호 유효성 검사
 function phoneChk(){
 	let phone = $('#phone').val();
-    let regPhone = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;
+    let regPhone = /^010-[0-9]{4}-[0-9]{4}$/;
     
-    // 하이픈을 추가하여 전화번호 형식으로 변환
-    phone = phone.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, '$1-$2-$3');
+	// 사용자가 하이픈을 입력하지 않았을 때 자동으로 하이픈 추가
+    if (phone.length === 11 && phone.indexOf('-') === -1) {
+    	//하이픈을 추가하여 전화번호 형식으로 변환
+        phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '010-$1-$2-$3');
+        $('#phone').val(phone);
+    }
     
     if(!regPhone.test(phone)){
         $('#errMsg7').html('전화번호 형식이 올바르지 않습니다.');
@@ -175,40 +179,51 @@ function phoneChk(){
 }
 
 //생년월일 유효성 검사
-function birthChk(){
-   let birthday = $('#birthday').val();
+function birthChk() {
+    var birthday = $('#birthday').val();
+    var year = Number(birthday.substr(0, 4));
+    var month = Number(birthday.substr(4, 2));
+    var day = Number(birthday.substr(6, 2));
+    var today = new Date();
+    var yearNow = today.getFullYear();
+    var adultYear = yearNow - 20;
 
-   var year = Number(birthday.substr(0, 4));
-   var month = Number(birthday.substr(4, 2));
-   var day = Number(birthday.substr(6, 2));
-   var today = new Date();
-   var yearNow = today.getFullYear();
-   var adultYear = yearNow - 20;
+    if (birthday.length <= 8) {
+		// 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
+	    if (1900 > year || year > adultYear){
+	    	$('#errMsg8').html('년도를 확인하세요.' + adultYear + '년생 이전 출생자만 등록 가능합니다.');
+	    	$('#errMsg8').css('color', 'red');
+	    	
+	    }else if (month < 1 || month > 12) {
+	    	$('#errMsg8').html('생년월일을 확인해주세요 :)');
+	    	$('#errMsg8').css('color', 'red'); 
+	    
+	    }else if (day < 1 || day > 31) {
+	    	$('#errMsg8').html('생년월일을 확인해주세요 :)');
+	    	$('#errMsg8').css('color', 'red');  
+	    	
+	    }else if ((month==4 || month==6 || month==9 || month==11) && day==31) {
+	    	$('#errMsg8').html('생년월일을 확인해주세요 :)');
+	    	$('#errMsg8').css('color', 'red'); 
+	    	 
+	    }else if (month == 2) {
+	       	var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+	     	if (day>29 || (day==29 && !isleap)) {
+	     		$('#errMsg8').html('생년월일을 확인해주세요 :)');
+				$('#errMsg8').css('color', 'red'); 
+			}else{
+				$('#errMsg8').html('');
+			}//end of if (day>29 || (day==29 && !isleap))
+	    }else{
+	    	$('#errMsg8').html(''); 
+		}//end of if
+		
+	}else{
+		//1.입력된 생년월일이 8자 초과할때
+		$('#errMsg8').html('생년월일을 확인해주세요 :)');
+		$('#errMsg8').css('color', 'red');  
+	}
 
-   if (year < 1900 || year > adultYear){
-   	$('#errMsg8').html("년도를 확인하세요. "+adultYear+"년생 이전 출생자만 등록 가능합니다.");
-   	check = false;
-   }
-   if (month < 1 || month > 12) { 
-   	$('#errMsg8').html("달은 1월부터 12월까지 입력 가능합니다.");
-   	check = false;
-   }
-   if (day < 1 || day > 31) {
-   	$('#errMsg8').html("일은 1일부터 31일까지 입력가능합니다.");
-   	check = false;
-   }
-   if ((month == 4 || month == 6 || month == 9 || month == 11) && day == 31) {
-   	$('#errMsg8').html(month + "월은 31일이 존재하지 않습니다.");
-   	check = false;
-   }
-   if (month == 2) {
-       var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
-       if (day > 29 || (day == 29 && !isleap)) {
-       	$('#errMsg8').html(year + "년 2월은  " + day + "일이 없습니다.");
-       	check = false;
-       }
-   }
-}
 
 //멤버타입 유효성 검사
   function memTypeChk(){
