@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyPage</title>
-    <link rel="stylesheet" th:href="@{/CSS/personal/myPage}">
+    <link rel="stylesheet" href="@{/CSS/personal/myPage.css}">
     
 
 </head>
@@ -15,13 +15,13 @@
    
     <div class="navi">  <!-- navi   -->
         <div class="navi1">
-            <img src="@{/image/logo44.png}" alt="logo">
+            <img th:src="@{/image/logo44.png}" alt="logo">
         </div>
         <div class="navi2">
             <p th:text="${member.memberId}">님 환영합니다.  &nbsp;</p>
             <a>로그아웃  &nbsp;</a>
             <a>마이페이지  &nbsp; &nbsp;</a>
-            <a><img src="@{/image/btn_search.png}" alt="search"></a>
+            <a><img th:src="@{/image/btn_search.png}" alt="search"></a>
         </div>
     </div>  
     <!-- main -->
@@ -80,7 +80,7 @@
                                 <td><input type="button" name="birthday" th:value="${member.birthday}" value="변경"></td>
                             </tr>
                             <tr>
-                                <td><input type="button" name="memberPw" th:value="${member.memberPw}" value="비밀번호 변경" class="resetpw"></td>
+                                <td><input type="button" name="memberPw" value="비밀번호 변경" class="resetpw"></td>
                             </tr>
                         </table>
                         </form>	
