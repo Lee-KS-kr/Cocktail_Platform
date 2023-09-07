@@ -3,6 +3,7 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
+<!-- CSS: #errMsg1~8에 color: red 넣어주세욤 -->
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
@@ -191,27 +192,22 @@ function birthChk() {
     if (birthday.length <= 8) {
 		// 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
 	    if (1900 > year || year > adultYear){
-	    	$('#errMsg8').html('년도를 확인하세요.' + adultYear + '년생 이전 출생자만 등록 가능합니다.');
-	    	$('#errMsg8').css('color', 'red');
+	    	$('#errMsg8').html('년도를 확인하세요.' + adultYear + ' 년생 이전 출생자만 등록 가능합니다.');
 	    	check = false;
 	    	
 	    }else if (month < 1 || month > 12) {
-	    	$('#errMsg8').html('생년월일을 확인해주세요 :)');
-	    	$('#errMsg8').css('color', 'red'); 
+	    	$('#errMsg8').html('생년월일을 확인해주세요.');
 	    	check = false;
 	    }else if (day < 1 || day > 31) {
-	    	$('#errMsg8').html('생년월일을 확인해주세요 :)');
-	    	$('#errMsg8').css('color', 'red');  
+	    	$('#errMsg8').html('생년월일을 확인해주세요.');
 	    	check = false;
 	    }else if ((month==4 || month==6 || month==9 || month==11) && day==31) {
-	    	$('#errMsg8').html('생년월일을 확인해주세요 :)');
-	    	$('#errMsg8').css('color', 'red'); 
+	    	$('#errMsg8').html('생년월일을 확인해주세요.');
 	    	check = false;
 	    }else if (month == 2) {
 	       	var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
 	     	if (day>29 || (day==29 && !isleap)) {
-	     		$('#errMsg8').html('생년월일을 확인해주세요 :)');
-				$('#errMsg8').css('color', 'red'); 
+	     		$('#errMsg8').html('생년월일을 확인해주세요.');
 				check = false;
 			}else{
 				$('#errMsg8').html('');
@@ -225,7 +221,6 @@ function birthChk() {
 	}else{
 		//1.입력된 생년월일이 8자 초과할때
 		$('#errMsg8').html('생년월일을 확인해주세요 :)');
-		$('#errMsg8').css('color', 'red');  
 	}
 }
 
