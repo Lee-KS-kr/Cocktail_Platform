@@ -3,6 +3,7 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
+<!-- CSS: #errMsg1~8에 color: red 넣어주세욤 -->
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
@@ -77,7 +78,7 @@ function pwChk(){
 function nameChk(){
 	let name = $('#memberName').val();
 	
-	if(name < 1 || name > 9){
+	if(name < 2 || name > 9){
 		$('#errMsg4').html('이름은 2-10자로 입력해주세요.');
 		check = false;
 	}
@@ -144,9 +145,9 @@ function emailConfirm(){
 		}
 	});
 	
-	// 이메일 인증 번호 대조
+	//이메일 인증 번호 대조
 	$('#emailInputCode').keyup(function(){
-	    if(authCode !== inputCode){  
+	    if(authCode != inputCode){  
 	        $('#errMsg6').html('인증번호가 불일치합니다. 다시 확인해주세요.');
 	        check = false;
 	    } else {
@@ -164,7 +165,7 @@ function phoneChk(){
 	// 사용자가 하이픈을 입력하지 않았을 때 자동으로 하이픈 추가
     if (phone.length === 11 && phone.indexOf('-') === -1) {
     	//하이픈을 추가하여 전화번호 형식으로 변환
-        phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '010-$1-$2-$3');
+        phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
         $('#phone').val(phone);
     }
     
@@ -191,27 +192,22 @@ function birthChk() {
     if (birthday.length <= 8) {
 		// 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
 	    if (1900 > year || year > adultYear){
-	    	$('#errMsg8').html('년도를 확인하세요.' + adultYear + '년생 이전 출생자만 등록 가능합니다.');
-	    	$('#errMsg8').css('color', 'red');
+	    	$('#errMsg8').html('년도를 확인하세요.' + adultYear + ' 년생 이전 출생자만 등록 가능합니다.');
 	    	check = false;
 	    	
 	    }else if (month < 1 || month > 12) {
-	    	$('#errMsg8').html('생년월일을 확인해주세요 :)');
-	    	$('#errMsg8').css('color', 'red'); 
+	    	$('#errMsg8').html('생년월일을 확인해주세요.');
 	    	check = false;
 	    }else if (day < 1 || day > 31) {
-	    	$('#errMsg8').html('생년월일을 확인해주세요 :)');
-	    	$('#errMsg8').css('color', 'red');  
+	    	$('#errMsg8').html('생년월일을 확인해주세요.');
 	    	check = false;
 	    }else if ((month==4 || month==6 || month==9 || month==11) && day==31) {
-	    	$('#errMsg8').html('생년월일을 확인해주세요 :)');
-	    	$('#errMsg8').css('color', 'red'); 
+	    	$('#errMsg8').html('생년월일을 확인해주세요.');
 	    	check = false;
 	    }else if (month == 2) {
 	       	var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
 	     	if (day>29 || (day==29 && !isleap)) {
-	     		$('#errMsg8').html('생년월일을 확인해주세요 :)');
-				$('#errMsg8').css('color', 'red'); 
+	     		$('#errMsg8').html('생년월일을 확인해주세요.');
 				check = false;
 			}else{
 				$('#errMsg8').html('');
@@ -225,7 +221,6 @@ function birthChk() {
 	}else{
 		//1.입력된 생년월일이 8자 초과할때
 		$('#errMsg8').html('생년월일을 확인해주세요 :)');
-		$('#errMsg8').css('color', 'red');  
 	}
 }
 
@@ -243,7 +238,7 @@ function birthChk() {
 
 //제출 버튼 활성화/비활성화
 function subBtnVisible(){
-    if (check === true) {
+    if (check == true) {
         $('#subBtn').prop('disabled', false);
     } else {
         $('#subBtn').prop('disabled', true);
