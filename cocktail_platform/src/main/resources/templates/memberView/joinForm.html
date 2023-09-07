@@ -77,8 +77,9 @@ function pwChk(){
 //이름 유효성 검사
 function nameChk(){
 	let name = $('#memberName').val();
+	let nameLength = name.length;
 	
-	if(name < 2 || name > 9){
+	if( nameLength < 2 ||  nameLength > 9){
 		$('#errMsg4').html('이름은 2-10자로 입력해주세요.');
 		check = false;
 	}
@@ -192,7 +193,7 @@ function birthChk() {
     if (birthday.length <= 8) {
 		// 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
 	    if (1900 > year || year > adultYear){
-	    	$('#errMsg8').html('년도를 확인하세요.' + adultYear + ' 년생 이전 출생자만 등록 가능합니다.');
+	    	$('#errMsg8').html('년도를 확인하세요. ' + adultYear + '년생 이전 출생자만 등록 가능합니다.');
 	    	check = false;
 	    	
 	    }else if (month < 1 || month > 12) {
