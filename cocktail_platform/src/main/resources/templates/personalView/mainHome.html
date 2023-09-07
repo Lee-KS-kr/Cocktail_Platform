@@ -37,7 +37,7 @@
 	    	<div sec:authorize="isAuthenticated()">
 	    		<p><span th:text="${#authentication.name}"></span>님 환영합니다</p>
 	    		<a th:href="@{/member/logout}">로그아웃</a>
-	    		<a th:href="@{/personal/myPage}">마이페이지</a>
+	    		<a th:href="@{/personal/member/myPage}">마이페이지</a>
 	    	</div>
 	    </div>
 	  </nav>
