@@ -78,7 +78,7 @@ justify-content: center;
 .body{ display: flex; }
 
 .sec1{
-width: 250px;
+width: 17%;
 height: 700px;
 padding: 15px;
 background-color: #F7F7F7;
@@ -93,7 +93,7 @@ position:relative;
 }
 
 /*배경*/
-.sec2{width: 100%; padding-left: 36px; padding-right: 36px; background-color:#f6f7fa}
+.sec2{width: 83%; padding-left: 36px; padding-right: 36px; background-color:#f6f7fa}
 
 .title1{padding-left: 20px; padding-top: 10px;}
 .title2{font-size: 17pt; height: 70px; margin:30px 0px 20px; padding-left: 15px; 
