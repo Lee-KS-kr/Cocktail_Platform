@@ -1,0 +1,52 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.cocktail.cocktail_platform.dao.StoreDAO">
+	
+	<!-- 예약 리스트 출력 -->
+	<select id="getReservelistByCode" parameterType="int" resultType="Reservation">
+	select
+		reserveCode
+		, storeCode
+		, reservationName
+		, reservationPhone
+		, reserveDate
+		, reserveState
+	from
+		reservation
+	order by
+		reserveCode desc
+	</select>
+	
+	<!-- 메뉴 리스트 출력 -->
+	<select id="getMenulistByCode" parameterType="int" resultType="Menu">
+	select
+		menuNum
+		, storeCode
+		, category
+		, price
+		, canOrder
+	from
+		menu
+	order by
+		menuNum desc
+	</select>
+	
+	<!-- 매출 관리 주문 리스트 출력 -->
+	<select id="getOrderListsByCode" parameterType="int" resultType="Order">
+	select
+		orderCode
+		, storeCode
+		, orderDate
+		, memberId
+		, totalPrice
+		, menuList
+		, orderState
+	from
+		order
+	order by
+		orderCode desc
+	</select>
+	
+</mapper>

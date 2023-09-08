@@ -38,12 +38,14 @@ public class PersonalMemberController {
 	@Autowired
 	private StoreService sService;
 	
+	//취향 설정 화면
 	@GetMapping("taste")
 	public String taste(String memberId, Model m) {
 		m.addAttribute("memberId", memberId);
 		return "personalView/taste";
 	}
 	
+	//취향 설정
 	@PostMapping("taste")
 	public String taste(String memberId, Taste t) {
 		t.setMemberId(memberId);
@@ -68,17 +70,20 @@ public class PersonalMemberController {
 //		return "redirect:/personal/findId";
 //	}
 	
-	@GetMapping("resetPw")
-	public String resetPw() {
-		return "personalView/FindPw";
-	}
+	//비밀번호 찾기 화면
+//	@GetMapping("resetPw")
+//	public String resetPw() {
+//		return "personalView/FindPw";
+//	}
+//	
+//	//비밀번호 재설정
+//	@PostMapping("resetPw")
+//	public String resetPw(Member m) {
+//		mService.resetPw(m);
+//		return "redirect:/personal/home";
+//	}
 	
-	@PostMapping("resetPw")
-	public String resetPw(Member m) {
-		mService.resetPw(m);
-		return "redirect:/personal/home";
-	}
-	
+	//마이페이지
 	@GetMapping("myPage")
 	public String myPage(@AuthenticationPrincipal UserDetails user, Model m) {
 		Member mem = mService.findMemberById(user.getUsername());
@@ -90,6 +95,7 @@ public class PersonalMemberController {
 		return "personalView/mypPage";
 	}
 	
+	//개인정보 수정 페이지
 	@GetMapping("editPrivacyInfo")
 	public String editPrivacyInfo(@AuthenticationPrincipal UserDetails user, Model m) {
 		Member mem = mService.findMemberById(user.getUsername());
@@ -98,6 +104,7 @@ public class PersonalMemberController {
 		return "";
 	}
 	
+	//개인정보 수정
 	@PostMapping("editPrivacyInfo")
 	public String editPrivacyInfo(Member mem, @AuthenticationPrincipal UserDetails user, Model m) {
 		mem.setMemberId(user.getUsername());
@@ -106,6 +113,7 @@ public class PersonalMemberController {
 		return "redirect:/personal/myPage";
 	}
 	
+	//주문,취소 목록
 	@GetMapping("orderLists")
 	public String orderLists(@AuthenticationPrincipal UserDetails user, Model m) {
 		ArrayList<Order> list = oService.getOrderLists(user.getUsername());
@@ -113,6 +121,7 @@ public class PersonalMemberController {
 		return "";
 	}
 	
+	//주문 상세 내역
 	@GetMapping("orderInfo")
 	public String orderInfo(String orderCode, Model m) {
 		Order o = oService.findOrderByOrdercode(orderCode);
@@ -123,11 +132,13 @@ public class PersonalMemberController {
 		return "";
 	}
 	
+	//취향 재설정 화면
 	@GetMapping("resetTaste")
 	public String resetTaste() {
 		return "";
 	}
 	
+	//취향 재설정
 	@PostMapping("resetTaste")
 	public String resetTaste(@AuthenticationPrincipal UserDetails user, Taste t) {
 		t.setMemberId(user.getUsername());
@@ -135,6 +146,7 @@ public class PersonalMemberController {
 		return "";
 	}
 	
+	//주문 후 평가
 	@GetMapping("evaluation")
 	public String evaluation(String orderCode, Model m) {
 		ArrayList<Menu> menuList = oService.getMenulistByOrdercode(orderCode);
@@ -142,6 +154,7 @@ public class PersonalMemberController {
 		return "";
 	}
 	
+	//주문 후 평가 제출
 	@PostMapping("evaluation")
 	public String evaluation(@AuthenticationPrincipal UserDetails user, StoreReview review
 			, int[] menuNum, String[] weather, String[] ageGroup, String[] companion, String[] event) {
@@ -168,11 +181,13 @@ public class PersonalMemberController {
 		return "";
 	}
 	
+	//회원 탈퇴 페이지
 	@GetMapping("quitMember")
 	public String quitMember() {
 		return "";
 	}
 	
+	//회원 탈퇴
 	@PostMapping("quitMember")
 	public String quitMember(@AuthenticationPrincipal UserDetails user) {
 		mService.unableMember(user.getUsername());
