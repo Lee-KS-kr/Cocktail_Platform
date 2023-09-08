@@ -7,8 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyPage</title>
+
+
+    <link rel="stylesheet" href="../../static/CSS/personal/myPage.css">
+    <!-- vs code
+    -->
+
+    <!-- thymeleaf
     <link rel="stylesheet" th:href="@{/CSS/personal/myPage.css}">
-    
+
+    -->
 
 </head>
 <body>
@@ -51,40 +59,56 @@
             </div>
             <!-- sec2 start-->
             <div class="sec2">
-                <div class="title2">마이페이지</div>
-                <div class="con1">
-                    <p>* 기본정보</p> <br>
-                    <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
-                        <table th:each="member : ${member}">
-                            <tr>
-                                <th>아이디</th>
-                                <td th:text="${member.memberId}"></td>
-                            </tr>
-                            <tr>
-                                <th>이름</th>
-                                <td th:text="${member.memberName}"></td>
-                            </tr>
-                            <tr>
-                                <th>이메일</th>
-                                <td th:text="${member.email}"></td>
-                                <td><input type="button" name="email" value="변경"></td>
-                            </tr>
-                            <tr>
-                                <th>전화번호</th>
-                                <td th:text="${member.phone}"></td>
-                                <td><input type="button" name="phone" value="변경"></td>
-                            </tr>
-                            <tr>
-                                <th>생년월일</th>
-                                <td th:text="${member.birthday}"></td>
-                                <td><input type="button" name="birthday" value="변경"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="button" name="memberPw" value="비밀번호 변경" class="resetpw"></td>
-                            </tr>
-                        </table>
-                        </form>	
-                </div>
+                    <div class="title2">마이페이지</div>
+                        <div class="flex">
+                            <div class="con1">
+                                <p>* 기본정보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="button" name="birthday" value="전화번호 번경"></td>
+                                <input type="button" name="memberPw" value="비밀번호 변경" class="resetpw"></p> <br>
+                                <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
+                                    <table th:each="member : ${member}">
+                                        <tr>
+                                            <th>아이디</th>
+                                            <td th:text="${member.memberId}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>이름</th>
+                                            <td th:text="${member.memberName}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>이메일</th>
+                                            <td th:text="${member.email}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>전화번호</th>
+                                            <td th:text="${member.phone}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>생년월일</th>
+                                            <td th:text="${member.birthday}"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                    </form>	
+                            </div>
+                            <div class="con2">
+                                <p>* 취향 정보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="button" name="birthday" value="취향 번경" class="taste"></p> <br>
+                                <form th:action="@{/member/update}"  method="post">
+                                    <table th:each="member : ${member}">
+                                        <tr>
+                                            <th>맛</th>
+                                            <td th:text="${member.memberId}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>향</th>
+                                            <td th:text="${member.memberName}"></td>
+                                        </tr>
+                                    </table>
+                                    </form>	
+                            </div>
+                        </div>
+                    </div>
                 <!-- 취향  
                 <p>내 취향 태그</p>
                 <div class="con2">
