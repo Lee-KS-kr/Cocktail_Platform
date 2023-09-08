@@ -131,7 +131,6 @@ let authCode = '';
 //이메일 인증
 function emailConfirm(){
 	let email = $('#email').val();
-	let inputCode = $('#emailInputCode').val();
 	let authCode = '';
 	
 	$.ajax({
@@ -145,6 +144,8 @@ function emailConfirm(){
 			
 			//이메일 인증 번호 대조
 			$('#emailInputCode').keyup(function(){
+				let inputCode = $('#emailInputCode').val();
+				
 			    if(authCode !== inputCode){  
 			        $('#errMsg6').html('인증번호가 불일치합니다. 다시 확인해주세요.');
 			        isValid = false;
