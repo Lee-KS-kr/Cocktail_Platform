@@ -11,6 +11,8 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.platform.cocktail.cocktail_platform.api.oauth.PrincipalOauth2UserService;
+
 /**
  * Security 설정
  */
@@ -18,6 +20,9 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfig {
     @Autowired
     private DataSource dataSource;
+    
+    @Autowired
+    private PrincipalOauth2UserService principalOauth2UserService;
 
     //설정
     @Bean
@@ -32,6 +37,8 @@ public class WebSecurityConfig {
         		"/member/checkEmail",
         		"/member/emailConfirm",
         		"/personal/home",
+        		"/oauth2/authorization/google",
+				"/login/oauth2/code/google",
                 "/image/**",
                 "/CSS/**",
                 "/JavaScript/**",
@@ -48,9 +55,12 @@ public class WebSecurityConfig {
         .logoutUrl("/member/logout")		//로그아웃 처리 URL
         .logoutSuccessUrl("/").permitAll()	//로그아웃시에 이동할 경로
         .and()
-        .cors()
-        .and()
-        .httpBasic();
+        .oauth2Login()
+		.loginPage("/member/loginForm")
+		.defaultSuccessUrl("/")
+		.failureUrl("/member/loginForm")
+		.userInfoEndpoint()
+		.userService(principalOauth2UserService);
 
         return http.build();
     }
