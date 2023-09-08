@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyPage</title>
-    <link rel="stylesheet" th:href="@{/CSS/personal/myPage.css}">
+    <link rel="stylesheet" href="../../static/CSS/personal/myPage.css">
     
 
 </head>
@@ -18,7 +18,7 @@
             <img th:src="@{/image/logo44.png}" alt="logo">
         </div>
         <div class="navi2">
-            <p th:text="${member.memberId}">님 환영합니다.  &nbsp;</p>
+            <p th:text="${member.memberId}"> </p>
             <p>님 환영합니다.  &nbsp;</p>
             <a th:href="@{member/logout}">로그아웃  &nbsp;</a>
             <a th:href="@{/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
@@ -53,7 +53,7 @@
             <div class="sec2">
                 <div class="title2">마이페이지</div>
                 <div class="con1">
-                    <p>기본정보</p>
+                    <p>* 기본정보</p> <br>
                     <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
                         <table th:each="member : ${member}">
                             <tr>
