@@ -21,11 +21,11 @@ public interface OrderDAO {
 	ArrayList<Order> getOrderListsByCode(int storeCode);
 
 	Order makeNewOrder(HashMap<String, Object> map);
-
+	
 	int insertTemporderList(ArrayList<OrderTemp> list);
-
+	
 	int updateOrder(Order o);
-
+	
 	ArrayList<OrderTemp> getTemporderlistByCode(int storeCode);
 
 	ArrayList<Menu> getMenulistByOrdercode(String orderCode);

@@ -32,6 +32,7 @@ public class CorporateStoreController {
 	@Autowired
 	private StoreService sService;
 	
+	//매출 관리 페이지 이동
 	@GetMapping("salesMng")
 	public String salesMng(int storeCode, Model m) {
 		ArrayList<Order> orderList = oService.getOrderListsByCode(storeCode);
@@ -52,6 +53,7 @@ public class CorporateStoreController {
 		return "redirect:/coporate/home";
 	}
 	
+	//예약 확인 페이지 이동
 	@GetMapping("reserveList")
 	public String reserveList(int storeCode, Model m) {
 		ArrayList<Reservation> reserveList = sService.getReservelistByCode(storeCode);
@@ -71,22 +73,26 @@ public class CorporateStoreController {
 		return "";
 	}
 	
+	//예약 수기 입력 페이지 이동
 	@GetMapping("reserveInput")
 	public String reserveInput(int storeCode) {
 		return "";
 	}
 	
+	//예약 수기 입력 페이지 완료
 	@PostMapping("reserveInput")
 	public String reserveInput(Reservation reserve) {
 		sService.insertReservation(reserve);
 		return "";
 	}
 	
+	//주문 관리 페이지 이동
 	@GetMapping("orderList")
 	public String orderList() {
 		return "coporateView/orderList";
 	}
 	
+	//메뉴 관리 페이지 이동
 	@GetMapping("menuMng")
 	public String menuMng(int storeCode, Model m) {
 		ArrayList<Menu> menuList = sService.getMenulistByCode(storeCode);
