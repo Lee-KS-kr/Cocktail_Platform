@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyPage</title>
-    <link rel="stylesheet" href="@{/CSS/personal/myPage.css}">
+    <link rel="stylesheet" th:href="@{/CSS/personal/myPage.css}">
     
 
 </head>
@@ -27,7 +27,7 @@
     <!-- main -->
     <div class="main">
         <!-- sidebar-->
-        <div class="sideber">
+        <div class="sidebar">
             <!-- sec1 start-->
             <div class="sec1">
                 <div>
@@ -50,9 +50,8 @@
             </div>
             <!-- sec2 start-->
             <div class="sec2">
-
                 <div class="title2">마이페이지</div>
-                <div>
+                <div class="con1">
                     <p>기본정보</p>
                     <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
                         <table th:each="member : ${member}">
@@ -102,10 +101,7 @@
                 -->
             </div>
         </div>
-        <!-- section -->
-        <div class="sections">
-                dhfgdgfdgf
-        </div>
+        
     </div>
 </body>
 </html>
