@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrderDetails</title>
+    <link rel="stylesheet" href="../../static/CSS/personal/OrderDetails.css">
+    
+<link rel="preconnect" th:href="https://fonts.googleapis.com">
+<link rel="preconnect" th:href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gasoek+One&family=Schoolbell&display=swap" rel="stylesheet">
+
+
+<title>home</title>
+</head>
+<body>
+	<h1>[ 게시판 ]</h1>
+	
+<section>
+	
+ <table>
+      <tr>
+          <th>이름</th>
+          <td th:text="numid"></td>
+      </tr>
+      <tr>
+          <th>내용</th>
+          <td th:text="${board.title}"></td>
+      </tr>
+      <tr>
+          <th>내용</th>
+          <td><pre th:text= "${board.contents}"></pre></td>
+      </tr>
+      <tr>
+       	<th>파일첨부</th>
+      	<td><span th:text="${board.originalfile}"></span></td>
+      
+      </tr>
+</table>
+	       
+<br><br>
+	
+
+	       
+	       
+	       
+	       
+	       
+</section>
+</body>
+</html>
