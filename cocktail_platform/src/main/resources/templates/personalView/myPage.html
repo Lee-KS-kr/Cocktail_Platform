@@ -57,26 +57,26 @@
                         <table th:each="member : ${member}">
                             <tr>
                                 <th>아이디</th>
-                                <td th:text="${member.memberId}">qweqweqweqweqw</td>
+                                <td th:text="${member.memberId}"></td>
                             </tr>
                             <tr>
                                 <th>이름</th>
-                                <td th:text="${member.memberName}">qweqweqweqweqw</td>
+                                <td th:text="${member.memberName}"></td>
                             </tr>
                             <tr>
                                 <th>이메일</th>
-                                <td th:text="${member.email}">qweqweqweqweqw</td>
-                                <td><input type="button" name="email" th:value="${member.email}" value="변경"></td>
+                                <td th:text="${member.email}"></td>
+                                <td><input type="button" name="email" value="변경"></td>
                             </tr>
                             <tr>
                                 <th>전화번호</th>
-                                <td th:text="${member.phone}">qweqweqweqweqw</td>
-                                <td><input type="button" name="phone" th:value="${member.phone}" value="변경"></td>
+                                <td th:text="${member.phone}"></td>
+                                <td><input type="button" name="phone" value="변경"></td>
                             </tr>
                             <tr>
                                 <th>생년월일</th>
-                                <td th:text="${member.birthday}">qweqweqweqweqw</td>
-                                <td><input type="button" name="birthday" th:value="${member.birthday}" value="변경"></td>
+                                <td th:text="${member.birthday}"></td>
+                                <td><input type="button" name="birthday" value="변경"></td>
                             </tr>
                             <tr>
                                 <td><input type="button" name="memberPw" value="비밀번호 변경" class="resetpw"></td>
