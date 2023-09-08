@@ -26,6 +26,29 @@ function getMemberInfo(){
 	});
 }
 
+/**회원정보 출력*/
+function getList(list){
+	let str = '<table>';
+	$(list).each(function(i,item){
+		str += '<tr><td>아이디</td><td>'+ item.memberId + '</td></tr>';
+		str += '<tr><td>이메일</td><td>' + item.email + '</td></tr>';
+		str += '<tr><td>이름</td><td>' + item.memberName + '</td></tr>';
+		str += '<tr><td>휴대폰 번호</td><td>' + item.phone + '</td></tr>';
+		str += '<tr><td>사업자 번호</td><td>' + item.brn + '</td></tr>';
+		str += '<tr><td><input type="button" id="memChgBtn" value="수정" onclick="memChgToggle()"></td></tr>';
+		str += `<tr><td><input type="button" id="pwChgBtn" value="비밀번호 변경" onclick="location.href='corporate/member/resetPw.html'"></td></tr>`;
+	});
+	str += '</table>';
+	$('#memInfoDiv').html(str);
+}
+
+/**회원정보 변경 폼 표시*/
+function memChgToggle(){
+	$('#memInfoFormDiv').hide();
+	$('#memberInfoForm').show();
+}
+
+//유효성 플래그 변수
 let isValid = false;
 let isValid2 = false;
 
@@ -113,6 +136,32 @@ function getStoreInfo(){
 		}
 	});
 }
+
+/**가게 정보 출력*/
+function getStoreList(list){
+	let address = item.address1 + ' ' + item.address2;
+	let str = '<table>';
+
+	$(list).each(function(i,item){
+		str += '<tr><td>상호명</td><td>'+ item.storeName + '</td></tr>';
+		str += '<tr><td>대표 사진</td><td>'+ item.savedFilename + '</td></tr>';
+		str += '<tr><td>가게 주소</td><td>' + address + '</td></tr>';
+		str += '<tr><td>가게 전화번호</td><td>' + item.phone + '</td></tr>';
+		str += '<tr><td>영업 시간</td><td>' + item.runningTime + '</td></tr>';
+		str += '<tr><td>휴무일</td><td>' + item.dayOff + '</td></tr>';
+		str += '<tr><td>가게 소개</td><td>' + item.info + '</td></tr>';
+		str += '<tr><td><input type="button" id="storeChgBtn" value="수정" onclick="storeChgToggle()"></td></tr>';
+	});
+	str += '</table>';
+	$('#storeInfoDiv').html(str);
+}
+
+/**가게 정보 변경 폼 표시*/
+function storeChgToggle(){
+	$('#storeInfoFormDiv').hide();
+	$('#storeInfoForm').show();
+}
+
 
 /**가게 이름 유효성 검사*/
 function storeNameChk(){
@@ -288,54 +337,68 @@ function storeChg(){
 		<h1>마이페이지</h1>
 		<div class="memberInformation">
 			<h2>회원 정보</h2>
-			<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
-				아이디
-				<input type="text" name="memberId" th:value="${member.memberId}" readonly="readonly"><br>
-				비밀번호
-				<input type="password" name="password" readonly="readonly">
-				<input type="button" id="pwChangeBtn" value="변경" onclick="location.href='corporate/member/resetPw.html'"><br>
-				이메일
-				<input type="text" name="email" th:value="${member.email}" readonly="readonly"><br>
-				이름
-				<input type="text" id="memberName" name="memberName" th:value="${member.memberName}" onkeyup="nameChk()"><br>
-				<p id="errMsg1"></p>
-				휴대폰 번호
-				<input type="text" id="phone" name="phone" th:value="${member.phone}" onkeyup="phoneChk()"><br>
-				<p id="errMsg2"></p>
-				사업자 번호
-				<input type="text" id="brn" name="brn" th:value="${member.brn}" onkeyup="brnChk()"><br>
-				<p id="errMsg3"></p>
-				
-				<input type="button" id="memberChangeBtn" value="변경">
-			</form>
+			<!-- 회원 정보 표시 -->
+			<div id="memInfoDiv"></div>
+			
+			<!-- 회원 정보 수정 폼 -->
+			<div id="memInfoFormDiv" style="display:none;">
+				<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
+					아이디
+					<input type="text" name="memberId" th:value="${member.memberId}" readonly="readonly"><br>
+					이메일
+					<input type="text" name="email" th:value="${member.email}" readonly="readonly"><br>
+					이름
+					<input type="text" id="memberName" name="memberName" th:value="${member.memberName}" onkeyup="nameChk()"><br>
+					<p id="errMsg1"></p>
+					휴대폰 번호
+					<input type="text" id="phone" name="phone" th:value="${member.phone}" onkeyup="phoneChk()"><br>
+					<p id="errMsg2"></p>
+					사업자 번호
+					<input type="text" id="brn" name="brn" th:value="${member.brn}" onkeyup="brnChk()"><br>
+					<p id="errMsg3"></p>
+					
+					<input type="reset" class="bottom" value="다시 쓰기">
+					<input type="button" id="memberChangeBtn" value="저장">
+				</form>
+			</div>
 		</div>
 		<div class="storeInformation">
 			<h2>매장 정보</h2>
-			<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post">
-				가게명
-				<input type="text" id="storeName" name="storeName" th:value="${store.storeName}" onkeyup="storeNameChk()">
-				<p id="errMsg4"></p>
-				전화번호
-				<input type="text" id="storePhone" name="phone" th:value="${store.phone}" onkeyup="storePhoneChk()">
-				<p id="errMsg5"></p>
-				영업 시간
-				<input type="text" id="runningTime" name="runningTime" th:value="${store.runningTime}" onkeyup="runningTimeChk()">
-				<p id="errMsg6"></p>
-				휴일
-				<input type="text" id="dayOff" name="dayOff" th:value="${store.dayOff}" onkeyup="dayOffChk()">
-				<p id="errMsg7"></p>
-				매장 소개
-				<input type="text" id="info" name="info" th:value="${store.info}" onkeyup="infoChk()">
-				<p id="errMsg8"></p>
-				주소
-				<input type="text" name="postCode" id="postCode" placeholder="우편번호">
-				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" name="address1" id="address1" placeholder="도로명주소">
-				<span id="guide" style="color:#999;display:none"></span>
-				<input type="text" name="address2" id="address2" placeholder="상세주소"><br>
-
-				<input type="button" id="storeChangeBtn" value="변경">
-			</form>
+			<!-- 매장 정보 표시 -->
+			<div id="storeInfoDiv"></div>
+			
+			<!-- 회원 정보 수정 폼 -->
+			<div id="storeInfoFormDiv" style="display:none;">
+				<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post"
+				enctype="multipart/form-data">
+					가게명
+					<input type="text" id="storeName" name="storeName" th:value="${store.storeName}" onkeyup="storeNameChk()">
+					<p id="errMsg4"></p>
+					대표 사진<br>
+		    		<input type="file" name="추가하기"><br>
+					전화번호
+					<input type="text" id="storePhone" name="phone" th:value="${store.phone}" onkeyup="storePhoneChk()">
+					<p id="errMsg5"></p>
+					영업 시간
+					<input type="text" id="runningTime" name="runningTime" th:value="${store.runningTime}" onkeyup="runningTimeChk()">
+					<p id="errMsg6"></p>
+					휴일
+					<input type="text" id="dayOff" name="dayOff" th:value="${store.dayOff}" onkeyup="dayOffChk()">
+					<p id="errMsg7"></p>
+					매장 소개
+					<input type="text" id="info" name="info" th:value="${store.info}" onkeyup="infoChk()">
+					<p id="errMsg8"></p>
+					주소
+					<input type="text" name="postCode" id="postCode" placeholder="우편번호">
+					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+					<input type="text" name="address1" id="address1" placeholder="도로명주소">
+					<span id="guide" style="color:#999;display:none"></span>
+					<input type="text" name="address2" id="address2" placeholder="상세주소"><br>
+					
+					<input type="reset" class="bottom" value="다시 쓰기">
+					<input type="button" id="storeChangeBtn" value="변경">
+				</form>
+			</div>
 		</div>
 	</section>
 </main>
