@@ -7,6 +7,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Id</title>
+
+<script>
+  //이메일 인증 코드 변수
+let authCode = '';
+
+//이메일 인증
+function emailConfirm(){
+   let email = $('#email').val();
+   let inputCode = $('#emailInputCode').val();
+   
+   $.ajax({
+      url : "emailConfirm",
+      type : "POST",
+      data : {email : email},
+      dataType: 'text',
+      success: function(code){
+         alert("인증메일이 발송되었습니다.");
+         authCode = code;
+      },
+      error: function(code){
+         alert("메일 발송에 실패했습니다.");
+      }
+   });
+   
+   //이메일 인증 번호 대조
+   $('#emailInputCode').keyup(function(){
+       if(authCode != inputCode){  
+           $('#errMsg6').html('인증번호가 불일치합니다. 다시 확인해주세요.');
+       } else {
+           $('#errMsg6').html('');
+       }
+   });
+}
+</script>
 </head>
 <body>
     <!--타이틀-->
@@ -26,18 +60,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>전화번호</th>
-                  <td>
-                    <input type="number" name="phone" id="phone" /><br />
-                  </td>
-                </tr>
-                <tr>
                   <th>이메일</th>
                   <td>
                     <input type="text" name="email" id="email" placeholder="이메일 입력" />
-                    <input type="button" value="인증번호 받기" onclick="emailFormOpen()"><br>
+                    <input type="button" value="인증번호 받기" onclick="emailChk()"><br>
                     <input type="text" id="email2" placeholder="인증번호 입력"/>
-                    <input type="button" value="확인" onclick="emailcheck()">
+                    <input type="button" value="확인" onclick="emailConfirm()">
                   </td>
                 </tr>
               </table> 

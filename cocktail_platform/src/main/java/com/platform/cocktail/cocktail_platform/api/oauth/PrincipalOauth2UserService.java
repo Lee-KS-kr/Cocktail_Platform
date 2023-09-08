@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.platform.cocktail.cocktail_platform.dao.MemberDAO;
 import com.platform.cocktail.cocktail_platform.domain.Member;
+import com.platform.cocktail.cocktail_platform.domain.MemberType;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +42,8 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 								.memberPw(loginPw)
 								.memberName(oAuth2User.getAttribute("name"))
 								.gender("N")
-								.isChannel(true)
+								.memberType(MemberType.ROLE_PERSONAL)
+								.isChannel("Y")
 								.channel(provider)
 								.email(email)
 								.build();

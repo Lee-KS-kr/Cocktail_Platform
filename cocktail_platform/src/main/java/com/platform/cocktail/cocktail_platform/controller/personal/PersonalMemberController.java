@@ -87,12 +87,12 @@ public class PersonalMemberController {
 	@GetMapping("myPage")
 	public String myPage(@AuthenticationPrincipal UserDetails user, Model m) {
 		Member mem = mService.findMemberById(user.getUsername());
-		Taste t = mService.findTasteById(user.getUsername());
-		
+//		Taste t = mService.findTasteById(user.getUsername());
+//		
 		m.addAttribute("member", mem);
-		m.addAttribute("taste", t);
+//		m.addAttribute("taste", t);
 		
-		return "personalView/mypPage";
+		return "personalView/myPage";
 	}
 	
 	//개인정보 수정 페이지
