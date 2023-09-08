@@ -5,18 +5,23 @@
 <mapper namespace="com.platform.cocktail.cocktail_platform.dao.MemberDAO">
 	<!-- 통합 회원정보 저장 -->
 	<insert id="insertMember" parameterType="Member">
-		insert into member (memberId, memberPw, memberName, phone, birthday, email, memberType)
-		values (#{memberId}, #{memberPw}, #{memberName}, #{phone}, #{birthday}, #{email}, #{memberType})
+		insert into member (memberId, memberPw, memberName, phone, birthday, email, memberType, gender)
+		values (#{memberId}, #{memberPw}, #{memberName}, #{phone}, #{birthday}, #{email}, #{memberType}, #{gender})
 	</insert>
 	
 	<!-- Id로 회원 정보 찾기 -->
-	<select id="findMemberById" parameterType="String">
+	<select id="findMemberById" parameterType="String" resultType="Member">
 		select * from member where memberId = #{memberId}
 	</select>
 	
 	<!-- Email로 회원 정보 찾기 -->
-	<select id="findMemberByEmail" parameterType="String">
+	<select id="findMemberByEmail" parameterType="String" resultType="Member">
 		select * from member where email = #{email}
+	</select>
+	
+	<!-- Id로 취향 정보 찾기 -->
+	<select id="findTasteById" parameterType="String" resultType="Taste">
+		select * from taste where memberId = #{memberId}
 	</select>
 	
 	<!-- 회원 비밀번호 초기화 -->
@@ -28,6 +33,20 @@
 	<update id="updateMember" parameterType="Member">
 		update member set memberPw = #{memberPw} where memberId = #{memberId}
 	</update>
+	
+	<!-- 취향 정보 저장 -->
+	<insert id="insertTaste" parameterType="Taste">
+		insert into taste (tasteCode, memberId, hasAllergy, allergyType, cocktailTaste, cocktailFlavor)
+		values (
+				#{tasteCode}
+				, #{memberId}
+				, #{hasAllergy}
+				,<if test="allergyType != null">#{allergyType}
+				,</if>
+				#{cocktailTaste}
+				, #{cocktailFlavor}
+				)
+	</insert>
 	
 	<!-- 취향 정보 수정 -->
 	<update id="updateTaste">

@@ -56,9 +56,9 @@ public class WebSecurityConfig {
         .logoutSuccessUrl("/").permitAll()	//로그아웃시에 이동할 경로
         .and()
         .oauth2Login()
-		.loginPage("/member/loginForm")
+		.loginPage("/member/login")
 		.defaultSuccessUrl("/")
-		.failureUrl("/member/loginForm")
+		.failureUrl("/member/login")
 		.userInfoEndpoint()
 		.userService(principalOauth2UserService);
 
