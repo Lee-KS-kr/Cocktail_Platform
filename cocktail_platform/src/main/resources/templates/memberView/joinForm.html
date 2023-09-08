@@ -132,6 +132,7 @@ let authCode = '';
 function emailConfirm(){
 	let email = $('#email').val();
 	let inputCode = $('#emailInputCode').val();
+	let authCode = '';
 	
 	$.ajax({
 		url : "emailConfirm",
