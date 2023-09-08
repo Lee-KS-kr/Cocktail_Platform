@@ -7,11 +7,11 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-	memTypeChk();
+	$('subBtn').attr('disabled', 'disabled');
 });
 
-//제출 버튼
-const target = document.getElementById('subBtn');
+//유효성 플래그 변수
+let isValid = false;
 
 //아이디 유효성 검사
 function idChk(){
@@ -20,11 +20,11 @@ function idChk(){
 	
 	if(!regId.test(id)){
 		$('#errMsg1').html('아이디는 6-12자 영문/숫자를 포함해야 합니다.');
+		isValid = false;
 	}
 	else {
 		idDuplicateChk();
 	}
-	toggleSubmitButton();
 }
 
 //아이디 중복 검사
@@ -39,15 +39,16 @@ function idDuplicateChk(){
             if(cnt != 0){  
                 alert('중복된 아이디입니다.');
                 id = '';
+                isValid = false;
             } else { 
             	$('#errMsg1').html('');
+            	isValid = true;
             }
         },
         error:function(){
             alert("에러입니다");
         }
     });
-	toggleSubmitButton();
 }
 
 //비밀번호 유효성 검사
@@ -58,16 +59,18 @@ function pwChk(){
 	
 	if(!regPw.test(pw1)) {
 	    $('#errMsg2').html('비밀번호는 8-15자리 문자/숫자/특수문자를 포함해야 합니다.');
+	    isValid = false;
 	  } else {
 	    $('#errMsg2').html('');
 	  }
 
 	 if(pw1 !== pw2) {
 	    $('#errMsg3').html('비밀번호가 일치하지 않습니다.');
+	    isValid = false;
 	  } else {
 	    $('#errMsg3').html('');
+	    isValid = true;
 	  }
-	 toggleSubmitButton();
 }
 
 //이름 유효성 검사
@@ -77,11 +80,12 @@ function nameChk(){
 	
 	if(nameLength < 2 ||  nameLength > 9){
 		$('#errMsg4').html('이름은 2-10자로 입력해주세요.');
+		isValid = false;
 	}
 	else{
 		$('#errMsg4').html('');
+		isValid = true;
 	}
-	toggleSubmitButton();
 }
 
 //이메일 유효성 검사
@@ -93,6 +97,7 @@ function emailChk(){
 	if(!regEmail.test(email)){
         $('#errMsg5').html('이메일은 xxx@xxx.xxx 형식으로 입력해야 합니다.');
         btn.disabled = true;
+        isValid = false;
 	}
 	else{
 		$('#errMsg5').html('');
@@ -106,9 +111,11 @@ function emailChk(){
 	            	$('#errMsg5').html('이미 사용 중인 이메일 주소입니다.');
 	                email  == '';
 	                btn.disabled = true;
+	                isValid = false;
 	            } else { 
 	            	$('#errMsg5').html('');
 	            	btn.disabled = false;
+	            	isValid = true;
 	            }
 	        },
 	        error:function(){
@@ -116,7 +123,6 @@ function emailChk(){
 	        }
 	    });
 	}
-	toggleSubmitButton();
 }
 
 //이메일 인증 코드 변수
@@ -145,11 +151,12 @@ function emailConfirm(){
 	$('#emailInputCode').keyup(function(){
 	    if(authCode != inputCode){  
 	        $('#errMsg6').html('인증번호가 불일치합니다. 다시 확인해주세요.');
+	        isValid = false;
 	    } else {
 	        $('#errMsg6').html('');
+	        isValid = true;
 	    }
 	});
-	toggleSubmitButton();
 }
 
 //휴대폰 번호 유효성 검사
@@ -157,7 +164,7 @@ function phoneChk(){
 	let phone = $('#phone').val();
     let regPhone = /^010-[0-9]{4}-[0-9]{4}$/;
     
-	// 사용자가 하이픈을 입력하지 않았을 때 자동으로 하이픈 추가
+	//사용자가 하이픈을 입력하지 않았을 때 자동으로 하이픈 추가
     if (phone.length === 11 && phone.indexOf('-') === -1) {
     	//하이픈을 추가하여 전화번호 형식으로 변환
         phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
@@ -166,11 +173,12 @@ function phoneChk(){
     
     if(!regPhone.test(phone)){
         $('#errMsg7').html('전화번호 형식이 올바르지 않습니다.');
+        isValid = false;
     }
     else{
         $('#errMsg7').html('');
+        isValid = true;
     }
-    toggleSubmitButton();
 }
 
 //생년월일 유효성 검사
@@ -190,26 +198,32 @@ function birthChk() {
 	    	
 	    }else if (month < 1 || month > 12) {
 	    	$('#errMsg8').html('생년월일을 확인해주세요.');
+	    	isValid = false;
 	    }else if (day < 1 || day > 31) {
 	    	$('#errMsg8').html('생년월일을 확인해주세요.');
+	    	isValid = false;
 	    }else if ((month==4 || month==6 || month==9 || month==11) && day==31) {
 	    	$('#errMsg8').html('생년월일을 확인해주세요.');
+	    	isValid = false;
 	    }else if (month == 2) {
 	       	var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
 	     	if (day>29 || (day==29 && !isleap)) {
 	     		$('#errMsg8').html('생년월일을 확인해주세요.');
+	     		isValid = false;
 			}else{
 				$('#errMsg8').html('');
+				isValid = true;
 			}//end of if (day>29 || (day==29 && !isleap))
 	    }else{
 	    	$('#errMsg8').html('');
+	    	isValid = true;
 		}//end of if
 		
 	}else{
 		//1.입력된 생년월일이 8자 초과할때
-		$('#errMsg8').html('생년월일을 확인해주세요 :)');
+		$('#errMsg8').html('생년월일을 확인해주세요');
+		isValid = false;
 	}
-    toggleSubmitButton();
 }
 
 
@@ -217,31 +231,19 @@ function birthChk() {
   function memTypeChk(){
       if ($('input[name="memberType"]:checked').length === 0) {
           $('#errMsg9').html('회원 구분을 선택해주세요.');
+          isValid = false;
       } else {
           $('#errMsg9').html('');
+          isValid = true;
       }
-      toggleSubmitButton();
   }
 
 //제출 버튼 활성화/비활성화
 function toggleSubmitButton() {
-    let isValid = true;
-
-    //각 유효성 검사 함수 호출 및 조건 확인
-    if ($('#errMsg1').html() != '' ||
-        $('#errMsg2').html() != '' ||
-        $('#errMsg3').html() != '' ||
-        $('#errMsg4').html() != '' ||
-        $('#errMsg5').html() != '' ||
-        $('#errMsg6').html() != '' ||
-        $('#errMsg7').html() != '' ||
-        $('#errMsg8').html() != '' ||
-        $('#errMsg9').html() != '') {
-        isValid = false;
-    }
-
-    // 제출 버튼 상태 업데이트
-    $('#subBtn').prop('disabled', !isValid);
+	if(isValid) {
+	// 제출 버튼 상태 업데이트
+	$('#subBtn').prop('disabled', false);
+	}
 }
 
 </script>
