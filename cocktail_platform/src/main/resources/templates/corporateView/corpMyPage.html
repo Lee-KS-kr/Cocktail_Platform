@@ -27,6 +27,7 @@ function getMemberInfo(){
 }
 
 let isValid = false;
+let isValid2 = false;
 
 /** 이름 유효성 검사*/
 function nameChk(){
@@ -120,11 +121,11 @@ function storeNameChk(){
 	
 	if(storeNameLength < 2 ||  storeNameLength > 9){
 		$('#errMsg4').html('이름은 2-10자로 입력해주세요.');
-		isValid = false;
+		isValid2 = false;
 	}
 	else{
 		$('#errMsg4').html('');
-		isValid = true;
+		isValid2 = true;
 	}
 }
 
@@ -135,11 +136,11 @@ function storePhoneChk(){
     
     if(!regBrn.test(brn)){
         $('#errMsg5').html('전화번호 형식이 올바르지 않습니다.');
-        isValid = false;
+        isValid2 = false;
     }
     else{
         $('#errMsg5').html('');
-        isValid = true;
+        isValid2 = true;
     }
 }
 
@@ -150,11 +151,11 @@ function runningTimeChk(){
     
     if(runningTimeLength < 2){
         $('#errMsg6').html('영업 시간을 입력해주세요.');
-        isValid = false;
+        isValid2 = false;
     }
     else{
         $('#errMsg6').html('');
-        isValid = true;
+        isValid2 = true;
     }
 }
 
@@ -165,11 +166,11 @@ function dayOffChk(){
     
     if(dayOffLength < 2){
         $('#errMsg7').html('휴일을 입력해주세요.');
-        isValid = false;
+        isValid2 = false;
     }
     else{
         $('#errMsg7').html('');
-        isValid = true;
+        isValid2 = true;
     }
 }
 
@@ -180,17 +181,17 @@ function infoChk(){
     
     if(infoLength < 2){
         $('#errMsg8').html('매장 소개를 입력해주세요.');
-        isValid = false;
+        isValid2 = false;
     }
     else{
         $('#errMsg8').html('');
-        isValid = true;
+        isValid2 = true;
     }
 }
 
 /**가게 정보 변경하기*/
 function storeChg(){
-	if(isValid){
+	if(isValid2){
 		$.ajax({
 			url: 'editStorepage',
 			type: 'post',
