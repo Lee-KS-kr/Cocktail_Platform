@@ -18,7 +18,7 @@ function getMemberInfo(){
 		type: 'get',
 		dataType: "json",
 		success: function(){
-			
+			getList(list);
 		},
 		error: function(e){
 			alert(e.statusText);
@@ -129,7 +129,7 @@ function getStoreInfo(){
 		type: 'get',
 		dataType: "json",
 		success: function(){
-			
+			getList(list);
 		},
 		error: function(e){
 			alert(e.statusText);

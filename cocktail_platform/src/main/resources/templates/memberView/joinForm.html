@@ -147,17 +147,17 @@ function emailConfirm(){
 			alert("메일 발송에 실패했습니다.");
 		}
 	});
-	
-	//이메일 인증 번호 대조
-	$('#emailInputCode').keyup(function(){
-	    if(authCode != inputCode){  
-	        $('#errMsg6').html('인증번호가 불일치합니다. 다시 확인해주세요.');
-	        isValid = false;
-	    } else {
-	        $('#errMsg6').html('');
-	        isValid = true;
-	    }
-	});
+}
+
+/**이메일 인증 번호 대조*/
+function authcodeChk(inputCode){
+    if(authCode !== inputCode){  
+        $('#errMsg6').html('인증번호가 불일치합니다. 다시 확인해주세요.');
+        isValid = false;
+    } else {
+        $('#errMsg6').html('');
+        isValid = true;
+    }
 }
 
 //휴대폰 번호 유효성 검사
@@ -282,7 +282,7 @@ function toggleSubmitButton() {
 				<input type="button" id="emailConfirmBtn" value="이메일 인증하기" onclick="emailConfirm()" disabled><br>
 				<p id="errMsg5"></p>
 				<input type="text" name="emailInputCode" id="emailInputCode" 
-				placeholder="인증번호 입력" required="required"><br>
+				placeholder="인증번호 입력" required="required" onclick="authcodeChk()"><br>
 				<p id="errMsg6"></p>
 				
 				핸드폰번호<br>
