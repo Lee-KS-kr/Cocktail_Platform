@@ -36,6 +36,7 @@ create table storeInfo (
         svaedFilename  varchar2(100)                                                                        --파일변화본명
 );
 drop table storeInfo;
+create sequence storeInfo_seq;
 
 -- 메뉴  menu 테이블
  create table menu (
@@ -62,6 +63,7 @@ create table orders (
         orderState      varchar2(6)       default 'done' check (orderState in ('done', 'cancel'))           --주문 상태
 );
 drop table orders;
+create sequence order_seq;
 
 --  임시 주문 orderTemp 테이블
 create table orderTemp (
@@ -86,6 +88,7 @@ create table schedule (
 		vacation	     varchar2(100)                                                                     --휴무
 );
 drop table schedule;
+create sequence schedule_seq;
 
 -- 예약 상태 reservation 테이블
 create table reservation (
@@ -100,6 +103,7 @@ create table reservation (
         request            varchar2(4000)   not null                                                        --요구사항
 );
 drop table reservation;
+create sequence reservation_seq;
 
 -- 코드 정보 codesInfo 테이블
 create table codeInfo (
@@ -114,6 +118,7 @@ create table ingredients (
 		ingredientName       varchar2(100)    not null                                                      --재료명
 );
 drop table ingredients;
+create sequence ingredients_seq;
 
 -- 취향 taste 테이블
 create table taste (
@@ -125,6 +130,7 @@ create table taste (
         cocktailFlavor      number          not null                                                        --향 정보
 );
 drop table taste;
+create sequence taste_seq;
 
 -- 칵테일 cocktails 테이블
 create table cocktails (
@@ -143,6 +149,7 @@ create table cocktails (
 		savedFilename       varchar2(100)                                                                 --칵테일수정본사진
 );
 drop table cocktails;
+create sequence cocktails_seq;
 
 -- 즐겨찾기 favorite 테이블
 create table favorite (
@@ -152,6 +159,7 @@ create table favorite (
 		favDate         date                default sysdate                                                 --생성일자
 );
 drop table favorite;
+create sequence favorite_seq;
 
 -- 가게리뷰 storeReview 테이블
 create table storeReview (
@@ -165,6 +173,7 @@ create table storeReview (
 		savedFilename         varchar2(100) 
 );
 drop table storeReview;
+create sequence storeReview_seq;
 
 -- 메뉴평가 menuPreference 테이블
 create table menuPreference (
@@ -177,3 +186,4 @@ create table menuPreference (
 		event                number        check (event < 9000)
 ); 
 drop table menuPreference;
+create sequence menuPreference_seq;

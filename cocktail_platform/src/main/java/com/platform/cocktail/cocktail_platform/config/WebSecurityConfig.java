@@ -31,6 +31,7 @@ public class WebSecurityConfig {
         .authorizeRequests()
         .antMatchers("/",
         		"/member/join",
+        		"/member/login",
         		"/member/findId",
         		"/member/resetPw",
         		"/member/checkId",

@@ -16,25 +16,98 @@
 		from
 			order
 		where
-			orderCode = #{orderCode}
+			memberId = #{memberId}
 		order by
 			orderDate desc
 	</select>
 	
-	<!-- 주문 상세 내역 -->
+	<!--  -->
+	<select id="getOrderListsByCode" parameterType="int" resultType="Order">
+		select
+			orderCode
+			, storeCode
+			, orderDate
+			, memberId
+			, totalPrice
+			, menuList
+			, orderState
+		from
+			order
+		where
+			storeCode = #{storeCode}
+	</select>
+		
+	<!--  -->
+	<select id="findOrderByOrdercode" parameterType="String" resultType="Order">
+		select
+			orderCode
+			, storeCode
+			, orderDate
+			, memberId
+			, totalPrice
+			, menuList
+			, orderState
+		from
+			order
+		where
+			orderCode = #{orderCode}
+	</select>
 	
 	<!--  -->
+	<insert id="makeNewOrder" parameterType="HashMap" resultType="Order">
+		insert into 
+			order
+				(orderCode
+				, storeCode
+				, orderDate
+				, memberId
+				, totalPrice
+				, menuList
+				, orderState)
+			values
+				( sysdate + order_seq.nextval + #{storeCode}
+				, #{storeCode}
+				, sysdate
+				, #{memberId}
+				, #{totalPrice}
+				,<if test="orderState != 'default'">#{orderState}
+				,</if>
+				, #{menuList}
+				)
+	</insert>
 	
 	<!--  -->
+	<insert id="insertTemporderList" parameterType="OrderTemp">
+		insert into
+			orderTemp
+				(tempOrderkey
+				, orderCode
+				, menuNum
+				, menuName
+				, pricePerOne
+				, orderCount)
+			values
+				(#{tempOrderkey}
+				, #{orderCode}
+				, #{menuNum}
+				, #{menuName}
+				, #{pricePerOne}
+				, #{orderCount})
+	</insert>
 	
 	<!--  -->
-	
-	<!--  -->
-	
-	<!--  -->
-	
-	<!--  -->
-	
-	<!--  -->
+	<update id="updateOrder" parameterType="Order">
+	update 
+		order
+	set
+		, orderDate = sysdate
+		, totalPrice = #{}
+		,<if test="orderState != 'default'">orderState = #{orderState}
+		,</if>
+		, menuList = #{}
+	where 
+		storeCode = #{storeCode}
+		and memberid = #{memberid}
+	</update>
 	
 </mapper>
