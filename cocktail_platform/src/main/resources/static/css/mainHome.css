@@ -9,6 +9,7 @@
 
 a, div{
   color: #232323;
+  text-decoration: none;
 }
 
 .navi {
@@ -62,7 +63,7 @@ body {
   margin-top: 75px;
   margin-left: 220PX;
   position: absolute;
-  z-index: 1000;
+  z-index: 100;
 
 }
 
