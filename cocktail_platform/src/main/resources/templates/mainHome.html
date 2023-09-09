@@ -8,27 +8,27 @@
     <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
     
 
-        
+<!-- vs code        
     <link rel="stylesheet" href="../static/CSS/mainHome.css">
-<!-- vs code
+
     -->
 
-<!-- thymeleaf
+
     <link rel="stylesheet" th:href="@{/CSS/mainHome.css}">
-    
+    <!-- thymeleaf
     -->
 
   </head>
   <body>
     <div class="navi">
-        <img src="../static/image/logo0.png" alt="logo">
+        <img th:src="../static/image/logo0.png" alt="logo">
     </div>
     <div class="body">
     
       <div class="box1">
         <div class="title">비회원페이지</div><br>
         <div class="content"><a th:href="@{/personal/home}">비회원 홈으로
-          <img src="../static/image/arrow.png" alt="arrow">
+          <img th:src="../static/image/arrow.png" alt="arrow">
         </a></div>
       </div>
       
