@@ -13,22 +13,22 @@
 
     -->
 
-
+  <!-- thymeleaf
     <link rel="stylesheet" th:href="@{/CSS/mainHome.css}">
-    <!-- thymeleaf
+  
     -->
 
   </head>
   <body>
     <div class="navi">
-        <img th:src="../static/image/logo0.png" alt="logo">
+        <img th:src="@{/image/logo0.png}" alt="logo">
     </div>
     <div class="body">
     
       <div class="box1">
         <div class="title">비회원페이지</div><br>
         <div class="content"><a th:href="@{/personal/home}">비회원 홈으로
-          <img th:src="../static/image/arrow.png" alt="arrow">
+          <img th:src="@{/image/arrow.png}" alt="arrow">
         </a></div>
       </div>
       
@@ -36,7 +36,8 @@
         <div class="title">개인/기업 회원페이지</div><br>
         <div sec:authorize="!isAuthenticated()" class="content">
         	<a th:href="@{/member/login}">회원 로그인
-            <img src="../static/image/arrow.png" alt="arrow"></a>
+            <img th:src="@{/image/arrow.png}" alt="arrow">
+          </a>
           
         </div>
         
@@ -53,5 +54,6 @@
       	</div>-->
       </div>
     </div>
+    <img th:src="@{/image/deco1.png}" alt="deco1">
   </body>
 </html>

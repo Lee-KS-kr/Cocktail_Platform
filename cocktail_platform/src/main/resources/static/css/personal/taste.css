@@ -150,3 +150,10 @@ label{
     cursor: pointer;
     display: none;
 }
+
+img[alt=deco1]{
+    width: 20px;
+    position: absolute;
+    top: 200px;
+    z-index: 20;
+}

@@ -40,6 +40,7 @@ body {
   margin-left: 5%;
   margin-right: 5%;
   padding: 20px;
+  z-index: 1000;
 
 }
 
@@ -60,6 +61,9 @@ body {
   font-family: 'S-CoreDream-3Light';
   margin-top: 75px;
   margin-left: 220PX;
+  position: absolute;
+  z-index: 1000;
+
 }
 
 .content:hover{
@@ -80,3 +84,12 @@ body {
 img[alt=arrow]{ width: 40px; text-align: center;}
 
 img[alt=logo]{ width: 400px; margin-top: 150px;}
+
+img[alt=deco1]{
+  width: 700px;
+  position: absolute;
+  top: 300px;
+  left: 1000px;
+  z-index: 1;
+  filter: blur(15px);
+}
