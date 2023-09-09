@@ -41,7 +41,7 @@
           
         </div>
         
-        <!-- 작업중ㅠㅠ 09.04 16:20 
+        <!-- 작업중ㅠㅠ 09.04 16:20 -->
         <div sec:authorize="isAuthenticated()">
         	<a th:href="@{/member/logout}">로그아웃</a><br>
         	<p sec:authorize="hasRole('PERSONAL')">
@@ -51,7 +51,7 @@
         	<p sec:authorize="hasRole('CORPORATE')">
         		<a th:href="@{/corporate/home}">기업회원 서비스 이용하기</a>
         	</p>
-      	</div>-->
+      	</div>
       </div>
     </div>
     <img th:src="@{/image/deco1.png}" alt="deco1">
