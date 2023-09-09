@@ -1,16 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400');
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean');
+@font-face {
+  font-family: 'S-CoreDream-3Light';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+a, div{
+  color: #232323;
+}
+
 .navi {
-  width: 100;
-  height: 60px;
-  border: 1px solid #232323;
+  width: 100%;
+  height: 100px;
   margin-bottom: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
-.logo {
-  color: #232323;
-}
+
 body {
   background-color: #f2f2f2;
 }
@@ -19,12 +29,54 @@ body {
   justify-content: center;
 }
 
-.box {
-  width: 300px;
-  height: 400px;
-  background-color: #f17878;
-  box-shadow: 3px 3px 15px #d1d1d1;
+.box1, .box2 {
+  width: 400px;
+  height: 200px;
+  border: 2px solid #ededed;
+  background-color: #f6f6f6;
+  box-shadow: 0px 3px 15px #c7c7c7;
   border-radius: 8px;
+  margin-top: 90px ;
   margin-left: 5%;
   margin-right: 5%;
+  padding: 20px;
+
 }
+
+.title{
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 40px;
+}
+.content{
+  border: 1px solid #d4d4d4;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px #efefef;
+
+  width:180px;
+  height:50px;
+  border-radius: 50%;
+  line-height: 50px;
+  text-align: center;
+  font-family: 'S-CoreDream-3Light';
+  margin-top: 75px;
+  margin-left: 220PX;
+}
+
+.content:hover{
+  border: 1px solid #d4d4d4;
+  background-color: #fff;
+  box-shadow: none;
+
+  width:180px;
+  height:50px;
+  border-radius: 50%;
+  line-height: 50px;
+  text-align: center;
+  font-family: 'S-CoreDream-3Light';
+  margin-top: 80px;
+  margin-left: 220PX;
+}
+
+img[alt=arrow]{ width: 40px; text-align: center;}
+
+img[alt=logo]{ width: 400px; margin-top: 150px;}
