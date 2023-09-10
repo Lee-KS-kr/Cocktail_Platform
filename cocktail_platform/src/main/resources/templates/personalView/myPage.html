@@ -23,7 +23,7 @@
    
     <div class="navi">  <!-- navi   -->
         <div class="navi1">
-            <img th:src="@{/image/logo44.png}" alt="logo">
+            <a th:href="@{/member/mainHome}"><img th:src="@{/image/logo44.png}" alt="logo"></a>
         </div>
         <div class="navi2">
             <p th:text="${member.memberId}"> </p>
@@ -49,7 +49,7 @@
                     <p> <a th:href="@{/member/CategorySet}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div>
-                    <a th:href="@{/}" name="out">탈퇴하기</a>
+                    <a th:href="@{/member/quitMember}" name="out">탈퇴하기</a>
                 </div>
             </div>
             <!-- sec2 start-->
@@ -57,9 +57,7 @@
                     <div class="title2">마이페이지</div>
                         <div class="flex">
                             <div class="con1">
-                                <p>* 기본정보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="button" name="birthday" value="전화번호 번경"></td>
-                                <input type="button" name="memberPw" value="비밀번호 변경" class="resetpw"></p> <br>
+                                <p>* 기본정보
                                 <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
                                     <table th:each="member : ${member}">
                                         <tr>
@@ -87,17 +85,20 @@
                                     </form>	
                             </div>
                             <div class="con2">
-                                <p>* 취향 정보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="button" name="birthday" value="취향 번경" class="taste"></p> <br>
+                                <p>* 취향 정보
                                 <form th:action="@{/member/update}"  method="post">
                                     <table th:each="member : ${member}">
                                         <tr>
                                             <th>맛</th>
-                                            <td th:text="${member.memberId}"></td>
+                                            <td th:text="${member.cocktailTaste}"></td>
                                         </tr>
                                         <tr>
                                             <th>향</th>
-                                            <td th:text="${member.memberName}"></td>
+                                            <td th:text="${member.cocktailFlavor}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>알러지</th>
+                                            <td th:text="${member.allergyType}"></td>
                                         </tr>
                                     </table>
                                     </form>	
