@@ -14,21 +14,20 @@ $(document).ready(function () {
 
 function reviewScore(){
 	let star = $('#storeReviewScore').val();
-	    
     var str = '';
-	
+
     for(var i = 0 ; i < 5; i++){  
 		if(star-i >0 || star-i <1){
-			str += (별 반개짜리 이미지);
+			str += '별 반개짜리 이미지';
 		}       
-	else if(i < star) {
-       str  +=   "★" ;  
-   	}else{
-       str  +=  "☆" ;
-     }
+		else if(i < star) {
+       		str  +=   '★' ;  
+      	}else{
+       		str  +=  '☆' ;
+     	}
     } 
-	    $('#starDiv').html(str);
-	}
+    $('#starDiv').html(str);
+}
       
 
 </script>
