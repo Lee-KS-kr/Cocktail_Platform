@@ -57,9 +57,7 @@
                     <div class="title2">마이페이지</div>
                         <div class="flex">
                             <div class="con1">
-                                <p>* 기본정보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="button" name="birthday" value="전화번호 번경"></td>
-                                <input type="button" name="memberPw" value="비밀번호 변경" class="resetpw"></p> <br>
+                                <p>* 기본정보
                                 <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
                                     <table th:each="member : ${member}">
                                         <tr>
@@ -87,8 +85,7 @@
                                     </form>	
                             </div>
                             <div class="con2">
-                                <p>* 취향 정보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="button" name="birthday" value="취향 번경" class="taste"></p> <br>
+                                <p>* 취향 정보
                                 <form th:action="@{/member/update}"  method="post">
                                     <table th:each="member : ${member}">
                                         <tr>
