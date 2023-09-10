@@ -22,7 +22,7 @@
 
   <body>
     <div class="navi">
-        <img th:src="@{/image/logo0.png}" alt="logo">
+        <img th:src="@{/image/logo01.png}" alt="logo">
     </div>
     <div class="body" sec:authorize="!isAuthenticated()">
     
@@ -63,7 +63,7 @@
       </div>
       
       <div class="box2">
-        <div class="title">개인/기업 회원페이지</div><br>
+        <div class="title">로그아웃</div><br>
         <div class="content">
         	<a th:href="@{/member/logout}">로그아웃
             <img th:src="@{/image/arrow.png}" alt="arrow">
@@ -84,6 +84,6 @@
       	</div>-->
       </div>
     </div>
-    <img th:src="@{/image/deco1.png}" alt="deco1">
+    <!--<img th:src="@{/image/deco1.png}" alt="deco1">-->
   </body>
 </html>
