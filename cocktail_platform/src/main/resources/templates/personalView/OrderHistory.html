@@ -7,8 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OrderHistory</title>
-    <link rel="stylesheet" href="../../static/CSS/personal/OrderHistory.css">
 
+<!-- vs code    
+    <link rel="stylesheet" href="../static/CSS/mainHome.css">
+    
+    -->
+
+
+    <link rel="stylesheet" th:href="@{/CSS/OrderHistory.css}">
+    <!-- thymeleaf
+    -->
 </head>
 <body>
    <!-- ------navi------   -->
@@ -36,15 +44,15 @@
                 </div>
                 
                 <div class="order">
-                    <p> <a th:href="@{/member/myPage}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
+                    <p> <a th:href="@{/member/myPage}"><input type="button" value="마이페이지" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/member/Orderlist}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/member/myPage}"><input type="button" value="예약내역" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div class="order">
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
+                    <p> <a th:href="@{/member/InfoSet}"><input type="button" value="개인정보 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/member/CategorySet}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
+
                 <div>
                     <a th:href="@{/}" name="out">탈퇴하기</a>
                 </div>
