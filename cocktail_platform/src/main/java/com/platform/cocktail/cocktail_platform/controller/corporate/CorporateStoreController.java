@@ -37,7 +37,7 @@ public class CorporateStoreController {
 	public String salesMng(int storeCode, Model m) {
 		ArrayList<Order> orderList = oService.getOrderListsByCode(storeCode);
 		m.addAttribute("orderList", orderList);
-		return "coporateView/";
+		return "corporateView/";
 	}
 	
 	@GetMapping("salesInput")
@@ -50,7 +50,7 @@ public class CorporateStoreController {
 		log.debug("{}, {}, {}, {}, {}", storeCode, menuNum, menuName, price, orderCount);
 		oService.inputOrder(storeCode, null, null, menuNum, menuName, price, orderCount);
 		
-		return "redirect:/coporate/home";
+		return "redirect:/corporate/home";
 	}
 	
 	//예약 확인 페이지 이동
@@ -58,38 +58,38 @@ public class CorporateStoreController {
 	public String reserveList(int storeCode, Model m) {
 		ArrayList<Reservation> reserveList = sService.getReservelistByCode(storeCode);
 		m.addAttribute("reserveList", reserveList);
-		return "coporateView/reserveMng";
+		return "corporateView/reserveMng";
 	}
 	
 	@GetMapping("reserveAccept")
 	public String reserveAccept(int storeCode, String reserveCode) {
 		sService.changeReservationState(storeCode, reserveCode, ReservationState.received);
-		return "";
+		return "redirect:/corporate/store/reserveList";
 	}
 	
 	@GetMapping("reserveRefuse")
 	public String reserveRefuse(int storeCode, String reserveCode) {
 		sService.changeReservationState(storeCode, reserveCode, ReservationState.refuesed);
-		return "";
+		return "redirect:/corporate/store/reserveList";
 	}
 	
 	//예약 수기 입력 페이지 이동
 	@GetMapping("reserveInput")
 	public String reserveInput(int storeCode) {
-		return "";
+		return "corporateView/reserveInput";
 	}
 	
 	//예약 수기 입력 페이지 완료
 	@PostMapping("reserveInput")
 	public String reserveInput(Reservation reserve) {
 		sService.insertReservation(reserve);
-		return "";
+		return "redirect:/corporate/home";
 	}
 	
 	//주문 관리 페이지 이동
 	@GetMapping("orderList")
 	public String orderList() {
-		return "coporateView/orderList";
+		return "corporateView/orderList";
 	}
 	
 	//메뉴 관리 페이지 이동
@@ -97,6 +97,6 @@ public class CorporateStoreController {
 	public String menuMng(int storeCode, Model m) {
 		ArrayList<Menu> menuList = sService.getMenulistByCode(storeCode);
 		m.addAttribute("menuList", menuList);
-		return "coporateView/menuMng";
+		return "corporateView/menuMng";
 	}
 }

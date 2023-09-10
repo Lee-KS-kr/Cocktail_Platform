@@ -51,7 +51,7 @@ public class OrderServiceImple implements OrderService {
 		Order o = null;
 		if(orderCode != null)
 			o = findOrderByOrdercode(orderCode);
-		else
+		else 
 			o = makeNewOrder(storeCode, memberid);
 		
 		ArrayList<OrderTemp> list = makeTempOrderList(o, menuNum, menuName, price, orderCount);
@@ -74,7 +74,8 @@ public class OrderServiceImple implements OrderService {
 		map.put("storeCode", storeCode);
 		map.put("memberid", memberId);
 		
-		Order o = dao.makeNewOrder(map);
+		String code = dao.makeNewOrder(map);
+		Order o = findOrderByOrdercode(code);
 		return o;
 	}
 	
