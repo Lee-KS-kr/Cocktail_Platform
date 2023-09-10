@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrderHistory</title>
+
+<!-- vs code    
+    <link rel="stylesheet" href="../static/CSS/mainHome.css">
+    
+    -->
+
+
+    <link rel="stylesheet" th:href="@{/CSS/OrderHistory.css}">
+    <!-- thymeleaf
+    -->
+</head>
+<body>
+   <!-- ------navi------   -->
+    <div class="navi">  
+        <div class="navi1">
+            <img th:src="@{/image/logo44.png}" alt="logo">
+        </div>
+        <div class="navi2">
+            <p th:text="${member.memberId}">님 환영합니다.  &nbsp;</p>
+            <a>로그아웃  &nbsp;</a>
+            <a>마이페이지  &nbsp; &nbsp;</a>
+            <a><img th:src="@{/image/btn_search.png}" alt="search"></a>
+        </div>
+    </div>
+    <!-- ------navi end------  -->
+
+    <!-- main -->
+    <div class="main">
+        <!-- sidebar-->
+        <div class="sideber">
+            <!-- sec1 start-->
+            <div class="sec1">
+                <div>
+                    <p class="title1">내 정보 관리</p>
+                </div>
+                
+                <div class="order">
+                    <p> <a th:href="@{/member/myPage}"><input type="button" value="마이페이지" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/member/Orderlist}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/member/myPage}"><input type="button" value="예약내역" class="orderHistory" onclick="orderlist()"></a></p>
+                </div>
+                <div class="order">
+                    <p> <a th:href="@{/member/InfoSet}"><input type="button" value="개인정보 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/member/CategorySet}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                </div>
+
+                <div>
+                    <a th:href="@{/}" name="out">탈퇴하기</a>
+                </div>
+            </div>
+            <!-- sec2 start-->
+            <div class="sec2">
+
+                <div class="title2">주문 내역</div>
+                <div class="con2">
+                    <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
+                        <table th:each="member : ${member}">
+                            <tr>
+                                <th>매장명</th>
+                                <th>예약자명</th>
+                                <th>상품명</th>
+                                <th>주문갯수</th>
+                                <th>주문일시</th>
+                            </tr>
+                            <tr>
+                                <td th:text="${order.storeName}">qweqweqw</td>
+                                <td th:text="${order.storeName}">qweqweqw</td>
+                                <td th:text="${order.storeName}">qweqweqw</td>
+                                <td th:text="${order.storeName}">qweqweqw</td>
+                                <td th:text="${order.storeName}">qweqweqw</td>
+                            </tr>
+                        </table>
+                        </form>	
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -39,19 +39,14 @@
         <div class="sidebar">
             <!-- sec1 start-->
             <div class="sec1">
-                <div>
-                    <p class="title1">내 정보 관리</p>
-                </div>
-                
                 <div class="order">
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
+                    <p> <a th:href="@{/member/myPage}"><input type="button" value="마이페이지" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/member/Orderlist}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/member/myPage}"><input type="button" value="예약내역" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div class="order">
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
+                    <p> <a th:href="@{/member/InfoSet}"><input type="button" value="개인정보 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/member/CategorySet}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div>
                     <a th:href="@{/}" name="out">탈퇴하기</a>
