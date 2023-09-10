@@ -51,6 +51,7 @@ border-spacing: 0;
 input-border-solid:     #e7e7e7
 강조색:                 #ff5805
 폰트 컬러 :             #232323
+조보색:                 #45B783
 
 
 
@@ -107,7 +108,7 @@ body {
 .content{
   border: 1px solid #d4d4d4;
   background-color: #fff;
-  box-shadow: 0px 4px 4px #efefef;
+  box-shadow: 0px 4px 4px #f3f3f3;
   color: #232323;
   width:180px;
   height:50px;
@@ -124,28 +125,29 @@ body {
 }
 
 .content:hover{
-  border: 1px solid #d4d4d4;
-  background-color: #ffc9ae;
-  box-shadow: none;
+  border: 0.5px solid #45B783; opacity: 0.8;
+  background-color: #fff;
+  box-shadow: 0px 4px 7px #e0e0e0;
   width:180px;
   height:50px;
   border-radius: 50%;
   line-height: 50px;
   text-align: center;
   font-family: 'S-CoreDream-3Light';
-  margin-top: 80px;
+  margin-top: 70px;
   margin-left: 220PX;
+  transition: 0.2s;
 }
 
 img[alt=arrow]{ width: 40px; text-align: center;}
 
 img[alt=logo]{ width: 400px; margin-top: 150px;}
 
-img[alt=deco1]{
+/* img[alt=deco1]{
   width: 700px;
   position: absolute;
   top: 300px;
   left: 1000px;
   z-index: 1;
   filter: blur(15px);
-}
+} */
