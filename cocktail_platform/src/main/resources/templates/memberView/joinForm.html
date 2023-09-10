@@ -7,7 +7,7 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-	$('#subBtn').attr('disabled', 'disabled');
+	$('#subBtn').attr('disabled', 'true');
 	toggleSubmitBtn();
 });
 
@@ -245,7 +245,7 @@ function birthChk() {
 function toggleSubmitBtn() {
 	if(isValid) {
 	// 제출 버튼 상태 업데이트
-	$('#subBtn').prop('disabled', false);
+	$('#subBtn').attr('disabled', false);
 	}
 }
 
