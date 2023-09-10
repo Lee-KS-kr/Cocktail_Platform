@@ -38,6 +38,7 @@ public class WebSecurityConfig {
         		"/member/checkId",
         		"/member/checkEmail",
         		"/member/emailConfirm",
+        		"/member/taste",
         		"/member/myPage",
         		"/personal/**",
         		"/oauth2/authorization/google",
