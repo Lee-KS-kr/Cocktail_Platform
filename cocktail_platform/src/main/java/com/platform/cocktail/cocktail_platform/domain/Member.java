@@ -18,7 +18,7 @@ public class Member{
 	String birthday;
 	String phone;
 	int point;
-	boolean isChannel;
+	String isChannel;
 	String channel;
 	String createdDate;
 	MemberType memberType;
