@@ -57,7 +57,7 @@ public class MemberController {
 		return "memberView/findIdForm";
 	}
 	
-	@GetMapping("findPw")	
+	@GetMapping("resetPw")	
 	public String findPw() {
 		return "memberView/findPwForm";
 	}

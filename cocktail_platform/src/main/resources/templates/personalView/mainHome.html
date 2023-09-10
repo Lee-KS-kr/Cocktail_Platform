@@ -10,10 +10,31 @@
     <script>
       $(document).ready(function () {});
 </script>
-<link rel="stylesheet" th:href="@{/CSS/personalmain.css}">
+
+
+<link rel="stylesheet" href="../../static/CSS/personal/personalmain.css">
+<!-- vs code      
+    -->
+
+    <!-- thymeleaf
+    <link rel="stylesheet" th:href="@{/CSS/personalmain.css}">
+
+    -->
 </head>
 <body>
-	<!-- ======= Header ======= -->
+  <div class="navi">  <!-- navi   -->
+    <div class="navi1">
+        <a th:href="@{/member/mainHome}"><img th:src="@{/image/logo44.png}" alt="logo"></a>
+    </div>
+    <div class="navi2">
+        <p th:text="${member.memberId}"> </p>
+        <p>님 환영합니다.  &nbsp;</p>
+        <a th:href="@{member/logout}">로그아웃  &nbsp;</a>
+        <a th:href="@{/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
+        <a><img th:src="@{/image/btn_search.png}" alt="search"></a>
+    </div>
+</div>  
+	<!-- ======= Header ======= 
 	<header id="header" class="header">
 	  <nav id="navbar" class="navbar">
 	    <div class="search">
@@ -41,7 +62,7 @@
 	    	</div>
 	    </div>
 	  </nav>
-	  <!-- End navbar -->
+	   End navbar -->
 	</header>
 	<!-- End Header -->
 

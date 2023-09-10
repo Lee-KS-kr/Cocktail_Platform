@@ -60,7 +60,30 @@
             <!-- sec2 start-->
             <div class="sec2">
 
-                <div class="title2">주문 내역</div>
+            <div class="title2">주문 내역</div>
+                <div class="con1">
+                    <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
+                        <table th:each="member : ${member}">
+                            <tr>
+                                <th>매장명</th>
+                                <th>예약자명</th>
+                                <th>상품명</th>
+                                <th>주문갯수</th>
+                                <th>주문일시</th>
+                            </tr>
+                            <tr>
+                                <td th:text="${storeInfo.storeName}"> <br>
+                                    <a th:href="@{}">리뷰 작성</a>
+                                </td>
+                                <td th:text="${order.storeName}">qweqweqw</td>
+                                <td th:text="${order.storeName}">qweqweqw</td>
+                                <td th:text="${order.storeName}">qweqweqw</td>
+                                <td th:text="${order.storeName}">qweqweqw</td>
+                            </tr>
+                        </table>
+                    </form>	
+                </div>
+
                 <div class="con2">
                     <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
                         <table th:each="member : ${member}">
@@ -72,16 +95,19 @@
                                 <th>주문일시</th>
                             </tr>
                             <tr>
-                                <td th:text="${order.storeName}">qweqweqw</td>
+                                <td th:text="${storeInfo.storeName}"> </td>
                                 <td th:text="${order.storeName}">qweqweqw</td>
                                 <td th:text="${order.storeName}">qweqweqw</td>
                                 <td th:text="${order.storeName}">qweqweqw</td>
                                 <td th:text="${order.storeName}">qweqweqw</td>
                             </tr>
                         </table>
-                        </form>	
+                    </form>	
+                    
                 </div>
             </div>
+
+
         </div>
     </div>
 </body>

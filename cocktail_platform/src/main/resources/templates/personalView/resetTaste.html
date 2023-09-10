@@ -23,7 +23,7 @@
    
     <div class="navi">  <!-- navi   -->
         <div class="navi1">
-            <a th:href="@{/member/mainHome}"><img th:src="@{/image/logo44.png}" alt="logo"></a>
+            <img th:src="@{/image/logo44.png}" alt="logo">
         </div>
         <div class="navi2">
             <p th:text="${member.memberId}"> </p>
@@ -49,7 +49,7 @@
                     <p> <a th:href="@{/member/CategorySet}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div>
-                    <a th:href="@{/member/quitMember}" name="out">탈퇴하기</a>
+                    <a th:href="@{/}" name="out">탈퇴하기</a>
                 </div>
             </div>
             <!-- sec2 start-->
@@ -90,15 +90,11 @@
                                     <table th:each="member : ${member}">
                                         <tr>
                                             <th>맛</th>
-                                            <td th:text="${member.cocktailTaste}"></td>
+                                            <td th:text="${member.memberId}"></td>
                                         </tr>
                                         <tr>
                                             <th>향</th>
-                                            <td th:text="${member.cocktailFlavor}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>알러지</th>
-                                            <td th:text="${member.allergyType}"></td>
+                                            <td th:text="${member.memberName}"></td>
                                         </tr>
                                     </table>
                                     </form>	

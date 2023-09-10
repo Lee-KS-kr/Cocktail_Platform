@@ -35,9 +35,10 @@ public class CorporateOrderController {
 	}
 	
 	@PostMapping("login")
-	public String login(int storeCode, Member m) {
-		Order o = oService.makeNewOrder(storeCode, m.getMemberId());
-		return "";
+	public String login(int storeCode, Member mem, Model m) {
+		Order o = oService.makeNewOrder(storeCode, mem.getMemberId());
+		m.addAttribute("order", o);
+		return "corporateView/order";
 	}
 	
 	@GetMapping("menu")

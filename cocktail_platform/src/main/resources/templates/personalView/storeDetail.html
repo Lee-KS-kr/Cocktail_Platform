@@ -3,19 +3,92 @@
   xmlns:th="http://thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
-  <head>
-    <meta charset="UTF-8" />
-    <title>가게 상세 페이지</title>
-    <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
-    <script>
-      $(document).ready(function () {
-    	  
-      });
+<head>
+<meta charset="UTF-8" />
+<title>가게 상세 페이지</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script>
+$(document).ready(function () {
+ 
+});
+
+function reviewScore(){
+	let star = $('#storeReviewScore').val();
+	    
+    var str = '';
+	
+    for(var i = 0 ; i < 5; i++){  
+		if(star-i >0 || star-i <1){
+			str += (별 반개짜리 이미지);
+		}       
+	else if(i < star) {
+       str  +=   "★" ;  
+   	}else{
+       str  +=  "☆" ;
+     }
+    } 
+	    $('#starDiv').html(str);
+	}
+      
+
 </script>
 <link rel="stylesheet" th:href="@{/CSS/}">
 </head>
 <body>
+<!-- 헤더 -->
+<header id="header" class="header">
+	<!-- 네비게이션바 -->
+	<nav id="navbar" class="navbar">
+    	<div class="search">
+   			<a th:href="@{/search}" class="search_logo">
+    			<img th:src="@{/image/btn_search.png}" alt="검색">
+    		</a>
+    	</div>
+    
+	    <div id="logo">
+	    	<a th:href="@{/personal/home}" class="navbar_logo">
+	       		<img th:src="@{/image/logo.png}" alt="logo">
+	       		<span>FitTail</span>
+	     	</a>
+	    </div>
+	
+    	<div class="navbar_right">
+    		<div sec:authorize="!isAuthenticated()">
+	    		<a th:href="@{/member/login}">로그인</a>
+	    	</div>
+	    	<div sec:authorize="isAuthenticated()">
+	    		<a th:href="@{/member/logout}">로그아웃</a>
+	    		<a th:href="@{/personal/member/mypage}">마이페이지</a>
+	    	</div>
+	   </div>
+  </nav>
+  <!-- 네비게이션바 끝 -->
+</header>
+<!-- 헤더 끝 -->
+<!-- 메인 시작 -->
 <main>
+	<!-- 기본 매장 정보 영역(매장 이미지, 매장명, 별점) -->
+	<div>
+		<table>
+			<tr>
+				<td>
+					<span th:text="${store.storeName}"></span>
+				</td>
+				<td>
+					<span th:text="${store.savedFilename}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="starDiv"></div>
+				</td>
+				<td>
+					<p><span th:text="${store.storeReviewScore}"></span>/5<p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- 탭 메뉴 영역 -->
 	<section>
 		<!-- 탭 이름 -->
 		<div class="tab_title">
@@ -37,13 +110,40 @@
 				<!-- 메뉴 이름, 메뉴 설명, 가격, 이미지 -->
 				<div id="menuList"></div>
 			</div>
-			<!-- 메뉴탭 내용 -->
-			<div id="tab_orderList">
-				<!-- 주문 내역 출력 -->
-				<div id="orderList"></div>
+			<!-- 리뷰탭 내용 -->
+			<div id="tab_review">
+				<!-- 별점, 리뷰 리스트(아이디, 별점, 사진, 리뷰 내용, 취향 태그) 출력 -->
+				<div id="star"></div>
+				<div id="reviewList"></div>
+			</div>
+			<!-- 매장 정보 탭 내용 -->
+			<div id="tab_storeInfo">
+				<!-- 매장 소개, 업체 정보(영업시간, 전화번호, 매장주소, 부가정보), 업체 정보(상호명, 사업자 등록번호), 원재료 정보 출력 -->
+				<div id="reviewList">
+				<p>매장 소개</p>
+				<hr>
+				<p>업체 정보</p>
+				<hr>
+				<p>사업자 정보</p>
+				<hr>
+				<p>원재료 정보</p>
+				</div>
+			</div>
+			<!-- 예약하기 탭 내용 -->
+			<div id="tab_reserve">
+				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
+				<div id="reviewList">
+				<p>날짜 선택</p>
+				
+				<p>시간 선택</p>
+				
+				<p>인원 선택</p>
+				
+				<p>예약자 정보</p>
+				</div>
 			</div>
 		</div>
-</section>
+	</section>
 </main>
 	
 </body>

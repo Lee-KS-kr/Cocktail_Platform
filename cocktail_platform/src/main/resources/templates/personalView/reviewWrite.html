@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPage</title>
+
+
+    <link rel="stylesheet" href="../../static/CSS/personal/myPage.css">
+    <!-- vs code
+    -->
+
+
+    <link rel="stylesheet" th:href="@{/CSS/personal/myPage.css}">
+    <!-- thymeleaf
+    -->
+
+</head>
+<body>
+   
+    <div class="navi">  <!-- navi   -->
+        <div class="navi1">
+            <img th:src="@{/image/logo44.png}" alt="logo">
+        </div>
+        <div class="navi2">
+            <p th:text="${member.memberId}"> </p>
+            <p>님 환영합니다.  &nbsp;</p>
+            <a th:href="@{member/logout}">로그아웃  &nbsp;</a>
+            <a th:href="@{/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
+            <a><img th:src="@{/image/btn_search.png}" alt="search"></a>
+        </div>
+    </div>  
+    <!-- main -->
+    <div class="main">
+        <!-- sidebar-->
+        <div class="sidebar">
+            
+            <!-- sec2 start-->
+            <div class="con">
+                    <div class="title2">좋은 시간을 보내셨나요?</div>
+                        <div class="flex">
+                            <div class="con1">
+                                <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
+                                    <table th:each="member : ${member}">
+                                        <tr>
+                                            <td>☆☆☆☆☆</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="file"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><p th:text="${}"></p></td>
+                                        </tr>
+                                        <tr>
+                                            <td><textarea placeholder="매장에 대한 리뷰를 남겨주세요!"> </textarea></td>
+                                        </tr>
+                                    </table>
+                                        <input type="submit" value="저장">
+                                </form>	
+                            </div>
+                            <div class="con2">
+                                <p></p>
+                                <div>
+                                    <p th:text="${order.....}">주종명</p>
+                                    <img thsrc="#{store.savedFilename}" alt="image">
+                                </div>	
+                            </div>
+                        </div>
+                    </div>
+              
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
