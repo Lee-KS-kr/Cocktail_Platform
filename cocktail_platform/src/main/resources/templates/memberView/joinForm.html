@@ -111,7 +111,7 @@ function emailChk(){
 	        success:function(cnt){ 
 	            if(cnt != 0){  
 	            	$('#errMsg5').html('이미 사용 중인 이메일 주소입니다.');
-	                email  == '';
+	                email = '';
 	                btn.disabled = true;
 	                return false;
 	            } else { 
@@ -165,22 +165,17 @@ function emailConfirm(){
 //휴대폰 번호 유효성 검사
 function phoneChk(){
 	let phone = $('#phone').val();
-    let regPhone = /^010-[0-9]{4}-[0-9]{4}$/;
-    
-	//사용자가 하이픈을 입력하지 않았을 때 자동으로 하이픈 추가
-    if (phone.length === 11 && phone.indexOf('-') === -1) {
-    	//하이픈을 추가하여 전화번호 형식으로 변환
-        phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
-        $('#phone').val(phone);
-        return false;
-    }
-    
+    let regPhone = /^010[0-9]{4}[0-9]{4}$/;
+
     if(!regPhone.test(phone)){
         $('#errMsg7').html('전화번호 형식이 올바르지 않습니다.');
         return false;
     }
     else{
         $('#errMsg7').html('');
+      	//하이픈을 추가하여 전화번호 형식으로 변환
+        phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
+        $('#phone').val(phone);
         return true;
     }
 }
@@ -301,7 +296,7 @@ function toggleSubmitBtn() {
 				<p id="errMsg6"></p>
 				
 				핸드폰번호<br>
-				<input type="tel" name="phone" id="phone" placeholder="전화번호" 
+				<input type="tel" name="phone" id="phone" placeholder="전화번호('-' 없이 입력)" 
 				required="required" onkeyup="phoneChk()">
 				<p id="errMsg7"></p>
 				
