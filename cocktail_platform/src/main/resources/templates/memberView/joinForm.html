@@ -7,8 +7,7 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-	$('#subBtn').attr('disabled', true);
-	toggleSubmitBtn();
+
 });
 
 //유효성 플래그 변수
@@ -130,7 +129,7 @@ function emailChk(){
 //이메일 인증 코드 변수
 let authCode = '';
 
-//이메일 인증
+//이메일 인증 버튼 클릭 시
 function emailConfirm(){
 	let email = $('#email').val();
 	
@@ -142,24 +141,24 @@ function emailConfirm(){
 		success: function(code){
 			alert("인증메일이 발송되었습니다.");
 			authCode = code;
-			
-			//이메일 인증 번호 대조
-			$('#emailInputCode').keyup(function(){
-				let inputCode = $('#emailInputCode').val();
-				
-			    if(authCode !== inputCode){  
-			        $('#errMsg6').html('인증번호가 불일치합니다. 다시 확인해주세요.');
-			        return false;
-			    } else {
-			        $('#errMsg6').html('');
-			        return true;
-			    }
-			});
 		},
 		error: function(code){
 			alert("메일 발송에 실패했습니다.");
 		}
 	});
+}
+
+//이메일 인증 번호 대조
+function emailCodeChk() {
+	let inputCode = $('#emailInputCode').val();
+
+	if(authCode !== inputCode) {  
+		$('#errMsg6').html('인증번호가 불일치합니다. 다시 확인해주세요.');
+		return false;
+	} else {
+		$('#errMsg6').html('');
+		return true;
+	}
 }
 
 //휴대폰 번호 유효성 검사
@@ -225,7 +224,6 @@ function birthChk() {
 	}
 }
 
-
 //멤버타입 유효성 검사
   function memTypeChk(){
       if ($('input[name="memberType"]:checked').length === 0) {
@@ -237,23 +235,20 @@ function birthChk() {
       }
   }
 
-//제출 버튼 활성화/비활성화
-function toggleSubmitBtn() {
-	if(idChk()) isValid = true;
-	if(idDuplicateChk()) isValid = true;
-	if(pwChk()) isValid = true;
-	if(nameChk()) isValid = true;
-	if(emailChk()) isValid = true;
-	if(phoneChk()) isValid = true;
-	if(birthChk()) isValid = true;
-	if(memTypeChk()) isValid = true; //전부 호출
-	
+//모든 조건 만족 시 폼 제출
+function formSubmit() {
+	let form = document.getElementById("joinForm");
+	isValid = true; // isValid 초기화
+
+	if(!idChk() || !idDuplicateChk() || !pwChk() || !nameChk() || !emailChk() || !emailCodeChk() || !phoneChk() || !birthChk() || !memTypeChk()) {
+		isValid = false; // 하나라도 유효성 검사에 실패하면 isValid를 false로 설정
+	}
+
 	if(isValid) {
-		// 제출 버튼 상태 업데이트
-		$('#subBtn').attr('disabled', false);
+		//폼 제출
+		form.submit();
 	} else {
-		// 유효성 검사에 실패한 경우
-		$('#subBtn').attr('disabled', true);
+		return false;
 	}
 }
 
@@ -292,7 +287,7 @@ function toggleSubmitBtn() {
 				<input type="button" id="emailConfirmBtn" value="이메일 인증하기" onclick="emailConfirm()" disabled><br>
 				<p id="errMsg5"></p>
 				<input type="text" name="emailInputCode" id="emailInputCode" 
-				placeholder="인증번호 입력" required="required"><br>
+				placeholder="인증번호 입력" onkeyup="emailCodeChk()" required="required"><br>
 				<p id="errMsg6"></p>
 				
 				핸드폰번호<br>
@@ -319,7 +314,7 @@ function toggleSubmitBtn() {
                 </select><br>
                 <br>
 				<div class="bottom-container">
-					<input type="submit" id="subBtn" class="bottom" value="가입하기" disabled>
+					<input type="button" id="subBtn" class="bottom" value="가입하기" onclick="formSubmit()">
 					<input type="reset" class="bottom" value="다시 쓰기">
 				</div>
 		</form>
