@@ -7,7 +7,8 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-	$('subBtn').attr('disabled', 'disabled');
+	$('#subBtn').attr('disabled', 'true');
+	toggleSubmitBtn();
 });
 
 //유효성 플래그 변수
@@ -161,9 +162,6 @@ function emailConfirm(){
 	});
 }
 
-
-
-
 //휴대폰 번호 유효성 검사
 function phoneChk(){
 	let phone = $('#phone').val();
@@ -244,10 +242,10 @@ function birthChk() {
   }
 
 //제출 버튼 활성화/비활성화
-function toggleSubmitButton() {
+function toggleSubmitBtn() {
 	if(isValid) {
 	// 제출 버튼 상태 업데이트
-	$('#subBtn').prop('disabled', false);
+	$('#subBtn').attr('disabled', false);
 	}
 }
 
