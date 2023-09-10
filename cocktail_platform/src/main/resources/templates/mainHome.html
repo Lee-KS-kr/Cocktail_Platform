@@ -49,14 +49,16 @@
         <div class="title"><p>메인페이지</p></div><br>
         <div class="content">
           <p sec:authorize="hasRole('PERSONAL')">
-            <a th:href="@{/personal/home}">개인 페이지</a>
+            <a th:href="@{/personal/home}">개인 페이지
+              <img th:src="@{/image/arrow.png}" alt="arrow">
+            </a>
           </p>
           
           <p sec:authorize="hasRole('CORPORATE')">
-            <a th:href="@{/corporate/home}">기업 페이지</a>
-          </p>
+            <a th:href="@{/corporate/home}">기업 페이지
               <img th:src="@{/image/arrow.png}" alt="arrow">
             </a>
+          </p>
         </div>
       </div>
       
