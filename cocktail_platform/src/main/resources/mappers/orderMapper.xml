@@ -83,16 +83,16 @@
        		 orderState
     		)
     	values
-    	(
-        to_char(sysdate, 'yyyymmdd') || order_seq.nextval || #{storeCode},
-        #{storeCode},
-        to_char(sysdate, 'yyyymmdd'),
-        #{memberId},
-        #{totalPrice},
-        #{menuList},
-        #{orderState}
-    )
-</insert>
+    		(
+       		to_char(sysdate, 'yyyymmdd') || order_seq.nextval || #{storeCode}
+       		,#{storeCode}
+       		,to_char(sysdate, 'yyyymmdd')
+       		,#{memberId}
+       		,#{totalPrice}
+       		,#{menuList}
+       		,#{orderState}
+   	 		)
+	</insert>
 	
 	<insert id="insertTemporderList" parameterType="OrderTemp">
 		insert into
@@ -113,18 +113,18 @@
 	</insert>
 	
 	<update id="updateOrder" parameterType="Order">
-	update 
-		order
-	set
-		, orderDate = sysdate
-		, totalPrice = #{totalPrice}
-		, <if test="orderState != null and orderState != ''">
+		update 
+			order
+		set
+			, orderDate = sysdate
+			, totalPrice = #{totalPrice}
+			, <if test="orderState != null and orderState != ''">
             orderState = #{orderState},
-          </if>
-		  menuList = #{menuList}
-	where 
-		storeCode = #{storeCode}
-		and memberid = #{memberid}
+        	  </if>
+		 	 menuList = #{menuList}
+		where 
+			storeCode = #{storeCode}
+			and memberid = #{memberid}
 	</update>
 	
 	<select id="getTemporderlistByCode" parameterType="int" resultType="OrderTemp">
