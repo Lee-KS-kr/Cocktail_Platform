@@ -35,6 +35,8 @@
 			order
 		where
 			storeCode = #{storeCode}
+		order by
+			orderCode desc
 	</select>
 		
 	<!--  -->
@@ -54,7 +56,7 @@
 	</select>
 	
 	<!--  -->
-	<insert id="makeNewOrder" parameterType="HashMap" resultType="Order">
+	<insert id="makeNewOrder" parameterType="HashMap">
 		insert into 
 			order
 				(orderCode
@@ -65,7 +67,7 @@
 				, menuList
 				, orderState)
 			values
-				( sysdate + order_seq.nextval + #{storeCode}
+				( to_char(systdate, 'yyyymmdd')||order_seq.nextval||#{storeCode}
 				, #{storeCode}
 				, sysdate
 				, #{memberId}

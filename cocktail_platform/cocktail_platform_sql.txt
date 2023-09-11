@@ -23,7 +23,7 @@ values ('aaa', 'aaa', 'test', '010-111-1111', 'F', '19941030', 'aaa@gmail.com');
 -- 가게 정보 storeInfo 테이블
 create table storeInfo (
    		storeCode		number             	primary key,    												--가게 코드
-    	memberId		  varchar2(20)      references member(memberId),							        --기업회원ID
+    	memberId		  varchar2(20)      references member(memberId) on delete set null,					--기업회원ID
     	storeName		varchar2(100)	    not null,														--상호명
     	address1		  varchar2(100)	    not null,														--가게주소1
     	address2	    varchar2(100)	    not null,														--가게주소2
@@ -41,7 +41,7 @@ create sequence storeInfo_seq;
 -- 메뉴  menu 테이블
  create table menu (
         menuNum         number              primary key,                                                    --메뉴 번호
-        storeNum        number              references storeInfo(storeCode),                                --가게 코드
+        storeNum        number              references storeInfo(storeCode) on delete set null,             --가게 코드
         menuName        varchar2(100)       not null,                                                       --메뉴 이름
         price           number(7)           default 0 check (price >= 0),                                   --가격
         category        varchar2(10)        not null check (category in ('카테고리1', '카테고리2', '카테고리3')),    --카테고리
@@ -55,9 +55,9 @@ drop table menu;
 --  주문 order 테이블
 create table orders (
         orderCode       varchar2(4000)    primary key,                                                      --주문 정보
-        storeCode       number            references storeInfo(storeCode),                                  --가게 코드
+        storeCode       number            references storeInfo(storeCode) on delete set null,               --가게 코드
         orderDate       date              default sysdate,                                                  --주문 일자
-        memberId        varchar2(20)      references member(memberId),                                --개인회원ID
+        memberId        varchar2(20)      references member(memberId) on delete set null,                   --개인회원ID
         totalPrice      number            default 0 check (totalPrice >= 0),                                --가격 총합
         menuList        varchar2(4000),                                                                     --메뉴 리스트
         orderState      varchar2(6)       default 'done' check (orderState in ('done', 'cancel'))           --주문 상태
@@ -68,8 +68,8 @@ create sequence order_seq;
 --  임시 주문 orderTemp 테이블
 create table orderTemp (
         tempOrderkey     number           primary key,                                                      --임시키                                                                                                                                                   
-		orderCode        varchar2(4000)   references Orders(orderCode),                                     --주문 정보
-		menuNum          number           references menu(menuNum),                                         --메뉴 번호
+		orderCode        varchar2(4000)   references Orders(orderCode) on delete set null,                  --주문 정보
+		menuNum          number           references menu(menuNum) on delete set null,                      --메뉴 번호
 		menuName         varchar2(100)    not null,                                                         --메뉴 이름
 		pricePerOne      number(7),                                                                         --메뉴 단가
 		orderCount       number(2)        default 1 check(orderCount > 0)                                   --주문 수량
@@ -79,7 +79,7 @@ drop table orderTemp;
 -- 예약 스케줄 schedule 테이블
 create table schedule (
         scheduleNum      number         primary key,                                                       --스케줄번호
-		storeCode        number        references storeInfo(storeCode),                                    --가게 코드
+		storeCode        number        references storeInfo(storeCode) on delete set null,                 --가게 코드
         reserveDate      varchar2(100) unique,                                                             --시간대   
         reserveTime      varchar2(100) unique,                                                             --시간대     
 		capacity         number(2)     check (capacity > 0),                                               --테이블수
@@ -93,13 +93,13 @@ create sequence schedule_seq;
 -- 예약 상태 reservation 테이블
 create table reservation (
         reserveCode        varchar2(4000)   primary key,                              --예약 코드(규칙:날짜+가게코드+시퀀스)
-        storeCode          number           references storeInfo(storeCode),                                --가게 코드
-        memberId           varchar2(20)     references member(memberId),                              --개인 회원ID
+        storeCode          number           references storeInfo(storeCode) on delete set null,             --가게 코드
+        memberId           varchar2(20)     references member(memberId) on delete set null,                 --개인 회원ID
         reservationName    varchar2(20),
         reservationPhone   varchar2(20),    
         reserveDate        date             default sysdate,                          --예약 날짜 (현재 시간 이후 예약 가능)
         reserveHead        number(2)        check (reserveHead > 0),                                        --예약 인원 
-        reserveState       varchar2(6)      check (reserveState in ('정상', '취소', '완료')),                    --예약 상태
+        reserveState       varchar2(6)      check (reserveState in ('정상', '취소', '완료')),                   --예약 상태
         request            varchar2(4000)   not null                                                        --요구사항
 );
 drop table reservation;
@@ -123,7 +123,7 @@ create sequence ingredients_seq;
 -- 취향 taste 테이블
 create table taste (
         tasteCode           number          primary key,                                                    --취향 코드
-        memberId            varchar2(20)    references member(memberId),                              --ID
+        memberId            varchar2(20)    references member(memberId) on delete set null,                 --ID
         hasAllergy          number          check (hasAllergy in(0, 1)) not null,                           --알러지 유무
         allergyType         varchar2(400),                                                                  --알러지 종류
         cocktailTaste       number          not null,                                                       --맛 정보
@@ -137,16 +137,16 @@ create table cocktails (
 		cocktailCode        number        primary key,                                                      --칵테일 코드
 		cockailName         varchar2(100) not null,                                                         --칵테일 이름
 		cocktailAlcohol     varchar2(100) not null,                                                         --도수
-        cocktailBase        number        references ingredients(ingredientNum),                            --재료_베이스
-		ingredient1         number        references ingredients(ingredientNum),                            --재료_추가1
-		ingredient2         number        references ingredients(ingredientNum),                            --재료_추가2
-		ingredient3         number        references ingredients(ingredientNum),                            --재료_추가3
-		ingredient4         number        references ingredients(ingredientNum),                            --재료_추가4
-		cocktailTaste       number(4)     check (cocktailTaste < 2000),                                                         --맛 정보
-		cocktailFlavor      number(4)     check (cocktailFlavor < 3000),                                                         --향 정보
-		cocktailColor       number(4)     check (cocktailColor < 4000),                                                         --색상
-		originFilename      varchar2(300),                                                                --칵테일원본사진
-		savedFilename       varchar2(100)                                                                 --칵테일수정본사진
+        cocktailBase        number        references ingredients(ingredientNum) on delete set null,         --재료_베이스
+		ingredient1         number        references ingredients(ingredientNum) on delete set null,         --재료_추가1
+		ingredient2         number        references ingredients(ingredientNum) on delete set null,         --재료_추가2
+		ingredient3         number        references ingredients(ingredientNum) on delete set null,         --재료_추가3
+		ingredient4         number        references ingredients(ingredientNum) on delete set null,         --재료_추가4
+		cocktailTaste       number(4)     check (cocktailTaste < 2000),                                     --맛 정보
+		cocktailFlavor      number(4)     check (cocktailFlavor < 3000),                                    --향 정보
+		cocktailColor       number(4)     check (cocktailColor < 4000),                                     --색상
+		originFilename      varchar2(300),                                                                  --칵테일원본사진
+		savedFilename       varchar2(100)                                                                   --칵테일수정본사진
 );
 drop table cocktails;
 create sequence cocktails_seq;
@@ -154,7 +154,7 @@ create sequence cocktails_seq;
 -- 즐겨찾기 favorite 테이블
 create table favorite (
 		favCode         number              primary key,                                                    --즐겨찾기코드
-		memberId        varchar2(20)        references member(memberid),                              --개인 회원ID 
+		memberId        varchar2(20)        references member(memberid) on delete set null,                 --개인 회원ID 
 		storeCode       number              not null,                                                       --가게 코드
 		favDate         date                default sysdate                                                 --생성일자
 );
@@ -164,8 +164,8 @@ create sequence favorite_seq;
 -- 가게리뷰 storeReview 테이블
 create table storeReview (
         storeReviewNum        number        primary key,
-		storeCode             number        references storeInfo(storeCode),
-		memberId              varchar2(20)  references member(memberId),
+		storeCode             number        references storeInfo(storeCode) on delete set null,
+		memberId              varchar2(20)  references member(memberId) on delete set null,
 		storeReviewScore      number        check (storeReviewScore in (0, 1, 2, 3, 4, 5)),
 		storeReviewText       varchar2(500) not null,
 		reviewDate            date          default sysdate,
@@ -178,8 +178,8 @@ create sequence storeReview_seq;
 -- 메뉴평가 menuPreference 테이블
 create table menuPreference (
 		menuPreferenceNum    number        primary key,
-		menuId               varchar2(20)  references member(memberId),
-		menuNum              number        references menu(menuNum),
+		menuId               varchar2(20)  references member(memberId) on delete set null,
+		menuNum              number        references menu(menuNum) on delete set null,
 		weather              varchar2(20)  check (weather < 6000),
 		ageGroup             varchar2(20)  check (ageGroup < 7000),
 		companion            varchar2(20)  check (companion< 8000),
