@@ -90,15 +90,15 @@
                                     <table th:each="member : ${member}">
                                         <tr>
                                             <th>맛</th>
-                                            <td th:text="${member.resetTaste}"></td>
+                                            <td th:text="${taste.tasteArr}"></td>
                                         </tr>
                                         <tr>
                                             <th>향</th>
-                                            <td th:text="${member.cocktailFlavor}"></td>
+                                            <td th:text="${taste.flavorArr}"></td>
                                         </tr>
                                         <tr>
                                             <th>알러지</th>
-                                            <td th:text="${member.allergyType}"></td>
+                                            <td th:text="${taste.allergyType}"></td>
                                         </tr>
                                     </table>
                                     </form>	
