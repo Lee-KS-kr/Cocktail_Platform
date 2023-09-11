@@ -4,6 +4,10 @@
 
 <mapper namespace="com.platform.cocktail.cocktail_platform.dao.StoreDAO">
 	
+	<select id="" parameterType="">
+	
+	</select>
+	
 	<!-- 예약 리스트 출력 -->
 	<select id="getReservelistByCode" parameterType="int" resultType="Reservation">
 	select

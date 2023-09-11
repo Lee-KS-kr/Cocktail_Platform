@@ -36,9 +36,17 @@
 	
 	<!-- 취향 정보 저장 -->
 	<insert id="insertTaste" parameterType="Taste">
-		insert into taste (tasteCode, memberId, hasAllergy, allergyType, cocktailTaste, cocktailFlavor)
+		insert into 
+			taste 
+				(tasteCode
+				, memberId
+				, <if test="allergyType != null">allergyType
+				,</if>
+				 cocktailTaste
+				, cocktailFlavor
+				)
 		values (
-				#{tasteCode}
+				taste_seq.nextval
 				, #{memberId}
 				, #{hasAllergy}
 				,<if test="allergyType != null">#{allergyType}
