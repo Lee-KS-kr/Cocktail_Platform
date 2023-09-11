@@ -252,25 +252,21 @@ function formSubmit() {
 	else isValid = true;
 	
 	if(isValid) {
-		console.log('폼 제출 직전입니도^^');
-		//폼 제출
-		form.submit();
 		console.log('폼 제출합니도^^');
 	} else {
-		return false;
 		console.log('뭐가 문제야 젠장^^');
+		return false;
 	}
 }
 
 </script>
-<link rel="stylesheet" th:href="@{/CSS/}">
 <title>통합 회원 가입</title>
 
 </head>
 <body>
 	<main>
 		<h1 class="title">통합 회원 가입</h1>
-		<form id="joinForm" th:action="@{/member/join}" method="post">
+		<form id="joinForm" th:action="@{/member/join}" method="post" onsubmit="formSubmit()">
 				ID<br>
 				<input type="text" name="memberId" id="memberId"
 				placeholder="ID(6-12자리 이내, 영문 사용 가능)" required="required" onkeyup="idChk()">
@@ -324,7 +320,7 @@ function formSubmit() {
                 </select><br>
                 <br>
 				<div class="bottom-container">
-					<input type="button" id="subBtn" class="bottom" value="가입하기" onclick="formSubmit()">
+					<input type="submit" id="subBtn" class="bottom" value="가입하기">
 					<input type="reset" class="bottom" value="다시 쓰기">
 				</div>
 		</form>
