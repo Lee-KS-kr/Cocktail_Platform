@@ -17,8 +17,18 @@
 		update
 			storeInfo
 		set
-			
-	
+			storeName = #{storeName}
+			, savedFilename = #{savedFilename}
+			, brn = #{brn}
+			, storePhone = #{storePhone}
+			, runningTime = #{runningTime}
+			, dayOff = #{dayOff}
+			, info = #{info}
+			, postCode = #{postCode}
+			, address1 = #{address1}
+			, address2 = #{address2}
+		where
+			memberId = #{memberId}
 	</update>
 	
 	<!-- 예약 리스트 출력 -->
@@ -33,8 +43,55 @@
 		from
 			reservation
 		order by
-			reserveCode desc
+			reserveDate desc
 	</select>
+	
+	<select id="findReservationByCode" parameterType="String" resultType="Reservation">
+		select
+			*
+		from
+			reservation
+		where
+			storeCode = #{storeCode}
+	</select>
+	
+	<update id="changeReservationState" parameterType="Reservation">
+		update
+			reservation
+		set
+			reserveState = #{reserveState}
+		where
+			reserveCode = #{reserveCode}
+	</update>
+	
+	<insert id="insertReservation" parameterType="Reservation">
+		insert into
+			reservation
+				(
+				reserveCode
+				, storeCode
+				, memberId
+				, reservationName
+				, reservationPhone
+				, reserveDate
+				, reserveHead
+				, <if test="request != null">request
+				, </if> 
+				reserveState
+				)
+		values (
+				to_char(sysdate, 'yyyymmdd') || #{storeCode} || reservation_seq.nextval
+				, #{storeCode}
+				, #{memberId}
+				, #{reservationName}
+				, #{reservationPhone}
+				, to_char(sysdate, 'yyyymmdd')
+				, #{reserveHead}
+				, <if test="request != null">#{request}
+				, </if> 
+				#{reserveState}
+				)
+	</insert>
 	
 	<!-- 메뉴 리스트 출력 -->
 	<select id="getMenulistByCode" parameterType="int" resultType="Menu">

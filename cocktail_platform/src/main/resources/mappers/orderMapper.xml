@@ -71,18 +71,19 @@
 	</select>
 	
 	<insert id="makeNewOrder" parameterType="HashMap" useGeneratedKeys="true" keyProperty="orderCode">
-    insert into orders
-    (
-        orderCode,
-        storeCode,
-        orderDate,
-        memberId,
-        totalPrice,
-        menuList,
-        orderState
-    )
-    values
-    (
+    	insert into 
+    		orders
+    		(
+       		 orderCode,
+       		 storeCode,
+       		 orderDate,
+       		 memberId,
+       		 totalPrice,
+       		 menuList,
+       		 orderState
+    		)
+    	values
+    	(
         to_char(sysdate, 'yyyymmdd') || order_seq.nextval || #{storeCode},
         #{storeCode},
         to_char(sysdate, 'yyyymmdd'),
