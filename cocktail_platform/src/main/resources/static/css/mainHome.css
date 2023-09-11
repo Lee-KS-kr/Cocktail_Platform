@@ -83,6 +83,7 @@ input-border-solid:     #e7e7e7
 body {
   width: 100%;
   background-color: #fff;
+  position: fixed;
 }
 
 .body {
@@ -108,7 +109,8 @@ padding: 20px 20px 0px 20px;
 z-index: 5;
 animation: none;
 animation-name: none;
-}
+display:block;
+} 
 
 /*.box1, .box2 {
   width: 400px;
@@ -128,6 +130,7 @@ animation-name: none;
 .title{
   font-family: 'Black Han Sans', sans-serif;
   font-size: 40px;
+  color: #454545;
 }
 .content{
   border: 1px solid #232323;
@@ -174,6 +177,8 @@ img[alt=logo]{ width: 400px; margin-top: 150px;}
 } */
 
 /*background img - z-index : 10~50*/
+img[alt=logo]{position: absolute; top: 10px; left: 250px; z-index: 51; width: 500px;  animation: ani0 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
+
 img[alt=ice1]{position: absolute; top: 280px; left: 10px; z-index: 50;   animation: ani1 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
 img[alt=ice2]{position: absolute; top: 300px; left: 800px; z-index: 49;   animation: ani2 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
 img[alt=ice3]{position: absolute; top: 0px; left: 1000px; z-index: 48;   animation: ani3 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
@@ -189,6 +194,7 @@ img[alt=orange1]{position: absolute; top: 400px; left: 550px; z-index: 30; width
 img[alt=orange2]{position: absolute; top: 100px; left: 1000px; z-index: 30; width: 500px;   animation: ani10 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
 img[alt=cherry2]{position: absolute; top: 100px; left: 800px; z-index: 30; width: 100px;   animation: ani11 cubic-bezier(.56,0,.33,.99) 1.7s; animation-iteration-count: 1;}
 
+@keyframes ani0{0% {left: 1500px;}100% {left: 250px;}}
 @keyframes ani1{0% {left: 1000px;}100% {left: 10px;}}
 @keyframes ani2{0% {left: 1400px;}100% {left: 800px;}}
 @keyframes ani3{0% {left: 1700px;}100% {left: 1000px;}}
