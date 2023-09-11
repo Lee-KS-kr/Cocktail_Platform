@@ -11,7 +11,14 @@ $(document).ready(function(){
 });
 
 //유효성 플래그 변수
-let isValid = false;
+let idValid = false;
+let pwValid = false;
+let nameValid = false;
+let emailValid = false;
+let emailCodeValid = false;
+let phoneValid = false;
+let birthValid = false;
+let memTypeValid = false;
 
 //아이디 유효성 검사
 function idChk(){
@@ -20,35 +27,30 @@ function idChk(){
 	
 	if(!regId.test(id)){
 		$('#errMsg1').html('아이디는 6-12자 영문/숫자를 포함해야 합니다.');
-		return false;
+		idValid = false;
 	}
 	else {
-		idDuplicateChk();
+		
+		//아이디 중복 검사
+		$.ajax({
+	        url:'checkId', 
+	        type:'post', 
+	        data:{memberId:id},
+	        success:function(cnt){ 
+	            if(cnt != 0){  
+	                alert('중복된 아이디입니다.');
+	                id = '';
+	                idValid = false;
+	            } else { 
+	            	$('#errMsg1').html('');
+	            	idValid = true;
+	            }
+	        },
+	        error:function(){
+	            alert("에러입니다");
+	        }
+	    });
 	}
-}
-
-//아이디 중복 검사
-function idDuplicateChk(){
-	let id = $('#memberId').val();
-	
-	$.ajax({
-        url:'checkId', 
-        type:'post', 
-        data:{memberId:id},
-        success:function(cnt){ 
-            if(cnt != 0){  
-                alert('중복된 아이디입니다.');
-                id = '';
-                return false;
-            } else { 
-            	$('#errMsg1').html('');
-            	return true;
-            }
-        },
-        error:function(){
-            alert("에러입니다");
-        }
-    });
 }
 
 //비밀번호 유효성 검사
@@ -59,18 +61,18 @@ function pwChk(){
 	
 	if(!regPw.test(pw1)) {
 	    $('#errMsg2').html('비밀번호는 8-15자리 문자/숫자/특수문자를 포함해야 합니다.');
-	    return false;
+	    pwValid = false;
 	  } else {
 	    $('#errMsg2').html('');
-	    return true;
+	    pwValid = true;
 	  }
 
 	 if(pw1 !== pw2) {
 	    $('#errMsg3').html('비밀번호가 일치하지 않습니다.');
-	    return false;
+	    pwValid = false;
 	  } else {
 	    $('#errMsg3').html('');
-	    return true;
+	    pwValid = true;
 	  }
 }
 
@@ -81,11 +83,11 @@ function nameChk(){
 	
 	if(nameLength < 2 ||  nameLength > 9){
 		$('#errMsg4').html('이름은 2-10자로 입력해주세요.');
-		return false;
+		nameValid = false;
 	}
 	else{
 		$('#errMsg4').html('');
-		return true;
+		nameValid = true;
 	}
 }
 
@@ -98,7 +100,7 @@ function emailChk(){
 	if(!regEmail.test(email)){
         $('#errMsg5').html('이메일은 xxx@xxx.xxx 형식으로 입력해야 합니다.');
         btn.disabled = true;
-        return false;
+        emailValid = false;
 	}
 	else{
 		$('#errMsg5').html('');
@@ -112,11 +114,11 @@ function emailChk(){
 	            	$('#errMsg5').html('이미 사용 중인 이메일 주소입니다.');
 	                email = '';
 	                btn.disabled = true;
-	                return false;
+	                emailValid = false;
 	            } else { 
 	            	$('#errMsg5').html('');
 	            	btn.disabled = false;
-	            	return true;
+	            	emailValid = true;
 	            }
 	        },
 	        error:function(){
@@ -154,10 +156,10 @@ function emailCodeChk() {
 
 	if(authCode !== inputCode) {  
 		$('#errMsg6').html('인증번호가 불일치합니다. 다시 확인해주세요.');
-		return false;
+		emailCodeValid = false;
 	} else {
 		$('#errMsg6').html('');
-		return true;
+		emailCodeValid = true;
 	}
 }
 
@@ -168,14 +170,14 @@ function phoneChk(){
 
     if(!regPhone.test(phone)){
         $('#errMsg7').html('전화번호 형식이 올바르지 않습니다.');
-        return false;
+        phoneValid = false;
     }
     else{
         $('#errMsg7').html('');
       	//하이픈을 추가하여 전화번호 형식으로 변환
         phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
         $('#phone').val(phone);
-        return true;
+        phoneValid = true;
     }
 }
 
@@ -193,34 +195,34 @@ function birthChk() {
 		// 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
 	    if (1900 > year || year > adultYear){
 	    	$('#errMsg8').html('년도를 확인하세요. ' + adultYear + '년생 이전 출생자만 등록 가능합니다.');
-	    	return false;
+	    	birthValid = false;
 	    }else if (month < 1 || month > 12) {
 	    	$('#errMsg8').html('생년월일을 확인해주세요.');
-	    	return false;
+	    	birthValid = false;
 	    }else if (day < 1 || day > 31) {
 	    	$('#errMsg8').html('생년월일을 확인해주세요.');
-	    	return false;
+	    	birthValid = false;
 	    }else if ((month==4 || month==6 || month==9 || month==11) && day==31) {
 	    	$('#errMsg8').html('생년월일을 확인해주세요.');
-	    	return false;
+	    	birthValid = false;
 	    }else if (month == 2) {
 	       	var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
 	     	if (day>29 || (day==29 && !isleap)) {
 	     		$('#errMsg8').html('생년월일을 확인해주세요.');
-	     		return false;
+	     		birthValid = false;
 			}else{
 				$('#errMsg8').html('');
-				return true;
+				birthValid = true;
 			}//end of if (day>29 || (day==29 && !isleap))
 	    }else{
 	    	$('#errMsg8').html('');
-	    	return true;
+	    	birthValid = true;
 		}//end of if
 		
 	}else{
 		//1.입력된 생년월일이 8자 초과할때
 		$('#errMsg8').html('생년월일을 확인해주세요');
-		return false;
+		birthValid = false;
 	}
 }
 
@@ -228,39 +230,37 @@ function birthChk() {
   function memTypeChk(){
       if ($('input[name="memberType"]:checked').length === 0) {
           $('#errMsg9').html('회원 구분을 선택해주세요.');
-          return false;
+          memTypeValid = false;
       } else {
           $('#errMsg9').html('');
-          return true;
+          memTypeValid = true;
       }
   }
 
 //모든 조건 만족 시 폼 제출
 function formSubmit() {
 	let form = document.getElementById("joinForm");
-	isValid = true; // isValid 초기화
+	let isValid = true; // isValid 초기화
 
-	if(!idChk() || !idDuplicateChk() || !pwChk() || !nameChk() || !emailChk() || !emailCodeChk() || !phoneChk() || !birthChk() || !memTypeChk()) {
+	if(!idValid || !pwValid || !nameValid || !emailValid || !emailCodeValid || !phoneValid || !birthValid || !memTypeValid) {
 		isValid = false; // 하나라도 유효성 검사에 실패하면 isValid를 false로 설정
 	}
-
+	else isValid = true;
+	
 	if(isValid) {
-		//폼 제출
-		form.submit();
 	} else {
 		return false;
 	}
 }
 
 </script>
-<link rel="stylesheet" th:href="@{/CSS/}">
 <title>통합 회원 가입</title>
 
 </head>
 <body>
 	<main>
 		<h1 class="title">통합 회원 가입</h1>
-		<form id="joinForm" th:action="@{/member/join}" method="post">
+		<form id="joinForm" th:action="@{/member/join}" method="post" onsubmit="formSubmit()">
 				ID<br>
 				<input type="text" name="memberId" id="memberId"
 				placeholder="ID(6-12자리 이내, 영문 사용 가능)" required="required" onkeyup="idChk()">
@@ -314,7 +314,7 @@ function formSubmit() {
                 </select><br>
                 <br>
 				<div class="bottom-container">
-					<input type="button" id="subBtn" class="bottom" value="가입하기" onclick="formSubmit()">
+					<input type="submit" id="subBtn" class="bottom" value="가입하기">
 					<input type="reset" class="bottom" value="다시 쓰기">
 				</div>
 		</form>
