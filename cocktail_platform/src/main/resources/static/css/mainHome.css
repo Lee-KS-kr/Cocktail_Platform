@@ -130,7 +130,9 @@ display:block;
 .title{
   font-family: 'Black Han Sans', sans-serif;
   font-size: 40px;
-  color: #454545;
+  color: #ffffff;
+  -webkit-text-stroke: 1px black;
+
 }
 .content{
   border: 1px solid #232323;
