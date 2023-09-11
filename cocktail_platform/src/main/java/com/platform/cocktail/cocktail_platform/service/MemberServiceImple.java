@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.platform.cocktail.cocktail_platform.config.CodeConfig;
 import com.platform.cocktail.cocktail_platform.dao.MemberDAO;
 import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.MemberType;
@@ -25,7 +26,7 @@ public class MemberServiceImple implements MemberService {
 	private MemberDAO dao;
 	
 	@Autowired
-	private HashMap<String, Integer> map;
+	CodeConfig cc;
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -96,29 +97,33 @@ public class MemberServiceImple implements MemberService {
 	}
 
 	public Taste changeIntToString(Taste t) {
-		String taste = map.entrySet().stream()
+		HashMap<String, Integer> codeMap = cc.codeMap();
+		String taste = codeMap.entrySet().stream()
 				.filter(entry -> Objects.equals(entry.getValue(), t.getCocktailTaste()))
 				.map(Map.Entry::getKey)
 				.collect(Collectors.toList())
 				.get(0);
-		String flavor = map.entrySet().stream()
+		String flavor = codeMap.entrySet().stream()
 				.filter(entry -> Objects.equals(entry.getValue(), t.getCocktailFlavor()))
 				.map(Map.Entry::getKey)
 				.collect(Collectors.toList())
 				.get(0);
 		
-		t.setTasteArr(taste.split(","));
-		t.setFlavorArr(flavor.split(","));
+		t.setTaste(taste.split(","));
+		t.setFlavor(flavor.split(","));
 		
 		return t;
 	}
 	
 	public Taste changeStringToInt(Taste t) {
-		String taste = StringUtils.join(t.getTasteArr());
-		String flavor = StringUtils.join(t.getFlavorArr());
+		String taste = StringUtils.join(t.getTaste());
+		String flavor = StringUtils.join(t.getFlavor());
+		log.debug("taste : {}, flavor : {}", taste, flavor);
 		
-		t.setCocktailTaste(map.get(taste));
-		t.setCocktailFlavor(map.get(flavor));
+		HashMap<String, Integer> codeMap = cc.codeMap();
+		t.setCocktailTaste(codeMap.get(taste));
+		t.setCocktailFlavor(codeMap.get(flavor));
+		log.debug("cocktailtaste : {}, cocktailflavor : {}", t.getCocktailTaste(), t.getCocktailFlavor());
 		
 		return t;
 	}

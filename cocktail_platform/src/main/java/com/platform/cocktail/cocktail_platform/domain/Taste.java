@@ -14,6 +14,6 @@ public class Taste {
 	String allergyType;
 	int cocktailTaste;
 	int cocktailFlavor;
-	String[] tasteArr;
-	String[] flavorArr;
+	String[] taste;
+	String[] flavor;
 }
