@@ -1,0 +1,59 @@
+/* 전체 폼 스타일 */
+#joinForm {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+/* 제목 스타일 */
+.title {
+  font-size: 24px;
+  text-align: center;
+  color: #FF661A;
+  margin-bottom: 20px;
+}
+
+/* 입력 필드 스타일 */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* 버튼 스타일 */
+input[type="submit"],
+input[type="reset"] {
+  width: calc(50% - 5px);
+  padding: 10px;
+  background-color: #FF661A;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 버튼 호버 효과 */
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+  background-color: #FF4500;
+}
+
+/* 에러 메시지 스타일 */
+p[id^="errMsg"] {
+  color: #FF661A;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+
+
+
+
