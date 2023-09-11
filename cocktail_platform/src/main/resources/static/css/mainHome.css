@@ -203,7 +203,7 @@ img[alt=cherry2]{position: absolute; top: 100px; left: 800px; z-index: 30; width
 @keyframes ani4{0% {left: 800px;}100% {left: -12px;}}
 
 @keyframes ani5{0% {left: 1200px;}100% {left: -12px;}}
-@keyframes ani6{0% {left: 0px;}100% {left: -280px;}}
+@keyframes ani6{0% {left: -450px;}100% {left: -280px;}}
 
 @keyframes ani7{0% {left: 1200px;}100% {left: 250px;}}
 
