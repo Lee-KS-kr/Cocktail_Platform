@@ -54,8 +54,6 @@ input-border-solid:     #e7e7e7
 폰트 컬러 :             #232323
 조보색:                 #45B783
 
-
-
 */
 
 /*=========================================================*/
@@ -88,8 +86,9 @@ body {
 
 .body {
   position: absolute;
-  top: 150px;
-  left: 980px;
+  top: 390px;
+  left: 300px;
+  display:flex ;
   justify-content: center;
   align-items: center;
     z-index: 100;
@@ -109,7 +108,7 @@ padding: 20px 20px 0px 20px;
 z-index: 5;
 animation: none;
 animation-name: none;
-display:block;
+display:f;
 } 
 
 /*.box1, .box2 {
@@ -179,36 +178,36 @@ img[alt=logo]{ width: 400px; margin-top: 150px;}
 } */
 
 /*background img - z-index : 10~50*/
-img[alt=logo]{position: absolute; top: 10px; left: 250px; z-index: 51; width: 500px;  animation: ani0 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
+img[alt=logo]{position: absolute; top: 10px; left: 550px; z-index: 51; width: 500px;  animation: ani0 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
 
-img[alt=ice1]{position: absolute; top: 280px; left: 10px; z-index: 50;   animation: ani1 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
-img[alt=ice2]{position: absolute; top: 300px; left: 800px; z-index: 49;   animation: ani2 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
-img[alt=ice3]{position: absolute; top: 0px; left: 1000px; z-index: 48;   animation: ani3 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
+img[alt=ice1]{position: absolute; top: 380px; left: -200px; z-index: 50;   animation: ani1 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
+img[alt=ice2]{position: absolute; top: 500px; left: 1100px; z-index: 49;   animation: ani2 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
+img[alt=ice3]{position: absolute; top: 0px; left: 1200px; z-index: 48;   animation: ani3 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
 img[alt=ice4]{position: absolute; top: -82px; left: -12px; z-index: 47;   animation: ani4 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
 
 img[alt=water1]{position: absolute; top: 82px; left: -12px; z-index: 10;   animation: ani5 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
 img[alt=water2]{position: absolute; top: -200px; left: -280px; z-index: 11;   animation: ani6 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
 
-img[alt=glass2]{position: absolute; top: -100px; left: 250px; z-index: 30; width: 850px;   animation: ani7 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
+img[alt=glass2]{position: absolute; top: -60px; left: 250px; z-index: 30; width: 850px;   animation: ani7 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
 
 img[alt=lemon1]{position: absolute; top: 0px; left: 0px; z-index: 30;   animation: ani8 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
-img[alt=orange1]{position: absolute; top: 400px; left: 550px; z-index: 30; width: 350px;   animation: ani9 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
-img[alt=orange2]{position: absolute; top: 100px; left: 1000px; z-index: 30; width: 500px;   animation: ani10 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
-img[alt=cherry2]{position: absolute; top: 100px; left: 800px; z-index: 30; width: 100px;   animation: ani11 cubic-bezier(.56,0,.33,.99) 1.7s; animation-iteration-count: 1;}
+img[alt=orange1]{position: absolute; top: 450px; left: 800px; z-index: 30; width: 350px;   animation: ani9 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
+img[alt=orange2]{position: absolute; top: -30px; left: 1300px; z-index: 30; width: 500px;   animation: ani10 cubic-bezier(.56,0,.33,.99) 1.7s;animation-iteration-count: 1;}
+img[alt=cherry2]{position: absolute; top: 330px; left: 1300px; z-index: 30; width: 100px;   animation: ani11 cubic-bezier(.56,0,.33,.99) 1.7s; animation-iteration-count: 1;}
 
-@keyframes ani0{0% {left: 1500px;}100% {left: 250px;}}
-@keyframes ani1{0% {left: 1600px;}100% {left: 10px;}}
-@keyframes ani2{0% {left: 1400px;}100% {left: 800px;}}
-@keyframes ani3{0% {left: 1700px;}100% {left: 1000px;}}
+@keyframes ani0{0% {left: 1500px;}100% {left: 550px;}}
+@keyframes ani1{0% {left: 1600px;}100% {left: -200px;}}
+@keyframes ani2{0% {left: 1400px;}100% {left: 1100px;}}
+@keyframes ani3{0% {left: 2200px;}100% {left: 1200px;}}
 @keyframes ani4{0% {left: 800px;}100% {left: -12px;}}
 
 @keyframes ani5{0% {left: 1200px;}100% {left: -12px;}}
 @keyframes ani6{0% {left: -450px;}100% {left: -280px;}}
 
-@keyframes ani7{0% {left: 1200px;}100% {left: 250px;}}
+@keyframes ani7{0% {left: 1600px;}100% {left: 250px;}}
 
 @keyframes ani8{0% {left: 600px;}100% {left: 0px;}}
-@keyframes ani9{0% {left: 1200px;}100% {left: 550px;}}
-@keyframes ani10{0% {left: 1400px;}100% {left: 1000px;}}
-@keyframes ani11{0% {left: 1500px;}100% {left: 800px;}}
+@keyframes ani9{0% {left: 1400px;}100% {left: 800px;}}
+@keyframes ani10{0% {left: 1400px;}100% {left: 1300px;}}
+@keyframes ani11{0% {left: 1500px;}100% {left: 1300px;}}
 
