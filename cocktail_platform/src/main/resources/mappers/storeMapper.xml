@@ -4,53 +4,66 @@
 
 <mapper namespace="com.platform.cocktail.cocktail_platform.dao.StoreDAO">
 	
-	<select id="" parameterType="">
-	
+	<select id="getStoreById" parameterType="String" resultType="StoreInfo">
+		select
+			*
+		from
+			storeInfo
+		where
+			memberId = #{memberId}
 	</select>
+	
+	<update id="updateStoreinfo" parameterType="StoreInfo">
+		update
+			storeInfo
+		set
+			
+	
+	</update>
 	
 	<!-- 예약 리스트 출력 -->
 	<select id="getReservelistByCode" parameterType="int" resultType="Reservation">
-	select
-		reserveCode
-		, storeCode
-		, reservationName
-		, reservationPhone
-		, reserveDate
-		, reserveState
-	from
-		reservation
-	order by
-		reserveCode desc
+		select
+			reserveCode
+			, storeCode
+			, reservationName
+			, reservationPhone
+			, reserveDate
+			, reserveState
+		from
+			reservation
+		order by
+			reserveCode desc
 	</select>
 	
 	<!-- 메뉴 리스트 출력 -->
 	<select id="getMenulistByCode" parameterType="int" resultType="Menu">
-	select
-		menuNum
-		, storeCode
-		, category
-		, price
-		, canOrder
-	from
-		menu
-	order by
-		menuNum desc
+		select
+			menuNum
+			, storeCode
+			, category
+			, price
+			, canOrder
+		from
+			menu
+		order by
+			menuNum desc
 	</select>
 	
 	<!-- 매출 관리 주문 리스트 출력 -->
 	<select id="getOrderListsByCode" parameterType="int" resultType="Order">
-	select
-		orderCode
-		, storeCode
-		, orderDate
-		, memberId
-		, totalPrice
-		, menuList
-		, orderState
-	from
-		order
-	order by
-		orderCode desc
+		select
+			orderCode
+			, storeCode
+			, orderDate
+			, memberId
+			, totalPrice
+			, menuList
+			, orderState
+		from
+			order
+		order by
+			orderCode desc
 	</select>
 	
 </mapper>

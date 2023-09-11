@@ -23,14 +23,14 @@ public class WebSecurityConfig {
     
     @Autowired
     private PrincipalOauth2UserService principalOauth2UserService;
-
+    
     //설정
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
         .authorizeRequests()
-        .antMatchers("/corporate/**").hasAnyRole("ROLE_CORPORATE")
-        .antMatchers("/",
+        //.antMatchers("/corporate/**").hasAnyRole("ROLE_CORPORATE")
+        .antMatchers("/**",
         		"/member/join",
         		"/member/login",
         		"/member/findId",
