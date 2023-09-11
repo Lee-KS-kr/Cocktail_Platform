@@ -58,7 +58,7 @@
                         <div class="flex">
                             <div class="con1">
                                 <p>* 기본정보
-                                <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
+                                <form th:action="@{/personal/member/update}"  method="post" onsubmit="return check();">
                                     <table th:each="member : ${member}">
                                         <tr>
                                             <th>아이디</th>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="con2">
                                 <p>* 취향 정보
-                                <form th:action="@{/member/update}"  method="post">
+                                <form th:action="@{personal/member/update}"  method="post">
                                     <table th:each="member : ${member}">
                                         <tr>
                                             <th>맛</th>
