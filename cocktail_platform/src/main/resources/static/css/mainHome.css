@@ -136,6 +136,7 @@ display:f;
 .content{
   border: 1px solid #232323;
   color: #232323;
+  background-color: none;
   width:180px;
   height:50px;
   border-radius: 50%;
@@ -152,14 +153,14 @@ display:f;
 
 .content:hover{
   border: 1px solid #232323;
-
+  background-color: #fff;
   width:180px;
   height:50px;
   border-radius: 50%;
   line-height: 50px;
   text-align: center;
   font-family: 'S-CoreDream-3Light';
-  margin-top: 40px;
+  margin-top: 45px;
   margin-left: 220PX;
   transition: 0.2s;
 }
