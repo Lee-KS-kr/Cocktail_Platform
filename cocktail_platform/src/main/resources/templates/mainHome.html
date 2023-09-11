@@ -15,7 +15,6 @@
 <!-- vs code      
     -->
 
-
     <link rel="stylesheet" th:href="@{/CSS/mainHome.css}">
     <!-- thymeleaf
     -->
@@ -23,7 +22,7 @@
   </head>
 
   <body>
-    <!--
+    <!---->
            
     <div class="back_img">
       <img src="../static/image/mainimg/logo.png" alt="logo">
@@ -39,7 +38,7 @@
       <img src="../static/image/mainimg/orange2.png" alt="orange2">
       <img src="../static/image/mainimg/cherry2.png" alt="cherry2">
     </div>
--->
+
     <div class="back_img">
       <img th:src="@{/image/mainimg/logo.png}" alt="logo">
       <img th:src="@{/image/mainimg/ice1.png}" alt="ice1">
@@ -101,20 +100,7 @@
           </a>
           
         </div>
-        
-        <!-- 작업중ㅠㅠ 09.04 16:20 
-        <div sec:authorize="isAuthenticated()">
-        	<a th:href="@{/member/logout}">로그아웃</a><br>
-        	<p sec:authorize="hasRole('PERSONAL')">
-        		<a th:href="@{/personal/home}">개인회원 서비스 이용하기</a>
-        	</p>
-        	
-        	<p sec:authorize="hasRole('CORPORATE')">
-        		<a th:href="@{/corporate/home}">기업회원 서비스 이용하기</a>
-        	</p>
-      	</div>-->
       </div>
     </div>
-    <!--<img th:src="@{/image/deco1.png}" alt="deco1">-->
   </body>
 </html>

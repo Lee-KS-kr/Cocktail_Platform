@@ -356,7 +356,7 @@ function storeChg(){
 			<!-- 매장 정보 표시 -->
 			<div id="storeInfoDiv"></div>
 			
-			<!-- 가게 정보 수정 폼 -->
+			<!-- 매장 정보 수정 폼 -->
 			<div id="storeInfoFormDiv" style="display:none;">
 				<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post"
 				enctype="multipart/form-data" onsubmit="storeChg()">
@@ -364,7 +364,7 @@ function storeChg(){
 					<input type="text" id="storeName" name="storeName" th:value="${store.storeName}" onkeyup="storeNameChk()">
 					<p id="errMsg2"></p>
 					대표 사진<br>
-		    		<input type="file" name="추가하기"><br>
+		    		<input type="file" name="savedFilename"><br>
 		    		사업자 번호
 					<input type="text" id="brn" name="brn" th:value="${store.brn}" onkeyup="brnChk()"><br>
 					<p id="errMsg3"></p>
