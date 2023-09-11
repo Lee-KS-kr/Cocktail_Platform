@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrderDetails</title>
+    <link rel="stylesheet" href="../../static/CSS/personal/search.css">
+    
+<link rel="preconnect" th:href="https://fonts.googleapis.com">
+<link rel="preconnect" th:href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gasoek+One&family=Schoolbell&display=swap" rel="stylesheet">
+</head>
+
+<body>
+   <!-- ------navi------   -->
+    <div class="navi">  
+        <div class="navi1">
+            <img src="@{/image/logo44.png}" alt="logo">
+        </div>
+        <div class="navi2">
+            <p th:text="${member.memberId}">님 환영합니다.  &nbsp;</p>
+            <a>로그아웃  &nbsp;</a>
+            <a>마이페이지  &nbsp; &nbsp;</a>
+            <a><img src="@{/image/btn_search.png}" alt="search"></a>
+        </div>
+    </div>
+    <!-- ------navi end------  -->
+
+    <div class="search">
+        <input type="text" > <input type="submit" value="검색">
+    </div>
+    <div class="con_box">
+        <div class="con_box1" >
+            <img src="" alt="con_box1">
+        </div>
+        <div>
+            <p>매장명</p>
+            <p>상품명</p>
+            <p>상품 설명</p>
+            <p>가격</p>
+        </div>
+    </div>
+
+
+</body>
+
