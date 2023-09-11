@@ -47,8 +47,9 @@ public class PersonalMemberController {
 	
 	//취향 설정
 	@PostMapping("taste")
-	public String taste(String memberId, Taste t) {
-		t.setMemberId(memberId);
+	public String taste(Taste t) {
+		//t.setMemberId(memberId);
+		log.debug("{}", t);
 		mService.insertTaste(t);
 		return "redirect:/";
 	}
@@ -87,10 +88,12 @@ public class PersonalMemberController {
 	@GetMapping("myPage")
 	public String myPage(@AuthenticationPrincipal UserDetails user, Model m) {
 		Member mem = mService.findMemberById(user.getUsername());
-//		Taste t = mService.findTasteById(user.getUsername());
-//		
+		Taste t = mService.findTasteById(user.getUsername());
+		
 		m.addAttribute("member", mem);
-//		m.addAttribute("taste", t);
+		m.addAttribute("taste", t);
+		
+		log.debug("{} : {}", mem, t);
 		
 		return "personalView/myPage";
 	}

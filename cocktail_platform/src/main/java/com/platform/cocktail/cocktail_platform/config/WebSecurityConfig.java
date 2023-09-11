@@ -41,6 +41,8 @@ public class WebSecurityConfig {
         		"/member/taste",
         		"/member/myPage",
         		"/personal/**",
+        		"/personal/home",
+        		"/personal/member/taste",
         		"/oauth2/authorization/google",
 				"/login/oauth2/code/google",
                 "/image/**",
