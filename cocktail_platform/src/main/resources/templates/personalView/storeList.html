@@ -9,16 +9,80 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function () {
- 
+	init();
 });
+
+//가게 리스트 받아오기
+function init(){
+	$.ajax({
+		url: "storeList",
+		type: "post",
+		dataType: "json",
+		success: function(list){
+			getList(list);
+		},
+		error: function(){
+			alert('error');
+		}
+	});
+}
+
+//리스트 출력
+function getList(list){
+	let str = '<table>';
+	$(list).each(function(i,item){
+		str += '<tr>';
+		str += '<td><a href="storeDetail?storeCode="'+ item.storeCode + '>' + item.savedFilename + '</a></td>';
+		str += '</tr>';
+		str += '<tr>';
+		str += '<td>' + item.storeName + '</td>';
+		str += '</tr>';
+		str += '<tr>';
+		str += '<td>' + item.storeReviewScore + '</td>';
+		str += '</tr>';
+	});
+	str += '</table>';
+	$('#storeListDiv').html(str);
+}	
 </script>
 <link rel="stylesheet" th:href="@{/CSS/}">
 </head>
 <body>
-	<main>
-		<section>
-			<div id="storeListDiv"></div>
-		</section>
-	</main>
+<!-- 헤더 -->
+<header id="header" class="header">
+	<!-- 네비게이션바 -->
+	<nav id="navbar" class="navbar">
+    	<div class="search">
+   			<a th:href="@{/search}" class="search_logo">
+    			<img th:src="@{/image/btn_search.png}" alt="검색">
+    		</a>
+    	</div>
+    
+	    <div id="logo">
+	    	<a th:href="@{/personal/home}" class="navbar_logo">
+	       		<img th:src="@{/image/logo.png}" alt="logo">
+	       		<span>FitTail</span>
+	     	</a>
+	    </div>
+	
+    	<div class="navbar_right">
+    		<div sec:authorize="!isAuthenticated()">
+	    		<a th:href="@{/member/login}">로그인</a>
+	    	</div>
+	    	<div sec:authorize="isAuthenticated()">
+	    		<a th:href="@{/member/logout}">로그아웃</a>
+	    		<a th:href="@{/personal/member/mypage}">마이페이지</a>
+	    	</div>
+	   </div>
+  </nav>
+  <!-- 네비게이션바 끝 -->
+</header>
+<!-- 헤더 끝 -->
+<!-- 메인 시작 -->
+<main>
+	<section>
+		<div id="storeListDiv"></div>
+	</section>
+</main>
 </body>
 </html>
