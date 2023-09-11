@@ -5,10 +5,12 @@
 >
   <head>
     <meta charset="UTF-8" />
-    <title>Cocktailss</title>
+    <title>Cocktails</title>
     <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
     <script>
       $(document).ready(function () {});
+
+      
 </script>
 
 
@@ -22,47 +24,21 @@
     -->
 </head>
 <body>
-  <div class="navi">  <!-- navi   -->
+  <div class="navi">  <!-- Header   -->
     <div class="navi1"> 
-        <a th:href="@{/member/mainHome}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
+        <a th:href="@{/member/mainHome}">
+          <img src="../../static/image/logo_title.png" alt="logo">
+          <img th:src="@{/image/logo_title.png}" alt="logo"></a>
     </div>
     <div class="navi2">
       <p><span th:text="${#authentication.name}"></span>님 환영합니다&nbsp;</p>
         <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
         <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
-        <a th:href="@{/personal/member/searchPage}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
+        <a th:href="@{/personal/member/searchPage}">
+          <img src="../../static/image/btn_search.png" alt="search">
+          <img th:src="@{/image/btn_search.png}" alt="search"></a>
     </div>
 </div>  
-	<!-- ======= Header ======= 
-	<header id="header" class="header">
-	  <nav id="navbar" class="navbar">
-	    <div class="search">
-	   		<a th:href="@{/search}" class="search_logo">
-	    		<img th:src="@{/image/btn_search.png}" alt="검색">
-	    	</a>
-	    </div>
-	    
-	    <div id="logo">
-	    	<a th:href="@{/personal/home}" class="navbar_logo">
-	       		<img th:src="@{/image/logo.png}" alt="logo">
-	       		<span>FitTail</span>
-	     	</a>
-	    </div>
-	
-	    <div class="navbar_right">
-	    	<div sec:authorize="!isAuthenticated()">
-		    	<a th:href="@{/member/loginForm}" id="login">로그인</a>
-		    	<a th:href="@{/member/join}" id="join">회원가입</a>
-	    	</div>
-	    	<div sec:authorize="isAuthenticated()">
-	    		<p><span th:text="${#authentication.name}"></span>님 환영합니다</p>
-	    		<a th:href="@{/member/logout}">로그아웃</a>
-	    		<a th:href="@{/personal/member/myPage}">마이페이지</a>
-	    	</div>
-	    </div>
-	  </nav>
-	   End navbar -->
-	</header>
 	<!-- End Header -->
 
     <!-- ======= main ======= -->
