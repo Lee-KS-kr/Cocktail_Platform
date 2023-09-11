@@ -5,34 +5,30 @@
 <mapper namespace="com.platform.cocktail.cocktail_platform.dao.MemberDAO">
 	<!-- 통합 회원정보 저장 -->
 	<insert id="insertMember" parameterType="Member">
-		insert into member (memberId, memberPw, memberName, phone, birthday, email, memberType, gender)
-		values (#{memberId}, #{memberPw}, #{memberName}, #{phone}, #{birthday}, #{email}, #{memberType}, #{gender})
+		insert into
+			member 
+				(
+				memberId
+				, memberPw
+				, memberName
+				, phone
+				, birthday
+				, email
+				, memberType
+				, gender
+				)
+		values 
+				(
+				#{memberId}
+				, #{memberPw}
+				, #{memberName}
+				, #{phone}
+				, #{birthday}
+				, #{email}
+				, #{memberType}
+				, #{gender}
+				)
 	</insert>
-	
-	<!-- Id로 회원 정보 찾기 -->
-	<select id="findMemberById" parameterType="String" resultType="Member">
-		select * from member where memberId = #{memberId}
-	</select>
-	
-	<!-- Email로 회원 정보 찾기 -->
-	<select id="findMemberByEmail" parameterType="String" resultType="Member">
-		select * from member where email = #{email}
-	</select>
-	
-	<!-- Id로 취향 정보 찾기 -->
-	<select id="findTasteById" parameterType="String" resultType="Taste">
-		select * from taste where memberId = #{memberId}
-	</select>
-	
-	<!-- 회원 비밀번호 초기화 -->
-	<update id="resetMemberPw" parameterType="Member">
-		update member set memberPw = #{memberPw} where memberId = #{memberId}
-	</update>
-	
-	<!-- 회원 정보 수정 -->
-	<update id="updateMember" parameterType="Member">
-		update member set memberPw = #{memberPw} where memberId = #{memberId}
-	</update>
 	
 	<!-- 취향 정보 저장 -->
 	<insert id="insertTaste" parameterType="Taste">
@@ -40,29 +36,94 @@
 			taste 
 				(tasteCode
 				, memberId
+				, hasAllergy
 				, <if test="allergyType != null">allergyType
-				,</if>
-				 cocktailTaste
+				, </if>
+				cocktailTaste
 				, cocktailFlavor
 				)
 		values (
 				taste_seq.nextval
 				, #{memberId}
 				, #{hasAllergy}
-				,<if test="allergyType != null">#{allergyType}
-				,</if>
+				, <if test="allergyType != null">#{allergyType}
+				, </if>
 				#{cocktailTaste}
 				, #{cocktailFlavor}
 				)
 	</insert>
 	
+	<!-- Id로 회원 정보 찾기 -->
+	<select id="findMemberById" parameterType="String" resultType="Member">
+		select
+			*
+		from
+			member
+		where
+			memberId = #{memberId}
+	</select>
+	
+	
+	<!-- Email로 회원 정보 찾기 -->
+	<select id="findMemberByEmail" parameterType="String" resultType="Member">
+		select
+			*
+		from
+			member
+		where
+			email = #{email}
+	</select>
+	
+	<!-- Id로 취향 정보 찾기 -->
+	<select id="findTasteById" parameterType="String" resultType="Taste">
+		select
+			*
+		from
+			taste 
+		where
+			memberId = #{memberId}
+	</select>
+	
+	<!-- 회원 비밀번호 초기화 -->
+	<update id="resetMemberPw" parameterType="Member">
+		update
+			member
+		set
+			memberPw = #{memberPw} 
+		where 
+			memberId = #{memberId}
+	</update>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="updateMember" parameterType="Member">
+		update
+			member
+		set 
+			phone = #{phone}
+			memberPw = #{memberPw}
+		where 
+			memberId = #{memberId}
+	</update>
+	
 	<!-- 취향 정보 수정 -->
-	<update id="updateTaste">
-		update taste set hasAllergy = #{hasAllergy}, allergyType = #{allergyType}, cocktailTaste = #{cocktailTaste}, cocktailFlavor = #{cocktailFlavor} where memberId = #{memberId}
+	<update id="updateTaste" parameterType="Taste">
+		update 
+			taste 
+		set
+			hasAllergy = #{hasAllergy}
+			, allergyType = #{allergyType}
+			, cocktailTaste = #{cocktailTaste}
+			, cocktailFlavor = #{cocktailFlavor}
+		where 
+			memberId = #{memberId}
 	</update>
 	
 	<!-- 회원 탈퇴 -->
-	<delete id="unableMember" parameterType="Member">
-		delete from member where memberId = #{memberId}
+	<delete id="unableMember" parameterType="String">
+		delete from
+			member
+		where
+			memberId = #{memberId}
 	</delete>
+	
 </mapper>
