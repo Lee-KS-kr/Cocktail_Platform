@@ -153,6 +153,11 @@ document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1)
    	return value;
 }
 
+//예약 폼 제출
+function reserveSub(){
+	
+}
+
 </script>
 <link rel="stylesheet" th:href="@{/CSS/}">
 </head>
@@ -250,7 +255,6 @@ document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1)
 			<!-- 매장 정보 탭 내용 -->
 			<div id="tab_storeInfo">
 				<!-- 매장 소개, 업체 정보(영업시간, 전화번호, 매장주소, 부가정보), 업체 정보(상호명, 사업자 등록번호), 원재료 정보 출력 -->
-				<div id="reviewList">
 				<p>매장 소개</p>
 				<hr>
 				<p th:text="${store.info}"></p>
@@ -271,15 +275,12 @@ document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1)
 				<p>원재료 정보</p>
 				<span th:text="${ingredient.ingredientName}"></span><br>
 				<hr>
-				
-				</div>
 			</div>
 			<!-- 예약하기 탭 내용 -->
 			<div id="tab_reserve">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
-				<div id="reviewList">
-				<form></form>
-				<p>날짜 선택</p>
+				<form id="reserveForm" th:action="@{/member/reserve}" method="post" onsubmit="reserveSub()">
+					<p>날짜 선택</p>
 					<table class="Calendar">
 				        <thead>
 				            <tr>
@@ -305,14 +306,18 @@ document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1)
 				        <tbody>
 				        </tbody>
     				</table>
-				<p>시간 선택</p>
+					<p>시간 선택</p>
+					
+					<p>인원 선택</p>
+					
+					<p>예약자 정보</p>
+					
+					<input type="submit" value="예약 신청하기">
+				</form>
 				
-				<p>인원 선택</p>
 				
-				<p>예약자 정보</p>
 				</div>
 			</div>
-		</div>
 	</section>
 </main>
 	
