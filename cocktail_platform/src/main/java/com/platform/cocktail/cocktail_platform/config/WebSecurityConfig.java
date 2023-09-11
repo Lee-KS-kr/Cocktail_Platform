@@ -29,13 +29,18 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
         .authorizeRequests()
+        .antMatchers("/corporate/**").hasAnyRole("ROLE_CORPORATE")
         .antMatchers("/",
         		"/member/join",
+        		"/member/login",
         		"/member/findId",
         		"/member/resetPw",
         		"/member/checkId",
         		"/member/checkEmail",
         		"/member/emailConfirm",
+        		"/member/taste",
+        		"/member/myPage",
+        		"/personal/**",
         		"/personal/home",
         		"/personal/member/taste",
         		"/oauth2/authorization/google",
