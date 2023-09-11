@@ -3,15 +3,13 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>order Main</title>
+<title>주문 첫 페이지</title>
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <link rel="stylesheet" th:href="@{/CSS/}">
 </head>
 <body>
 	<main>
 		<img th:src="@{/image/logo.png}" alt="logo">
-		
-		<div>
 	<!-- 내비게이션 -->
     <div id="navi" class="navi">
     	<img th:src="@{/image/logo44.png}" alt="logo" class="logo">
@@ -49,7 +47,6 @@
       </div>
       <!-- sec2 끝 -->
 	<a th:href="@{/corporate/order/orderMenu}">비회원 주문</a>
-		</div>
 	</main>
 </body>
 </html>
