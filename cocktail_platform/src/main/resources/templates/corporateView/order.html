@@ -10,7 +10,7 @@ $(document).ready(function(){
 	$(".tab_title li").click(getIndex());
 });
 
-//전체 목록 출력
+//전체 목록 받아오기
 function allList(){
 	$.ajax({
 		url: "menuInfo",
@@ -19,6 +19,22 @@ function allList(){
 		dataType: "json",
 		success: function(list){
 			menuList(list);
+		},
+		error: function(){
+			alert('error');
+		}
+	});
+}
+
+//추천 메뉴 목록 가져오기
+function getRecMenu(){
+	$.ajax({
+		url: "recommendList",
+		type: "post",
+		data: {storeCode : storeCode},
+		dataType: "json",
+		success: function(list){
+			recMenuList(list);
 		},
 		error: function(){
 			alert('error');
@@ -83,7 +99,6 @@ function getIndex(){
     //인덱스 번호에 해당하는 tab_cont 클래스의 div(선택한 탭의 내용물)를 보여준다. 
     $(".tab_cont > div").eq(idx).show();
 }
-
 </script>
 </head>
 <body>

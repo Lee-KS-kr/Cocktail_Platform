@@ -6,16 +6,32 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
     <title>Document</title>
 </head>
+
+        <!-- vs code
+    <link rel="stylesheet" href="../../static/CSS/personal/wiki.css">
+
+    -->
+
+
+    <link rel="stylesheet" th:href="@{/CSS/personal/wiki.css}">
+    <!-- thymeleaf
+    -->
+
+</head>
 <body>
-    <!-- navi -->
-    <div>
-        <img src="" alt="search">
-        <img src="" alt="logo">
-        <p>~님 환영합니다.</p>
-        <p><a href="">로그아웃</a></p>
-        <p><a href="">마이페이지</a></p>
-        <img src="" alt="notice">
-    </div>
+   
+    <div class="navi">  <!-- navi   -->
+        <div class="navi1">
+            <a th:href="@{/personal/home}"><img th:src="@{/image/logo44.png}" alt="logo"></a>
+        </div>
+        <div class="navi2">
+            <p th:text="${member.memberId}"> </p>
+            <p>님 환영합니다.  &nbsp;</p>
+            <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
+            <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
+            <a th:href="@{/personal/search}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
+        </div>
+    </div>  
     <!-- title -->
     <div class="title">
         <p>칵테일 위키</p>
