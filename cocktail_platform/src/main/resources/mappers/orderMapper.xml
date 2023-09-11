@@ -56,27 +56,28 @@
 	</select>
 	
 	<!--  -->
-	<insert id="makeNewOrder" parameterType="HashMap">
-		insert into 
-			order
-				(orderCode
-				, storeCode
-				, orderDate
-				, memberId
-				, totalPrice
-				, menuList
-				, orderState)
-			values
-				( to_char(systdate, 'yyyymmdd')||order_seq.nextval||#{storeCode}
-				, #{storeCode}
-				, sysdate
-				, #{memberId}
-				, #{totalPrice}
-				,<if test="orderState != 'default'">#{orderState}
-				,</if>
-				, #{menuList}
-				)
-	</insert>
+	<insert id="makeNewOrder" parameterType="HashMap" useGeneratedKeys="true" keyProperty="orderCode">
+    insert into orders
+    (
+        orderCode,
+        storeCode,
+        orderDate,
+        memberId,
+        totalPrice,
+        menuList,
+        orderState
+    )
+    values
+    (
+        to_char(sysdate, 'yyyymmdd') || order_seq.nextval || #{storeCode},
+        #{storeCode},
+        to_char(sysdate, 'yyyymmdd'),
+        #{memberId},
+        #{totalPrice},
+        #{menuList},
+        #{orderState}
+    )
+</insert>
 	
 	<!--  -->
 	<insert id="insertTemporderList" parameterType="OrderTemp">
@@ -103,10 +104,11 @@
 		order
 	set
 		, orderDate = sysdate
-		, totalPrice = #{}
-		,<if test="orderState != 'default'">orderState = #{orderState}
-		,</if>
-		, menuList = #{}
+		, totalPrice = #{totalPrice}
+		, <if test="orderState != null and orderState != ''">
+            orderState = #{orderState},
+          </if>
+		  menuList = #{menuList}
 	where 
 		storeCode = #{storeCode}
 		and memberid = #{memberid}
