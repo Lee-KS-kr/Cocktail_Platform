@@ -98,17 +98,16 @@
 	<update id="updateMember" parameterType="Member">
 		update
 			member
-		set 
+		set
 			phone = #{phone}
-			, memberPw = #{memberPw}
-		where 
+		where
 			memberId = #{memberId}
 	</update>
 	
 	<!-- 취향 정보 수정 -->
 	<update id="updateTaste" parameterType="Taste">
-		update 
-			taste 
+		update
+			taste
 		set
 			hasAllergy = #{hasAllergy}
 			, allergyType = #{allergyType}
