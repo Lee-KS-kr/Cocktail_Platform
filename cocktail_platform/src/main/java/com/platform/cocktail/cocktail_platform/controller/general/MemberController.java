@@ -1,6 +1,8 @@
 package com.platform.cocktail.cocktail_platform.controller.general;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +42,7 @@ public class MemberController {
 		mService.insertMember(m);
 		
 		if(m.getMemberType() == MemberType.ROLE_PERSONAL)
-			return "redirect:/personal/member/taste";
+			return "redirect:/personal/member/taste?memberId=" + m.getMemberId();
 		else
 			return "redirect:/";
 	}
@@ -68,4 +70,9 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("quitMember")
+	public String quit(@AuthenticationPrincipal UserDetails user) {
+		mService.unableMember(user.getUsername());
+		return "redirect:/";
+	}
 }

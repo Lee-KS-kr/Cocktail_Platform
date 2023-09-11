@@ -32,7 +32,7 @@ public class StoreServiceImple implements StoreService {
 	@Autowired
 	private StoreDAO dao;
 	@Autowired
-	private HashMap<String, Integer> map;
+	CodeConfig cc;
 
 	@Override
 	public StoreInfo getStoreById(String memberId) {
@@ -125,6 +125,7 @@ public class StoreServiceImple implements StoreService {
 	public int insertReview(StoreReview review, int[] menuNum, String[] weather, String[] ageGroup, String[] companion,
 			String[] event) {
 		ArrayList<MenuPreference> list = new ArrayList<>();
+		HashMap<String, Integer> map = cc.codeMap();
 		
 		for (int i = 0; i < menuNum.length; i++) {
 			MenuPreference mp 
@@ -167,6 +168,16 @@ public class StoreServiceImple implements StoreService {
 		Schedule s = dao.getScheduleByCode(storeCode);
 		return s;
 	}
-	
+
+	@Override
+	public ArrayList<Menu> getMenulistByNum(String[] menus) {
+		ArrayList<Menu> list = new ArrayList<>();
+		for(String str : menus) {
+			String[] menu = str.split("_");
+			list.add(getMenuInfoByNum(Integer.parseInt(menu[0])));
+		}
+		
+		return list;
+	}
 	
 }

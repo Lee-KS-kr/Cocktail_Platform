@@ -37,6 +37,7 @@ public class WebSecurityConfig {
         		"/member/checkEmail",
         		"/member/emailConfirm",
         		"/personal/home",
+        		"/personal/member/taste",
         		"/oauth2/authorization/google",
 				"/login/oauth2/code/google",
                 "/image/**",

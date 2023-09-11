@@ -44,5 +44,6 @@ public interface StoreService {
 
 	Schedule getScheduleByCode(int storeCode);
 
+	ArrayList<Menu> getMenulistByNum(String[] menus);
 
 }

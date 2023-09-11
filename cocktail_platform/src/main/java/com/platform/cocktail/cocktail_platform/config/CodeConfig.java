@@ -1,18 +1,11 @@
 package com.platform.cocktail.cocktail_platform.config;
 
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-import com.platform.cocktail.cocktail_platform.domain.CodeInfo;
-
-@Configuration
+@Component
 public class CodeConfig {
-	@Bean
 	public HashMap<String, Integer> codeMap(){
 		return map;
 	}

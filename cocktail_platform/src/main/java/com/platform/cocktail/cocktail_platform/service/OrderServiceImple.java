@@ -93,7 +93,7 @@ public class OrderServiceImple implements OrderService {
 		ArrayList<Menu> list = dao.getMenulistByOrdercode(orderCode);
 		return list;
 	}
-	
+
 	public ArrayList<OrderTemp> makeTempOrderList(Order o, int[] menuNum, String[] menuName, int[] price, int[] orderCount){
 		StringBuilder menuList = new StringBuilder();
 		int totalPrice = 0;
@@ -119,4 +119,5 @@ public class OrderServiceImple implements OrderService {
 		
 		return list;
 	}
+
 }
