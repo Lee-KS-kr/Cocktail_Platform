@@ -212,12 +212,10 @@ function birthChk() {
 	     		birthValid = false;
 			}else{
 				$('#errMsg8').html('');
-				console.log('생일 지나갑니도^^');
 				birthValid = true;
 			}//end of if (day>29 || (day==29 && !isleap))
 	    }else{
 	    	$('#errMsg8').html('');
-	    	console.log('생일 지나갑니도^^22');
 	    	birthValid = true;
 		}//end of if
 		
@@ -235,7 +233,6 @@ function birthChk() {
           memTypeValid = false;
       } else {
           $('#errMsg9').html('');
-          console.log('멤버타입 지나갑니도^^');
           memTypeValid = true;
       }
   }
@@ -247,14 +244,11 @@ function formSubmit() {
 
 	if(!idValid || !pwValid || !nameValid || !emailValid || !emailCodeValid || !phoneValid || !birthValid || !memTypeValid) {
 		isValid = false; // 하나라도 유효성 검사에 실패하면 isValid를 false로 설정
-		console.log('유효성 실패입니도^^');
 	}
 	else isValid = true;
 	
 	if(isValid) {
-		console.log('폼 제출합니도^^');
 	} else {
-		console.log('뭐가 문제야 젠장^^');
 		return false;
 	}
 }
