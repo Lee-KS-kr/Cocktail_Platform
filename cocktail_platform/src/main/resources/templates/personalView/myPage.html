@@ -18,6 +18,18 @@
     <!-- thymeleaf
     -->
 
+    <script>
+        // 반복문을 사용하여 리스트 아이템을 생성하고 HTML에 추가
+        const listContainer = document.getElementById("list");
+        const items = ["항목 1", "항목 2", "항목 3", "항목 4"];
+
+        for (let i = 0; i < items.length; i++) {
+            const listItem = document.createElement("li");
+            listItem.textContent = items[i];
+            listContainer.appendChild(listItem);
+        }
+
+    </script>
 </head>
 <body>
    
@@ -90,15 +102,15 @@
                                     <table th:each="member : ${member}">
                                         <tr>
                                             <th>맛</th>
-                                            <td th:text="${taste.taste}"></td>
+                                            <td th:each="item : ${items}" th:text="${taste.taste}" id="list"></td>
                                         </tr>
                                         <tr>
                                             <th>향</th>
-                                            <td th:text="${taste.flavor}"></td>
+                                            <td th:text="${taste.flavor}" id="list"></td>
                                         </tr>
                                         <tr>
                                             <th>알러지</th>
-                                            <td th:text="${taste.allergyType}"></td>
+                                            <td th:text="${taste.allergyType}" id="list"></td>
                                         </tr>
                                     </table>
                                     </form>	
