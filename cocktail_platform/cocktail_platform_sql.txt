@@ -23,17 +23,18 @@ values ('aaa', 'aaa', 'test', '010-111-1111', 'F', '19941030', 'aaa@gmail.com');
 -- 가게 정보 storeInfo 테이블
 create table storeInfo (
    		storeCode		number             	primary key,    												--가게 코드
-    	memberId		  varchar2(20)      references member(memberId) on delete set null,					--기업회원ID
+    	memberId		varchar2(20)        references member(memberId) on delete set null,					--기업회원ID
     	storeName		varchar2(100)	    not null,														--상호명
-    	address1		  varchar2(100)	    not null,														--가게주소1
+    	address1		varchar2(100)	    not null,														--가게주소1
     	address2	    varchar2(100)	    not null,														--가게주소2
-    	postCode		  number(10)	    not null,														--우편번호
+    	postCode		number(10)	        not null,														--우편번호
+    	brn				number		        not null,														--사업자번호
     	phone		    varchar2(20)	    not null,														--가게 전화번호
-    	runningTime	varchar2(100)	        not null,														--영업 시간
+    	runningTime	    varchar2(100)	    not null,														--영업 시간
     	dayOff		    varchar2(100)	    not null,       										        --휴무일
-    	info		      varchar2(500)	    not null,        										        --가게 소개
-        originFilename varchar2(300),                                                                       --파일원본명
-        svaedFilename  varchar2(100)                                                                        --파일변화본명
+    	info		    varchar2(500)	    not null,        										        --가게 소개
+        originFilename  varchar2(300),                                                                      --파일원본명
+        svaedFilename   varchar2(100)                                                                       --파일변화본명
 );
 drop table storeInfo;
 create sequence storeInfo_seq;

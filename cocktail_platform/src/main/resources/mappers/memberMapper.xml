@@ -100,7 +100,7 @@
 			member
 		set 
 			phone = #{phone}
-			memberPw = #{memberPw}
+			, memberPw = #{memberPw}
 		where 
 			memberId = #{memberId}
 	</update>
