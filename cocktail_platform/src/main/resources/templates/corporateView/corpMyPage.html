@@ -34,7 +34,6 @@ function getList(list){
 		str += '<tr><td>이메일</td><td>' + item.email + '</td></tr>';
 		str += '<tr><td>이름</td><td>' + item.memberName + '</td></tr>';
 		str += '<tr><td>휴대폰 번호</td><td>' + item.phone + '</td></tr>';
-		str += '<tr><td>사업자 번호</td><td>' + item.brn + '</td></tr>';
 		str += '<tr><td><input type="button" id="memChgBtn" value="수정" onclick="memChgToggle()"></td></tr>';
 		str += `<tr><td><input type="button" id="pwChgBtn" value="비밀번호 변경" onclick="location.href='corporate/member/resetPw.html'"></td></tr>`;
 	});
@@ -52,21 +51,6 @@ function memChgToggle(){
 let isValid = false;
 let isValid2 = false;
 
-/** 이름 유효성 검사*/
-function nameChk(){
-	let name = $('#memberName').val();
-	let nameLength = name.length;
-	
-	if(nameLength < 2 ||  nameLength > 9){
-		$('#errMsg1').html('이름은 2-10자로 입력해주세요.');
-		isValid = false;
-	}
-	else{
-		$('#errMsg1').html('');
-		isValid = true;
-	}
-}
-
 /**휴대폰번호 유효성 검사*/
 function phoneChk(){
 	let phone = $('#phone').val();
@@ -80,36 +64,21 @@ function phoneChk(){
     }
     
     if(!regPhone.test(phone)){
-        $('#errMsg2').html('전화번호 형식이 올바르지 않습니다.');
-        isValid = false;
+        $('#errMsg1').html('전화번호 형식이 올바르지 않습니다.');
+        return false;
     }
     else{
-        $('#errMsg2').html('');
-        isValid = true;
+        $('#errMsg1').html('');
+        return true;
     }
 }
-
-/**사업자번호 유효성 검사*/
-function brnChk(){
-	let brn = $('#brn').val();;
-	let regBrn = /^[0-9]{3}-[0-9]{2}-[0-9]{5}$/;
-	
-	if(!regBrn.test(brn)){
-        $('#errMsg3').html('사업자번호 형식이 올바르지 않습니다.');
-        isValid = false;
-    }
-    else{
-        $('#errMsg3').html('');
-        isValid = true;
-    }
-}
-
 
 /** 회원 정보 수정 */
 function memberChg(){
-	if(!nameChk() || !phoneChk() || !brnChk()){
+	if(!phoneChk()){
 		isValid = false;
 	}
+	else isValid = true;
 	
 	if(isValid){
 		$.ajax({
@@ -150,6 +119,7 @@ function getStoreList(list){
 	$(list).each(function(i,item){
 		str += '<tr><td>상호명</td><td>'+ item.storeName + '</td></tr>';
 		str += '<tr><td>대표 사진</td><td>'+ item.savedFilename + '</td></tr>';
+		str += '<tr><td>사업자 번호</td><td>' + item.brn + '</td></tr>';
 		str += '<tr><td>가게 주소</td><td>' + address + '</td></tr>';
 		str += '<tr><td>가게 전화번호</td><td>' + item.phone + '</td></tr>';
 		str += '<tr><td>영업 시간</td><td>' + item.runningTime + '</td></tr>';
@@ -167,20 +137,34 @@ function storeChgToggle(){
 	$('#storeInfoForm').show();
 }
 
-
 /**가게 이름 유효성 검사*/
 function storeNameChk(){
 	let storeName = $('#storeName').val();
 	let storeNameLength =storeName.length;
 	
 	if(storeNameLength < 2 ||  storeNameLength > 9){
-		$('#errMsg4').html('이름은 2-10자로 입력해주세요.');
+		$('#errMsg2').html('이름은 2-10자로 입력해주세요.');
 		return false;
 	}
 	else{
-		$('#errMsg4').html('');
+		$('#errMsg2').html('');
 		return true;
 	}
+}
+
+/**사업자번호 유효성 검사*/
+function brnChk(){
+	let brn = $('#brn').val();;
+	let regBrn = /^[0-9]{3}-[0-9]{2}-[0-9]{5}$/;
+	
+	if(!regBrn.test(brn)){
+        $('#errMsg3').html('사업자번호 형식이 올바르지 않습니다.');
+        return false;
+    }
+    else{
+        $('#errMsg3').html('');
+        return true;
+    }
 }
 
 /**가게 전화번호 유효성 검사*/
@@ -189,11 +173,11 @@ function storePhoneChk(){
     let regPhone = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
     
     if(!regBrn.test(brn)){
-        $('#errMsg5').html('전화번호 형식이 올바르지 않습니다.');
+        $('#errMsg4').html('전화번호 형식이 올바르지 않습니다.');
         return false;
     }
     else{
-        $('#errMsg5').html('');
+        $('#errMsg4').html('');
         return true;
     }
 }
@@ -204,11 +188,11 @@ function runningTimeChk(){
 	let runningTimeLength = runningTime.length;
     
     if(runningTimeLength < 2){
-        $('#errMsg6').html('영업 시간을 입력해주세요.');
+        $('#errMsg5').html('영업 시간을 입력해주세요.');
         return false;
     }
     else{
-        $('#errMsg6').html('');
+        $('#errMsg5').html('');
         return true;
     }
 }
@@ -219,11 +203,11 @@ function dayOffChk(){
 	let dayOffLength = dayOff.length;
     
     if(dayOffLength < 2){
-        $('#errMsg7').html('휴일을 입력해주세요.');
+        $('#errMsg6').html('휴일을 입력해주세요.');
         return false;
     }
     else{
-        $('#errMsg7').html('');
+        $('#errMsg6').html('');
         return true;
     }
 }
@@ -234,18 +218,18 @@ function infoChk(){
 	let infoLength = info.length;
     
     if(infoLength < 2){
-        $('#errMsg8').html('매장 소개를 입력해주세요.');
+        $('#errMsg7').html('매장 소개를 입력해주세요.');
         return false;
     }
     else{
-        $('#errMsg8').html('');
+        $('#errMsg7').html('');
         return true;
     }
 }
 
 /**가게 정보 변경하기*/
 function storeChg(){
-	if(!storeNameChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
+	if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
 		isValid2 = false;
 	}
 	
@@ -351,20 +335,16 @@ function storeChg(){
 			
 			<!-- 회원 정보 수정 폼 -->
 			<div id="memInfoFormDiv" style="display:none;">
-				<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
+				<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post" onsubmit="memberChg()">
 					아이디
 					<input type="text" name="memberId" th:value="${member.memberId}" readonly="readonly"><br>
 					이메일
 					<input type="text" name="email" th:value="${member.email}" readonly="readonly"><br>
 					이름
-					<input type="text" id="memberName" name="memberName" th:value="${member.memberName}" onkeyup="nameChk()"><br>
-					<p id="errMsg1"></p>
+					<input type="text" name="memberName" th:value="${member.memberName}" readonly="readonly"><br>
 					휴대폰 번호
 					<input type="text" id="phone" name="phone" th:value="${member.phone}" onkeyup="phoneChk()"><br>
-					<p id="errMsg2"></p>
-					사업자 번호
-					<input type="text" id="brn" name="brn" th:value="${member.brn}" onkeyup="brnChk()"><br>
-					<p id="errMsg3"></p>
+					<p id="errMsg1"></p>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
 					<input type="button" id="memSubBtn" value="저장">
@@ -379,24 +359,27 @@ function storeChg(){
 			<!-- 회원 정보 수정 폼 -->
 			<div id="storeInfoFormDiv" style="display:none;">
 				<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post"
-				enctype="multipart/form-data">
+				enctype="multipart/form-data" onsubmit="storeChg()">
 					가게명
 					<input type="text" id="storeName" name="storeName" th:value="${store.storeName}" onkeyup="storeNameChk()">
-					<p id="errMsg4"></p>
+					<p id="errMsg2"></p>
 					대표 사진<br>
 		    		<input type="file" name="추가하기"><br>
+		    		사업자 번호
+					<input type="text" id="brn" name="brn" th:value="${store.brn}" onkeyup="brnChk()"><br>
+					<p id="errMsg3"></p>
 					전화번호
 					<input type="text" id="storePhone" name="phone" th:value="${store.phone}" onkeyup="storePhoneChk()">
-					<p id="errMsg5"></p>
+					<p id="errMsg4"></p>
 					영업 시간
 					<input type="text" id="runningTime" name="runningTime" th:value="${store.runningTime}" onkeyup="runningTimeChk()">
-					<p id="errMsg6"></p>
+					<p id="errMsg5"></p>
 					휴일
 					<input type="text" id="dayOff" name="dayOff" th:value="${store.dayOff}" onkeyup="dayOffChk()">
-					<p id="errMsg7"></p>
+					<p id="errMsg6"></p>
 					매장 소개
 					<input type="text" id="info" name="info" th:value="${store.info}" onkeyup="infoChk()">
-					<p id="errMsg8"></p>
+					<p id="errMsg7"></p>
 					주소
 					<input type="text" name="postCode" id="postCode" placeholder="우편번호">
 					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
