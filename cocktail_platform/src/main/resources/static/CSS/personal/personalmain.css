@@ -45,7 +45,14 @@ table {
 border-collapse: collapse;
 border-spacing: 0;
 }
+/*색상 코드
+배경:                   #fff
+input-border-solid:     #e7e7e7
+강조색:                 #ff5805
+폰트 컬러 :             #232323
+조보색:                 #45B783
 
+*/
 /*=========================================================*/
 .navi{
 	width: 100% ;
@@ -75,96 +82,47 @@ border-spacing: 0;
 		margin: auto;
 	}
 	
+.main{padding: 20px;}
 
-body{
-	list-style-type: none;
-	background-color: #9d6565;
-} 
+/*==========================================================*/
 
-.navbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	list-style-type: none;
-	background-color: orange;
-	padding: 10px;
+img[alt=logo]{width: 120px;	justify-self: center; margin: auto;}
+img[alt=search]{width: 30px; justify-self: center; margin: auto;}
+
+
+/* 제품 상자 스타일 */
+.box {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px auto; /* 상하 여백을 10px으로 주고 좌우 여백은 자동으로 가운데 정렬 */
+    text-align: center;
+    width: calc(33.33% - 20px); /* 3개 요소를 한 줄에 정렬하도록 너비 설정 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
+    float: none; /* float 제거 */
+    display: inline-block; /* 인라인 블록 요소로 변경하여 가운데 정렬 */
 }
 
-.navbar_logo{
-	display: flex;
-	align-items: center;
+.boxImg {
+    max-width: 100%;
+    height: auto;
 }
 
-.navbar_logo img{
-	width: 50px;
-	padding-right: 5px;
+.pd_title {
+    color: #45B783;
+    font-weight: bold;
+    text-decoration: none;
 }
 
-.navbar_logo span{
-	font-size: 25px;
+.box p {
+    color: #555;
+    margin-top: 10px;
 }
 
-.search_logo img{
-	width: 25px;
-	padding-left: 5px;
-}
-
-.navbar_right{
-	display: flex;
-	align-items: center;
-	list-style-type: none;
-	padding: 10px;
-}
-
-a{
-	text-decoration: none;
-}
-
-a:link { color : black; }
-
-a:visited { color : black; }
-
-main a:hover {
-  color : green;
-}
-
-.best_prd{
-	padding: 20px;
-	align-items: center;
-	justify-content: center;
-}
-
-.main_title{
-	font-weight: bold;
-	font-size: 25px;
-	padding: 10px;
-}
-
-.prd_ctg{
-	font-size: 20px;
-	padding: 10px;
-}
-
-.marketlist{
-	text-align: right;
-	padding: 40px 10px;
-}
-
-.row{
-	display: flex;
-	align-items: center;
-	padding: 10px;
-}
-
-.box{
-	align-items: center;
-	padding: 10px;
-}
-
-.pd_title{
-	font-size: 20px;
-}
-
-.boxImg{
-	width: 250px;
+.prd_ctg span {
+    background-color: #45B783;
+    color: #ffffff;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 20px;
 }
