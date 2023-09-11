@@ -243,7 +243,7 @@ function birthChk() {
 //모든 조건 만족 시 폼 제출
 function formSubmit() {
 	let form = document.getElementById("joinForm");
-	isValid = true; // isValid 초기화
+	let isValid = true; // isValid 초기화
 
 	if(!idValid || !pwValid || !nameValid || !emailValid || !emailCodeValid || !phoneValid || !birthValid || !memTypeValid) {
 		isValid = false; // 하나라도 유효성 검사에 실패하면 isValid를 false로 설정
