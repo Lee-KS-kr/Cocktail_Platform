@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<link rel="stylesheet" href="../../static/CSS/login.css">
 <link rel="stylesheet" th:href="@{/CSS/personal/login.css}">
 <link rel="stylesheet" th:href="@{/CSS/reset.css}">
 </head>
@@ -12,6 +13,7 @@
 	<main>
       <!-- 내비게이션 -->
       <div id="navi" class="navi">
+        <!--<img src="../../static/image/logo_title.png" alt="logo" class="logo">-->
         <img th:src="@{/image/logo_title.png}" alt="logo" class="logo">
       </div>
       <div class="sec1">
@@ -30,7 +32,7 @@
               <p>SNS 로그인</p>
             </div>
             <div>
-              <a href="/FitTail/oauth2/authorization/google">
+              <a th:href="@{/FitTail/oauth2/authorization/google">}
                 <img th:src="@{/image/sns_googleIcon.png}" alt="sns_icon1">
               </a>
               <img th:src="@{/image/sns_naverIcon.svg}" alt="sns_icon2">
@@ -46,6 +48,9 @@
         <p><a th:href="@{/member/join}">| 회원가입</a></p>
       </div>
       <!-- sec2 끝 -->
-    </main>
+      <!--<img src="../../static/image/mainimg/water1.png" alt="water1">-->
+      <img th:src="@{/image/mainimg/water1.png}" alt="water1">
+
+  </main>
 </body>
 </html>
