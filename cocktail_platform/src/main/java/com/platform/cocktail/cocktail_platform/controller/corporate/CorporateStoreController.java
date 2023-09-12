@@ -41,7 +41,7 @@ public class CorporateStoreController {
 	}
 	
 	@GetMapping("salesInput")
-	public String salesInput(){//@AuthenticationPrincipal UserDetails user, int storeCode) {
+	public String salesInput(@AuthenticationPrincipal UserDetails user) {
 		return "salesinputTest";
 	}
 	
