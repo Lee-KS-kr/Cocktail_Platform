@@ -19,4 +19,6 @@ public class Cocktails {
 	int cocktailTaste;
 	int cocktailFlavor;
 	int cocktailColor;
+	String originFilename;
+	String savedFilename;
 }

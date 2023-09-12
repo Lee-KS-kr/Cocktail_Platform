@@ -16,4 +16,6 @@ public class StoreInfo {
 	String runningTime;
 	String dayOff;
 	String info;
+	String originFilename;
+	String savedFilename;
 }

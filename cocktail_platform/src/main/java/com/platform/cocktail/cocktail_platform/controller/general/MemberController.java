@@ -44,7 +44,7 @@ public class MemberController {
 		if(m.getMemberType() == MemberType.ROLE_PERSONAL)
 			return "redirect:/personal/member/taste?memberId=" + m.getMemberId();
 		else
-			return "redirect:/";
+			return "redirect:/corporate/member/insertStoreinfo?memberId=" + m.getMemberId();
 	}
 	
 	@GetMapping("findId")	
