@@ -34,7 +34,7 @@ create table storeInfo (
     	dayOff		    varchar2(100)	    not null,       										        --휴무일
     	info		    varchar2(500)	    not null,        										        --가게 소개
         originFilename  varchar2(300),                                                                      --파일원본명
-        svaedFilename   varchar2(100)                                                                       --파일변화본명
+        savedFilename   varchar2(100)                                                                       --파일변화본명
 );
 drop table storeInfo;
 create sequence storeInfo_seq;
@@ -45,7 +45,7 @@ create sequence storeInfo_seq;
         storeCode       number              references storeInfo(storeCode) on delete set null,             --가게 코드
         menuName        varchar2(100)       not null,                                                       --메뉴 이름
         price           number(7)           default 0 check (price >= 0),                                   --가격
-        category        varchar2(10)        not null check (category in ('카테고리1', '카테고리2', '카테고리3')),    --카테고리
+        category        varchar2(10)        not null check (category in ('food', 'beverage')),    		    --카테고리
         menuInfo        varchar2(500)       not null,                                                       --설명
         originFilename  varchar2(300),                                                                      --메뉴 사진 원본명
         savedFilename   varchar2(100),                                                                      --메뉴 사진 변화본명
@@ -61,7 +61,7 @@ create table orders (
         memberId        varchar2(20)      references member(memberId) on delete set null,                   --개인회원ID
         totalPrice      number            default 0 check (totalPrice >= 0),                                --가격 총합
         menuList        varchar2(4000),                                                                     --메뉴 리스트
-        orderState      varchar2(6)       default 'done' check (orderState in ('done', 'cancel'))           --주문 상태
+        orderState      varchar2(6)       default 'done' check (orderState in ('apply', 'received', 'refused', 'finished')) --주문 상태
 );
 drop table orders;
 create sequence order_seq;
@@ -93,14 +93,14 @@ create sequence schedule_seq;
 
 -- 예약 상태 reservation 테이블
 create table reservation (
-        reserveCode        varchar2(4000)   primary key,                              --예약 코드(규칙:날짜+가게코드+시퀀스)
+        reserveCode        varchar2(4000)   primary key,                              		--예약 코드(규칙:날짜+가게코드+시퀀스)
         storeCode          number           references storeInfo(storeCode) on delete set null,             --가게 코드
         memberId           varchar2(20)     references member(memberId) on delete set null,                 --개인 회원ID
         reservationName    varchar2(20),
         reservationPhone   varchar2(20),    
-        reserveDate        date             default sysdate,                          --예약 날짜 (현재 시간 이후 예약 가능)
+        reserveDate        date             default sysdate,                          		--예약 날짜 (현재 시간 이후 예약 가능)
         reserveHead        number(2)        check (reserveHead > 0),                                        --예약 인원 
-        reserveState       varchar2(6)      check (reserveState in ('정상', '취소', '완료')),                   --예약 상태
+        reserveState       varchar2(6)      check (reserveState in ('apply', 'received', 'refused', 'finished')), --예약 상태
         request            varchar2(4000)   not null                                                        --요구사항
 );
 drop table reservation;
