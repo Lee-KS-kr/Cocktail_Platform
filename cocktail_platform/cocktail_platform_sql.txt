@@ -42,7 +42,7 @@ create sequence storeInfo_seq;
 -- 메뉴  menu 테이블
  create table menu (
         menuNum         number              primary key,                                                    --메뉴 번호
-        storeNum        number              references storeInfo(storeCode) on delete set null,             --가게 코드
+        storeCode       number              references storeInfo(storeCode) on delete set null,             --가게 코드
         menuName        varchar2(100)       not null,                                                       --메뉴 이름
         price           number(7)           default 0 check (price >= 0),                                   --가격
         category        varchar2(10)        not null check (category in ('카테고리1', '카테고리2', '카테고리3')),    --카테고리
