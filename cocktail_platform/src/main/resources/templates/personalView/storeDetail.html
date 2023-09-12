@@ -166,7 +166,10 @@ function count(type)  {
 		reserveHead = parseInt(reserveHead) + 1;  
   }else if(type === 'minus' && reserveHead > 0) {
 	  reserveHead = parseInt(reserveHead) - 1;
-  }else return false;
+  }else {
+		alert('인원수를 확인해주세요.');
+		return false;
+	}
   
   //결과 출력
   resultElement.innerText = reserveHead;
