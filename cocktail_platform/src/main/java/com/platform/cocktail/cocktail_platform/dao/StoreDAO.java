@@ -55,4 +55,6 @@ public interface StoreDAO {
 	Schedule getScheduleByCode(int storeCode);
 
 	ArrayList<Reservation> getReservelistById(String memberId);
+
+	int insertStoreinfo(StoreInfo info);
 }

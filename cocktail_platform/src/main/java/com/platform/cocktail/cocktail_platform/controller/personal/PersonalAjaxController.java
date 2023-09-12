@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.platform.cocktail.cocktail_platform.domain.Cocktails;
+import com.platform.cocktail.cocktail_platform.domain.Ingredients;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
+import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.domain.StoreReview;
+import com.platform.cocktail.cocktail_platform.service.CocktailService;
 import com.platform.cocktail.cocktail_platform.service.StoreService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +26,9 @@ public class PersonalAjaxController {
 	
 	@Autowired
 	private StoreService sService;
+	
+	@Autowired
+	private CocktailService cService;
 	
 	@GetMapping("member/checkReviewed")
 	public boolean checkReviewed(@AuthenticationPrincipal UserDetails user, int orderCode) {
@@ -40,4 +47,9 @@ public class PersonalAjaxController {
 		return list;
 	}
 	
+	@GetMapping("search")
+	public ArrayList<Object> search(String category, String searchWord){
+		ArrayList<Object> list = cService.search(category, searchWord);
+		return list;
+	}
 }
