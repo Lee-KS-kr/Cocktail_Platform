@@ -90,6 +90,25 @@ document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1)
    	return value;
 }
 
+/**인원수 선택 증감*/
+function count(type)  {
+  //결과를 표시할 element
+  let resultElement = document.getElementById('result');
+  
+  //현재 화면에 표시된 값
+  let reserveHead = resultElement.innerText;
+  
+  //더하기/빼기
+  if(type === 'plus') {
+	  reserveHead = parseInt(reserveHead) + 1;
+  }else if(type === 'minus')  {
+	  reserveHead = parseInt(reserveHead) - 1;
+  }
+  
+  //결과 출력
+  resultElement.innerText = reserveHead;
+}
+
 </script>
 <body>
 	<div id="tab_reserve">
@@ -124,9 +143,11 @@ document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1)
 					<div id="head_count">
 						<p>인원 선택</p>
 						<div id="head_select">
-							<p>1~n명만 선택 가능합니다.</p>
+							<p>1~5명만 선택 가능합니다.</p>
 							<p>방문하시는 인원을 선택해주세요.</p>
-							<span></span>
+							<input type="button" onclick="count('minus')" value="-"></input>
+							<span id="result">0</span>
+							<input type="button" onclick="count('plus')" value="+"></input>
 						</div>
 					</div>
 					
