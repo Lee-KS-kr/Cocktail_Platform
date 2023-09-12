@@ -192,23 +192,54 @@
 	</insert>
 	
 	<insert id="insertMenuPreference" parameterType="MenuPreference">
-	
+		insert into
+			menuPreference
+				(menuPreferenceNum
+				, memberId
+				, menuNum
+				, weather
+				, ageGroup
+				, companion
+				, event)
+		values
+				(menuPreference_seq.nextval
+				, #{memberId}
+				, #{menuNum}
+				, #{weather}
+				, #{ageGroup}
+				, #{companion}
+				, #{event})
 	</insert>
 	
 	<select id="getCapacityByCode" parameterType="int" resultType="int">
-	
+		select
+			capacity
+		from
+			schedule
+		where
+			storeCode = #{storeCode}
 	</select>
 	
-	<select id="getReservedCountByDatetime" parameterType="String" resultType="int">
+	<!-- <select id="getReservedCountByDatetime" parameterType="String" resultType="int">
 	
-	</select>
+	</select> -->
 	
 	<select id="getScheduleByCode" parameterType="int" resultType="Schedule">
-	
+		select
+			*
+		from
+			schedule
+		where
+			storeCode = #{storeCode}
 	</select>
 	
 	<select id="getReservelistById" parameterType="String" resultType="Reservation">
-	
+		select
+			*
+		from
+			schedule
+		where
+			memberId = #{memberId}
 	</select>
 	
 </mapper>
