@@ -143,7 +143,7 @@ display:flex;
   line-height: 50px;
   text-align: center;
   font-family: 'S-CoreDream-3Light';
-  margin-top: 45px;
+  margin-top: 110px;
   margin-left: 220PX;
   position: absolute;
   z-index: 5;
@@ -160,7 +160,7 @@ display:flex;
   line-height: 50px;
   text-align: center;
   font-family: 'S-CoreDream-3Light';
-  margin-top: 45px;
+  margin-top: 110px;
   margin-left: 220PX;
   transition: 0.2s;
 }
