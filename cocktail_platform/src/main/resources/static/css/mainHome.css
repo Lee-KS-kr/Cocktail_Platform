@@ -108,7 +108,7 @@ padding: 20px 20px 0px 20px;
 z-index: 5;
 animation: none;
 animation-name: none;
-display:f;
+display:flex;
 } 
 
 /*.box1, .box2 {
