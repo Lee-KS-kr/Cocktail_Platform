@@ -162,11 +162,11 @@ function count(type)  {
   let reserveHead = resultElement.innerText;
   
   //더하기/빼기
-  if(type === 'plus') {
-	  reserveHead = parseInt(reserveHead) + 1;
-  }else if(type === 'minus')  {
+  if(type === 'plus' && reserveHead < 5) {
+		reserveHead = parseInt(reserveHead) + 1;  
+  }else if(type === 'minus' && reserveHead > 0) {
 	  reserveHead = parseInt(reserveHead) - 1;
-  }
+  }else return false;
   
   //결과 출력
   resultElement.innerText = reserveHead;

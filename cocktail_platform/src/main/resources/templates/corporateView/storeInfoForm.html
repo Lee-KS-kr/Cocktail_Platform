@@ -131,7 +131,7 @@ function storeSub(){
 			
 			<!-- 매장 정보 수정 폼 -->
 			<div id="storeInfoFormDiv" style="display:none;">
-				<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post"
+				<form id="storeInfoForm" th:action="@{/corporate/member/insertStoreinfo}" method="post"
 				enctype="multipart/form-data" onsubmit="storeSub()">
 					가게명
 					<input type="text" id="storeName" name="storeName" th:value="${store.storeName}" onkeyup="storeNameChk()">
