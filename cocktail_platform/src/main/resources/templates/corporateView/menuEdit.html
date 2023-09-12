@@ -121,6 +121,7 @@ function editSub(){
     	</select><br>
     	이미지<br>
     	<input type="file" name="savedFilename"><br>
+    	<input type="hidden" name="storeCode" th:value="${menu.storeCode}">
     	
     	<input type="reset" class="bottom" value="다시 쓰기">
     	<input type="button" value="수정" onclick="editSub()">

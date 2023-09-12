@@ -32,10 +32,10 @@ function getList(list){
 		str += '<tr>';
 		str += '<td>' + item.menuNum + '</td>';
 		str += '<td>' + item.category + '</td>';
-		str += '<td><a href="/corporate/store/editMenu(menuNum=' + item.menuNum + ')|">' + item.menuName + '</td>';
+		str += '<td><a href="/corporate/store/editMenu(menuNum=' + item.menuNum + ',storeCode=' + item.storeCode + ')|">' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
 		str += '<td>' + item.canOrder + '</td>';
-		str += '<td><a href="|javascript:deleteMenu(menuNum=' + item.menuNum + ')|">x</a></td>';
+		str += '<td><a href="|javascript:deleteMenu(menuNum=' + item.menuNum + ',storeCode=' + item.storeCode + ')|">x</a></td>';
 		str += '</tr>';
 	});
 	str += '</table>';
@@ -43,10 +43,10 @@ function getList(list){
 }
 
 //메뉴 삭제
-function deleteMenu(menuNum){
+function deleteMenu(menuNum, storeCode){
 	let result = confirm("메뉴를 삭제하시겠습니까?");
 	if(result == true){
-		location.href="deleteMenu?menuNum="+menuNum;
+		location.href="deleteMenu?menuNum="+menuNum + '&storeCode=' + storeCode;
 	}
 }
 
@@ -75,12 +75,13 @@ function addSub(){
 function menuSearch() {
 	var searchWord = $("#searchWord").val();
 	var category = $("select[name='${category}']").val();
+	var storeCode = $("#storeCode").val();
 	
 	$.ajax({
 		url: 'menuSearch',
 		type:'post',
 		dataType: 'json',
-		data: {searchWord: searchWord, category: category},
+		data: {searchWord: searchWord, category: category, storeCode: storeCode},
 		success: function(list) {
 			getList(list);
 		},
@@ -211,6 +212,7 @@ function pagingFormSubmit(currentPage){
 		    	<input type="text" name="price"><br>
 		    	이미지<br>
 		    	<input type="file" name="savedFilename"><br>
+		    	<input type="hidden" name="storeCode" th:value="${menu.storeCode}">
 		    	
 		    	<input type="reset" class="bottom" value="다시 쓰기">
 		    	<input type="button" value="저장" onclick="addSub()">
