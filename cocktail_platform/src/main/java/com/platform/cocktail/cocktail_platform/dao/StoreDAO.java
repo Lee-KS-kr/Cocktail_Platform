@@ -50,7 +50,7 @@ public interface StoreDAO {
 
 	int getCapacityByCode(int storeCode);
 
-	int getReservedCountByDatetime(String time);
+	int getReservedCountByDatetime(HashMap<String, Object> map);
 
 	Schedule getScheduleByCode(int storeCode);
 
