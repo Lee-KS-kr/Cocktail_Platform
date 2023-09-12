@@ -31,7 +31,6 @@ function getRecMenu(){
 	$.ajax({
 		url: "recommendList",
 		type: "post",
-		data: {storeCode : storeCode},
 		dataType: "json",
 		success: function(list){
 			recMenuList(list);
