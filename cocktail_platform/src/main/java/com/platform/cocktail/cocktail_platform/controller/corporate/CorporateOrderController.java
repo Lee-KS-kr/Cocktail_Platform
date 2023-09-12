@@ -3,6 +3,7 @@ package com.platform.cocktail.cocktail_platform.controller.corporate;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
@@ -48,6 +50,7 @@ public class CorporateOrderController {
 		return "corporateView/order";
 	}
 	
+	@ResponseBody
 	@GetMapping("menu")
 	public ArrayList<Menu> menu(int storeCode, Model m) {
 		ArrayList<Menu> menuList = sService.getMenulistByCode(storeCode);
@@ -79,7 +82,7 @@ public class CorporateOrderController {
 			m.addAttribute("carts", carts);
 		}
 		
-		return "";
+		return "corporateView/";
 	}
 	
 	@GetMapping("addToCart")
@@ -125,21 +128,41 @@ public class CorporateOrderController {
 			m.addAttribute("err", "카트에 담긴 음식이 없습니다.");
 		} else {
 			String[] menus = cart.split(",");
+			int[] menuNum = new int[menus.length];
+			int[] price = new int[menus.length]; 
+			int[] orderCount = new int[menus.length]; 
+			String[] menuName = new String[menus.length];
+
 			ArrayList<Menu> menuList = sService.getMenulistByNum(menus);
+			for(int i = 0; i < menus.length; i++) {
+				String[] str = menus[i].split("_");
+				int num = Integer.parseInt(str[0]);
+				menuNum[i] = num;
+				orderCount[i] = Integer.parseInt(str[1]);
+				
+				menuName[i] = menuList.stream().filter(x -> x.getMenuNum() == num).collect(Collectors.toList()).get(0).getMenuName();
+				price[i] = menuList.stream().filter(x -> x.getMenuNum() == num).collect(Collectors.toList()).get(0).getPrice();
+			}
 			
+			oService.inputOrder(storeCode, memberId, orderCode, menuNum, menuName, price, orderCount);
+			
+			cart = "0";
+			Cookie cookie1 = new Cookie("cart", cart);
+			cookie1.setMaxAge(0);
+			res.addCookie(cookie1);
 		}
 		
-		return "";
+		return "corporateView/";
 	}
 	
 	@GetMapping("callStaff")
 	public String callStaff(String orderCode) {
-		return "";
+		return "corporateView/";
 	}
 	
 	@PostMapping("payment")
 	public String payment(int storeCode, String memberId, String orderCode) {
 		oService.finishOrderByCode(orderCode);
-		return "";
+		return "corporateView/";
 	}
 }
