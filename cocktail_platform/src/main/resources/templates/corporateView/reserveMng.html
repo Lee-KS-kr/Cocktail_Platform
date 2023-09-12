@@ -29,15 +29,15 @@ function init(){
 function reserveAccept(reserveCode, storeCode){
 	let result = confirm("예약을 수락하시겠습니까?");
 	if(result == true){
-		location.href="reserveAccept?reserveCode="+reserveCode;
+		location.href="reserveAccept?reserveCode="+reserveCode+ '&storeCode=' + storeCode;
 	}
 }
 
 //예약 취소
-function reserveRefuse(reserveCode){
+function reserveRefuse(reserveCode, storeCode){
 	let result = confirm("예약을 취소하시겠습니까?");
 	if(result == true){
-		location.href="reserveRefuse?reserveCode="+reserveCode;
+		location.href="reserveRefuse?reserveCode="+reserveCode + '&storeCode=' + storeCode;
 	}
 }
 
