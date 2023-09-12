@@ -24,6 +24,7 @@ import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
+import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.service.OrderService;
 import com.platform.cocktail.cocktail_platform.service.StoreService;
 
@@ -39,7 +40,9 @@ public class CorporateOrderController {
 	private OrderService oService;
 	
 	@GetMapping("login")
-	public String login() {
+	public String login(@AuthenticationPrincipal UserDetails user, Model m) {
+		StoreInfo store = sService.getStoreById(user.getUsername());
+		m.addAttribute("store", store);
 		return "corporateView/orderMain";
 	}
 	
