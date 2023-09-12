@@ -156,7 +156,10 @@ public class StoreServiceImple implements StoreService {
 		
 		for (String str : timeArr) {
 			String datetime = date + str;
-			boolean canReserve = capacity > dao.getReservedCountByDatetime(datetime);
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("storeCode", storeCode);
+			map.put("date", datetime);
+			boolean canReserve = capacity > dao.getReservedCountByDatetime(map);
 			resultMap.put(datetime, canReserve);
 		}
 		
