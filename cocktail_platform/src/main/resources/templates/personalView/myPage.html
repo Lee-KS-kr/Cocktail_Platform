@@ -17,22 +17,23 @@
     <link rel="stylesheet" th:href="@{/CSS/personal/myPage.css}">
     <!-- thymeleaf
     -->
-    <script th:inline="javascript">
-        var items = /*[[${items}]]*/ [];
-    </script>
     
-    <script>
-        // 반복문을 사용하여 리스트 아이템을 생성하고 HTML에 추가
-        const listContainer = document.getElementById("list");
-        const items = ["항목 1", "항목 2", "항목 3", "항목 4"];
+<script th:inline="javascript">
+    var items = /*[[${items}]]*/ [];
+</script>
 
-        for (let i = 0; i < items.length; i++) {
-            const listItem = document.createElement("li");
-            listItem.textContent = items[i];
-            listContainer.appendChild(listItem);
-        }
+<script>
+    // 반복문을 사용하여 리스트 아이템을 생성하고 HTML에 추가
+    const listContainer = document.getElementById("list");
+    const items = ["항목 1", "항목 2", "항목 3", "항목 4"];
 
-    </script>
+    for (let i = 0; i < items.length; i++) {
+        const listItem = document.createElement("li");
+        listItem.textContent = items[i];
+        listContainer.appendChild(listItem);
+    }
+
+</script>
     
 </head>
 <body>

@@ -81,7 +81,7 @@ body{
     text-align: center;
     position: fixed;
     top: 220px;
-    left: 520px;
+    left: 520px;  
     z-index: 1000;
 /* From https://css.glass */
 background: rgba(255, 255, 255, 0.19);
