@@ -179,5 +179,11 @@ public class StoreServiceImple implements StoreService {
 		
 		return list;
 	}
+
+	@Override
+	public ArrayList<Reservation> getReservelistById(String memberId) {
+		ArrayList<Reservation> list = dao.getReservelistById(memberId);
+		return list;
+	}
 	
 }

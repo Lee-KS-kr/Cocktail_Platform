@@ -46,4 +46,6 @@ public interface StoreService {
 
 	ArrayList<Menu> getMenulistByNum(String[] menus);
 
+	ArrayList<Reservation> getReservelistById(String username);
+
 }

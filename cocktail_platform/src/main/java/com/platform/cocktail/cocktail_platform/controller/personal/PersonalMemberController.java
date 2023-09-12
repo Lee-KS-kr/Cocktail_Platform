@@ -11,14 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.platform.cocktail.cocktail_platform.api.mail_send.service.EmailService;
 import com.platform.cocktail.cocktail_platform.domain.Member;
-import com.platform.cocktail.cocktail_platform.domain.MemberType;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
+import com.platform.cocktail.cocktail_platform.domain.Reservation;
 import com.platform.cocktail.cocktail_platform.domain.StoreReview;
 import com.platform.cocktail.cocktail_platform.domain.Taste;
 import com.platform.cocktail.cocktail_platform.service.MemberService;
@@ -104,7 +102,7 @@ public class PersonalMemberController {
 		Member mem = mService.findMemberById(user.getUsername());
 		mem.setMemberId(user.getUsername());
 		m.addAttribute("member", mem);
-		return "";
+		return "personalView/editPrivacyInfo";
 	}
 	
 	//개인정보 수정
@@ -113,7 +111,15 @@ public class PersonalMemberController {
 		mem.setMemberId(user.getUsername());
 		mService.updateMember(mem);
 		
-		return "redirect:/personal/myPage";
+		return "redirect:/personal/member/myPage";
+	}
+	
+	//예약 목록
+	@GetMapping("reserveList")
+	public String reserveList(@AuthenticationPrincipal UserDetails user, Model m) {
+		ArrayList<Reservation> reserveList = sService.getReservelistById(user.getUsername());
+		m.addAttribute("reserveList", reserveList);
+		return "personalView/reserveList";
 	}
 	
 	//주문,취소 목록
@@ -121,7 +127,7 @@ public class PersonalMemberController {
 	public String orderLists(@AuthenticationPrincipal UserDetails user, Model m) {
 		ArrayList<Order> list = oService.getOrderLists(user.getUsername());
 		m.addAttribute("orderList", list);
-		return "";
+		return "personalView/OrderHistory";
 	}
 	
 	//주문 상세 내역
@@ -132,13 +138,13 @@ public class PersonalMemberController {
 		
 		m.addAttribute("order", o);
 		m.addAttribute("orderList", list);
-		return "";
+		return "personalView/OrderList";
 	}
 	
 	//취향 재설정 화면
 	@GetMapping("resetTaste")
 	public String resetTaste() {
-		return "";
+		return "personalView/resetTaste";
 	}
 	
 	//취향 재설정
@@ -146,7 +152,7 @@ public class PersonalMemberController {
 	public String resetTaste(@AuthenticationPrincipal UserDetails user, Taste t) {
 		t.setMemberId(user.getUsername());
 		mService.updateTaste(t);
-		return "";
+		return "redirect:/personal/member/myPage";
 	}
 	
 	//주문 후 평가
@@ -154,7 +160,7 @@ public class PersonalMemberController {
 	public String evaluation(String orderCode, Model m) {
 		ArrayList<Menu> menuList = oService.getMenulistByOrdercode(orderCode);
 		m.addAttribute("menuList", menuList);
-		return "";
+		return "personalView/reviewWrite";
 	}
 	
 	//주문 후 평가 제출
@@ -181,19 +187,7 @@ public class PersonalMemberController {
 		
 		review.setMemberid(user.getUsername());
 		sService.insertReview(review, menuNum, weather, ageGroup, companion, event);
-		return "";
+		return "redirect:/personal/member/reserveList";
 	}
 	
-	//회원 탈퇴 페이지
-	@GetMapping("quitMember")
-	public String quitMember() {
-		return "";
-	}
-	
-	//회원 탈퇴
-	@PostMapping("quitMember")
-	public String quitMember(@AuthenticationPrincipal UserDetails user) {
-		mService.unableMember(user.getUsername());
-		return "";
-	}
 }

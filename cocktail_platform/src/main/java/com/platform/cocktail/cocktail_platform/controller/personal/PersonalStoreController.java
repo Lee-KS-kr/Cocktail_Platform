@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
 import com.platform.cocktail.cocktail_platform.domain.ReservationState;
 import com.platform.cocktail.cocktail_platform.domain.Schedule;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
-import com.platform.cocktail.cocktail_platform.domain.StoreReview;
 import com.platform.cocktail.cocktail_platform.service.StoreService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,26 +30,14 @@ public class PersonalStoreController {
 	public String list(Model m) {
 		ArrayList<StoreInfo> list = sService.getAllStorelist();
 		m.addAttribute("list", list);
-		return "";
+		return "personalView/storeList";
 	}
 	
 	@GetMapping("storeDetail")
 	public String storeDetail(int storeCode, Model m) {
 		StoreInfo info = sService.getStoreinfoByCode(storeCode);
 		m.addAttribute("storeInfo", info);
-		return "";
-	}
-	
-	@GetMapping("menuList")
-	public ArrayList<Menu> menuList(int storeCode){
-		ArrayList<Menu> list = sService.getMenulistByCode(storeCode);
-		return list;
-	}
-	
-	@GetMapping("reviewList")
-	public ArrayList<StoreReview> reviewList(int storeCode){
-		ArrayList<StoreReview> list = sService.getReviewlistByCode(storeCode);
-		return list;
+		return "personalView/storeDetail";
 	}
 	
 	@GetMapping("reserve")
@@ -74,6 +60,6 @@ public class PersonalStoreController {
 	public String reserve(Reservation reserve) {
 		reserve.setReserveState(ReservationState.apply);
 		sService.insertReservation(reserve);
-		return "";
+		return "redirect:/personal/store/storeDetail?storeCode=" + reserve.getStoreCode();
 	}
 }
