@@ -18,6 +18,7 @@ import com.platform.cocktail.cocktail_platform.domain.OrderState;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
 import com.platform.cocktail.cocktail_platform.domain.ReservationState;
+import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.service.OrderService;
 import com.platform.cocktail.cocktail_platform.service.StoreService;
 
@@ -34,14 +35,20 @@ public class CorporateStoreController {
 	
 	//매출 관리 페이지 이동
 	@GetMapping("salesMng")
-	public String salesMng(int storeCode, Model m) {
-		ArrayList<Order> orderList = oService.getOrderListsByCode(storeCode);
+	public String salesMng(@AuthenticationPrincipal UserDetails user, Model m) {
+		StoreInfo store = sService.getStoreById(user.getUsername());
+		ArrayList<Order> orderList = oService.getOrderListsByCode(store.getStoreCode());
 		m.addAttribute("orderList", orderList);
 		return "corporateView/";
 	}
 	
 	@GetMapping("salesInput")
-	public String salesInput(@AuthenticationPrincipal UserDetails user) {
+	public String salesInput(@AuthenticationPrincipal UserDetails user, Model m) {
+		StoreInfo store = sService.getStoreById(user.getUsername());
+		ArrayList<Menu> menulist = sService.getMenulistByCode(store.getStoreCode());
+		
+		m.addAttribute("store", store);
+		m.addAttribute("menulist", menulist);
 		return "salesinputTest";
 	}
 	
@@ -55,8 +62,9 @@ public class CorporateStoreController {
 	
 	//예약 확인 페이지 이동
 	@GetMapping("reserveList")
-	public String reserveList(int storeCode, Model m) {
-		ArrayList<Reservation> reserveList = sService.getReservelistByCode(storeCode);
+	public String reserveList(@AuthenticationPrincipal UserDetails user, Model m) {
+		StoreInfo store = sService.getStoreById(user.getUsername());
+		ArrayList<Reservation> reserveList = sService.getReservelistByCode(store.getStoreCode());
 		m.addAttribute("reserveList", reserveList);
 		return "corporateView/reserveMng";
 	}
@@ -75,7 +83,9 @@ public class CorporateStoreController {
 	
 	//예약 수기 입력 페이지 이동
 	@GetMapping("reserveInput")
-	public String reserveInput(int storeCode) {
+	public String reserveInput(@AuthenticationPrincipal UserDetails user, Model m) {
+		StoreInfo store = sService.getStoreById(user.getUsername());
+		m.addAttribute("store", store);
 		return "corporateView/reserveInput";
 	}
 	
@@ -94,8 +104,9 @@ public class CorporateStoreController {
 	
 	//메뉴 관리 페이지 이동
 	@GetMapping("menuMng")
-	public String menuMng(int storeCode, Model m) {
-		ArrayList<Menu> menuList = sService.getMenulistByCode(storeCode);
+	public String menuMng(@AuthenticationPrincipal UserDetails user, Model m) {
+		StoreInfo store = sService.getStoreById(user.getUsername());
+		ArrayList<Menu> menuList = sService.getMenulistByCode(store.getStoreCode());
 		m.addAttribute("menuList", menuList);
 		return "corporateView/menuMng";
 	}
