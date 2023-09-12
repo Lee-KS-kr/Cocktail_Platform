@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>가게 정보 입력</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script>
+$(document).ready(function () {
+
+});
+
+/**가게 이름 유효성 검사*/
+function storeNameChk(){
+	let storeName = $('#storeName').val();
+	let storeNameLength =storeName.length;
+	
+	if(storeNameLength < 2 ||  storeNameLength > 9){
+		$('#errMsg1').html('이름은 2-10자로 입력해주세요.');
+		return false;
+	}
+	else{
+		$('#errMsg1').html('');
+		return true;
+	}
+}
+
+/**사업자번호 유효성 검사*/
+function brnChk(){
+	let brn = $('#brn').val();;
+	let regBrn = /^[0-9]{3}-[0-9]{2}-[0-9]{5}$/;
+	
+	if(!regBrn.test(brn)){
+        $('#errMsg2').html('사업자번호 형식이 올바르지 않습니다.');
+        return false;
+    }
+    else{
+        $('#errMsg2').html('');
+        return true;
+    }
+}
+
+/**가게 전화번호 유효성 검사*/
+function storePhoneChk(){
+	let storePhone = $('#storePhone').val();
+    let regPhone = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
+    
+    if(!regBrn.test(brn)){
+        $('#errMsg3').html('전화번호 형식이 올바르지 않습니다.');
+        return false;
+    }
+    else{
+        $('#errMsg3').html('');
+        return true;
+    }
+}
+
+/**영업시간 유효성 검사*/
+function runningTimeChk(){
+	let runningTime = $('#runningTime').val();
+	let runningTimeLength = runningTime.length;
+    
+    if(runningTimeLength < 2){
+        $('#errMsg4').html('영업 시간을 입력해주세요.');
+        return false;
+    }
+    else{
+        $('#errMsg4').html('');
+        return true;
+    }
+}
+
+/**휴일 유효성 검사*/
+function dayOffChk(){
+	let dayOff = $('#dayOff').val();
+	let dayOffLength = dayOff.length;
+    
+    if(dayOffLength < 2){
+        $('#errMsg5').html('휴일을 입력해주세요.');
+        return false;
+    }
+    else{
+        $('#errMsg5').html('');
+        return true;
+    }
+}
+
+/**매장 소개 유효성 검사*/
+function infoChk(){
+	let info = $('#info').val();
+	let infoLength = info.length;
+    
+    if(infoLength < 2){
+        $('#errMsg6').html('매장 소개를 입력해주세요.');
+        return false;
+    }
+    else{
+        $('#errMsg6').html('');
+        return true;
+    }
+}
+
+/**가게 정보 보내기*/
+function storeSub(){
+	if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
+		isValid = false;
+	}
+	
+	if(isValid){
+		$.ajax({
+			url: 'inputStorepage',
+			type: 'post',
+			data: $('#storeInfoForm').serialize(),		
+			success: function(){
+				alert('저장되었습니다.');
+			},
+			error: function(e){
+				alert(e.statusText);
+			}
+		});
+	}
+}
+</script>
+</head>
+<body>
+	<main>
+	<div class="storeInformation">
+			<h2>매장 정보</h2>
+			<!-- 매장 정보 표시 -->
+			<div id="storeInfoDiv"></div>
+			
+			<!-- 매장 정보 수정 폼 -->
+			<div id="storeInfoFormDiv" style="display:none;">
+				<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post"
+				enctype="multipart/form-data" onsubmit="storeSub()">
+					가게명
+					<input type="text" id="storeName" name="storeName" th:value="${store.storeName}" onkeyup="storeNameChk()">
+					<p id="errMsg1"></p>
+					대표 사진<br>
+		    		<input type="file" name="savedFilename"><br>
+		    		사업자 번호
+					<input type="text" id="brn" name="brn" th:value="${store.brn}" onkeyup="brnChk()"><br>
+					<p id="errMsg2"></p>
+					전화번호
+					<input type="text" id="storePhone" name="phone" th:value="${store.phone}" onkeyup="storePhoneChk()">
+					<p id="errMsg3"></p>
+					영업 시간
+					<input type="text" id="runningTime" name="runningTime" th:value="${store.runningTime}" onkeyup="runningTimeChk()">
+					<p id="errMsg4"></p>
+					휴일
+					<input type="text" id="dayOff" name="dayOff" th:value="${store.dayOff}" onkeyup="dayOffChk()">
+					<p id="errMsg5"></p>
+					매장 소개
+					<input type="text" id="info" name="info" th:value="${store.info}" onkeyup="infoChk()">
+					<p id="errMsg6"></p>
+					주소
+					<input type="text" name="postCode" id="postCode" placeholder="우편번호">
+					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+					<input type="text" name="address1" id="address1" placeholder="도로명주소" required="required">
+					<span id="guide" style="color:#999;display:none"></span>
+					<input type="text" name="address2" id="address2" placeholder="상세주소" required="required"><br>
+					
+					<input type="reset" class="bottom" value="다시 쓰기">
+					<input type="button" id="storeSubBtn" value="변경">
+				</form>
+			</div>
+		</div>
+	</main>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+	    function sample4_execDaumPostcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var roadAddr = data.roadAddress; // 도로명 주소 변수
+	                var extraRoadAddr = ''; // 참고 항목 변수
+	
+	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                    extraRoadAddr += data.bname;
+	                }
+	                // 건물명이 있고, 공동주택일 경우 추가한다.
+	                if(data.buildingName !== '' && data.apartment === 'Y'){
+	                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                }
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('postCode').value = data.zonecode;
+	                document.getElementById("address1").value = roadAddr;
+	                
+	                var guideTextBox = document.getElementById("guide");
+	                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+	                if(data.autoRoadAddress) {
+	                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+	                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+	                    guideTextBox.style.display = 'block';
+	
+	                } else {
+	                    guideTextBox.innerHTML = '';
+	                    guideTextBox.style.display = 'none';
+	                }
+	            }
+	        }).open();
+	    }
+	</script>
+</body>
+</html>
