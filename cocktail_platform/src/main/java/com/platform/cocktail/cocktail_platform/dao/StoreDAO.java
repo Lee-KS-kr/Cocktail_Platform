@@ -53,4 +53,6 @@ public interface StoreDAO {
 	int getReservedCountByDatetime(String time);
 
 	Schedule getScheduleByCode(int storeCode);
+
+	ArrayList<Reservation> getReservelistById(String memberId);
 }
