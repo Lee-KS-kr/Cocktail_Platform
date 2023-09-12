@@ -52,6 +52,7 @@ create sequence storeInfo_seq;
         canOrder        number(1)           default 0 check (canOrder in (0, 1))                            --주문 가능 상태(0:가능 1:불가능)
 );
 drop table menu;
+create sequence menu_seq;
 
 --  주문 order 테이블
 create table orders (
