@@ -338,13 +338,13 @@ function storeChg(){
 				<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post" onsubmit="memberChg()">
 					아이디
 					<input type="text" name="memberId" th:value="${member.memberId}" readonly="readonly"><br>
-					이메일
-					<input type="text" name="email" th:value="${member.email}" readonly="readonly"><br>
 					이름
 					<input type="text" name="memberName" th:value="${member.memberName}" readonly="readonly"><br>
 					휴대폰 번호
 					<input type="text" id="phone" name="phone" th:value="${member.phone}" onkeyup="phoneChk()"><br>
 					<p id="errMsg1"></p>
+					이메일
+					<input type="text" name="email" th:value="${member.email}" readonly="readonly"><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
 					<input type="button" id="memSubBtn" value="저장">
