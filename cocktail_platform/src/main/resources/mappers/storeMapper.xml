@@ -93,34 +93,122 @@
 				)
 	</insert>
 	
-	<!-- 메뉴 리스트 출력 -->
+	<select id="findOrderByKey" parameterType="int" resultType="OrderTemp">
+		select
+			*
+		from
+			orderTemp
+		where
+			tempOrderkey = #{tempOrderkey}
+	</select>
+	
+	<delete id="deleteOrder" parameterType="int">
+		delete from
+			orderTemp
+		where
+			tempOrderkey = #{tempOrderkey}
+	</delete>
+	
 	<select id="getMenulistByCode" parameterType="int" resultType="Menu">
 		select
-			menuNum
-			, storeCode
-			, category
-			, price
-			, canOrder
+			*
 		from
 			menu
+		where
+			storeCode = #{storeCode}
+	</select>
+	
+	<select id="getMenuInfoByNum" parameterType="int" resultType="Menu">
+		select
+			*
+		from
+			menu
+		where
+			menuNum = #{menuNum}
 		order by
 			menuNum desc
 	</select>
 	
-	<!-- 매출 관리 주문 리스트 출력 -->
-	<select id="getOrderListsByCode" parameterType="int" resultType="Order">
+	<select id="getAllStorelist" resultType="StoreInfo">
 		select
-			orderCode
-			, storeCode
-			, orderDate
-			, memberId
-			, totalPrice
-			, menuList
-			, orderState
+			*
 		from
-			order
+			storeInfo
 		order by
-			orderCode desc
+			storeCode desc
+	</select>
+	
+	<select id="getStoreinfoByCode" parameterType="int" resultType="StoreInfo">
+		select
+			*
+		from
+			storeInfo
+		where
+			storeCode = #{storeCode}
+		order by
+			storeCode desc
+	</select>
+	
+	<select id="findReviewByCodeAndId" parameterType="HashMap" resultType="StoreReview">
+		select
+			*
+		from
+			storeReview 
+		where
+			storeCode = #{storeCode} and memberId = #{memberId}
+		order by
+			storeReviewNum desc
+	</select>
+	
+	<select id="getReviewlistByCode" parameterType="int" resultType="StoreReview">
+		select
+			*
+		from
+			storeReview
+		where
+			storeCode = #{storeCode}
+		order by
+			storeReviewNum desc
+	</select>
+	
+	<insert id="insertStoreReview" parameterType="StoreReview">
+		insert into
+			storeReview
+				(storeReviewNum
+				, storeCode
+				, memberId
+				, storeReviewScore
+				, storeReviewText
+				, reviewDate
+				, savedFilename)
+		values
+				(storeReviewNum_seq.nextval
+				, #{storeCode}
+				, #{memberId}
+				, #{storeReviewScore}
+				, #{storeReviewText}
+				, to_char(sysdate, 'yyyymmdd')
+				, #{savedFilename})
+	</insert>
+	
+	<insert id="insertMenuPreference" parameterType="MenuPreference">
+	
+	</insert>
+	
+	<select id="getCapacityByCode" parameterType="int" resultType="int">
+	
+	</select>
+	
+	<select id="getReservedCountByDatetime" parameterType="String" resultType="int">
+	
+	</select>
+	
+	<select id="getScheduleByCode" parameterType="int" resultType="Schedule">
+	
+	</select>
+	
+	<select id="getReservelistById" parameterType="String" resultType="Reservation">
+	
 	</select>
 	
 </mapper>
