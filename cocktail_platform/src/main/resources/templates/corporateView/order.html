@@ -7,14 +7,14 @@
 <script>
 $(document).ready(function(){
 	allList();
-	$(".tab_title li").click(getIndex());
+	$(".tab_title li").click(getIndex);
 });
 
 //전체 목록 받아오기
 function allList(){
 	$.ajax({
 		url: "menuInfo",
-		type: "post",
+		type: "get",
 		dataType: "json",
 		success: function(list){
 			menuList(list);
@@ -30,6 +30,7 @@ function getRecMenu(){
 	$.ajax({
 		url: "recommendList",
 		type: "post",
+		data: {storeCode, storeCode},
 		dataType: "json",
 		success: function(list){
 			recMenuList(list);
@@ -73,7 +74,7 @@ function menuCategory(category){
 	$.ajax({
 		url: "menuCategory",
 		type: "post",
-		data: {category : category, searchWord : searchWord},
+		data: {category : category},
 		dataType: "json",
 		success: function(list){
 			getList(list);

@@ -48,4 +48,6 @@ public interface StoreService {
 
 	ArrayList<Reservation> getReservelistById(String username);
 
+	int insertStoreinfo(StoreInfo info);
+
 }

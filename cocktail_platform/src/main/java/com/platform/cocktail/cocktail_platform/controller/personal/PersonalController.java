@@ -23,13 +23,9 @@ public class PersonalController {
 		return "personalView/mainHome";
 	}
 	
-	@GetMapping("search")
-	public String search(String searchFilter, String searchWord, Model m) {
-		ArrayList<Cocktails> cocktailList = new ArrayList<>();
-		ArrayList<Ingredients> ingredientList = new ArrayList<>();
-		m.addAttribute("cocktailList", cocktailList);
-		m.addAttribute("ingredientList", ingredientList);
-		return "";
+	@GetMapping("searchPage")
+	public String search() {
+		return "personalView/search";
 	}
 	
 	@GetMapping("cocktails")

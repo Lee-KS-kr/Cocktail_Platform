@@ -7,11 +7,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OrderDetails</title>
-    <link rel="stylesheet" href="../../static/CSS/personal/search.css">
+    <link rel="stylesheet" th:href="@{/CSS/personal/search.css}">
     
-<link rel="preconnect" th:href="https://fonts.googleapis.com">
-<link rel="preconnect" th:href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gasoek+One&family=Schoolbell&display=swap" rel="stylesheet">
+<!-- <link rel="preconnect" th:href="https://fonts.googleapis.com"> -->
+<!-- <link rel="preconnect" th:href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gasoek+One&family=Schoolbell&display=swap" rel="stylesheet"> -->
+	<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+	<script>
+		$(document).ready(function(){
+			$("#search").click(search);
+		});
+		
+		let cat = null;
+		function search(){
+			cat = $("#category").val();
+			let word = $("#searchWord").val();
+			console.log("category : " + cat + " search word : " + word);
+			$.ajax({
+				url: 'search',
+				data: {category: cat, searchWord: word},
+				type: 'json',
+				dataType: 'get',
+				success: function(list){
+					showList(list);
+				},
+				error: function(e){
+					console.log(JSON.stringify(e));
+				}
+			});
+		}
+
+		function showList(list){
+			$(list).each(function(i, item){
+				$("#list").append(`
+				<div class="con_box">
+					<div class="con_box1" >
+						<img src="${cat == "ingredirents" ? `${item.ingredientName}.png` : `${item.savedFilename}`}" alt="con_box${i}">
+					</div>
+					<div>
+						${cat == "store" ? `<p th:text="${item.storeName}">매장명</p>` : ``}
+						${cat == "cocktail" ? `<p th:text="${item.cocktailName}">상품명</p>
+						<p th:text="${item.cocktailAlcohol}">상품 설명</p>` : ``}
+						${cat == "ingredients" ? `<p th:text="${item.ingredientName}">재료명</p>` : ``}
+					</div>
+				</div>
+				`);
+			})
+		}
+		</script>
 </head>
 
 <body>
@@ -21,7 +64,7 @@
             <img src="@{/image/logo_title.png}" alt="logo">
         </div>
         <div class="navi2">
-            <p th:text="${member.memberId}">님 환영합니다.  &nbsp;</p>
+            <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
             <a>로그아웃  &nbsp;</a>
             <a>마이페이지  &nbsp; &nbsp;</a>
             <a><img src="@{/image/btn_search.png}" alt="search"></a>
@@ -29,21 +72,19 @@
     </div>
     <!-- ------navi end------  -->
 
-    <div class="search">
-        <input type="text" > <input type="submit" value="검색">
-    </div>
-    <div class="con_box">
-        <div class="con_box1" >
-            <img src="" alt="con_box1">
-        </div>
-        <div>
-            <p>매장명</p>
-            <p>상품명</p>
-            <p>상품 설명</p>
-            <p>가격</p>
-        </div>
-    </div>
 
+	<!-- -----search box-----  -->
+    <div class="search">
+    	<select id="category">
+    		<option value="store">매장</option>
+    		<option value="cocktail">칵테일</option>
+    		<option value="ingredients">재료</option>
+    	</select>
+        <input id="searchWord" type="text" >
+		<input type="button" id="search" value="검색">
+    </div>
+	<!-- -----search box end-----  -->
+	<div id="list" style="display: flex;"></div>
 
 </body>
 

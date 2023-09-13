@@ -10,7 +10,7 @@
 <script>
 $(document).ready(function () {
 	init();
-    $(".tab_title li").click(getIndex());
+    $(".tab_title li").click(getIndex);
 });
 
 //전체 목록 받아오기
@@ -31,17 +31,10 @@ function init(){
 //별점 가져오기
 function reviewScore(){
 	let star = $('#storeReviewScore').val();
-    var str = '';
+    let str = '';
 
-    for(var i = 0 ; i < 5; i++){  
-		if(star-i >0 || star-i <1){
-			str += '별 반개짜리 이미지';
-		}       
-		else if(i < star) {
-       		str  +=   '★' ;  
-      	}else{
-       		str  +=  '☆' ;
-     	}
+    for(let i = 0 ; i < 5; i++){  
+		str += (i < star) ? '★' : '☆';  
     } 
     $('#starDiv').html(str);
 }
@@ -153,9 +146,56 @@ document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1)
    	return value;
 }
 
-//예약 폼 제출
+/**인원수 선택 증감*/
+function count(type)  {
+  //결과를 표시할 element
+  let headnum = document.getElementById('headnum');
+  
+  //현재 화면에 표시된 값
+  let headnum2 = headnum.innerText;
+  
+  //더하기/빼기
+  if(type === 'plus' && headnum < 5) {
+	  headnum2 = parseInt(headnum) + 1;  
+  }else if(type === 'minus' && headnum > 0) {
+	  headnum2 = parseInt(headnum) - 1;
+  }else {
+		alert('인원수를 확인해주세요.');
+		return false;
+	}
+  
+  //결과 출력
+  $("#headnum").text(headnum2);
+  $("#reserveHead").val(headnum2);
+}
+
+/**예약 폼 유효성 검사 */
+function reserveValid(){
+	//개인 정보 수집 및 제공 동의 유무
+	if($("input:radio[name='agree']").is(":checked") == false){
+        alert('개인정보 수집 및 이용 미동의 시 참여 불가');
+        $('#agree').focus();  //해당 라디오버튼으로 포커스 이동.
+        return false; //폼 제출 중단
+    }
+	else{
+	    return true;
+	}
+}
+
+/**예약 폼 제출*/
 function reserveSub(){
 	
+	$.ajax({
+		url: 'reserveInput',
+		type: 'post',
+		data: $('#reserveForm').serialize(),		
+		success: function(){
+			alert('저장되었습니다.');
+		},
+		error: function(e){
+			alert(e.statusText);
+		}
+	});
 }
 
 </script>
@@ -279,7 +319,7 @@ function reserveSub(){
 			<!-- 예약하기 탭 내용 -->
 			<div id="tab_reserve">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
-				<form id="reserveForm" th:action="@{/member/reserve}" method="post" onsubmit="reserveSub()">
+				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="reserveSub()">
 					<p>날짜 선택</p>
 					<table class="Calendar">
 				        <thead>
@@ -308,10 +348,25 @@ function reserveSub(){
     				</table>
 					<p>시간 선택</p>
 					
-					<p>인원 선택</p>
-					
+					<div id="head_count">
+						<p>인원 선택</p>
+						<div id="head_select">
+							<p>1~5명만 선택 가능합니다.</p>
+							<p>방문하시는 인원을 선택해주세요.</p>
+							<input type="button" onclick="count('minus')" value="-"></input>
+							<span id="headnum">0</span>
+							<input type="hidden" id="reserveHead" name="reserveHead"></input>
+							<input type="button" onclick="count('plus')" value="+"></input>
+						</div>
+					</div>
+					<div id="reserve_info">
 					<p>예약자 정보</p>
-					
+						<input type="text" name="reservationName" placeholder="예약자"><br>
+						<input type="text" name="reservationPhone" placeholder="연락처"><br>
+						<input type="text" name="request" placeholder="요청 사항"><br>
+						<label>개인 정보 수집, 제공 동의<input type="radio" name="agree" id="agree"></input></label>
+					</div>
+					<br>
 					<input type="submit" value="예약 신청하기">
 				</form>
 				

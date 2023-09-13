@@ -2,10 +2,6 @@ package com.platform.cocktail.cocktail_platform.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -187,6 +183,12 @@ public class StoreServiceImple implements StoreService {
 	public ArrayList<Reservation> getReservelistById(String memberId) {
 		ArrayList<Reservation> list = dao.getReservelistById(memberId);
 		return list;
+	}
+
+	@Override
+	public int insertStoreinfo(StoreInfo info) {
+		int n = dao.insertStoreinfo(info);
+		return n;
 	}
 	
 }
