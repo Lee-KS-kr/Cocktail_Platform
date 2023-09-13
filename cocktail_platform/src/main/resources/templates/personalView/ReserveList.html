@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyPage</title>
+    <title>FitTail - 예약 내역</title>
 
     <!-- vs code
     <link rel="stylesheet" href="../../static/CSS/personal/ReserComplete.css">
@@ -14,7 +14,7 @@
     -->
 
 
-    <link rel="stylesheet" th:href="@{/CSS/personal/ReserComplete.css}">
+    <link rel="stylesheet" th:href="@{/CSS/personal/myPage.css}">
     <!-- thymeleaf
     -->
 
@@ -53,31 +53,29 @@
             </div>
             <!-- sec2 start-->
             <div class="sec2">
-                    <div class="title2">예약 내역</div>
-                        <table>
-                            <tr>
-                                <td>예약 번호</td>
-                                <td>매장명</td>
-                                <td>예약 일자</td>
-                                <td>예약 상태</td>
-                            </tr>
-                        </table>
-                        <hr>
-                        <div th:if="${reserveList == null}">예약 내역이 없습니다.</div>
-                        <table th:if="${reserveList != null}">
-                            <tr th:each="rsv : ${reserveList}">
-                                <a th:href="@{/personal/member/reserveInfo?=${rsv.reserveCode}}">
-                                    <td th:text="${rsv.reserveCode}"></td>
-                                    <td th:text="${rsv.storeName}"></td>
-                                    <td th:text="${rsv.reserveDate}"></td>
-                                    <td th:text="${rsv.reserveState}"></td>
-                                </a>
-                            </tr>
-                        </table>
-                    </div>
+                <div class="title2">예약 내역</div>
+                <table class="con1">
+                    <tr>
+                        <td>예약 번호</td>
+                        <td>매장명</td>
+                        <td>예약 일자</td>
+                        <td>예약 상태</td>
+                    </tr>
+                </table>
+                <hr>
+                <div class="con2" th:if="${#lists.isEmpty(reserveList)}">예약 내역이 없습니다.</div>
+                <table class="con2" th:if="${reserveList != null}">
+                    <tr th:each="rsv : ${reserveList}">
+                        <a th:href="@{/personal/member/reserveInfo?=${rsv.reserveCode}}">
+                            <td th:text="${rsv.reserveCode}"></td>
+                            <td th:text="${rsv.storeName}"></td>
+                            <td th:text="${rsv.reserveDate}"></td>
+                            <td th:text="${rsv.reserveState}"></td>
+                        </a>
+                    </tr>
+                </table>
             </div>
         </div>
-        
     </div>
 </body>
 </html>

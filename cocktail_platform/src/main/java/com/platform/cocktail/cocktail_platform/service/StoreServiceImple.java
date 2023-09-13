@@ -185,6 +185,9 @@ public class StoreServiceImple implements StoreService {
 	@Override
 	public ArrayList<Reservation> getReservelistById(String memberId) {
 		ArrayList<Reservation> list = dao.getReservelistById(memberId);
+		for (Reservation rsv : list) 
+			rsv.setStoreName(dao.getStoreinfoByCode(rsv.getStoreCode()).getStoreName());
+		
 		return list;
 	}
 
@@ -192,6 +195,13 @@ public class StoreServiceImple implements StoreService {
 	public int insertStoreinfo(StoreInfo info) {
 		int n = dao.insertStoreinfo(info);
 		return n;
+	}
+
+	@Override
+	public Reservation getReservationByCode(String reserveCode) {
+		Reservation reservation = dao.getReservationByCode(reserveCode);
+		reservation.setStoreName(dao.getStoreinfoByCode(reservation.getStoreCode()).getStoreName());
+		return reservation;
 	}
 	
 }

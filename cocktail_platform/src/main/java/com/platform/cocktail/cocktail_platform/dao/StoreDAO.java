@@ -57,4 +57,6 @@ public interface StoreDAO {
 	ArrayList<Reservation> getReservelistById(String memberId);
 
 	int insertStoreinfo(StoreInfo info);
+
+	Reservation getReservationByCode(String reserveCode);
 }

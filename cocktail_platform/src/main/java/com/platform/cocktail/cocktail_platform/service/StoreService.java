@@ -50,4 +50,6 @@ public interface StoreService {
 
 	int insertStoreinfo(StoreInfo info);
 
+	Reservation getReservationByCode(String reserveCode);
+
 }
