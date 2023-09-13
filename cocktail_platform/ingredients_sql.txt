@@ -1,8 +1,8 @@
+--재료 샘플 데이터(245종)
 --ingredients 재료 DB 쿼리문
 --1. SQLdeveloper에 복사 후 붙여넣기
 --2. ctrl + A 전체 선택
 --3. ctrl + L 전체 쿼리문 수행
-
 
 insert into ingredients (ingredientNum, ingredientName) values (ingredientNum_seq.nextval, '진');
 insert into ingredients (ingredientNum, ingredientName) values (ingredientNum_seq.nextval, '그랑 마르니에');

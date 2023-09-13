@@ -148,8 +148,7 @@ create table cocktails (
 		cocktailTaste       number(4)     check (cocktailTaste < 2000),                                     --맛 정보
 		cocktailFlavor      number(4)     check (cocktailFlavor < 3000),                                    --향 정보
 		cocktailColor       number(4)     check (cocktailColor < 4000),                                     --색상
-		originFilename      varchar2(300),                                                                  --칵테일원본사진
-		savedFilename       varchar2(100)                                                                   --칵테일수정본사진
+		savedFilename       varchar2(100)                                                                   --칵테일이미지이름
 );
 drop table cocktails;
 create sequence cocktails_seq;

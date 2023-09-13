@@ -237,7 +237,7 @@
 		select
 			*
 		from
-			schedule
+			reservation
 		where
 			memberId = #{memberId}
 	</select>
