@@ -125,7 +125,9 @@ public class PersonalMemberController {
 	//예약 상세 내역
 	@GetMapping("reserveInfo")
 	public String reserveInfo(String reserveCode, Model m) {
-		return "";
+		Reservation reservation = sService.getReservationByCode(reserveCode);
+		m.addAttribute("reservation", reservation);
+		return "personalView/reserveInfo";
 	}
 	
 	//주문,취소 목록
