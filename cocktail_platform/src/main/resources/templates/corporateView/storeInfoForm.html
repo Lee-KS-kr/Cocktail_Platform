@@ -126,11 +126,8 @@ function storeSub(){
 	<main>
 	<div class="storeInformation">
 			<h2>매장 정보</h2>
-			<!-- 매장 정보 표시 -->
-			<div id="storeInfoDiv"></div>
-			
-			<!-- 매장 정보 수정 폼 -->
-			<div id="storeInfoFormDiv" style="display:none;">
+			<!-- 매장 정보 입력 폼 -->
+			<div id="storeInfoFormDiv">
 				<form id="storeInfoForm" th:action="@{/corporate/member/insertStoreinfo}" method="post"
 				enctype="multipart/form-data" onsubmit="storeSub()">
 					가게명
