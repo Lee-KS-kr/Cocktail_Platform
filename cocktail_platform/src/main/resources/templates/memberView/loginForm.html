@@ -1,30 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta charset="UTF-8">
-<title>로그인</title>
-<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
-<!--<link rel="stylesheet" href="../../static/CSS/login.css">-->
-<link rel="stylesheet" th:href="@{/CSS/personal/login.css}">
-</head>
-<body>
-	<main>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>로그인</title>
+    <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+    <!---->
+    <link rel="stylesheet" href="../../static/CSS/login.css" />
+    <link rel="stylesheet" th:href="@{/CSS/personal/login.css}" />
+  </head>
+  <body>
+    <main>
       <!-- 내비게이션 -->
       <div id="navi" class="navi">
         <!--<img src="../../static/image/logo_title.png" alt="logo" class="logo">-->
-        <img th:src="@{/image/logo_title.png}" alt="logo" class="logo">
+        <img src="../../static/image/logo_title.png" alt="logo" class="logo" />
+        <img th:src="@{/image/logo_title.png}" alt="logo" class="logo" />
       </div>
       <div class="sec1">
         <div class="inner_body">
           <form id="login" th:action="@{/member/login}" method="post">
-	          <div class="input">
-	            <input type="text" id="memberId" name="memberId" placeholder="아이디" required> <br>
-	            <input type="password" id="memberPw" name="memberPw" placeholder="비밀번호" required> <br>
-	            <input type="submit" value="로그인">
-	          </div>
-           </form>
-          
+            <div class="input">
+              <input
+                type="text"
+                id="memberId"
+                name="memberId"
+                placeholder="아이디"
+                required
+              />
+              <br />
+              <input
+                type="password"
+                id="memberPw"
+                name="memberPw"
+                placeholder="비밀번호"
+                required
+              />
+              <br />
+              <input type="submit" value="로그인" />
+            </div>
+          </form>
+
           <!-- SNS 로그인 BT -->
           <div class="sns_log">
             <div>
@@ -32,10 +50,10 @@
             </div>
             <div>
               <a href="/FitTail/oauth2/authorization/google">
-                <img th:src="@{/image/sns_googleIcon.png}" alt="sns_icon1">
+                <img th:src="@{/image/sns_googleIcon.png}" alt="sns_icon1" />
               </a>
-              <img th:src="@{/image/sns_naverIcon.svg}" alt="sns_icon2">
-              <img th:src="@{/image/sns_facebookIcon.png}" alt="sns_icon3">
+              <img th:src="@{/image/sns_naverIcon.svg}" alt="sns_icon2" />
+              <img th:src="@{/image/sns_facebookIcon.png}" alt="sns_icon3" />
             </div>
           </div>
         </div>
@@ -48,8 +66,7 @@
       </div>
       <!-- sec2 끝 -->
       <!--<img src="../../static/image/mainimg/water1.png" alt="water1">-->
-      <img th:src="@{/image/mainimg/water1.png}" alt="water1">
-
-  </main>
-</body>
+      <img th:src="@{/image/mainimg/water1.png}" alt="water1" />
+    </main>
+  </body>
 </html>
