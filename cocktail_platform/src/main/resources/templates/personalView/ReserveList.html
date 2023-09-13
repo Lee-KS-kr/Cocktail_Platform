@@ -26,11 +26,10 @@
             <a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
         </div>
         <div class="navi2">
-            <p th:text="${member.memberId}"> </p>
-            <p>님 환영합니다.  &nbsp;</p>
+            <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
             <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
             <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
-            <a th:href="@{/personal/search}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
+            <a th:href="@{/personal/searchPage}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
         </div>
     </div>  
     <!-- main -->
@@ -40,13 +39,13 @@
             <!-- sec1 start-->
             <div class="sec1">
                 <div class="order">
-                    <p> <a th:href="@{/member/myPage}"><input type="button" value="마이페이지" class="orderHistory" onclick="orderlist()"></a></p>
-                    <p> <a th:href="@{/member/Orderlist}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
-                    <p> <a th:href="@{/member/myPage}"><input type="button" value="예약내역" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/myPage}"><input type="button" value="마이페이지" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/Orderlist}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/myPage}"><input type="button" value="예약내역" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div class="order">
-                    <p> <a th:href="@{/member/InfoSet}"><input type="button" value="개인정보 설정" class="orderHistory" onclick="orderlist()"></a></p>
-                    <p> <a th:href="@{/member/CategorySet}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/InfoSet}"><input type="button" value="개인정보 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/CategorySet}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div>
                     <a th:href="@{/member/quitMember}" name="out">탈퇴하기</a>
@@ -54,56 +53,27 @@
             </div>
             <!-- sec2 start-->
             <div class="sec2">
-                    <div class="title2">마이페이지</div>
-                        <div class="flex">
-                            <div class="con1">
-                                <p>* 기본정보
-                                <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
-                                    <table th:each="member : ${member}">
-                                        <tr>
-                                            <th>아이디</th>
-                                            <td th:text="${member.memberId}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>이름</th>
-                                            <td th:text="${member.memberName}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>이메일</th>
-                                            <td th:text="${member.email}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>전화번호</th>
-                                            <td th:text="${member.phone}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>생년월일</th>
-                                            <td th:text="${member.birthday}"></td>
-                                        </tr>
-                                        
-                                    </table>
-                                    </form>	
-                            </div>
-                            <div class="con2">
-                                <p>* 취향 정보
-                                <form th:action="@{/member/update}"  method="post">
-                                    <table th:each="member : ${member}">
-                                        <tr>
-                                            <th>맛</th>
-                                            <td th:text="${taste.tasteArr}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>향</th>
-                                            <td th:text="${taste.flavorArr}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>알러지</th>
-                                            <td th:text="${taste.allergyType}"></td>
-                                        </tr>
-                                    </table>
-                                    </form>	
-                            </div>
-                        </div>
+                    <div class="title2">예약 내역</div>
+                        <table>
+                            <tr>
+                                <td>예약 번호</td>
+                                <td>매장명</td>
+                                <td>예약 일자</td>
+                                <td>예약 상태</td>
+                            </tr>
+                        </table>
+                        <hr>
+                        <div th:if="${reserveList == null}">예약 내역이 없습니다.</div>
+                        <table th:if="${reserveList != null}">
+                            <tr th:each="rsv : ${reserveList}">
+                                <a th:href="@{/personal/member/reserveInfo?=${rsv.reserveCode}}">
+                                    <td th:text="${rsv.reserveCode}"></td>
+                                    <td th:text="${rsv.storeName}"></td>
+                                    <td th:text="${rsv.reserveDate}"></td>
+                                    <td th:text="${rsv.reserveState}"></td>
+                                </a>
+                            </tr>
+                        </table>
                     </div>
             </div>
         </div>

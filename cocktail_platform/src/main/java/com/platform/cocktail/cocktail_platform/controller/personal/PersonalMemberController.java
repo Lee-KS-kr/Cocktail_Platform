@@ -122,6 +122,12 @@ public class PersonalMemberController {
 		return "personalView/reserveList";
 	}
 	
+	//예약 상세 내역
+	@GetMapping("reserveInfo")
+	public String reserveInfo(String reserveCode, Model m) {
+		return "";
+	}
+	
 	//주문,취소 목록
 	@GetMapping("orderLists")
 	public String orderLists(@AuthenticationPrincipal UserDetails user, Model m) {

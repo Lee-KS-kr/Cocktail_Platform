@@ -13,7 +13,7 @@ $(document).ready(function () {
     $(".tab_title li").click(getIndex);
 });
 
-//전체 목록 받아오기
+//전체 메뉴 목록 받아오기
 function init(){
 	$.ajax({
 		url: "menuList",
@@ -30,12 +30,18 @@ function init(){
 
 //별점 가져오기
 function reviewScore(){
-	let star = $('#storeReviewScore').val();
+    let score = parseFloat($('#storeReviewScore').val());
     let str = '';
 
-    for(let i = 0 ; i < 5; i++){  
-		str += (i < star) ? '★' : '☆';  
-    } 
+    for(let i = 0 ; i < 5; i++){  
+        if(i < Math.floor(score)){  // 정수 부분은 full 별표시
+            str += '../image/cocktail_colored.png';
+        } else if(score % 1 !== 0 && i === Math.floor(score)){ //0.5 단위인 경우 반 별표시
+            str += '../image/cocktail_half.png';
+        } else {
+            str += '../image/cocktail_non.png'; // 나머지는 빈 별표시
+        }
+    }
     $('#starDiv').html(str);
 }
 
@@ -149,53 +155,105 @@ document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1)
 /**인원수 선택 증감*/
 function count(type)  {
   //결과를 표시할 element
-  let headnum = document.getElementById('headnum');
-  
-  //현재 화면에 표시된 값
-  let headnum2 = headnum.innerText;
+  let headnum = document.getElementById('headnum').innerText;
   
   //더하기/빼기
   if(type === 'plus' && headnum < 5) {
-	  headnum2 = parseInt(headnum) + 1;  
+	  headnum = parseInt(headnum) + 1;  
   }else if(type === 'minus' && headnum > 0) {
-	  headnum2 = parseInt(headnum) - 1;
+	  headnum = parseInt(headnum) - 1;
   }else {
 		alert('인원수를 확인해주세요.');
 		return false;
 	}
   
   //결과 출력
-  $("#headnum").text(headnum2);
-  $("#reserveHead").val(headnum2);
+  $("#headnum").text(headnum);
+  $("#reserveHead").val(headnum);
 }
 
-/**예약 폼 유효성 검사 */
-function reserveValid(){
+let nameValid = false;
+let phoneValid = false;
+
+//이름 유효성 검사
+function nameChk(){
+	let name = $('#memberName').val();
+	let nameLength = name.length;
+	
+	if(nameLength < 2 ||  nameLength > 9){
+		alert('이름은 2-10자로 입력해주세요.');
+		nameValid = false;
+	}
+	else{
+		$('#errMsg4').html('');
+		nameValid = true;
+	}
+}
+
+//휴대폰 번호 유효성 검사
+function phoneChk(){
+	let phone = $('#phone').val();
+    let regPhone = /^010[0-9]{4}[0-9]{4}$/;
+
+    if(!regPhone.test(phone)){
+        $('#errMsg7').html('전화번호 형식이 올바르지 않습니다.');
+        phoneValid = false;
+    }
+    else{
+        $('#errMsg7').html('');
+      	//하이픈을 추가하여 전화번호 형식으로 변환
+        phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
+        $('#phone').val(phone);
+        phoneValid = true;
+    }
+}
+
+let agreeValid = false;
+//개인 정보 수집 및 제공 동의 유효성
+function agreeValid(){
 	//개인 정보 수집 및 제공 동의 유무
 	if($("input:radio[name='agree']").is(":checked") == false){
         alert('개인정보 수집 및 이용 미동의 시 참여 불가');
         $('#agree').focus();  //해당 라디오버튼으로 포커스 이동.
-        return false; //폼 제출 중단
+        agreeValid = false;
     }
 	else{
-	    return true;
+		agreeValid = true;
+	}
+}
+
+/**예약 폼 유효성 검사 */
+function reserveValid(){
+	let isValid = true; // isValid 초기화
+
+	if(!nameValid || !phoneValid || !agreeValid) {
+		isValid = false; // 하나라도 유효성 검사에 실패하면 isValid를 false로 설정
+	}
+	else isValid = true;
+	
+	if(isValid) {
+		return true;
+	} else {
+		return false;
 	}
 }
 
 /**예약 폼 제출*/
 function reserveSub(){
 	
-	$.ajax({
-		url: 'reserveInput',
-		type: 'post',
-		data: $('#reserveForm').serialize(),		
-		success: function(){
-			alert('저장되었습니다.');
-		},
-		error: function(e){
-			alert(e.statusText);
-		}
-	});
+	if(reservaValid){
+		$.ajax({
+			url: 'reserveInput',
+			type: 'post',
+			data: $('#reserveForm').serialize(),		
+			success: function(){
+				alert('저장되었습니다.');
+			},
+			error: function(e){
+				alert(e.statusText);
+			}
+		});
+	}else return false;
 }
 
 </script>
@@ -270,13 +328,13 @@ function reserveSub(){
 		<div class="tab_cont">
 			<!-- 메뉴탭 내용 -->
 			<div id="tab_menu" class="on">
-				<!-- 대표 메뉴 사진 -->
+				<!-- 대표 메뉴 사진
 				<div id="menu_img">
 					<img th:src="">
 					<img th:src="">
 					<img th:src="">
 					<img th:src="">
-				</div>
+				</div> -->
 				<p>인기 메뉴</p>
 				<div id="popularList"></div>
 				<!-- 전체 메뉴 리스트 출력 -->
@@ -319,7 +377,7 @@ function reserveSub(){
 			<!-- 예약하기 탭 내용 -->
 			<div id="tab_reserve">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
-				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="reserveSub()">
+				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="return reserveSub()">
 					<p>날짜 선택</p>
 					<table class="Calendar">
 				        <thead>
@@ -361,8 +419,8 @@ function reserveSub(){
 					</div>
 					<div id="reserve_info">
 					<p>예약자 정보</p>
-						<input type="text" name="reservationName" placeholder="예약자"><br>
-						<input type="text" name="reservationPhone" placeholder="연락처"><br>
+						<input type="text" name="reservationName" placeholder="예약자" required="required"><br>
+						<input type="text" name="reservationPhone" placeholder="연락처" required="required"><br>
 						<input type="text" name="request" placeholder="요청 사항"><br>
 						<label>개인 정보 수집, 제공 동의<input type="radio" name="agree" id="agree"></input></label>
 					</div>
