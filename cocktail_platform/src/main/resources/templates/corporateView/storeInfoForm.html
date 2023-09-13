@@ -102,14 +102,13 @@ function infoChk(){
 
 /**가게 정보 보내기*/
 function storeSub(){
-    let isValid = true;
 
     if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
-        isValid = false;
+        return false;
     }
-    
-    if(isValid){
-        alert('저장되었습니다.');
+  	else{
+        return true;
+  		alert('저장되었습니다.');
     }
 }
 </script>
