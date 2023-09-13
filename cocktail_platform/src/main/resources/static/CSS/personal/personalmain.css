@@ -141,6 +141,13 @@ img[alt="search"] {
   text-decoration: none;
 }
 
+.box {
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}
+
 .box p {
   color: #555;
   margin-top: 10px;
