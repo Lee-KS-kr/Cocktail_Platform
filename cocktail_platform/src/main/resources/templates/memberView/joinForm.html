@@ -248,7 +248,6 @@ function formSubmit() {
 	else isValid = true;
 	
 	if(isValid) {
-		return true;
 	} else {
 		return false;
 	}
@@ -261,7 +260,7 @@ function formSubmit() {
 <body>
 	<main>
 		<h1 class="title">통합 회원 가입</h1>
-		<form id="joinForm" th:action="@{/member/join}" method="post" onsubmit="return formSubmit()">
+		<form id="joinForm" th:action="@{/member/join}" method="post" onsubmit="formSubmit()">
 				ID<br>
 				<input type="text" name="memberId" id="memberId"
 				placeholder="ID(6-12자리 이내, 영문 사용 가능)" required="required" onkeyup="idChk()">
