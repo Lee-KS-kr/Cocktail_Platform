@@ -134,24 +134,24 @@ function storeSub(){
 				<form id="storeInfoForm" th:action="@{/corporate/member/insertStoreinfo}" method="post"
 				enctype="multipart/form-data" onsubmit="storeSub()">
 					가게명
-					<input type="text" id="storeName" name="storeName" th:value="${store.storeName}" onkeyup="storeNameChk()">
+					<input type="text" id="storeName" name="storeName" onkeyup="storeNameChk()">
 					<p id="errMsg1"></p>
 					대표 사진<br>
 		    		<input type="file" name="savedFilename"><br>
 		    		사업자 번호
-					<input type="text" id="brn" name="brn" th:value="${store.brn}" onkeyup="brnChk()"><br>
+					<input type="text" id="brn" name="brn" onkeyup="brnChk()"><br>
 					<p id="errMsg2"></p>
 					전화번호
-					<input type="text" id="storePhone" name="phone" th:value="${store.phone}" onkeyup="storePhoneChk()">
+					<input type="text" id="storePhone" name="phone" onkeyup="storePhoneChk()">
 					<p id="errMsg3"></p>
 					영업 시간
-					<input type="text" id="runningTime" name="runningTime" th:value="${store.runningTime}" onkeyup="runningTimeChk()">
+					<input type="text" id="runningTime" name="runningTime" onkeyup="runningTimeChk()">
 					<p id="errMsg4"></p>
 					휴일
-					<input type="text" id="dayOff" name="dayOff" th:value="${store.dayOff}" onkeyup="dayOffChk()">
+					<input type="text" id="dayOff" name="dayOff" onkeyup="dayOffChk()">
 					<p id="errMsg5"></p>
 					매장 소개
-					<input type="text" id="info" name="info" th:value="${store.info}" onkeyup="infoChk()">
+					<input type="text" id="info" name="info" onkeyup="infoChk()">
 					<p id="errMsg6"></p>
 					주소
 					<input type="text" name="postCode" id="postCode" placeholder="우편번호">
