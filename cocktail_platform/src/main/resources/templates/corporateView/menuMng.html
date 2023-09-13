@@ -211,8 +211,8 @@ function pagingFormSubmit(currentPage){
 				가격<br>
 		    	<input type="text" name="price"><br>
 		    	이미지<br>
-		    	<input type="file" name="originalFilename"><br>
-		    	<input type="hidden" name="storeCode" th:value="${menu.storeCode}">
+		    	<input type="file" name="originFilename"><br>
+		    	<input type="hidden" name="storeCode" th:value="${storeCode}">
 		    	
 		    	<input type="reset" class="bottom" value="다시 쓰기">
 		    	<input type="submit" value="저장" onclick="addSub()">
