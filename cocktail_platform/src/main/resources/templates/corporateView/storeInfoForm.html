@@ -45,7 +45,7 @@ function storePhoneChk(){
 	let storePhone = $('#storePhone').val();
     let regPhone = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
     
-    if(!regBrn.test(brn)){
+    if(!regPhone.test(storePhone)){
         $('#errMsg3').html('전화번호 형식이 올바르지 않습니다.');
         return false;
     }
@@ -102,23 +102,25 @@ function infoChk(){
 
 /**가게 정보 보내기*/
 function storeSub(){
-	if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
-		isValid = false;
-	}
-	
-	if(isValid){
-		$.ajax({
-			url: 'inputStorepage',
-			type: 'post',
-			data: $('#storeInfoForm').serialize(),		
-			success: function(){
-				alert('저장되었습니다.');
-			},
-			error: function(e){
-				alert(e.statusText);
-			}
-		});
-	}
+    let isValid = true;
+
+    if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
+        isValid = false;
+    }
+    
+    if(isValid){
+        $.ajax({
+            url: 'inputStorepage',
+            type: 'post',
+            data: $('#storeInfoForm').serialize(),        
+            success: function(){
+                alert('저장되었습니다.');
+            },
+            error: function(e){
+                alert(e.statusText);
+            }
+        });
+    }
 }
 </script>
 </head>

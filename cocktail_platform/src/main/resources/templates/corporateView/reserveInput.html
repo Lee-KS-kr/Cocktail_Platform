@@ -29,11 +29,10 @@ document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1)
        tbody_Calendar.deleteRow(tbody_Calendar.rows.length - 1);
    }
 
-   let nowRow;        //초기화           
+   let nowRow = tbody_Calendar.insertRow();        // 첫번째 행 추가           
 
    for (let j = 0; j < firstDate.getDay(); j++) {  // 이번달 1일의 요일만큼
-	   nowRow = tbody_Calendar.insertRow();		   // 첫번째 행 추가
-	   let nowColumn = nowRow.insertCell();        // 열 추가
+       let nowColumn = nowRow.insertCell();        // 열 추가
    }
 
    for (let nowDay = firstDate; nowDay <= lastDate; nowDay.setDate(nowDay.getDate() + 1)) {   // day는 날짜를 저장하는 변수, 이번달 마지막날까지 증가시키며 반복  
