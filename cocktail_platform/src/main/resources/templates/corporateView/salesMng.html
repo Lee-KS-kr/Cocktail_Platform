@@ -1,10 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>매출 관리</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script>
+$(document).ready(function () {
+	$(".tab_title li").click(getIndex);
+});
+
+//인덱스
+function getIndex(){
+	//(.tab_title li를 누르면)선택된 요소의 index 얻어서 idx라는 변수에 넣어주기
+	var idx = $(this).index();
+    //li에서 on이라는 클래스를 없앤다.
+    $(".tab_title li").removeClass("on");
+    //선택한 요소의 인덱스 번호에 해당하는 요소를 찾아서 on이라는 클래스를 붙여준다.
+    $(".tab_title li").eq(idx).addClass("on");
+    //tab_cont 클래스의 div(전체 탭의 내용물)를 다 감춘다.
+    $(".tab_cont > div").hide();
+    //인덱스 번호에 해당하는 tab_cont 클래스의 div(선택한 탭의 내용물)를 보여준다. 
+    $(".tab_cont > div").eq(idx).show();
+}
+
+</script>
 </head>
 <body>
+	<!-- 헤더 -->
+	<header id="header" class="header">
+		<!-- 네비게이션바 -->
+		<nav id="navbar" class="navbar">
+		   	<div class="search">
+		  			<a th:href="@{/search}" class="search_logo">
+		   			<img th:src="@{/image/btn_search.png}" alt="검색">
+		   		</a>
+		   	</div>
+		   
+		    <div id="logo">
+		    	<a th:href="@{/personal/home}" class="navbar_logo">
+		       		<img th:src="@{/image/logo.png}" alt="logo">
+		       		<span>FitTail</span>
+		     	</a>
+		    </div>
+		
+		   	<div class="navbar_right">
+		   		<div sec:authorize="!isAuthenticated()">
+		    		<a th:href="@{/member/login}">로그인</a>
+		    	</div>
+		    	<div sec:authorize="isAuthenticated()">
+		    		<a th:href="@{/member/logout}">로그아웃</a>
+		    		<a th:href="@{/personal/member/mypage}">마이페이지</a>
+		    	</div>
+		   </div>
+		 </nav>
+		 <!-- 네비게이션바 끝 -->
+	</header>
+	<!-- 헤더 끝 -->
+	<!-- 메인 시작 -->
+	<main>
+		<!-- 사이드바 -->
+		<section class="sidebar" id="sidebar">
+			<!-- 사이드바: 프로필 -->
+			<div class="profile">
+				<div class="profile-icon">
+		 			<img th:src="@{/image/profile-icon.svg}" alt="프로필">
+		 		</div>
+			 	<div class="profile-text">
+			 		<p><span th:text="${#authentication.name}"></span>님 환영합니다.</p>
+			 	</div>
+		 	</div>
 
+			<hr class="sidebar-divider">
+
+			<!-- 사이드바: 메뉴 리스트 -->
+	        <div class="nav-item">
+				<ul>
+					<li>
+						<a th:href="@{/corporate/store/reserveList}">예약 확인</a>
+						<ul>
+							<li><a th:href="@{/corporate/store/reserveInput}">예약 수기 입력</a></li>
+						</ul>
+					</li>
+	       			<li>
+	       				<a th:href="@{/corporate/store/menuMng}">메뉴 관리</a>
+	     			</li>
+					<li>
+						<a th:href="@{/corporate/store/orderList}">주문 관리</a>
+					</li>
+					<li>
+						<a th:href="@{/corporate/store/salesMng}">매출 관리</a>
+					</li>
+				</ul>
+			</div>
+	        
+        	<hr class="sidebar-divider">
+	
+			<!-- 사이드바: 회원 탈퇴 -->
+			<a th:href="@{/member/quitMember}">회원 탈퇴</a>
+		</section>
+		<!-- 사이드바 끝 -->
+		<!-- 메인 섹션 시작 -->
+		<section>
+			<!-- 탭 메뉴 영역 -->
+			<section>
+				<!-- 탭 이름 -->
+				<div class="tab_title">
+					<ul>
+						<li class="on">연도별</li>
+						<li>월별</li>
+						<li>일별</li>
+					</ul>
+				</div>
+				<!-- 탭 내용 -->
+				<div class="tab_cont">
+					<!-- 메뉴탭 내용 -->
+					<div id="tab_year" class="on">
+						<div id="">
+							<h1>총 매출</h1>
+							<p></p>
+							<h1>주문 수</h1>
+							<p></p>
+						</div>
+						<h1>인기 메뉴</h1>
+						<div id="year_popular"></div>
+						<h1>손님 현황</h1>
+						<div id="year_popular"></div>
+						<h1>회전율</h1>
+						<div id="year_popular"></div>
+					</div>
+					<div id="tab_month">
+						
+					</div>
+					<div id="tab_day">
+						
+					</div>
+				</div>
+			</section>
+		</section>
+	</main>
 </body>
 </html>
