@@ -36,17 +36,10 @@ function pwChk(){
 
 //유효성검사 만족 시 폼 제출
 function formSubmit() {
-	let isValid = true; //isValid 초기화
+	let isValid = pwValid;
 
-	if(!pwValid) {
-		isValid = false; //유효성 검사에 실패하면 isValid를 false로 설정
-	}
-	else isValid = true;
-	
-	if(isValid) {
-		return true;
-	} else {
-		return false;
+	if(!isValid) {
+		return false; //유효성 검사에 실패하면 false 반환
 	}
 }
 </script>
@@ -64,14 +57,14 @@ function formSubmit() {
                 <tr>
                     <th>비밀번호</th>
                     <td>
-                    <input type="password" name="memberPw" id="memberPw" placeholder="비밀번호를 입력해주세요."/>
+                    <input type="password" name="memberPw" id="memberPw" placeholder="비밀번호를 입력해주세요." required="required"/>
                     <p id="errMsg1"></p>
                     </td>
                 </tr>
                 <tr>
                     <th>새 비밀번호</th>
                     <td>
-                    <input type="password" name="memberPw2" id="memberPw2" placeholder="비밀번호를 다시 입력해주세요."/>
+                    <input type="password" name="memberPw2" id="memberPw2" placeholder="비밀번호를 다시 입력해주세요." required="required"/>
                     <p id="errMsg2"></p>
                     </td>
                 </tr>
