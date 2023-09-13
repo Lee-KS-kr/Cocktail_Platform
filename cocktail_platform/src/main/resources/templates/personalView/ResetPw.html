@@ -59,7 +59,7 @@ function formSubmit() {
     <div>
         <div>
           <h1>비밀번호 재설정</h1>
-          <form id="resetPwForm" th:action="@{/member/resetPw}" method="post" onsubmit="return formSubmit()">
+          <form id="resetPwForm" th:action="@{/member/resetPw}" method="post" onsubmit="formSubmit()">
             <table>
                 <tr>
                     <th>비밀번호</th>
@@ -76,9 +76,9 @@ function formSubmit() {
                     </td>
                 </tr>
               </table>
+	        <input type="submit" value="제출" />
             </form>
         </div>
-        <input type="submit" value="제출" />
     </div>
 </body>
 </html>
