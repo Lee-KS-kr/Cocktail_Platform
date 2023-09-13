@@ -15,4 +15,5 @@ public class Reservation {
 	String memo;
 	int reserveHead;
 	ReservationState reserveState;
+	String storeName;
 }
