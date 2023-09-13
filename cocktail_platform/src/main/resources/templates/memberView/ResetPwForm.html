@@ -1,9 +1,33 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>비밀번호 재설정</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>비밀번호 재설정</title>
+<script>
+//비밀번호 유효성 검사
+function pwChk(){
+	let pw1 = $('#memberPw').val();
+	let pw2 = $('#memberPw2').val();
+	let regPw =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+	
+	if(!regPw.test(pw1)) {
+	    $('#errMsg2').html('비밀번호는 8-15자리 문자/숫자/특수문자를 포함해야 합니다.');
+	    pwValid = false;
+	  } else {
+	    $('#errMsg2').html('');
+	    pwValid = true;
+	  }
+
+	 if(pw1 !== pw2) {
+	    $('#errMsg3').html('비밀번호가 일치하지 않습니다.');
+	    pwValid = false;
+	  } else {
+	    $('#errMsg3').html('');
+	    pwValid = true;
+	  }
+}
+</script>
 </head>
 <body>
     <!--타이틀-->
