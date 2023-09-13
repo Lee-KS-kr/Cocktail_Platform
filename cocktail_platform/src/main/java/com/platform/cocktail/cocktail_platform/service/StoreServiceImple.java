@@ -45,6 +45,9 @@ public class StoreServiceImple implements StoreService {
 	@Override
 	public ArrayList<Reservation> getReservelistByCode(int storeCode) {
 		ArrayList<Reservation> list = dao.getReservelistByCode(storeCode);
+		for (Reservation rsv : list) 
+			rsv.setStoreName(dao.getStoreinfoByCode(storeCode).getStoreName());
+		
 		return list;
 	}
 
