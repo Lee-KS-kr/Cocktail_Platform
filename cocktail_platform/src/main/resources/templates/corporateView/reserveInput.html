@@ -93,24 +93,21 @@ document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1)
 /**인원수 선택 증감*/
 function count(type)  {
   //결과를 표시할 element
-  let headnum = document.getElementById('headnum');
-  
-  //현재 화면에 표시된 값
-  let headnum2 = headnum.innerText;
+  let headnum = document.getElementById('headnum').innerText;
   
   //더하기/빼기
   if(type === 'plus' && headnum < 5) {
-	  headnum2 = parseInt(headnum) + 1;  
+	  headnum = parseInt(headnum) + 1;  
   }else if(type === 'minus' && headnum > 0) {
-	  headnum2 = parseInt(headnum) - 1;
+	  headnum = parseInt(headnum) - 1;
   }else {
 		alert('인원수를 확인해주세요.');
 		return false;
 	}
   
   //결과 출력
-  $("#headnum").text(headnum2);
-  $("#reserveHead").val(headnum2);
+  $("#headnum").text(headnum);
+  $("#reserveHead").val(headnum);
 }
 
 /**예약 폼 유효성 검사 */
