@@ -102,14 +102,13 @@ function infoChk(){
 
 /**가게 정보 보내기*/
 function storeSub(){
-    let isValid = true;
 
     if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
-        isValid = false;
+        return false;
     }
-    
-    if(isValid){
-        alert('저장되었습니다.');
+  	else{
+        return true;
+  		alert('저장되었습니다.');
     }
 }
 </script>
@@ -126,7 +125,7 @@ function storeSub(){
 					<input type="text" id="storeName" name="storeName" onkeyup="storeNameChk()">
 					<p id="errMsg1"></p>
 					대표 사진<br>
-		    		<input type="file" name="originFilename"><br>
+		    		<input type="file" name="upload"><br>
 		    		사업자 번호
 					<input type="text" id="brn" name="brn" onkeyup="brnChk()"><br>
 					<p id="errMsg2"></p>
