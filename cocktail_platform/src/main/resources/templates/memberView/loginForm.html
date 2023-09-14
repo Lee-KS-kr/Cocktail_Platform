@@ -7,8 +7,8 @@
     <meta charset="UTF-8" />
     <title>로그인</title>
     <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
-    <!---->
-    <link rel="stylesheet" href="../../static/CSS/login.css" />
+    <!--
+    <link rel="stylesheet" href="../../static/CSS/login.css" />-->
     <link rel="stylesheet" th:href="@{/CSS/login.css}" />
   </head>
   <body>
@@ -59,9 +59,9 @@
       </div>
       <!-- sec1 끝 -->
       <div class="sec2">
-        <p><a th:href="@{/member/findId}">아이디 찾기 &nbsp;</a></p>
-        <p><a th:href="@{/member/resetPw}">| 비밀번호 찾기 &nbsp;</a></p>
-        <p><a th:href="@{/member/join}">| 회원가입</a></p>
+        <a th:href="@{/member/findId}">아이디 찾기 &nbsp;</a>
+        <a th:href="@{/member/resetPw}">| 비밀번호 찾기&nbsp;</a>
+        <a th:href="@{/member/join}">| 회원가입 &nbsp;</a>
       </div>
       <!-- sec2 끝 -->
       <!--<img src="../../static/image/mainimg/water1.png" alt="water1">-->
