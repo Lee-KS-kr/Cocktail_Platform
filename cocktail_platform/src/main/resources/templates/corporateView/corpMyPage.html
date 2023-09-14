@@ -7,23 +7,8 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-    init();
-});
 
-/**아이디 받아오기*/
-function init(){
-	$.ajax({
-		url: 'mypage',
-		type: 'get',
-		dataType: "text",
-		success: function(){
-			getMemberInfo();
-		},
-		error: function(e){
-			alert('에러입니다');
-		}
-	});
-}
+});
 
 /**회원 정보 가져오기*/
 function getMemberInfo(){
@@ -31,7 +16,7 @@ function getMemberInfo(){
 		url: 'getPrivacy',
 		type: 'get',
 		dataType: "json",
-		success: function(){
+		success: function(list){
 			getList(list);
 		},
 		error: function(e){
@@ -40,14 +25,24 @@ function getMemberInfo(){
 	});
 }
 
+let memberId;
+let email;
+let memberName;
+let phone;
+
 /**회원정보 출력*/
 function getList(list){
 	let str = '<table>';
 	$(list).each(function(i,item){
-		str += '<tr><td>아이디</td><td>'+ item.memberId + '</td></tr>';
-		str += '<tr><td>이메일</td><td>' + item.email + '</td></tr>';
-		str += '<tr><td>이름</td><td>' + item.memberName + '</td></tr>';
-		str += '<tr><td>휴대폰 번호</td><td>' + item.phone + '</td></tr>';
+		memberId = item.memberId;
+		email = item.email;
+		memberName = item.memberName;
+		phone = item.phone;
+		
+		str += '<tr><td>아이디</td><td>'+ memberId + '</td></tr>';
+		str += '<tr><td>이메일</td><td>' + email + '</td></tr>';
+		str += '<tr><td>이름</td><td>' + memberName + '</td></tr>';
+		str += '<tr><td>휴대폰 번호</td><td>' + phone + '</td></tr>';
 		str += '<tr><td><input type="button" id="memChgBtn" value="수정" onclick="memChgToggle()"></td></tr>';
 		str += `<tr><td><input type="button" id="pwChgBtn" value="비밀번호 변경" onclick="location.href='corporate/member/resetPw.html'"></td></tr>`;
 	});
@@ -57,6 +52,11 @@ function getList(list){
 
 /**회원정보 변경 폼 표시*/
 function memChgToggle(){
+	$('#memberId').val(memberId);
+	$('#email').val(email);
+	$('#memberName').val(memberName);
+	$('#phone').val(phone);
+	
 	$('#memInfoFormDiv').hide();
 	$('#memberInfoForm').show();
 }
@@ -92,7 +92,7 @@ function memberChg(){
 	if(!phoneChk()){
 		isValid = false;
 	}
-	else if(isValid = true)
+	else if(isValid == true)
 		$.ajax({
 			url: 'editPrivacyInfo',
 			type: 'post',
@@ -112,7 +112,7 @@ function getStoreInfo(){
 		url: 'getStoreinfo',
 		type: 'get',
 		dataType: "json",
-		success: function(){
+		success: function(list){
 			getList(list);
 		},
 		error: function(e){
@@ -124,10 +124,11 @@ function getStoreInfo(){
 /**가게 정보 출력*/
 function getStoreList(list){
 	//가게 주소 합친 변수
-	let address = item.address1 + ' ' + item.address2;
 	let str = '<table>';
 
 	$(list).each(function(i,item){
+		let address = item.address1 + ' ' + item.address2;
+		
 		str += '<tr><td>상호명</td><td>'+ item.storeName + '</td></tr>';
 		str += '<tr><td>대표 사진</td><td>'+ item.savedFilename + '</td></tr>';
 		str += '<tr><td>사업자 번호</td><td>' + item.brn + '</td></tr>';
@@ -165,7 +166,7 @@ function storeNameChk(){
 
 /**사업자번호 유효성 검사*/
 function brnChk(){
-	let brn = $('#brn').val();;
+	let brn = $('#brn').val();
 	let regBrn = /^[0-9]{3}-[0-9]{2}-[0-9]{5}$/;
 	
 	if(!regBrn.test(brn)){
@@ -244,7 +245,7 @@ function storeChg(){
 		isValid2 = false;
 	}
 	
-	else if(isValid2 = true){
+	else if(isValid2 == true){
 		$.ajax({
 			url: 'editStorepage',
 			type: 'post',
@@ -348,14 +349,14 @@ function storeChg(){
 			<div id="memInfoFormDiv" style="display:none;">
 				<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
 					아이디
-					<input type="text" name="memberId" th:value="${m.memberId}" readonly="readonly"><br>
+					<input type="text" id="memberId" name="memberId" readonly="readonly"><br>
 					이름
-					<input type="text" name="memberName" th:value="${m.memberName}" readonly="readonly"><br>
+					<input type="text" id="memberName" name="memberName" readonly="readonly"><br>
 					휴대폰 번호
-					<input type="text" id="phone" name="phone" th:value="${m.phone}" onkeyup="phoneChk()"><br>
+					<input type="text" id="phone" name="phone" onkeyup="phoneChk()"><br>
 					<p id="errMsg1"></p>
 					이메일
-					<input type="text" name="email" th:value="${m.email}" readonly="readonly"><br>
+					<input type="text" name="email" readonly="readonly"><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
 					<input type="submit" id="memSubBtn" value="저장" onclick="memberChg()">
