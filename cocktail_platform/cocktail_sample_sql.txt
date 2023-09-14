@@ -1,4 +1,4 @@
---칵테일(31종) 샘플 데이터
+--칵테일(29종) 샘플 데이터
 
 -------------------------------------------------------------------------------------
 
@@ -828,60 +828,3 @@ values
     );
     
 ----------------------------------------------------------------------------------
-
-insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
-    , ingredient1
-    , ingredient2
-    , cocktailTaste
-    , cocktailFlavor
-    , cocktailColor
-    , savedFilename
-    ) 
-values 
-    (cocktails_seq.nextval
-    , '오렌지 클로버'
-    , '15'
-    , (select ingredientnum from ingredients where ingredientname = '소다수')
-    , (select ingredientnum from ingredients where ingredientname = '민트 시럽')
-    , (select ingredientnum from ingredients where ingredientname = '오렌지 스파이럴')
-    , 1015
-    , 2001
-    , 3016
-    , '오렌지 클로버.png'
-    );
-    
--------------------------------------------------------------------------------------
-
-insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
-    , ingredient1
-    , ingredient2
-    , ingredient3
-    , cocktailTaste
-    , cocktailFlavor
-    , cocktailColor
-    , savedFilename
-    ) 
-values 
-    (cocktails_seq.nextval
-    , '오렌지 드림'
-    , '10'
-    , (select ingredientnum from ingredients where ingredientname = '소다수')
-    , (select ingredientnum from ingredients where ingredientname = '민트 시럽')
-    , (select ingredientnum from ingredients where ingredientname = '오렌지 스파이럴')
-    , (select ingredientnum from ingredients where ingredientname = '그린 크렘 드 망트')
-    , 1001
-    , 2008
-    , 3016
-    , '오렌지 드림.png'
-    );
-    
--------------------------------------------------------------------------------------
-    
