@@ -7,8 +7,23 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-    
+    init();
 });
+
+/**아이디 받아오기*/
+function init(){
+	$.ajax({
+		url: 'mypage',
+		type: 'get',
+		dataType: "text",
+		success: function(){
+			getMemberInfo();
+		},
+		error: function(e){
+			alert('에러입니다');
+		}
+	});
+}
 
 /**회원 정보 가져오기*/
 function getMemberInfo(){
