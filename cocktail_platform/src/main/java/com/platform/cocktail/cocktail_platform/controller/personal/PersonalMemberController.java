@@ -131,11 +131,11 @@ public class PersonalMemberController {
 	}
 	
 	//주문,취소 목록
-	@GetMapping("orderLists")
+	@GetMapping("orderList")
 	public String orderLists(@AuthenticationPrincipal UserDetails user, Model m) {
 		ArrayList<Order> list = oService.getOrderLists(user.getUsername());
 		m.addAttribute("orderList", list);
-		return "personalView/OrderHistory";
+		return "personalView/OrderList";
 	}
 	
 	//주문 상세 내역
@@ -146,7 +146,7 @@ public class PersonalMemberController {
 		
 		m.addAttribute("order", o);
 		m.addAttribute("orderList", list);
-		return "personalView/OrderList";
+		return "personalView/OrderDetails";
 	}
 	
 	//취향 재설정 화면

@@ -14,7 +14,7 @@
 			, menuList
 			, orderState
 		from
-			order
+			orders
 		where
 			memberId = #{memberId}
 		order by

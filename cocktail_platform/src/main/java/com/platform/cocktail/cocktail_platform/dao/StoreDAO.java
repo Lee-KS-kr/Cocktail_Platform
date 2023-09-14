@@ -59,4 +59,8 @@ public interface StoreDAO {
 	int insertStoreinfo(StoreInfo info);
 
 	Reservation getReservationByCode(String reserveCode);
+
+	String hasFileFromStore(int storeCode);
+
+	int deleteFileFromStore(StoreInfo store);
 }
