@@ -75,7 +75,7 @@ input-border-solid:     #e7e7e7
 }
 
 @font-face {
-  font-family: 'OKGUNG';
+  font-family: '';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
@@ -142,11 +142,10 @@ body {
 }
 */
 .title {
-  font-family: 'OKGUNG';
-
+  font-family: "Black Han Sans", sans-serif;
   font-size: 40px;
-  color: #ffffff;
-  -webkit-text-stroke: 1px black;
+  color: #ff9058;
+  -webkit-text-stroke: 1px #4c4c4c;
 }
 .content {
   border: 1px solid #232323;
