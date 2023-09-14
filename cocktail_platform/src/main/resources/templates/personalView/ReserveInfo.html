@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTail - 예약 상세 내역</title>
+
+    <!-- vs code
+    <link rel="stylesheet" href="../../static/CSS/personal/ReserComplete.css">
+
+    -->
+
+
+    <link rel="stylesheet" th:href="@{/CSS/personal/myPage.css}">
+    <!-- thymeleaf
+    -->
+
+</head>
+<body>
+   
+    <div class="navi">  <!-- navi   -->
+        <div class="navi1">
+            <a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
+        </div>
+        <div class="navi2">
+            <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
+            <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
+            <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
+            <a th:href="@{/personal/searchPage}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
+        </div>
+    </div>  
+    <!-- main -->
+    <div class="main">
+        <!-- sidebar-->
+        <div class="sidebar">
+            <!-- sec1 start-->
+            <div class="sec1">
+                <div class="order">
+                    <p> <a th:href="@{/personal/member/myPage}"><input type="button" value="마이페이지" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/Orderlist}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/myPage}"><input type="button" value="예약내역" class="orderHistory" onclick="orderlist()"></a></p>
+                </div>
+                <div class="order">
+                    <p> <a th:href="@{/personal/member/InfoSet}"><input type="button" value="개인정보 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/CategorySet}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                </div>
+                <div>
+                    <a th:href="@{/member/quitMember}" name="out">탈퇴하기</a>
+                </div>
+            </div>
+            <!-- sec2 start-->
+            <div class="sec2">
+                <div class="title2">예약 내역</div>
+                <table class="con1">
+                    <tr>
+                        <td>예약 번호</td>
+                        <td>매장명</td>
+                        <td>예약 일자</td>
+                        <td>예약 상태</td>
+                    </tr>
+                </table>
+                <hr>
+                <div class="con2" th:if="${#lists.isEmpty(reserveList)}">예약 내역이 없습니다.</div>
+                <table class="con2" th:if="${reserveList != null}">
+                    <tr th:each="rsv : ${reserveList}">
+                        <a th:href="@{/personal/member/reserveInfo?=${rsv.reserveCode}}">
+                            <td th:text="${rsv.reserveCode}"></td>
+                            <td th:text="${rsv.storeName}"></td>
+                            <td th:text="${rsv.reserveDate}"></td>
+                            <td th:text="${rsv.reserveState}"></td>
+                        </a>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

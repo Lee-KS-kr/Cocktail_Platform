@@ -242,4 +242,37 @@
 			memberId = #{memberId}
 	</select>
 	
+	<insert id="insertStoreinfo" parameterType="StoreInfo">
+		insert into storeInfo 
+			(storeCode
+			, memberId
+			, storeName
+			, address1
+			, address2
+			, postCode
+			, brn
+			, phone
+			, runningTime
+			, dayOff
+			, info
+			<if test="originFilename != null"> , originFilename
+			, savedFilename </if>
+			)
+		values 
+			( storeInfo_seq.nextval
+			, #{memberId}
+			, #{storeName}
+			, #{address1}
+			, #{address2}
+			, #{postCode}
+			, #{brn}
+			, #{phone}
+			, #{runningTime}
+			, #{dayOff}
+			, #{info}
+			<if test="originFilename != null"> , #{originFilename}
+			, #{savedFilename} </if>
+			)
+	</insert>
+	
 </mapper>
