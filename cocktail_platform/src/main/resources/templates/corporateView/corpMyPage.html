@@ -94,7 +94,7 @@ function memberChg(){
 /**가게 정보 가져오기*/
 function getStoreInfo(){
 	$.ajax({
-		url: 'getStoreInfo',
+		url: 'getStoreinfo',
 		type: 'get',
 		dataType: "json",
 		success: function(){
@@ -274,7 +274,7 @@ function storeChg(){
 	    		<a th:href="@{/corporate/member/mypage}">마이페이지</a>
 	    	</div>
 	   </div>
-  </nav>
+  	</nav>
   <!-- 네비게이션바 끝 -->
 </header>
 <!-- 헤더 끝 -->
@@ -333,14 +333,14 @@ function storeChg(){
 			<div id="memInfoFormDiv" style="display:none;">
 				<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
 					아이디
-					<input type="text" name="memberId" th:value="${memberId}" readonly="readonly"><br>
+					<input type="text" name="memberId" th:value="${m.memberId}" readonly="readonly"><br>
 					이름
-					<input type="text" name="memberName" th:value="${memberName}" readonly="readonly"><br>
+					<input type="text" name="memberName" th:value="${m.memberName}" readonly="readonly"><br>
 					휴대폰 번호
-					<input type="text" id="phone" name="phone" th:value="${phone}" onkeyup="phoneChk()"><br>
+					<input type="text" id="phone" name="phone" th:value="${m.phone}" onkeyup="phoneChk()"><br>
 					<p id="errMsg1"></p>
 					이메일
-					<input type="text" name="email" th:value="${email}" readonly="readonly"><br>
+					<input type="text" name="email" th:value="${m.email}" readonly="readonly"><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
 					<input type="submit" id="memSubBtn" value="저장" onclick="memberChg()">
@@ -360,7 +360,7 @@ function storeChg(){
 					<input type="text" id="storeName" name="storeName" th:value="${store.storeName}" onkeyup="storeNameChk()">
 					<p id="errMsg2"></p>
 					대표 사진<br>
-		    		<input type="file" name="originFilename"><br>
+		    		<input type="file" name="upload"><br>
 		    		사업자 번호
 					<input type="text" id="brn" name="brn" th:value="${store.brn}" onkeyup="brnChk()"><br>
 					<p id="errMsg3"></p>
