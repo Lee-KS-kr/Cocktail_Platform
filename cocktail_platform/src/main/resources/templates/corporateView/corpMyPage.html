@@ -184,7 +184,7 @@ function storePhoneChk(){
 	let storePhone = $('#storePhone').val();
     let regPhone = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
     
-    if(!regBrn.test(brn)){
+    if(!regPhone.test(storePhone)){
         $('#errMsg4').html('전화번호 형식이 올바르지 않습니다.');
         return false;
     }
@@ -356,7 +356,7 @@ function storeChg(){
 					<input type="text" id="phone" name="phone" onkeyup="phoneChk()"><br>
 					<p id="errMsg1"></p>
 					이메일
-					<input type="text" name="email" readonly="readonly"><br>
+					<input type="text" id="email" name="email" readonly="readonly"><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
 					<input type="submit" id="memSubBtn" value="저장" onclick="memberChg()">
