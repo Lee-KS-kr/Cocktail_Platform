@@ -7,8 +7,7 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-    $('#memberChangeBtn').click(memberChg);
-    $('#storeChangeBtn').click(storeChg);
+    
 });
 
 /**회원 정보 가져오기*/
@@ -78,9 +77,7 @@ function memberChg(){
 	if(!phoneChk()){
 		isValid = false;
 	}
-	else isValid = true;
-	
-	if(isValid){
+	else if(isValid = true)
 		$.ajax({
 			url: 'editPrivacyInfo',
 			type: 'post',
@@ -92,7 +89,6 @@ function memberChg(){
 				alert(e.statusText);
 			}
 		});
-	}
 }
 
 /**가게 정보 가져오기*/
@@ -233,7 +229,7 @@ function storeChg(){
 		isValid2 = false;
 	}
 	
-	if(isValid2){
+	else if(isValid2 = true){
 		$.ajax({
 			url: 'editStorepage',
 			type: 'post',
@@ -335,19 +331,19 @@ function storeChg(){
 			
 			<!-- 회원 정보 수정 폼 -->
 			<div id="memInfoFormDiv" style="display:none;">
-				<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post" onsubmit="memberChg()">
+				<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
 					아이디
-					<input type="text" name="memberId" th:value="${member.memberId}" readonly="readonly"><br>
+					<input type="text" name="memberId" th:value="${memberId}" readonly="readonly"><br>
 					이름
-					<input type="text" name="memberName" th:value="${member.memberName}" readonly="readonly"><br>
+					<input type="text" name="memberName" th:value="${memberName}" readonly="readonly"><br>
 					휴대폰 번호
-					<input type="text" id="phone" name="phone" th:value="${member.phone}" onkeyup="phoneChk()"><br>
+					<input type="text" id="phone" name="phone" th:value="${phone}" onkeyup="phoneChk()"><br>
 					<p id="errMsg1"></p>
 					이메일
-					<input type="text" name="email" th:value="${member.email}" readonly="readonly"><br>
+					<input type="text" name="email" th:value="${email}" readonly="readonly"><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
-					<input type="submit" id="memSubBtn" value="저장">
+					<input type="submit" id="memSubBtn" value="저장" onclick="memberChg()">
 				</form>
 			</div>
 		</div>
@@ -359,7 +355,7 @@ function storeChg(){
 			<!-- 매장 정보 수정 폼 -->
 			<div id="storeInfoFormDiv" style="display:none;">
 				<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post"
-				enctype="multipart/form-data" onsubmit="storeChg()">
+				enctype="multipart/form-data">
 					가게명
 					<input type="text" id="storeName" name="storeName" th:value="${store.storeName}" onkeyup="storeNameChk()">
 					<p id="errMsg2"></p>
@@ -388,7 +384,7 @@ function storeChg(){
 					<input type="text" name="address2" id="address2" placeholder="상세주소"><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
-					<input type="submit" id="storeSubBtn" value="변경">
+					<input type="submit" id="storeSubBtn" value="변경" onclick="storeChg()">
 				</form>
 			</div>
 		</div>
