@@ -203,5 +203,17 @@ public class StoreServiceImple implements StoreService {
 		reservation.setStoreName(dao.getStoreinfoByCode(reservation.getStoreCode()).getStoreName());
 		return reservation;
 	}
+
+	@Override
+	public String hasFileFromStore(int storeCode) {
+		String str = dao.hasFileFromStore(storeCode);
+		return str;
+	}
+
+	@Override
+	public int deleteFileFromStore(StoreInfo store) {
+		int n = dao.deleteFileFromStore(store);
+		return n;
+	}
 	
 }

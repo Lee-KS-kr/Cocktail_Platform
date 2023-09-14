@@ -7,16 +7,15 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-
+	getMemberInfo();
 });
 
 /**회원 정보 가져오기*/
 function getMemberInfo(){
 	$.ajax({
 		url: 'getPrivacy',
-		contentType: 'application/json; charset=utf-8',
 		type: 'get',
-		dataType: 'json',
+		dataType: "json",
 		success: function(list){
 			getList(list);
 		},
@@ -122,39 +121,22 @@ function getStoreInfo(){
 	});
 }
 
-//변수 설정
-let storeName;
-let savedFilename;
-let brn;
-let address;
-let storePhone;
-let runningTime;
-let dayOff;
-let info;
-
 /**가게 정보 출력*/
 function getStoreList(list){
 	//가게 주소 합친 변수
 	let str = '<table>';
 
 	$(list).each(function(i,item){
-		storeName = item.storeName;
-		savedFilename = item.savedFilename;
-		brn = item.brn;
-		address = item.address1 + ' ' + item.address2;
-		storePhone = item.phone;
-		runningTime = item.runningTime;
-		dayOff = item.dayOff;
-		info = item.info;
+		let address = item.address1 + ' ' + item.address2;
 		
-		str += '<tr><td>상호명</td><td>'+ storeName + '</td></tr>';
-		str += '<tr><td>대표 사진</td><td>'+ savedFilename + '</td></tr>';
-		str += '<tr><td>사업자 번호</td><td>' + brn + '</td></tr>';
+		str += '<tr><td>상호명</td><td>'+ item.storeName + '</td></tr>';
+		str += '<tr><td>대표 사진</td><td>'+ item.savedFilename + '</td></tr>';
+		str += '<tr><td>사업자 번호</td><td>' + item.brn + '</td></tr>';
 		str += '<tr><td>가게 주소</td><td>' + address + '</td></tr>';
-		str += '<tr><td>가게 전화번호</td><td>' + phone + '</td></tr>';
-		str += '<tr><td>영업 시간</td><td>' + runningTime + '</td></tr>';
-		str += '<tr><td>휴무일</td><td>' + dayOff + '</td></tr>';
-		str += '<tr><td>가게 소개</td><td>' + info + '</td></tr>';
+		str += '<tr><td>가게 전화번호</td><td>' + item.phone + '</td></tr>';
+		str += '<tr><td>영업 시간</td><td>' + item.runningTime + '</td></tr>';
+		str += '<tr><td>휴무일</td><td>' + item.dayOff + '</td></tr>';
+		str += '<tr><td>가게 소개</td><td>' + item.info + '</td></tr>';
 		str += '<tr><td><input type="button" id="storeChgBtn" value="수정" onclick="storeChgToggle()"></td></tr>';
 	});
 	str += '</table>';
@@ -163,14 +145,6 @@ function getStoreList(list){
 
 /**가게 정보 변경 폼 표시*/
 function storeChgToggle(){
-	$('#storeName').val(storeName);
-	$('#brn').val(brn);
-	$('#address').val(address);
-	$('#storePhone').val(storePhone);
-	$('#runningTime').val(runningTime);
-	$('#dayOff').val(dayOff);
-	$('#info').val(info);
-	
 	$('#storeInfoFormDiv').hide();
 	$('#storeInfoForm').show();
 }
@@ -302,6 +276,7 @@ function storeChg(){
     
 	    <div id="logo">
 	    	<a th:href="@{/corporate/home}" class="navbar_logo">
+	       		<img th:src="@{/image/logo.png}" alt="logo">
 	       		<span>FitTail</span>
 	     	</a>
 	    </div>
@@ -398,7 +373,7 @@ function storeChg(){
 				<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post"
 				enctype="multipart/form-data">
 					가게명
-					<input type="text" id="storeName" name="storeName" onkeyup="storeNameChk()">
+					<input type="text" id="storeName" name="storeName"  onkeyup="storeNameChk()">
 					<p id="errMsg2"></p>
 					대표 사진<br>
 		    		<input type="file" name="upload"><br>
@@ -412,10 +387,10 @@ function storeChg(){
 					<input type="text" id="runningTime" name="runningTime" onkeyup="runningTimeChk()">
 					<p id="errMsg5"></p>
 					휴일
-					<input type="text" id="dayOff" name="dayOff" onkeyup="dayOffChk()">
+					<input type="text" id="dayOff" name="dayOff"  onkeyup="dayOffChk()">
 					<p id="errMsg6"></p>
 					매장 소개
-					<input type="text" id="info" name="info" onkeyup="infoChk()">
+					<input type="text" id="info" name="info"  onkeyup="infoChk()">
 					<p id="errMsg7"></p>
 					주소
 					<input type="text" name="postCode" id="postCode" placeholder="우편번호">

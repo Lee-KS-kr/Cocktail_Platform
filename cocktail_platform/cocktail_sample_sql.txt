@@ -1,0 +1,830 @@
+--칵테일(29종) 샘플 데이터
+
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , ingredient4
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values
+    (cocktails_seq.nextval
+    , '몰드 와인'
+    , '12'
+    , (select ingredientnum from ingredients where ingredientname = '물')
+    , (select ingredientnum from ingredients where ingredientname = '설탕')
+    , (select ingredientnum from ingredients where ingredientname = '계피')
+    , (select ingredientnum from ingredients where ingredientname = '레몬 껍질')
+    , (select ingredientnum from ingredients where ingredientname = '레드 와인')
+    , 1003
+    , 2001
+    , 3008
+    , '몰드 와인.png'
+    );
+
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '마티니'
+    , '30'
+    , (select ingredientnum from ingredients where ingredientname = '진')
+    , (select ingredientnum from ingredients where ingredientname = '드라이 버무스')
+    , (select ingredientnum from ingredients where ingredientname = '올리브')
+    , 1007
+    , 2001
+    , 3001
+    , '마티니.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , ingredient4
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '모히토'
+    , '20'
+    , (select ingredientnum from ingredients where ingredientname = '라이트 럼')
+    , (select ingredientnum from ingredients where ingredientname = '라임')
+    , (select ingredientnum from ingredients where ingredientname = '설탕')
+    , (select ingredientnum from ingredients where ingredientname = '민트')
+    , (select ingredientnum from ingredients where ingredientname = '소다수')
+    , 1002
+    , 2008
+    , 3001
+    , '모히토.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '모스코 미또'
+    , '7'
+    , (select ingredientnum from ingredients where ingredientname = '보드카')
+    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
+    , (select ingredientnum from ingredients where ingredientname = '진저에일')
+    , 1002
+    , 2001
+    , 3008
+    , '모스코 미또.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '민트 주렙'
+    , '30'
+    , (select ingredientnum from ingredients where ingredientname = '버번')
+    , (select ingredientnum from ingredients where ingredientname = '민트')
+    , (select ingredientnum from ingredients where ingredientname = '가루 설탕')
+    , (select ingredientnum from ingredients where ingredientname = '물')
+    , 1005
+    , 2004
+    , 3002
+    , '민트 주렙.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , ingredient4
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '블러디 메리'
+    , '10'
+    , (select ingredientnum from ingredients where ingredientname = '보드카')
+    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
+    , (select ingredientnum from ingredients where ingredientname = '토마토 주스')
+    , (select ingredientnum from ingredients where ingredientname = '타바스코 소스')
+    , (select ingredientnum from ingredients where ingredientname = '후추')
+    , 1006
+    , 2001
+    , 3008
+    , '블러디 메리.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '브랜디 알렉산더'
+    , '20'
+    , (select ingredientnum from ingredients where ingredientname = '브랜디')
+    , (select ingredientnum from ingredients where ingredientname = '헤비 크림')
+    , 1003
+    , 2002
+    , 3002
+    , '브랜디 알렉산더.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '부커스 온 더 비치'
+    , '62'
+    , (select ingredientnum from ingredients where ingredientname = '보드카')
+    , (select ingredientnum from ingredients where ingredientname = '복숭아 슈냅스')
+    , (select ingredientnum from ingredients where ingredientname = '크랜베리 주스')
+    , (select ingredientnum from ingredients where ingredientname = '오렌지 주스')
+    , 1001
+    , 2001
+    , 3002
+    , '부커스 온 더 비치.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '부커스 블루즈'
+    , '53'
+    , (select ingredientnum from ingredients where ingredientname = '진')
+    , (select ingredientnum from ingredients where ingredientname = '소다 워터')
+    , (select ingredientnum from ingredients where ingredientname = '레몬 껍질')
+    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
+    , 1001
+    , 2001
+    , 3128
+    , '부커스 블루즈.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '블랙 러시안'
+    , '40'
+    , (select ingredientnum from ingredients where ingredientname = '보드카')
+    , (select ingredientnum from ingredients where ingredientname = '칼루아')
+    , 1001
+    , 2002
+    , 3004
+    , '블랙 러시안.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , ingredient4
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '산그리아'
+    , '8'
+    , (select ingredientnum from ingredients where ingredientname = '와인')
+    , (select ingredientnum from ingredients where ingredientname = '오렌지')
+    , (select ingredientnum from ingredients where ingredientname = '레몬 껍질')
+    , (select ingredientnum from ingredients where ingredientname = '설탕')
+    , (select ingredientnum from ingredients where ingredientname = '탄산수')
+    , 1001
+    , 2008
+    , 3008
+    , '산그리아.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '사이드카'
+    , '20'
+    , (select ingredientnum from ingredients where ingredientname = '브랜디')
+    , (select ingredientnum from ingredients where ingredientname = '트리플 섹')
+    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
+    , 1002
+    , 2009
+    , 3008
+    , '사이드카.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '서던 컴포트'
+    , '35'
+    , (select ingredientnum from ingredients where ingredientname = '버번')
+    , (select ingredientnum from ingredients where ingredientname = '바닐라')
+    , (select ingredientnum from ingredients where ingredientname = '계피')
+    , (select ingredientnum from ingredients where ingredientname = '정향')
+    , 1001
+    , 2016
+    , 3032
+    , '서던 컴포트.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '섹스 온 더 비치'
+    , '8'
+    , (select ingredientnum from ingredients where ingredientname = '보드카')
+    , (select ingredientnum from ingredients where ingredientname = '복숭아 슈냅스')
+    , (select ingredientnum from ingredients where ingredientname = '크랜베리 주스')
+    , (select ingredientnum from ingredients where ingredientname = '오렌지 주스')
+    , 1001
+    , 2017
+    , 3016
+    , '섹스 온 더 비치.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '스크류 드라이버'
+    , '15'
+    , (select ingredientnum from ingredients where ingredientname = '보드카')
+    , (select ingredientnum from ingredients where ingredientname = '오렌지 주스')
+    , 1002
+    , 2008
+    , 3032
+    , '스크류 드라이버.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , ingredient4
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '애플 모히토'
+    , '5'
+    , (select ingredientnum from ingredients where ingredientname = '라이트 럼')
+    , (select ingredientnum from ingredients where ingredientname = '민트')
+    , (select ingredientnum from ingredients where ingredientname = '설탕')
+    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
+    , (select ingredientnum from ingredients where ingredientname = '탄산수')
+    , 1001
+    , 2016
+    , 3016
+    , '애플 모히토.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '슬로진 피즈'
+    , '10'
+    , (select ingredientnum from ingredients where ingredientname = '슬로진')
+    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
+    , (select ingredientnum from ingredients where ingredientname = '설탕')
+    , (select ingredientnum from ingredients where ingredientname = '탄산수')
+    , 1003
+    , 2004
+    , 3032
+    , '슬로진 피즈.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , ingredient4
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '아모레토 사워'
+    , '15'
+    , (select ingredientnum from ingredients where ingredientname = '아마레토')
+    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
+    , (select ingredientnum from ingredients where ingredientname = '계란 흰자')
+    , (select ingredientnum from ingredients where ingredientname = '설탕 시럽')
+    , (select ingredientnum from ingredients where ingredientname = '마라스키노 체리')
+    , 1002
+    , 2002
+    , 3002
+    , '아모레토 사워.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '아메리카노'
+    , '0'
+    , (select ingredientnum from ingredients where ingredientname = '캄파리')
+    , (select ingredientnum from ingredients where ingredientname = '베르무스')
+    , (select ingredientnum from ingredients where ingredientname = '탄산수')
+    , 1002
+    , 2002
+    , 3002
+    , '아메리카노.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '아이리쉬 커피'
+    , '40'
+    , (select ingredientnum from ingredients where ingredientname = '아이리쉬 위스키')
+    , (select ingredientnum from ingredients where ingredientname = '커피')
+    , (select ingredientnum from ingredients where ingredientname = '설탕')
+    , (select ingredientnum from ingredients where ingredientname = '헤비 크림')
+    , 1001
+    , 2002
+    , 3002
+    , '아이리쉬 커피.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '애플 마티니'
+    , '15'
+    , (select ingredientnum from ingredients where ingredientname = '보드카')
+    , (select ingredientnum from ingredients where ingredientname = '애플 슈냅스')
+    , (select ingredientnum from ingredients where ingredientname = '쿠앵트로')
+    , 1001
+    , 2004
+    , 3002
+    , '애플 마티니.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '엘더플라워 칵테일'
+    , '15'
+    , (select ingredientnum from ingredients where ingredientname = '진')
+    , (select ingredientnum from ingredients where ingredientname = '엘더플라워 코디얼')
+    , (select ingredientnum from ingredients where ingredientname = '토닉 워터')
+    , 1001
+    , 2016
+    , 3256
+    , '엘더플라워 칵테일.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '에스프레소 마티니'
+    , '15'
+    , (select ingredientnum from ingredients where ingredientname = '보드카')
+    , (select ingredientnum from ingredients where ingredientname = '칼루아')
+    , (select ingredientnum from ingredients where ingredientname = '설탕 시럽')
+    , (select ingredientnum from ingredients where ingredientname = '에스프레소')
+    , 1005
+    , 2002
+    , 3008
+    , '에스프레소 마티니.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '오렌지 드림'
+    , '10'
+    , (select ingredientnum from ingredients where ingredientname = '갈리아노')
+    , (select ingredientnum from ingredients where ingredientname = '오렌지 주스')
+    , (select ingredientnum from ingredients where ingredientname = '크림')
+    , 1001
+    , 2008
+    , 3016
+    , '오렌지 드림.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , ingredient4
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '오렌지 클로버'
+    , '15'
+    , (select ingredientnum from ingredients where ingredientname = '진')
+    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
+    , (select ingredientnum from ingredients where ingredientname = '라즈베리 리큐어')
+    , (select ingredientnum from ingredients where ingredientname = '계란 흰자')
+    , (select ingredientnum from ingredients where ingredientname = '설탕')
+    , 1001
+    , 2001
+    , 3016
+    , '오렌지 클로버.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '오타 더 서바이버'
+    , '15'
+    , (select ingredientnum from ingredients where ingredientname = '진')
+    , (select ingredientnum from ingredients where ingredientname = '레몬 에이드')
+    , (select ingredientnum from ingredients where ingredientname = '자몽 주스')
+    , 1001
+    , 2016
+    , 3001
+    , '오타 더 서바이버.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    )
+values
+    (cocktails_seq.nextval
+    , '와이스키 사워'
+    , '15'
+    , (select ingredientnum from ingredients where ingredientname = '버번')
+    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
+    , (select ingredientnum from ingredients where ingredientname = '설탕 시럽')
+    , (select ingredientnum from ingredients where ingredientname = '게란 흰자')
+    , 1002
+    , 2009
+    , 3008
+    , '와이스키 사워.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '워터멜론 마르가리타'
+    , '10'
+    , (select ingredientnum from ingredients where ingredientname = '데킬라')
+    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
+    , (select ingredientnum from ingredients where ingredientname = '오렌지 주스')
+    , (select ingredientnum from ingredients where ingredientname = '얼음')
+    , 1001
+    , 2016
+    , 3128
+    , '워터멜론 마르가리타.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailCode
+    , cockailName
+    , cocktailAlcohol
+    , cocktailBase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    )
+values
+    (cocktails_seq.nextval
+    , '위스키 소다'
+    , '10'
+    , (select ingredientnum from ingredients where ingredientname = '스카치')
+    , (select ingredientnum from ingredients where ingredientname = '얼음')
+    , (select ingredientnum from ingredients where ingredientname = '소다수')
+    , (select ingredientnum from ingredients where ingredientname = '레몬 껍질')
+    , 1015
+    , 2004
+    , 3001
+    , '위스키 소다.png'
+    );
+    
+----------------------------------------------------------------------------------
