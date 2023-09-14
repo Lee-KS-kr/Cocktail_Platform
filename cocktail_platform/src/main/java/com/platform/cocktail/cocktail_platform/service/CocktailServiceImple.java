@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.platform.cocktail.cocktail_platform.dao.CocktailDAO;
+import com.platform.cocktail.cocktail_platform.domain.Cocktails;
 
 @Service
 public class CocktailServiceImple implements CocktailService {
@@ -21,5 +22,11 @@ public class CocktailServiceImple implements CocktailService {
 		
 		ArrayList<Object> list = dao.search(map);
 		return list;
+	}
+
+	@Override
+	public Cocktails findCocktailByCode(int cocktailCode) {
+		Cocktails cocktail = dao.findCocktailByCode(cocktailCode);
+		return cocktail;
 	}
 }
