@@ -59,6 +59,22 @@ input-border-solid:     #e7e7e7
 조보색:                 #45B783
 
 */
+
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans:400");
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean");
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OKGUNG';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 /*=========================================================*/
 
 body {
@@ -124,7 +140,7 @@ img[alt="search"] {
   padding: 20px;
   margin: 10px auto; /* 상하 여백을 10px으로 주고 좌우 여백은 자동으로 가운데 정렬 */
   text-align: center;
-  width: calc(33.33% - 20px); /* 3개 요소를 한 줄에 정렬하도록 너비 설정 */
+  display: flex;
   box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
   float: none; /* float 제거 */
   display: inline-block; /* 인라인 블록 요소로 변경하여 가운데 정렬 */
@@ -136,16 +152,20 @@ img[alt="search"] {
 }
 
 .pd_title {
+  
   color: #45b783;
   font-weight: bold;
   text-decoration: none;
 }
 
 .box {
+  width: 482px;
   justify-content: center;
   text-align: center;
   align-items: center;
   align-content: center;
+  background-color: #ff5c21;
+  
 }
 
 .box p {
@@ -154,7 +174,7 @@ img[alt="search"] {
 }
 
 .prd_ctg span {
-  background-color: #45b783;
+  background-color: #ff5c21;
   color: #353535;
   padding: 5px 10px;
   margin-top: 20px;
@@ -171,9 +191,19 @@ img[alt="banner"] {
 
 /* 상품 */
 .mainbox1 {
-  background-color: aqua;
+  background-color: rgb(162, 255, 255);
   text-align: left;
-  padding: 30px 20px;
+  margin: 40px 30px;
 }
+
+/*카테고리 title*/
+.main_title strong {
+  display: flex;
+  justify-content: center;
+  color: #45b783;
+  font-family: 'OKGUNG';  font-size: 25pt;
+}
+
+
 
 /*======================================================*/
