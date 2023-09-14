@@ -52,4 +52,8 @@ public interface StoreService {
 
 	Reservation getReservationByCode(String reserveCode);
 
+	String hasFileFromStore(int storeCode);
+
+	int deleteFileFromStore(StoreInfo store);
+
 }

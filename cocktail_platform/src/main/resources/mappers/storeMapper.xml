@@ -275,4 +275,13 @@
 			)
 	</insert>
 	
+	<select id="hasFileFromStore" resultType="string" parameterType="int">
+		select savedFilename from storeInfo where storeCode = #{storeCode}
+	</select>
+	
+	<update id="deleteFileFromStore" parameterType="StoreInfo">
+		update storeInfo set originFilename = null, savedFilename = null
+		where storeCode = #{storeCode} and memberid = #{memberid}
+	</update>
+	
 </mapper>
