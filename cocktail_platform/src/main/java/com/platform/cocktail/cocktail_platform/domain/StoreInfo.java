@@ -11,7 +11,10 @@ public class StoreInfo {
 	int storeCode;
 	String memberId;
 	String storeName;
-	String address;
+	String brn;
+	int postCode;
+	String address1;
+	String address2;
 	String phone;
 	String runningTime;
 	String dayOff;

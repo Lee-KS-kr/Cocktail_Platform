@@ -45,7 +45,7 @@ function storePhoneChk(){
 	let storePhone = $('#storePhone').val();
     let regPhone = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
     
-    if(!regBrn.test(brn)){
+    if(!regPhone.test(storePhone)){
         $('#errMsg3').html('전화번호 형식이 올바르지 않습니다.');
         return false;
     }
@@ -102,23 +102,14 @@ function infoChk(){
 
 /**가게 정보 보내기*/
 function storeSub(){
-	if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
-		isValid = false;
-	}
-	
-	if(isValid){
-		$.ajax({
-			url: 'inputStorepage',
-			type: 'post',
-			data: $('#storeInfoForm').serialize(),		
-			success: function(){
-				alert('저장되었습니다.');
-			},
-			error: function(e){
-				alert(e.statusText);
-			}
-		});
-	}
+
+    if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
+        return false;
+    }
+  	else{
+        return true;
+  		alert('저장되었습니다.');
+    }
 }
 </script>
 </head>
@@ -126,32 +117,29 @@ function storeSub(){
 	<main>
 	<div class="storeInformation">
 			<h2>매장 정보</h2>
-			<!-- 매장 정보 표시 -->
-			<div id="storeInfoDiv"></div>
-			
-			<!-- 매장 정보 수정 폼 -->
-			<div id="storeInfoFormDiv" style="display:none;">
+			<!-- 매장 정보 입력 폼 -->
+			<div id="storeInfoFormDiv">
 				<form id="storeInfoForm" th:action="@{/corporate/member/insertStoreinfo}" method="post"
 				enctype="multipart/form-data" onsubmit="storeSub()">
 					가게명
-					<input type="text" id="storeName" name="storeName" th:value="${store.storeName}" onkeyup="storeNameChk()">
+					<input type="text" id="storeName" name="storeName" onkeyup="storeNameChk()">
 					<p id="errMsg1"></p>
 					대표 사진<br>
-		    		<input type="file" name="savedFilename"><br>
+		    		<input type="file" name="upload"><br>
 		    		사업자 번호
-					<input type="text" id="brn" name="brn" th:value="${store.brn}" onkeyup="brnChk()"><br>
+					<input type="text" id="brn" name="brn" onkeyup="brnChk()"><br>
 					<p id="errMsg2"></p>
 					전화번호
-					<input type="text" id="storePhone" name="phone" th:value="${store.phone}" onkeyup="storePhoneChk()">
+					<input type="text" id="storePhone" name="phone" onkeyup="storePhoneChk()">
 					<p id="errMsg3"></p>
 					영업 시간
-					<input type="text" id="runningTime" name="runningTime" th:value="${store.runningTime}" onkeyup="runningTimeChk()">
+					<input type="text" id="runningTime" name="runningTime" onkeyup="runningTimeChk()">
 					<p id="errMsg4"></p>
 					휴일
-					<input type="text" id="dayOff" name="dayOff" th:value="${store.dayOff}" onkeyup="dayOffChk()">
+					<input type="text" id="dayOff" name="dayOff" onkeyup="dayOffChk()">
 					<p id="errMsg5"></p>
 					매장 소개
-					<input type="text" id="info" name="info" th:value="${store.info}" onkeyup="infoChk()">
+					<input type="text" id="info" name="info" onkeyup="infoChk()">
 					<p id="errMsg6"></p>
 					주소
 					<input type="text" name="postCode" id="postCode" placeholder="우편번호">
@@ -160,8 +148,9 @@ function storeSub(){
 					<span id="guide" style="color:#999;display:none"></span>
 					<input type="text" name="address2" id="address2" placeholder="상세주소" required="required"><br>
 					
+					<input type="hidden" name="memberId" th:value="${memberId}">
 					<input type="reset" class="bottom" value="다시 쓰기">
-					<input type="button" id="storeSubBtn" value="저장">
+					<input type="submit" id="storeSubBtn" value="저장">
 				</form>
 			</div>
 		</div>
