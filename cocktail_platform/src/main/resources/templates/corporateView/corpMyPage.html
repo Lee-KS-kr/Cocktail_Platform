@@ -54,9 +54,9 @@ function getList(list){
 /**회원정보 변경 폼 표시*/
 function memChgToggle(){
 	//해당 인풋에 값 넣어주기
-	$('#memberId').val(memberId);
-	$('#email').val(email);
-	$('#memberName').val(memberName);
+	$('#memberId').text(memberId);
+	$('#email').text(email);
+	$('#memberName').text(memberName);
 	$('#phone').val(phone);
 	
 	$('#memInfoDiv').hide();
