@@ -178,8 +178,8 @@ function storeNameChk(){
 	let storeName2 = $('#storeName').val();
 	let storeNameLength = storeName2.length;
 	
-	if(storeNameLength < 2 ||  storeNameLength > 9){
-		$('#errMsg2').html('이름은 2-10자로 입력해주세요.');
+	if(storeNameLength < 2 ||  storeNameLength > 20){
+		$('#errMsg2').html('가게명은 2-20자로 입력해주세요.');
 		return false;
 	}
 	else{
@@ -266,10 +266,9 @@ function infoChk(){
 /**가게 정보 변경하기*/
 function storeChg(){
 	if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
-		isValid2 = false;
+		return false;
 	}
-	
-	else if(isValid2 == true){
+	else{
 		$.ajax({
 			url: 'editStorepage',
 			type: 'post',
@@ -373,14 +372,14 @@ function storeChg(){
 			<div id="memInfoFormDiv" style="display:none;">
 				<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
 					아이디
-					<p id="memberId"></p>
+					<span id="memberId"></span><br>
 					이름
-					<p id="memberName"></p>
+					<span id="memberName"></span><br>
 					휴대폰 번호
 					<input type="text" id="phone" name="phone" onkeyup="phoneChk()"><br>
 					<p id="errMsg1"></p>
 					이메일
-					<p id="email"></p><br>
+					<span id="email"></span><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
 					<input type="submit" id="memSubBtn" value="저장" onclick="memberChg()">
@@ -397,7 +396,7 @@ function storeChg(){
 				<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post"
 				enctype="multipart/form-data">
 					가게명
-					<input type="text" id="storeName" name="storeName"  onkeyup="storeNameChk()">
+					<input type="text" id="storeName" name="storeName" onkeyup="storeNameChk()">
 					<p id="errMsg2"></p>
 					대표 사진<br>
 		    		<input type="file" name="upload"><br>
