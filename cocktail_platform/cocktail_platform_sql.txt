@@ -75,7 +75,7 @@ create sequence orderTemp_seq;
 
 -- 예약 스케줄 schedule 테이블
 create table schedule (
-        scheduleNum      number         primary key,                                                       --스케줄번호
+        scheduleNum      number        primary key,                                                       --스케줄번호
 		storeCode        number        references storeInfo(storeCode) on delete set null,                 --가게 코드
         reserveTime      varchar2(100) unique,                                                             --시간대     
 		capacity         number(2)     check (capacity > 0),                                               --테이블수
