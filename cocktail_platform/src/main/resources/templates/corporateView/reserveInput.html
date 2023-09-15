@@ -46,8 +46,9 @@ function reserveValid(){
 
 /**예약 폼 제출*/
 function reserveSub(){
-	let reserveTime = $('#reserveTime').val();
-	
+	let reserveTime = $('#reserveTime').val().toString();
+	$('#reserveTime2').val(reserveTime);
+
 	if(!reserveValid){
 		alert('오류입니다.');
 		console.log(reserveTime);
@@ -68,7 +69,8 @@ function reserveSub(){
 					<input type="date" name="reserveDate">
 					<p>시간 선택</p>
 					<div id="timeContainer">
-						<input type="time" id="reserveTime" name="reserveTime">
+						<input type="time" id="reserveTime">
+						<input type="hidden" id="reserveTime2" name="reserveTime">
 					</div>
 					<div id="head_count">
 						<p>인원 선택</p>
