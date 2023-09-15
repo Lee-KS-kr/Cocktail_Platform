@@ -57,14 +57,16 @@ function formSubmit() {
                 <tr>
                     <th>새 비밀번호</th>
                     <td>
-                    <input type="password" name="memberPw" id="memberPw" placeholder="비밀번호를 입력해주세요." required="required"/>
+                    <input type="password" name="memberPw" id="memberPw" placeholder="비밀번호를 입력해주세요." 
+                    onkeyup="pwChk()" required="required"/>
                     <p id="errMsg1"></p>
                     </td>
                 </tr>
                 <tr>
                     <th>비밀번호 확인</th>
                     <td>
-                    <input type="password" id="memberPw2" placeholder="비밀번호를 다시 입력해주세요." required="required"/>
+                    <input type="password" id="memberPw2" placeholder="비밀번호를 다시 입력해주세요."
+                    onkeyup="pwChk()" required="required"/>
                     <p id="errMsg2"></p>
                     </td>
                 </tr>
