@@ -132,7 +132,7 @@ function getStoreList(list){
 		let address = item.address1 + ' ' + item.address2;
 		
 		str += '<tr><td>상호명</td><td>'+ item.storeName + '</td></tr>';
-		str += '<tr><td>대표 사진</td><td>'+ item.savedFilename + '</td></tr>';
+		str += '|*[# th:if="savedFilename"]*|<tr><td>대표 사진</td><td>'+ item.savedFilename + '</td></tr>|*[/]*|';
 		str += '<tr><td>사업자 번호</td><td>' + item.brn + '</td></tr>';
 		str += '<tr><td>가게 주소</td><td>' + address + '</td></tr>';
 		str += '<tr><td>가게 전화번호</td><td>' + item.phone + '</td></tr>';
