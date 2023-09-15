@@ -15,8 +15,8 @@ function storeNameChk(){
 	let storeName = $('#storeName').val();
 	let storeNameLength =storeName.length;
 	
-	if(storeNameLength < 2 ||  storeNameLength > 9){
-		$('#errMsg1').html('이름은 2-10자로 입력해주세요.');
+	if(storeNameLength < 2 ||  storeNameLength > 20){
+		$('#errMsg1').html('이름은 2-20자로 입력해주세요.');
 		return false;
 	}
 	else{
