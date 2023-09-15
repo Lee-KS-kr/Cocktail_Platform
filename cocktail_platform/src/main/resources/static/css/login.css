@@ -161,6 +161,8 @@ a:link {color: #232323;}
 a:visited {color: #454545;}
 a:hover {color: #232323;}
 
+a{text-decoration: none;}
+
 img[alt="water1"] {
   position: fixed;
   top: -100px;
