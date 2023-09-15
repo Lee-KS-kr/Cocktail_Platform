@@ -53,13 +53,14 @@ function getList(list){
 
 /**회원정보 변경 폼 표시*/
 function memChgToggle(){
+	//해당 인풋에 값 넣어주기
 	$('#memberId').val(memberId);
 	$('#email').val(email);
 	$('#memberName').val(memberName);
 	$('#phone').val(phone);
 	
-	$('#memInfoFormDiv').hide();
-	$('#memberInfoForm').show();
+	$('#memInfoDiv').hide();
+	$('#memInfoFormDiv').show();
 }
 
 //유효성 플래그 변수
@@ -146,14 +147,14 @@ function getStoreList(list){
 
 /**가게 정보 변경 폼 표시*/
 function storeChgToggle(){
-	$('#storeInfoFormDiv').hide();
+	$('#storeInfoDiv').hide();
 	$('#storeInfoForm').show();
 }
 
 /**가게 이름 유효성 검사*/
 function storeNameChk(){
 	let storeName = $('#storeName').val();
-	let storeNameLength =storeName.length;
+	let storeNameLength = storeName.length;
 	
 	if(storeNameLength < 2 ||  storeNameLength > 9){
 		$('#errMsg2').html('이름은 2-10자로 입력해주세요.');
