@@ -101,6 +101,7 @@ function memberChg(){
 			data: $('#memberInfoForm').serialize(),		
 			success: function(){
 				alert('저장되었습니다.');
+				getMemberInfo()
 			},
 			error: function(e){
 				alert(e.statusText);
@@ -275,6 +276,7 @@ function storeChg(){
 			data: $('#storeInfoForm').serialize(),		
 			success: function(){
 				alert('저장되었습니다.');
+				getStoreInfo()
 			},
 			error: function(e){
 				alert(e.statusText);
@@ -382,7 +384,7 @@ function storeChg(){
 					<span id="email"></span><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
-					<input type="submit" id="memSubBtn" value="저장" onclick="memberChg()">
+					<input type="button" id="memSubBtn" value="저장" onclick="memberChg()">
 				</form>
 			</div>
 		</div>
@@ -423,7 +425,7 @@ function storeChg(){
 					<input type="text" name="address2" id="address2" placeholder="상세주소"><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
-					<input type="submit" id="storeSubBtn" value="변경" onclick="storeChg()">
+					<input type="button" id="storeSubBtn" value="변경" onclick="storeChg()">
 				</form>
 			</div>
 		</div>
