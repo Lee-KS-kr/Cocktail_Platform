@@ -51,11 +51,10 @@ function reserveSub(){
 
 	if(!reserveValid){
 		alert('오류입니다.');
-		console.log(reserveTime);
 		return false;		
 	}
 	else if(reserveValid){
-		console.log(reserveTime);
+		return true;
 	}
 }
 
@@ -63,7 +62,7 @@ function reserveSub(){
 <body>
 	<div id="tab_reserve">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
-				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post">
+				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="reserveSub()">
 					<p>날짜 선택</p>
 					<input type="date" name="reserveDate">
 					<p>시간 선택</p>
@@ -91,7 +90,7 @@ function reserveSub(){
 					</div>
 					<input type="hidden" name="storeCode" th:value="${storeCode}">
 					<br>
-					<input type="submit" value="예약 신청하기" onclick="reserveSub()">
+					<input type="submit" value="예약 신청하기">
 				</form>
 				</div>
 </body>
