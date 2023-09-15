@@ -160,7 +160,7 @@ a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9p
 }
 
 .con1{margin: 5px 0px;}
-.con2{margin: 5px 80px;}
+.con2{margin: 5px 0px;}
 
 th{padding-right: 20px;}
 
@@ -175,16 +175,5 @@ input[value="전화번호 번경"],.taste, .resetpw {
     background-color: #fff; 
     margin:15px 5px 0px;
 }
-
-input[value="전화번호 번경"]:hover,.taste:hover, .resetpw:hover {
-    font-size: 10pt;
-    color: #232323;
-    padding: 2px;
-    border: 1px solid #ffcfb7;
-    border-radius: 3px;
-    margin:15px 5px 0px;
-    transition: 0.1s; /*트랜지션 속도*/
-}
-
 
 .flex{display: flex; }

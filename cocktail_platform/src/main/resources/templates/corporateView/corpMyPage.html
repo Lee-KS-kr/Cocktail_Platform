@@ -45,7 +45,7 @@ function getList(list){
 		str += '<tr><td>이름</td><td>' + memberName + '</td></tr>';
 		str += '<tr><td>휴대폰 번호</td><td>' + phone + '</td></tr>';
 		str += '<tr><td><input type="button" id="memChgBtn" value="수정" onclick="memChgToggle()"></td></tr>';
-		str += `<tr><td><input type="button" id="pwChgBtn" value="비밀번호 변경" onclick="location.href='corporate/member/resetPw.html'"></td></tr>`;
+		str += `<tr><td><input type="button" id="pwChgBtn" value="비밀번호 변경" onclick="location.href='resetPw'"></td></tr>`;
 	});
 	str += '</table>';
 	$('#memInfoDiv').html(str);
@@ -53,17 +53,17 @@ function getList(list){
 
 /**회원정보 변경 폼 표시*/
 function memChgToggle(){
-	$('#memberId').val(memberId);
-	$('#email').val(email);
-	$('#memberName').val(memberName);
+	//해당 인풋에 값 넣어주기
+	$('#memberId').text(memberId);
+	$('#email').text(email);
+	$('#memberName').text(memberName);
 	$('#phone').val(phone);
 	
-	$('#memInfoFormDiv').hide();
-	$('#memberInfoForm').show();
+	$('#memInfoDiv').hide();
+	$('#memInfoFormDiv').show();
 }
 
 //유효성 플래그 변수
-let isValid = false;
 let isValid2 = false;
 
 /**휴대폰번호 유효성 검사*/
@@ -91,15 +91,17 @@ function phoneChk(){
 /** 회원 정보 수정 */
 function memberChg(){
 	if(!phoneChk()){
-		isValid = false;
+		return false;
 	}
-	else if(isValid == true)
+	else if(phoneChk())
+		
 		$.ajax({
 			url: 'editPrivacyInfo',
 			type: 'post',
 			data: $('#memberInfoForm').serialize(),		
 			success: function(){
 				alert('저장되었습니다.');
+				getMemberInfo()
 			},
 			error: function(e){
 				alert(e.statusText);
@@ -122,22 +124,37 @@ function getStoreInfo(){
 	});
 }
 
+//변수
+let storeName;
+let brn;
+let address1;
+let address2;
+let storePhone;
+let runningTime;
+let dayOff;
+let info;
+
 /**가게 정보 출력*/
 function getStoreList(list){
 	//가게 주소 합친 변수
 	let str = '<table>';
 
 	$(list).each(function(i,item){
-		let address = item.address1 + ' ' + item.address2;
+		storeName = item.storeName;
+		brn = item.brn;
+		storePhone = item.phone;
+		runningTime = item.runningTime;
+		dayOff = item.dayOff;
+		info = item.info;
 		
-		str += '<tr><td>상호명</td><td>'+ item.storeName + '</td></tr>';
-		str += '<tr><td>대표 사진</td><td>'+ item.savedFilename + '</td></tr>';
-		str += '<tr><td>사업자 번호</td><td>' + item.brn + '</td></tr>';
-		str += '<tr><td>가게 주소</td><td>' + address + '</td></tr>';
-		str += '<tr><td>가게 전화번호</td><td>' + item.phone + '</td></tr>';
-		str += '<tr><td>영업 시간</td><td>' + item.runningTime + '</td></tr>';
-		str += '<tr><td>휴무일</td><td>' + item.dayOff + '</td></tr>';
-		str += '<tr><td>가게 소개</td><td>' + item.info + '</td></tr>';
+		str += '<tr><td>상호명</td><td>'+ storeName + '</td></tr>';
+		str += '|*[# th:if="savedFilename"]*|<tr><td>대표 사진</td><td>'+ item.savedFilename + '</td></tr>|*[/]*|';
+		str += '<tr><td>사업자 번호</td><td>' + brn + '</td></tr>';
+		str += '<tr><td>가게 주소</td><td>' + item.address1 + ' ' + item.address2 + '</td></tr>';
+		str += '<tr><td>가게 전화번호</td><td>' + phone + '</td></tr>';
+		str += '<tr><td>영업 시간</td><td>' + runningTime + '</td></tr>';
+		str += '<tr><td>휴무일</td><td>' + dayOff + '</td></tr>';
+		str += '<tr><td>가게 소개</td><td>' + info + '</td></tr>';
 		str += '<tr><td><input type="button" id="storeChgBtn" value="수정" onclick="storeChgToggle()"></td></tr>';
 	});
 	str += '</table>';
@@ -146,17 +163,24 @@ function getStoreList(list){
 
 /**가게 정보 변경 폼 표시*/
 function storeChgToggle(){
-	$('#storeInfoFormDiv').hide();
+	$('#storeName').val(storeName);
+	$('#brn').val(brn);
+	$('#storePhone').val(storePhone);
+	$('#runningTime').val(runningTime);
+	$('#dayOff').val(dayOff);
+	$('#info').val(info);
+	
+	$('#storeInfoDiv').hide();
 	$('#storeInfoForm').show();
 }
 
 /**가게 이름 유효성 검사*/
 function storeNameChk(){
-	let storeName = $('#storeName').val();
-	let storeNameLength =storeName.length;
+	let storeName2 = $('#storeName').val();
+	let storeNameLength = storeName2.length;
 	
-	if(storeNameLength < 2 ||  storeNameLength > 9){
-		$('#errMsg2').html('이름은 2-10자로 입력해주세요.');
+	if(storeNameLength < 2 ||  storeNameLength > 20){
+		$('#errMsg2').html('가게명은 2-20자로 입력해주세요.');
 		return false;
 	}
 	else{
@@ -167,10 +191,10 @@ function storeNameChk(){
 
 /**사업자번호 유효성 검사*/
 function brnChk(){
-	let brn = $('#brn').val();
+	let brn2 = $('#brn').val();
 	let regBrn = /^[0-9]{3}-[0-9]{2}-[0-9]{5}$/;
 	
-	if(!regBrn.test(brn)){
+	if(!regBrn.test(brn2)){
         $('#errMsg3').html('사업자번호 형식이 올바르지 않습니다.');
         return false;
     }
@@ -182,10 +206,10 @@ function brnChk(){
 
 /**가게 전화번호 유효성 검사*/
 function storePhoneChk(){
-	let storePhone = $('#storePhone').val();
+	let storePhone2 = $('#storePhone').val();
     let regPhone = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
     
-    if(!regPhone.test(storePhone)){
+    if(!regPhone.test(storePhone2)){
         $('#errMsg4').html('전화번호 형식이 올바르지 않습니다.');
         return false;
     }
@@ -197,8 +221,8 @@ function storePhoneChk(){
 
 /**영업시간 유효성 검사*/
 function runningTimeChk(){
-	let runningTime = $('#runningTime').val();
-	let runningTimeLength = runningTime.length;
+	let runningTime2 = $('#runningTime').val();
+	let runningTimeLength = runningTime2.length;
     
     if(runningTimeLength < 2){
         $('#errMsg5').html('영업 시간을 입력해주세요.');
@@ -212,8 +236,8 @@ function runningTimeChk(){
 
 /**휴일 유효성 검사*/
 function dayOffChk(){
-	let dayOff = $('#dayOff').val();
-	let dayOffLength = dayOff.length;
+	let dayOff2 = $('#dayOff').val();
+	let dayOffLength = dayOff2.length;
     
     if(dayOffLength < 2){
         $('#errMsg6').html('휴일을 입력해주세요.');
@@ -227,8 +251,8 @@ function dayOffChk(){
 
 /**매장 소개 유효성 검사*/
 function infoChk(){
-	let info = $('#info').val();
-	let infoLength = info.length;
+	let info2 = $('#info').val();
+	let infoLength = info2.length;
     
     if(infoLength < 2){
         $('#errMsg7').html('매장 소개를 입력해주세요.');
@@ -243,16 +267,16 @@ function infoChk(){
 /**가게 정보 변경하기*/
 function storeChg(){
 	if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
-		isValid2 = false;
+		return false;
 	}
-	
-	else if(isValid2 == true){
+	else{
 		$.ajax({
 			url: 'editStorepage',
 			type: 'post',
 			data: $('#storeInfoForm').serialize(),		
 			success: function(){
 				alert('저장되었습니다.');
+				getStoreInfo()
 			},
 			error: function(e){
 				alert(e.statusText);
@@ -348,19 +372,19 @@ function storeChg(){
 			
 			<!-- 회원 정보 수정 폼 -->
 			<div id="memInfoFormDiv" style="display:none;">
-				<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
+				<form id="memberInfoForm" th:action="@{/corporate/member/editPrivacyInfo}" method="post">
 					아이디
-					<input type="text" id="memberId" name="memberId" readonly="readonly"><br>
+					<span id="memberId"></span><br>
 					이름
-					<input type="text" id="memberName" name="memberName" readonly="readonly"><br>
+					<span id="memberName"></span><br>
 					휴대폰 번호
 					<input type="text" id="phone" name="phone" onkeyup="phoneChk()"><br>
 					<p id="errMsg1"></p>
 					이메일
-					<input type="text" id="email" name="email" readonly="readonly"><br>
+					<span id="email"></span><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
-					<input type="submit" id="memSubBtn" value="저장" onclick="memberChg()">
+					<input type="button" id="memSubBtn" value="저장" onclick="memberChg()">
 				</form>
 			</div>
 		</div>
@@ -371,10 +395,10 @@ function storeChg(){
 			
 			<!-- 매장 정보 수정 폼 -->
 			<div id="storeInfoFormDiv" style="display:none;">
-				<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post"
+				<form id="storeInfoForm" th:action="@{/corporate/member/editStorepage}" method="post"
 				enctype="multipart/form-data">
 					가게명
-					<input type="text" id="storeName" name="storeName"  onkeyup="storeNameChk()">
+					<input type="text" id="storeName" name="storeName" onkeyup="storeNameChk()">
 					<p id="errMsg2"></p>
 					대표 사진<br>
 		    		<input type="file" name="upload"><br>
@@ -388,10 +412,10 @@ function storeChg(){
 					<input type="text" id="runningTime" name="runningTime" onkeyup="runningTimeChk()">
 					<p id="errMsg5"></p>
 					휴일
-					<input type="text" id="dayOff" name="dayOff"  onkeyup="dayOffChk()">
+					<input type="text" id="dayOff" name="dayOff" onkeyup="dayOffChk()">
 					<p id="errMsg6"></p>
 					매장 소개
-					<input type="text" id="info" name="info"  onkeyup="infoChk()">
+					<textarea rows="10" id="info" name="info" onkeyup="infoChk()"></textarea>
 					<p id="errMsg7"></p>
 					주소
 					<input type="text" name="postCode" id="postCode" placeholder="우편번호">
@@ -401,7 +425,7 @@ function storeChg(){
 					<input type="text" name="address2" id="address2" placeholder="상세주소"><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
-					<input type="submit" id="storeSubBtn" value="변경" onclick="storeChg()">
+					<input type="button" id="storeSubBtn" value="변경" onclick="storeChg()">
 				</form>
 			</div>
 		</div>
