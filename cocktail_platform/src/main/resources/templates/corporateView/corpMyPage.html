@@ -370,7 +370,7 @@ function storeChg(){
 			
 			<!-- 회원 정보 수정 폼 -->
 			<div id="memInfoFormDiv" style="display:none;">
-				<form id="memberInfoForm" th:action="@{/member/editPrivacyInfo}" method="post">
+				<form id="memberInfoForm" th:action="@{/corporate/member/editPrivacyInfo}" method="post">
 					아이디
 					<span id="memberId"></span><br>
 					이름
@@ -393,7 +393,7 @@ function storeChg(){
 			
 			<!-- 매장 정보 수정 폼 -->
 			<div id="storeInfoFormDiv" style="display:none;">
-				<form id="storeInfoForm" th:action="@{/member/editStorepage}" method="post"
+				<form id="storeInfoForm" th:action="@{/corporate/member/editStorepage}" method="post"
 				enctype="multipart/form-data">
 					가게명
 					<input type="text" id="storeName" name="storeName" onkeyup="storeNameChk()">
