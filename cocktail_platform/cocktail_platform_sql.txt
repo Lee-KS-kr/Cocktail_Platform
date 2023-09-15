@@ -14,8 +14,6 @@ create table member (
         createdDate     date                default sysdate,                                    --가입
         isEnable        number(1)           default 1 check (isEnable in (0, 1))                --상태
 );
-DROP TABLE member CASCADE CONSTRAINTS PURGE;
-commit;
 
 insert into member (memberId, memberPw, memberName, phone, gender, birthday, email)
 values ('aaa', 'aaa', 'test', '010-111-1111', 'F', '19941030', 'aaa@gmail.com');
@@ -36,7 +34,6 @@ create table storeInfo (
         originFilename  varchar2(300),                                                                      --파일원본명
         savedFilename   varchar2(100)                                                                       --파일변화본명
 );
-drop table storeInfo;
 create sequence storeInfo_seq;
 
 -- 메뉴  menu 테이블
@@ -51,7 +48,6 @@ create sequence storeInfo_seq;
         savedFilename   varchar2(100),                                                                      --메뉴 사진 변화본명
         canOrder        number(1)           default 0 check (canOrder in (0, 1))                            --주문 가능 상태(0:가능 1:불가능)
 );
-drop table menu;
 create sequence menu_seq;
 
 --  주문 order 테이블
@@ -64,7 +60,6 @@ create table orders (
         menuList        varchar2(4000),                                                                     --메뉴 리스트
         orderState      varchar2(6)       default 'done' check (orderState in ('apply', 'received', 'refused', 'finished')) --주문 상태
 );
-drop table orders;
 create sequence order_seq;
 
 --  임시 주문 orderTemp 테이블
@@ -76,21 +71,18 @@ create table orderTemp (
 		pricePerOne      number(7),                                                                         --메뉴 단가
 		orderCount       number(2)        default 1 check(orderCount > 0)                                   --주문 수량
 );
-drop table orderTemp;
 create sequence orderTemp_seq;
 
 -- 예약 스케줄 schedule 테이블
 create table schedule (
         scheduleNum      number         primary key,                                                       --스케줄번호
 		storeCode        number        references storeInfo(storeCode) on delete set null,                 --가게 코드
-        reserveDate      varchar2(100) unique,                                                             --시간대   
         reserveTime      varchar2(100) unique,                                                             --시간대     
 		capacity         number(2)     check (capacity > 0),                                               --테이블수
 		reservable       number(2)     default 0 check (reservable > 0),                                   --예약 가능 기간
 		regularHoliday   number(1)     default 0 check (regularHoliday >= 0 and regularHoliday <= 6),      --정기 휴무
 		vacation	     varchar2(100)                                                                     --휴무
 );
-drop table schedule;
 create sequence schedule_seq;
 
 -- 예약 상태 reservation 테이블
@@ -105,7 +97,6 @@ create table reservation (
         reserveState       varchar2(6)      check (reserveState in ('apply', 'received', 'refused', 'finished')), --예약 상태
         request            varchar2(4000)   not null                                                        --요구사항
 );
-drop table reservation;
 create sequence reservation_seq;
 
 -- 코드 정보 codesInfo 테이블
@@ -113,14 +104,12 @@ create table codeInfo (
 		cocktailInfo       number(4)       primary key,                                                     --칵테일 정보
 		infoName           varchar2(4000)  default '정상' not null                                           --칵테일 정보이름
 );
-drop table codeInfo;
 
 -- 재료 ingredients 테이블
 create table ingredients (
 		ingredientNum        number           primary key,                                                  --재료 코드
 		ingredientName       varchar2(100)    not null                                                      --재료명
 );
-drop table ingredients;
 create sequence ingredients_seq;
 
 -- 취향 taste 테이블
@@ -132,7 +121,6 @@ create table taste (
         cocktailTaste       number          not null,                                                       --맛 정보
         cocktailFlavor      number          not null                                                        --향 정보
 );
-drop table taste;
 create sequence taste_seq;
 
 -- 칵테일 cocktails 테이블
@@ -150,7 +138,6 @@ create table cocktails (
 		cocktailColor       number(4)     check (cocktailColor < 4000),                                     --색상
 		savedFilename       varchar2(100)                                                                   --칵테일이미지이름
 );
-drop table cocktails;
 create sequence cocktails_seq;
 
 -- 즐겨찾기 favorite 테이블
@@ -160,7 +147,6 @@ create table favorite (
 		storeCode       number              not null,                                                       --가게 코드
 		favDate         date                default sysdate                                                 --생성일자
 );
-drop table favorite;
 create sequence favorite_seq;
 
 -- 가게리뷰 storeReview 테이블
@@ -174,7 +160,6 @@ create table storeReview (
  		originFilename        varchar2(300),
 		savedFilename         varchar2(100) 
 );
-drop table storeReview;
 create sequence storeReview_seq;
 
 -- 메뉴평가 menuPreference 테이블
@@ -186,6 +171,5 @@ create table menuPreference (
 		ageGroup             varchar2(20)  check (ageGroup < 7000),
 		companion            varchar2(20)  check (companion< 8000),
 		event                number        check (event < 9000)
-); 
-drop table menuPreference;
+);
 create sequence menuPreference_seq;
