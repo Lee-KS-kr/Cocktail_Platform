@@ -46,15 +46,17 @@ function reserveValid(){
 
 /**예약 폼 제출*/
 function reserveSub(){
-	
+	let reserveTime = $('#reserveTime').val();
 	$.ajax({
 		url: 'reserveInput',
 		type: 'post',
 		data: $('#reserveForm').serialize(),		
 		success: function(){
+			console.log(reserveTime);
 			alert('저장되었습니다.');
 		},
 		error: function(e){
+			console.log(reserveTime);
 			alert(e.statusText);
 		}
 	});
@@ -69,7 +71,7 @@ function reserveSub(){
 					<input type="date" name="reserveDate">
 					<p>시간 선택</p>
 					<div id="timeContainer">
-						<input type="time" name="reserveTime">
+						<input type="time" id="reserveTime" name="reserveTime">
 					</div>
 					<div id="head_count">
 						<p>인원 선택</p>
