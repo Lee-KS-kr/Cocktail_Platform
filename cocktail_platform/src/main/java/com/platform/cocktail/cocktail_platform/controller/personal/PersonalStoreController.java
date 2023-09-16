@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,9 +59,12 @@ public class PersonalStoreController {
 	}
 	
 	@PostMapping("reserve")
-	public String reserve(Reservation reserve) {
+	public String reserve(@AuthenticationPrincipal UserDetails user, Reservation reserve) {
+		reserve.setMemberId(user.getUsername());
 		reserve.setReserveState(ReservationState.apply);
+		log.debug("예약 내용 : {}", reserve);
 		sService.insertReservation(reserve);
-		return "redirect:/personal/store/storeDetail?storeCode=" + reserve.getStoreCode();
+		//return "redirect:/personal/store/storeDetail?storeCode=" + reserve.getStoreCode();
+		return "redirect:/personal/member/reserveList";
 	}
 }

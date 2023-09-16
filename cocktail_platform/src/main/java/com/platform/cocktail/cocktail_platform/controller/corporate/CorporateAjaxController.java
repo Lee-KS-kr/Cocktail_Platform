@@ -30,8 +30,8 @@ public class CorporateAjaxController {
 	@Autowired
 	private StoreService sService;
 	
-	@Value("${spring.servlet.multipart.location}")
-	String uploadPath;
+	@Value("${file.path.store.locatioin}")
+	String storePath;
 
 	@GetMapping("getPrivacy")
 	public Member getPrivacy(@AuthenticationPrincipal UserDetails user) {
@@ -58,13 +58,12 @@ public class CorporateAjaxController {
 	
 	@PostMapping("editStorepage")
 	public void editStorepage(@AuthenticationPrincipal UserDetails user, StoreInfo store, MultipartFile upload) {
-		uploadPath += "/store";
 		store.setMemberId(user.getUsername());
 		
 		if(upload != null && !upload.isEmpty()) {
 			store.setSavedFilename(sService.hasFileFromStore(store.getStoreCode()));
 			if(store.getSavedFilename() != null) {
-				String fullpath = uploadPath + "/" + store.getSavedFilename();
+				String fullpath = storePath + "/" + store.getSavedFilename();
 				FileService.deleteFile(fullpath);
 				
 				store.setOriginFilename(null);
@@ -72,7 +71,7 @@ public class CorporateAjaxController {
 				sService.deleteFileFromStore(store);
 			}
 
-			String savedfile = FileService.saveFile(upload, uploadPath);
+			String savedfile = FileService.saveFile(upload, storePath);
 			store.setOriginFilename(upload.getOriginalFilename());
 			store.setSavedFilename(savedfile);
 		}
