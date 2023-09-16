@@ -99,25 +99,28 @@
                                             <th>생년월일</th>
                                             <td th:text="${member.birthday}"></td>
                                         </tr>
-                                        
                                     </table>
-                                    </form>	
+                                </form>	
                             </div>
                             <div class="con2">
                                 <p>* 취향 정보
                                 <form th:action="@{/member/update}"  method="post">
-                                    <table th:each="member : ${member}">
+                                    <table>
                                         <tr>
                                             <th>맛</th>
-                                            <td th:each="item : ${items}" th:text="${taste.taste}" id="list"></td>
+                                            <td th:each="item : ${taste.taste}" id="tasteList">
+                                                <span th:text="${item}"></span>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>향</th>
-                                            <td th:text="${taste.flavor}" id="list"></td>
+                                            <td  th:each="item : ${taste.flavor}" id="flavorList">
+                                                <span th:text="${item}"></span>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>알러지</th>
-                                            <td th:text="${taste.allergyType}" id="list"></td>
+                                            <td th:if="${taste.allergyType} != null" th:text="${taste.allergyType}" id="allergy"></td>
                                         </tr>
                                     </table>
                                     </form>	
