@@ -188,3 +188,9 @@ input[value="전화번호 번경"]:hover,.taste:hover, .resetpw:hover {
 
 
 .flex{display: flex; }
+
+span{
+    width: 200px;
+    height: 150px;
+    background-color: #ff5805;
+}

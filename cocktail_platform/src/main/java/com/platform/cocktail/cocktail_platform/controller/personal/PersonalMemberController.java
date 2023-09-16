@@ -100,12 +100,8 @@ public class PersonalMemberController {
 	@GetMapping("editPrivacyInfo")
 	public String editPrivacyInfo(@AuthenticationPrincipal UserDetails user, Model m) {
 		Member mem = mService.findMemberById(user.getUsername());
-		Taste t = mService.findTasteById(user.getUsername());
 		mem.setMemberId(user.getUsername());
-		
 		m.addAttribute("member", mem);
-		m.addAttribute("taste", t);
-		
 		return "personalView/editPrivacyInfo";
 	}
 	
