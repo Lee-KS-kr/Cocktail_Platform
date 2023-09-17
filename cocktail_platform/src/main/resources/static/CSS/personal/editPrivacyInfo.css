@@ -105,8 +105,7 @@ position:relative;
     display: flex; align-items: center; }
 
 
-
-img[alt=logo] { width: 120px; margin-top: 8px;}
+img[alt=logo] { width: 120px;}
 img[alt=search] { width: 27px; height: 27px; }
 img[alt=icon]{width: 20px; display: flex;}
 
@@ -188,3 +187,10 @@ input[value="전화번호 번경"]:hover,.taste:hover, .resetpw:hover {
 
 
 .flex{display: flex; }
+
+span{
+    border: 1px solid #232323;
+    border-radius:5px;
+    margin:5px;
+    padding: 2px;
+}

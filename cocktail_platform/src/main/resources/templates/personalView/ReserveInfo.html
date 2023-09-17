@@ -44,8 +44,8 @@
                     <p> <a th:href="@{/personal/member/myPage}"><input type="button" value="예약내역" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div class="order">
-                    <p> <a th:href="@{/personal/member/InfoSet}"><input type="button" value="개인정보 설정" class="orderHistory" onclick="orderlist()"></a></p>
-                    <p> <a th:href="@{/personal/member/CategorySet}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/editPrivacyInfo}"><input type="button" value="개인정보 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/resetTaste}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div>
                     <a th:href="@{/member/quitMember}" name="out">탈퇴하기</a>
@@ -61,7 +61,11 @@
                     </tr>
                     <tr>
                         <td>매장명</td>
-                        <a th:href="@{/personal/store/storeDetail?storeCode=${item.storeCode}}"><td th:text="${reservation.storeName}"></td></a>
+                        <td>
+                            <a th:href="@{/personal/store/storeDetail?storeCode=${item.storeCode}}">
+                                <span th:text="${reservation.storeName}"></span>
+                            </a>
+                        </td>
                     </tr>
                     <tr>
                         <td>예약 일자</td>

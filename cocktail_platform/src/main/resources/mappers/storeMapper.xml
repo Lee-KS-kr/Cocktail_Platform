@@ -70,8 +70,9 @@
 				(
 				reserveCode
 				, storeCode
-				, memberId
-				, reservationName
+				, <if test="memberId != null">memberId
+				, </if> 
+				reservationName
 				, reservationPhone
 				, reserveDate
 				, reserveHead
@@ -82,8 +83,9 @@
 		values (
 				to_char(sysdate, 'yyyymmdd') || #{storeCode} || reservation_seq.nextval
 				, #{storeCode}
-				, #{memberId}
-				, #{reservationName}
+				, <if test="memberId != null">#{memberId}
+				, </if>
+				#{reservationName}
 				, #{reservationPhone}
 				, to_char(sysdate, 'yyyymmdd')
 				, #{reserveHead}

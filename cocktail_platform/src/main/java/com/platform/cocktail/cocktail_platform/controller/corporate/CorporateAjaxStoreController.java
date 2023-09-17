@@ -28,8 +28,8 @@ public class CorporateAjaxStoreController {
 	private OrderService oService;
 	@Autowired
 	private StoreService sService;
-	@Value("${spring.servlet.multipart.location}")
-	String uploadPath;
+	@Value("${file.path.menu.location}")
+	String menuPath;
 	
 	@PostMapping("orderList")
 	public ArrayList<OrderTemp> orderList(int storeCode){
@@ -49,10 +49,8 @@ public class CorporateAjaxStoreController {
 	
 	@PostMapping("addMenu")
 	public void addMenu(Menu menu, MultipartFile upload) {
-		uploadPath += "/menu";
-		
 		if(upload != null && !upload.isEmpty()) {
-			String savedfile = FileService.saveFile(upload, uploadPath);
+			String savedfile = FileService.saveFile(upload, menuPath);
 			menu.setOriginFilename(upload.getOriginalFilename());
 			menu.setSavedFilename(savedfile);
 		}

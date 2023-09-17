@@ -1,7 +1,9 @@
 package com.platform.cocktail.cocktail_platform.controller.corporate;
 
 import java.util.ArrayList;
+import java.util.Date;
 
+import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -85,13 +87,17 @@ public class CorporateStoreController {
 	@GetMapping("reserveInput")
 	public String reserveInput(@AuthenticationPrincipal UserDetails user, Model m) {
 		StoreInfo store = sService.getStoreById(user.getUsername());
-		m.addAttribute("store", store);
+		m.addAttribute("storeCode", store.getStoreCode());
 		return "corporateView/reserveInput";
 	}
 	
 	//예약 수기 입력 페이지 완료
 	@PostMapping("reserveInput")
-	public String reserveInput(Reservation reserve) {
+	public String reserveInput(Reservation reserve, String reserveTime) {
+		log.debug("time : {}", reserveTime);
+		reserve.setReserveDate(reserve.getReserveDate() + " " + reserveTime);
+		reserve.setReserveState(ReservationState.received);
+		log.debug("reserve : {}", reserve);
 		sService.insertReservation(reserve);
 		return "redirect:/corporate/home";
 	}

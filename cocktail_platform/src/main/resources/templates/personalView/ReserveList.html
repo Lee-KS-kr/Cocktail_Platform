@@ -40,12 +40,12 @@
             <div class="sec1">
                 <div class="order">
                     <p> <a th:href="@{/personal/member/myPage}"><input type="button" value="마이페이지" class="orderHistory" onclick="orderlist()"></a></p>
-                    <p> <a th:href="@{/personal/member/Orderlist}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/orderlist}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
                     <p> <a th:href="@{/personal/member/myPage}"><input type="button" value="예약내역" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div class="order">
-                    <p> <a th:href="@{/personal/member/InfoSet}"><input type="button" value="개인정보 설정" class="orderHistory" onclick="orderlist()"></a></p>
-                    <p> <a th:href="@{/personal/member/CategorySet}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/editPrivacyInfo}"><input type="button" value="개인정보 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/resetTaste}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div>
                     <a th:href="@{/member/quitMember}" name="out">탈퇴하기</a>
@@ -62,16 +62,60 @@
                         <td>예약 상태</td>
                     </tr>
                 </table>
-                <hr>
+                <div style="display: flex;">
+                    <form th:action="@{/personal/store/reserve}" method="post">
+                        <input type="text" name="storeCode" value="1"><br>
+                        <input type="text" name="reserveDate" placeholder="일자"><br>
+                        <input type="text" name="reserveTime" placeholder="시간"><br>
+                        <input type="number" name="reserveHead" placeholder="인원"><br>
+                        <input type="text" name="reservationName" placeholder="이름"><br>
+                        <input type="text" name="reservationPhone" placeholder="핸드폰"><br>
+                        <input type="text" name="request" placeholder="요청"><br>
+                        <input type="submit" value="기업1 예약">
+                    </form>
+                    <form th:action="@{/personal/store/reserve}" method="post">
+                        <input type="text" name="storeCode" value="2"><br>
+                        <input type="text" name="reserveDate" placeholder="일자"><br>
+                        <input type="text" name="reserveTime" placeholder="시간"><br>
+                        <input type="number" name="reserveHead" placeholder="인원"><br>
+                        <input type="text" name="reservationName" placeholder="이름"><br>
+                        <input type="text" name="reservationPhone" placeholder="핸드폰"><br>
+                        <input type="text" name="request" placeholder="요청"><br>
+                        <input type="submit" value="기업2 예약">
+                    </form>
+                    <form th:action="@{/personal/store/reserve}" method="post">
+                        <input type="text" name="storeCode" value="3"><br>
+                        <input type="text" name="reserveDate" placeholder="일자"><br>
+                        <input type="text" name="reserveTime" placeholder="시간"><br>
+                        <input type="number" name="reserveHead" placeholder="인원"><br>
+                        <input type="text" name="reservationName" placeholder="이름"><br>
+                        <input type="text" name="reservationPhone" placeholder="핸드폰"><br>
+                        <input type="text" name="request" placeholder="요청"><br>
+                        <input type="submit" value="기업3 예약">
+                    </form>
+                    <form th:action="@{/personal/store/reserve}" method="post">
+                        <input type="text" name="storeCode" value="4"><br>
+                        <input type="text" name="reserveDate" placeholder="일자"><br>
+                        <input type="text" name="reserveTime" placeholder="시간"><br>
+                        <input type="number" name="reserveHead" placeholder="인원"><br>
+                        <input type="text" name="reservationName" placeholder="이름"><br>
+                        <input type="text" name="reservationPhone" placeholder="핸드폰"><br>
+                        <input type="text" name="request" placeholder="요청"><br>
+                        <input type="submit" value="기업4 예약">
+                    </form>
+                </div>
                 <div class="con2" th:if="${#lists.isEmpty(reserveList)}">예약 내역이 없습니다.</div>
-                <table class="con2" th:if="${reserveList != null}">
+                <table class="con2" th:if="${#lists.isEmpty(reserveList) != true}">
                     <tr th:each="rsv : ${reserveList}">
-                        <a th:href="@{/personal/member/reserveInfo?=${rsv.reserveCode}}">
-                            <td th:text="${rsv.reserveCode}"></td>
-                            <td th:text="${rsv.storeName}"></td>
-                            <td th:text="${rsv.reserveDate}"></td>
-                            <td th:text="${rsv.reserveState}"></td>
-                        </a>
+                        <td>
+                            <a th:href="@{/personal/member/reserveInfo(reserveCode=${rsv.reserveCode})}">
+                                <span th:text="${rsv.reserveCode}"></span>
+                            </a>
+                        </td>
+                        <td th:text="${rsv.storeName}"></td>
+                        <td th:text="${rsv.reserveDate}"></td>
+                        <td th:text="${rsv.reserveState}"></td>
+
                     </tr>
                 </table>
             </div>
