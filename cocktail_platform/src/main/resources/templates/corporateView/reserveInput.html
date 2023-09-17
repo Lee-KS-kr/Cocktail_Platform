@@ -19,7 +19,7 @@ function count(type)  {
   //더하기/빼기
   if(type === 'plus' && headnum < 5) {
 	  headnum = parseInt(headnum) + 1;  
-  }else if(type === 'minus' && headnum > 0) {
+  }else if(type === 'minus' && headnum > 1) {
 	  headnum = parseInt(headnum) - 1;
   }else {
 		alert('인원수를 확인해주세요.');
@@ -31,17 +31,53 @@ function count(type)  {
   $("#reserveHead").val(headnum);
 }
 
-/**예약 폼 유효성 검사 */
-function reserveValid(){
+/**라디오버튼 유효성 검사*/
+function radioValid(){
 	//개인 정보 수집 및 제공 동의 유무
 	if($("input:radio[name='agree']").is(":checked") == false){
         alert('개인정보 수집 및 이용 미동의 시 참여 불가');
         $('#agree').focus();  //해당 라디오버튼으로 포커스 이동.
         return false;
     }
-	else{
-	    return true;
+	else return true;
+}
+
+/**예약자 이름 유효성 검사*/
+function nameValid(){
+	let name = $('#reservationName').val();
+	let nameLength = name.length;
+	
+	if(nameLength < 2 ||  nameLength > 9){
+		$('#errMsg1').html('이름은 2-10자로 입력해주세요.');
+		return false;
 	}
+	else return true;
+}
+
+/**예약자 폰번호 유효성 검사*/
+function phoneValid(){
+	let phone = $('#reservationPhone').val();
+	let regPhn = /^010[0-9]{4}[0-9]{4}$/;;
+	
+	if(!regPhn.test(phone)){
+        $('#errMsg2').html('전화번호 형식이 올바르지 않습니다.');
+        return false;
+    }
+    else{
+        $('#errMsg2').html('');
+      	//하이픈을 추가하여 전화번호 형식으로 변환
+        phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
+        $('#phone').val(phone);
+        return true;
+    }
+}
+
+/**예약 폼 유효성 검사 */
+function reserveValid(){
+	if (!nameValid || !radioValid || !phoneValid){
+		return false;
+	}
+	else return true;
 }
 
 /**예약 폼 제출*/
@@ -64,10 +100,10 @@ function reserveSub(){
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
 				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="reserveSub()">
 					<p>날짜 선택</p>
-					<input type="date" name="reserveDate">
+					<input type="date" name="reserveDate" required="required">
 					<p>시간 선택</p>
 					<div id="timeContainer">
-						<input type="time" id="reserveTime">
+						<input type="time" id="reserveTime" required="required">
 						<input type="hidden" id="reserveTime2" name="reserveTime">
 					</div>
 					<div id="head_count">
@@ -76,15 +112,17 @@ function reserveSub(){
 							<p>1~5명만 선택 가능합니다.</p>
 							<p>방문하시는 인원을 선택해주세요.</p>
 							<input type="button" onclick="count('minus')" value="-"></input>
-							<span id="headnum">0</span>
+							<span id="headnum">1</span>
 							<input type="hidden" id="reserveHead" name="reserveHead"></input>
 							<input type="button" onclick="count('plus')" value="+"></input>
 						</div>
 					</div>
 					<div id="reserve_info">
 					<p>예약자 정보</p>
-						<input type="text" name="reservationName" placeholder="예약자" required="required"><br>
-						<input type="text" name="reservationPhone" placeholder="연락처" required="required"><br>
+						<input type="text" id="reservationName" name="reservationName" placeholder="예약자" required="required"><br>
+						<p id="errMsg1"></p>
+						<input type="text" id="reservationPhone" name="reservationPhone" placeholder="연락처(- 없이)" required="required"><br>
+						<p id="errMsg2"></p>
 						<input type="text" name="request" placeholder="요청 사항"><br>
 						<label>개인 정보 수집, 제공 동의<input type="radio" name="agree" id="agree"></input></label>
 					</div>
