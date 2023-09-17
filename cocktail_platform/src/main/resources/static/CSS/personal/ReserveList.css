@@ -147,12 +147,11 @@ img[alt=icon]{width: 20px; display: flex;}
 
 }
 
-
 a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9px;}
 
 .con1, .con2{ 
     width: 1140px; text-align: left; line-height: 28px; border: 1px solid #d3d3d3; border-radius: 5px; 
-     padding: 15px; background-color: #ff9797; padding: 10px; text-align: center;
+     padding: 15px; background-color: #fff; padding: 10px; text-align: center; margin: 10px 0px;
 
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=0, Color=#DEDEDE)";/*IE 8*/
     -moz-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*FF 3.5+*/
@@ -170,6 +169,13 @@ th{padding-right: 20px;}
 
 .table{ 
     width: 1140px;
-    display: flex;
+    background-color: #fff;
+}
 
+input[type="text"], input[type=number], input[type=submit]{
+    width: 135px;
+    margin: 10px 0px;
+    margin-left: 2px;
+    padding: auto;
+    
 }

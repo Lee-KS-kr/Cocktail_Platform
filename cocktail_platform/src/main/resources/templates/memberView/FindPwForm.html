@@ -85,7 +85,7 @@ function emailCodeChk() {
   <body>
     <!--타이틀-->
     <div>
-      <img src="" alt="logo" />
+      <a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
     </div>
     <div>
       <div>
@@ -94,7 +94,7 @@ function emailCodeChk() {
           회원정보에 등록한 이메일과 입력한 이메일 정보가 같아야 인증번호를 받을
           수 있습니다.
         </p>
-        <form action="">
+        <form action="FindPwForm" th:action="@{/member/FindPw}"  method="post" onsubmit="formSubmit()">
           <table>
             <tr>
               <th>아이디</th>
