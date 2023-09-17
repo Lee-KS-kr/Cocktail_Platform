@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.cocktail.cocktail_platform.dao.CocktailDAO">
+	
+	<select id="search" parameterType="HashMap" resultType="Object">
+		select
+			*
+		from
+			cocktails
+		where
+			
+	</select>
+	
+	<select id="findCocktailByCode" parameterType="int" resultType="Cocktails">
+		select
+			cocktailCode
+			, cocktailName
+			, cocktailAlcohol
+			, cocktailBase
+			, <if test="ingredient1 != null">ingredient1,</if>
+			<if test="ingredient2 != null">ingredient2,</if>
+			<if test="ingredient3 != null">ingredient3,</if>
+			<if test="ingredient4 != null">ingredient4,</if>
+			cocktailTaste
+			, cocktailFlavor
+			, cocktailColor
+			, savedFilename
+		from
+			cocktails
+		where
+			cocktailCode = #{cocktailCode}
+	</select>
+	
+</mapper>
