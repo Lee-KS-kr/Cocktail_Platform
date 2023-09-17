@@ -17,7 +17,13 @@
     <link rel="stylesheet" th:href="@{/CSS/personal/ReserveList.css}">
     <!-- thymeleaf
     -->
-
+<script>
+    /*회원탈퇴 alert*/
+    function out() {
+        alert('정말 회원을 탈퇴하시겠습니까?');
+        location.th:href="@{/member/quitMember}";
+    }
+</script>
 </head>
 <body>
    
@@ -48,7 +54,7 @@
                     <p> <a th:href="@{/personal/member/resetTaste}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div>
-                    <a th:href="@{/member/quitMember}" name="out">탈퇴하기</a>
+                    <a th:href="javascript:out()" name="out" >탈퇴하기</a>
                 </div>
             </div>
             <!-- sec2 start-->
@@ -64,43 +70,43 @@
                 </table>
                 <div class="table">
                     <form th:action="@{/personal/store/reserve}" method="post">
-                        <input type="text" name="storeCode" value="1"><br>
-                        <input type="text" name="reserveDate" placeholder="일자"><br>
-                        <input type="text" name="reserveTime" placeholder="시간"><br>
-                        <input type="number" name="reserveHead" placeholder="인원"><br>
-                        <input type="text" name="reservationName" placeholder="이름"><br>
-                        <input type="text" name="reservationPhone" placeholder="핸드폰"><br>
-                        <input type="text" name="request" placeholder="요청"><br>
+                        <input type="text" name="storeCode" value="1">
+                        <input type="text" name="reserveDate" placeholder="일자">
+                        <input type="text" name="reserveTime" placeholder="시간">
+                        <input type="number" name="reserveHead" placeholder="인원">
+                        <input type="text" name="reservationName" placeholder="이름">
+                        <input type="text" name="reservationPhone" placeholder="핸드폰">
+                        <input type="text" name="request" placeholder="요청">
                         <input type="submit" value="기업1 예약">
                     </form>
                     <form th:action="@{/personal/store/reserve}" method="post">
-                        <input type="text" name="storeCode" value="2"><br>
-                        <input type="text" name="reserveDate" placeholder="일자"><br>
-                        <input type="text" name="reserveTime" placeholder="시간"><br>
-                        <input type="number" name="reserveHead" placeholder="인원"><br>
-                        <input type="text" name="reservationName" placeholder="이름"><br>
-                        <input type="text" name="reservationPhone" placeholder="핸드폰"><br>
-                        <input type="text" name="request" placeholder="요청"><br>
+                        <input type="text" name="storeCode" value="2">
+                        <input type="text" name="reserveDate" placeholder="일자">
+                        <input type="text" name="reserveTime" placeholder="시간">
+                        <input type="number" name="reserveHead" placeholder="인원">
+                        <input type="text" name="reservationName" placeholder="이름">
+                        <input type="text" name="reservationPhone" placeholder="핸드폰">
+                        <input type="text" name="request" placeholder="요청">
                         <input type="submit" value="기업2 예약">
                     </form>
                     <form th:action="@{/personal/store/reserve}" method="post">
-                        <input type="text" name="storeCode" value="3"><br>
-                        <input type="text" name="reserveDate" placeholder="일자"><br>
-                        <input type="text" name="reserveTime" placeholder="시간"><br>
-                        <input type="number" name="reserveHead" placeholder="인원"><br>
-                        <input type="text" name="reservationName" placeholder="이름"><br>
-                        <input type="text" name="reservationPhone" placeholder="핸드폰"><br>
-                        <input type="text" name="request" placeholder="요청"><br>
+                        <input type="text" name="storeCode" value="3">
+                        <input type="text" name="reserveDate" placeholder="일자">
+                        <input type="text" name="reserveTime" placeholder="시간">
+                        <input type="number" name="reserveHead" placeholder="인원">
+                        <input type="text" name="reservationName" placeholder="이름">
+                        <input type="text" name="reservationPhone" placeholder="핸드폰">
+                        <input type="text" name="request" placeholder="요청">
                         <input type="submit" value="기업3 예약">
                     </form>
                     <form th:action="@{/personal/store/reserve}" method="post">
-                        <input type="text" name="storeCode" value="4"><br>
-                        <input type="text" name="reserveDate" placeholder="일자"><br>
-                        <input type="text" name="reserveTime" placeholder="시간"><br>
-                        <input type="number" name="reserveHead" placeholder="인원"><br>
-                        <input type="text" name="reservationName" placeholder="이름"><br>
-                        <input type="text" name="reservationPhone" placeholder="핸드폰"><br>
-                        <input type="text" name="request" placeholder="요청"><br>
+                        <input type="text" name="storeCode" value="4">
+                        <input type="text" name="reserveDate" placeholder="일자">
+                        <input type="text" name="reserveTime" placeholder="시간">
+                        <input type="number" name="reserveHead" placeholder="인원">
+                        <input type="text" name="reservationName" placeholder="이름">
+                        <input type="text" name="reservationPhone" placeholder="핸드폰">
+                        <input type="text" name="request" placeholder="요청">
                         <input type="submit" value="기업4 예약">
                     </form>
                 </div>

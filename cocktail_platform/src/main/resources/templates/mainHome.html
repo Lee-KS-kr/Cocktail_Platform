@@ -77,7 +77,7 @@
 <!--==============================================================================-->
     <div class="body" sec:authorize="isAuthenticated()">
       <div class="box1">
-        <div class="title"><p>메인페이지</p></div><br>
+        <div class="title"><p style="color: #45B783;">메인페이지</p></div><br>
         <div class="content">
           <p sec:authorize="hasRole('PERSONAL')">
             <a th:href="@{personal/home}">개인 페이지
@@ -94,7 +94,7 @@
       </div>
       
       <div class="box2">
-        <div class="title">로그아웃</div><br>
+        <div class="title"><p style="color: #45B783;">로그아웃</p></div><br>
         <div class="content">
         	<a th:href="@{/member/logout}">로그아웃
             <img th:src="@{/image/arrow.png}" alt="arrow">

@@ -4,6 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Id</title>
+
+    <script>
+      //비밀번호 유효성 플래그 변수
+      let pwValid = false;
+      
+      //비밀번호 유효성 검사
+      function pwChk(){
+        let pw1 = $('#memberPw').val();
+        let pw2 = $('#memberPw2').val();
+        let regPw =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+        
+        if(!regPw.test(pw1)) {
+            $('#errMsg1').html('비밀번호는 8-15자리 문자/숫자/특수문자를 포함해야 합니다.');
+            pwValid = false;
+          } else {
+            $('#errMsg1').html('');
+            pwValid = true;
+          }
+      
+         if(pw1 !== pw2) {
+            $('#errMsg2').html('비밀번호가 일치하지 않습니다.');
+            pwValid = false;
+          } else {
+            $('#errMsg2').html('');
+            pwValid = true;
+          }
+      }
+      
+      //유효성검사 만족 시 폼 제출
+      function formSubmit() {
+      
+        if(!pwValid) {
+          return false; //유효성 검사에 실패하면 false 반환
+        }
+        else if(pwValid) return true;
+      }
+      </script>
 </head>
 <body>
     <!--타이틀-->
@@ -14,7 +51,7 @@
         <div>
           <h1>아이디 찾기</h1>
           <p>회원정보에 등록한 이메일과 입력한 이메일 정보가 같아야 인증번호를 받을 수 있습니다.</p>
-          <form action="">
+          <form action="FindIdForm" th:action="@{/member/FindId}"  method="post" onsubmit="formSubmit()">
             <table>
                 <tr>
                   <th>이름</th>
