@@ -15,9 +15,6 @@ create table member (
         isEnable        number(1)           default 1 check (isEnable in (0, 1))                --상태
 );
 
-insert into member (memberId, memberPw, memberName, phone, gender, birthday, email)
-values ('aaa', 'aaa', 'test', '010-111-1111', 'F', '19941030', 'aaa@gmail.com');
-
 -- 가게 정보 storeInfo 테이블
 create table storeInfo (
    		storeCode		number             	primary key,    												--가게 코드
@@ -51,7 +48,7 @@ create sequence storeInfo_seq;
 create sequence menu_seq;
 
 --  주문 order 테이블
-create table orders (
+create table order (
         orderCode       varchar2(4000)    primary key,                                                      --주문 정보
         storeCode       number            references storeInfo(storeCode) on delete set null,               --가게 코드
         orderDate       date              default sysdate,                                                  --주문 일자
@@ -66,9 +63,10 @@ create sequence order_seq;
 create table orderTemp (
         tempOrderkey     number           primary key,                                                      --임시키                                                                                                                                                   
 		orderCode        varchar2(4000)   references Orders(orderCode) on delete set null,                  --주문 정보
+		storeCode        number           references storeInfo(storeCode) on delete set null,               --가게 코드
 		menuNum          number           references menu(menuNum) on delete set null,                      --메뉴 번호
 		menuName         varchar2(100)    not null,                                                         --메뉴 이름
-		pricePerOne      number(7),                                                                         --메뉴 단가
+		pricePerOne      number(7)        not null default 0,                                               --메뉴 단가
 		orderCount       number(2)        default 1 check(orderCount > 0)                                   --주문 수량
 );
 create sequence orderTemp_seq;
@@ -87,12 +85,12 @@ create sequence schedule_seq;
 
 -- 예약 상태 reservation 테이블
 create table reservation (
-        reserveCode        varchar2(4000)   primary key,                              		--예약 코드(규칙:날짜+가게코드+시퀀스)
+        reserveCode        varchar2(4000)   primary key,                              		                --예약 코드(규칙:날짜+가게코드+시퀀스)
         storeCode          number           references storeInfo(storeCode) on delete set null,             --가게 코드
         memberId           varchar2(20)     references member(memberId) on delete set null,                 --개인 회원ID
-        reservationName    varchar2(20),
-        reservationPhone   varchar2(20),    
-        reserveDate        date             default sysdate,                          		--예약 날짜 (현재 시간 이후 예약 가능)
+        reservationName    varchar2(20)     not null,
+        reservationPhone   varchar2(20)     references member(phone),    
+        reserveDate        date             check (reserveDate > sysdate),                          		--예약 날짜 (현재 시간 이후 예약 가능)
         reserveHead        number(2)        check (reserveHead > 0),                                        --예약 인원 
         reserveState       varchar2(6)      check (reserveState in ('apply', 'received', 'refused', 'finished')), --예약 상태
         request            varchar2(4000)   not null                                                        --요구사항
@@ -144,7 +142,7 @@ create sequence cocktails_seq;
 create table favorite (
 		favCode         number              primary key,                                                    --즐겨찾기코드
 		memberId        varchar2(20)        references member(memberid) on delete set null,                 --개인 회원ID 
-		storeCode       number              not null,                                                       --가게 코드
+		storeCode       number              references storeInfo(storeCode) on delete set null,             --가게 코드
 		favDate         date                default sysdate                                                 --생성일자
 );
 create sequence favorite_seq;
