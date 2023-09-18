@@ -168,9 +168,7 @@ function pagingFormSubmit(currentPage){
 		<h1>예약 리스트</h1>
 		<!-- 예약 검색 -->
 		<form id="reserveSearch" th:action="@{/corporate/store/reserveSearch}" method="get">
-		예약 기간 <input type="date" th:field="*{start}">
-    			~
-   				<input type="date" th:field="*{end}">
+		예약 기간 <input type="date" name="reserveDate">
 		검색 <select id="category" name="category">
             	<option value="reservationName" th:selected="${category} == 'reservationName'">예약자</option>
             	<option value="reserveState" th:selected="${category} == 'reserveState'">처리 현황</option>

@@ -33,7 +33,7 @@ function menuList(list){
 	$(list).each(function(i,item){
 		str += '<tr>';
 		//누르면 장바구니 추가
-		str += '<td><a href="">' + item.savedFilename + '</a></td>';
+		str += `<td><a href="|javascript:addCart('menuNum')|">' + item.savedFilename + '</a></td>`;
 		str += '<td>' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
 		str += '</tr>';
@@ -107,7 +107,10 @@ function cart(){
 	});
 }
 
-
+//카트에 담기
+function addCart(){
+	
+}
 
 //인덱스
 function getIndex(){
@@ -161,7 +164,7 @@ function getIndex(){
  			<a th:href="">
  				<img th:src="@{/image/hbg_icon.png}" width="60px" alt="햄버거메뉴아이콘">
  			</a>
- 			<p>테이블 </p>
+ 			<p>테이블 9</p>
  			<span><a th:href="|javascript:menuCategory('bevarage')|">주류</a></span>
  			<span><a th:href="|javascript:menuCategory('food')|">안주류</a></span>
  		</nav>
