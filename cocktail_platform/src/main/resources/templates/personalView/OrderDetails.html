@@ -16,17 +16,17 @@
 </head>
 <body>
    <!-- ------navi------   -->
-    <div class="navi">  
-        <div class="navi1">
-            <img src="@{/image/logo44.png}" alt="logo">
-        </div>
-        <div class="navi2">
-            <p th:text="${member.memberId}">님 환영합니다.  &nbsp;</p>
-            <a>로그아웃  &nbsp;</a>
-            <a>마이페이지  &nbsp; &nbsp;</a>
-            <a><img src="@{/image/btn_search.png}" alt="search"></a>
-        </div>
+   <div class="navi">  
+    <div class="navi1">
+        <a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
     </div>
+    <div class="navi2">
+        <p th:text="${#authentication.name}">님 환영합니다.  &nbsp;</p>
+        <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
+        <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
+        <a th:href="@{/personal/searchPage}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
+    </div>
+</div>
     <!-- ------navi end------  -->
 
     <!-- main -->
@@ -35,74 +35,63 @@
         <div class="sideber">
             <!-- sec1 start-->
             <div class="sec1">
-                <div>
-                    <p class="title1">내 정보 관리</p>
-                </div>
-                
                 <div class="order">
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
+                    <p> <a th:href="@{/personal/member/myPage}"><input type="button" value="마이페이지" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/orderList}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/reserveList}"><input type="button" value="예약내역" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div class="order">
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
-                    <p> <input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></p>
+                    <p> <a th:href="@{/personal/member/editPrivacyInfo}"><input type="button" value="개인정보 설정" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/resetTaste}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div>
-                    <a th:href="@{/}" name="out">탈퇴하기</a>
+                    <a th:href="@{/member/quitMember}" name="out">탈퇴하기</a>
                 </div>
             </div>
             <!-- sec2 start-->
             <div class="sec2">
-
-                <div class="title2">마이페이지</div>
-                <div>
-                    <p>기본정보</p>
-                    <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
-                        <table th:each="member : ${member}">
-                            <tr>
-                                <th>아이디</th>
-                                <td th:text="${member.memberId}">qweqweqweqweqw</td>
-                            </tr>
-                            <tr>
-                                <th>이름</th>
-                                <td th:text="${member.memberName}">qweqweqweqweqw</td>
-                            </tr>
-                            <tr>
-                                <th>이메일</th>
-                                <td th:text="${member.email}">qweqweqweqweqw</td>
-                            </tr>
-                            <tr>
-                                <th>전화번호</th>
-                                <td th:text="${member.phone}">qweqweqweqweqw</td>
-                            </tr>
-                            <tr>
-                                <th>생년월일</th>
-                                <td th:text="${member.birthday}">qweqweqweqweqw</td>
-                            </tr>
-                        </table>
-                        </form>	
-                </div>
-                <!-- 취향  -->
-                <p>내 취향 태그</p>
-                <div class="con2">
-                    <table>
-                        <tr>
-                            <th>향</th>
-                            <td th:text="${member.memberName}">qweqweqweqweqw</td>
-                        </tr>
-                        <tr>
-                            <th>맛</th>
-                            <td th:text="${member.memberName}">qweqweqweqweqw</td>
-                        </tr>
-                    </table>
-                </div>
+                <div class="title2">주문 상세</div>
+                <table class="con1">
+                    <tr>
+                        <td>주문 번호</td>
+                        <td th:text="${order.orderCode}"></td>
+                    </tr>
+                    <tr>
+                        <td>매장명</td>
+                        <td>
+                            <a th:href="@{/personal/store/storeDetail?storeCode=${order.storeCode}}">
+                                <span th:text="${order.storeName}"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>주문 일자</td>
+                        <td th:text="${order.reserveDate}"></td>
+                    </tr>
+                    <tr>
+                        <td>주문 상태</td>
+                        <td th:text="${order.orderState}"></td>
+                    </tr>
+                    <tr>
+                        <td>총 금액</td>
+                        <td th:text="${order.totalPrice}"></td>
+                    </tr>
+                </table>
+                <table th:each="item : ${orderList}">
+                    <tr>
+                        <td>메뉴</td>
+                        <td th:text="${item.menuName}"></td>
+                    </tr>
+                    <tr>
+                        <td>단가</td>
+                        <td th:text="${item.pricePerOne}"></td>
+                    </tr>
+                    <tr>
+                        <td>주문 갯수</td>
+                        <td th:text="${item.orderCount}"></td>
+                    </tr>
+                </table>
             </div>
-        </div>
-        <!-- section -->
-        <div class="sections">
-                dhfgdgfdgf
         </div>
     </div>
 </body>

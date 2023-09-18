@@ -105,12 +105,12 @@ public class OrderServiceImple implements OrderService {
 					.orderCode(o.getOrderCode())
 					.menuNum(menuNum[i])
 					.menuName(menuName[i])
-					.price(price[i])
+					.pricePerOne(price[i])
 					.orderCount(orderCount[i])
 					.build();
 			
 			menuList.append(t.getMenuName());
-			totalPrice += t.getPrice() * t.getOrderCount();
+			totalPrice += t.getPricePerOne() * t.getOrderCount();
 			list.add(t);
 		}
 		
