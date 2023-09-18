@@ -47,17 +47,17 @@ create sequence storeInfo_seq;
 );
 create sequence menu_seq;
 
---  주문 order 테이블
-create table order (
+--  주문 orders 테이블
+create table orders (
         orderCode       varchar2(4000)    primary key,                                                      --주문 정보
         storeCode       number            references storeInfo(storeCode) on delete set null,               --가게 코드
         orderDate       date              default sysdate,                                                  --주문 일자
-        memberId        varchar2(20)      references member(memberId) on delete set null,                   --개인회원ID
+        memberId        varchar2(20)      ` member(memberId) on delete set null,                   --개인회원ID
         totalPrice      number            default 0 check (totalPrice >= 0),                                --가격 총합
         menuList        varchar2(4000),                                                                     --메뉴 리스트
         orderState      varchar2(6)       default 'done' check (orderState in ('apply', 'received', 'refused', 'finished')) --주문 상태
 );
-create sequence order_seq;
+create sequence orders_seq;
 
 --  임시 주문 orderTemp 테이블
 create table orderTemp (
