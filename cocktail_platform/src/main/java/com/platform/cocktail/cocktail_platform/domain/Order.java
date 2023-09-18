@@ -15,4 +15,5 @@ public class Order {
 	int totalPrice;
 	String menuList;
 	OrderState orderState;
+	String storeName;
 }

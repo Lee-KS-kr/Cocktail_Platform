@@ -17,6 +17,7 @@ import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
+import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.domain.StoreReview;
 import com.platform.cocktail.cocktail_platform.domain.Taste;
 import com.platform.cocktail.cocktail_platform.service.MemberService;
@@ -134,6 +135,11 @@ public class PersonalMemberController {
 	@GetMapping("orderList")
 	public String orderLists(@AuthenticationPrincipal UserDetails user, Model m) {
 		ArrayList<Order> list = oService.getOrderLists(user.getUsername());
+		for (Order o : list) {
+			StoreInfo s = sService.getStoreinfoByCode(o.getStoreCode());
+			o.setStoreName(s.getStoreName());
+		}
+		
 		m.addAttribute("orderList", list);
 		return "personalView/OrderList";
 	}

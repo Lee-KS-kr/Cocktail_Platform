@@ -152,10 +152,13 @@ img[alt="search"] {
 }
 
 .pd_title {
-  
-  color: #45b783;
+  color: #24ff9d;
   font-weight: bold;
-  text-decoration: none;
+  text-align: left;
+  font-size: 18px;
+  align-items: flex-end;
+  align-content: flex-start;
+  float: left;
 }
 
 .box {
@@ -165,12 +168,14 @@ img[alt="search"] {
   align-items: center;
   align-content: center;
   background-color: #ff5c21;
+  border-radius: 8px;
   
 }
 
-.box p {
+.box p, box strong{
   color: #555;
   margin-top: 10px;
+  text-align: left;
 }
 
 .prd_ctg span {
@@ -207,3 +212,5 @@ img[alt="banner"] {
 
 
 /*======================================================*/
+/*상품 이미지.*/
+.boxImg{width: 350px; height:350px;}

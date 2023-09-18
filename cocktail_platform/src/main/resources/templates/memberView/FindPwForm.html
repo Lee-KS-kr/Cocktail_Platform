@@ -7,11 +7,85 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Find Pw</title>
+    <script>
+
+     //이메일 유효성 검사
+    function emailChk(){
+      let email = $('#email').val();
+      let regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+      let btn = document.getElementById('emailConfirmBtn')
+      
+      if(!regEmail.test(email)){
+            $('#errMsg5').html('이메일은 xxx@xxx.xxx 형식으로 입력해야 합니다.');
+            btn.disabled = true;
+            emailValid = false;
+      }
+      else{
+        $('#errMsg5').html('');
+
+        $.ajax({
+              url:'checkEmail', 
+              type:'post', 
+              data:{email:email},
+              success:function(cnt){ 
+                  if(cnt != 0){  
+                    $('#errMsg5').html('이미 사용 중인 이메일 주소입니다.');
+                      email = '';
+                      btn.disabled = true;
+                      emailValid = false;
+                  } else { 
+                    $('#errMsg5').html('');
+                    btn.disabled = false;
+                    emailValid = true;
+                  }
+              },
+              error:function(){
+                  alert("에러입니다");
+              }
+          });
+      }
+    }
+
+//이메일 인증 코드 변수
+let authCode = '';
+
+//이메일 인증 버튼 클릭 시
+function emailConfirm(){
+	let email = $('#email').val();
+	
+	$.ajax({
+		url : "emailConfirm",
+		type : "POST",
+		data : {email : email},
+		dataType: 'text',
+		success: function(code){
+			alert("인증메일이 발송되었습니다.");
+			authCode = code;
+		},
+		error: function(code){
+			alert("메일 발송에 실패했습니다.");
+		}
+	});
+}
+
+//이메일 인증 번호 대조
+function emailCodeChk() {
+	let inputCode = $('#emailInputCode').val();
+
+	if(authCode !== inputCode) {  
+		$('#errMsg6').html('인증번호가 불일치합니다. 다시 확인해주세요.');
+		emailCodeValid = false;
+	} else {
+		$('#errMsg6').html('');
+		emailCodeValid = true;
+	}
+}
+    </script>
   </head>
   <body>
     <!--타이틀-->
     <div>
-      <img src="" alt="logo" />
+      <a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
     </div>
     <div>
       <div>
@@ -20,7 +94,7 @@
           회원정보에 등록한 이메일과 입력한 이메일 정보가 같아야 인증번호를 받을
           수 있습니다.
         </p>
-        <form action="">
+        <form action="FindPwForm" th:action="@{/member/FindPw}"  method="post" onsubmit="formSubmit()">
           <table>
             <tr>
               <th>아이디</th>
@@ -41,15 +115,10 @@
                   type="text"
                   name="email"
                   id="email"
-                  placeholder="이메일 입력"
+                  placeholder="이메일 입력"  onkeyup="emailChk()"
                 />
-                <input
-                  type="button"
-                  value="인증번호 받기"
-                  onclick="emailFormOpen()"
-                /><br />
-                <input type="text" id="email2" placeholder="인증번호 입력" />
-                <input type="button" value="확인" onclick="emailcheck()" />
+                <input type="button" value="이메일 인증하기" onclick="emailConfirm()" /><br />
+                <input type="text" id="email2" placeholder="인증번호 입력"  onkeyup="emailCodeChk()" required="required"/>
               </td>
             </tr>
           </table>

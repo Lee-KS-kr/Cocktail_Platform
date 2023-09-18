@@ -23,14 +23,13 @@
    
     <div class="navi">  <!-- navi   -->
         <div class="navi1">
-            <img th:src="@{/image/logo44.png}" alt="logo">
+            <a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
         </div>
         <div class="navi2">
-            <p th:text="${member.memberId}"> </p>
-            <p>님 환영합니다.  &nbsp;</p>
-            <a th:href="@{member/logout}">로그아웃  &nbsp;</a>
-            <a th:href="@{/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
-            <a><img th:src="@{/image/btn_search.png}" alt="search"></a>
+            <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
+            <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
+            <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
+            <a th:href="@{/personal/searchPage}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
         </div>
     </div>  
     <!-- main -->
@@ -101,21 +100,6 @@
                             </div>
                         </div>
                     </div>
-                <!-- 취향  
-                <p>내 취향 태그</p>
-                <div class="con2">
-                    <table>
-                        <tr>
-                            <th>향</th>
-                            <td th:text="${member.memberName}">qweqweqweqweqw</td>
-                        </tr>
-                        <tr>
-                            <th>맛</th>
-                            <td th:text="${member.memberName}">qweqweqweqweqw</td>
-                        </tr>
-                    </table>
-                </div>
-                -->
             </div>
         </div>
         
