@@ -41,4 +41,10 @@ public class MemberAjaxController {
 		return confirm;
 	}
 	
+	@GetMapping("checkPhone")
+	public int checkPhone(String phone) {
+		log.debug("phone");
+		return service.findMemberByPhone(phone);
+	}
+	
 }

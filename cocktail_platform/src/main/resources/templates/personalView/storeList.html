@@ -9,7 +9,7 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function () {
-	init();
+	//init();
 });
 
 //가게 리스트 받아오기
@@ -21,8 +21,9 @@ function init(){
 		success: function(list){
 			getList(list);
 		},
-		error: function(){
+		error: function(e){
 			alert('error');
+			console.log(JSON.stringify(e));
 		}
 	});
 }
@@ -80,8 +81,18 @@ function getList(list){
 <!-- 헤더 끝 -->
 <!-- 메인 시작 -->
 <main>
-	<section>
-		<div id="storeListDiv"></div>
+	<section class="flex" th:each="store : ${list}">
+		<!-- <div id="storeListDiv"></div>> -->
+		<div class="storeInfo">
+			<a th:href="@{/personal/store/storeDetail(storeCode=${store.storeCode})}">
+				<p th:text="${store.storeName}"></p>
+				<p>
+					<img th:src="@{/image/store/} + ${store.savedFilename}" alt="store image">
+				</p>
+				<p th:text="${store.storeReviewScore}"></p>
+				<p th:text="${store.info}"></p>
+			</a>
+		</div>
 	</section>
 </main>
 </body>

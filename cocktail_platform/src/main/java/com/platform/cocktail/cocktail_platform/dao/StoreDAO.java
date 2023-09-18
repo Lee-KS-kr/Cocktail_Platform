@@ -63,4 +63,6 @@ public interface StoreDAO {
 	String hasFileFromStore(int storeCode);
 
 	int deleteFileFromStore(StoreInfo store);
+
+	float getReviewScoreByCode(int storeCode);
 }
