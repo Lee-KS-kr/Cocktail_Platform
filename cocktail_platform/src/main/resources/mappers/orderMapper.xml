@@ -14,7 +14,7 @@
 			, menuList
 			, orderState
 		from
-			orders
+			order
 		where
 			memberId = #{memberId}
 		order by
@@ -38,19 +38,18 @@
 	
 	<select id="getOrdersByOrdercode" parameterType="String" resultType="OrderTemp">
 		select
-			orderCode
-			, storeCode
-			, orderDate
-			, memberId
-			, totalPrice
-			, menuList
-			, orderState
+			tempOrderkey
+			, orderCode
+			, menuNum
+			, menuName
+			, pricePerOne
+			, orderCount
 		from
-			order
+			OrderTemp
 		where
 			orderCode = #{orderCode}
 		order by
-			orderDate desc
+			tempOrderkey desc
 	</select>
 	
 	<select id="getOrderListsByCode" parameterType="int" resultType="Order">
@@ -72,7 +71,7 @@
 	
 	<insert id="makeNewOrder" parameterType="HashMap" useGeneratedKeys="true" keyProperty="orderCode">
     	insert into 
-    		orders
+    		order
     		(
        		 orderCode,
        		 storeCode,
@@ -131,22 +130,7 @@
 		select
 			tempOrderkey
 			, orderCode
-			, menuNum
-			, menuName
-			, pricePerOne
-			, orderCount
-		from
-			orderTemp
-		where
-			storeCode = #{storeCode}
-		order by
-			orderDate desc
-	</select>
-	
-	<select id="getMenulistByOrdercode" parameterType="String" resultType="Menu">
-		select
-			tempOrderkey
-			, orderCode
+			, storeCode
 			, menuNum
 			, menuName
 			, pricePerOne
@@ -156,7 +140,11 @@
 		where
 			orderCode = #{orderCode}
 		order by
-			orderDate desc
+			tempOrderkey desc
+	</select>
+	
+	<select id="getMenulistByOrdercode" parameterType="String" resultType="Menu">
+
 	</select>
 	
 </mapper>

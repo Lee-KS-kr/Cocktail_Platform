@@ -18,15 +18,15 @@
 			storeInfo
 		set
 			storeName = #{storeName}
-			, savedFilename = #{savedFilename}
+			, address1 = #{address1}
+			, address2 = #{address2}
+			, postCode = #{postCode}
 			, brn = #{brn}
-			, storePhone = #{storePhone}
+			, Phone = #{Phone}
 			, runningTime = #{runningTime}
 			, dayOff = #{dayOff}
 			, info = #{info}
-			, postCode = #{postCode}
-			, address1 = #{address1}
-			, address2 = #{address2}
+			, savedFilename = #{savedFilename}
 		where
 			memberId = #{memberId}
 	</update>
