@@ -14,7 +14,7 @@
 			, menuList
 			, orderState
 		from
-			order
+			orders
 		where
 			memberId = #{memberId}
 		order by
@@ -31,7 +31,7 @@
 			, menuList
 			, orderState
 		from
-			order
+			orders
 		where
 			orderCode = #{orderCode}
 	</select>
@@ -62,7 +62,7 @@
 			, menuList
 			, orderState
 		from
-			order
+			orders
 		where
 			storeCode = #{storeCode}
 		order by
@@ -113,7 +113,7 @@
 	
 	<update id="updateOrder" parameterType="Order">
 		update 
-			order
+			orders
 		set
 			, orderDate = sysdate
 			, totalPrice = #{totalPrice}
