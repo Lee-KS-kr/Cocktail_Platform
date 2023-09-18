@@ -20,8 +20,11 @@
 <script>
     /*회원탈퇴 alert*/
     function out() {
-        alert('정말 회원을 탈퇴하시겠습니까?');
-        location.th:href="@{/member/quitMember}";
+        let res = confirm('선택 대화상자');
+        console.log(res);
+        if(res == true){
+            location.href="/FitTail/member/quitMember"; 
+        }
     }
 </script>
 </head>
@@ -46,7 +49,7 @@
             <div class="sec1">
                 <div class="order">
                     <p> <a th:href="@{/personal/member/myPage}"><input type="button" value="마이페이지" class="orderHistory" onclick="orderlist()"></a></p>
-                    <p> <a th:href="@{/personal/member/orderlist}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/orderList}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
                     <p> <a th:href="@{/personal/member/myPage}"><input type="button" value="예약내역" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div class="order">
@@ -54,7 +57,7 @@
                     <p> <a th:href="@{/personal/member/resetTaste}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div>
-                    <a th:href="javascript:out()" name="out" >탈퇴하기</a>
+                    <a href="javascript:out()" name="out" >탈퇴하기</a>
                 </div>
             </div>
             <!-- sec2 start-->
