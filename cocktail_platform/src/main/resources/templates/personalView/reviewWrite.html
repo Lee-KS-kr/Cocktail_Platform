@@ -18,6 +18,24 @@
     <!-- thymeleaf
     -->
 
+    <script>
+        const stars = document.querySelectorAll('.star');
+        const selectedRating = document.getElementById('selectedRating');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const rating = parseInt(star.getAttribute('data-rating'));
+                selectedRating.textContent = rating;
+                stars.forEach(s => {
+                    if (parseInt(s.getAttribute('data-rating')) <= rating) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
    
@@ -44,12 +62,22 @@
                         <div class="flex">
                             <div class="con1">
                                 <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
-                                    <table th:each="member : ${member}">
+                                    <table>
                                         <tr>
-                                            <td>☆☆☆☆☆</td>
+                                            <td>
+                                                <p>별점을 선택하세요:</p>
+                                                    <div class="star-container">
+                                                        <span class="star" data-rating="1">☆</span>
+                                                        <span class="star" data-rating="2">☆</span>
+                                                        <span class="star" data-rating="3">☆</span>
+                                                        <span class="star" data-rating="4">☆</span>
+                                                        <span class="star" data-rating="5">☆</span>
+                                                    </div>
+                                                    <p>선택한 별점: <span id="selectedRating">0</span> / 5</p>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td><input type="file"></td>
+                                            <td><input type="file" placeholder="사진 삽입"></td>
                                         </tr>
                                         <tr>
                                             <td><p th:text="${/}"></p></td>
@@ -65,7 +93,7 @@
                                 <p></p>
                                 <div>
                                     <p th:text="${order.....}">주종명</p>
-                                    <img thsrc="#{store.savedFilename}" alt="image">
+                                    <img th:src="#{store.savedFilename}" alt="image">
                                 </div>	
                             </div>
                         </div>
