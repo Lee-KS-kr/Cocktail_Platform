@@ -82,8 +82,8 @@ function nameChk(){
 	let name = $('#memberName').val();
 	let nameLength = name.length;
 	
-	if(nameLength < 2 ||  nameLength > 9){
-		$('#errMsg4').html('이름은 2-10자로 입력해주세요.');
+	if(nameLength < 2 ||  nameLength > 6){
+		$('#errMsg4').html('이름은 2-6자로 입력해주세요.');
 		nameValid = false;
 	}
 	else{
