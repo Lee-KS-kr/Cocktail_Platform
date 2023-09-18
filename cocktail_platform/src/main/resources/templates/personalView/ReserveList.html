@@ -20,9 +20,11 @@
 <script>
     /*회원탈퇴 alert*/
     function out() {
-        alert('정말 회원을 탈퇴하시겠습니까?');
-        location.href="/Fittail/member/quitMember";   
-
+        let res = confirm('선택 대화상자');
+        console.log(res);
+        if(res == true){
+            location.href="/FitTail/member/quitMember"; 
+        }
     }
 </script>
 </head>
@@ -55,7 +57,7 @@
                     <p> <a th:href="@{/personal/member/resetTaste}"><input type="button" value="취향 카테고리 설정" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div>
-                    <a th:href="javascript:out()" name="out" >탈퇴하기</a>
+                    <a href="javascript:out()" name="out" >탈퇴하기</a>
                 </div>
             </div>
             <!-- sec2 start-->
