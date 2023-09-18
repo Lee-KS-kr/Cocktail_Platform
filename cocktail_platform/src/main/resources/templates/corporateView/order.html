@@ -13,11 +13,13 @@ $(document).ready(function(){
 //전체 목록 받아오기
 function allList(){
 	$.ajax({
-		url: "menuInfo",
+		url: "menu",
 		type: "get",
 		dataType: "json",
+		data: {storeCode: storeCode},
 		success: function(list){
-			menuList(list);
+			let str = menuList(list);
+			$('#menuList').html(str);
 		},
 		error: function(){
 			alert('error');
@@ -25,15 +27,31 @@ function allList(){
 	});
 }
 
+//메뉴 리스트 출력
+function menuList(list){
+	let str = '<table>';
+	$(list).each(function(i,item){
+		str += '<tr>';
+		//누르면 장바구니 추가
+		str += '<td><a href="">' + item.savedFilename + '</a></td>';
+		str += '<td>' + item.menuName + '</td>';
+		str += '<td>' + item.price + '</td>';
+		str += '</tr>';
+	});
+	str += '</table>';
+	return str;
+}
+
 //추천 메뉴 목록 가져오기
 function getRecMenu(){
 	$.ajax({
 		url: "recommendList",
 		type: "post",
-		data: {storeCode, storeCode},
+		data: {storeCode: storeCode},
 		dataType: "json",
 		success: function(list){
-			recMenuList(list);
+			let str = menuList(list);
+			$('#recommendList').html(str);
 		},
 		error: function(){
 			alert('error');
@@ -42,32 +60,18 @@ function getRecMenu(){
 }
 
 //추천 메뉴 리스트 출력
-function recMenuList(list){
+/*function recMenuList(list){
 	let str = '<table>';
 	$(list).each(function(i,item){
 		str += '<tr>';
-		str += '<td>' + item.savedFilename + '</td>';
+		str += '<td><a>' + item.savedFilename + '</a></td>';
 		str += '<td>' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
 		str += '</tr>';
 	});
 	str += '</table>';
 	$('#recommendList').html(str);
-}
-
-//전체 메뉴 리스트 출력
-function menuList(list){
-	let str = '<table>';
-	$(list).each(function(i,item){
-		str += '<tr>';
-		str += '<td>' + item.savedFilename + '</td>';
-		str += '<td>' + item.menuName + '</td>';
-		str += '<td>' + item.price + '</td>';
-		str += '</tr>';
-	});
-	str += '</table>';
-	$('#menuList').html(str);
-}
+}*/
 
 //카테고리별로 메뉴 보기
 function menuCategory(category){
@@ -84,6 +88,26 @@ function menuCategory(category){
 		}
 	});
 }
+
+//카트에 담은 목록 가져오기
+function cart(){
+	$.ajax({
+		url: "cart",
+		type: "get",
+		dataType: "json",
+		success: function(result){
+			if(result == ''){
+				return;
+			}
+			getList(result);
+		},
+		error: function(){
+			alert('error');
+		}
+	});
+}
+
+
 
 //인덱스
 function getIndex(){
