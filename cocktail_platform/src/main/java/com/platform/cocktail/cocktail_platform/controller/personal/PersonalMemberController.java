@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
+import com.platform.cocktail.cocktail_platform.domain.OrderState;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
@@ -23,6 +24,7 @@ import com.platform.cocktail.cocktail_platform.domain.Taste;
 import com.platform.cocktail.cocktail_platform.service.MemberService;
 import com.platform.cocktail.cocktail_platform.service.OrderService;
 import com.platform.cocktail.cocktail_platform.service.StoreService;
+import com.platform.cocktail.cocktail_platform.service.TestService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,6 +38,8 @@ public class PersonalMemberController {
 	private OrderService oService;
 	@Autowired
 	private StoreService sService;
+	@Autowired
+	private TestService tService;
 	
 	//취향 설정 화면
 	@GetMapping("taste")
@@ -172,8 +176,8 @@ public class PersonalMemberController {
 	//주문 후 평가
 	@GetMapping("evaluation")
 	public String evaluation(String orderCode, Model m) {
-		ArrayList<Menu> menuList = oService.getMenulistByOrdercode(orderCode);
-		m.addAttribute("menuList", menuList);
+		ArrayList<OrderTemp> list = oService.getOrdersByOrdercode(orderCode);
+		m.addAttribute("orderList", list);
 		return "personalView/reviewWrite";
 	}
 	
@@ -204,4 +208,12 @@ public class PersonalMemberController {
 		return "redirect:/personal/member/reserveList";
 	}
 	
+	@PostMapping("orderInputTest")
+	public String orderInputTest(@AuthenticationPrincipal UserDetails user, Order o) {
+		o.setMemberId(user.getUsername());
+		o.setOrderState(OrderState.finished);
+		log.debug("order : {}", o);
+		tService.inputOrderTest(o);
+		return "redirect:/personal/member/orderList";
+	}
 }

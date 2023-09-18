@@ -14,7 +14,7 @@ public class OrderTemp {
 	String orderCode;
 	int menuNum;
 	String menuName;
-	int price;
+	int pricePerOne;
 	int orderCount;
 	OrderState state;
 }

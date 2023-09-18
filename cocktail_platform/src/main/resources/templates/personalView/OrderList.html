@@ -38,14 +38,10 @@
         <div class="sideber">
             <!-- sec1 start-->
             <div class="sec1">
-                <div>
-                    <p class="title1">내 정보 관리</p>
-                </div>
-                
                 <div class="order">
                     <p> <a th:href="@{/personal/member/myPage}"><input type="button" value="마이페이지" class="orderHistory" onclick="orderlist()"></a></p>
-                    <p> <a th:href="@{/personal/member/orderlist}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
-                    <p> <a th:href="@{/personal/member/myPage}"><input type="button" value="예약내역" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/orderList}"><input type="button" value="주문내역" class="orderHistory" onclick="orderlist()"></a></p>
+                    <p> <a th:href="@{/personal/member/reserveList}"><input type="button" value="예약내역" class="orderHistory" onclick="orderlist()"></a></p>
                 </div>
                 <div class="order">
                     <p> <a th:href="@{/personal/member/editPrivacyInfo}"><input type="button" value="개인정보 설정" class="orderHistory" onclick="orderlist()"></a></p>
@@ -57,33 +53,41 @@
             </div>
             <!-- sec2 start-->
             <div class="sec2">
-
             <div class="title2">주문 내역</div>
                 <div class="con1">
-                    <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
-                        <table>
-                            <tr>
-                                <th>매장명</th>
-                                <th>예약자명</th>
-                                <th>상품명</th>
-                                <th>주문갯수</th>
-                                <th>주문일시</th>
-                            </tr>
-                        </table>
-                    </form>	
+                    <table>
+                        <tr>
+                            <th>주문 번호</th>
+                            <th>매장명</th>
+                            <th>주문 금액</th>
+                            <th>주문 일자</th>
+                            <th>주문 상태</th>
+                        </tr>
+                    </table>
+                </div>
+                <div style="display: flex;">
+                    <form th:action="@{/personal/member/orderInputTest}" method="post">
+                        <input type="text" name="orderCode" placeholder="orderCode"> <br>
+                        <input type="number" name="storeCode" value="1"> <br>
+                        <input type="text" name="totalPrice" placeholder="totalPrice"> <br>
+                        <input type="text" name="menuList" placeholder="menuList"> <br>
+                        <input type="submit" value="주문 1">
+                    </form>
                 </div>
                 <div class="con2">
                     <div th:if="${#lists.isEmpty(orderList)}">예약 내역이 없습니다.</div>
                     <table th:if="${#lists.isEmpty(orderList) != true}">
-                        <tr th:each="item : ${orderList}">
-                            <td th:text="${order.storeName}"> 
-                                <br>
+                        <tr th:each="order : ${orderList}">
+                            <td> 
+                                <a th:href="@{/personal/member/orderInfo(orderCode=${order.orderCode})}">
+                                    <span th:text="${order.orderCode}"></span> <br>
+                                </a>
                                 <a th:href="@{/perseonal/store/reviewWrite}">리뷰 작성</a>
                             </td>
-                            <td th:text="${order.storeName}">qweqweqw</td>
-                            <td th:text="${order.storeName}">qweqweqw</td>
-                            <td th:text="${order.storeName}">qweqweqw</td>
-                            <td th:text="${order.storeName}">qweqweqw</td>
+                            <td th:text="${order.storeName}"></td>
+                            <td th:text="${order.totalPrice}"></td>
+                            <td th:text="${order.orderDate}"></td>
+                            <td th:text="${order.orderState}"></td>
                         </tr>
                     </table>
                 </div>

@@ -87,7 +87,7 @@
 				, </if>
 				#{reservationName}
 				, #{reservationPhone}
-				, to_char(sysdate, 'yyyymmdd')
+				, to_date(#{reserveDate}, 'yyyy-mm-dd hh24:mi')
 				, #{reserveHead}
 				, <if test="request != null">#{request}
 				, </if> 
@@ -285,5 +285,20 @@
 		update storeInfo set originFilename = null, savedFilename = null
 		where storeCode = #{storeCode} and memberid = #{memberid}
 	</update>
+	
+	<select id="getReservationByCode" parameterType="string" resultType="Reservation">
+		select 
+		    reserveCode
+		    , storeCode
+		    , memberId
+		    , reserveHead
+		    , to_char(reserveDate, 'yyyy-mm-dd hh24:mi') as reserveDate
+		    , reservationName
+		    , reservationPhone
+		    , request
+		    , reserveState
+		from reservation
+		where reserveCode = #{reserveCode}
+	</select>
 	
 </mapper>
