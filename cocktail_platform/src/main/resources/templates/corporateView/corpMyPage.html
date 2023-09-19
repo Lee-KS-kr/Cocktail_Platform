@@ -102,7 +102,7 @@ function memberChg(){
 			data: $('#memberInfoForm').serialize(),		
 			success: function(){
 				alert('저장되었습니다.');
-				getMemberInfo()
+				getMemberInfo();
 			},
 			error: function(e){
 				alert(e.statusText);
@@ -277,7 +277,7 @@ function storeChg(){
 			data: $('#storeInfoForm').serialize(),		
 			success: function(){
 				alert('저장되었습니다.');
-				getStoreInfo()
+				getStoreInfo();
 			},
 			error: function(e){
 				alert(e.statusText);
