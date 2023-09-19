@@ -17,15 +17,16 @@ $(document).ready(function () {
   //인덱스
     function getIndex(){
     	//(.tab_title li를 누르면)선택된 요소의 index 얻어서 idx라는 변수에 넣어주기
-    	var idx = $(this).index();
+    	var tab_id = $(this).attr('data-tab');
         //li에서 on이라는 클래스를 없앤다.
-        $(".tab_title li").removeClass("on");
-        //선택한 요소의 인덱스 번호에 해당하는 요소를 찾아서 on이라는 클래스를 붙여준다.
-        $(".tab_title li").eq(idx).addClass("on");
-        //tab_cont 클래스의 div(전체 탭의 내용물)를 다 감춘다.
-        $(".tab_cont > div").hide();
-        //인덱스 번호에 해당하는 tab_cont 클래스의 div(선택한 탭의 내용물)를 보여준다. 
-        $(".tab_cont > div").eq(idx).show();
+        $("ul.tab_title li").removeClass("on");
+        $(".tab_content").removeClass("on");
+        //선택한 요소에 on이라는 클래스를 붙여준다.
+        $(this).addClass("on");
+        //선택한 요소에 해당하는 내용에 클래스 붙여준다.
+        $("#"+tab_id).addClass("on");
+        //해당하는 id를 가진 tab_cont 클래스의 div(선택한 탭의 내용물)를 보여준다. 
+        $("#"+tab_id).show();
     }
 });
 
@@ -316,16 +317,16 @@ function reserveSub(){
 		<!-- 탭 이름 -->
 		<div>
 			<ul class="tab_title">
-				<li class="on" onclick="getIndex()">메뉴(<span></span>)</li>
-				<li onclick="getIndex()">리뷰(<span></span>)</li>
-				<li onclick="getIndex()">매장 정보</li>
-				<li onclick="getIndex()">예약하기</li>
+				<li class="tab_link on" data-tab="tab1" onclick="getIndex()">메뉴(<span></span>)</li>
+				<li class="tab_link" data-tab="tab2" onclick="getIndex()">리뷰(<span></span>)</li>
+				<li class="tab_link" data-tab="tab3" onclick="getIndex()">매장 정보</li>
+				<li class="tab_link" data-tab="tab4" onclick="getIndex()">예약하기</li>
 			</ul>
 		</div>
 		<!-- 탭 내용 -->
-		<div class="tab_cont">
+		<div>
 			<!-- 메뉴탭 내용 -->
-			<div id="tab_menu" class="on">
+			<div id="tab_menu" class="tab_cont on">
 				<!-- 대표 메뉴 사진
 				<div id="menu_img">
 					<img th:src="">
@@ -341,7 +342,7 @@ function reserveSub(){
 				<div id="menuList"></div>
 			</div>
 			<!-- 리뷰탭 내용 -->
-			<div id="tab_review" style="display:none;">
+			<div id="tab_review" class="tab_cont" style="display:none;">
 				<!-- 별점, 리뷰 리스트(아이디, 별점, 사진, 리뷰 내용, 취향 태그) 출력 -->
 				<div id="star"></div>
 				<p><span th:text="${store.storeReviewScore}"></span>/5</p>
@@ -349,7 +350,7 @@ function reserveSub(){
 				<div id="reviewList"></div>
 			</div>
 			<!-- 매장 정보 탭 내용 -->
-			<div id="tab_storeInfo" style="display:none;">
+			<div id="tab_storeInfo" class="tab_cont" style="display:none;">
 				<!-- 매장 소개, 업체 정보(영업시간, 전화번호, 매장주소, 부가정보), 업체 정보(상호명, 사업자 등록번호), 원재료 정보 출력 -->
 				<p>매장 소개</p>
 				<hr>
@@ -375,7 +376,7 @@ function reserveSub(){
 				<hr>
 			</div>
 			<!-- 예약하기 탭 내용 -->
-			<div id="tab_reserve" style="display:none;">
+			<div id="tab_reserve" class="tab_cont" style="display:none;">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
 				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="return reserveSub()">
 					<p>날짜 선택</p>
