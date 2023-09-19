@@ -223,9 +223,9 @@ function storePhoneChk(){
     }
    	// 사용자가 하이픈을 입력하지 않았을 때 자동으로 하이픈 추가
     else if(regPhone.test(storePhone2)) 
-    	if(phone.length === 11 && phone.indexOf('-') === -1) {
+    	if((phone.length === 11 || phone.length === 10) && phone.indexOf('-') === -1) {
         	//하이픈을 추가하여 전화번호 형식으로 변환
-            phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
+            phone = phone.replace(/^(\d{2,3})(\d{4})(\d{4})$/, '$1-$2-$3');
             $('#phone').val(phone);
         }
         $('#errMsg4').html('');
