@@ -150,7 +150,7 @@ function getStoreList(list){
 		let fileName = item.savedFilename 
 		
 		str += '<tr><td>상호명</td><td>'+ storeName + '</td></tr>';
-		str += '/*[# th:if="savedFilename"]*/<tr><td>대표 사진</td><td><img src="/FitTail/image/store/' + fileName + '"></td></tr>/*[/]*/';
+		str += '[# th:if="savedFilename"]<tr><td>대표 사진</td><td><img src="/FitTail/image/store/' + fileName + '"></td></tr>[/]';
 		str += '<tr><td>사업자 번호</td><td>' + brn + '</td></tr>';
 		str += '<tr><td>가게 주소</td><td>' + item.address1 + ' ' + item.address2 + '</td></tr>';
 		str += '<tr><td>가게 전화번호</td><td>' + formatPhoneNum(storePhone) + '</td></tr>';
