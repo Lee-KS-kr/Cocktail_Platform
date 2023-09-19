@@ -167,6 +167,7 @@ img[alt="search"] {
   color: #313131;
   font-family: 'Noto Sans KR', sans-serif;  
   font-size: 32pt;
+  margin-top: 25px;
 
 }
 
@@ -204,6 +205,8 @@ img[alt="search"] {
 
 .prd_ctg span {
   background-color: #ff5c21;
+  font-family: 'Noto Sans KR', sans-serif;  
+  font-weight: 200;
   margin: 0px 5px;
   color: #fff;
   font-size: 12pt;
