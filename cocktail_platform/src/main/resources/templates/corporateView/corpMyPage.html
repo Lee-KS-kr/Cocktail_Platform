@@ -89,11 +89,6 @@ function phoneChk(){
     }
 }
 
-//input 요소에서 포커스 아웃 이벤트가 발생했을 때 에러 메시지를 초기화
-$('#phone').blur(function(){
-    $('#errMsg1').html('');
-});
-
 /** 회원 정보 수정 */
 function memberChg(){
 	if(!phoneChk()){
@@ -225,16 +220,16 @@ function storePhoneChk(){
         $('#errMsg4').html('전화번호 형식이 올바르지 않습니다.');
         return false;
     }
-    else{
+   	// 사용자가 하이픈을 입력하지 않았을 때 자동으로 하이픈 추가
+    else if(regPhone.test(storePhone2)) 
+    	if(phone.length === 11 && phone.indexOf('-') === -1) {
+        	//하이픈을 추가하여 전화번호 형식으로 변환
+            phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
+            $('#phone').val(phone);
+        }
         $('#errMsg4').html('');
         return true;
     }
-}
-
-//input 요소에서 포커스 아웃 이벤트가 발생했을 때 에러 메시지를 초기화
-$('#storePhone').blur(function(){
-    $('#errMsg4').html('');
-});
 
 /**영업시간 유효성 검사*/
 function runningTimeChk(){
