@@ -95,6 +95,9 @@ public class StoreServiceImple implements StoreService {
 	@Override
 	public ArrayList<StoreInfo> getAllStorelist() {
 		ArrayList<StoreInfo> list = dao.getAllStorelist();
+//		for (StoreInfo s : list) 
+//			s.setStoreReviewScore(dao.getReviewScoreByCode(s.getStoreCode()));
+//		
 		return list;
 	}
 

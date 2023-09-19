@@ -29,5 +29,7 @@ public interface MemberDAO {
 
 	int unableMember(String memberId);
 
+	int findMemberByPhone(String phone);
+
 
 }

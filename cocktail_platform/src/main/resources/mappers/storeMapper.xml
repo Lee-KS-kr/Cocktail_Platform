@@ -52,7 +52,7 @@
 		from
 			reservation
 		where
-			storeCode = #{storeCode}
+			reserveCode = #{reserveCode}
 	</select>
 	
 	<update id="changeReservationState" parameterType="Reservation">

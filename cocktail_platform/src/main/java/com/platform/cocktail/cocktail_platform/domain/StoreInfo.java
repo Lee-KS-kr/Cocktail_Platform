@@ -21,4 +21,5 @@ public class StoreInfo {
 	String info;
 	String originFilename;
 	String savedFilename;
+	float storeReviewScore;
 }
