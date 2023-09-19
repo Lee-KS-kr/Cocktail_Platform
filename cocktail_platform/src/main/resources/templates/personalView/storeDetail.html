@@ -313,10 +313,10 @@ function reserveSub(){
 		<!-- 탭 이름 -->
 		<div class="tab_title">
 			<ul>
-				<li class="on">메뉴(<span></span>)</li>
-				<li>리뷰(<span></span>)</li>
-				<li>매장 정보</li>
-				<li>예약하기</li>
+				<li class="on" onclick="getIndex()">메뉴(<span></span>)</li>
+				<li onclick="getIndex()">리뷰(<span></span>)</li>
+				<li onclick="getIndex()">매장 정보</li>
+				<li onclick="getIndex()">예약하기</li>
 			</ul>
 		</div>
 		<!-- 탭 내용 -->
@@ -338,7 +338,7 @@ function reserveSub(){
 				<div id="menuList"></div>
 			</div>
 			<!-- 리뷰탭 내용 -->
-			<div id="tab_review">
+			<div id="tab_review" style="display:none;">
 				<!-- 별점, 리뷰 리스트(아이디, 별점, 사진, 리뷰 내용, 취향 태그) 출력 -->
 				<div id="star"></div>
 				<p><span th:text="${store.storeReviewScore}"></span>/5</p>
@@ -346,7 +346,7 @@ function reserveSub(){
 				<div id="reviewList"></div>
 			</div>
 			<!-- 매장 정보 탭 내용 -->
-			<div id="tab_storeInfo">
+			<div id="tab_storeInfo" style="display:none;">
 				<!-- 매장 소개, 업체 정보(영업시간, 전화번호, 매장주소, 부가정보), 업체 정보(상호명, 사업자 등록번호), 원재료 정보 출력 -->
 				<p>매장 소개</p>
 				<hr>
@@ -372,7 +372,7 @@ function reserveSub(){
 				<hr>
 			</div>
 			<!-- 예약하기 탭 내용 -->
-			<div id="tab_reserve">
+			<div id="tab_reserve" style="display:none;">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
 				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="return reserveSub()">
 					<p>날짜 선택</p>
