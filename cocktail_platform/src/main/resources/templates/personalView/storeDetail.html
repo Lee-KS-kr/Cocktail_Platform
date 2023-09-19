@@ -36,6 +36,7 @@ function init(){
 		url: "menuList",
 		type: "get",
 		dataType: "json",
+		data: {storeCode: storeCode},
 		success: function(list){
 			getList(list);
 		},
