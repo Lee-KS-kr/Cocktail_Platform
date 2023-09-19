@@ -39,6 +39,7 @@ public class PersonalAjaxController {
 	@GetMapping("store/menuList")
 	public ArrayList<Menu> menuList(int storeCode){
 		ArrayList<Menu> list = sService.getMenulistByCode(storeCode);
+		log.debug("{}", list);
 		return list;
 	}
 	
@@ -47,12 +48,6 @@ public class PersonalAjaxController {
 		ArrayList<StoreReview> list = sService.getReviewlistByCode(storeCode);
 		return list;
 	}
-	
-//	@PostMapping("store/storeList")
-//	public ArrayList<StoreInfo> storeList() {
-//		ArrayList<StoreInfo> list = sService.getAllStorelist();
-//		return list;
-//	}
 	
 	@GetMapping("search")
 	public ArrayList<Object> search(String category, String searchWord){

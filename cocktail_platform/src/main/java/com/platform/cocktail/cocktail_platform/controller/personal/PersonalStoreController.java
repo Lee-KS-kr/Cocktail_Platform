@@ -38,7 +38,7 @@ public class PersonalStoreController {
 	@GetMapping("storeDetail")
 	public String storeDetail(int storeCode, Model m) {
 		StoreInfo info = sService.getStoreinfoByCode(storeCode);
-		m.addAttribute("storeInfo", info);
+		m.addAttribute("store", info);
 		return "personalView/storeDetail";
 	}
 	
@@ -65,6 +65,12 @@ public class PersonalStoreController {
 		log.debug("예약 내용 : {}", reserve);
 		sService.insertReservation(reserve);
 		//return "redirect:/personal/store/storeDetail?storeCode=" + reserve.getStoreCode();
+		return "redirect:/personal/member/reserveList";
+	}
+	
+	@GetMapping("cancleReserve")
+	public String cancleReserve(String reserveCode) {
+		sService.changeReservationState(0, reserveCode, ReservationState.canceled);
 		return "redirect:/personal/member/reserveList";
 	}
 }
