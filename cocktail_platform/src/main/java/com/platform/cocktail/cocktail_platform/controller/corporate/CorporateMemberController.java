@@ -29,6 +29,8 @@ public class CorporateMemberController {
 	private StoreService sService;
 	@Value("${file.path.store.locatioin}")
 	String storePath;
+	@Value("${file.name.store.default}")
+	String defaultStoreImg;
 	
 	@GetMapping("mypage")
 	public String mypage(@AuthenticationPrincipal UserDetails user) {
@@ -61,6 +63,9 @@ public class CorporateMemberController {
 			String savedfile = FileService.saveFile(upload, storePath);
 			info.setOriginFilename(upload.getOriginalFilename());
 			info.setSavedFilename(savedfile);
+		} else {
+			info.setOriginFilename(defaultStoreImg);
+			info.setSavedFilename(defaultStoreImg);
 		}
 		
 		log.debug("저장할 글 : {}", info);
