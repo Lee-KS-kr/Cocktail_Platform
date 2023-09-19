@@ -10,7 +10,9 @@
 <script>
 $(document).ready(function () {
 	init();
-    $(".tab_title li").click(getIndex);
+    $(".tab_title li").click(function(){
+   		getIndex();
+    });
     
   //인덱스
     function getIndex(){
