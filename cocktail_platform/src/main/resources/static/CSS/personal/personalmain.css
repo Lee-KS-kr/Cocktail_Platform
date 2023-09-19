@@ -75,12 +75,14 @@ input-border-solid:     #e7e7e7
   font-weight: normal;
   font-style: normal;
 }
+
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
 /*=========================================================*/
 
 body {
   margin: 0;
   padding: 0;
-  background: #fff;
+  background: #f4f4f4;
   text-align: center;
 }
 .body {
@@ -104,13 +106,13 @@ body {
   background-color: #fff;
 }
 
-.navi2 {
+.navi2{
   width: 50%;
-  background-color: #fff;
+  background-color:#fff;
   border-bottom: #e7e7e7;
   display: flex;
   justify-content: end;
-  padding-right: 40px;
+  padding-right: 40px ;
   align-items: center;
   margin: auto;
 }
@@ -138,52 +140,74 @@ img[alt="search"] {
   background-color: #ffffff;
   border: 1px solid #ddd;
   padding: 20px;
+  
   margin: 10px auto; /* 상하 여백을 10px으로 주고 좌우 여백은 자동으로 가운데 정렬 */
-  text-align: center;
-  display: flex;
   box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
-  float: none; /* float 제거 */
   display: inline-block; /* 인라인 블록 요소로 변경하여 가운데 정렬 */
 }
 
+/*box 감싸는 box*/
+.row{
+  width: 1300px;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  margin: auto;
+  margin-bottom: 20px;
+}
 .boxImg {
   max-width: 100%;
   height: auto;
 }
 
-.pd_title {
-  color: #24ff9d;
+/*카테고리 title*/
+.main_title strong {
+  display: flex;
+  justify-content: center;
+  color: #313131;
+  font-family: 'Noto Sans KR', sans-serif;  
+  font-size: 32pt;
+
+}
+
+/*상품명*/
+.pd_title {  
+  font-family: 'Noto Sans KR', sans-serif;  
+  color: 313131;
+  font-size: 16pt;
   font-weight: bold;
   text-align: left;
   font-size: 18px;
-  align-items: flex-end;
-  align-content: flex-start;
   float: left;
 }
 
 .box {
-  width: 482px;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  align-content: center;
-  background-color: #ff5c21;
-  border-radius: 8px;
+  width: 400px;
+  border: 2px solid  #e7e7e7;
+  border-radius: 15px;
   
 }
 
+/*매장명, 본문*/
 .box p, box strong{
   color: #555;
-  margin-top: 10px;
+  margin-top: 20px;
   text-align: left;
+}
+.prd_ctg {
+  background-color: #ffffff;
+  color: #353535;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .prd_ctg span {
   background-color: #ff5c21;
-  color: #353535;
+  margin: 0px 5px;
+  color: #fff;
+  font-size: 12pt;
   padding: 5px 10px;
-  margin-top: 20px;
-  margin-right: 5px;
   border-radius: 20px;
 }
 
@@ -196,18 +220,16 @@ img[alt="banner"] {
 
 /* 상품 */
 .mainbox1 {
-  background-color: rgb(162, 255, 255);
+  background-color: #fff;
+  border: 2px solid #e7e7e7;
+  border-radius: 20px;
   text-align: left;
   margin: 40px 30px;
+
+  box-shadow: 0px 20px 20px #e8e8e8;
 }
 
-/*카테고리 title*/
-.main_title strong {
-  display: flex;
-  justify-content: center;
-  color: #45b783;
-  font-family: 'OKGUNG';  font-size: 25pt;
-}
+
 
 
 
