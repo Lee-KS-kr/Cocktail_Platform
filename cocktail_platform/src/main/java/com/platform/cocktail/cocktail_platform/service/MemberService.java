@@ -28,4 +28,6 @@ public interface MemberService {
 
 	int unableMember(String memberId);
 
+	int findMemberByPhone(String phone);
+
 }

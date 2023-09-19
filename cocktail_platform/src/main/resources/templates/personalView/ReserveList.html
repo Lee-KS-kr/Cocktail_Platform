@@ -69,6 +69,7 @@
                         <td>매장명</td>
                         <td>예약 일자</td>
                         <td>예약 상태</td>
+                        <td>예약 취소</td>
                     </tr>
                 </table>
                 <div class="table">
@@ -123,8 +124,23 @@
                         </td>
                         <td th:text="${rsv.storeName}"></td>
                         <td th:text="${rsv.reserveDate}"></td>
-                        <td th:text="${rsv.reserveState}"></td>
-
+                        <td>
+                            <span th:if="${rsv.reserveState.toString().equals('apply')}">예약 대기</span>
+                            <span th:if="${rsv.reserveState.toString().equals('received')}">예약 확정</span>
+                            <span th:if="${rsv.reserveState.toString().equals('refuesed')}">예약 거절</span>
+                            <span th:if="${rsv.reserveState.toString().equals('finished')}">방문 완료</span>
+                            <span th:if="${rsv.reserveState.toString().equals('canceled')}">예약 취소</span>
+                        </td>
+                        <td class="cancleReserv">
+                            <span th:if="${rsv.reserveState.toString().equals('apply')} or
+                            ${rsv.reserveState.toString().equals('received')}">
+                                <a th:href="@{/personal/store/cancleReserve(reserveCode=${rsv.reserveCode})}">예약 취소</a>
+                            </span>
+                            <span th:unless="${rsv.reserveState.toString().equals('apply')} or
+                            ${rsv.reserveState.toString().equals('received')}">
+                                &nbsp;
+                            </span>
+                        </td>
                     </tr>
                 </table>
             </div>

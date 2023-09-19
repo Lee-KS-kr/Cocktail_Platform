@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 import com.platform.cocktail.cocktail_platform.config.CodeConfig;
 import com.platform.cocktail.cocktail_platform.dao.MemberDAO;
 import com.platform.cocktail.cocktail_platform.domain.Member;
-import com.platform.cocktail.cocktail_platform.domain.MemberType;
-import com.platform.cocktail.cocktail_platform.domain.StoreReview;
 import com.platform.cocktail.cocktail_platform.domain.Taste;
 
 import lombok.extern.slf4j.Slf4j;
@@ -126,5 +124,11 @@ public class MemberServiceImple implements MemberService {
 		log.debug("cocktailtaste : {}, cocktailflavor : {}", t.getCocktailTaste(), t.getCocktailFlavor());
 		
 		return t;
+	}
+
+	@Override
+	public int findMemberByPhone(String phone) {
+		int n = dao.findMemberByPhone(phone);
+		return n;
 	}
 }
