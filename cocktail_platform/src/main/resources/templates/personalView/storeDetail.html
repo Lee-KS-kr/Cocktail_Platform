@@ -65,10 +65,11 @@ function reviewScore(){
 function getList(list){
 	let str = '<table><tr>';
 	$(list).each(function(i,item){
+		let fileName = item.savedFilename;
 		str += '<td>' + item.menuName + '</td>';
 		str += '<td>' + item.menuInfo + '</td>';
 		str += '<td>' + item.price + '</td></tr>';
-		str += '<tr><td rowspan="4">' + item.savedFilename + '</td>';
+		str += '<tr><td rowspan="4"><img src="/FitTail/image/store/' + fileName + '"></td>';
 		str += '</tr>';
 	});
 	str += '</table>';
@@ -212,7 +213,7 @@ function phoneChk(){
 
 let agreeValid = false;
 //개인 정보 수집 및 제공 동의 유효성
-function agreeValid(){
+function agreeChk(){
 	//개인 정보 수집 및 제공 동의 유무
 	if($("input:radio[name='agree']").is(":checked") == false){
         alert('개인정보 수집 및 이용 미동의 시 참여 불가');
