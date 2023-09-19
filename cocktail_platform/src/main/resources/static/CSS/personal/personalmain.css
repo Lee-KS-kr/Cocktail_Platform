@@ -238,4 +238,16 @@ img[alt="banner"] {
 
 /*======================================================*/
 /*상품 이미지.*/
-.boxImg{width: 350px; height:350px;}
+.boxImg{width: 300px; height:350px; box-shadow: 0px 20px 20px #e8e8e8;}
+
+/*매장 전체보기*/
+.marketlist{
+  text-align: right;
+  margin-right: 40px;
+  color: #313131;
+  font-family: 'Noto Sans KR', sans-serif;  
+  font-size: 16pt;
+  text-shadow: 0px 10px 10px #e8e8e8;
+}
+
+img[alt="arrow"] {width: 40px;  text-align: center;}
