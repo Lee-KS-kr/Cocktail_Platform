@@ -39,11 +39,10 @@
           <img th:src="@{/image/btn_search.png}" alt="search"></a>
       </div>
       <div sec:authorize="isAuthenticated()">
-          <p th:text="${#authentication.name}"></p>
-          <p> 님 환영합니다.  &nbsp;</p>
+          <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
           <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
           <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
-          <a th:href="@{/personal/search}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
+          <a th:href="@{/personal/searchPage}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
       </div>
    </div>
 </div>  
