@@ -9,152 +9,78 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function () {
-	init();
-    $(".tab_title li").click(function(){
-   		getIndex();
-    });
+	// 처음 로딩될 때 모든 탭 내용을 감춤
+	$(".tab_cont").hide();
+	// 처음 로딩될 때 on 클래스가 붙은 탭 내용을 보여줌
+    $(".tab_cont.on").show();
     
-  //인덱스
+  	//인덱스
     function getIndex(){
     	//(.tab_title li를 누르면)선택된 요소의 index 얻어서 idx라는 변수에 넣어주기
     	var tab_id = $(this).attr('data-tab');
-        //li에서 on이라는 클래스를 없앤다.
-        $("ul.tab_title li").removeClass("on");
-        $(".tab_content").removeClass("on");
+        //li, 내용에서 on이라는 클래스를 없앤다.
+        $(".tab_title li").removeClass("on");
+        $(".tab_content").removeClass("on").hide();
         //선택한 요소에 on이라는 클래스를 붙여준다.
         $(this).addClass("on");
-        //선택한 요소에 해당하는 내용에 클래스 붙여준다.
-        $("#"+tab_id).addClass("on");
-        //해당하는 id를 가진 tab_cont 클래스의 div(선택한 탭의 내용물)를 보여준다. 
-        $("#"+tab_id).show();
+        //선택한 요소에 해당하는 내용에 클래스 붙이고 해당하는 id를 가진 tab_cont 클래스의 div(선택한 탭의 내용물)를 보여준다.
+        $("#"+tab_id).addClass("on").show();
     }
+  	
+  	//전체 메뉴 목록 받아오기
+    function init(){
+    	let storeCode = $('#storeCode').html();
+    	
+    	$.ajax({
+    		url: "menuList",
+    		type: "get",
+    		dataType: "json",
+    		data: {storeCode: storeCode},
+    		success: function(list){
+    			getList(list);
+    		},
+    		error: function(){
+    			alert('error');
+    		}
+    	});
+    }
+	
+  	//리스트 출력
+    function getList(list){
+    	let str = '<table><tr>';
+    	$(list).each(function(i,item){
+    		let fileName = item.savedFilename;
+    		
+    		str += '<td>' + item.menuName + '</td>';
+    		str += '<td rowspan="3"><img src="/FitTail/image/menu/' + fileName + '"></td></tr>';
+    		str += '<tr><td>' + item.menuInfo + '</td></tr>';
+    		str += '<tr><td>' + item.price + '</td>';
+    		str += '</tr>';
+    	});
+    	str += '</table>';
+    	$('#menuList').html(str);
+    }
+  
+    init();
+    $(".tab_title li").click(getIndex);
 });
 
-//전체 메뉴 목록 받아오기
-function init(){
-	$.ajax({
-		url: "menuList",
-		type: "get",
-		dataType: "json",
-		data: {storeCode: storeCode},
-		success: function(list){
-			getList(list);
-		},
-		error: function(){
-			alert('error');
-		}
-	});
-}
 
 //별점 가져오기
 function reviewScore(){
     let score = parseFloat($('#storeReviewScore').val());
-    let str = '';
+    let str1 = '';
 
     for(let i = 0 ; i < 5; i++){  
         if(i < Math.floor(score)){  // 정수 부분은 full 별표시
-            str += '../image/cocktail_colored.png';
+        	str1 += '<img src="/FitTail/image/cocktail_colored.png">';
         } else if(score % 1 !== 0 && i === Math.floor(score)){ //0.5 단위인 경우 반 별표시
-            str += '../image/cocktail_half.png';
+        	str1 += '<img src="/FitTail/image/cocktail_half.png">';
         } else {
-            str += '../image/cocktail_non.png'; // 나머지는 빈 별표시
+        	str1 += '<img src="/FitTail/image/cocktail_non.png">'; // 나머지는 빈 별표시
         }
     }
     $('#starDiv').html(str);
-}
-
-//리스트 출력
-function getList(list){
-	let str = '<table><tr>';
-	$(list).each(function(i,item){
-		let fileName = item.savedFilename;
-		str += '<td>' + item.menuName + '</td>';
-		str += '<td>' + item.menuInfo + '</td>';
-		str += '<td>' + item.price + '</td></tr>';
-		str += '<tr><td rowspan="4"><img src="/FitTail/image/store/' + fileName + '"></td>';
-		str += '</tr>';
-	});
-	str += '</table>';
-	$('#menunList').html(str);
-}
-
-let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
-let today = new Date();     // 페이지를 로드한 날짜를 저장
-today.setHours(0,0,0,0);    // 비교 편의를 위해 today의 시간을 초기화
-
-//달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
-function buildCalendar(){
-	
-let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1);     // 이번달 1일
-let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0);  // 이번달 마지막날
-
-let tbody_Calendar = document.querySelector(".Calendar > tbody");
-document.getElementById("calYear").innerText = nowMonth.getFullYear();             // 연도 숫자 갱신
-document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1);  // 월 숫자 갱신
-
-   while (tbody_Calendar.rows.length > 0) {                        // 이전 출력결과가 남아있는 경우 초기화
-       tbody_Calendar.deleteRow(tbody_Calendar.rows.length - 1);
-   }
-
-   let nowRow = tbody_Calendar.insertRow();        // 첫번째 행 추가           
-
-   for (let j = 0; j < firstDate.getDay(); j++) {  // 이번달 1일의 요일만큼
-       let nowColumn = nowRow.insertCell();        // 열 추가
-   }
-
-   for (let nowDay = firstDate; nowDay <= lastDate; nowDay.setDate(nowDay.getDate() + 1)) {   // day는 날짜를 저장하는 변수, 이번달 마지막날까지 증가시키며 반복  
-
-       let nowColumn = nowRow.insertCell();        // 새 열을 추가하고
-       nowColumn.innerText = leftPad(nowDay.getDate());      // 추가한 열에 날짜 입력
-
-   
-       if (nowDay.getDay() == 0) {                 // 일요일인 경우 글자색 빨강으로
-           nowColumn.style.color = "#DC143C";
-       }
-       if (nowDay.getDay() == 6) {                 // 토요일인 경우 글자색 파랑으로 하고
-           nowColumn.style.color = "#0000CD";
-           nowRow = tbody_Calendar.insertRow();    // 새로운 행 추가
-       }
-       if (nowDay < today) {                       // 지난날인 경우
-           nowColumn.className = "pastDay";
-       }
-       else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우           
-           nowColumn.className = "today";
-           nowColumn.onclick = function () { choiceDate(this); }
-       }
-       else {                                      // 미래인 경우
-           nowColumn.className = "futureDay";
-           nowColumn.onclick = function () { choiceDate(this); }
-       }
-   }
-}
-
-	// 날짜 선택
-	function choiceDate(nowColumn) {
-	    if (document.getElementsByClassName("choiceDay")[0]) {                              // 기존에 선택한 날짜가 있으면
-	        document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");  // 해당 날짜의 "choiceDay" class 제거
-	    }
-	    nowColumn.classList.add("choiceDay");           // 선택된 날짜에 "choiceDay" class 추가
-	}
-	
-	// 이전달 버튼 클릭
-	function prevCalendar() {
-	    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
-	    buildCalendar();    // 달력 다시 생성
-	}
-	// 다음달 버튼 클릭
-	function nextCalendar() {
-	    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());   // 현재 달을 1 증가
-	    buildCalendar();    // 달력 다시 생성
-	}
-	
-	// input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
-	function leftPad(value) {
-	    if (value < 10) {
-	        value = "0" + value;
-	        return value;
-	    }
-   	return value;
 }
 
 /**인원수 선택 증감*/
@@ -165,7 +91,7 @@ function count(type)  {
   //더하기/빼기
   if(type === 'plus' && headnum < 5) {
 	  headnum = parseInt(headnum) + 1;  
-  }else if(type === 'minus' && headnum > 0) {
+  }else if(type === 'minus' && headnum > 1) {
 	  headnum = parseInt(headnum) - 1;
   }else {
 		alert('인원수를 확인해주세요.');
@@ -177,21 +103,18 @@ function count(type)  {
   $("#reserveHead").val(headnum);
 }
 
-let nameValid = false;
-let phoneValid = false;
-
 //이름 유효성 검사
 function nameChk(){
 	let name = $('#memberName').val();
 	let nameLength = name.length;
 	
 	if(nameLength < 2 ||  nameLength > 9){
-		alert('이름은 2-10자로 입력해주세요.');
-		nameValid = false;
+		$('#errMsg1').html('이름은 2-10자로 입력해주세요.');
+		return false;
 	}
 	else{
-		$('#errMsg4').html('');
-		nameValid = true;
+		$('#errMsg1').html('');
+		return true;
 	}
 }
 
@@ -201,52 +124,43 @@ function phoneChk(){
     let regPhone = /^010[0-9]{4}[0-9]{4}$/;
 
     if(!regPhone.test(phone)){
-        $('#errMsg7').html('전화번호 형식이 올바르지 않습니다.');
-        phoneValid = false;
+        $('#errMsg2').html('전화번호 형식이 올바르지 않습니다.');
+        return false;
     }
     else{
-        $('#errMsg7').html('');
+        $('#errMsg2').html('');
       	//하이픈을 추가하여 전화번호 형식으로 변환
         phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
         $('#phone').val(phone);
-        phoneValid = true;
+        return true;
     }
 }
 
-let agreeValid = false;
 //개인 정보 수집 및 제공 동의 유효성
 function agreeChk(){
 	//개인 정보 수집 및 제공 동의 유무
 	if($("input:radio[name='agree']").is(":checked") == false){
         alert('개인정보 수집 및 이용 미동의 시 참여 불가');
         $('#agree').focus();  //해당 라디오버튼으로 포커스 이동.
-        agreeValid = false;
+        return false;
     }
 	else{
-		agreeValid = true;
+		return true;
 	}
 }
 
 /**예약 폼 유효성 검사 */
 function reserveValid(){
-	let isValid = true; // isValid 초기화
-
-	if(!nameValid || !phoneValid || !agreeValid) {
-		isValid = false; // 하나라도 유효성 검사에 실패하면 isValid를 false로 설정
-	}
-	else isValid = true;
-	
-	if(isValid) {
-		return true;
-	} else {
+	if(!nameChk() || !radioChk() || !phoneChk() || !agreeChk()) {
 		return false;
 	}
+	else return true;
 }
 
 /**예약 폼 제출*/
 function reserveSub(){
 	
-	if(reservaValid){
+	if(reserveValid){
 		$.ajax({
 			url: 'reserveInput',
 			type: 'post',
@@ -294,13 +208,14 @@ function reserveSub(){
 <main>
 	<!-- 기본 매장 정보 영역(매장 이미지, 매장명, 별점) -->
 	<div>
-		<table>
+		<table th:each="store: ${store}">
 			<tr>
 				<td>
+					<span th:text="${store.storeCode}" id="storeCode" style="display:none;"></span>
 					<span th:text="${store.storeName}"></span>
 				</td>
 				<td>
-					<span th:text="${store.savedFilename}"></span>
+					<img th:src="@{/image/store/} + ${store.savedFilename}">
 				</td>
 			</tr>
 			<tr>
@@ -318,10 +233,10 @@ function reserveSub(){
 		<!-- 탭 이름 -->
 		<div>
 			<ul class="tab_title">
-				<li class="tab_link on" data-tab="tab1" onclick="getIndex()">메뉴(<span></span>)</li>
-				<li class="tab_link" data-tab="tab2" onclick="getIndex()">리뷰(<span></span>)</li>
-				<li class="tab_link" data-tab="tab3" onclick="getIndex()">매장 정보</li>
-				<li class="tab_link" data-tab="tab4" onclick="getIndex()">예약하기</li>
+				<li class="tab_link on" data-tab="tab_menu">메뉴(<span></span>)</li>
+				<li class="tab_link" data-tab="tab_review">리뷰(<span></span>)</li>
+				<li class="tab_link" data-tab="tab_storeInfo">매장 정보</li>
+				<li class="tab_link" data-tab="tab_reserve">예약하기</li>
 			</ul>
 		</div>
 		<!-- 탭 내용 -->
@@ -343,7 +258,7 @@ function reserveSub(){
 				<div id="menuList"></div>
 			</div>
 			<!-- 리뷰탭 내용 -->
-			<div id="tab_review" class="tab_cont" style="display:none;">
+			<div id="tab_review" class="tab_cont">
 				<!-- 별점, 리뷰 리스트(아이디, 별점, 사진, 리뷰 내용, 취향 태그) 출력 -->
 				<div id="star"></div>
 				<p><span th:text="${store.storeReviewScore}"></span>/5</p>
@@ -351,70 +266,90 @@ function reserveSub(){
 				<div id="reviewList"></div>
 			</div>
 			<!-- 매장 정보 탭 내용 -->
-			<div id="tab_storeInfo" class="tab_cont" style="display:none;">
+			<div id="tab_storeInfo" class="tab_cont">
 				<!-- 매장 소개, 업체 정보(영업시간, 전화번호, 매장주소, 부가정보), 업체 정보(상호명, 사업자 등록번호), 원재료 정보 출력 -->
-				<p>매장 소개</p>
-				<hr>
-				<p th:text="${store.info}"></p>
-				<p>업체 정보</p>
-				<hr>
-				<span>영업시간</span>
-				<span th:text="${store.runningTime}"></span><br>
-				<span>전화번호</span>
-				<span th:text="${store.phone}"></span><br>
-				<span>매장주소</span>
-				<span th:text="${store.address1}"></span><span th:text="${store.address2}"></span><br>
-				<p>사업자 정보</p>
-				<hr>
-				<span>상호명</span>
-				<span th:text="${store.storeName}"></span><br>
-				<span>사업자 번호</span>
-				<span th:text="${store.brn}"></span><br>
-				<!-- 
-				<p>원재료 정보</p>
-				<span th:text="${ingredient.ingredientName}"></span><br>
-				-->
-				<hr>
+				<table th:each="store: ${store}">
+					<tr>
+						<th>
+							매장 소개<hr>
+						</th>
+						<td th:text="${store.info}"></td>
+					</tr>
+					<tr>
+						<th>업체 정보</th>
+						<td>
+							<span>영업 시간</span>
+						</td>
+						<td>
+							<span th:text="${store.runningTime}"></span>
+						</td>
+					<tr>
+						<td>
+							<span>전화 번호</span>
+						</td>
+						<td>
+							<span th:text="${store.phone}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span>매장주소</span>
+						</td>
+						<td>
+							<span th:text="${store.address1}"></span><span th:text="${store.address2}"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							사업자 정보<hr>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<span>상호명</span>
+						</td>
+						<td>
+							<span th:text="${store.storeName}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span>사업자 번호</span>
+						</td>
+						<td>
+							<span th:text="${store.brn}"></span>
+						</td>
+					</tr>
+					<!--
+						<tr>
+							<th>
+								<span>원재료 정보</span><hr>
+							</th>
+							<td>
+								<span th:text="${ingredient.ingredientName}"></span>
+							</td>
+						</tr> 
+					 -->
+				</table>
 			</div>
 			<!-- 예약하기 탭 내용 -->
-			<div id="tab_reserve" class="tab_cont" style="display:none;">
+			<div id="tab_reserve" class="tab_cont">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
 				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="return reserveSub()">
 					<p>날짜 선택</p>
-					<table class="Calendar">
-				        <thead>
-				            <tr>
-				            	<!-- &#60; = < -->
-				                <td onClick="prevCalendar();" style="cursor:pointer;">&#60;</td>
-				                <td colspan="5">
-				                    <span id="calYear"></span>년
-				                    <span id="calMonth"></span>월
-				                </td>
-				                <!-- &#62; = < -->
-				                <td onClick="nextCalendar();" style="cursor:pointer;">&#62;</td>
-				            </tr>
-				            <tr>
-				                <td>일</td>
-				                <td>월</td>
-				                <td>화</td>
-				                <td>수</td>
-				                <td>목</td>
-				                <td>금</td>
-				                <td>토</td>
-				            </tr>
-				        </thead>
-				        <tbody>
-				        </tbody>
-    				</table>
+					<input type="date" name="reserveDate" required="required">
 					<p>시간 선택</p>
-					<div id="timeContainer"></div>
+					<div id="timeContainer">
+						<input type="time" id="reserveTime" required="required">
+						<input type="hidden" id="reserveTime2" name="reserveTime">
+					</div>
 					<div id="head_count">
 						<p>인원 선택</p>
 						<div id="head_select">
 							<p>1~5명만 선택 가능합니다.</p>
 							<p>방문하시는 인원을 선택해주세요.</p>
 							<input type="button" onclick="count('minus')" value="-">
-							<span id="headnum">0</span>
+							<span id="headnum"></span>
 							<input type="hidden" id="reserveHead" name="reserveHead">
 							<input type="button" onclick="count('plus')" value="+">
 						</div>
@@ -422,10 +357,13 @@ function reserveSub(){
 					<div id="reserve_info">
 						<p>예약자 정보</p>
 						<input type="text" name="reservationName" placeholder="예약자" required="required"><br>
+						<p id="errMsg1"></p>
 						<input type="text" name="reservationPhone" placeholder="연락처" required="required"><br>
+						<p id="errMsg2"></p>
 						<input type="text" name="request" placeholder="요청 사항"><br>
 						<label>개인 정보 수집, 제공 동의<input type="radio" name="agree" id="agree"></label>
 					</div>
+					<input type="hidden" name="storeCode" th:value="${storeCode}">
 					<br>
 					<input type="submit" value="예약 신청하기">
 				</form>

@@ -105,16 +105,17 @@
 			and memberid = #{memberid}
 	</update>
 	
-	<!-- <select id="getTemporderlistByCode" parameterType="int" resultType="OrderTemp">
+	<select id="getTemporderlistByCode" parameterType="int" resultType="OrderTemp">
 		select
 			*
 		from
 			orderTemp
 		where
-			orderCode = #{orderCode}
+			orderCode = #{orderCode},
+			orderState = 'apply'
 		order by
 			tempOrderkey desc
-	</select> -->
+	</select>
 	
 	<select id="getMenulistByOrdercode" parameterType="String" resultType="Menu">
 		select

@@ -63,12 +63,6 @@ public class OrderServiceImple implements OrderService {
 	}
 
 	@Override
-	public ArrayList<OrderTemp> getTemporderlistByCode(int storeCode) {
-		ArrayList<OrderTemp> list = dao.getTemporderlistByCode(storeCode);
-		return list;
-	}
-
-	@Override
 	public Order makeNewOrder(int storeCode, String memberId) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("storeCode", storeCode);
@@ -117,6 +111,12 @@ public class OrderServiceImple implements OrderService {
 		o.setMenuList(menuList.toString());
 		o.setTotalPrice(totalPrice);
 		
+		return list;
+	}
+
+	@Override
+	public ArrayList<OrderTemp> getTemporderlistByCode(int storeCode) {
+		ArrayList<OrderTemp> list = dao.getTemporderlistByCode(storeCode);
 		return list;
 	}
 
