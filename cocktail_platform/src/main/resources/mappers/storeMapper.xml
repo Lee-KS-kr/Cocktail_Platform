@@ -327,4 +327,17 @@
 			storeReviewNum desc
 	</select>
 	
+	<select id="getStoreByCocktailName" parameterType="String" resultType="StoreInfo">
+		select 
+			*
+		from
+			storeInfo
+		join
+			menu
+		on
+			storeInfo.storeCode = menu.storeCode
+		where
+			menu.menuName = #{menu.menuName}
+	</select>
+	
 </mapper>
