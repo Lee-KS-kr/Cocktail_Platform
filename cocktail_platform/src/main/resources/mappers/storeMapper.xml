@@ -233,6 +233,8 @@
 			schedule
 		where
 			storeCode = #{storeCode}
+		order by
+			scheduleNum desc
 	</select>
 	
 	<select id="getReservelistById" parameterType="String" resultType="Reservation">
@@ -242,10 +244,12 @@
 			reservation
 		where
 			memberId = #{memberId}
+		order by
+			reserveCode desc
 	</select>
 	
 	<insert id="insertStoreinfo" parameterType="StoreInfo">
-		insert into storeInfo 
+		insert into storeInfo
 			(storeCode
 			, memberId
 			, storeName
@@ -277,15 +281,6 @@
 			)
 	</insert>
 	
-	<select id="hasFileFromStore" resultType="string" parameterType="int">
-		select savedFilename from storeInfo where storeCode = #{storeCode}
-	</select>
-	
-	<update id="deleteFileFromStore" parameterType="StoreInfo">
-		update storeInfo set originFilename = null, savedFilename = null
-		where storeCode = #{storeCode} and memberid = #{memberid}
-	</update>
-	
 	<select id="getReservationByCode" parameterType="string" resultType="Reservation">
 		select 
 		    reserveCode
@@ -299,6 +294,37 @@
 		    , reserveState
 		from reservation
 		where reserveCode = #{reserveCode}
+	</select>
+	
+	<select id="hasFileFromStore" parameterType="int" resultType="string">
+		select
+			savedFilename
+		from
+			storeInfo
+		where
+			storeCode = #{storeCode}
+	</select>
+	
+	<update id="deleteFileFromStore" parameterType="StoreInfo">
+		update
+			storeInfo
+		set
+			originFilename = null
+			, savedFilename = null
+		where
+			storeCode = #{storeCode}
+			and memberid = #{memberid}
+	</update>
+	
+	<select id="getReviewScoreByCode" parameterType="int" resultType="float">
+		select
+			storeReviewScore
+		from
+			storeReview
+		where
+			storeCode
+		order by
+			storeReviewNum desc
 	</select>
 	
 </mapper>
