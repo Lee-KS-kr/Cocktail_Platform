@@ -3,106 +3,94 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
-    <title>Document</title>
+    <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+    <title>칵테일 상세</title>
     <link rel="favicon" href="../static/image/ico/favicon.ico">
     <link rel="favicon" th:href="@{CSS/image/ico/favicon.ico}">
-</head>
-
-
     <link rel="stylesheet" href="../../static/CSS/personal/wiki.css">
         <!-- vs code
     -->
-
-
     <link rel="stylesheet" th:href="@{/CSS/personal/wiki.css}">
     <!-- thymeleaf
     -->
-
 </head>
 <body>
-   
-    <div class="navi">  <!-- navi   -->
+    <div class="navi">  
         <div class="navi1">
-            <a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
+            <a th:href="@{/personal/home}">
+				<img th:src="@{/image/logo_title.png}" alt="logo"></a>
         </div>
         <div class="navi2">
-            <p th:text="${member.memberId}"> </p>
-            <p>님 환영합니다.  &nbsp;</p>
-            <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
-            <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
-            <a th:href="@{/personal/search}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
-        </div>
-    </div>  
+			<div sec:authorize="!isAuthenticated()">
+			  <a th:href="@{/member/login}">로그인</a>
+			  <a th:href="@{/personal/searchPage}">
+				<img th:src="@{/image/btn_search.png}" alt="search"></a>
+			</div>
+			<div sec:authorize="isAuthenticated()">
+			  <span><a th:href="@{/member/logout}">로그아웃</a></span>
+			  <span><a th:href="@{/personal/member/myPage}">마이페이지</a></span>
+			  <a th:href="@{/personal/searchPage}">
+				<img th:src="@{/image/btn_search.png}" alt="search"></a>
+			</div>
+    </div>
     <!-- title -->
     <div class="title">
         <p>칵테일 위키</p>
     </div>
     <div class="">
         <div class="c_img">
-                <img src="" alt="cocktail_image">
+                <img th:src="|@{/image/cocktails/}${cocktail.savedFilename}|" alt="cocktail_image">
         </div>
         <div class="c_con">
             <div>
                 <p>칵테일이름</p>
+                <p th:text="${cocktail.cocktailName}"></p>
             </div>
             <div>
-                <p>칵테일설명</p>
+                <p>칵테일 맛</p>
+                <span th:each="item : ${cocktail.taste}" id="tasteList">
+                    <span th:text="${item}"></span></span>
             </div>
             <div>
-                <p>칵테일향</p>
+                <p>칵테일 색</p>
+                <span th:each="item : ${cocktail.flavor}" id="flavorList">
+                    <span th:text="${item}"></span></span>
             </div>
             <div>
-                <p>대상</p>
+                <p>칵테일 향</p>
+                <span th:each="item : ${cocktail.color}" id="colorList">
+                    <span th:text="${item}"></span></span>
             </div>
             <div>
                 <p>주요 재료</p>
+                <span th:if="${cocktail.cBase} != null" th:text="${cocktail.cBase}"></span>
+                <span th:if="${cocktail.cIngre1} != null" th:text="${cocktail.cIngre1}"></span>
+                <span th:if="${cocktail.cIngre2} != null" th:text="${cocktail.cIngre2}"></span>
+                <span th:if="${cocktail.cIngre3} != null" th:text="${cocktail.cIngre3}"></span>
+                <span th:if="${cocktail.cIngre4} != null" th:text="${cocktail.cIngre4}"></span>
             </div>
             <div>
                 <p>도수</p>
+                <p th:text="${cocktail.cocktailAlcohol}"></p>
+            </div>
+            <div>
+                <p>대상</p>
             </div>
         </div>
     </div>
     <div class="mid">
         <div>
-            <p>~를 파는 매장에서 직접 즐겨볼까요?</p>
+            <p><span th:text="${cocktail.cocktailName}"></span>를 파는 매장에서 직접 즐겨볼까요?</p>
         </div>
         <div>
-            <div class="inside_box">
-                <div><img src="" alt=""></div>
+            <div class="inside_box" th:each="store : ${storeList}">
+                <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store image"></div>
                 <div>
-                    <div>상품명</div>
-                    <div>매장주소</div>
-                    <div>가격</div>
+                    <div th:text="${store.storeName}"></div>
+                    <div th:text="|${store.address1}, ${store.address2}|"></div>
+                    <div th:text="${store.storeReviewScore}"></div>
                 </div>
             </div>
-            <div>
-                <div><img src="" alt=""></div>
-                <div>
-                    <div>상품명</div>
-                    <div>매장주소</div>
-                    <div>가격</div>
-                </div>
-            </div>
-            <div>
-                <div><img src="" alt=""></div>
-                <div>
-                    <div>상품명</div>
-                    <div>매장주소</div>
-                    <div>가격</div>
-                </div>
-            </div>
-            <div>
-                <div><img src="" alt=""></div>
-                <div>
-                    <div>상품명</div>
-                    <div>매장주소</div>
-                    <div>가격</div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <img src="" alt="view_more">
         </div>
     </div>
 </body>

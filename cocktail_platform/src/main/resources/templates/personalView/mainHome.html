@@ -39,10 +39,10 @@
           <img th:src="@{/image/btn_search.png}" alt="search"></a>
       </div>
       <div sec:authorize="isAuthenticated()">
-        <span><a th:href="@{/member/logout}">로그아웃</a></span>
-        <span><a th:href="@{/personal/member/myPage}">마이페이지</a></span>
-        <a th:href="@{/personal/searchPage}">
-          <img th:src="@{/image/btn_search.png}" alt="search"></a>
+          <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
+          <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
+          <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
+          <a th:href="@{/personal/searchPage}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
       </div>
    </div>
 </div>  
@@ -491,6 +491,15 @@
       <!-- ======= End mainbox6: 추천상품(이벤트) ======= -->
     </main>
   </div>
-    <footer></footer>
+    <footer>
+      <div  class="bin"></div>
+      <div class="footer">
+        <p>쇼핑 가이드 &nbsp;|&nbsp; FAQ &nbsp;|&nbsp; 반품・교환에 대해 &nbsp;|&nbsp; 문의 &nbsp;|&nbsp; 배송 정보 &nbsp;|&nbsp; 점포 일람 <br>
+          기업 사이트 &nbsp;|&nbsp; 모집 &nbsp;|&nbsp; 개인 정보 보호 정책 &nbsp;|&nbsp; 특정 상거래법에 따른 기재</p>
+      </div> 
+      <div class="footer1">
+        <p>FitTail ©︎  The perfect cocktail for you</p>
+      </div> 
+    </footer>
   </body>
 </html>

@@ -34,12 +34,7 @@
 	<!-- 예약 리스트 출력 -->
 	<select id="getReservelistByCode" parameterType="int" resultType="Reservation">
 		select
-			reserveCode
-			, storeCode
-			, reservationName
-			, reservationPhone
-			, reserveDate
-			, reserveState
+			*
 		from
 			reservation
 		order by
@@ -70,26 +65,26 @@
 				(
 				reserveCode
 				, storeCode
-				, <if test="memberId != null">memberId
+				, <if test="memberId != null and memberId != ''">memberId
 				, </if> 
 				reservationName
 				, reservationPhone
 				, reserveDate
 				, reserveHead
-				, <if test="request != null">request
+				, <if test="request != null and request != ''">request
 				, </if> 
 				reserveState
 				)
 		values (
 				to_char(sysdate, 'yyyymmdd') || #{storeCode} || reservation_seq.nextval
 				, #{storeCode}
-				, <if test="memberId != null">#{memberId}
+				, <if test="memberId != null and memberId != ''">#{memberId}
 				, </if>
 				#{reservationName}
 				, #{reservationPhone}
 				, to_date(#{reserveDate}, 'yyyy-mm-dd hh24:mi')
 				, #{reserveHead}
-				, <if test="request != null">#{request}
+				, <if test="request != null and request != ''">#{request}
 				, </if> 
 				#{reserveState}
 				)
@@ -118,6 +113,8 @@
 			menu
 		where
 			storeCode = #{storeCode}
+		order by
+			menuNum
 	</select>
 	
 	<select id="getMenuInfoByNum" parameterType="int" resultType="Menu">
@@ -128,7 +125,7 @@
 		where
 			menuNum = #{menuNum}
 		order by
-			menuNum desc
+			menuNum
 	</select>
 	
 	<select id="getAllStorelist" resultType="StoreInfo">
@@ -222,9 +219,12 @@
 			storeCode = #{storeCode}
 	</select>
 	
-	<!-- <select id="getReservedCountByDatetime" parameterType="String" resultType="int">
-	
-	</select> -->
+	<select id="getReservedCountByDatetime" parameterType="HashMap" resultType="int">
+		select
+			count(case when reserveDate = #{reserveDate} then 1 end) ReservedCount
+		from
+			reservation
+	</select>
 	
 	<select id="getScheduleByCode" parameterType="int" resultType="Schedule">
 		select
@@ -233,6 +233,8 @@
 			schedule
 		where
 			storeCode = #{storeCode}
+		order by
+			scheduleNum desc
 	</select>
 	
 	<select id="getReservelistById" parameterType="String" resultType="Reservation">
@@ -242,10 +244,12 @@
 			reservation
 		where
 			memberId = #{memberId}
+		order by
+			reserveCode desc
 	</select>
 	
 	<insert id="insertStoreinfo" parameterType="StoreInfo">
-		insert into storeInfo 
+		insert into storeInfo
 			(storeCode
 			, memberId
 			, storeName
@@ -257,7 +261,7 @@
 			, runningTime
 			, dayOff
 			, info
-			<if test="originFilename != null"> , originFilename
+			<if test="originFilename != null and originFilename != ''"> , originFilename
 			, savedFilename </if>
 			)
 		values 
@@ -272,19 +276,10 @@
 			, #{runningTime}
 			, #{dayOff}
 			, #{info}
-			<if test="originFilename != null"> , #{originFilename}
+			<if test="originFilename != null and originFilename != ''"> , #{originFilename}
 			, #{savedFilename} </if>
 			)
 	</insert>
-	
-	<select id="hasFileFromStore" resultType="string" parameterType="int">
-		select savedFilename from storeInfo where storeCode = #{storeCode}
-	</select>
-	
-	<update id="deleteFileFromStore" parameterType="StoreInfo">
-		update storeInfo set originFilename = null, savedFilename = null
-		where storeCode = #{storeCode} and memberid = #{memberid}
-	</update>
 	
 	<select id="getReservationByCode" parameterType="string" resultType="Reservation">
 		select 
@@ -299,6 +294,50 @@
 		    , reserveState
 		from reservation
 		where reserveCode = #{reserveCode}
+	</select>
+	
+	<select id="hasFileFromStore" parameterType="int" resultType="string">
+		select
+			savedFilename
+		from
+			storeInfo
+		where
+			storeCode = #{storeCode}
+	</select>
+	
+	<update id="deleteFileFromStore" parameterType="StoreInfo">
+		update
+			storeInfo
+		set
+			originFilename = null
+			, savedFilename = null
+		where
+			storeCode = #{storeCode}
+			and memberid = #{memberid}
+	</update>
+	
+	<select id="getReviewScoreByCode" parameterType="int" resultType="float">
+		select
+			storeReviewScore
+		from
+			storeReview
+		where
+			storeCode
+		order by
+			storeReviewNum desc
+	</select>
+	
+	<select id="getStoreByCocktailName" parameterType="String" resultType="StoreInfo">
+		select 
+			*
+		from
+			storeInfo
+		join
+			menu
+		on
+			storeInfo.storeCode = menu.storeCode
+		where
+			menu.menuName = #{menu.menuName}
 	</select>
 	
 </mapper>

@@ -18,7 +18,7 @@
 	<!-- 네비게이션바 -->
 	<div class="navi">  <!-- Header   -->
 		<div class="navi1"> 
-			<a th:href="@{/personal/member/mainHome}">
+			<a th:href="@{/personal/home}">
 			  <img th:src="@{/image/logo_title.png}" alt="logo"></a>
 		</div>
 		<div class="navi2">
@@ -44,9 +44,9 @@
 		<!-- <div id="storeListDiv"></div>> -->
 		<div class="storeInfo">
 			<a th:href="@{/personal/store/storeDetail(storeCode=${store.storeCode})}">
-				<p>
+				<div>
 					<img th:src="@{/image/store/} + ${store.savedFilename}" alt="store image">
-				</p>
+				</div>
 				<p th:text="${store.storeName}"></p>
 				<p th:text="${store.storeReviewScore}"></p>
 				<p th:text="${store.info}"></p>
