@@ -89,16 +89,16 @@ function phoneChk(){
 }
 
 /** 회원 정보 수정 */
-$('#memSubBtn').click(function(){
+function memChg(){
+	let param = $('#memberInfoForm').serialize();
+	
 	if(!phoneChk()){
 		return false;
 	}
 		$.ajax({
 			url: 'editPrivacyInfo',
 			type: 'post',
-			data: $('#memberInfoForm').serialize(),
-			contentType : false,
-	        processData : false,
+			data: param,
 			success: function(){
 				alert('저장되었습니다.');
 				memChgToggle2()
@@ -108,7 +108,7 @@ $('#memSubBtn').click(function(){
 				alert(e.statusText);
 			}
 		});
-	});
+}
 
 /**회원정보 변경 폼 제출 후 바뀐 정보 표시*/
 function memChgToggle2(){
@@ -297,7 +297,7 @@ function infoChk(){
 }
 
 /**가게 정보 변경하기*/
-$('#storeSubBtn').click(function(){
+function storeChg(){
 	let params = $('#storeInfoForm').serialize();
 	
 	if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
@@ -311,14 +311,14 @@ $('#storeSubBtn').click(function(){
 	        processData : false,
 			success: function(){
 				alert('저장되었습니다.');
-				storeChgToggle2()
+				storeChgToggle2();
 				getStoreInfo();
 			},
 			error: function(e){
 				alert(e.statusText);
 			}
 		});
-	});
+}
 
 /**가게정보 변경 폼 제출 후 바뀐 정보 표시*/
 function storeChgToggle2(){
@@ -425,7 +425,7 @@ function storeChgToggle2(){
 					<span id="email"></span><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
-					<input type="button" id="memSubBtn" value="저장">
+					<input type="button" id="memSubBtn" value="저장" onclick="memChg()">
 				</form>
 			</div>
 		</div>
@@ -466,7 +466,7 @@ function storeChgToggle2(){
 					<input type="text" name="address2" id="address2" placeholder="상세주소"><br>
 					
 					<input type="reset" class="bottom" value="다시 쓰기">
-					<input type="button" id="storeSubBtn" value="변경">
+					<input type="button" id="storeSubBtn" value="변경" onclick="storeChg()">
 				</form>
 			</div>
 		</div>
