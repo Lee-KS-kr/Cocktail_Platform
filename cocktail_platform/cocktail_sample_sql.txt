@@ -1,12 +1,12 @@
---칵테일(29종) 샘플 데이터
+--칵테일(40종) 샘플 데이터
 
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -34,10 +34,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -61,10 +61,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -92,10 +92,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -119,10 +119,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -148,10 +148,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -179,10 +179,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , cocktailTaste
     , cocktailFlavor
@@ -204,10 +204,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -233,10 +233,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -262,10 +262,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , cocktailTaste
     , cocktailFlavor
@@ -287,10 +287,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -318,10 +318,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -345,10 +345,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -374,10 +374,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -403,10 +403,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , cocktailTaste
     , cocktailFlavor
@@ -428,10 +428,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -459,10 +459,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -488,10 +488,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -519,10 +519,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -546,10 +546,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -575,10 +575,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -602,10 +602,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -629,10 +629,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -658,10 +658,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -685,10 +685,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -716,10 +716,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -743,10 +743,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -772,10 +772,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -801,10 +801,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailCode
-    , cockailName
-    , cocktailAlcohol
-    , cocktailBase
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -828,3 +828,310 @@ values
     );
     
 ----------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
+    , ingredient1
+    , ingredient2
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    )
+values
+    (cocktails_seq.nextval
+    , '네그로니'
+    , '28'
+    , (select ingredientnum from ingredients where ingredientname = '드라이 진')
+    , (select ingredientnum from ingredients where ingredientname = '스위트 베르무트')
+    , (select ingredientnum from ingredients where ingredientname = '캄파리')
+    , 1004
+    , 2001
+    , 3008
+    , '네그로니.png'
+    );
+        
+----------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
+    , ingredient1
+    , ingredient2
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    )
+values
+    (cocktails_seq.nextval
+    , '다이키리'
+    , '25'
+    , (select ingredientnum from ingredients where ingredientname = '화이트 쿠바 럼')
+    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
+    , (select ingredientnum from ingredients where ingredientname = '고운 설탕')
+    , 1002
+    , 2001
+    , 3008
+    , '다이키리.png'
+    );
+----------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , ingredient4
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    )
+values
+    (cocktails_seq.nextval
+    , '라모스 피즈'
+    , '11'
+    , (select ingredientnum from ingredients where ingredientname = '진')
+    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
+    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
+    , (select ingredientnum from ingredients where ingredientname = '설탕 시럽')
+    , (select ingredientnum from ingredients where ingredientname = '소다수')
+    , 1001
+    , 2001
+    , 3002
+    , '라모스 피즈.png'
+    );    
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '라스트 워드'
+    , '30'
+    , (select ingredientnum from ingredients where ingredientname = '진')
+    , (select ingredientnum from ingredients where ingredientname = '그린 샤르트뢰즈')
+    , (select ingredientnum from ingredients where ingredientname = '마라스키노 룩사르도')
+    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
+    , 1002
+    , 2001
+    , 3128
+    , '라스트 워드.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
+    , ingredient1
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '러스티 네일'
+    , '40'
+    , (select ingredientnum from ingredients where ingredientname = '스카치 위스키')
+    , (select ingredientnum from ingredients where ingredientname = '드람뷔')
+    , 1002
+    , 2001
+    , 3128
+    , '러스티 네일.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '마르티네스'
+    , '40'
+    , (select ingredientnum from ingredients where ingredientname = '드라이 베르무트')
+    , (select ingredientnum from ingredients where ingredientname = '진')
+    , (select ingredientnum from ingredients where ingredientname = '앙고스투라 비터')
+    , (select ingredientnum from ingredients where ingredientname = '검 시럽')
+    , 1001
+    , 2001
+    , 3008
+    , '마르티네스.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
+    , ingredient1
+    , ingredient2
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '맨해튼'
+    , '32'
+    , (select ingredientnum from ingredients where ingredientname = '라이 위스키')
+    , (select ingredientnum from ingredients where ingredientname = '스위트 베르무트')
+    , (select ingredientnum from ingredients where ingredientname = '앙고스투라 비터스')
+    , 1002
+    , 2001
+    , 3128                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    , '라스트 워드.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '메리 픽포드'
+    , '19'
+    , (select ingredientnum from ingredients where ingredientname = '화이트 럼')
+    , (select ingredientnum from ingredients where ingredientname = '파인애플 주스')
+    , (select ingredientnum from ingredients where ingredientname = '마라스키노 룩사르도')
+    , (select ingredientnum from ingredients where ingredientname = '그레나딘')
+    , 1001
+    , 2001
+    , 3008
+    , '메리 픽포드.png'
+    );
+
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '몽키 글랜드'
+    , '31'
+    , (select ingredientnum from ingredients where ingredientname = '진')
+    , (select ingredientnum from ingredients where ingredientname = '오렌지 주스')
+    , (select ingredientnum from ingredients where ingredientname = '압생트')
+    , (select ingredientnum from ingredients where ingredientname = '그레나딘')
+    , 1001
+    , 2001
+    , 3008
+    , '몽키 글랜드.png'
+    );
+ 
+ -------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
+    , ingredient1
+    , ingredient2
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '불바디에'
+    , '30'
+    , (select ingredientnum from ingredients where ingredientname = '버번')
+    , (select ingredientnum from ingredients where ingredientname = '캄파리')
+    , (select ingredientnum from ingredients where ingredientname = '스위트 베르무트')
+    , 1004
+    , 2001
+    , 3008
+    , '불바디에.png'
+    );
+    
+-------------------------------------------------------------------------------------
+
+insert into cocktails 
+    (cocktailcode
+    , cocktailname
+    , cocktailalcohol
+    , cocktailbase
+    , ingredient1
+    , ingredient2
+    , ingredient3
+    , cocktailTaste
+    , cocktailFlavor
+    , cocktailColor
+    , savedFilename
+    ) 
+values 
+    (cocktails_seq.nextval
+    , '뷰 카레'
+    , '50'
+    , (select ingredientnum from ingredients where ingredientname = '라이 위스키')
+    , (select ingredientnum from ingredients where ingredientname = '코냑')
+    , (select ingredientnum from ingredients where ingredientname = '스위트 베르무트')
+    , (select ingredientnum from ingredients where ingredientname = 'D.O.M. 베네딕틴')
+    , 1004
+    , 2001
+    , 3008
+    , '뷰 카레.png'
+    );
+    
