@@ -211,6 +211,7 @@ function reserveSub(){
 		<table>
 			<tr>
 				<td>
+					<span th:text="${store.storeCode}" id="storeCode" style="display:none;"></span>
 					<span th:text="${store.storeName}"></span>
 				</td>
 				<td>
@@ -267,28 +268,69 @@ function reserveSub(){
 			<!-- 매장 정보 탭 내용 -->
 			<div id="tab_storeInfo" class="tab_cont" style="display:none;">
 				<!-- 매장 소개, 업체 정보(영업시간, 전화번호, 매장주소, 부가정보), 업체 정보(상호명, 사업자 등록번호), 원재료 정보 출력 -->
-				<p>매장 소개</p>
-				<hr>
-				<p th:text="${store.info}"></p>
-				<p>업체 정보</p>
-				<hr>
-				<span>영업시간</span>
-				<span th:text="${store.runningTime}"></span><br>
-				<span>전화번호</span>
-				<span th:text="${store.phone}"></span><br>
-				<span>매장주소</span>
-				<span th:text="${store.address1}"></span><span th:text="${store.address2}"></span><br>
-				<p>사업자 정보</p>
-				<hr>
-				<span>상호명</span>
-				<span th:text="${store.storeName}"></span><br>
-				<span>사업자 번호</span>
-				<span th:text="${store.brn}"></span><br>
-				<!-- 
-				<p>원재료 정보</p>
-				<span th:text="${ingredient.ingredientName}"></span><br>
-				-->
-				<hr>
+				<table th:each="store: ${store}">
+					<tr>
+						<th>
+							매장 소개<hr>
+						</th>
+						<td th:text="${store.info}"></td>
+					</tr>
+					<tr>
+						<th>업체 정보</th>
+						<td>
+							<span>영업 시간</span>
+						</td>
+						<td>
+							<span th:text="${store.runningTime}"></span>
+						</td>
+					<tr>
+						<td>
+							<span>전화 번호</span>
+						</td>
+						<td>
+							<span th:text="${store.phone}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span>매장주소</span>
+						</td>
+						<td>
+							<span th:text="${store.address1}"></span><span th:text="${store.address2}"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							사업자 정보<hr>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<span>상호명</span>
+						</td>
+						<td>
+							<span th:text="${store.storeName}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span>사업자 번호</span>
+						</td>
+						<td>
+							<span th:text="${store.brn}"></span>
+						</td>
+					</tr>
+					<!--
+						<tr>
+							<th>
+								<span>원재료 정보</span><hr>
+							</th>
+							<td>
+								<span th:text="${ingredient.ingredientName}"></span>
+							</td>
+						</tr> 
+					 -->
+				</table>
 			</div>
 			<!-- 예약하기 탭 내용 -->
 			<div id="tab_reserve" class="tab_cont" style="display:none;">
@@ -321,7 +363,7 @@ function reserveSub(){
 						<input type="text" name="request" placeholder="요청 사항"><br>
 						<label>개인 정보 수집, 제공 동의<input type="radio" name="agree" id="agree"></label>
 					</div>
-					<input type="hidden" id="storeCode" name="storeCode" th:value="${storeCode}">
+					<input type="hidden" name="storeCode" th:value="${storeCode}">
 					<br>
 					<input type="submit" value="예약 신청하기">
 				</form>
