@@ -65,4 +65,6 @@ public interface StoreDAO {
 	int deleteFileFromStore(StoreInfo store);
 
 	float getReviewScoreByCode(int storeCode);
+
+	ArrayList<StoreInfo> getStoreByCocktailName(String cocktailName);
 }

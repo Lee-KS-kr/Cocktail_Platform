@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.platform.cocktail.cocktail_platform.domain.Cocktails;
 import com.platform.cocktail.cocktail_platform.domain.Ingredients;
+import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.service.CocktailService;
+import com.platform.cocktail.cocktail_platform.service.StoreService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +26,9 @@ public class PersonalController {
 	@Autowired
 	private CocktailService cService;
 	
+	@Autowired
+	private StoreService sService;
+	
 	@GetMapping("home")
 	public String home() {
 		return "personalView/mainHome";
@@ -32,8 +37,12 @@ public class PersonalController {
 	@GetMapping("wiki")
 	public String wiki(int cocktailCode, Model m) {
 		Cocktails cocktail = cService.findCocktailByCode(cocktailCode);
+		ArrayList<StoreInfo> storeList = sService.getStoreByCocktailName(cocktail.getCocktailName());
+		
 		m.addAttribute("cocktail", cocktail);
+		m.addAttribute("storeList", storeList);
 		log.debug("cocktail : {}", cocktail);
+		log.debug("list : {}", storeList);
 		return "personalView/wiki";
 	}
 	

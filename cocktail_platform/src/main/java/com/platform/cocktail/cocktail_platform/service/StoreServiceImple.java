@@ -218,5 +218,14 @@ public class StoreServiceImple implements StoreService {
 		int n = dao.deleteFileFromStore(store);
 		return n;
 	}
+
+	@Override
+	public ArrayList<StoreInfo> getStoreByCocktailName(String cocktailName) {
+		ArrayList<StoreInfo> list = dao.getStoreByCocktailName(cocktailName);
+		for (StoreInfo s : list) 
+			s.setStoreReviewScore(dao.getReviewScoreByCode(s.getStoreCode()));
+		
+		return list;
+	}
 	
 }

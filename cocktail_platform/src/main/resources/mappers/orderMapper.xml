@@ -82,7 +82,7 @@
 				, orderCount)
 			values
 				(#{tempOrderkey}
-				, #{orderCode
+				, #{orderCode}
 				, #{storeCode}
 				, #{menuNum}
 				, #{menuName}
