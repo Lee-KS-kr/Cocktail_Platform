@@ -14,4 +14,6 @@ public interface CocktailDAO {
 
 	Cocktails findCocktailByCode(int cocktailCode);
 
+	String getIngredientNameByCode(int cocktailBase);
+
 }

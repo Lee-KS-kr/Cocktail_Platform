@@ -33,4 +33,8 @@
 			cocktailCode = #{cocktailCode}
 	</select>
 	
+	<select id="getIngredientNameByCode" parameterType="int" resultType="String">
+		select ingredientName from ingredients where ingredientNum = #{ingredientNum}
+	</select>
+	
 </mapper>
