@@ -222,26 +222,7 @@ function pagingFormSubmit(currentPage){
 			</form>
 		</div>
 	</section>
-	<!-- 페이지 넘버 -->
-	<section>
-		<div id="pagenum">
-            <br>
-            <!-- 페이지 이동 링크 -->
-            <a th:href="|javascript:pagingFormSubmit(${navi.currentPage - navi.pagePerGroup})|">◁◁</a>
-            <a th:href="|javascript:pagingFormSubmit(${navi.currentPage - 1})|">◀</a>
-            
-            <!-- numbers.sequence: 수열 만들어내기 -->
-            <span th:each="counter : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
-            	<th:block th:if="${counter == navi.currentPage}"></th:block>
-					<a th:text="${counter}" th:href="|javascript:pagingFormSubmit(${counter})|"></a>&nbsp;
-				<th:block th:if="${counter == navi.currentPage}"></th:block>
-            </span>
-            
-            <a th:href="|javascript:pagingFormSubmit(${navi.currentPage + 1})|">▶</a>
-            <a th:href="|javascript:pagingFormSubmit(${navi.currentPage + navi.pagePerGroup})|">▷▷</a>
-        </div>
-        <br>
-	</section>
+	
 </main>
 </body>
 </html>
