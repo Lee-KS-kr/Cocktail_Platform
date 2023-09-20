@@ -33,6 +33,7 @@ public class PersonalController {
 	public String wiki(int cocktailCode, Model m) {
 		Cocktails cocktail = cService.findCocktailByCode(cocktailCode);
 		m.addAttribute("cocktail", cocktail);
+		log.debug("cocktail : {}", cocktail);
 		return "personalView/wiki";
 	}
 	
