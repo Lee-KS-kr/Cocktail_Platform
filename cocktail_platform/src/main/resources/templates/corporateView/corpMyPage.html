@@ -101,6 +101,7 @@ function memberChg(){
 			data: $('#memberInfoForm').serialize(),		
 			success: function(){
 				alert('저장되었습니다.');
+				memChgToggle2()
 				getMemberInfo();
 			},
 			error: function(e){
@@ -307,6 +308,7 @@ function storeChg(){
 			data: $('#storeInfoForm').serialize(),		
 			success: function(){
 				alert('저장되었습니다.');
+				storeChgToggle2()
 				getStoreInfo();
 			},
 			error: function(e){
