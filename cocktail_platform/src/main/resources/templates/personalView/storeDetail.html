@@ -20,7 +20,9 @@ $(document).ready(function () {
     	var tab_id = $(this).attr('data-tab');
         //li, 내용에서 on이라는 클래스를 없앤다.
         $(".tab_title li").removeClass("on");
-        $(".tab_content").removeClass("on").hide();
+        $(".tab_content").removeClass("on");
+        //전체 탭 내용 가림
+        $(".tab_cont").hide();
         //선택한 요소에 on이라는 클래스를 붙여준다.
         $(this).addClass("on");
         //선택한 요소에 해당하는 내용에 클래스 붙이고 해당하는 id를 가진 tab_cont 클래스의 div(선택한 탭의 내용물)를 보여준다.
