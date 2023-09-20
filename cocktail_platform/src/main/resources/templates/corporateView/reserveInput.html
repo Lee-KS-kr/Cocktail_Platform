@@ -32,7 +32,7 @@ function count(type)  {
 }
 
 /**라디오버튼 유효성 검사*/
-function radioValid(){
+function radioChk(){
 	//개인 정보 수집 및 제공 동의 유무
 	if($("input:radio[name='agree']").is(":checked") == false){
         alert('개인정보 수집 및 이용 미동의 시 참여 불가');
@@ -43,7 +43,7 @@ function radioValid(){
 }
 
 /**예약자 이름 유효성 검사*/
-function nameValid(){
+function nameChk(){
 	let name = $('#reservationName').val();
 	let nameLength = name.length;
 	
@@ -55,7 +55,7 @@ function nameValid(){
 }
 
 /**예약자 폰번호 유효성 검사*/
-function phoneValid(){
+function phoneChk(){
 	let phone = $('#reservationPhone').val();
 	let regPhn = /^010[0-9]{4}[0-9]{4}$/;;
 	
@@ -74,7 +74,7 @@ function phoneValid(){
 
 /**예약 폼 유효성 검사 */
 function reserveValid(){
-	if (!nameValid || !radioValid || !phoneValid){
+	if (!nameChk() || !radioChk() || !phoneChk() || !agreeChk()){
 		return false;
 	}
 	else return true;
@@ -119,9 +119,11 @@ function reserveSub(){
 					</div>
 					<div id="reserve_info">
 					<p>예약자 정보</p>
-						<input type="text" id="reservationName" name="reservationName" placeholder="예약자" required="required"><br>
+						<input type="text" id="reservationName" name="reservationName" placeholder="예약자"
+						onkeyup="nameChk()" required="required"><br>
 						<p id="errMsg1"></p>
-						<input type="text" id="reservationPhone" name="reservationPhone" placeholder="연락처(- 없이)" required="required"><br>
+						<input type="text" id="reservationPhone" name="reservationPhone" placeholder="연락처(- 없이)" 
+						onkeyup="phoneChk()" required="required"><br>
 						<p id="errMsg2"></p>
 						<input type="text" name="request" placeholder="요청 사항"><br>
 						<label>개인 정보 수집, 제공 동의<input type="radio" name="agree" id="agree"></input></label>
