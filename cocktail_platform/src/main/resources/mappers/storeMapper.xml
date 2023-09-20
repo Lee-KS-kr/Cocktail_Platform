@@ -22,10 +22,11 @@
 			, address2 = #{address2}
 			, postCode = #{postCode}
 			, brn = #{brn}
-			, Phone = #{Phone}
+			, phone = #{phone}
 			, runningTime = #{runningTime}
 			, dayOff = #{dayOff}
 			, info = #{info}
+			, originFilename = #{originFilename}
 			, savedFilename = #{savedFilename}
 		where
 			memberId = #{memberId}
