@@ -89,7 +89,7 @@ create table reservation (
         storeCode          number           references storeInfo(storeCode) on delete set null,             --가게 코드
         memberId           varchar2(20)     references member(memberId) on delete set null,                 --개인 회원ID
         reservationName    varchar2(20)     not null,
-        reservationPhone   varchar2(20)     references member(phone),    
+        reservationPhone   varchar2(20)     references member(phone) on delete set null,    
         reserveDate        date             check (reserveDate > sysdate),                          		--예약 날짜 (현재 시간 이후 예약 가능)
         reserveHead        number(2)        check (reserveHead > 0),                                        --예약 인원 
         reserveState       varchar2(6)      check (reserveState in ('apply', 'received', 'refused', 'finished')), --예약 상태
