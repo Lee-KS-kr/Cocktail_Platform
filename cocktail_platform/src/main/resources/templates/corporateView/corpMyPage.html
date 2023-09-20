@@ -89,12 +89,10 @@ function phoneChk(){
 }
 
 /** 회원 정보 수정 */
-function memberChg(){
+$('#memSubBtn').click(function(){
 	if(!phoneChk()){
 		return false;
 	}
-	else if(phoneChk())
-		
 		$.ajax({
 			url: 'editPrivacyInfo',
 			type: 'post',
@@ -108,7 +106,7 @@ function memberChg(){
 				alert(e.statusText);
 			}
 		});
-}
+	});
 
 /**회원정보 변경 폼 제출 후 바뀐 정보 표시*/
 function memChgToggle2(){
@@ -297,11 +295,10 @@ function infoChk(){
 }
 
 /**가게 정보 변경하기*/
-function storeChg(){
+$('#storeSubBtn').click(function(){
 	if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
 		return false;
 	}
-	else{
 		$.ajax({
 			url: 'editStorepage',
 			type: 'post',
@@ -315,8 +312,7 @@ function storeChg(){
 				alert(e.statusText);
 			}
 		});
-	}
-}
+	});
 
 /**가게정보 변경 폼 제출 후 바뀐 정보 표시*/
 function storeChgToggle2(){
