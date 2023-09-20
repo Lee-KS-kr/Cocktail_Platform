@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
 import com.platform.cocktail.cocktail_platform.domain.ReservationState;
 import com.platform.cocktail.cocktail_platform.domain.Schedule;
@@ -40,6 +41,13 @@ public class PersonalStoreController {
 		StoreInfo info = sService.getStoreinfoByCode(storeCode);
 		m.addAttribute("store", info);
 		return "personalView/storeDetail";
+	}
+	
+	@GetMapping("menuInfo")
+	public String menuDetail(int menuNum, Model m) {
+		Menu menu = sService.getMenuInfoByNum(menuNum);
+		m.addAttribute("menu", menu);
+		return "";
 	}
 	
 	@GetMapping("reserve")

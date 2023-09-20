@@ -33,6 +33,9 @@ public class CorporateAjaxController {
 	@Value("${file.path.store.locatioin}")
 	String storePath;
 
+	@Value("${file.name.store.default}")
+	String defaultStoreImg;
+
 	@GetMapping("getPrivacy")
 	public Member getPrivacy(@AuthenticationPrincipal UserDetails user) {
 		Member m = service.findMemberById(user.getUsername());
@@ -59,8 +62,10 @@ public class CorporateAjaxController {
 	@PostMapping("editStorepage")
 	public void editStorepage(@AuthenticationPrincipal UserDetails user, StoreInfo store, MultipartFile upload) {
 		store.setMemberId(user.getUsername());
+		log.debug("now store : {}", store);
 		
 		if(upload != null && !upload.isEmpty()) {
+			log.debug("upload : {}", upload.getName());
 			store.setSavedFilename(sService.hasFileFromStore(store.getStoreCode()));
 			if(store.getSavedFilename() != null) {
 				String fullpath = storePath + "/" + store.getSavedFilename();
@@ -74,10 +79,13 @@ public class CorporateAjaxController {
 			String savedfile = FileService.saveFile(upload, storePath);
 			store.setOriginFilename(upload.getOriginalFilename());
 			store.setSavedFilename(savedfile);
+		} else {
+			store.setOriginFilename(defaultStoreImg);
+			store.setSavedFilename(defaultStoreImg);
 		}
 
-		sService.updateStoreinfo(store);
 		log.debug("new store : {}", store);
+		sService.updateStoreinfo(store);
 	}
 	
 }

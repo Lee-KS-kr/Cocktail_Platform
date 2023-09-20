@@ -5,9 +5,7 @@
 <mapper namespace="com.platform.cocktail.cocktail_platform.dao.RecommendDAO">
 
 <!-- 인기 상품 : 페이지기능O -> 10개 | 페이지기능X -> 3개 -->
-<select id="popularCoctail" parameterType="" resultType="">
 
-</select>
 
 <!-- 님을 위한 추천 상품 -->
 
