@@ -18,11 +18,11 @@ public interface OrderService {
 
 	int inputOrder(int storeCode, String memberid, String orderCode, int[] menuNum, String[] menuName, int[] price, int[] orderCount);
 
-	ArrayList<OrderTemp> getTemporderlistByCode(int storeCode);
-
 	Order makeNewOrder(int storeCode, String memberId);
 
 	int finishOrderByCode(String orderCode);
 
 	ArrayList<Menu> getMenulistByOrdercode(String orderCode);
+
+	ArrayList<OrderTemp> getTemporderlistByCode(int storeCode);
 }

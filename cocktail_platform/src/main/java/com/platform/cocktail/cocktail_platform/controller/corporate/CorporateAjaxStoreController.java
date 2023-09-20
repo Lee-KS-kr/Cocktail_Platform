@@ -35,7 +35,7 @@ public class CorporateAjaxStoreController {
 	String menuPath;
 	
 	@PostMapping("orderList")
-	public ArrayList<OrderTemp> orderList(@AuthenticationPrincipal UserDetails user){
+	public ArrayList<OrderTemp> orderList(@AuthenticationPrincipal UserDetails user, String orderCode){
 		StoreInfo store = sService.getStoreById(user.getUsername());
 		ArrayList<OrderTemp> orderList = oService.getTemporderlistByCode(store.getStoreCode());
 		return orderList;
