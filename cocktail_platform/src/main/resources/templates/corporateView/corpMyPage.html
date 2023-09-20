@@ -128,6 +128,7 @@ function getStoreInfo(){
 //변수
 let storeName;
 let brn;
+let postCode;
 let address1;
 let address2;
 let storePhone;
@@ -148,16 +149,16 @@ function getStoreList(list){
 		dayOff = item.dayOff;
 		info = item.info;
 		let fileName = item.savedFilename;
-		let postCode = item.postCode;
-		let address1 = address1;
-		let address2 = address2;
+		postCode = item.postCode;
+		address1 = item.address1;
+		address2 = item.address2;
 		
 		str += '<tr><td>상호명</td><td>'+ storeName + '</td></tr>';
 		if(fileName){
 		str += '<tr><td>대표 사진</td><td><img src="/FitTail/image/store/' + fileName + '"></td></tr>';
 		}
 		str += '<tr><td>사업자 번호</td><td>' + brn + '</td></tr>';
-		str += '<tr><td>가게 주소</td><td>' + item.address1 + ' ' + item.address2 + '</td></tr>';
+		str += '<tr><td>가게 주소</td><td>' + address1 + ' ' + address2 + '</td></tr>';
 		str += '<tr><td>가게 전화번호</td><td>' + formatPhoneNum(storePhone) + '</td></tr>';
 		str += '<tr><td>영업 시간</td><td>' + runningTime + '</td></tr>';
 		str += '<tr><td>휴무일</td><td>' + dayOff + '</td></tr>';
