@@ -86,12 +86,7 @@ body {
   text-align: center;
   justify-content: center;
 }
-.body {
-  padding: 0px 100px;
-  align-content: center;
-  text-align: center;
-  align-items: center;
-}
+
 
 .navi {
   width: 100%;
@@ -121,8 +116,8 @@ body {
   margin: auto;
 }
 
-.main {
-  padding: 20px;
+#main {
+  padding-left: 87px;
   align-items: center;
   justify-content: center;
   align-content: center;
@@ -208,6 +203,7 @@ img[alt=search] { width: 27px; height: 27px; }
   justify-content: center;
 }
 
+/*카테고리*/
 .prd_ctg span {
   background-color: #ff5c21;
   font-family: 'Noto Sans KR', sans-serif;  
@@ -219,6 +215,7 @@ img[alt=search] { width: 27px; height: 27px; }
   border-radius: 20px;
 }
 
+/*배너 이미지*/
 img[alt="banner"] {
   width: 1300px;
   margin: auto;
@@ -243,11 +240,11 @@ img[alt="banner"] {
 /*상품 이미지.*/
 .boxImg{width: 350px; height:300px; box-shadow: 0px 1px 40px #efefef;}
 
-/*매장 전체보기*/
+/*매장 전체보기 text*/
 .marketlist{
   text-align: right;
   margin-top: 30px;
-  margin-right: 40px;
+  margin-right: 110px;
   color: #8c8c8c;
   font-family: 'Noto Sans KR', sans-serif;  
   font-size: 16pt;
@@ -258,11 +255,11 @@ img[alt="banner"] {
 
 img[alt="arrow"] {width: 40px;  text-align: center;}
 
-/*매장 전체보기*/
+/*매장 전체보기 text*/
 .marketlist:hover{
   text-align: right;
   margin-top: 30px;
-  margin-right: 40px;
+  margin-right: 100px;
   color: #313131;
   font-family: 'Noto Sans KR', sans-serif;  
   font-size: 16pt;
