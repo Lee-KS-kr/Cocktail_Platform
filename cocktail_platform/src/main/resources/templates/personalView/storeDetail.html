@@ -53,8 +53,10 @@ $(document).ready(function () {
     	$(list).each(function(i,item){
     		let fileName = item.savedFilename;
     		
-    		str += '<td>' + item.menuName + '</td>';
-    		str += '<td rowspan="3"><img src="/FitTail/image/menu/' + fileName + '"></td></tr>';
+    		str += '<td><a href="/FitTail/personal/store/menuInfo?' + item.menuNum 
+    				+ '"></a>' + item.menuName + '</td>';
+    		str += '<td rowspan="3"><a href="/FitTail/personal/store/menuInfo?' + item.menuNum 
+    				+ '"><img src="/FitTail/image/menu/' + fileName + '"></a></td></tr>';
     		str += '<tr><td>' + item.menuInfo + '</td></tr>';
     		str += '<tr><td>' + item.price + '</td>';
     		str += '</tr>';
