@@ -3,10 +3,10 @@
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -20,11 +20,11 @@ values
     (cocktails_seq.nextval
     , '몰드 와인'
     , '12'
-    , (select ingredientnum from ingredients where ingredientname = '물')
-    , (select ingredientnum from ingredients where ingredientname = '설탕')
-    , (select ingredientnum from ingredients where ingredientname = '계피')
-    , (select ingredientnum from ingredients where ingredientname = '레몬 껍질')
-    , (select ingredientnum from ingredients where ingredientname = '레드 와인')
+    , (select ingredientNum from ingredients where ingredientName = '물')
+    , (select ingredientNum from ingredients where ingredientName = '설탕')
+    , (select ingredientNum from ingredients where ingredientName = '계피')
+    , (select ingredientNum from ingredients where ingredientName = '레몬 껍질')
+    , (select ingredientNum from ingredients where ingredientName = '레드 와인')
     , 1003
     , 2001
     , 3008
@@ -34,10 +34,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -49,9 +49,9 @@ values
     (cocktails_seq.nextval
     , '마티니'
     , '30'
-    , (select ingredientnum from ingredients where ingredientname = '진')
-    , (select ingredientnum from ingredients where ingredientname = '드라이 버무스')
-    , (select ingredientnum from ingredients where ingredientname = '올리브')
+    , (select ingredientNum from ingredients where ingredientName = '진')
+    , (select ingredientNum from ingredients where ingredientName = '드라이 버무스')
+    , (select ingredientNum from ingredients where ingredientName = '올리브')
     , 1007
     , 2001
     , 3001
@@ -61,10 +61,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -78,11 +78,11 @@ values
     (cocktails_seq.nextval
     , '모히토'
     , '20'
-    , (select ingredientnum from ingredients where ingredientname = '라이트 럼')
-    , (select ingredientnum from ingredients where ingredientname = '라임')
-    , (select ingredientnum from ingredients where ingredientname = '설탕')
-    , (select ingredientnum from ingredients where ingredientname = '민트')
-    , (select ingredientnum from ingredients where ingredientname = '소다수')
+    , (select ingredientNum from ingredients where ingredientName = '라이트 럼')
+    , (select ingredientNum from ingredients where ingredientName = '라임')
+    , (select ingredientNum from ingredients where ingredientName = '설탕')
+    , (select ingredientNum from ingredients where ingredientName = '민트')
+    , (select ingredientNum from ingredients where ingredientName = '소다수')
     , 1002
     , 2008
     , 3001
@@ -92,10 +92,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -107,9 +107,9 @@ values
     (cocktails_seq.nextval
     , '모스코 미또'
     , '7'
-    , (select ingredientnum from ingredients where ingredientname = '보드카')
-    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
-    , (select ingredientnum from ingredients where ingredientname = '진저에일')
+    , (select ingredientNum from ingredients where ingredientName = '보드카')
+    , (select ingredientNum from ingredients where ingredientName = '라임 주스')
+    , (select ingredientNum from ingredients where ingredientName = '진저에일')
     , 1002
     , 2001
     , 3008
@@ -119,10 +119,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -135,10 +135,10 @@ values
     (cocktails_seq.nextval
     , '민트 주렙'
     , '30'
-    , (select ingredientnum from ingredients where ingredientname = '버번')
-    , (select ingredientnum from ingredients where ingredientname = '민트')
-    , (select ingredientnum from ingredients where ingredientname = '가루 설탕')
-    , (select ingredientnum from ingredients where ingredientname = '물')
+    , (select ingredientNum from ingredients where ingredientName = '버번')
+    , (select ingredientNum from ingredients where ingredientName = '민트')
+    , (select ingredientNum from ingredients where ingredientName = '가루 설탕')
+    , (select ingredientNum from ingredients where ingredientName = '물')
     , 1005
     , 2004
     , 3002
@@ -148,10 +148,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -165,11 +165,11 @@ values
     (cocktails_seq.nextval
     , '블러디 메리'
     , '10'
-    , (select ingredientnum from ingredients where ingredientname = '보드카')
-    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
-    , (select ingredientnum from ingredients where ingredientname = '토마토 주스')
-    , (select ingredientnum from ingredients where ingredientname = '타바스코 소스')
-    , (select ingredientnum from ingredients where ingredientname = '후추')
+    , (select ingredientNum from ingredients where ingredientName = '보드카')
+    , (select ingredientNum from ingredients where ingredientName = '레몬 주스')
+    , (select ingredientNum from ingredients where ingredientName = '토마토 주스')
+    , (select ingredientNum from ingredients where ingredientName = '타바스코 소스')
+    , (select ingredientNum from ingredients where ingredientName = '후추')
     , 1006
     , 2001
     , 3008
@@ -179,10 +179,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , cocktailTaste
     , cocktailFlavor
@@ -193,8 +193,8 @@ values
     (cocktails_seq.nextval
     , '브랜디 알렉산더'
     , '20'
-    , (select ingredientnum from ingredients where ingredientname = '브랜디')
-    , (select ingredientnum from ingredients where ingredientname = '헤비 크림')
+    , (select ingredientNum from ingredients where ingredientName = '브랜디')
+    , (select ingredientNum from ingredients where ingredientName = '헤비 크림')
     , 1003
     , 2002
     , 3002
@@ -204,10 +204,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -220,10 +220,10 @@ values
     (cocktails_seq.nextval
     , '부커스 온 더 비치'
     , '62'
-    , (select ingredientnum from ingredients where ingredientname = '보드카')
-    , (select ingredientnum from ingredients where ingredientname = '복숭아 슈냅스')
-    , (select ingredientnum from ingredients where ingredientname = '크랜베리 주스')
-    , (select ingredientnum from ingredients where ingredientname = '오렌지 주스')
+    , (select ingredientNum from ingredients where ingredientName = '보드카')
+    , (select ingredientNum from ingredients where ingredientName = '복숭아 슈냅스')
+    , (select ingredientNum from ingredients where ingredientName = '크랜베리 주스')
+    , (select ingredientNum from ingredients where ingredientName = '오렌지 주스')
     , 1001
     , 2001
     , 3002
@@ -233,10 +233,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -249,10 +249,10 @@ values
     (cocktails_seq.nextval
     , '부커스 블루즈'
     , '53'
-    , (select ingredientnum from ingredients where ingredientname = '진')
-    , (select ingredientnum from ingredients where ingredientname = '소다 워터')
-    , (select ingredientnum from ingredients where ingredientname = '레몬 껍질')
-    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
+    , (select ingredientNum from ingredients where ingredientName = '진')
+    , (select ingredientNum from ingredients where ingredientName = '소다 워터')
+    , (select ingredientNum from ingredients where ingredientName = '레몬 껍질')
+    , (select ingredientNum from ingredients where ingredientName = '라임 주스')
     , 1001
     , 2001
     , 3128
@@ -262,10 +262,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , cocktailTaste
     , cocktailFlavor
@@ -276,8 +276,8 @@ values
     (cocktails_seq.nextval
     , '블랙 러시안'
     , '40'
-    , (select ingredientnum from ingredients where ingredientname = '보드카')
-    , (select ingredientnum from ingredients where ingredientname = '칼루아')
+    , (select ingredientNum from ingredients where ingredientName = '보드카')
+    , (select ingredientNum from ingredients where ingredientName = '칼루아')
     , 1001
     , 2002
     , 3004
@@ -287,10 +287,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -304,11 +304,11 @@ values
     (cocktails_seq.nextval
     , '산그리아'
     , '8'
-    , (select ingredientnum from ingredients where ingredientname = '와인')
-    , (select ingredientnum from ingredients where ingredientname = '오렌지')
-    , (select ingredientnum from ingredients where ingredientname = '레몬 껍질')
-    , (select ingredientnum from ingredients where ingredientname = '설탕')
-    , (select ingredientnum from ingredients where ingredientname = '탄산수')
+    , (select ingredientNum from ingredients where ingredientName = '와인')
+    , (select ingredientNum from ingredients where ingredientName = '오렌지')
+    , (select ingredientNum from ingredients where ingredientName = '레몬 껍질')
+    , (select ingredientNum from ingredients where ingredientName = '설탕')
+    , (select ingredientNum from ingredients where ingredientName = '탄산수')
     , 1001
     , 2008
     , 3008
@@ -318,10 +318,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -333,9 +333,9 @@ values
     (cocktails_seq.nextval
     , '사이드카'
     , '20'
-    , (select ingredientnum from ingredients where ingredientname = '브랜디')
-    , (select ingredientnum from ingredients where ingredientname = '트리플 섹')
-    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
+    , (select ingredientNum from ingredients where ingredientName = '브랜디')
+    , (select ingredientNum from ingredients where ingredientName = '트리플 섹')
+    , (select ingredientNum from ingredients where ingredientName = '레몬 주스')
     , 1002
     , 2009
     , 3008
@@ -345,10 +345,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -361,10 +361,10 @@ values
     (cocktails_seq.nextval
     , '서던 컴포트'
     , '35'
-    , (select ingredientnum from ingredients where ingredientname = '버번')
-    , (select ingredientnum from ingredients where ingredientname = '바닐라')
-    , (select ingredientnum from ingredients where ingredientname = '계피')
-    , (select ingredientnum from ingredients where ingredientname = '정향')
+    , (select ingredientNum from ingredients where ingredientName = '버번')
+    , (select ingredientNum from ingredients where ingredientName = '바닐라')
+    , (select ingredientNum from ingredients where ingredientName = '계피')
+    , (select ingredientNum from ingredients where ingredientName = '정향')
     , 1001
     , 2016
     , 3032
@@ -374,10 +374,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -390,10 +390,10 @@ values
     (cocktails_seq.nextval
     , '섹스 온 더 비치'
     , '8'
-    , (select ingredientnum from ingredients where ingredientname = '보드카')
-    , (select ingredientnum from ingredients where ingredientname = '복숭아 슈냅스')
-    , (select ingredientnum from ingredients where ingredientname = '크랜베리 주스')
-    , (select ingredientnum from ingredients where ingredientname = '오렌지 주스')
+    , (select ingredientNum from ingredients where ingredientName = '보드카')
+    , (select ingredientNum from ingredients where ingredientName = '복숭아 슈냅스')
+    , (select ingredientNum from ingredients where ingredientName = '크랜베리 주스')
+    , (select ingredientNum from ingredients where ingredientName = '오렌지 주스')
     , 1001
     , 2017
     , 3016
@@ -403,10 +403,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , cocktailTaste
     , cocktailFlavor
@@ -417,8 +417,8 @@ values
     (cocktails_seq.nextval
     , '스크류 드라이버'
     , '15'
-    , (select ingredientnum from ingredients where ingredientname = '보드카')
-    , (select ingredientnum from ingredients where ingredientname = '오렌지 주스')
+    , (select ingredientNum from ingredients where ingredientName = '보드카')
+    , (select ingredientNum from ingredients where ingredientName = '오렌지 주스')
     , 1002
     , 2008
     , 3032
@@ -428,10 +428,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -445,11 +445,11 @@ values
     (cocktails_seq.nextval
     , '애플 모히토'
     , '5'
-    , (select ingredientnum from ingredients where ingredientname = '라이트 럼')
-    , (select ingredientnum from ingredients where ingredientname = '민트')
-    , (select ingredientnum from ingredients where ingredientname = '설탕')
-    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
-    , (select ingredientnum from ingredients where ingredientname = '탄산수')
+    , (select ingredientNum from ingredients where ingredientName = '라이트 럼')
+    , (select ingredientNum from ingredients where ingredientName = '민트')
+    , (select ingredientNum from ingredients where ingredientName = '설탕')
+    , (select ingredientNum from ingredients where ingredientName = '라임 주스')
+    , (select ingredientNum from ingredients where ingredientName = '탄산수')
     , 1001
     , 2016
     , 3016
@@ -459,10 +459,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -475,10 +475,10 @@ values
     (cocktails_seq.nextval
     , '슬로진 피즈'
     , '10'
-    , (select ingredientnum from ingredients where ingredientname = '슬로진')
-    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
-    , (select ingredientnum from ingredients where ingredientname = '설탕')
-    , (select ingredientnum from ingredients where ingredientname = '탄산수')
+    , (select ingredientNum from ingredients where ingredientName = '슬로진')
+    , (select ingredientNum from ingredients where ingredientName = '레몬 주스')
+    , (select ingredientNum from ingredients where ingredientName = '설탕')
+    , (select ingredientNum from ingredients where ingredientName = '탄산수')
     , 1003
     , 2004
     , 3032
@@ -488,10 +488,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -505,11 +505,11 @@ values
     (cocktails_seq.nextval
     , '아모레토 사워'
     , '15'
-    , (select ingredientnum from ingredients where ingredientname = '아마레토')
-    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
-    , (select ingredientnum from ingredients where ingredientname = '계란 흰자')
-    , (select ingredientnum from ingredients where ingredientname = '설탕 시럽')
-    , (select ingredientnum from ingredients where ingredientname = '마라스키노 체리')
+    , (select ingredientNum from ingredients where ingredientName = '아마레토')
+    , (select ingredientNum from ingredients where ingredientName = '레몬 주스')
+    , (select ingredientNum from ingredients where ingredientName = '계란 흰자')
+    , (select ingredientNum from ingredients where ingredientName = '설탕 시럽')
+    , (select ingredientNum from ingredients where ingredientName = '마라스키노 체리')
     , 1002
     , 2002
     , 3002
@@ -519,10 +519,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -534,9 +534,9 @@ values
     (cocktails_seq.nextval
     , '아메리카노'
     , '0'
-    , (select ingredientnum from ingredients where ingredientname = '캄파리')
-    , (select ingredientnum from ingredients where ingredientname = '베르무스')
-    , (select ingredientnum from ingredients where ingredientname = '탄산수')
+    , (select ingredientNum from ingredients where ingredientName = '캄파리')
+    , (select ingredientNum from ingredients where ingredientName = '베르무스')
+    , (select ingredientNum from ingredients where ingredientName = '탄산수')
     , 1002
     , 2002
     , 3002
@@ -546,10 +546,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -562,10 +562,10 @@ values
     (cocktails_seq.nextval
     , '아이리쉬 커피'
     , '40'
-    , (select ingredientnum from ingredients where ingredientname = '아이리쉬 위스키')
-    , (select ingredientnum from ingredients where ingredientname = '커피')
-    , (select ingredientnum from ingredients where ingredientname = '설탕')
-    , (select ingredientnum from ingredients where ingredientname = '헤비 크림')
+    , (select ingredientNum from ingredients where ingredientName = '아이리쉬 위스키')
+    , (select ingredientNum from ingredients where ingredientName = '커피')
+    , (select ingredientNum from ingredients where ingredientName = '설탕')
+    , (select ingredientNum from ingredients where ingredientName = '헤비 크림')
     , 1001
     , 2002
     , 3002
@@ -575,10 +575,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -590,9 +590,9 @@ values
     (cocktails_seq.nextval
     , '애플 마티니'
     , '15'
-    , (select ingredientnum from ingredients where ingredientname = '보드카')
-    , (select ingredientnum from ingredients where ingredientname = '애플 슈냅스')
-    , (select ingredientnum from ingredients where ingredientname = '쿠앵트로')
+    , (select ingredientNum from ingredients where ingredientName = '보드카')
+    , (select ingredientNum from ingredients where ingredientName = '애플 슈냅스')
+    , (select ingredientNum from ingredients where ingredientName = '쿠앵트로')
     , 1001
     , 2004
     , 3002
@@ -602,10 +602,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -617,9 +617,9 @@ values
     (cocktails_seq.nextval
     , '엘더플라워 칵테일'
     , '15'
-    , (select ingredientnum from ingredients where ingredientname = '진')
-    , (select ingredientnum from ingredients where ingredientname = '엘더플라워 코디얼')
-    , (select ingredientnum from ingredients where ingredientname = '토닉 워터')
+    , (select ingredientNum from ingredients where ingredientName = '진')
+    , (select ingredientNum from ingredients where ingredientName = '엘더플라워 코디얼')
+    , (select ingredientNum from ingredients where ingredientName = '토닉 워터')
     , 1001
     , 2016
     , 3256
@@ -629,10 +629,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -645,10 +645,10 @@ values
     (cocktails_seq.nextval
     , '에스프레소 마티니'
     , '15'
-    , (select ingredientnum from ingredients where ingredientname = '보드카')
-    , (select ingredientnum from ingredients where ingredientname = '칼루아')
-    , (select ingredientnum from ingredients where ingredientname = '설탕 시럽')
-    , (select ingredientnum from ingredients where ingredientname = '에스프레소')
+    , (select ingredientNum from ingredients where ingredientName = '보드카')
+    , (select ingredientNum from ingredients where ingredientName = '칼루아')
+    , (select ingredientNum from ingredients where ingredientName = '설탕 시럽')
+    , (select ingredientNum from ingredients where ingredientName = '에스프레소')
     , 1005
     , 2002
     , 3008
@@ -658,10 +658,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -673,9 +673,9 @@ values
     (cocktails_seq.nextval
     , '오렌지 드림'
     , '10'
-    , (select ingredientnum from ingredients where ingredientname = '갈리아노')
-    , (select ingredientnum from ingredients where ingredientname = '오렌지 주스')
-    , (select ingredientnum from ingredients where ingredientname = '크림')
+    , (select ingredientNum from ingredients where ingredientName = '갈리아노')
+    , (select ingredientNum from ingredients where ingredientName = '오렌지 주스')
+    , (select ingredientNum from ingredients where ingredientName = '크림')
     , 1001
     , 2008
     , 3016
@@ -685,10 +685,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -702,11 +702,11 @@ values
     (cocktails_seq.nextval
     , '오렌지 클로버'
     , '15'
-    , (select ingredientnum from ingredients where ingredientname = '진')
-    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
-    , (select ingredientnum from ingredients where ingredientname = '라즈베리 리큐어')
-    , (select ingredientnum from ingredients where ingredientname = '계란 흰자')
-    , (select ingredientnum from ingredients where ingredientname = '설탕')
+    , (select ingredientNum from ingredients where ingredientName = '진')
+    , (select ingredientNum from ingredients where ingredientName = '레몬 주스')
+    , (select ingredientNum from ingredients where ingredientName = '라즈베리 리큐어')
+    , (select ingredientNum from ingredients where ingredientName = '계란 흰자')
+    , (select ingredientNum from ingredients where ingredientName = '설탕')
     , 1001
     , 2001
     , 3016
@@ -716,10 +716,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -731,9 +731,9 @@ values
     (cocktails_seq.nextval
     , '오타 더 서바이버'
     , '15'
-    , (select ingredientnum from ingredients where ingredientname = '진')
-    , (select ingredientnum from ingredients where ingredientname = '레몬 에이드')
-    , (select ingredientnum from ingredients where ingredientname = '자몽 주스')
+    , (select ingredientNum from ingredients where ingredientName = '진')
+    , (select ingredientNum from ingredients where ingredientName = '레몬 에이드')
+    , (select ingredientNum from ingredients where ingredientName = '자몽 주스')
     , 1001
     , 2016
     , 3001
@@ -743,10 +743,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -759,10 +759,10 @@ values
     (cocktails_seq.nextval
     , '와이스키 사워'
     , '15'
-    , (select ingredientnum from ingredients where ingredientname = '버번')
-    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
-    , (select ingredientnum from ingredients where ingredientname = '설탕 시럽')
-    , (select ingredientnum from ingredients where ingredientname = '게란 흰자')
+    , (select ingredientNum from ingredients where ingredientName = '버번')
+    , (select ingredientNum from ingredients where ingredientName = '레몬 주스')
+    , (select ingredientNum from ingredients where ingredientName = '설탕 시럽')
+    , (select ingredientNum from ingredients where ingredientName = '게란 흰자')
     , 1002
     , 2009
     , 3008
@@ -772,10 +772,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -788,10 +788,10 @@ values
     (cocktails_seq.nextval
     , '워터멜론 마르가리타'
     , '10'
-    , (select ingredientnum from ingredients where ingredientname = '데킬라')
-    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
-    , (select ingredientnum from ingredients where ingredientname = '오렌지 주스')
-    , (select ingredientnum from ingredients where ingredientname = '얼음')
+    , (select ingredientNum from ingredients where ingredientName = '데킬라')
+    , (select ingredientNum from ingredients where ingredientName = '라임 주스')
+    , (select ingredientNum from ingredients where ingredientName = '오렌지 주스')
+    , (select ingredientNum from ingredients where ingredientName = '얼음')
     , 1001
     , 2016
     , 3128
@@ -801,10 +801,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -817,10 +817,10 @@ values
     (cocktails_seq.nextval
     , '위스키 소다'
     , '10'
-    , (select ingredientnum from ingredients where ingredientname = '스카치')
-    , (select ingredientnum from ingredients where ingredientname = '얼음')
-    , (select ingredientnum from ingredients where ingredientname = '소다수')
-    , (select ingredientnum from ingredients where ingredientname = '레몬 껍질')
+    , (select ingredientNum from ingredients where ingredientName = '스카치')
+    , (select ingredientNum from ingredients where ingredientName = '얼음')
+    , (select ingredientNum from ingredients where ingredientName = '소다수')
+    , (select ingredientNum from ingredients where ingredientName = '레몬 껍질')
     , 1015
     , 2004
     , 3001
@@ -830,10 +830,10 @@ values
 ----------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -845,9 +845,9 @@ values
     (cocktails_seq.nextval
     , '네그로니'
     , '28'
-    , (select ingredientnum from ingredients where ingredientname = '드라이 진')
-    , (select ingredientnum from ingredients where ingredientname = '스위트 베르무트')
-    , (select ingredientnum from ingredients where ingredientname = '캄파리')
+    , (select ingredientNum from ingredients where ingredientName = '드라이 진')
+    , (select ingredientNum from ingredients where ingredientName = '스위트 베르무트')
+    , (select ingredientNum from ingredients where ingredientName = '캄파리')
     , 1004
     , 2001
     , 3008
@@ -857,10 +857,10 @@ values
 ----------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -872,9 +872,9 @@ values
     (cocktails_seq.nextval
     , '다이키리'
     , '25'
-    , (select ingredientnum from ingredients where ingredientname = '화이트 쿠바 럼')
-    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
-    , (select ingredientnum from ingredients where ingredientname = '고운 설탕')
+    , (select ingredientNum from ingredients where ingredientName = '화이트 쿠바 럼')
+    , (select ingredientNum from ingredients where ingredientName = '라임 주스')
+    , (select ingredientNum from ingredients where ingredientName = '고운 설탕')
     , 1002
     , 2001
     , 3008
@@ -883,10 +883,10 @@ values
 ----------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -900,11 +900,11 @@ values
     (cocktails_seq.nextval
     , '라모스 피즈'
     , '11'
-    , (select ingredientnum from ingredients where ingredientname = '진')
-    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
-    , (select ingredientnum from ingredients where ingredientname = '레몬 주스')
-    , (select ingredientnum from ingredients where ingredientname = '설탕 시럽')
-    , (select ingredientnum from ingredients where ingredientname = '소다수')
+    , (select ingredientNum from ingredients where ingredientName = '진')
+    , (select ingredientNum from ingredients where ingredientName = '라임 주스')
+    , (select ingredientNum from ingredients where ingredientName = '레몬 주스')
+    , (select ingredientNum from ingredients where ingredientName = '설탕 시럽')
+    , (select ingredientNum from ingredients where ingredientName = '소다수')
     , 1001
     , 2001
     , 3002
@@ -914,10 +914,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -930,10 +930,10 @@ values
     (cocktails_seq.nextval
     , '라스트 워드'
     , '30'
-    , (select ingredientnum from ingredients where ingredientname = '진')
-    , (select ingredientnum from ingredients where ingredientname = '그린 샤르트뢰즈')
-    , (select ingredientnum from ingredients where ingredientname = '마라스키노 룩사르도')
-    , (select ingredientnum from ingredients where ingredientname = '라임 주스')
+    , (select ingredientNum from ingredients where ingredientName = '진')
+    , (select ingredientNum from ingredients where ingredientName = '그린 샤르트뢰즈')
+    , (select ingredientNum from ingredients where ingredientName = '마라스키노 룩사르도')
+    , (select ingredientNum from ingredients where ingredientName = '라임 주스')
     , 1002
     , 2001
     , 3128
@@ -943,10 +943,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , cocktailTaste
     , cocktailFlavor
@@ -957,8 +957,8 @@ values
     (cocktails_seq.nextval
     , '러스티 네일'
     , '40'
-    , (select ingredientnum from ingredients where ingredientname = '스카치 위스키')
-    , (select ingredientnum from ingredients where ingredientname = '드람뷔')
+    , (select ingredientNum from ingredients where ingredientName = '스카치 위스키')
+    , (select ingredientNum from ingredients where ingredientName = '드람뷔')
     , 1002
     , 2001
     , 3128
@@ -968,10 +968,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -984,10 +984,10 @@ values
     (cocktails_seq.nextval
     , '마르티네스'
     , '40'
-    , (select ingredientnum from ingredients where ingredientname = '드라이 베르무트')
-    , (select ingredientnum from ingredients where ingredientname = '진')
-    , (select ingredientnum from ingredients where ingredientname = '앙고스투라 비터')
-    , (select ingredientnum from ingredients where ingredientname = '검 시럽')
+    , (select ingredientNum from ingredients where ingredientName = '드라이 베르무트')
+    , (select ingredientNum from ingredients where ingredientName = '진')
+    , (select ingredientNum from ingredients where ingredientName = '앙고스투라 비터')
+    , (select ingredientNum from ingredients where ingredientName = '검 시럽')
     , 1001
     , 2001
     , 3008
@@ -997,10 +997,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -1012,22 +1012,22 @@ values
     (cocktails_seq.nextval
     , '맨해튼'
     , '32'
-    , (select ingredientnum from ingredients where ingredientname = '라이 위스키')
-    , (select ingredientnum from ingredients where ingredientname = '스위트 베르무트')
-    , (select ingredientnum from ingredients where ingredientname = '앙고스투라 비터스')
+    , (select ingredientNum from ingredients where ingredientName = '라이 위스키')
+    , (select ingredientNum from ingredients where ingredientName = '스위트 베르무트')
+    , (select ingredientNum from ingredients where ingredientName = '앙고스투라 비터스')
     , 1002
     , 2001
-    , 3128                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    , 3001
     , '라스트 워드.png'
     );
     
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -1040,10 +1040,10 @@ values
     (cocktails_seq.nextval
     , '메리 픽포드'
     , '19'
-    , (select ingredientnum from ingredients where ingredientname = '화이트 럼')
-    , (select ingredientnum from ingredients where ingredientname = '파인애플 주스')
-    , (select ingredientnum from ingredients where ingredientname = '마라스키노 룩사르도')
-    , (select ingredientnum from ingredients where ingredientname = '그레나딘')
+    , (select ingredientNum from ingredients where ingredientName = '화이트 럼')
+    , (select ingredientNum from ingredients where ingredientName = '파인애플 주스')
+    , (select ingredientNum from ingredients where ingredientName = '마라스키노 룩사르도')
+    , (select ingredientNum from ingredients where ingredientName = '그레나딘')
     , 1001
     , 2001
     , 3008
@@ -1053,10 +1053,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -1069,10 +1069,10 @@ values
     (cocktails_seq.nextval
     , '몽키 글랜드'
     , '31'
-    , (select ingredientnum from ingredients where ingredientname = '진')
-    , (select ingredientnum from ingredients where ingredientname = '오렌지 주스')
-    , (select ingredientnum from ingredients where ingredientname = '압생트')
-    , (select ingredientnum from ingredients where ingredientname = '그레나딘')
+    , (select ingredientNum from ingredients where ingredientName = '진')
+    , (select ingredientNum from ingredients where ingredientName = '오렌지 주스')
+    , (select ingredientNum from ingredients where ingredientName = '압생트')
+    , (select ingredientNum from ingredients where ingredientName = '그레나딘')
     , 1001
     , 2001
     , 3008
@@ -1082,10 +1082,10 @@ values
  -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , cocktailTaste
@@ -1097,9 +1097,9 @@ values
     (cocktails_seq.nextval
     , '불바디에'
     , '30'
-    , (select ingredientnum from ingredients where ingredientname = '버번')
-    , (select ingredientnum from ingredients where ingredientname = '캄파리')
-    , (select ingredientnum from ingredients where ingredientname = '스위트 베르무트')
+    , (select ingredientNum from ingredients where ingredientName = '버번')
+    , (select ingredientNum from ingredients where ingredientName = '캄파리')
+    , (select ingredientNum from ingredients where ingredientName = '스위트 베르무트')
     , 1004
     , 2001
     , 3008
@@ -1109,10 +1109,10 @@ values
 -------------------------------------------------------------------------------------
 
 insert into cocktails 
-    (cocktailcode
-    , cocktailname
-    , cocktailalcohol
-    , cocktailbase
+    (cocktailCode
+    , cocktailName
+    , cocktailAlcohol
+    , cocktailBase
     , ingredient1
     , ingredient2
     , ingredient3
@@ -1125,13 +1125,13 @@ values
     (cocktails_seq.nextval
     , '뷰 카레'
     , '50'
-    , (select ingredientnum from ingredients where ingredientname = '라이 위스키')
-    , (select ingredientnum from ingredients where ingredientname = '코냑')
-    , (select ingredientnum from ingredients where ingredientname = '스위트 베르무트')
-    , (select ingredientnum from ingredients where ingredientname = 'D.O.M. 베네딕틴')
+    , (select ingredientNum from ingredients where ingredientName = '라이 위스키')
+    , (select ingredientNum from ingredients where ingredientName = '코냑')
+    , (select ingredientNum from ingredients where ingredientName = '스위트 베르무트')
+    , (select ingredientNum from ingredients where ingredientName = 'D.O.M. 베네딕틴')
     , 1004
     , 2001
     , 3008
     , '뷰 카레.png'
     );
-    
+

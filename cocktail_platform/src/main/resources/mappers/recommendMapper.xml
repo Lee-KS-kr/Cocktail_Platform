@@ -1,0 +1,22 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.cocktail.cocktail_platform.dao.RecommendDAO">
+
+<!-- 인기 상품 : 페이지기능O -> 10개 | 페이지기능X -> 3개 -->
+<select id="popularCoctail" parameterType="" resultType="">
+
+</select>
+
+<!-- 님을 위한 추천 상품 -->
+
+<!-- 오늘 같이 비가 오는 날에는? -->
+
+<!-- ㅇㅇ님과 비슷한 20대가 많이 찾아요 -->
+
+<!-- 친구와 많이 마셔요 -->
+
+<!-- 특별한 순간을 즐기고 싶을 떄는? -->
+
+</mapper>
