@@ -45,7 +45,8 @@
             <a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
         </div>
         <div class="navi2">
-            <p th:text="${#authentication.name}">님 환영합니다.  &nbsp;</p>
+            <p th:text="${#authentication.name}"></p>
+            <p> 님 환영합니다.  &nbsp;</p>
             <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
             <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
             <a th:href="@{/personal/search}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
