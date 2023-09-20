@@ -28,4 +28,6 @@ public interface OrderDAO {
 
 	ArrayList<Menu> getMenulistByOrdercode(String orderCode);
 
+	ArrayList<OrderTemp> getTemporderlistByCode(int storeCode);
+
 }
