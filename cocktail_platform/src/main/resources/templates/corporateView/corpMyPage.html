@@ -76,7 +76,7 @@ function phoneChk(){
         $('#errMsg1').html('전화번호 형식이 올바르지 않습니다.');
         return false;
     }
-    else if(regPhone.test(phone)){
+    else{
     	//사용자가 하이픈을 입력하지 않았을 때 자동으로 하이픈 추가
         if (phone.length === 11 && phone.indexOf('-') === -1) {
         	//하이픈을 추가하여 전화번호 형식으로 변환
@@ -231,7 +231,7 @@ function storePhoneChk(){
         return false;
     }
    	// 사용자가 하이픈을 입력하지 않았을 때 자동으로 하이픈 추가
-    else if(regPhone.test(storePhone2)) 
+    else{ 
     	if((phone.length === 11 || phone.length === 10) && phone.indexOf('-') === -1) {
         	//하이픈을 추가하여 전화번호 형식으로 변환
             phone = phone.replace(/^(\d{2,3})(\d{4})(\d{4})$/, '$1-$2-$3');
