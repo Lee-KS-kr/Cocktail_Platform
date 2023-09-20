@@ -96,7 +96,9 @@ $('#memSubBtn').click(function(){
 		$.ajax({
 			url: 'editPrivacyInfo',
 			type: 'post',
-			data: $('#memberInfoForm').serialize(),		
+			data: $('#memberInfoForm').serialize(),
+			contentType : false,
+	        processData : false,
 			success: function(){
 				alert('저장되었습니다.');
 				memChgToggle2()
@@ -296,13 +298,17 @@ function infoChk(){
 
 /**가게 정보 변경하기*/
 $('#storeSubBtn').click(function(){
+	let params = $('#storeInfoForm').serialize();
+	
 	if(!storeNameChk() || !brnChk() || !storePhoneChk() || !runningTimeChk() || !dayOffChk() || !infoChk()){
 		return false;
 	}
 		$.ajax({
 			url: 'editStorepage',
 			type: 'post',
-			data: $('#storeInfoForm').serialize(),		
+			data: params,
+			contentType : false,
+	        processData : false,
 			success: function(){
 				alert('저장되었습니다.');
 				storeChgToggle2()
