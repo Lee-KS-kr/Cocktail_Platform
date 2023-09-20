@@ -318,13 +318,11 @@
 	
 	<select id="getReviewScoreByCode" parameterType="int" resultType="float">
 		select
-			storeReviewScore
+			avg(storeReviewScore) storeReviewScore
 		from
 			storeReview
 		where
-			storeCode
-		order by
-			storeReviewNum desc
+			storeCode = #{storeCode}
 	</select>
 	
 	<select id="getStoreByCocktailName" parameterType="String" resultType="StoreInfo">
