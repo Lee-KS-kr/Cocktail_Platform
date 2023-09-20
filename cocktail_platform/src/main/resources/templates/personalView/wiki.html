@@ -83,17 +83,14 @@
             <p><span th:text="${cocktail.cocktailName}"></span>를 파는 매장에서 직접 즐겨볼까요?</p>
         </div>
         <div>
-            <div class="inside_box">
-                <div><img src="" alt=""></div>
+            <div class="inside_box" th:each="store : ${storeList}">
+                <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store image"></div>
                 <div>
-                    <div>상품명</div>
-                    <div>매장주소</div>
-                    <div>가격</div>
+                    <div th:text="${store.storeName}"></div>
+                    <div th:text="|${store.address1}, ${store.address2}|"></div>
+                    <div th:text="${store.storeReviewScore}"></div>
                 </div>
             </div>
-        </div>
-        <div>
-            <img src="" alt="view_more">
         </div>
     </div>
 </body>

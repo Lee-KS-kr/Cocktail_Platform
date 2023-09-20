@@ -56,4 +56,6 @@ public interface StoreService {
 
 	int deleteFileFromStore(StoreInfo store);
 
+	ArrayList<StoreInfo> getStoreByCocktailName(String cocktailName);
+
 }
