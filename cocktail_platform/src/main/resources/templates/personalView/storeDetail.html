@@ -29,7 +29,7 @@ $(document).ready(function () {
   	
   	//전체 메뉴 목록 받아오기
     function init(){
-    	let storeCode = $('#storeCode').val();
+    	let storeCode = $('#storeCode').html();
     	
     	$.ajax({
     		url: "menuList",
@@ -215,7 +215,7 @@ function reserveSub(){
 					<span th:text="${store.storeName}"></span>
 				</td>
 				<td>
-					<img th:src="${store.savedFilename}">
+					<img th:src="@{/image/store/} + ${store.savedFilename}">
 				</td>
 			</tr>
 			<tr>
