@@ -10,7 +10,7 @@
 <script>
 $(document).ready(function () {
 	init();
-    $(".tab_title li").click(function(){
+    $(".tab_link").click(function(){
    		getIndex();
     });
     
@@ -19,7 +19,7 @@ $(document).ready(function () {
     	//(.tab_title li를 누르면)선택된 요소의 index 얻어서 idx라는 변수에 넣어주기
     	var tab_id = $(this).attr('data-tab');
         //li에서 on이라는 클래스를 없앤다.
-        $("ul.tab_title li").removeClass("on");
+        $(".tab_title li").removeClass("on");
         $(".tab_content").removeClass("on");
         //선택한 요소에 on이라는 클래스를 붙여준다.
         $(this).addClass("on");
@@ -215,7 +215,7 @@ function reserveSub(){
 					<span th:text="${store.storeName}"></span>
 				</td>
 				<td>
-					<span th:text="${store.savedFilename}"></span>
+					<img th:src="${store.savedFilename}">
 				</td>
 			</tr>
 			<tr>
@@ -233,10 +233,10 @@ function reserveSub(){
 		<!-- 탭 이름 -->
 		<div>
 			<ul class="tab_title">
-				<li class="tab_link on" data-tab="tab1" onclick="getIndex()">메뉴(<span></span>)</li>
-				<li class="tab_link" data-tab="tab2" onclick="getIndex()">리뷰(<span></span>)</li>
-				<li class="tab_link" data-tab="tab3" onclick="getIndex()">매장 정보</li>
-				<li class="tab_link" data-tab="tab4" onclick="getIndex()">예약하기</li>
+				<li class="tab_link on" data-tab="tab1">메뉴(<span></span>)</li>
+				<li class="tab_link" data-tab="tab2">리뷰(<span></span>)</li>
+				<li class="tab_link" data-tab="tab3">매장 정보</li>
+				<li class="tab_link" data-tab="tab4">예약하기</li>
 			</ul>
 		</div>
 		<!-- 탭 내용 -->
