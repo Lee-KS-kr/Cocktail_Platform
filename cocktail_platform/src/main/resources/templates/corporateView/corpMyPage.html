@@ -109,6 +109,14 @@ function memberChg(){
 		});
 }
 
+/**회원정보 변경 폼 제출 후 바뀐 정보 표시*/
+function memChgToggle2(){
+	
+	$('#memInfoFormDiv').hide();
+	$('#memInfoDiv').show();
+}
+
+
 /**가게 정보 가져오기*/
 function getStoreInfo(){
 	$.ajax({
@@ -306,6 +314,13 @@ function storeChg(){
 			}
 		});
 	}
+}
+
+/**가게정보 변경 폼 제출 후 바뀐 정보 표시*/
+function storeChgToggle2(){
+	
+	$('#storeInfoFormDiv').hide();
+	$('#storeInfoDiv').show();
 }
 
 </script>
