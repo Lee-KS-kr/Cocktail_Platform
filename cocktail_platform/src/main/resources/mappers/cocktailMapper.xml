@@ -6,11 +6,27 @@
 	
 	<select id="search" parameterType="HashMap" resultType="Object">
 		select
-			*
+			menuNum
+			, storeCode
+			, menuName
+			, price
+			, category
+			, menuInfo
+			, originalFilename
+			, savedFilename
+			, canOrder
 		from
-			cocktails
-		where
-			
+			menu
+		<where>
+			<if test="category == 'food'">
+				menuName like '%' || #{searchWord} || '%'
+			</if>
+			<if test="category == 'beverage'">
+				menuName like '%' || #{searchWord} || '%'
+			</if>
+		</where>
+		order by
+			menuNum desc
 	</select>
 	
 	<select id="findCocktailByCode" parameterType="int" resultType="Cocktails">
@@ -34,7 +50,12 @@
 	</select>
 	
 	<select id="getIngredientNameByCode" parameterType="int" resultType="String">
-		select ingredientName from ingredients where ingredientNum = #{ingredientNum}
+		select
+			ingredientName
+		from
+			ingredients
+		where
+			ingredientNum = #{ingredientNum}
 	</select>
 	
 </mapper>
