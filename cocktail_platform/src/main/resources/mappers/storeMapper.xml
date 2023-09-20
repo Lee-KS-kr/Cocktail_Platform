@@ -65,26 +65,26 @@
 				(
 				reserveCode
 				, storeCode
-				, <if test="memberId != null">memberId
+				, <if test="memberId != null and memberId != ''">memberId
 				, </if> 
 				reservationName
 				, reservationPhone
 				, reserveDate
 				, reserveHead
-				, <if test="request != null">request
+				, <if test="request != null and request != ''">request
 				, </if> 
 				reserveState
 				)
 		values (
 				to_char(sysdate, 'yyyymmdd') || #{storeCode} || reservation_seq.nextval
 				, #{storeCode}
-				, <if test="memberId != null">#{memberId}
+				, <if test="memberId != null and memberId != ''">#{memberId}
 				, </if>
 				#{reservationName}
 				, #{reservationPhone}
 				, to_date(#{reserveDate}, 'yyyy-mm-dd hh24:mi')
 				, #{reserveHead}
-				, <if test="request != null">#{request}
+				, <if test="request != null and request != ''">#{request}
 				, </if> 
 				#{reserveState}
 				)
@@ -261,7 +261,7 @@
 			, runningTime
 			, dayOff
 			, info
-			<if test="originFilename != null"> , originFilename
+			<if test="originFilename != null and originFilename != ''"> , originFilename
 			, savedFilename </if>
 			)
 		values 
@@ -276,7 +276,7 @@
 			, #{runningTime}
 			, #{dayOff}
 			, #{info}
-			<if test="originFilename != null"> , #{originFilename}
+			<if test="originFilename != null and originFilename != ''"> , #{originFilename}
 			, #{savedFilename} </if>
 			)
 	</insert>

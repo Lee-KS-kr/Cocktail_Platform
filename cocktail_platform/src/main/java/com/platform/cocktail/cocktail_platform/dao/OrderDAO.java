@@ -24,7 +24,7 @@ public interface OrderDAO {
 	
 	int insertTemporderList(ArrayList<OrderTemp> list);
 	
-	int updateOrder(Order o);
+	int updateOrder(Order o	);
 	
 	ArrayList<OrderTemp> getTemporderlistByCode(int storeCode);
 
