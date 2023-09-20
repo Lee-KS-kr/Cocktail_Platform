@@ -39,7 +39,7 @@
           <img th:src="@{/image/btn_search.png}" alt="search"></a>
       </div>
       <div sec:authorize="isAuthenticated()">
-        <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
+        <span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;
         <span><a th:href="@{/member/logout}">로그아웃</a></span>
         <span><a th:href="@{/personal/member/myPage}">마이페이지</a></span>
         <a th:href="@{/personal/searchPage}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
