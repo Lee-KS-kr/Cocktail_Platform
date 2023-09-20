@@ -9,44 +9,62 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function () {
-	init();
-    $(".tab_link").click(function(){
-   		getIndex();
-    });
+	// 처음 로딩될 때 모든 탭 내용을 감춤
+	$(".tab_cont").hide();
+	// 처음 로딩될 때 on 클래스가 붙은 탭 내용을 보여줌
+    $(".tab_cont.on").show();
     
-  //인덱스
+  	//인덱스
     function getIndex(){
     	//(.tab_title li를 누르면)선택된 요소의 index 얻어서 idx라는 변수에 넣어주기
     	var tab_id = $(this).attr('data-tab');
-        //li에서 on이라는 클래스를 없앤다.
+        //li, 내용에서 on이라는 클래스를 없앤다.
         $(".tab_title li").removeClass("on");
         $(".tab_content").removeClass("on");
         //선택한 요소에 on이라는 클래스를 붙여준다.
         $(this).addClass("on");
-        //선택한 요소에 해당하는 내용에 클래스 붙여준다.
-        $("#"+tab_id).addClass("on");
-        //해당하는 id를 가진 tab_cont 클래스의 div(선택한 탭의 내용물)를 보여준다. 
-        $("#"+tab_id).show();
+        //선택한 요소에 해당하는 내용에 클래스 붙이고 해당하는 id를 가진 tab_cont 클래스의 div(선택한 탭의 내용물)를 보여준다.
+        $("#"+tab_id).addClass("on").show();
     }
+  	
+  	//전체 메뉴 목록 받아오기
+    function init(){
+    	let storeCode = $('#storeCode').val();
+    	
+    	$.ajax({
+    		url: "menuList",
+    		type: "get",
+    		dataType: "json",
+    		data: {storeCode: storeCode},
+    		success: function(list){
+    			getList(list);
+    		},
+    		error: function(){
+    			alert('error');
+    		}
+    	});
+    }
+	
+  	//리스트 출력
+    function getList(list){
+    	let str = '<table><tr>';
+    	$(list).each(function(i,item){
+    		let fileName = item.savedFilename;
+    		
+    		str += '<td>' + item.menuName + '</td>';
+    		str += '<td rowspan="3"><img src="/FitTail/image/menu/' + fileName + '"></td></tr>';
+    		str += '<tr><td>' + item.menuInfo + '</td></tr>';
+    		str += '<tr><td>' + item.price + '</td>';
+    		str += '</tr>';
+    	});
+    	str += '</table>';
+    	$('#menuList').html(str);
+    }
+  
+    init();
+    $(".tab_title li").click(getIndex);
 });
 
-//전체 메뉴 목록 받아오기
-function init(){
-	let storeCode = $('#storeCode').val();
-	
-	$.ajax({
-		url: "menuList",
-		type: "get",
-		dataType: "json",
-		data: {storeCode: storeCode},
-		success: function(list){
-			getList(list);
-		},
-		error: function(){
-			alert('error');
-		}
-	});
-}
 
 //별점 가져오기
 function reviewScore(){
@@ -64,24 +82,6 @@ function reviewScore(){
     }
     $('#starDiv').html(str);
 }
-
-//리스트 출력
-function getList(list){
-	let str = '<table><tr>';
-	$(list).each(function(i,item){
-		let fileName = item.savedFilename;
-		
-		str += '<td>' + item.menuName + '</td>';
-		str += '<td rowspan="3"><img src="/FitTail/image/menu/' + fileName + '"></td></tr>';
-		str += '<tr><td>' + item.menuInfo + '</td></tr>';
-		str += '<tr><td>' + item.price + '</td>';
-		str += '</tr>';
-	});
-	str += '</table>';
-	$('#menuList').html(str);
-}
-
-
 
 /**인원수 선택 증감*/
 function count(type)  {
@@ -208,7 +208,7 @@ function reserveSub(){
 <main>
 	<!-- 기본 매장 정보 영역(매장 이미지, 매장명, 별점) -->
 	<div>
-		<table>
+		<table th:each="store: ${store}">
 			<tr>
 				<td>
 					<span th:text="${store.storeCode}" id="storeCode" style="display:none;"></span>
@@ -258,7 +258,7 @@ function reserveSub(){
 				<div id="menuList"></div>
 			</div>
 			<!-- 리뷰탭 내용 -->
-			<div id="tab_review" class="tab_cont" style="display:none;">
+			<div id="tab_review" class="tab_cont">
 				<!-- 별점, 리뷰 리스트(아이디, 별점, 사진, 리뷰 내용, 취향 태그) 출력 -->
 				<div id="star"></div>
 				<p><span th:text="${store.storeReviewScore}"></span>/5</p>
@@ -266,7 +266,7 @@ function reserveSub(){
 				<div id="reviewList"></div>
 			</div>
 			<!-- 매장 정보 탭 내용 -->
-			<div id="tab_storeInfo" class="tab_cont" style="display:none;">
+			<div id="tab_storeInfo" class="tab_cont">
 				<!-- 매장 소개, 업체 정보(영업시간, 전화번호, 매장주소, 부가정보), 업체 정보(상호명, 사업자 등록번호), 원재료 정보 출력 -->
 				<table th:each="store: ${store}">
 					<tr>
@@ -333,7 +333,7 @@ function reserveSub(){
 				</table>
 			</div>
 			<!-- 예약하기 탭 내용 -->
-			<div id="tab_reserve" class="tab_cont" style="display:none;">
+			<div id="tab_reserve" class="tab_cont">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
 				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="return reserveSub()">
 					<p>날짜 선택</p>
