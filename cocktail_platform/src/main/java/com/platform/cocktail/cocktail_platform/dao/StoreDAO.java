@@ -67,4 +67,5 @@ public interface StoreDAO {
 	float getReviewScoreByCode(int storeCode);
 
 	ArrayList<StoreInfo> getStoreByCocktailName(String cocktailName);
+	
 }
