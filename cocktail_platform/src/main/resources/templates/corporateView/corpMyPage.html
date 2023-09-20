@@ -147,7 +147,10 @@ function getStoreList(list){
 		runningTime = item.runningTime;
 		dayOff = item.dayOff;
 		info = item.info;
-		let fileName = item.savedFilename 
+		let fileName = item.savedFilename;
+		let postCode = item.postCode;
+		let address1 = address1;
+		let address2 = address2;
 		
 		str += '<tr><td>상호명</td><td>'+ storeName + '</td></tr>';
 		if(fileName){
@@ -179,6 +182,9 @@ function storeChgToggle(){
 	$('#runningTime').val(runningTime);
 	$('#dayOff').val(dayOff);
 	$('#info').val(info);
+	$('#postCode').val(postCode);
+	$('#address1').val(address1);
+	$('#address2').val(address2);
 	
 	$('#storeInfoDiv').hide();
 	$('#storeInfoFormDiv').show();
@@ -316,7 +322,6 @@ function storeChg(){
     
 	    <div id="logo">
 	    	<a th:href="@{/corporate/home}" class="navbar_logo">
-	       		<img th:src="@{/image/logo.png}" alt="logo">
 	       		<span>FitTail</span>
 	     	</a>
 	    </div>
