@@ -72,18 +72,17 @@ function phoneChk(){
 	let phone = $('#phone').val();
     let regPhone = /^010[0-9]{4}[0-9]{4}$/;
     
-	// 사용자가 하이픈을 입력하지 않았을 때 자동으로 하이픈 추가
-    if (phone.length === 11 && phone.indexOf('-') === -1) {
-    	//하이픈을 추가하여 전화번호 형식으로 변환
-        phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
-        $('#phone').val(phone);
-    }
-    
     if(!regPhone.test(phone)){
         $('#errMsg1').html('전화번호 형식이 올바르지 않습니다.');
         return false;
     }
-    else{
+    else if(regPhone.test(phone)){
+    	//사용자가 하이픈을 입력하지 않았을 때 자동으로 하이픈 추가
+        if (phone.length === 11 && phone.indexOf('-') === -1) {
+        	//하이픈을 추가하여 전화번호 형식으로 변환
+            phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
+            $('#phone').val(phone);
+        }
         $('#errMsg1').html('');
         return true;
     }
@@ -172,6 +171,7 @@ function getStoreList(list){
 /**번호에 하이픈 추가*/
 function formatPhoneNum(phone) {
     // 정규표현식을 사용하여 하이픈을 추가하여 전화번호 형식으로 변환
+    
     return phone.replace(/^(\d{2,3})(\d{4})(\d{4})$/, '$1-$2-$3');
 }
 
