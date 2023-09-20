@@ -44,9 +44,9 @@
 		<!-- <div id="storeListDiv"></div>> -->
 		<div class="storeInfo">
 			<a th:href="@{/personal/store/storeDetail(storeCode=${store.storeCode})}">
-				<p>
+				<div>
 					<img th:src="@{/image/store/} + ${store.savedFilename}" alt="store image">
-				</p>
+				</div>
 				<p th:text="${store.storeName}"></p>
 				<p th:text="${store.storeReviewScore}"></p>
 				<p th:text="${store.info}"></p>

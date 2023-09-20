@@ -39,7 +39,7 @@
     </div>
     <div class="">
         <div class="c_img">
-                <img src="/FitTail/image/cocktails/[[${cocktail.savedFilename}]]" alt="cocktail_image">
+                <img th:src="|@{/image/cocktails/}${cocktail.savedFilename}|" alt="cocktail_image">
         </div>
         <div class="c_con">
             <div>
@@ -80,34 +80,10 @@
     </div>
     <div class="mid">
         <div>
-            <p>~를 파는 매장에서 직접 즐겨볼까요?</p>
+            <p><span th:text="${cocktail.cocktailName}"></span>를 파는 매장에서 직접 즐겨볼까요?</p>
         </div>
         <div>
             <div class="inside_box">
-                <div><img src="" alt=""></div>
-                <div>
-                    <div>상품명</div>
-                    <div>매장주소</div>
-                    <div>가격</div>
-                </div>
-            </div>
-            <div>
-                <div><img src="" alt=""></div>
-                <div>
-                    <div>상품명</div>
-                    <div>매장주소</div>
-                    <div>가격</div>
-                </div>
-            </div>
-            <div>
-                <div><img src="" alt=""></div>
-                <div>
-                    <div>상품명</div>
-                    <div>매장주소</div>
-                    <div>가격</div>
-                </div>
-            </div>
-            <div>
                 <div><img src="" alt=""></div>
                 <div>
                     <div>상품명</div>
