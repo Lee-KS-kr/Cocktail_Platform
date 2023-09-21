@@ -2,6 +2,8 @@ package com.platform.cocktail.cocktail_platform.service;
 
 import java.util.ArrayList;
 
+import org.springframework.ui.Model;
+
 import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.MemberType;
 import com.platform.cocktail.cocktail_platform.domain.Order;
@@ -29,5 +31,7 @@ public interface MemberService {
 	int unableMember(String memberId);
 
 	int findMemberByPhone(String phone);
+
+	Member loginToOrder(String memberId, String memberPw);
 
 }

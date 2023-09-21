@@ -25,6 +25,7 @@ import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
+import com.platform.cocktail.cocktail_platform.service.MemberService;
 import com.platform.cocktail.cocktail_platform.service.OrderService;
 import com.platform.cocktail.cocktail_platform.service.StoreService;
 
@@ -38,6 +39,9 @@ public class CorporateOrderController {
 	private StoreService sService;
 	@Autowired
 	private OrderService oService;
+	@Autowired
+	private MemberService mService;
+	private Member loginMember;
 	
 	@GetMapping("login")
 	public String login(@AuthenticationPrincipal UserDetails user, Model m) {
@@ -47,8 +51,23 @@ public class CorporateOrderController {
 	}
 	
 	@PostMapping("login")
-	public String login(int storeCode, Member mem, Model m) {
-		Order o = oService.makeNewOrder(storeCode, mem.getMemberId());
+	public String login(@AuthenticationPrincipal UserDetails user, String memberId, String memberPw, Model m) {
+		StoreInfo store = sService.getStoreById(user.getUsername());
+		
+		log.debug("{}, {}, {}", store.getStoreCode(), memberId, memberPw);
+		if(!memberId.isEmpty() && !memberPw.isEmpty()) {
+			Member mem = mService.loginToOrder(memberId, memberPw);
+			if(mem ==  null) {
+				m.addAttribute("err", "아이디와 비밀번호를 다시 확인해주세요.");
+				return "redirect:/corporate/order/login";
+			}
+			
+			this.loginMember = mem;
+			log.debug("this member : {}", this.loginMember);
+		}
+		
+		Order o = oService.makeNewOrder(store.getStoreCode(), memberId);
+		log.debug("order : {}", o);
 		m.addAttribute("order", o);
 		return "corporateView/order";
 	}
