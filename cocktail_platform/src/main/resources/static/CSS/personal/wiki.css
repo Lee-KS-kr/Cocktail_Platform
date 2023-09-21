@@ -91,6 +91,64 @@ justify-content: center;
     margin-right: 40px;
 
 }
+/*상품 스토어 =============================================*/
+/* 상품 전체 박스 */
+.mainbox1 {
+    width: 1300px;
+    background-color: #fff;
+    border: 2px solid #e7e7e7;
+    border-radius: 20px;
+    text-align: left;
+    margin: 40px 30px;
+    box-shadow: 0px 20px 20px #e8e8e8;
+    margin: 0 auto;
+  }
+/*카테고리 title*/
+.main_title strong {
+    display: flex;
+    justify-content: center;
+    color: #313131;
+    font-family: 'Noto Sans KR', sans-serif;  
+    font-size: 32pt;
+    margin-top: 25px;
+}
+/*box 감싸는 box*/
+.row{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    margin: auto;
+    margin-bottom: 40px;
+  }
+
+  /* 제품 상자 스타일 */
+.box {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    
+    margin: 10px auto; /* 상하 여백을 10px으로 주고 좌우 여백은 자동으로 가운데 정렬 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
+    display: inline-block; /* 인라인 블록 요소로 변경하여 가운데 정렬 */
+  }
+
+  .boxImg {
+    max-width: 100%;
+    height: auto;
+  }
+  /*상품명*/
+.pd_title {  
+    font-family: 'Noto Sans KR', sans-serif;  
+    color: 313131;
+    font-size: 16pt;
+    font-weight: bold;
+    text-align: left;
+    font-size: 18px;
+    float: left;
+  }
+
+/*상품 스토어 END =============================================*/
 
 .body{
 justify-content: center; margin: auto;
@@ -103,13 +161,20 @@ align-content: center;
 background-color: bisque;}
 
 .contents{
-    width: 400px;
-    height: 300px;
-    background-color: aquamarine;
+    width: 800px;
+    height: 800px;
+    border: 2px solid #e2e2e2;
+    padding: 30px;
+    margin: 0 auto;
+
 }
 
 .c_img{
     width: 250px;
     height: 250px;
     background-color: beige;
+}
+
+.c_con{
+    text-align: left;
 }
