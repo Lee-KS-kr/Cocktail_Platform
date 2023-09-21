@@ -64,6 +64,15 @@ border-spacing: 0;
 
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
 /*=========================================================*/
+
+img[alt="logo"] {
+  width: 120px;
+  justify-content: center;
+  margin: auto;
+  float: left;
+}
+img[alt=search] { width: 27px; height: 27px; }
+
 .navi{
 width: 100% ;
 height: 60px;
@@ -158,7 +167,12 @@ align-content: center;
 }
 
 .title{height: 100px;
-background-color: bisque;}
+background-color: bisque;
+color: #313131;
+font-family: 'Noto Sans KR', sans-serif;  
+font-size: 32pt;
+margin: auto 0;
+}
 
 .contents{
     width: 800px;
@@ -169,12 +183,44 @@ background-color: bisque;}
 
 }
 
+.con1{
+  display: flex;
+}
+
 .c_img{
     width: 250px;
     height: 250px;
-    background-color: beige;
+    border: 1px solid #e2e2e2;
+    position: relative;
+    width: 300px; 
+    height: 300px;
+    overflow: hidden;
+}
+
+
+img[alt=store_image]{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+
 }
 
 .c_con{
-    text-align: left;
+  width: 450px;
+  height: 300px;
+  align-items: end;
+  align-content: flex-end;
+  background-color: rgb(99, 216, 70);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: left;
+  margin: 0 auto;
+}
+
+.c_con_name, .c_con_taste, .c_con_color, .c_con_flavor, .c_con_ing, .c_con_degree, .c_con_target  
+{
+  border: 1px solid #e2e2e2;
 }
