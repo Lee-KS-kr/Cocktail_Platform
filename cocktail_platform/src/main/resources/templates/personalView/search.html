@@ -28,8 +28,8 @@
 			$.ajax({
 				url: 'search',
 				data: {category: cat, searchWord: word},
-				type: 'json',
-				dataType: 'get',
+				type: 'get',
+				dataType: 'json',
 				success: function(list){
 					showList(list);
 				},
