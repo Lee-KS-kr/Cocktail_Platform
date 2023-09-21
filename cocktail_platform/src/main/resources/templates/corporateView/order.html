@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 페이지</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
 	allList();
@@ -70,7 +71,19 @@ $(document).ready(function(){
 		
 		//결과 출력
 	  	$("#orderCount").text(orderCount);
-	} 
+	}
+	
+	//햄버거 메뉴 숨기기
+	$('#hbgMenu').hide();
+	//햄버거 아이콘 누르면 메뉴 보여주기
+	$('#hbgBtn').click(function(){
+		$('#hbgMenu').animate({width: "toggle"},400);
+	});
+	//close 버튼 누르면 메뉴 감추기
+	$('#closeBtn').click(function(){
+		$('#hbgMenu').fadeOut();
+		$('#hbgMenu').animate({width: "toggle"},400);
+	});
 });
 
 //추천 메뉴 목록 가져오기
@@ -154,45 +167,28 @@ function loadCart(){
 </script>
 </head>
 <body>
-	<!-- 헤더 -->
-	<header id="header" class="header">
-		<!-- 네비게이션바 -->
-		<nav id="navbar" class="navbar">
-	    	<div class="search">
-	   			<a th:href="@{/personal/search}" class="search_logo">
-	    			<img th:src="@{/image/btn_search.png}" alt="검색">
-	    		</a>
-	    	</div>
-	    
-		    <div id="logo">
-		    	<a th:href="@{/corporate/home}" class="navbar_logo">
-		       		<img th:src="@{/image/logo.png}" alt="logo">
-		       		<span>FitTail</span>
-		     	</a>
-		    </div>
-		
-	    	<div class="navbar_right">
-	    		<div sec:authorize="!isAuthenticated()">
-		    		<a th:href="@{/member/login}">로그인</a>
-		    	</div>
-		    	<div sec:authorize="isAuthenticated()">
-		    		<span><a th:href="@{/member/logout}">로그아웃</a></span>
-		    		<span><a th:href="@{/corporate/member/mypage}">마이페이지</a></span>
-		    	</div>
-		   </div>
-	  </nav>
-  	<!-- 네비게이션바 끝 -->
-	</header>
-	<!-- 헤더 끝 -->
 	<!-- 메인 시작 -->
  	<main>
  		<nav>
- 			<a th:href="">
- 				<img th:src="@{/image/hbg_icon.png}" width="60px" alt="햄버거메뉴아이콘">
- 			</a>
- 			<p>테이블 9</p>
- 			<span><a th:href="|javascript:menuCategory('bevarage')|">주류</a></span>
- 			<span><a th:href="|javascript:menuCategory('food')|">안주류</a></span>
+ 			<div id="hbgBar">
+ 				<div id="btn">
+	 				<img id="hbgBtn" th:src="@{/image/hbg_icon.png}" width="25px" alt="햄버거메뉴아이콘">
+ 				</div>
+	 			<div id="hbgMenu">
+	 				<div onclick="history.back();">
+		 				<img id="closeBtn" th:src="@{/image/close.png}" width="25px" alt="닫기 버튼">
+		 			</div>
+	 				<ul>
+	 					<li><a th:href="@{/corporate/order/callStaff}">직원 호출</a></li>
+	 					<li><a th:href="@{/corporate/order/login}">이 페이지에서 나가기</a></li>
+	 				</ul>
+	 			</div>
+ 			</div>
+ 			<div id="navBar">
+	 			<p>테이블 9</p>
+	 			<span><a th:href="|javascript:menuCategory('bevarage')|">주류</a></span>
+	 			<span><a th:href="|javascript:menuCategory('food')|">안주류</a></span>
+ 			</div>
  		</nav>
  		<section>
  			<div sec:authorize="isAuthenticated()">
@@ -212,7 +208,6 @@ function loadCart(){
  		<section id="bottom">
  			<div id="bottomTab">
  				<a th:href="@{/corporate/order/orderList}"><button>주문 내역</button></a>
- 				<a th:href="@{/corporate/order/callStaff}"><button>직원 호출</button></a>
  				<a href="javascript:loadCart()" target="_self"><button>장바구니</button></a>
  			</div>
  		</section>
