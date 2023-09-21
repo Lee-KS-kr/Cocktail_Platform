@@ -28,8 +28,8 @@
 			$.ajax({
 				url: 'search',
 				data: {category: cat, searchWord: word},
-				type: 'json',
-				dataType: 'get',
+				type: 'get',
+				dataType: 'json',
 				success: function(list){
 					showList(list);
 				},
@@ -76,13 +76,10 @@
 			<img th:src="@{/image/logo_title.png}" alt="logo">
 		</a>
 		</div>
-		<div class="navi2">
+		<div class="navi2"><!-- 닫기 버튼  -->
 			<div class="close-button">
-				<a href="javascript:history.back()"><img th:src="@{/image/search.png}" alt="close"></a>
+				<a href="javascript:history.back()"><img th:src="@{/image/close.png}" alt="close"></a>
 			</div>
-		</div>
-		<!-- 닫기 버튼 추가 -->
-		
 		</div>
 	</div>
   
