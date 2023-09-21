@@ -53,9 +53,9 @@ $(document).ready(function () {
     	$(list).each(function(i,item){
     		let fileName = item.savedFilename;
     		
-    		str += '<td><a href="/FitTail/personal/store/menuInfo?' + item.menuNum 
-    				+ '"></a>' + item.menuName + '</td>';
-    		str += '<td rowspan="3"><a href="/FitTail/personal/store/menuInfo?' + item.menuNum 
+    		str += '<td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
+    				+ '">' + item.menuName + '</a></td>';
+    		str += '<td rowspan="3"><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
     				+ '"><img src="/FitTail/image/menu/' + fileName + '"></a></td></tr>';
     		str += '<tr><td>' + item.menuInfo + '</td></tr>';
     		str += '<tr><td>' + item.price + '</td>';
@@ -211,7 +211,7 @@ function reserveSub(){
 <main>
 	<!-- 기본 매장 정보 영역(매장 이미지, 매장명, 별점) -->
 	<div>
-		<table th:each="store: ${store}">
+		<table>
 			<tr>
 				<td>
 					<span th:text="${store.storeCode}" id="storeCode" style="display:none;"></span>

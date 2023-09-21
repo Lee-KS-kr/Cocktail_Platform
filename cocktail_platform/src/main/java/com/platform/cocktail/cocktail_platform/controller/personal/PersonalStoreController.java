@@ -47,7 +47,8 @@ public class PersonalStoreController {
 	public String menuDetail(int menuNum, Model m) {
 		Menu menu = sService.getMenuInfoByNum(menuNum);
 		m.addAttribute("menu", menu);
-		return "";
+		log.debug("menu {}", menu);
+		return "personalView/menuDetail";
 	}
 	
 	@GetMapping("reserve")
