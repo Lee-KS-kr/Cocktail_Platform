@@ -196,13 +196,11 @@ margin: auto 0;
     overflow: hidden;
 }
 
+
 img[alt=cocktail_image]{
   position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 300px;
-  height: 450px;
-  margin: 0 auto;
+  top: 100;
+  left: 0;
 
 }
 
@@ -217,6 +215,7 @@ img[alt=cocktail_image]{
   margin: 0 auto;
 }
 
-.c_con_inner{
+.c_con_name, .c_con_taste, .c_con_color, .c_con_flavor, .c_con_ing, .c_con_degree, .c_con_target  
+{
   border: 1px solid #e2e2e2;
 }
