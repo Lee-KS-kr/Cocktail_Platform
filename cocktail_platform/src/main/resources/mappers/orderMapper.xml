@@ -48,7 +48,7 @@
 	
 	<insert id="makeNewOrder" parameterType="HashMap">
     	insert into
-    		orders
+    		orders 
     		(orderCode
        		 , storeCode
        		 , orderDate
