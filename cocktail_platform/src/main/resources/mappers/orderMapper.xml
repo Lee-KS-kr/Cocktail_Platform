@@ -49,25 +49,21 @@
 	<insert id="makeNewOrder" parameterType="HashMap">
     	insert into
     		orders
-    		(
-       		 orderCode
+    		(orderCode
        		 , storeCode
        		 , orderDate
        		 , memberId
        		 , totalPrice
        		 , menuList
-       		 , orderState
-    		)
+       		 , orderState)
     	values
-    		(
-       		to_char(sysdate, 'yyyymmdd') || order_seq.nextval || #{storeCode}
+    		(to_char(sysdate, 'yyyymmdd') || order_seq.nextval || #{storeCode}
        		, #{storeCode}
        		, to_char(sysdate, 'yyyymmdd') sysdate
        		, <if test="memberId != 'null'"> #{memberId}, </if>
        		#{totalPrice}
        		, <if test="menuList != 'null'"> #{menuList}, </if>
-       		'apply'
-   	 		)
+       		'apply')
 	</insert>
 	
 	<insert id="insertTemporderList" parameterType="OrderTemp">
