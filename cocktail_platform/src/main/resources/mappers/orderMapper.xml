@@ -53,10 +53,10 @@
        		 orderCode
        		 , storeCode
        		 , orderDate
-       		 , <if test="memberId != 'null'"> memberId, </if>
-       		 totalPrice
-       		 , <if test="menuList != 'null'"> menuList, </if>
-       		 orderState
+       		 , memberId
+       		 , totalPrice
+       		 , menuList
+       		 , orderState
     		)
     	values
     		(
@@ -69,7 +69,6 @@
        		'apply'
    	 		)
 	</insert>
-
 	
 	<insert id="insertTemporderList" parameterType="OrderTemp">
 		insert into
