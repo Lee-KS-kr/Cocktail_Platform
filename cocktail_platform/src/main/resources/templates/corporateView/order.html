@@ -7,40 +7,71 @@
 <script>
 $(document).ready(function(){
 	allList();
-	$(".tab_title li").click(getIndex);
-});
+	
+	//전체 목록 받아오기
+	function allList(){
+		$.ajax({
+			url: "menu",
+			type: "post",
+			dataType: "json",
+			data: {storeCode: storeCode},
+			success: function(list){
+				let str = menuList(list);
+				$('#menuList').html(str);
+			},
+			error: function(){
+				alert('error');
+			}
+		});
+	}
 
-//전체 목록 받아오기
-function allList(){
-	$.ajax({
-		url: "menu",
-		type: "post",
-		dataType: "json",
-		data: {storeCode: storeCode},
-		success: function(list){
-			let str = menuList(list);
-			$('#menuList').html(str);
-		},
-		error: function(){
-			alert('error');
+	let memberId = $('#memberId').val();
+	let storecode;
+	let menuNum; 
+	let orderCount;
+
+	//메뉴 리스트 출력
+	function menuList(list){
+		let str = '<table>';
+		$(list).each(function(i,item){
+			menuNum = $('#menuNum').val();
+			storecode = $('#storecode').val();
+			orderCount = $('#orderCount').val();
+			
+			str += '<tr>';
+			//누르면 장바구니 추가
+			str += `<td rowspan="3"><a href="|javascript:addCart('menuNum')|">' + item.savedFilename + '</a></td>`;
+			str += `<td><a href="|javascript:count('plus')|">+</a></td></tr>`;
+			str += '<tr><td id="orderCount">1</td></tr>';
+			str += `<tr><td><a href="|javascript:count('minus')|">-</a></td></tr>`;
+			str += '<tr><td>' + item.menuName + '</td>';
+			str += `<td rowspan="2"><a href="|javascript:addCart('menuNum')|">카트에 담기</a></td></tr>`;
+			str += '<tr><td>' + item.price + '</td>';
+			str += '<tr><td id="menuNum" style="display:none;">' + item.menuNum + '</td>';
+			str += '<tr><td id="storeCode" style="display:none;">' + item.storeCode + '</td>';
+		});
+		str += '</table>';
+		return str;
+	}
+	
+	/**주문 수량 증감*/
+	function count(type){
+		let orderCount = document.getElementById('orderCount').innerText;
+		
+		//더하기, 빼기
+		if(type === 'plus' && orderCount < 11) {
+			orderCount = parseInt(headnum) + 1;  
+	  	}else if(type === 'minus' && orderCount > 1) {
+	  		orderCount = parseInt(headnum) - 1;
+	  	}else {
+			alert('주문 수량을 확인해주세요.');
+			return false;
 		}
-	});
-}
-
-//메뉴 리스트 출력
-function menuList(list){
-	let str = '<table>';
-	$(list).each(function(i,item){
-		str += '<tr>';
-		//누르면 장바구니 추가
-		str += `<td><a href="|javascript:addCart('menuNum')|">' + item.savedFilename + '</a></td>`;
-		str += '<td>' + item.menuName + '</td>';
-		str += '<td>' + item.price + '</td>';
-		str += '</tr>';
-	});
-	str += '</table>';
-	return str;
-}
+		
+		//결과 출력
+	  	$("#orderCount").text(orderCount);
+	} 
+});
 
 //추천 메뉴 목록 가져오기
 function getRecMenu(){
@@ -89,46 +120,36 @@ function menuCategory(category){
 	});
 }
 
-//카트에 담은 목록 가져오기
-function cart(){
-	$.ajax({
-		url: "cart",
-		type: "get",
-		dataType: "json",
-		success: function(result){
-			if(result == ''){
-				return;
-			}
-			getList(result);
-		},
-		error: function(){
-			alert('error');
-		}
-	});
-}
-
 //카트에 담기
-function addCart(){
-	let num;
-	let 
+function addCart(menuNum){
+	//param에 보내야 될 값들 담아주기
+	let param = {
+			memberId : memberId,
+			storecode : storecode,
+			menuNum :  menuNum,
+			orderCount : orderCount
+	}
 	
 	if(confirm('장바구니에 추가하시겠습니까?')){
 		
+		$.ajax({
+			url: "addToCart",
+			type: "get",
+			data: param,
+			dataType: "json",
+			success: function(list){
+				getList(list);
+			},
+			error: function(){
+				alert('error');
+			}
+		});
 	};
 }
 
-//인덱스
-function getIndex(){
-	//(.tab_title li를 누르면)선택된 요소의 index 얻어서 idx라는 변수에 넣어주기
-	var idx = $(this).index();
-    //li에서 on이라는 클래스를 없앤다.
-    $(".tab_title li").removeClass("on");
-    //선택한 요소의 인덱스 번호에 해당하는 요소를 찾아서 on이라는 클래스를 붙여준다.
-    $(".tab_title li").eq(idx).addClass("on");
-    //tab_cont 클래스의 div(전체 탭의 내용물)를 다 감춘다.
-    $(".tab_cont > div").hide();
-    //인덱스 번호에 해당하는 tab_cont 클래스의 div(선택한 탭의 내용물)를 보여준다. 
-    $(".tab_cont > div").eq(idx).show();
+function loadCart(){
+	let option = "width = 20%, height = 100%, top = 100, left = 500 location = no scrollbars = no"
+	window.open("cart", "cartPopUp", option);
 }
 </script>
 </head>
@@ -175,7 +196,7 @@ function getIndex(){
  		</nav>
  		<section>
  			<div sec:authorize="isAuthenticated()">
- 				<p><span th:text="${#authentication.name}"></span>님을 위한 추천 상품</p>
+ 				<p><span id="memberId" th:text="${#authentication.name}"></span>님을 위한 추천 상품</p>
 	 			#<span th:text="${taste.cocktailTaste}"></span>
 	 			#<span th:text="${taste.cocktailFlavor}"></span>
 	 			<!-- 추천 메뉴 출력 -->
@@ -188,27 +209,12 @@ function getIndex(){
 	 		<!-- 전체 메뉴 출력 -->
 	 		<div id="menuList"></div><br>
  		</section>
- 		<section id="sidebar">
- 			<div class="tab_title">
- 				<ul>
- 					<li class="on">장바구니</li>
- 					<li>주문 내역 확인</li>
- 				</ul>
+ 		<section id="bottom">
+ 			<div id="bottomTab">
+ 				<a th:href="@{/corporate/order/orderList}"><button>주문 내역</button></a>
+ 				<a th:href="@{/corporate/order/callStaff}"><button>직원 호출</button></a>
+ 				<a href="javascript:loadCart()" target="_self"><button>장바구니</button></a>
  			</div>
- 			<div class="tab_cont">
- 				<div id="tab_cart" class="on">
- 					<!-- 카트에 담은 메뉴 출력 -->
- 					<div id="cartList"></div>
- 				</div>
- 				<div id="tab_orderList">
- 					<!-- 주문 내역 출력 -->
- 					<div id="orderList"></div>
- 				</div>
- 			</div>
- 			
- 			<p><a th:href="@{/corporate/order/orderMenu}">주문하기</a></p>
- 			<span><a th:href="@{/corporate/order/callStaff}">직원 호출</a></span>
- 			<p><a th:href="@{/corporate/order/payment}">결제하기</a></p>
  		</section>
 	</main>
 	<footer>

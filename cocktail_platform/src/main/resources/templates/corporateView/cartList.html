@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>카트 메뉴</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script>
+$(document).ready(function(){
+	//카트에 담은 목록 가져오기
+	function cart(){
+		$.ajax({
+			url: "cart",
+			type: "get",
+			dataType: "json",
+			success: function(result){
+				if(result == ''){
+					return;
+				}
+				getList(result);
+			},
+			error: function(){
+				alert('error');
+			}
+		});
+	}
+	
+	//메뉴 리스트 출력
+	function getList(list){
+		let str = '<table>';
+		$(list).each(function(i,item){
+			str += '<tr>';
+			str += '<td>' + item.savedFilename + '</td>';
+			str += '<td>' + item.menuName + '</td></tr>';
+			str += '<tr><td>' + item.price + '</td>';
+			str += '</tr>';
+		});
+		str += '</table>';
+		$('#cartList').html(str);
+	}
+});
+
+
+
+</script>
+</head>
+<body>
+	카트
+	<!-- 카트에 담은 메뉴 출력 -->
+	<div id="cartList"></div>
+	<p><a th:href="@{/corporate/order/orderMenu}">주문하기</a></p>
+	<p><a th:href="@{/corporate/order/payment}">결제하기</a></p>
+</body>
+</html>
