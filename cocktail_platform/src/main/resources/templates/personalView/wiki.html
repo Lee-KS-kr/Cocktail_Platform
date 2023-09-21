@@ -49,17 +49,36 @@
             <div class="c_con_taste">
                 <p>칵테일 맛</p>
                 <span th:each="item : ${cocktail.taste}" id="tasteList">
-                    <span th:text="${item}"></span></span>
-            </div>
-            <div class="c_con_color">
-                <p>칵테일 색</p>
-                <span th:each="item : ${cocktail.flavor}" id="flavorList">
-                    <span th:text="${item}"></span></span>
+                    <span th:if="${item} == 'sweet'">단맛</span>
+                    <span th:if="${item} == 'sour'">신맛</span>
+                    <span th:if="${item} == 'bitter'">쓴맛</span>
+                    <span th:if="${item} == 'salty'">짠맛</span>
+                  </span>
             </div>
             <div class="c_con_flavor">
                 <p>칵테일 향</p>
-                <span th:each="item : ${cocktail.color}" id="colorList">
-                    <span th:text="${item}"></span></span>
+                <span th:each="item : ${cocktail.flavor}" id="colorList">
+                  <span th:if="${item} == 'alcohol'">알코올향</span>
+                  <span th:if="${item} == 'coffee&chocolate'">커피/초콜릿향</span>
+                  <span th:if="${item} == 'general'">과일향</span>
+                  <span th:if="${item} == 'citrus'">시트러스향</span>
+                  <span th:if="${item} == 'tropical'">트로피컬향</span>
+                </span>
+            </div>
+            <div class="c_con_color">
+                <p>칵테일 색</p>
+                <span th:each="item : ${cocktail.color}" id="flavorList">
+                    <span th:if="${item} == 'transparent'">투명한색</span>
+                    <span th:if="${item} == 'white'">하얀색</span>
+                    <span th:if="${item} == 'black'">어두운색</span>
+                    <span th:if="${item} == 'red'">빨간색</span>
+                    <span th:if="${item} == 'orange'">주황색</span>
+                    <span th:if="${item} == 'yellow'">노란색</span>
+                    <span th:if="${item} == 'green'">초록색</span>
+                    <span th:if="${item} == 'blue'">파란색</span>
+                    <span th:if="${item} == 'purple'">보라색</span>
+                    <span th:if="${item} == 'multi'">여러색</span>
+                </span>
             </div>
             <div class="c_con_ing">
                 <p>주요 재료</p>

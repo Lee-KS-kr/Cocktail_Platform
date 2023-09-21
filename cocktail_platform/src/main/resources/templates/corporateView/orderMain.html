@@ -71,7 +71,11 @@
         <p><a th:href="@{/member/join}">| 회원가입</a></p>
       </div>
       <!-- sec2 끝 -->
-	<a href="javascript:nonuser()" onclick="javascript:nonuserLogin()">비회원 주문</a>
+      <!--
+        비회원 주문 실험중
+        <a href="javascript:nonuser()" onclick="javascript:nonuserLogin()">비회원 주문</a>
+      -->
+  <a th:href="@{/corporate/order/orderMenu}">비회원 주문</a>
 	</main>
 </body>
 </html>

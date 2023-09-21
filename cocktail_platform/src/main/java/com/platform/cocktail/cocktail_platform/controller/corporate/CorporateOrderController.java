@@ -1,6 +1,5 @@
 package com.platform.cocktail.cocktail_platform.controller.corporate;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
-import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.service.MemberService;
 import com.platform.cocktail.cocktail_platform.service.OrderService;
@@ -72,8 +70,13 @@ public class CorporateOrderController {
 		return "corporateView/order";
 	}
 	
-	@ResponseBody
 	@GetMapping("menu")
+	public String menu() {
+		return "corporateView/order";
+	}
+	
+	@ResponseBody
+	@PostMapping("menu")
 	public ArrayList<Menu> menu(int storeCode, Model m) {
 		ArrayList<Menu> menuList = sService.getMenulistByCode(storeCode);
 		return menuList;
