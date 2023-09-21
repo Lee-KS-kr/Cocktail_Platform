@@ -188,12 +188,11 @@ margin: auto 0;
 }
 
 .c_img{
-    width: 250px;
-    height: 250px;
-    border: 1px solid #e2e2e2;
-    position: relative;
-    width: 300px; 
+  position: relative;
+    width: 300px;
     height: 300px;
+    border: 1px solid #e2e2e2;
+    
     overflow: hidden;
 }
 
@@ -201,10 +200,7 @@ margin: auto 0;
 img[alt=cocktail_image]{
   position: absolute;
   top: 100;
-  left: 100;
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
+  left: 0;
 
 }
 
