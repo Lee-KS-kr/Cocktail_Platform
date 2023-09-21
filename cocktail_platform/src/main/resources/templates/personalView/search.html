@@ -77,23 +77,12 @@
 		</a>
 		</div>
 		<div class="navi2">
-		<div sec:authorize="!isAuthenticated()">
-			<a th:href="@{/member/login}">로그인</a>
-			<a th:href="@{/personal/searchPage}">
-			<img th:src="@{/image/btn_search.png}" alt="search">
-			</a>
-		</div>
-		<div sec:authorize="isAuthenticated()">
-			<span><a th:href="@{/member/logout}">로그아웃</a></span>
-			<span><a th:href="@{/personal/member/myPage}">마이페이지</a></span>
-			<a th:href="@{/personal/searchPage}">
-			<img th:src="@{/image/btn_search.png}" alt="search">
-			</a>
+			<div class="close-button">
+				<a href="javascript:history.back()"><img th:src="@{/image/search.png}" alt="close"></a>
+			</div>
 		</div>
 		<!-- 닫기 버튼 추가 -->
-		<div class="close-button">
-			<a href="javascript:history.back()">닫기</a>
-		</div>
+		
 		</div>
 	</div>
   
