@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+<meta charset="UTF-8" />
+<title>메뉴 상세</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script></script>
+<link rel="stylesheet" th:href="@{/CSS/personal/personalmain.css}">
+</head>
+<body>
+<!-- 헤더 -->
+<header id="header" class="header">
+	<!-- 네비게이션바 -->
+	<div class="navi">  <!-- Header   -->
+		<div class="navi1"> 
+			<a th:href="@{/personal/member/mainHome}">
+			  <img th:src="@{/image/logo_title.png}" alt="logo"></a>
+		</div>
+		<div class="navi2">
+		  <div sec:authorize="!isAuthenticated()">
+			<a th:href="@{/member/login}">로그인</a>
+			<a th:href="@{/personal/searchPage}">
+			  <img th:src="@{/image/btn_search.png}" alt="search"></a>
+		  </div>
+		  <div sec:authorize="isAuthenticated()">
+			<span><a th:href="@{/member/logout}">로그아웃</a></span>
+			<span><a th:href="@{/personal/member/myPage}">마이페이지</a></span>
+			<a th:href="@{/personal/searchPage}">
+			  <img th:src="@{/image/btn_search.png}" alt="search"></a>
+		  </div>
+	   </div>
+	</div>  
+  <!-- 네비게이션바 끝 -->
+</header>
+<!-- 헤더 끝 -->
+<!-- 메인 시작 -->
+<main>
+	<!-- 기본 메뉴 정보 영역 -->
+	<div>
+		<table>
+			<tr>
+				<td>
+					<img th:src="@{/image/menu/} + ${menu.savedFilename}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span th:text="${menu.menuNum}" id="menuNum" style="display:none;"></span>
+					<span th:text="${menu.menuName}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td th:text="${menu.price}"></td>
+			</tr>
+			<tr>
+				<td>
+					<pre th:value="${menu.menuInfo}"></pre>
+				</td>
+			</tr>
+		</table>
+	</div>
+</main>
+	
+</body>
+</html>
