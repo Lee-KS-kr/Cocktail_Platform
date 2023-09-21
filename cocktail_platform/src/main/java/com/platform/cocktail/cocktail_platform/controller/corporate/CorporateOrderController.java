@@ -89,27 +89,6 @@ public class CorporateOrderController {
 		return "";
 	}
 	
-	@GetMapping("cart")
-	public String cart(Model m,
-			@CookieValue(name="cart", defaultValue="0") String cart) throws Exception {
-		cart = URLDecoder.decode(cart, "UTF-8");
-		if(cart.equals("0")) {
-			m.addAttribute("err", "카트에 담긴 음식이 없습니다.");
-		} else {
-			String[] menus = cart.split(",");
-			String[][] carts = new String[menus.length][2];
-			ArrayList<Menu> menuList = sService.getMenulistByNum(menus);
-			
-			for(int i = 0; i < menus.length; i++)
-				carts[i] = menus[i].split("_");
-			
-			m.addAttribute("menuList", menuList);
-			m.addAttribute("carts", carts);
-		}
-		
-		return "corporateView/";
-	}
-	
 	@GetMapping("addToCart")
 	public void addToCart(int storeCode, String memberId, int menuNum, int orderCount,
 						@CookieValue(name="cart", defaultValue="0") String cart,
@@ -141,6 +120,27 @@ public class CorporateOrderController {
 		Cookie cookie1 = new Cookie("cart", cart);
 		cookie1.setMaxAge(24 * 60 * 60);
 		res.addCookie(cookie1);
+	}
+	
+	@GetMapping("cart")
+	public String cart(Model m,
+			@CookieValue(name="cart", defaultValue="0") String cart) throws Exception {
+		cart = URLDecoder.decode(cart, "UTF-8");
+		if(cart.equals("0")) {
+			m.addAttribute("err", "카트에 담긴 음식이 없습니다.");
+		} else {
+			String[] menus = cart.split(",");
+			String[][] carts = new String[menus.length][2];
+			ArrayList<Menu> menuList = sService.getMenulistByNum(menus);
+			
+			for(int i = 0; i < menus.length; i++)
+				carts[i] = menus[i].split("_");
+			
+			m.addAttribute("menuList", menuList);
+			m.addAttribute("carts", carts);
+		}
+		
+		return "corporateView/";
 	}
 	
 	@PostMapping("orderMenu")
