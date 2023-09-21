@@ -31,5 +31,7 @@ public interface MemberDAO {
 
 	int findMemberByPhone(String phone);
 
+	Member loginToOrder(HashMap<String, String> map);
+
 
 }

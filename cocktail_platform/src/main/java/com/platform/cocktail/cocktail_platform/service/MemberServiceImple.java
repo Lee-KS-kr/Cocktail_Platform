@@ -131,4 +131,17 @@ public class MemberServiceImple implements MemberService {
 		int n = dao.findMemberByPhone(phone);
 		return n;
 	}
+
+	@Override
+	public Member loginToOrder(String memberId, String memberPw) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("memberId", memberId);
+		map.put("memberPw", memberPw);
+		Member m = dao.loginToOrder(map);
+		
+		if(encoder.matches(memberPw, m.getMemberPw()))
+			return m;
+		else
+			return null;
+	}
 }
