@@ -244,8 +244,11 @@ img[alt=cocktail_image]{
 }
 
 .store_list{
+  width: 80%;
+  overflow: none, scroll;
   display: flex;
   padding: 20px;
+  margin: auto;
 }
 
 .store_score{
