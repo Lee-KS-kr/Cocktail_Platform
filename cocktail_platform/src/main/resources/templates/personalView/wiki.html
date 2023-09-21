@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
     <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
-    <title>칵테일 상세</title>
+    <title>칵테일 Wiki</title>
     <link rel="favicon" href="../static/image/ico/favicon.ico">
     <link rel="favicon" th:href="@{CSS/image/ico/favicon.ico}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,17 +101,49 @@
       </div>
     </div>
     <div class="text">
-        <div>
+        <div class="ex_text">
             <p><span th:text="${cocktail.cocktailName}"></span>를 파는 매장에서 직접 즐겨볼까요?</p>
         </div>
         <div class="store_list">
             <div class="inside_box" th:each="store : ${storeList}">
-                <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store image"></div>
+                <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image"></div>
                 <div>
                     <div th:text="${store.storeName}"></div>
                     <div th:text="|${store.address1}, ${store.address2}|"></div>
-                    <div th:text="${store.storeReviewScore}"></div>
+                    <div th:text="${store.storeReviewScore}" class="store_score"></div>
                 </div>
+            </div>
+            <div class="inside_box" th:each="store : ${storeList}">
+              <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image"></div>
+              <div>
+                  <div th:text="${store.storeName}"></div>
+                  <div th:text="|${store.address1}, ${store.address2}|"></div>
+                  <div th:text="${store.storeReviewScore}" class="store_score"></div>
+              </div>
+          </div>
+          <div class="inside_box" th:each="store : ${storeList}">
+            <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image"></div>
+            <div>
+                <div th:text="${store.storeName}"></div>
+                <div th:text="|${store.address1}, ${store.address2}|"></div>
+                <div th:text="${store.storeReviewScore}" class="store_score"></div>
+            </div>
+        </div>
+            <div class="inside_box" th:each="store : ${storeList}">
+              <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image"></div>
+              <div>
+                  <div th:text="${store.storeName}"></div>
+                  <div th:text="|${store.address1}, ${store.address2}|"></div>
+                  <div th:text="${store.storeReviewScore}" class="store_score"></div>
+              </div>
+            </div>
+            <div class="inside_box" th:each="store : ${storeList}">
+              <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image"></div>
+              <div>
+                  <div th:text="${store.storeName}"></div>
+                  <div th:text="|${store.address1}, ${store.address2}|"></div>
+                  <div th:text="${store.storeReviewScore}" class="store_score"></div>
+              </div>
             </div>
         </div>
     </div>
