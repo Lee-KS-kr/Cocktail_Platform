@@ -66,6 +66,7 @@ function memChgToggle(){
 
 //유효성 플래그 변수
 let isValid2 = false;
+let phoneChk1 = false;
 
 /**휴대폰번호 유효성 검사*/
 function phoneChk(){
@@ -74,6 +75,7 @@ function phoneChk(){
     
     if(!regPhone.test(phone)){
         $('#errMsg1').html('전화번호 형식이 올바르지 않습니다.');
+        phoneChk1 = false;
         return false;
     }
     else{
@@ -82,6 +84,7 @@ function phoneChk(){
         	//하이픈을 추가하여 전화번호 형식으로 변환
             phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
             $('#phone').val(phone);
+            phoneChk1 = true;
         }
         $('#errMsg1').html('');
         return true;
@@ -92,7 +95,7 @@ function phoneChk(){
 function memChg(){
 	let param = $('#memberInfoForm').serialize();
 	
-	if(!phoneChk()){
+	if(phoneChk1 == false){
 		return false;
 	}
 		$.ajax({
@@ -299,10 +302,13 @@ function infoChk(){
 /**가게 정보 변경하기*/
 function storeChg(){
 	let form = $('#storeInfoForm')[0];
-	let formData = new FormData(form);
+	let formData = new FormData();
 	let params = $('#storeInfoForm').serializeArray();
-	//formData에 file을 'upload'라는 이름으로 append해준다.
-	formData.append('upload',$('#file')[0].files[0]);
+	let file = $('#file')[0].files[0];
+	//파일이 있으면 formData에 file을 'upload'라는 이름으로 append해준다.
+	if(file){
+		formData.append('upload',file);
+	}
 	//form 태그 안에 있는 요소들이 key, value로 들어감.
 	params.forEach(function(param){
 		formData.append(param["name"], param["value"]);

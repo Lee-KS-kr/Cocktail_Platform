@@ -210,9 +210,7 @@ img[alt=cocktail_image]{
   width: 450px;
   align-items: end;
   align-content: flex-end;
-  background-color: rgb(99, 216, 70);
   border: 1px solid #ccc;
-  border-radius: 8px;
   text-align: left;
   margin: 0 auto;
 }
@@ -224,10 +222,16 @@ img[alt=cocktail_image]{
 .sub_title{
   color: #313131;
   font-family: 'Noto Sans KR', sans-serif;  
-  font-size: 22pt;
+  font-size: 10pt;
 }
 
 hr{
-  width: 80%;
-  border: 1px solid #ccc;
+  width: 20px;
+  align-content: enter;
+  size: 10px;
+  border-color:red;
+}
+.c_con_inner{
+  border: 1px solid #e2e2e2;
+  padding: 10px;
 }

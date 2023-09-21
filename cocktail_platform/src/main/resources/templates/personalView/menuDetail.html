@@ -43,7 +43,7 @@
 		<table>
 			<tr>
 				<td>
-					<img th:src="@{/image/menu/} + ${menu.savedFilename}">
+					<img th:src="@{/image/menu/} + ${menu.savedFilename}" alt="menu_img">
 				</td>
 			</tr>
 			<tr>
@@ -56,9 +56,7 @@
 				<td th:text="${menu.price}"></td>
 			</tr>
 			<tr>
-				<td>
-					<pre th:value="${menu.menuInfo}"></pre>
-				</td>
+				<td th:text="${menu.menuInfo}"></td>
 			</tr>
 		</table>
 	</div>
