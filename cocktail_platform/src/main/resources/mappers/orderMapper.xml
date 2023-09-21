@@ -48,25 +48,19 @@
 	
 	<insert id="makeNewOrder" parameterType="HashMap" useGeneratedKeys="true" keyProperty="orderCode">
     	insert into
-    		order
+    		orders
     		(
        		 orderCode,
        		 storeCode,
-       		 orderDate,
-       		 memberId,
-       		 totalPrice,
-       		 menuList,
+       		 <if test="memberId != 'null'"> memberId, </if>
        		 orderState
     		)
     	values
     		(
        		to_char(sysdate, 'yyyymmdd') || order_seq.nextval || #{storeCode}
-       		,#{storeCode}
-       		,to_char(sysdate, 'yyyymmdd')
-       		,#{memberId}
-       		,#{totalPrice}
-       		,#{menuList}
-       		,#{orderState}
+       		, #{storeCode}
+       		<if test="memberId != 'null'"> , #{memberId} </if>
+       		, 'apply'
    	 		)
 	</insert>
 	
