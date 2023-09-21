@@ -299,7 +299,7 @@ function infoChk(){
 /**가게 정보 변경하기*/
 function storeChg(){
 	let form = $('#storeInfoForm')[0];
-	let formData = new formData();
+	let formData = new FormData(form);
 	let params = $('#storeInfoForm').serializeArray();
 	//formData에 file을 'upload'라는 이름으로 append해준다.
 	formData.append('upload',$('#file')[0].files[0]);
