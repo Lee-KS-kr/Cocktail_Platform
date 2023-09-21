@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{/CSS/corpMain.css}">
-<title>My Page</title>
+<title>마이 페이지</title>
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
@@ -302,8 +302,11 @@ function infoChk(){
 /**가게 정보 변경하기*/
 function storeChg(){
 	let form = $('#storeInfoForm')[0];
+	//새로운 FormData 객체 생성
 	let formData = new FormData();
+	//가게 정보 폼의 요소를 문자열로 이루어진 배열로 만듦
 	let params = $('#storeInfoForm').serializeArray();
+	//올린 파일을 file 변수에 넣어줌
 	let file = $('#file')[0].files[0];
 	//파일이 있으면 formData에 file을 'upload'라는 이름으로 append해준다.
 	if(file){
