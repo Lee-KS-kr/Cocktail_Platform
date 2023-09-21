@@ -60,9 +60,9 @@
     		(to_char(sysdate, 'yyyymmdd') || order_seq.nextval || #{storeCode}
        		, #{storeCode}
        		, to_char(sysdate, 'yyyymmdd') sysdate
-       		, <if test="memberId != 'null'"> #{memberId}, </if>
+       		, <if test="memberId != 'null' and memberId != ''"> #{memberId}, </if>
        		#{totalPrice}
-       		, <if test="menuList != 'null'"> #{menuList}, </if>
+       		, <if test="menuList != 'null' and menuList != ''"> #{menuList}, </if>
        		'apply')
 	</insert>
 	
