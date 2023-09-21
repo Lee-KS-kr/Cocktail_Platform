@@ -66,6 +66,7 @@ function memChgToggle(){
 
 //유효성 플래그 변수
 let isValid2 = false;
+let phoneChk1 = false;
 
 /**휴대폰번호 유효성 검사*/
 function phoneChk(){
@@ -74,6 +75,7 @@ function phoneChk(){
     
     if(!regPhone.test(phone)){
         $('#errMsg1').html('전화번호 형식이 올바르지 않습니다.');
+        phoneChk1 = false;
         return false;
     }
     else{
@@ -82,6 +84,7 @@ function phoneChk(){
         	//하이픈을 추가하여 전화번호 형식으로 변환
             phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
             $('#phone').val(phone);
+            phoneChk1 = true;
         }
         $('#errMsg1').html('');
         return true;
@@ -92,7 +95,7 @@ function phoneChk(){
 function memChg(){
 	let param = $('#memberInfoForm').serialize();
 	
-	if(!phoneChk()){
+	if(phoneChk1 == false){
 		return false;
 	}
 		$.ajax({
