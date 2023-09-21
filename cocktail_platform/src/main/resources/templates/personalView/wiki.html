@@ -7,6 +7,10 @@
     <title>칵테일 상세</title>
     <link rel="favicon" href="../static/image/ico/favicon.ico">
     <link rel="favicon" th:href="@{CSS/image/ico/favicon.ico}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+  
     <link rel="stylesheet" href="../../static/CSS/personal/wiki.css">
         <!-- vs code
     -->
@@ -28,35 +32,36 @@
 				<img th:src="@{/image/btn_search.png}" alt="search"></a>
 		</div>
     </div>
-    <!-- title -->
+    <!-- title =====================================================-->
     <div class="title">
         <p>칵테일 위키</p>
     </div>
     <div class="contents">
+      <div class="con1">
         <div class="c_img">
-                <img th:src="|@{/image/cocktails/}${cocktail.savedFilename}|" alt="cocktail_image">
+          <img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image">
         </div>
         <div class="c_con">
-            <div>
+            <div class="c_con_name">
                 <p>칵테일이름</p>
                 <p th:text="${cocktail.cocktailName}"></p>
             </div>
-            <div>
+            <div class="c_con_taste">
                 <p>칵테일 맛</p>
                 <span th:each="item : ${cocktail.taste}" id="tasteList">
                     <span th:text="${item}"></span></span>
             </div>
-            <div>
+            <div class="c_con_color">
                 <p>칵테일 색</p>
                 <span th:each="item : ${cocktail.flavor}" id="flavorList">
                     <span th:text="${item}"></span></span>
             </div>
-            <div>
+            <div class="c_con_flavor">
                 <p>칵테일 향</p>
                 <span th:each="item : ${cocktail.color}" id="colorList">
                     <span th:text="${item}"></span></span>
             </div>
-            <div>
+            <div class="c_con_ing">
                 <p>주요 재료</p>
                 <span th:if="${cocktail.cBase} != null" th:text="${cocktail.cBase}"></span>
                 <span th:if="${cocktail.cIngre1} != null" th:text="${cocktail.cIngre1}"></span>
@@ -64,16 +69,18 @@
                 <span th:if="${cocktail.cIngre3} != null" th:text="${cocktail.cIngre3}"></span>
                 <span th:if="${cocktail.cIngre4} != null" th:text="${cocktail.cIngre4}"></span>
             </div>
-            <div>
+            <div class="c_con_degree">
                 <p>도수</p>
                 <p th:text="${cocktail.cocktailAlcohol}"></p>
             </div>
-            <div>
+            <div class="c_con_target">
                 <p>대상</p>
             </div>
         </div>
+        <div class="con2"></div>
+      </div>
     </div>
-    <div class="mid">
+    <div class="text">
         <div>
             <p><span th:text="${cocktail.cocktailName}"></span>를 파는 매장에서 직접 즐겨볼까요?</p>
         </div>
@@ -89,7 +96,7 @@
         </div>
     </div>
 
-    <!--상품 스토어-->
+    <!--상품 스토어 =================================================-->
     <section id="mainbox1" class="mainbox1">
         <div class="best_prd">
           <div class="main_title">
@@ -154,7 +161,7 @@
           </div>
         </div>
       </section>
-      <!-- ======= End mainbox1 : 인기상품 ======= -->
+    <!--상품 스토어END =================================================-->
 </div>
 </body>
 </html>

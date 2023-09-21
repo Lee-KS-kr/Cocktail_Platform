@@ -109,7 +109,7 @@ position:relative;
 img[alt=logo] { width: 120px;}
 img[alt=search] { width: 27px; height: 27px; }
 img[alt=icon]{width: 20px; display: flex;}
-
+    
 .order{margin: 20px 0px;}
 
 .orderHistory[type=button] {
