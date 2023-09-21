@@ -10,6 +10,7 @@
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    text-decoration: none !important;
 }
 a:link { color: #232323; }
 a:visited { color:#454545; }
