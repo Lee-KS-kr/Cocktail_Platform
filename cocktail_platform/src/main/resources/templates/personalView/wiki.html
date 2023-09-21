@@ -106,7 +106,7 @@
         </div>
         <div class="store_list">
             <div class="inside_box" th:each="store : ${storeList}">
-                <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store image"></div>
+                <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image"></div>
                 <div>
                     <div th:text="${store.storeName}"></div>
                     <div th:text="|${store.address1}, ${store.address2}|"></div>
@@ -114,7 +114,7 @@
                 </div>
             </div>
             <div class="inside_box" th:each="store : ${storeList}">
-              <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store image"></div>
+              <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image"></div>
               <div>
                   <div th:text="${store.storeName}"></div>
                   <div th:text="|${store.address1}, ${store.address2}|"></div>
@@ -122,7 +122,7 @@
               </div>
           </div>
           <div class="inside_box" th:each="store : ${storeList}">
-            <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store image"></div>
+            <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image"></div>
             <div>
                 <div th:text="${store.storeName}"></div>
                 <div th:text="|${store.address1}, ${store.address2}|"></div>

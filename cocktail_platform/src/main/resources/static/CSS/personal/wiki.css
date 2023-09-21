@@ -253,3 +253,8 @@ img[alt=cocktail_image]{
   font-family: 'Noto Sans KR', sans-serif;  
   font-size: 8pt;
 }
+
+img[alt=store_image]{
+  width: 250px;
+  height: 250px;
+}
