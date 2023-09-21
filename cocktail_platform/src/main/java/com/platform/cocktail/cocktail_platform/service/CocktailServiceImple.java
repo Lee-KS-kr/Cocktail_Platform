@@ -33,6 +33,7 @@ public class CocktailServiceImple implements CocktailService {
 		map.put("searchWord", searchWord);
 		
 		ArrayList<Object> list = dao.search(map);
+		log.debug("{}", list);
 		return list;
 	}
 

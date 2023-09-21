@@ -51,7 +51,9 @@ public class PersonalAjaxController {
 	
 	@GetMapping("search")
 	public ArrayList<Object> search(String category, String searchWord){
+		log.debug("category : {} searchword : {} ", category, searchWord);
 		ArrayList<Object> list = cService.search(category, searchWord);
+		log.debug("list : {}", list);
 		return list;
 	}
 }

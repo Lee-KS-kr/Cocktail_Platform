@@ -18,6 +18,7 @@ import com.platform.cocktail.cocktail_platform.domain.Reservation;
 import com.platform.cocktail.cocktail_platform.domain.ReservationState;
 import com.platform.cocktail.cocktail_platform.domain.Schedule;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
+import com.platform.cocktail.cocktail_platform.domain.StoreReview;
 import com.platform.cocktail.cocktail_platform.service.StoreService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -81,5 +82,16 @@ public class PersonalStoreController {
 	public String cancleReserve(String reserveCode) {
 		sService.changeReservationState(0, reserveCode, ReservationState.canceled);
 		return "redirect:/personal/member/reserveList";
+	}
+	
+	@GetMapping("writeReview")
+	public String writeReview(String orderCode) {
+		return "";
+	}
+	
+	@PostMapping("writeReview")
+	public String writeReview(@AuthenticationPrincipal UserDetails user, StoreReview review,
+			int[] menuNums, int[] weathers, int[] ageGroups, int[] companions, int[] events) {
+		return "";
 	}
 }
