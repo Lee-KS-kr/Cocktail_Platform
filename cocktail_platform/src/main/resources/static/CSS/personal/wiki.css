@@ -228,6 +228,12 @@ img[alt=cocktail_image]{
 }
 
 hr{
-  width: 80%;
-  border: 1px solid #ccc;
+  width: 20px;
+  align-content: enter;
+  size: 10px;
+  border-color:red;
+}
+.c_con_inner{
+  border: 1px solid #e2e2e2;
+  padding: 10px;
 }
