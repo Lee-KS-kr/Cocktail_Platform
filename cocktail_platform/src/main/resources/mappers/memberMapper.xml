@@ -127,4 +127,7 @@
 			memberId = #{memberId}
 	</delete>
 	
+	<select id="loginToOrder" parameterType="Hashmap" resultType="Member">
+		select * from member where memberId = #{memberId} and memberPw = #{memberPw}
+	</select>
 </mapper>

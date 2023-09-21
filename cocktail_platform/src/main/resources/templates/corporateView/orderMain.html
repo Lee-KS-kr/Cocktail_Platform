@@ -5,7 +5,32 @@
 <meta charset="UTF-8">
 <title>주문 첫 페이지</title>
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
-<link rel="stylesheet" th:href="@{/CSS/}">
+<script>
+  function nonuser(){
+    let f = document.createElement('form');
+    let obj;
+    obj = document.createElement('input');
+    obj.setAttribute('type', 'hidden');
+    obj.setAttribute('name', 'memberId');
+    f.appendChild(obj);
+
+    let obj2;
+    obj2 = document.createElement('input');
+    obj2.setAttribute('type', 'hidden');
+    obj2.setAttribute('name', 'memberPw');
+    f.appendChild(obj2);
+
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/FitTail/corporate/order/login');
+    document.body.appendChild(f);
+    f.submit();
+  }
+
+  function nonuserLogin(){
+    return "post";
+  }
+</script>
+<link rel="stylesheet" th:href="@{/CSS/login.css}">
 </head>
 <body>
 	<main>
@@ -16,7 +41,7 @@
     </div>
     <div class="sec1">
       <div class="inner_body">
-	      <form id="login" th:action="@{/member/login}" method="post">
+	      <form id="login" th:action="@{/corporate/order/login}" method="post">
 	       <div class="input">
 	         <input type="text" id="memberId" name="memberId" placeholder="아이디" required> <br>
 	         <input type="password" id="memberPw" name="memberPw" placeholder="비밀번호" required> <br>
@@ -46,7 +71,7 @@
         <p><a th:href="@{/member/join}">| 회원가입</a></p>
       </div>
       <!-- sec2 끝 -->
-	<a th:href="@{/corporate/order/orderMenu}">비회원 주문</a>
+	<a href="javascript:nonuser()" onclick="javascript:nonuserLogin()">비회원 주문</a>
 	</main>
 </body>
 </html>

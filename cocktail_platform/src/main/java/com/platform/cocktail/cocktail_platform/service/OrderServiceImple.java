@@ -66,7 +66,7 @@ public class OrderServiceImple implements OrderService {
 	public Order makeNewOrder(int storeCode, String memberId) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("storeCode", storeCode);
-		map.put("memberid", memberId);
+		map.put("memberId", memberId);
 		
 		String code = dao.makeNewOrder(map);
 		Order o = findOrderByOrdercode(code);
