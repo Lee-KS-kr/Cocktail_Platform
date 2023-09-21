@@ -46,23 +46,30 @@
 			orderCode desc
 	</select>
 	
-	<insert id="makeNewOrder" parameterType="HashMap" useGeneratedKeys="true" keyProperty="orderCode">
+	<insert id="makeNewOrder" parameterType="HashMap">
     	insert into
     		orders
     		(
-       		 orderCode,
-       		 storeCode,
-       		 <if test="memberId != 'null'"> memberId, </if>
+       		 orderCode
+       		 , storeCode
+       		 , orderDate
+       		 , <if test="memberId != 'null'"> memberId, </if>
+       		 totalPrice
+       		 , <if test="menuList != 'null'"> menuList, </if>
        		 orderState
     		)
     	values
     		(
        		to_char(sysdate, 'yyyymmdd') || order_seq.nextval || #{storeCode}
        		, #{storeCode}
-       		<if test="memberId != 'null'"> , #{memberId} </if>
-       		, 'apply'
+       		, to_char(sysdate, 'yyyymmdd') sysdate
+       		, <if test="memberId != 'null'"> #{memberId}, </if>
+       		#{totalPrice}
+       		, <if test="menuList != 'null'"> #{menuList}, </if>
+       		'apply'
    	 		)
 	</insert>
+
 	
 	<insert id="insertTemporderList" parameterType="OrderTemp">
 		insert into
@@ -96,20 +103,9 @@
 		 	 menuList = #{menuList}
 		where 
 			storeCode = #{storeCode}
-			and memberid = #{memberid}
+		and
+			memberid = #{memberid}
 	</update>
-	
-	<select id="getTemporderlistByCode" parameterType="int" resultType="OrderTemp">
-		select
-			*
-		from
-			orderTemp
-		where
-			orderCode = #{orderCode},
-			orderState = 'apply'
-		order by
-			tempOrderkey desc
-	</select>
 	
 	<select id="getMenulistByOrdercode" parameterType="String" resultType="Menu">
 		select
@@ -118,6 +114,19 @@
 			orders
 		where
 			orderCode = #{orderCode}
+	</select>
+	
+	<select id="getTemporderlistByCode" parameterType="int" resultType="OrderTemp">
+		select
+			*
+		from
+			orderTemp
+		where
+			orderCode = #{orderCode}
+		and
+			orderState = 'apply'
+		order by
+			tempOrderkey desc
 	</select>
 	
 </mapper>
