@@ -47,62 +47,108 @@ border-spacing: 0;
 }
 
 /*=========================================================*/
-/* 전체 폼 스타일 */
-#joinForm {
-  max-width: 400px;
-  margin: 0 auto;
+
+/* 검색 웹 페이지 스타일 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+/* 네비게이션 바 스타일 */
+.navi {
+  background-color: #fff; /* 흰색 배경 색상 */
+  color: #333; /* 글자색을 검은색으로 변경 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+
+.navi1 img {
+  width: 150px;
+}
+
+.navi2 {
+  display: flex;
+  align-items: center;
+}
+
+.navi2 a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.navi2 img {
+  width: 25px;
+}
+
+/* 검색 input 가운데 정렬 */
+.search {
+  background-color: #fff;
   padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-}
-
-/* 제목 스타일 */
-.title {
-  font-size: 24px;
   text-align: center;
-  color: #FF661A;
-  margin-bottom: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-/* 입력 필드 스타일 */
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="tel"] {
-  width: calc(100% - 22px);
+
+/* 선택 상자 스타일 */
+#category {
   padding: 10px;
-  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-/* 버튼 스타일 */
-input[type="submit"],
-input[type="reset"] {
-  width: calc(50% - 5px);
+#searchWord {
   padding: 10px;
-  background-color: #FF661A;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 400px; /* 원하는 길이로 조정 */
+  margin-right: 10px;
+}
+
+
+/* 검색 버튼 스타일 (선택) */
+#search {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
   border: none;
   border-radius: 5px;
-  color: #fff;
-  font-size: 16px;
   cursor: pointer;
 }
 
-/* 버튼 호버 효과 */
-input[type="submit"]:hover,
-input[type="reset"]:hover {
-  background-color: #FF4500;
+#list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
 }
 
-/* 에러 메시지 스타일 */
-p[id^="errMsg"] {
-  color: #FF661A;
-  font-size: 14px;
-  margin: 5px 0;
+.con_box {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 300px;
 }
 
+.con_box img {
+  max-width: 100%;
+  height: auto;
+}
 
+.con_box a {
+  text-decoration: none;
+  color: #333;
+}
 
-
-
+/* 다른 요소에 대한 추가적인 스타일링을 원하는 대로 추가하세요. */
