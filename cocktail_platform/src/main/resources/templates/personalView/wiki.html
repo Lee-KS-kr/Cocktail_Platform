@@ -39,7 +39,7 @@
     <div class="contents">
       <div class="con1">
         <div class="c_img">
-          <img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image">
+          <img th:src="|@{/image/cocktails/}${cocktail.savedFilename}|" alt="cocktail_image">
         </div>
         <div class="c_con">
             <div class="c_con_name">
