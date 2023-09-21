@@ -220,3 +220,14 @@ img[alt=cocktail_image]{
 .c_con_inner{
   border: 1px solid #e2e2e2;
 }
+
+.sub_title{
+  color: #313131;
+  font-family: 'Noto Sans KR', sans-serif;  
+  font-size: 22pt;
+}
+
+hr{
+  width: 80%;
+  border: 1px solid #ccc;
+}
