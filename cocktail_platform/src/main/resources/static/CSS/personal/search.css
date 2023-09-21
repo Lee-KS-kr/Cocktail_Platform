@@ -122,11 +122,14 @@ justify-content: center;
   padding: 10px 20px;
   background-color: #ff5805;
   border: 1px solid #fff;
-  box-shadow: 1px 1px 4px #ff5805;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+#search:hover{
+  box-shadow: 1px 1px 4px #ff5805;
 }
 
 #list {
@@ -154,4 +157,10 @@ justify-content: center;
 .con_box a {
   text-decoration: none;
   color: #333;
+}
+
+/*닫기버튼*/
+img[alt=close]{
+  width: 25px;
+  height: 25px;
 }
