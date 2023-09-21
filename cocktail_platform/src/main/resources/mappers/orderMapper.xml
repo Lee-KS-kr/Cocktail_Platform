@@ -46,6 +46,7 @@
 			orderCode desc
 	</select>
 	
+	<insert id="makeNewOrder" parameterType="HashMap" useGeneratedKeys="true" keyProperty="orderCode">
     	insert into
     		orders
     		(
