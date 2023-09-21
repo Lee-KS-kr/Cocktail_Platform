@@ -1,6 +1,5 @@
 package com.platform.cocktail.cocktail_platform.controller.corporate;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
-import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.service.MemberService;
 import com.platform.cocktail.cocktail_platform.service.OrderService;
@@ -72,8 +70,13 @@ public class CorporateOrderController {
 		return "corporateView/order";
 	}
 	
-	@ResponseBody
 	@GetMapping("menu")
+	public String menu() {
+		return "corporateView/order";
+	}
+	
+	@ResponseBody
+	@PostMapping("menu")
 	public ArrayList<Menu> menu(int storeCode, Model m) {
 		ArrayList<Menu> menuList = sService.getMenulistByCode(storeCode);
 		return menuList;
@@ -84,27 +87,6 @@ public class CorporateOrderController {
 		Menu menu = sService.getMenuInfoByNum(menuNum);
 		m.addAttribute("menu", menu);
 		return "";
-	}
-	
-	@GetMapping("cart")
-	public String cart(Model m,
-			@CookieValue(name="cart", defaultValue="0") String cart) throws Exception {
-		cart = URLDecoder.decode(cart, "UTF-8");
-		if(cart.equals("0")) {
-			m.addAttribute("err", "카트에 담긴 음식이 없습니다.");
-		} else {
-			String[] menus = cart.split(",");
-			String[][] carts = new String[menus.length][2];
-			ArrayList<Menu> menuList = sService.getMenulistByNum(menus);
-			
-			for(int i = 0; i < menus.length; i++)
-				carts[i] = menus[i].split("_");
-			
-			m.addAttribute("menuList", menuList);
-			m.addAttribute("carts", carts);
-		}
-		
-		return "corporateView/";
 	}
 	
 	@GetMapping("addToCart")
@@ -138,6 +120,27 @@ public class CorporateOrderController {
 		Cookie cookie1 = new Cookie("cart", cart);
 		cookie1.setMaxAge(24 * 60 * 60);
 		res.addCookie(cookie1);
+	}
+	
+	@GetMapping("cart")
+	public String cart(Model m,
+			@CookieValue(name="cart", defaultValue="0") String cart) throws Exception {
+		cart = URLDecoder.decode(cart, "UTF-8");
+		if(cart.equals("0")) {
+			m.addAttribute("err", "카트에 담긴 음식이 없습니다.");
+		} else {
+			String[] menus = cart.split(",");
+			String[][] carts = new String[menus.length][2];
+			ArrayList<Menu> menuList = sService.getMenulistByNum(menus);
+			
+			for(int i = 0; i < menus.length; i++)
+				carts[i] = menus[i].split("_");
+			
+			m.addAttribute("menuList", menuList);
+			m.addAttribute("carts", carts);
+		}
+		
+		return "corporateView/";
 	}
 	
 	@PostMapping("orderMenu")

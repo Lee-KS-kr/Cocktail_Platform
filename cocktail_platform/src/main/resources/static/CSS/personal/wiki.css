@@ -188,22 +188,20 @@ margin: auto 0;
 }
 
 .c_img{
-    width: 250px;
-    height: 250px;
+  position: relative;
+    width: 300px;
+    height: 450px;
     border: 1px solid #e2e2e2;
-    position: relative;
-    width: 300px; 
-    height: 300px;
+    
     overflow: hidden;
 }
 
-
 img[alt=cocktail_image]{
   position: absolute;
-  top: 100;
-  left: 100;
+  top: 0px;
+  left: 0px;
   width: 300px;
-  height: 300px;
+  height: 450px;
   margin: 0 auto;
 
 }
@@ -219,7 +217,17 @@ img[alt=cocktail_image]{
   margin: 0 auto;
 }
 
-.c_con_name, .c_con_taste, .c_con_color, .c_con_flavor, .c_con_ing, .c_con_degree, .c_con_target  
-{
+.c_con_inner{
   border: 1px solid #e2e2e2;
+}
+
+.sub_title{
+  color: #313131;
+  font-family: 'Noto Sans KR', sans-serif;  
+  font-size: 22pt;
+}
+
+hr{
+  width: 80%;
+  border: 1px solid #ccc;
 }
