@@ -4,28 +4,48 @@
 
 	<mapper namespace="com.platform.cocktail.cocktail_platform.dao.RecommendDAO">
 
-	<!-- 인기상품
-	<select id="getTop3Cocktails" parameterType="" resultType="">
-		select 
-    		menuName
-    		, sum(orderCount) totalOrderCount
-    		, dense_rank() over (order by sum(orderCount) desc) menuRank
-		from
-    		orderTemp
-		group by
-    		menuName
-		order by
-    		menuRank asc;
+	<!-- 인기상품 -->
+	<select id="getTop3Cocktails" parameterType="" resultType="Menu">
+    	select 
+        	menuName
+        	, sum(orderCount) totalOrderCount
+        	, dense_rank() over (order by sum(orderCount) desc) menuRank
+    	from
+        	orderTemp
+    	group by
+        	menuName
+    	order by
+        	menuRank asc
 	</select>
-	 -->
+	 
 
 	<!-- 님을 위한 추천 상품 -->
+	<select id="CustomizedRecommendation" parameterType="" resultType="Menu">
+		select
+    		c.cocktailName
+		from
+    		cocktails c
+		inner join 
+    		taste t 
+		on 
+    		c.cocktailTaste = #{cocktailTaste} 
+		or
+    		c.cocktailFlavor = #{cocktailFlavor}
+    	where
+    		t.memberId = #{memberId}
+    	order by
+    		case
+        		when 
+        			c.cocktailTaste = #{cocktailTaste}  and c.cocktailFlavor = #{cocktailFlavor} then 1
+        		when
+        			c.cocktailTaste = #{cocktailTaste}  or c.cocktailFlavor = #{cocktailFlavor} then 2
+       				else 3
+    	end
+	</select>
 
-
-	<!-- ㅇㅇ님과 비슷한 20대가 많이 찾아요 -->
+	<!-- ㅇㅇ님과 비슷한 20,대가 많이 찾아요 -->
 
 	<!-- 오늘 같이 비가 오는 날에는? -->
-
 
 	<!-- 친구와 많이 마셔요 -->
 
