@@ -17,13 +17,81 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="../../static/CSS/personal/personalmain.css">
- <!-- vs code  
-    -->
+<!-- vs code -->
+<link rel="stylesheet" th:href="@{/CSS/personal/personalmain.css}">
+<!-- thymeleaf -->
+  <script>
+    $(document).ready(function(){
+      getBestCocktails();
+    });
 
-   
-    <link rel="stylesheet" th:href="@{/CSS/personal/personalmain.css}">
-    <!-- thymeleaf
-    -->
+    let isLoggedIn = null;
+    function getBestCocktails(){
+      isLoggedIn = $("#loggedIn").html();
+      $.ajax({
+        url:'getBestCocktails',
+        type:'get',
+        dataType:'json',
+        success:function(list){
+          showList("best3", list);
+        },
+        error:function(e){
+          console.log(JSON.stringify(e));
+        }
+      });
+    }
+
+    function showList(target, list){
+      let targetDiv = $("#" +target);
+      $(list).each(function(i, item){
+        if(i == 3)
+          return;
+
+        targetDiv.append(`
+          <div class="box">
+            <a href="/FitTail/person/store/storeDetail?storeCode=${item.storeCode}">
+              <img
+                src="/FitTail/image/temp.jpg"
+                class="boxImg"
+                alt="인기 상품${i}"
+              />
+            </a>
+            <p><b>${item.menuName}</b></p>
+            <a href="/FitTail/person/store/menuInfo?menuNum=${item.menuNum}">
+              <strong class="pd_title">${item.storeName}</strong><br>
+            </a>
+            <p>
+              Eum ad dolor et. Autem aut fugiat debitis voluptatem
+              consequuntur sit. Et veritatis id.
+            </p>
+          </div>
+          `);
+      });
+
+      for(var i = 0; i < 3; i++){
+        targetDiv.append(`
+          <div class="box">
+            <a th:href="@{/}">
+              <img
+                th:src="@{/image/temp.jpg}"
+                class="boxImg"
+                alt="인기 상품"
+              />
+            </a>
+            <p><b>칵테일대모험</b></p>
+            <a th:href="@{/}">
+              <strong class="pd_title">얼린 초딩</strong><br>
+            </a>
+            <p>
+              Eum ad dolor et. Autem aut fugiat debitis voluptatem
+              consequuntur sit. Et veritatis id.
+            </p>
+          </div>
+          `);
+      }
+    }
+
+  </script>
 </head>
 <body>
   
@@ -36,9 +104,11 @@
       <div sec:authorize="!isAuthenticated()">
         <a th:href="@{/member/login}">로그인</a>
         <a th:href="@{/personal/searchPage}">
+          <span id="loggedIn" style="display: none;">false</span>
           <img th:src="@{/image/btn_search.png}" alt="search"></a>
       </div>
       <div sec:authorize="isAuthenticated()" class="navi2_1">
+        <span id="loggedIn" style="display: none;">true</span>
         <span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;
         <span><a th:href="@{/member/logout}">로그아웃</a></span>
         <span><a th:href="@{/personal/member/myPage}">마이페이지</a></span>
@@ -63,67 +133,15 @@
 
       
       <!-- ======= mainbox1 : 인기상품 ======= -->
-      <section id="mainbox1" class="mainbox1">
+      <section id="top3" class="mainbox1">
         <div class="best_prd">
           <div class="main_title">
             <a th:href="@{/}">
               <strong>인기 상품</strong><br>
             </a>
           </div>
-          <div class="row">
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="인기 상품"
-                />
-              </a>
-              <p><b>칵테일대모험</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">얼린 초딩</strong><br>
-              </a>
-              <p>
-                Eum ad dolor et. Autem aut fugiat debitis voluptatem
-                consequuntur sit. Et veritatis id.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="인기 상품"
-                />
-              </a>
-              <p><b>칵테일대모험</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">슈의 미용실</strong><br>
-              </a>
-              <p>
-                Repudiandae amet nihil natus in distinctio suscipit id.
-                Doloremque ducimus ea sit non.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="인기 상품"
-                />
-              </a>
-              <p><b>칵테일대모험</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">농협은행</strong><br>
-              </a>
-              <p>
-                Quam rem vitae est autem molestias explicabo debitis sint. Vero
-                aliquid quidem commodi.
-              </p>
-            </div>
+          <div class="row" id="best3">
+            
           </div>
         </div>
       </section>

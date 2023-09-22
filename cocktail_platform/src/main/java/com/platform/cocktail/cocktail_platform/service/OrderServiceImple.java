@@ -82,11 +82,11 @@ public class OrderServiceImple implements OrderService {
 		return n;
 	}
 
-	@Override
-	public ArrayList<Menu> getMenulistByOrdercode(String orderCode) {
-		ArrayList<Menu> list = dao.getMenulistByOrdercode(orderCode);
-		return list;
-	}
+//	@Override
+//	public ArrayList<Menu> getMenulistByOrdercode(String orderCode) {
+//		ArrayList<Menu> list = dao.getMenulistByOrdercode(orderCode);
+//		return list;
+//	}
 
 	public ArrayList<OrderTemp> makeTempOrderList(Order o, int[] menuNum, String[] menuName, int[] price, int[] orderCount){
 		StringBuilder menuList = new StringBuilder();
@@ -117,6 +117,21 @@ public class OrderServiceImple implements OrderService {
 	@Override
 	public ArrayList<OrderTemp> getTemporderlistByCode(int storeCode) {
 		ArrayList<OrderTemp> list = dao.getTemporderlistByCode(storeCode);
+		return list;
+	}
+
+	@Override
+	public ArrayList<Menu> getMenusByCode(String orderCode) {
+		ArrayList<Menu> list = new ArrayList<>();
+		ArrayList<OrderTemp> tempList = dao.getOrdersByOrdercode(orderCode);
+		log.debug("{}", tempList);
+		for (OrderTemp t : tempList) {
+			Menu m = dao.findMenuByNum(t.getMenuNum());
+			list.add(m);
+			log.debug("{}", m);
+		}
+		log.debug("{}", list);
+		
 		return list;
 	}
 
