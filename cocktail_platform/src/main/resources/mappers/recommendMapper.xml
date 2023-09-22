@@ -40,7 +40,7 @@
         		when
         			c.cocktailTaste = #{cocktailTaste}  or c.cocktailFlavor = #{cocktailFlavor} then 2
        				else 3
-    	end;
+    	end
 	</select>
 
 	<!-- ㅇㅇ님과 비슷한 20,대가 많이 찾아요 -->
