@@ -33,6 +33,8 @@ $(document).ready(function(){
 
 	//메뉴 리스트 출력
 	function menuList(list){
+		let fileName = item.savedFilename;
+		
 		let str = '<table>';
 		$(list).each(function(i,item){
 			menuNum = $('#menuNum').val();
@@ -41,7 +43,8 @@ $(document).ready(function(){
 			
 			str += '<tr>';
 			//누르면 장바구니 추가
-			str += `<td rowspan="3"><a href="|javascript:addCart('menuNum')|">' + item.savedFilename + '</a></td>`;
+			str += `<td rowspan="3"><a href="|javascript:addCart('menuNum')|"><img src="/FitTail/image/menu/`+
+					fileName + `></a></td>`;
 			str += `<td><a href="|javascript:count('plus')|">+</a></td></tr>`;
 			str += '<tr><td id="orderCount">1</td></tr>';
 			str += `<tr><td><a href="|javascript:count('minus')|">-</a></td></tr>`;

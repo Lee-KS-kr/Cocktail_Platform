@@ -13,11 +13,11 @@ $(document).ready(function(){
 			url: "cart",
 			type: "get",
 			dataType: "json",
-			success: function(result){
-				if(result == ''){
+			success: function(list){
+				if(list == ''){
 					return;
 				}
-				getList(result);
+				getList(list);
 			},
 			error: function(){
 				alert('error');
@@ -27,10 +27,12 @@ $(document).ready(function(){
 	
 	//메뉴 리스트 출력
 	function getList(list){
+		let fileName = item.savedFilename;
+		
 		let str = '<table>';
 		$(list).each(function(i,item){
 			str += '<tr>';
-			str += '<td>' + item.savedFilename + '</td>';
+			str += '<td><img src="/FitTail/image/menu/' + fileName + '"></td>';
 			str += '<td>' + item.menuName + '</td></tr>';
 			str += '<tr><td>' + item.price + '</td>';
 			str += '</tr>';
