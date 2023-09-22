@@ -88,7 +88,7 @@ body {
 }
 
 
-.navi2_1{width: 80%;}
+.navi2_1{width: 80%; line-height: auto; margin: auto 0;}
 
 .sidebar{display:flex ;}
 
@@ -110,16 +110,17 @@ justify-content: center;
 }
 
 .navi2{
-    width: 50%;
-    background-color:#fff;
-    border-bottom: #e7e7e7;
-    display: flex;
-    justify-content: end;
-    padding-right: 40px ;
-    align-items: center;
-    margin: auto;
+  width: 50%;
+  height: 100%;
+  background-color:#fff;
+  border-bottom: #e7e7e7;
+  display: flex;
+  justify-content: end;
+  padding-right: 40px ;
+  align-items: center;
+  margin: auto;
+  line-height:50%;
 }
-
 
 #main {
   padding-left: 87px;
