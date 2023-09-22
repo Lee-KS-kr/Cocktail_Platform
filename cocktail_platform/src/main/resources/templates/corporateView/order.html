@@ -80,10 +80,12 @@ $(document).ready(function(){
 	$('#hbgMenu').hide();
 	//햄버거 아이콘 누르면 메뉴 보여주기
 	$('#hbgBtn').click(function(){
+		console.log('햄버거 버튼 클릭됨.');
 		$('#hbgMenu').animate({width: "toggle"},400);
 	});
 	//close 버튼 누르면 메뉴 감추기
 	$('#closeBtn').click(function(){
+		console.log('닫기 버튼 클릭됨.');
 		$('#hbgMenu').fadeOut();
 		$('#hbgMenu').animate({width: "toggle"},400);
 	});
@@ -164,7 +166,7 @@ function addCart(menuNum){
 }
 
 function loadCart(){
-	let option = "width = 20%, height = 100%, top = 100, left = 500 location = no scrollbars = no"
+	let option = "width = 20%, height = 100%, top = 100, left = 500, location = no, scrollbars = no"
 	window.open("cart", "cartPopUp", option);
 }
 </script>
@@ -176,6 +178,7 @@ function loadCart(){
  			<div id="hbgBar">
  				<div id="btn">
 	 				<img id="hbgBtn" th:src="@{/image/hbg_icon.png}" width="25px" alt="햄버거메뉴아이콘">
+ 					<img th:src="@{/image/logo_title.png}" alt="logo">
  				</div>
 	 			<div id="hbgMenu">
 	 				<div onclick="history.back();">
@@ -211,6 +214,7 @@ function loadCart(){
  		<section id="bottom">
  			<div id="bottomTab">
  				<a th:href="@{/corporate/order/orderList}"><button>주문 내역</button></a>
+ 				<a th:href="@{/corporate/order/payment}"><button>결제하기</button></a>
  				<a href="javascript:loadCart()" target="_self"><button>장바구니</button></a>
  			</div>
  		</section>
