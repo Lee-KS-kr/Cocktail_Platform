@@ -131,7 +131,7 @@ justify-content: center;
 }
 
 #search:hover{
-  box-shadow: 1px 1px 4px #ff5805;
+  box-shadow: 1px 1px 4px #f18e5d;
 }
 
 #list {
@@ -139,7 +139,7 @@ justify-content: center;
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px;
-  margin-top: 110px;
+  margin-top: 120px;
 }
 
 .con_box {
@@ -150,7 +150,7 @@ justify-content: center;
   padding: 10px;
   text-align: center;
   width: 300px;
-  height: 300px;
+  height: 350px;
 }
 
 .con_box img {
@@ -167,4 +167,17 @@ justify-content: center;
 img[alt=close]{
   width: 25px;
   height: 25px;
+}
+
+.com_box1{
+  width: 280px;
+  height: 300px;
+  overflow: hidden;
+
+  margin: 10px auto;
+}
+
+img[alt="con_box${i}"]{
+  width: 280px;
+  height: 300px;
 }
