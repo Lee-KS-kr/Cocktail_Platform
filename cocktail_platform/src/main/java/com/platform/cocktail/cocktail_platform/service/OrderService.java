@@ -22,7 +22,9 @@ public interface OrderService {
 
 	int finishOrderByCode(String orderCode);
 
-	ArrayList<Menu> getMenulistByOrdercode(String orderCode);
+//	ArrayList<Menu> getMenulistByOrdercode(String orderCode);
 
 	ArrayList<OrderTemp> getTemporderlistByCode(int storeCode);
+
+	ArrayList<Menu> getMenusByCode(String orderCode);
 }

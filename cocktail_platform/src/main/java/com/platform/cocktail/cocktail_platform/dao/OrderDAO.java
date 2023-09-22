@@ -30,4 +30,6 @@ public interface OrderDAO {
 
 	ArrayList<OrderTemp> getTemporderlistByCode(int storeCode);
 
+	Menu findMenuByNum(int menuNum);
+
 }

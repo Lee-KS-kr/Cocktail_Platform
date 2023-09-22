@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.platform.cocktail.cocktail_platform.domain.Menu;
+import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
 import com.platform.cocktail.cocktail_platform.domain.ReservationState;
 import com.platform.cocktail.cocktail_platform.domain.Schedule;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.domain.StoreReview;
+import com.platform.cocktail.cocktail_platform.service.OrderService;
 import com.platform.cocktail.cocktail_platform.service.StoreService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +31,8 @@ import lombok.extern.slf4j.Slf4j;
 public class PersonalStoreController {
 	@Autowired
 	private StoreService sService;
+	@Autowired
+	private OrderService oService;
 	
 	@GetMapping("list")
 	public String list(Model m) {
@@ -85,13 +89,21 @@ public class PersonalStoreController {
 	}
 	
 	@GetMapping("writeReview")
-	public String writeReview(String orderCode) {
-		return "";
+	public String writeReview(String orderCode, Model m) {
+		Order o = oService.findOrderByOrdercode(orderCode);
+		StoreInfo store = sService.getStoreinfoByCode(o.getStoreCode());
+		ArrayList<Menu> list = oService.getMenusByCode(orderCode);
+		
+		m.addAttribute("list", list);
+		m.addAttribute("store", store);
+		log.debug("store {}, list {}", store, list);
+		return "personalView/reviewWrite";
 	}
 	
 	@PostMapping("writeReview")
 	public String writeReview(@AuthenticationPrincipal UserDetails user, StoreReview review,
 			int[] menuNums, int[] weathers, int[] ageGroups, int[] companions, int[] events) {
+		review.setMemberid(user.getUsername());
 		return "";
 	}
 }

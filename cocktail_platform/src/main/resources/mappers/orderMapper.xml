@@ -28,7 +28,7 @@
 		select
 			*
 		from
-			OrderTemp
+			orderTemp
 		where
 			orderCode = #{orderCode}
 		order by
@@ -122,6 +122,10 @@
 			orderState = 'apply'
 		order by
 			tempOrderkey desc
+	</select>
+	
+	<select id="findMenuByNum" parameterType="int" resultType="Menu">
+		select * from menu where category = 'beverage' and menuNum = #{menuNum}
 	</select>
 	
 </mapper>
