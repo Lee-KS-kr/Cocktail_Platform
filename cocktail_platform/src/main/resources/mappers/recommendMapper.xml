@@ -5,7 +5,7 @@
 	<mapper namespace="com.platform.cocktail.cocktail_platform.dao.RecommendDAO">
 
 	<!-- 인기상품 -->
-	<select id="getTop3Cocktails" parameterType="" resultType="Menu">
+	<select id="getTop3Cocktails" resultType="Menu">
     	select 
         	menuName
         	, sum(orderCount) totalOrderCount
@@ -18,9 +18,8 @@
         	menuRank asc
 	</select>
 	 
-
 	<!-- 님을 위한 추천 상품 -->
-	<select id="CustomizedRecommendation" parameterType="" resultType="Menu">
+	<select id="CustomizedRecommendation" resultType="Menu">
 		select
     		c.cocktailName
 		from
@@ -50,5 +49,7 @@
 	<!-- 친구와 많이 마셔요 -->
 
 	<!-- 특별한 순간을 즐기고 싶을 떄는? -->
+	
+	<!-- 내가 많이 마신 칵테일 메뉴 랭킹 -->
 
 	</mapper>
