@@ -49,10 +49,26 @@ public class PersonalAjaxController {
 		return list;
 	}
 	
-	@GetMapping("search")
-	public ArrayList<Object> search(String category, String searchWord){
-		log.debug("category : {} searchword : {} ", category, searchWord);
-		ArrayList<Object> list = cService.search(category, searchWord);
+	@GetMapping("searchStore")
+	public ArrayList<StoreInfo> searchStore(String searchWord){
+		log.debug("category : {} searchword : {} ", searchWord);
+		ArrayList<StoreInfo> list = cService.searchStore(searchWord);
+		log.debug("list : {}", list);
+		return list;
+	}
+	
+	@GetMapping("searchCocktail")
+	public ArrayList<Cocktails> searchCocktail(String searchWord){
+		log.debug("category : {} searchword : {} ", searchWord);
+		ArrayList<Cocktails> list = cService.searchCocktail(searchWord);
+		log.debug("list : {}", list);
+		return list;
+	}
+	
+	@GetMapping("searchIngredient")
+	public ArrayList<Ingredients> searchIngredient(String searchWord){
+		log.debug("category : {} searchword : {} ", searchWord);
+		ArrayList<Ingredients> list = cService.searchIngredient(searchWord);
 		log.debug("list : {}", list);
 		return list;
 	}

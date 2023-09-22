@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.platform.cocktail.cocktail_platform.config.CodeConfig;
 import com.platform.cocktail.cocktail_platform.dao.CocktailDAO;
 import com.platform.cocktail.cocktail_platform.domain.Cocktails;
+import com.platform.cocktail.cocktail_platform.domain.Ingredients;
+import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.domain.Taste;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,17 +27,6 @@ public class CocktailServiceImple implements CocktailService {
 	
 	@Autowired
 	CodeConfig cc;
-
-	@Override
-	public ArrayList<Object> search(String category, String searchWord) {
-		HashMap<String, String> map = new HashMap<>();
-		map.put("category", category);
-		map.put("searchWord", searchWord);
-		
-		ArrayList<Object> list = dao.search(map);
-		log.debug("{}", list);
-		return list;
-	}
 
 	@Override
 	public Cocktails findCocktailByCode(int cocktailCode) {
@@ -100,5 +91,30 @@ public class CocktailServiceImple implements CocktailService {
 				c.getCocktailTaste(), c.getCocktailFlavor(), c.getCocktailColor());
 		
 		return c;
+	}
+
+	@Override
+	public ArrayList<StoreInfo> searchStore(String searchWord) {
+		ArrayList<StoreInfo> list = dao.searchStore(searchWord);
+		log.debug("{}", list);
+		return list;
+	}
+
+	@Override
+	public ArrayList<Cocktails> searchCocktail(String searchWord) {
+		ArrayList<Cocktails> list = dao.searchCocktail(searchWord);
+		for (Cocktails c : list) {
+			changeIntToString(c);
+			getIngredients(c);
+		}
+		log.debug("{}", list);
+		return list;
+	}
+
+	@Override
+	public ArrayList<Ingredients> searchIngredient(String searchWord) {
+		ArrayList<Ingredients> list = dao.searchIngredient(searchWord);
+		log.debug("{}", list);
+		return list;
 	}
 }
