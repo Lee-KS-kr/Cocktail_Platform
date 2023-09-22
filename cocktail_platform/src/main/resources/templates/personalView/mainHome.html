@@ -23,6 +23,11 @@
   <script>
     $(document).ready(function(){
       getBestCocktails();
+      personalRecommend();
+      weatherRecommend();
+      ageRecommend();
+      companionRecommend();
+      eventRecommend();
     });
 
     let isLoggedIn = null;
@@ -67,30 +72,83 @@
           </div>
           `);
       });
-
-      for(var i = 0; i < 3; i++){
-        targetDiv.append(`
-          <div class="box">
-            <a th:href="@{/}">
-              <img
-                th:src="@{/image/temp.jpg}"
-                class="boxImg"
-                alt="인기 상품"
-              />
-            </a>
-            <p><b>칵테일대모험</b></p>
-            <a th:href="@{/}">
-              <strong class="pd_title">얼린 초딩</strong><br>
-            </a>
-            <p>
-              Eum ad dolor et. Autem aut fugiat debitis voluptatem
-              consequuntur sit. Et veritatis id.
-            </p>
-          </div>
-          `);
-      }
     }
 
+    function personalRecommend(){
+      if(isLoggedIn == 'false'){
+        $("#mainbox2").hide();
+        return;
+      }
+
+      let memberId = $("#loginId").html();
+      $.ajax({
+        url:'customizedRecommendation',
+        type:'get',
+        dataType:'json',
+        success:function(list){
+          showList("recommend_row", list);
+        },
+        error: function(e){
+          console.log(JSON.stringify(e));
+        }
+      });
+    }
+  
+    function weatherRecommend(){
+      $.ajax({
+        url:'weatherRecommend',
+        type:'get',
+        dataType:'json',
+        success:function(list){
+          showList("weather", list);
+        },
+        error: function(e){
+          console.log(JSON.stringify(e));
+        }
+      });
+    }
+
+    function ageRecommend(){
+      $.ajax({
+        url:'ageRecommend',
+        type:'get',
+        dataType:'json',
+        success:function(list){
+          showList("age", list);
+        },
+        error: function(e){
+          console.log(JSON.stringify(e));
+        }
+      });
+    }
+
+    function companionRecommend(){
+      $.ajax({
+        url:'companionRecommend',
+        type:'get',
+        dataType:'json',
+        success:function(list){
+          showList("companion", list);
+        },
+        error: function(e){
+          console.log(JSON.stringify(e));
+        }
+      });
+    }
+
+    function eventRecommend(){
+      $.ajax({
+        url:'eventRecommend',
+        type:'get',
+        dataType:'json',
+        success:function(list){
+          showList("event", list);
+        },
+        error: function(e){
+          console.log(JSON.stringify(e));
+        }
+      });
+    }
   </script>
 </head>
 <body>
@@ -146,7 +204,7 @@
         </div>
       </section>
       <!-- ======= End mainbox1 : 인기상품 ======= -->
-      <!-- ======= mainbox2 : 추천상품 ======= -->
+      <!-- ======= mainbox2 : 추천상품(맞춤) ======= -->
       <section id="mainbox2" class="mainbox1">
         <div class="recommend_prd">
           <div class="main_title">
@@ -160,60 +218,7 @@
             <span>#혼술</span>
             <span>#특별한 순간을 위해</span>
           </div>
-          <div class="row">
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="추천 상품"
-                />
-              </a>
-              <p><b>알중제조기</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">마라엽떡민초</strong><br>
-              </a>
-              <p>
-                Eum ad dolor et. Autem aut fugiat debitis voluptatem
-                consequuntur sit. Et veritatis id.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="추천 상품"
-                />
-              </a>
-              <p><b>알중제조기</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">토마토마토</strong><br>
-              </a>
-              <p>
-                Repudiandae amet nihil natus in distinctio suscipit id.
-                Doloremque ducimus ea sit non.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="추천 상품"
-                />
-              </a>
-              <p><b>알중제조기</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">초코비</strong><br>
-              </a>
-              <p>
-                Quam rem vitae est autem molestias explicabo debitis sint. Vero
-                aliquid quidem commodi.
-              </p>
-            </div>
+          <div class="row" id="recommend">
           </div>
         </div>
       </section>
@@ -232,60 +237,7 @@
             <span>#비</span>
             <span>#눈</span>
           </div>
-          <div class="row">
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="날씨별 추천상품"
-                />
-              </a>
-              <p><b>칵테일대마왕</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">코코볼냠냠</strong><br>
-              </a>
-              <p>
-                Eum ad dolor et. Autem aut fugiat debitis voluptatem
-                consequuntur sit. Et veritatis id.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="날씨별 추천상품"
-                />
-              </a>
-              <p><b>칵테일대마왕</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">오이헤이터모임</strong><br>
-              </a>
-              <p>
-                Repudiandae amet nihil natus in distinctio suscipit id.
-                Doloremque ducimus ea sit non.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="날씨별 추천상품"
-                />
-              </a>
-              <p><b>칵테일대마왕</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">탱탱볼</strong><br>
-              </a>
-              <p>
-                Quam rem vitae est autem molestias explicabo debitis sint. Vero
-                aliquid quidem commodi.
-              </p>
-            </div>
+          <div class="row" id="weather">
           </div>
         </div>
       </section>
@@ -304,60 +256,7 @@
             <span>#40대</span>
             <span>#50대 이상</span>
           </div>
-          <div class="row">
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="연령대별 추천 상품"
-                />
-              </a>
-              <p><b>오타쿠모임</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">눈아나오늘석식스파게티</strong><br>
-              </a>
-              <p>
-                Eum ad dolor et. Autem aut fugiat debitis voluptatem
-                consequuntur sit. Et veritatis id.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="연령대별 추천 상품"
-                />
-              </a>
-              <p><b>오타쿠모임</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">오이는 싫은데 피클은 좋아</strong><br>
-              </a>
-              <p>
-                Repudiandae amet nihil natus in distinctio suscipit id.
-                Doloremque ducimus ea sit non.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="연령대별 추천 상품"
-                />
-              </a>
-              <p><b>오타쿠모임</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">눈아내여자닉가</strong><br>
-              </a>
-              <p>
-                Quam rem vitae est autem molestias explicabo debitis sint. Vero
-                aliquid quidem commodi.
-              </p>
-            </div>
+          <div class="row" id="age">
           </div>
         </div>
       </section>
@@ -377,60 +276,7 @@
             <span>#가족</span>
             <span>#그 외</span>
           </div>
-          <div class="row">
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="상대별 추천 상품"
-                />
-              </a>
-              <p><b>포켓몬마스터</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">하트사탕공예마휘핑</strong><br>
-              </a>
-              <p>
-                Eum ad dolor et. Autem aut fugiat debitis voluptatem
-                consequuntur sit. Et veritatis id.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="상대별 추천 상품"
-                />
-              </a>
-              <p><b>포켓몬마스터</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">이상해씨풀꽃</strong><br>
-              </a>
-              <p>
-                Repudiandae amet nihil natus in distinctio suscipit id.
-                Doloremque ducimus ea sit non.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="상대별 추천 상품"
-                />
-              </a>
-              <p><b>포켓몬마스터</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">푸푸린푸리리린</strong><br>
-              </a>
-              <p>
-                Quam rem vitae est autem molestias explicabo debitis sint. Vero
-                aliquid quidem commodi.
-              </p>
-            </div>
+          <div class="row" id="companion">
           </div>
         </div>
       </section>
@@ -449,60 +295,7 @@
             <span>#친목을 위해</span>
             <span>#특별한 순간을 위해</span>
           </div>
-          <div class="row">
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="이벤트별 추천 상품"
-                />
-              </a>
-              <p><b>케이팝노인정</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">코요태짱이찌</strong><br>
-              </a>
-              <p>
-                Eum ad dolor et. Autem aut fugiat debitis voluptatem
-                consequuntur sit. Et veritatis id.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="이벤트별 추천 상품"
-                />
-              </a>
-              <p><b>케이팝노인정</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">겨자케챱치킨막걸리</strong><br>
-              </a>
-              <p>
-                Repudiandae amet nihil natus in distinctio suscipit id.
-                Doloremque ducimus ea sit non.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="이벤트별 추천 상품"
-                />
-              </a>
-              <p><b>케이팝노인정</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">가라가라갇혀확갇혀</strong><br>
-              </a>
-              <p>
-                Quam rem vitae est autem molestias explicabo debitis sint. Vero
-                aliquid quidem commodi.
-              </p>
-            </div>
+          <div class="row" id="event">
           </div>
         </div>
       </section>
