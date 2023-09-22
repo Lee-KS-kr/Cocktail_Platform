@@ -79,7 +79,7 @@ public class CorporateAjaxController {
 			String savedfile = FileService.saveFile(upload, storePath);
 			store.setOriginFilename(upload.getOriginalFilename());
 			store.setSavedFilename(savedfile);
-		} else {
+		} else if(upload == null || upload.isEmpty()) {
 			store.setOriginFilename(defaultStoreImg);
 			store.setSavedFilename(defaultStoreImg);
 		}

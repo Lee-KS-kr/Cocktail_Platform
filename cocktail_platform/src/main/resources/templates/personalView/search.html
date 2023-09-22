@@ -21,17 +21,28 @@
 		});
 		
 		let cat = null;
+		let word = null;
 		function search(){
+			$("#list").html('');
 			cat = $("#category").val();
-			let word = $("#searchWord").val();
+			word = $("#searchWord").val();
 			console.log("category : " + cat + " search word : " + word);
+			if(cat == 'store')
+				searchStore();
+			else if(cat == 'cocktail')
+				searchCocktail();
+			else
+				searchIngredient();
+		}
+
+		function searchStore(){
 			$.ajax({
-				url: 'search',
-				data: {category: cat, searchWord: word},
+				url: 'searchStore',
+				data: {searchWord: word},
 				type: 'get',
 				dataType: 'json',
 				success: function(list){
-					showList(list);
+					showStoreList(list);
 				},
 				error: function(e){
 					console.log(JSON.stringify(e));
@@ -39,27 +50,82 @@
 			});
 		}
 
-		function showList(list){
+		function searchCocktail(){
+			$.ajax({
+				url: 'searchCocktail',
+				data: {searchWord: word},
+				type: 'get',
+				dataType: 'json',
+				success: function(list){
+					showCocktailList(list);
+				},
+				error: function(e){
+					console.log(JSON.stringify(e));
+				}
+			});
+		}
+
+		function searchIngredient(){
+			$.ajax({
+				url: 'searchIngredient',
+				data: {searchWord: word},
+				type: 'get',
+				dataType: 'json',
+				success: function(list){
+					showIngredientList(list);
+				},
+				error: function(e){
+					console.log(JSON.stringify(e));
+				}
+			});
+		}
+
+		function showStoreList(list){
 			$(list).each(function(i, item){
 				$("#list").append(`
 				<div class="con_box">
-					${cat == "ingredirents" 
-						? `` 
-						: `<a th:href="${cat == "cocktail" 
-							? `@{personal/wiki?cocktailCode=${item.cocktailCode}}` 
-							: `@{personal/store/storeDetail?storeCode=${item.storeCode}}`}">`}
+					<a href=/FitTail/personal/store/storeDetail?storeCode=${item.storeCode}>
 					<div class="con_box1" >
-						<img src="${cat == "ingredirents" 
-							? `${item.ingredientName}.png` 
-							: `${item.savedFilename}`}" alt="con_box${i}">
+						<img src="/FitTail/image/store/${item.savedFilename}" alt="con_box${i}">
 					</div>
 					<div>
-						${cat == "store" ? `<p th:text="${item.storeName}">매장명</p>` : ``}
-						${cat == "cocktail" ? `<p th:text="${item.cocktailName}">상품명</p>
-						<p th:text="${item.cocktailAlcohol}">상품 설명</p>` : ``}
-						${cat == "ingredients" ? `<p th:text="${item.ingredientName}">재료명</p>` : ``}
+						<p>${item.storeName}</p>
+						<p>${item.address1} ${item.address2}</p>
+						<p><span>${item.storeReviewScore}</span><span> / 5</span></p>
 					</div>
-					${cat == "ingredirents" ? `` : `}</a>`}
+					</a>
+				</div>
+				`);
+			})
+		}
+
+		function showCocktailList(list){
+			$(list).each(function(i, item){
+				$("#list").append(`
+				<div class="con_box">
+					<a href=/FitTail/personal/wiki?cocktailCode=${item.cocktailCode}>
+					<div class="con_box1" >
+						<img src="/FitTail/image/cocktails/${item.savedFilename}" alt="con_box${i}">
+					</div>
+					<div>
+						<p>${item.cocktailName}</p>
+					</div>
+					</a>
+				</div>
+				`);
+			})
+		}
+
+		function showIngredientList(list){
+			$(list).each(function(i, item){
+				$("#list").append(`
+				<div class="con_box">
+					<div class="con_box1" >
+						<img src="/FitTail/image/ingredients/${item.ingredientName}.png" alt="con_box${i}">
+					</div>
+					<div>
+						<p>${item.ingredientName}</p>
+					</div>
 				</div>
 				`);
 			})

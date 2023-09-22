@@ -6,14 +6,20 @@ import java.util.HashMap;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.platform.cocktail.cocktail_platform.domain.Cocktails;
+import com.platform.cocktail.cocktail_platform.domain.Ingredients;
+import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 
 @Mapper
 public interface CocktailDAO {
 
-	ArrayList<Object> search(HashMap<String, String> map);
-
 	Cocktails findCocktailByCode(int cocktailCode);
 
 	String getIngredientNameByCode(int cocktailBase);
+
+	ArrayList<StoreInfo> searchStore(String searchWord);
+
+	ArrayList<Cocktails> searchCocktail(String searchWord);
+
+	ArrayList<Ingredients> searchIngredient(String searchWord);
 
 }
