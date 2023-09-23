@@ -144,4 +144,16 @@ public class MemberServiceImple implements MemberService {
 		else
 			return null;
 	}
+
+	@Override
+	public int changePw(String memberId, String memberPw, String newMemberPw) {
+		Member m = loginToOrder(memberId, memberPw);
+		if(m != null) {
+			m.setMemberPw(encoder.encode(newMemberPw));
+			int n = dao.resetMemberPw(m);
+			return n;
+		}
+		
+		return 0;
+	}
 }

@@ -34,4 +34,6 @@ public interface MemberService {
 
 	Member loginToOrder(String memberId, String memberPw);
 
+	int changePw(String memberId, String memberPw, String newMemberPw);
+
 }
