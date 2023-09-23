@@ -10,7 +10,10 @@
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  text-decoration: none;
 }
+
+a{text-decoration: none;}
 a:link {
   color: #232323;
 }
@@ -155,7 +158,6 @@ justify-content: center;
 
 img[alt="logo"] {
   width: 120px;
-  margin-top: 8px;
 }
 img[alt="search"] {
   width: 27px;
