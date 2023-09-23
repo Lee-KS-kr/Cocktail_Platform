@@ -57,36 +57,6 @@ public class PersonalMemberController {
 		return "redirect:/";
 	}
 	
-//	@GetMapping("loginForm")
-//	public String login() {
-//		return "personalView/login";
-//	}
-//	
-//	@GetMapping("findId")
-//	public String findId() {
-//		return "personalView/FindID";
-//	}
-//	
-//	@PostMapping("findId")
-//	public String findId(String email, Model m) {
-//		Member mem = mService.findMemberByEmail(email);
-//		m.addAttribute("memberId", mem.getMemberId());
-//		return "redirect:/personal/findId";
-//	}
-	
-	//비밀번호 찾기 화면
-//	@GetMapping("resetPw")
-//	public String resetPw() {
-//		return "personalView/FindPw";
-//	}
-//	
-//	//비밀번호 재설정
-//	@PostMapping("resetPw")
-//	public String resetPw(Member m) {
-//		mService.resetPw(m);
-//		return "redirect:/personal/home";
-//	}
-	
 	//마이페이지
 	@GetMapping("myPage")
 	public String myPage(@AuthenticationPrincipal UserDetails user, Model m) {
@@ -116,6 +86,13 @@ public class PersonalMemberController {
 		mem.setMemberId(user.getUsername());
 		mService.updateMember(mem);
 		
+		return "redirect:/personal/member/myPage";
+	}
+	
+	//비밀번호 변경
+	@PostMapping("changePw")
+	public String changePw(@AuthenticationPrincipal UserDetails user, String memberPw, String newMemberPw) {
+		mService.changePw(user.getUsername(), memberPw, newMemberPw);
 		return "redirect:/personal/member/myPage";
 	}
 	

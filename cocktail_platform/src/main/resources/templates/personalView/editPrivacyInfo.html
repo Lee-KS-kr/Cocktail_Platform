@@ -13,28 +13,55 @@
   <!-- vs code
     -->
 
-
     <link rel="stylesheet" th:href="@{/CSS/personal/editPrivacyInfo.css}">
     <!-- thymeleaf
     -->
     
-<script th:inline="javascript">
-    var items = /*[[${items}]]*/ [];
-</script>
+    <!-- 
+        <script th:inline="javascript">
+            var items = /*[[${items}]]*/ [];
+        </script>
+    -->
+<!--
+    <script>
+        // 반복문을 사용하여 리스트 아이템을 생성하고 HTML에 추가
+        const listContainer = document.getElementById("list");
+        const items = ["항목 1", "항목 2", "항목 3", "항목 4"];
+        
+        for (let i = 0; i < items.length; i++) {
+            const listItem = document.createElement("li");
+            listItem.textContent = items[i];
+            listContainer.appendChild(listItem);
+        }
+        
+    </script>
+-->
+    <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+    <script>
+        function checkPE(){
+            return false;
+        }
 
-<script>
-    // 반복문을 사용하여 리스트 아이템을 생성하고 HTML에 추가
-    const listContainer = document.getElementById("list");
-    const items = ["항목 1", "항목 2", "항목 3", "항목 4"];
+        let isPwSame = false;
+        function checkCP(){
+            if(!isPwSame)
+                return false;
 
-    for (let i = 0; i < items.length; i++) {
-        const listItem = document.createElement("li");
-        listItem.textContent = items[i];
-        listContainer.appendChild(listItem);
-    }
+            return true;
+        }
 
-</script>
-    
+        function checkPw(){
+            let pw1 = $("#newPw1").val();
+            let pw2 = $("#newPw2").val();
+            if(pw1 == pw2){
+                $("#pwErr").html('');
+                isPwSame = true;
+            } else {
+                $("#pwErr").html("비밀번호가 일치하지 않습니다.");
+                isPwSame = false;
+            }
+        }
+    </script>
 </head>
 <body>
    
@@ -75,18 +102,61 @@
                     <div class="flex">
                         <div class="con1">
                             <p>* 기본정보</p>
-                            <form th:action="@{/member/update}" method="post" onsubmit="return check();">
+                            <form th:action="@{/personal/member/editPrivacyInfo}" method="post" onsubmit="return check();">
                                 <table>
                                     <tr>
                                         <th>아이디</th>
                                         <td th:text="${member.memberId}"></td>
                                     </tr>
                                     <tr>
-                                        <th>현재 비밀번호</th>
-                                        <td> <input type="password"></td>
+                                        <th>이름</th>
+                                        <td th:text="${member.memberName}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>이메일</th>
+                                        <td th:text="${member.email}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>전화번호</th>
+                                        <td>
+                                            <input type="text" th:value="${member.phone}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>생년월일</th>
+                                        <td th:text="${member.birthday}"></td>
                                     </tr>
                                 </table>
-                                    <input type="submit" value="비밀번호 변경">
+                                <input type="submit" value="개인정보 변경">
+                            </form>	
+                        </div>
+                        <div class="con2">
+                            <p>* 비밀번호 변경
+                            <form th:action="@{/personal/member/changePw}" method="post" onsubmit="return changePw()">
+                                <table>
+                                    <tr>
+                                        <th>기존 비밀번호</th>
+                                        <td>
+                                            <input type="password" name="memberPw">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>새 비밀번호</th>
+                                        <td>
+                                            <input type="password" name="newMemberPw" id="newPw1">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>비밀번호 확인</th>
+                                        <td>
+                                            <input type="password" id="newPw2" onkeyup="checkPw()"><br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="pwErr"></td>
+                                    </tr>
+                                </table>
+                                <input type="submit" value="비밀번호 변경">
                             </form>	
                         </div>
                     </div>

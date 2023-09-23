@@ -76,57 +76,59 @@
                     <div class="flex">
                         <div class="con1">
                             <p>* 기본정보
-                            <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
-                                <table>
-                                    <tr>
-                                        <th>아이디</th>
-                                        <td th:text="${member.memberId}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>이름</th>
-                                        <td th:text="${member.memberName}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>이메일</th>
-                                        <td th:text="${member.email}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>전화번호</th>
-                                        <td th:text="${member.phone}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>생년월일</th>
-                                        <td th:text="${member.birthday}"></td>
-                                    </tr>
-                                    
-                                </table>
-                                </form>	
+                            <table>
+                                <tr>
+                                    <th>아이디</th>
+                                    <td th:text="${member.memberId}"></td>
+                                </tr>
+                                <tr>
+                                    <th>이름</th>
+                                    <td th:text="${member.memberName}"></td>
+                                </tr>
+                                <tr>
+                                    <th>이메일</th>
+                                    <td th:text="${member.email}"></td>
+                                </tr>
+                                <tr>
+                                    <th>전화번호</th>
+                                    <td th:text="${member.phone}"></td>
+                                </tr>
+                                <tr>
+                                    <th>생년월일</th>
+                                    <td th:text="${member.birthday}"></td>
+                                </tr>
+                            </table>
                         </div>
                         <div class="con2">
                             <p>* 취향 정보
-                            <form th:action="@{/member/update}"  method="post">
-                                <table>
-                                    <tr>
-                                        <th>맛</th>
-                                        <td th:each="item : ${taste.taste}" id="tasteList">
-                                            <span th:text="${item}"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>향</th>
-                                        <td  th:each="item : ${taste.flavor}" id="flavorList">
-                                            <span th:text="${item}"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>알러지</th>
-                                        <td th:text="${taste.allergyType}" id="list"></td>
-                                    </tr>
-                                </table>
-                            </form>	
-                        </div>
+                            <table>
+                                <tr>
+                                    <th>맛</th>
+                                    <td th:each="item : ${taste.taste}" id="tasteList">
+                                        <span th:if="${item} == 'sweet'">단맛</span>
+                                        <span th:if="${item} == 'sour'">신맛</span>
+                                        <span th:if="${item} == 'bitter'">쓴맛</span>
+                                        <span th:if="${item} == 'salty'">짠맛</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>향</th>
+                                    <td  th:each="item : ${taste.flavor}" id="flavorList">
+                                        <span th:if="${item} == 'alcohol'">알코올향</span>
+                                        <span th:if="${item} == 'coffee&chocolate'">커피/초콜릿향</span>
+                                        <span th:if="${item} == 'general'">과일향</span>
+                                        <span th:if="${item} == 'citrus'">시트러스향</span>
+                                        <span th:if="${item} == 'tropical'">트로피컬향</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>알러지</th>
+                                    <td th:text="${taste.allergyType}" id="list"></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
         
