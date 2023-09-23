@@ -23,6 +23,30 @@ public class RecommendServiceImple implements RecommendService {
 	@Override
 	public ArrayList<Menu> CustomizedRecommendation(Taste t) {
 		ArrayList<Menu> list = dao.CustomizedRecommendation();
-		return null;
+		return list;
+	}
+
+	@Override
+	public ArrayList<Menu> weatherRecommend() {
+		ArrayList<Menu> list = dao.weatherRecommend();
+		return list;
+	}
+
+	@Override
+	public ArrayList<Menu> ageRecommend() {
+		ArrayList<Menu> list = dao.ageRecommend();
+		return list;
+	}
+
+	@Override
+	public ArrayList<Menu> companionRecommend() {
+		ArrayList<Menu> list = dao.companionRecommend();
+		return list;
+	}
+
+	@Override
+	public ArrayList<Menu> eventRecommend() {
+		ArrayList<Menu> list = dao.eventRecommend();
+		return list;
 	}
 }

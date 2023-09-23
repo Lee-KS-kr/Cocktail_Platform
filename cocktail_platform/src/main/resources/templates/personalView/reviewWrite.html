@@ -59,8 +59,8 @@
             <div class="con">
                 <div class="title2">좋은 시간을 보내셨나요?</div>
                     <div class="flex">
-                        <form th:action="@{/personal/store/writeReview}"  method="post" onsubmit="return check();">
-                        <input type="hidden" th:value="${store.storeCode}">
+                        <form th:action="@{/personal/member/evaluation}"  method="post" onsubmit="return check();">
+                        <input type="hidden" th:value="${store.storeCode}" name="storeCode">
                         <div class="con1">
                             <table>
                                 <tr>

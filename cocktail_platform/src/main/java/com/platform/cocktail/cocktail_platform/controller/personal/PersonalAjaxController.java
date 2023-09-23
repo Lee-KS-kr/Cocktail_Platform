@@ -15,7 +15,10 @@ import com.platform.cocktail.cocktail_platform.domain.Ingredients;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.domain.StoreReview;
+import com.platform.cocktail.cocktail_platform.domain.Taste;
 import com.platform.cocktail.cocktail_platform.service.CocktailService;
+import com.platform.cocktail.cocktail_platform.service.MemberService;
+import com.platform.cocktail.cocktail_platform.service.RecommendService;
 import com.platform.cocktail.cocktail_platform.service.StoreService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,12 +27,17 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("personal")
 public class PersonalAjaxController {
+	@Autowired
+	private MemberService mService;
 	
 	@Autowired
 	private StoreService sService;
 	
 	@Autowired
 	private CocktailService cService;
+	
+	@Autowired
+	private RecommendService rService;
 	
 	@GetMapping("member/checkReviewed")
 	public boolean checkReviewed(@AuthenticationPrincipal UserDetails user, int orderCode) {
@@ -70,6 +78,66 @@ public class PersonalAjaxController {
 		log.debug("category : {} searchword : {} ", searchWord);
 		ArrayList<Ingredients> list = cService.searchIngredient(searchWord);
 		log.debug("list : {}", list);
+		return list;
+	}
+	
+	@GetMapping("getBestCocktails")
+	public ArrayList<Menu> getBestCocktails(){
+		ArrayList<Menu> list = rService.getTop3Cocktails();
+		getStoreNames(list);
+		
+		return list;
+	}
+	
+	@GetMapping("customizedRecommendation")
+	public ArrayList<Menu> customizedRecommendation(@AuthenticationPrincipal UserDetails user){
+		Taste t = mService.findTasteById(user.getUsername());
+		ArrayList<Menu> list = rService.CustomizedRecommendation(t);
+		getStoreNames(list);
+		
+		return list;
+	}
+	
+	@GetMapping("weatherRecommend")
+	public ArrayList<Menu>  weatherRecommend() {
+		ArrayList<Menu> list = new ArrayList<>();
+//		list = rService.weatherRecommend();
+//		getStoreNames(list);
+		
+		return list;
+	}
+	
+	@GetMapping("ageRecommend")
+	public ArrayList<Menu>  ageRecommend() {
+		ArrayList<Menu> list = new ArrayList<>();
+//		list = rService.ageRecommend();
+//		getStoreNames(list);
+		
+		return list;
+	}
+	
+	@GetMapping("companionRecommend")
+	public ArrayList<Menu>  companionRecommend() {
+		ArrayList<Menu> list = new ArrayList<>();
+//		list = rService.companionRecommend();
+//		getStoreNames(list);
+		
+		return list;
+	}
+	
+	@GetMapping("eventRecommend")
+	public ArrayList<Menu> eventRecommend() {
+		ArrayList<Menu> list = new ArrayList<>();
+//		list = rService.eventRecommend();
+//		getStoreNames(list);
+		
+		return list;
+	}
+	
+	public ArrayList<Menu> getStoreNames(ArrayList<Menu> list){
+		for (Menu m : list) 
+			m.setStoreName(sService.getStoreinfoByCode(m.getStoreCode()).getStoreName());
+		
 		return list;
 	}
 }

@@ -144,6 +144,7 @@ public class StoreServiceImple implements StoreService {
 		}
 		
 		dao.insertStoreReview(review);
+		log.debug("{}, {}", review, list);
 		int n = dao.insertMenuPreference(list);
 		
 		return n;
