@@ -165,7 +165,7 @@
           <span id="loggedIn" style="display: none;">false</span>
           <img th:src="@{/image/btn_search.png}" alt="search"></a>
       </div>
-      <div sec:authorize="isAuthenticated()" class="navi2_1">
+      <div sec:authorize="isAuthenticated()">
         <span id="loggedIn" style="display: none;">true</span>
         <span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;
         <span><a th:href="@{/member/logout}">로그아웃</a></span>
