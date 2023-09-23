@@ -1,15 +1,17 @@
-package com.platform.cocktail.cocktail_platform.service;
+package com.platform.cocktail.cocktail_platform.dao;
 
 import java.util.ArrayList;
 
-import com.platform.cocktail.cocktail_platform.domain.Menu;
-import com.platform.cocktail.cocktail_platform.domain.Taste;
+import org.apache.ibatis.annotations.Mapper;
 
-public interface RecommendService {
+import com.platform.cocktail.cocktail_platform.domain.Menu;
+
+@Mapper
+public interface RecommendDAO {
 
 	ArrayList<Menu> getTop3Cocktails();
 
-	ArrayList<Menu> CustomizedRecommendation(Taste t);
+	ArrayList<Menu> CustomizedRecommendation();
 
 	ArrayList<Menu> weatherRecommend();
 

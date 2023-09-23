@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.platform.cocktail.cocktail_platform.domain.Menu;
+import com.platform.cocktail.cocktail_platform.domain.MenuPreference;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
 import com.platform.cocktail.cocktail_platform.domain.ReservationState;
@@ -88,22 +89,25 @@ public class PersonalStoreController {
 		return "redirect:/personal/member/reserveList";
 	}
 	
-	@GetMapping("writeReview")
-	public String writeReview(String orderCode, Model m) {
-		Order o = oService.findOrderByOrdercode(orderCode);
-		StoreInfo store = sService.getStoreinfoByCode(o.getStoreCode());
-		ArrayList<Menu> list = oService.getMenusByCode(orderCode);
-		
-		m.addAttribute("list", list);
-		m.addAttribute("store", store);
-		log.debug("store {}, list {}", store, list);
-		return "personalView/reviewWrite";
-	}
-	
-	@PostMapping("writeReview")
-	public String writeReview(@AuthenticationPrincipal UserDetails user, StoreReview review,
-			int[] menuNums, int[] weathers, int[] ageGroups, int[] companions, int[] events) {
-		review.setMemberid(user.getUsername());
-		return "";
-	}
+//	@GetMapping("writeReview")
+//	public String writeReview(String orderCode, Model m) {
+//		Order o = oService.findOrderByOrdercode(orderCode);
+//		StoreInfo store = sService.getStoreinfoByCode(o.getStoreCode());
+//		ArrayList<Menu> list = oService.getMenusByCode(orderCode);
+//		
+//		m.addAttribute("list", list);
+//		m.addAttribute("store", store);
+//		log.debug("store {}, list {}", store, list);
+//		return "personalView/reviewWrite";
+//	}
+//	
+//	@PostMapping("writeReview")
+//	public String writeReview(@AuthenticationPrincipal UserDetails user, StoreReview review,
+//			int[] menuNums, String[] weathers, String[] ageGroups, String[] companions, String[] events) {
+//		review.setMemberid(user.getUsername());
+//		ArrayList<MenuPreference> list = new ArrayList<>();
+//		log.debug("review : {}", review);
+//
+//		return "redirect:/";
+//	}
 }
