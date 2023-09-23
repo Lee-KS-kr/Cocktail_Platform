@@ -17,4 +17,9 @@ public class MenuPreference {
 	int ageGroup;
 	int companion;
 	int event;
+	
+	String[] weatherArr;
+	String[] ageArr;
+	String[] compArr;
+	String[] eventArr;
 }

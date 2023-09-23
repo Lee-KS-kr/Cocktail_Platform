@@ -176,8 +176,13 @@ public class PersonalMemberController {
 	//주문 후 평가
 	@GetMapping("evaluation")
 	public String evaluation(String orderCode, Model m) {
-		ArrayList<OrderTemp> list = oService.getOrdersByOrdercode(orderCode);
-		m.addAttribute("orderList", list);
+		Order o = oService.findOrderByOrdercode(orderCode);
+		StoreInfo store = sService.getStoreinfoByCode(o.getStoreCode());
+		ArrayList<Menu> list = oService.getMenusByCode(orderCode);
+		
+		m.addAttribute("list", list);
+		m.addAttribute("store", store);
+		log.debug("store {}, list {}", store, list);
 		return "personalView/reviewWrite";
 	}
 	
@@ -204,6 +209,7 @@ public class PersonalMemberController {
 		}
 		
 		review.setMemberid(user.getUsername());
+		log.debug("review {}", review);
 		sService.insertReview(review, menuNum, weather, ageGroup, companion, event);
 		return "redirect:/personal/member/reserveList";
 	}

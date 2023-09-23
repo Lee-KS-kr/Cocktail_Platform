@@ -17,4 +17,5 @@ public class Menu {
 	String originFilename;
 	String savedFilename;
 	boolean canOrder;
+	String storeName;
 }

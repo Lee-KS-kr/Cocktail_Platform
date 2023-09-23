@@ -13,14 +13,14 @@ $(document).ready(function(){
 			url: "cart",
 			type: "get",
 			dataType: "json",
-			success: function(result){
-				if(result == ''){
+			success: function(list){
+				if(list == ''){
 					return;
 				}
-				getList(result);
+				getList(list);
 			},
-			error: function(){
-				alert('error');
+			error: function(err){
+				alert(err);
 			}
 		});
 	}
@@ -29,26 +29,65 @@ $(document).ready(function(){
 	function getList(list){
 		let str = '<table>';
 		$(list).each(function(i,item){
+			let menuNum = item.menuNum;
+			let orderCount = parseInt($('#orderCount_' + menuNum).text()) || 1;
+			let price = item.price;
+			let price2 = orderCount * price;
+			
 			str += '<tr>';
-			str += '<td>' + item.savedFilename + '</td>';
-			str += '<td>' + item.menuName + '</td></tr>';
-			str += '<tr><td>' + item.price + '</td>';
+			str += '<td colspan="3">' + item.menuName + '</td></tr>';
+			str += '<td><a href="javascript:deleteCart(' + menuNum + ')"><button>삭제</button></a></td></tr>';
+			str += '<tr><td><a href="javascript:count(\'plus\',' + menuNum + ')|">+</a></td>';
+			str += '<td><span id="orderCount_' + menuNum + '">' + orderCount + '</span>개</td>';
+			str += '<td><a href="javascript:count(\'minus\',' + menuNum + ')">-</a></td>';
+			str += '<td><span id="price_' + menuNum + '">' + item.price + '</span>원</td></tr>';
 			str += '</tr>';
 		});
 		str += '</table>';
 		$('#cartList').html(str);
 	}
+	
+	/**카트 메뉴 삭제*/
+	function deleteCart(menuNum){
+		let result = confirm('선택한 메뉴를 삭제하시겠습니까?');
+		if(result == true){
+			location.href="deleteCart?menuNum="+menuNum;
+		}
+	}
+	
+	/**주문 수량 증감*/
+	function count(type, menuNum){
+		let orderCount = parseInt($('#orderCount_' + menuNum).text());
+		
+		//더하기, 빼기
+		if(type === 'plus' && orderCount < 11) {
+			orderCount = orderCount + 1;  
+	  	}else if(type === 'minus' && orderCount > 1) {
+	  		orderCount = orderCount - 1;
+	  	}else {
+			alert('주문 수량을 확인해주세요.');
+			return false;
+		}
+		
+		// 결과 출력
+	    $('#orderCount_' + menuNum).text(orderCount);
+	}
+	
+	/**창 닫기*/
+	function closeCart(){
+		window.close();
+	}
+	
 });
-
-
 
 </script>
 </head>
 <body>
-	카트
+	장바구니
 	<!-- 카트에 담은 메뉴 출력 -->
 	<div id="cartList"></div>
-	<p><a th:href="@{/corporate/order/orderMenu}">주문하기</a></p>
-	<p><a th:href="@{/corporate/order/payment}">결제하기</a></p>
+	<p>합계 <span id="totalPrice"></span>원</p>
+	<a href="javascript:closeCart()"><button>닫기</button></a>
+	<a th:href="@{/corporate/order/orderMenu}"><button>주문하기</button></a>
 </body>
 </html>

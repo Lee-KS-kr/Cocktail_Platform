@@ -54,9 +54,9 @@ $(document).ready(function () {
     		let fileName = item.savedFilename;
     		
     		str += '<td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
-    				+ '">' + item.menuName + '</a></td>';
-    		str += '<td rowspan="3"><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
     				+ '"><img src="/FitTail/image/menu/' + fileName + '"></a></td></tr>';
+			str += '<tr><td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
+					+ '">' + item.menuName + '</a></td></tr>';
     		str += '<tr><td>' + item.menuInfo + '</td></tr>';
     		str += '<tr><td>' + item.price + '</td>';
     		str += '</tr>';
@@ -64,7 +64,6 @@ $(document).ready(function () {
     	str += '</table>';
     	$('#menuList').html(str);
     }
-  
     init();
 });
 
@@ -217,6 +216,8 @@ function reserveSub(){
 					<span th:text="${store.storeCode}" id="storeCode" style="display:none;"></span>
 					<span th:text="${store.storeName}"></span>
 				</td>
+			</tr>
+			<tr>
 				<td>
 					<img th:src="@{/image/store/} + ${store.savedFilename}">
 				</td>
@@ -275,12 +276,14 @@ function reserveSub(){
 				<!-- 매장 소개, 업체 정보(영업시간, 전화번호, 매장주소, 부가정보), 업체 정보(상호명, 사업자 등록번호), 원재료 정보 출력 -->
 				<table th:each="store: ${store}">
 					<tr>
-						<th>
-							매장 소개<hr>
+						<th colspan="2">
+							<span>매장 소개</span>
 						</th>
 					</tr>
 					<tr>
-						<td th:text="${store.info}"></td>
+						<td colspan="2">
+							<span th:text="${store.info}"></span>
+						</td>
 					</tr>
 					<tr>
 						<th>업체 정보</th>
@@ -302,7 +305,7 @@ function reserveSub(){
 					</tr>
 					<tr>
 						<td>
-							<span>매장주소</span>
+							<span>매장 주소</span>
 						</td>
 						<td>
 							<span th:text="${store.address1}"></span><span th:text="${store.address2}"></span>

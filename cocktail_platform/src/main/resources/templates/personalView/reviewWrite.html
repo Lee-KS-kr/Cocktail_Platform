@@ -41,14 +41,13 @@
    
     <div class="navi">  <!-- navi   -->
         <div class="navi1">
-            <img th:src="@{/image/logo44.png}" alt="logo">
+            <a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
         </div>
         <div class="navi2">
-            <p th:text="${member.memberId}"> </p>
-            <p>님 환영합니다.  &nbsp;</p>
-            <a th:href="@{member/logout}">로그아웃  &nbsp;</a>
-            <a th:href="@{/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
-            <a><img th:src="@{/image/btn_search.png}" alt="search"></a>
+            <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
+            <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
+            <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
+            <a th:href="@{/personal/searchPage}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
         </div>
     </div>  
     <!-- main -->
@@ -58,46 +57,70 @@
             
             <!-- sec2 start-->
             <div class="con">
-                    <div class="title2">좋은 시간을 보내셨나요?</div>
-                        <div class="flex">
-                            <div class="con1">
-                                <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <p>별점을 선택하세요:</p>
-                                                    <div class="star-container">
-                                                        <span class="star" data-rating="1">☆</span>
-                                                        <span class="star" data-rating="2">☆</span>
-                                                        <span class="star" data-rating="3">☆</span>
-                                                        <span class="star" data-rating="4">☆</span>
-                                                        <span class="star" data-rating="5">☆</span>
-                                                    </div>
-                                                    <p>선택한 별점: <span id="selectedRating">0</span> / 5</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="file" placeholder="사진 삽입"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><p th:text="${/}"></p></td>
-                                        </tr>
-                                        <tr>
-                                            <td><textarea placeholder="매장에 대한 리뷰를 남겨주세요!"> </textarea></td>
-                                        </tr>
-                                    </table>
-                                        <input type="submit" value="저장">
-                                </form>	
-                            </div>
-                            <div class="con2">
-                                <p></p>
-                                <div>
-                                    <p th:text="${order.....}">주종명</p>
-                                    <img th:src="#{store.savedFilename}" alt="image">
-                                </div>	
-                            </div>
+                <div class="title2">좋은 시간을 보내셨나요?</div>
+                    <div class="flex">
+                        <form th:action="@{/personal/member/evaluation}"  method="post" onsubmit="return check();">
+                        <input type="hidden" th:value="${store.storeCode}" name="storeCode">
+                        <div class="con1">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <p>별점을 선택하세요:</p>
+                                            <div class="star-container">
+                                                <span class="star" data-rating="1">☆</span>
+                                                <span class="star" data-rating="2">☆</span>
+                                                <span class="star" data-rating="3">☆</span>
+                                                <span class="star" data-rating="4">☆</span>
+                                                <span class="star" data-rating="5">☆</span>
+                                            </div>
+                                            <p>선택한 별점: <span id="selectedRating">0</span> / 5</p>
+                                            <input type="hidden" name="storeReviewScore" id="score">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="file" name="upload" placeholder="사진 삽입"></td>
+                                </tr>
+                                <tr>
+                                    <td>매장에 대한 리뷰를 남겨주세요!</td>
+                                </tr>
+                                <tr>
+                                    <td><textarea name="storeReviewText"> </textarea></td>
+                                </tr>
+                            </table>
                         </div>
+                        <div class="con2">
+                            <p>주문하신 음료에 대한 평가를 남겨주세요.</p>
+                            <div th:each="menu : ${list}">
+                                <input type="hidden" th:value="${menu.menuNum}">
+                                <p th:text="${menu.menuName}">주종명</p>
+                                <img th:src="@{/image/cocktails/} + ${menu.savedFilename}" alt="cocktail_image">
+                                <p>#<span th:text="${menu.menuName}"></span>를 마시기 좋은 날씨를 골라주세요</p>
+                                    <input type="checkbox" name="weathers" value="sunny">맑은 날
+                                    <input type="checkbox" name="weathers" value="cloudy">흐린 날
+                                    <input type="checkbox" name="weathers" value="rainy">비내리는 날
+                                    <input type="checkbox" name="weathers" value="snowy">눈내리는 날
+                                <p>#<span th:text="${menu.menuName}"></span>가 어울리는 연령대를 골라주세요</p>
+                                    <input type="checkbox" name="ageGroups" value="20">20대
+                                    <input type="checkbox" name="ageGroups" value="30">30대
+                                    <input type="checkbox" name="ageGroups" value="40">40대
+                                    <input type="checkbox" name="ageGroups" value="50">50대 이상
+                                <p>#<span th:text="${menu.menuName}"></span>를 함께 즐기기 좋은 사람들을 골라주세요</p>
+                                    <input type="checkbox" name="companions" value="alone">혼술
+                                    <input type="checkbox" name="companions" value="friend">친구
+                                    <input type="checkbox" name="companions" value="family">가족
+                                    <input type="checkbox" name="companions" value="lover">연인
+                                    <input type="checkbox" name="companions" value="etc">그 외
+                                <p>#<span th:text="${menu.menuName}"></span>를 언제 즐기시는지 골라주세요</p>
+                                    <input type="checkbox" name="events" value="cocktail">칵테일을 즐길 때
+                                    <input type="checkbox" name="events" value="atmosphere">분위기를 느낄 때
+                                    <input type="checkbox" name="events" value="friendship">친목을 다질 때
+                                    <input type="checkbox" name="events" value="celebrate">특별한 날
+                            </div>	
+                        </div>
+                        <input type="submit" value="저장">
+                        </form>	
                     </div>
+                </div>
               
             </div>
         </div>
