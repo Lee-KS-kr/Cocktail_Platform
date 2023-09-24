@@ -77,90 +77,25 @@ justify-content: center;
     align-items: center;
     margin: auto;
 }
+img[alt=logo] { width: 120px;}
+img[alt=search] { width: 27px; height: 27px; }
+img[alt=icon]{width: 20px; display: flex;}
 
-.body{ display: flex; }
-
-/* Reset CSS */
-body {
-    margin: 0;
-    padding: 0;
-    background: #f4f4f4;
-    text-align: center;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-/* Header */
-.header {
-    background-color: #fff;
-    border-bottom: 2px solid #e7e7e7;
+.flex_box{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
 }
 
-.header img[alt="logo"] {
-    width: 120px;
-    margin: 0;
+.storeInfo{
+    width: 300px;
+    height: 400px;
+    background-color: #ff9494;
+    border: 1pz solid #e7e7e7;
+    box-shadow: 0px 4px 20px #e7e7e7;
+    border-radius: 8px;
 }
 
-.header img[alt="search"] {
-    width: 27px;
-    height: 27px;
+img[alt=store_image]{
+    width: 250px;
+    height: 250px;
+    background-color: #232323;
 }
-
-/* Main Content */
-.main {
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.storeInfo {
-    width: calc(25% - 20px); /* 4개의 가게 정보, 간격 포함 */
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    box-sizing: border-box;
-    text-align: left;
-}
-
-.storeInfo a {
-    text-decoration: none;
-    color: #313131;
-}
-
-.storeInfo img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.storeInfo p {
-    margin-top: 10px;
-    font-size: 16px;
-}
-
-/* Footer */
-.footer {
-    background-color: #313131;
-    color: #d5d5d5;
-    text-align: center;
-    padding: 20px 40px;
-    margin-top: 40px;
-}
-
-.footer1 {
-    margin: 10px 0;
-    font-size: 12px;
-}
-
-.bin {
-    height: 70px;
-}
-
