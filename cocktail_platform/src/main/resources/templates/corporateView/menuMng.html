@@ -30,8 +30,6 @@ let storeCode;
 function getList(list){
 	let str = '<table><tr><th>메뉴 번호</th><th>카테고리</th><th>이름</th><th>가격</th><th>상태</th></tr>';
 	$(list).each(function(i,item){
-		storeCode = item.storeCode;
-		
 		str += '<tr>';
 		str += '<td>' + item.menuNum + '</td>';
 		str += '<td>' + item.category + '</td>';
@@ -136,7 +134,7 @@ function menuSearch() {
 		url: 'menuSearch',
 		type:'post',
 		dataType: 'json',
-		data: {searchWord: searchWord, category: category, storeCode: storeCode},
+		data: {searchWord: searchWord, category: category},
 		success: function(list) {
 			getList(list);
 		},
