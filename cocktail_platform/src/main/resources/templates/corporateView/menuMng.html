@@ -54,8 +54,13 @@ function deleteMenu(menuNum){
 }
 
 //메뉴 추가 폼 표시
-function addMenu(){
+function addMenuToggle(){
 	$('#addMenuDiv').show();
+}
+
+/**메뉴 추가 폼 없애기*/
+function addMenuToggle2(){
+	$('#addMenuDiv').hide();
 }
 
 /**메뉴 카테고리 유효성 검사*/
@@ -118,6 +123,8 @@ function addSub(){
         processData : false,
         success: function() {
            alert('추가되었습니다.');
+           addMenuToggle2();
+           init();
         },
         error: function(e) {
         	alert(e.statusText);
@@ -240,7 +247,7 @@ function pagingFormSubmit(currentPage){
 	<!-- 메뉴 리스트 -->
 	<section>
 		총 <span id="totalnum"></span>개 검색되었습니다.
-		<button onclick="addMenu()">추가</button>
+		<button onclick="addMenuToggle()">추가</button>
 		<div id="menuList"></div>
 		
 		<!-- 메뉴 추가 폼(추가버튼 클릭 시에만 보임) -->
