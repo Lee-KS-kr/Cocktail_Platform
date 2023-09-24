@@ -67,6 +67,7 @@ img[alt=profile]{width: 25px; height: 25px;}
 }
 
 /*배너 이미지*/
-.bannerimg{
+img[alt=bannering]{
   width: 800px;
 }
+
