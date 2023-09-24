@@ -231,6 +231,7 @@ function pagingFormSubmit(currentPage){
 		검색 <select id="category" name="category">
             	<option value="beverage" th:selected="${category} == 'beverage'">주류</option>
             	<option value="food" th:selected="${category} == 'food'">안주</option>
+            	<option value="side" th:selected="${category} == 'side'">사이드</option>
         	</select>
 		<input type="search" name="searchWord" th:value="${searchWord}">
 		<input type="button" value="검색" onclick="menuSearch()">
@@ -255,12 +256,12 @@ function pagingFormSubmit(currentPage){
 				메뉴명<br>
 				<input type="text" id="menuName" name="menuName" required><br>
 				설명<br>
-		    	<input type="text" id="menuInfo" name="menuInfo">
+		    	<input type="text" id="menuInfo" name="menuInfo"><br>
 				가격<br>
 		    	<input type="text" id="price" name="price" required>
 		    	<p id="errMsg2"></p>
 		    	이미지<br>
-		    	<input type="file" name="upload"><br>
+		    	<input type="file" id="file" name="upload"><br>
 		    	
 		    	<input type="reset" class="bottom" value="다시 쓰기">
 		    	<input type="button" value="저장" onclick="addSub()">
