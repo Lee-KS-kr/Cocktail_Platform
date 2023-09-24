@@ -65,9 +65,9 @@ img[alt=profile]{width: 25px; height: 25px;}
   border: 1px solid #e7e7e7;
   border-radius: 20px;
 }
-
 /*배너 이미지*/
-img[alt=bannering]{
-  width: 800px;
+img[alt=bannerimg]{
+  width: 100px;
 }
+
 
