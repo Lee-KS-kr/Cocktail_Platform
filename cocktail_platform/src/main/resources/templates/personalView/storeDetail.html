@@ -67,7 +67,6 @@ $(document).ready(function () {
     init();
 });
 
-
 //별점 가져오기
 function reviewScore(){
     let score = parseFloat($('#storeReviewScore').val());
@@ -83,6 +82,13 @@ function reviewScore(){
         }
     }
     $('#starDiv').html(str);
+}
+
+/**번호에 하이픈 추가*/
+function formatPhoneNum(phone) {
+    // 정규표현식을 사용하여 하이픈을 추가하여 전화번호 형식으로 변환
+    
+    return phone.replace(/^(\d{2,3})(\d{4})(\d{4})$/, '$1-$2-$3');
 }
 
 /**인원수 선택 증감*/
@@ -286,7 +292,7 @@ function reserveSub(){
 						</td>
 					</tr>
 					<tr>
-						<th>업체 정보</th>
+						<th colspan="2">업체 정보</th>
 					</tr>
 					<tr>
 						<td>
@@ -300,7 +306,8 @@ function reserveSub(){
 							<span>전화 번호</span>
 						</td>
 						<td>
-							<span th:text="${store.phone}"></span>
+							<!-- th:utext(Unescaped Text), dates(타임리프 내장 객체)에 사용자 정의 함수 적용 -->
+							<span th:utext="${#dates.formatPhoneNumber(store.phone)}"></span>
 						</td>
 					</tr>
 					<tr>
@@ -312,7 +319,7 @@ function reserveSub(){
 						</td>
 					</tr>
 					<tr>
-						<th>
+						<th colspan="2">
 							사업자 정보<hr>
 						</th>
 					</tr>
