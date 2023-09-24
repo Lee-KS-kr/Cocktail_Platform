@@ -182,3 +182,12 @@ input[type="text"], input[type=number], input[type=submit]{
     padding: auto;
     
 }
+
+/*예약취소 여백*/
+.cancleReserv{
+    width: 100px;
+}
+
+td{
+    margin: auto;
+}
