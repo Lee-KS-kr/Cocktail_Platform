@@ -58,4 +58,6 @@ public interface StoreService {
 
 	ArrayList<StoreInfo> getStoreByCocktailName(String cocktailName);
 
+	int insertMenu(Menu menu);
+
 }

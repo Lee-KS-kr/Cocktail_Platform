@@ -35,7 +35,7 @@ public class CorporateAjaxStoreController {
 	String menuPath;
 	
 	@PostMapping("orderList")
-	public ArrayList<OrderTemp> orderList(@AuthenticationPrincipal UserDetails user, String orderCode){
+	public ArrayList<OrderTemp> orderList(@AuthenticationPrincipal UserDetails user){
 		StoreInfo store = sService.getStoreById(user.getUsername());
 		ArrayList<OrderTemp> orderList = oService.getTemporderlistByCode(store.getStoreCode());
 		return orderList;
@@ -52,12 +52,16 @@ public class CorporateAjaxStoreController {
 	}
 	
 	@PostMapping("addMenu")
-	public void addMenu(Menu menu, MultipartFile upload) {
+	public void addMenu(@AuthenticationPrincipal UserDetails user, Menu menu, MultipartFile upload) {
+		StoreInfo store = sService.getStoreById(user.getUsername());
+		menu.setStoreCode(store.getStoreCode());
+		
 		if(upload != null && !upload.isEmpty()) {
 			String savedfile = FileService.saveFile(upload, menuPath);
 			menu.setOriginFilename(upload.getOriginalFilename());
 			menu.setSavedFilename(savedfile);
 		}
 		log.debug("저장할 글 : {}", menu);
+		sService.insertMenu(menu);
 	}
 }

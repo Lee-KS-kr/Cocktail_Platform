@@ -12,7 +12,7 @@ public class Menu {
 	int storeCode;
 	String menuName;
 	int price;
-	Category data;
+	Category category;
 	String menuInfo;
 	String originFilename;
 	String savedFilename;
