@@ -89,12 +89,28 @@ $(document).ready(function(){
 
 </script>
 </head>
+
 <body>
-	장바구니
-	<!-- 카트에 담은 메뉴 출력 -->
-	<div id="cartList"></div>
-	<p>합계 <span id="totalPrice"></span>원</p>
-	<a href="javascript:closeCart()"><button>닫기</button></a>
-	<a th:href="@{/corporate/order/orderMenu}"><button>주문하기</button></a>
-</body>
+	<div class="container">
+	  <div class="header">
+		<h1>장바구니</h1>
+	  </div>
+	  <!-- 카트에 담은 메뉴 출력 -->
+	  <div id="cartList">
+		<div class="cart-item">
+		  <h2>상품 이름</h2>
+		  <div class="cart-controls">
+			<button>+</button>
+			<span>1</span> <!-- 주문 수량 -->
+			<button>-</button>
+			<span class="price">10,000원</span> <!-- 가격 -->
+			<button class="delete-button">삭제</button>
+		  </div>
+		</div>
+	  </div>
+	  <p class="cart-total">합계: <span id="totalPrice">10,000원</span></p>
+	  <a href="javascript:closeCart()"><button class="orderBT">닫기</button></a>
+	  <a th:href="@{/corporate/order/orderMenu}" ><button class="orderBT">주문하기</button></a>
+	</div>
+  </body>
 </html>
