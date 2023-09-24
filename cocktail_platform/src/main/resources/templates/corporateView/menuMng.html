@@ -265,7 +265,7 @@ function pagingFormSubmit(currentPage){
 				설명<br>
 		    	<input type="text" id="menuInfo" name="menuInfo"><br>
 				가격<br>
-		    	<input type="text" id="price" name="price" required>
+		    	<input type="text" id="price" name="price" onkeyup="priceChk()" required>
 		    	<p id="errMsg2"></p>
 		    	이미지<br>
 		    	<input type="file" id="file" name="upload"><br>
