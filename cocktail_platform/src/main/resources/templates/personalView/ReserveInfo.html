@@ -62,7 +62,7 @@
                     <tr>
                         <td>매장명</td>
                         <td>
-                            <a th:href="@{/personal/store/storeDetail?storeCode=${item.storeCode}}">
+                            <a th:href="@{/personal/store/storeDetail(storeCode=${reservation.storeCode})}">
                                 <span th:text="${reservation.storeName}"></span>
                             </a>
                         </td>

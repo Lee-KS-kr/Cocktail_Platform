@@ -339,4 +339,27 @@
 			menu.menuName = #{menu.menuName}
 	</select>
 	
+	<insert id="insertMenu" parameterType="Menu">
+		insert into menu 
+			(menuNum
+			, storeCode
+			, menuName
+			, price
+			, category
+			<if test="menuInfo != 'null'"> , menuInfo </if>
+			<if test="originFilename != 'null"> , originFilename
+			, savedFilename </if>
+			) 
+		values 
+			(menu_seq.nextval
+			, #{storeCode}
+			, #{menuName}
+			, #{price}
+			, #{category}
+			<if test="menuInfo != 'null'"> , #{menuInfo} </if>
+			<if test="originFilename != 'null"> , #{originFilename}
+			, #{savedFilename} </if>
+			)
+	</insert>
+	
 </mapper>
