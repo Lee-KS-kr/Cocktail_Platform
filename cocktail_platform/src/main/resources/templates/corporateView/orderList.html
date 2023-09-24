@@ -15,7 +15,6 @@ function init(){
 	$.ajax({
 		url: "orderList",
 		type: "post",
-		data: {storeCode: storeCode},
 		dataType: "json",
 		success: function(list){
 			getList(list);
@@ -69,12 +68,6 @@ function getList(list){
 	<header id="header" class="header">
 		<!-- 네비게이션바 -->
 		<nav id="navbar" class="navbar">
-	    	<div class="search">
-	   			<a th:href="@{/personal/search}" class="search_logo">
-	    			<img th:src="@{/image/btn_search.png}" alt="검색">
-	    		</a>
-	    	</div>
-	    
 		    <div id="logo">
 		    	<a th:href="@{/corporate/home}" class="navbar_logo">
 		       		<img th:src="@{/image/logo.png}" alt="logo">
