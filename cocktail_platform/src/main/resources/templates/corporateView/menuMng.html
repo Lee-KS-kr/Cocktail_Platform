@@ -29,8 +29,6 @@ function init(){
 function getList(list){
 	let str = '<table><tr><th>메뉴 번호</th><th>카테고리</th><th>이름</th><th>가격</th><th>상태</th></tr>';
 	$(list).each(function(i,item){
-		let storeCode = item.storeCode;
-		
 		str += '<tr>';
 		str += '<td>' + item.menuNum + '</td>';
 		str += '<td>' + item.category + '</td>';
@@ -44,7 +42,6 @@ function getList(list){
 	$('#menuList').html(str);
 	total = list.length;
 	$('#totalnum').html(total);
-	$('#storeCode').val(storeCode);
 }
 
 //메뉴 삭제
@@ -113,31 +110,25 @@ function menuSearch() {
 	});
 }
 
+/*
 //페이지 이동
 function pagingFormSubmit(currentPage){
 		let form = document.getElementById("pagingForm");
 		let page = document.getElementById("page");
 		page.value = currentPage;
 		form.submit();
-}
+}*/
 	
 </script>
-<link rel="stylesheet" th:href="@{/CSS/}">
+<!-- <link rel="stylesheet" th:href="@{/CSS/}"> -->
 </head>
 <body>
 	<!-- 헤더 -->
 	<header id="header" class="header">
 		<!-- 네비게이션바 -->
 		<nav id="navbar" class="navbar">
-	    	<div class="search">
-	   			<a th:href="@{/search}" class="search_logo">
-	    			<img th:src="@{/image/btn_search.png}" alt="검색">
-	    		</a>
-	    	</div>
-	    
 		    <div id="logo">
 		    	<a th:href="@{/corporate/home}" class="navbar_logo">
-		       		<img th:src="@{/image/logo.png}" alt="logo">
 		       		<span>FitTail</span>
 		     	</a>
 		    </div>
@@ -234,7 +225,6 @@ function pagingFormSubmit(currentPage){
 		    	<input type="text" name="price"><br>
 		    	이미지<br>
 		    	<input type="file" name="upload"><br>
-		    	<input type="hidden" id="storeCode" name="storeCode">
 		    	
 		    	<input type="reset" class="bottom" value="다시 쓰기">
 		    	<input type="submit" value="저장" onclick="addSub()">
