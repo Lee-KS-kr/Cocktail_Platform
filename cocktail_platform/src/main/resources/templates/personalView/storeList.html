@@ -33,12 +33,12 @@
 <!-- 헤더 끝 -->
 <!-- 메인 시작 -->
 <main>
-	<section class="flex_box" th:each="store : ${list}">
+	<section class="flex_box">
 		<!-- <div id="storeListDiv"></div>> -->
-		<div class="storeInfo">
+		<div class="storeInfo" th:each="store : ${list}">
 			<a th:href="@{/personal/store/storeDetail(storeCode=${store.storeCode})}">
 				<div>
-					<img th:src="@{/image/store/} + ${store.savedFilename}" alt="store image">
+					<img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image">
 				</div>
 				<p th:text="${store.storeName}"></p>
 				<p th:text="${store.storeReviewScore}"></p>
