@@ -35,6 +35,10 @@
                 });
             });
         });
+        
+        function check(){
+        	return true;
+        }
     </script>
 </head>
 <body>
@@ -59,7 +63,7 @@
             <div class="con">
                 <div class="title2">좋은 시간을 보내셨나요?</div>
                     <div class="flex">
-                        <form th:action="@{/personal/member/evaluation}"  method="post" onsubmit="return check();">
+                        <form th:action="@{/personal/member/evaluation}"  method="post" onsubmit="return check()">
                         <input type="hidden" th:value="${store.storeCode}" name="storeCode">
                         <div class="con1">
                             <table>
@@ -74,7 +78,7 @@
                                                 <span class="star" data-rating="5">☆</span>
                                             </div>
                                             <p>선택한 별점: <span id="selectedRating">0</span> / 5</p>
-                                            <input type="hidden" name="storeReviewScore" id="score">
+                                            <input type="hidden" name="storeReviewScore" id="score" value="5">
                                     </td>
                                 </tr>
                                 <tr>
@@ -91,30 +95,30 @@
                         <div class="con2">
                             <p>주문하신 음료에 대한 평가를 남겨주세요.</p>
                             <div th:each="menu : ${list}">
-                                <input type="hidden" th:value="${menu.menuNum}">
+                                <input type="hidden" name="menuNum" th:value="${menu.menuNum}">
                                 <p th:text="${menu.menuName}">주종명</p>
                                 <img th:src="@{/image/cocktails/} + ${menu.savedFilename}" alt="cocktail_image">
                                 <p>#<span th:text="${menu.menuName}"></span>를 마시기 좋은 날씨를 골라주세요</p>
-                                    <input type="checkbox" name="weathers" value="sunny">맑은 날
-                                    <input type="checkbox" name="weathers" value="cloudy">흐린 날
-                                    <input type="checkbox" name="weathers" value="rainy">비내리는 날
-                                    <input type="checkbox" name="weathers" value="snowy">눈내리는 날
+                                    <input type="checkbox" name="weather" value="sunny">맑은 날
+                                    <input type="checkbox" name="weather" value="cloudy">흐린 날
+                                    <input type="checkbox" name="weather" value="rainy">비내리는 날
+                                    <input type="checkbox" name="weather" value="snowy">눈내리는 날
                                 <p>#<span th:text="${menu.menuName}"></span>가 어울리는 연령대를 골라주세요</p>
-                                    <input type="checkbox" name="ageGroups" value="20">20대
-                                    <input type="checkbox" name="ageGroups" value="30">30대
-                                    <input type="checkbox" name="ageGroups" value="40">40대
-                                    <input type="checkbox" name="ageGroups" value="50">50대 이상
+                                    <input type="checkbox" name="ageGroup" value="20">20대
+                                    <input type="checkbox" name="ageGroup" value="30">30대
+                                    <input type="checkbox" name="ageGroup" value="40">40대
+                                    <input type="checkbox" name="ageGroup" value="50">50대 이상
                                 <p>#<span th:text="${menu.menuName}"></span>를 함께 즐기기 좋은 사람들을 골라주세요</p>
-                                    <input type="checkbox" name="companions" value="alone">혼술
-                                    <input type="checkbox" name="companions" value="friend">친구
-                                    <input type="checkbox" name="companions" value="family">가족
-                                    <input type="checkbox" name="companions" value="lover">연인
-                                    <input type="checkbox" name="companions" value="etc">그 외
+                                    <input type="checkbox" name="companion" value="alone">혼술
+                                    <input type="checkbox" name="companion" value="friend">친구
+                                    <input type="checkbox" name="companion" value="family">가족
+                                    <input type="checkbox" name="companion" value="lover">연인
+                                    <input type="checkbox" name="companion" value="etc">그 외
                                 <p>#<span th:text="${menu.menuName}"></span>를 언제 즐기시는지 골라주세요</p>
-                                    <input type="checkbox" name="events" value="cocktail">칵테일을 즐길 때
-                                    <input type="checkbox" name="events" value="atmosphere">분위기를 느낄 때
-                                    <input type="checkbox" name="events" value="friendship">친목을 다질 때
-                                    <input type="checkbox" name="events" value="celebrate">특별한 날
+                                    <input type="checkbox" name="event" value="cocktail">칵테일을 즐길 때
+                                    <input type="checkbox" name="event" value="atmosphere">분위기를 느낄 때
+                                    <input type="checkbox" name="event" value="friendship">친목을 다질 때
+                                    <input type="checkbox" name="event" value="celebrate">특별한 날
                             </div>	
                         </div>
                         <input type="submit" value="저장">
