@@ -81,21 +81,85 @@ img[alt=logo] { width: 120px;}
 img[alt=search] { width: 27px; height: 27px; }
 img[alt=icon]{width: 20px; display: flex;}
 
-.flex_box{
+/* Reset CSS */
+body {
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* Header */
+.header {
+    background-color: #fff;
+    border-bottom: 2px solid #e7e7e7;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
 }
 
-.storeInfo{
-    width: 300px;
-    height: 400px;
-    background-color: #ff9494;
-    border: 1pz solid #e7e7e7;
-    box-shadow: 0px 4px 20px #e7e7e7;
+.header img[alt="logo"] {
+    width: 120px;
+    margin: 0;
+}
+
+.header img[alt="search"] {
+    width: 27px;
+    height: 27px;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 각 가게 정보를 한 줄에 4개씩 놓기 */
+.flex_box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.storeInfo {
+    width: calc(25% - 20px); /* 4개의 가게 정보, 간격 포함 */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 8px;
+    box-sizing: border-box;
+    overflow: hidden; /* 이미지 크기를 조정하기 위해 overflow 설정 */
 }
 
-img[alt=store_image]{
-    width: 250px;
-    height: 250px;
-    background-color: #232323;
+.storeInfo a {
+    text-decoration: none;
+    color: #313131;
+}
+
+.storeInfo img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0; /* 이미지의 border-radius 초기화 */
+}
+
+.storeInfo p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* 4개씩 한 줄에 정렬 */
+@media (max-width: 768px) {
+    .storeInfo {
+        width: calc(50% - 20px); /* 화면이 작을 때는 2개씩 나열 */
+    }
+}
+
+@media (max-width: 480px) {
+    .storeInfo {
+        width: 100%; /* 화면이 아주 작을 때는 한 개씩 나열 */
+    }
 }
