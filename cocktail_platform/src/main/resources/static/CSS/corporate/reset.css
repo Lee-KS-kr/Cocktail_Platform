@@ -1,0 +1,80 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	text-decoration: none;
+  }
+  a:link {
+	color: #232323;
+  }
+  a:visited {
+	color: #454545;
+  }
+  a:hover {
+	color: #232323;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  ol,
+  ul {
+	list-style: none;
+  }
+  blockquote,
+  q {
+	quotes: none;
+  }
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
+	content: "";
+	content: none;
+  }
+  table {
+	border-collapse: collapse;
+	border-spacing: 0;
+  }
+  /*색상 코드
+  배경:                   #fff
+  input-border-solid:     #e7e7e7
+  강조색:                 #ff5805
+  폰트 컬러 :             #232323
+  조보색:                 #45B783
+  
+  */
+  
+  @import url("https://fonts.googleapis.com/css?family=Black+Han+Sans:400");
+  @import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean");
+  @font-face {
+	font-family: "S-CoreDream-3Light";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+	  format("woff");
+	font-weight: normal;
+	font-style: normal;
+  }
+  @font-face {
+	font-family: 'OKGUNG';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+  }
+  
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+  /*=========================================================*/
