@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+/* 예약 페이지 스타일 */
+.row {
+  display: flex;
+}
+
+.col {
+  flex: 1;
+  padding: 10px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+#tab_reserve {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+/* 날짜 선택, 시간 선택 등의 스타일을 추가해주세요. */
+
+/* 예약자 정보 입력 폼 스타일 */
+
+#reserve_info input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#reserve_info input[type="radio"] {
+  margin-bottom: 10px;
+}
+
+#reserve_info label {
+  display: block;
+}

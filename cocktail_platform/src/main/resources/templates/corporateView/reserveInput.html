@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>예약 수기 입력</title>
+<link rel="stylesheet" th:href="@{/CSS/personal/reserveInput.css}">
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function () {
@@ -97,41 +98,46 @@ function reserveSub(){
 </script>
 <body>
 	<div id="tab_reserve">
-				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
-				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="reserveSub()">
-					<p>날짜 선택</p>
-					<input type="date" name="reserveDate" required="required">
-					<p>시간 선택</p>
-					<div id="timeContainer">
-						<input type="time" id="reserveTime" required="required">
-						<input type="hidden" id="reserveTime2" name="reserveTime">
-					</div>
-					<div id="head_count">
-						<p>인원 선택</p>
-						<div id="head_select">
-							<p>1~5명만 선택 가능합니다.</p>
-							<p>방문하시는 인원을 선택해주세요.</p>
-							<input type="button" onclick="count('minus')" value="-"></input>
-							<span id="headnum">1</span>
-							<input type="hidden" id="reserveHead" name="reserveHead"></input>
-							<input type="button" onclick="count('plus')" value="+"></input>
-						</div>
-					</div>
-					<div id="reserve_info">
-					<p>예약자 정보</p>
-						<input type="text" id="reservationName" name="reservationName" placeholder="예약자"
-						onkeyup="nameChk()" required="required"><br>
-						<p id="errMsg1"></p>
-						<input type="text" id="reservationPhone" name="reservationPhone" placeholder="연락처(- 없이)" 
-						onkeyup="phoneChk()" required="required"><br>
-						<p id="errMsg2"></p>
-						<input type="text" name="request" placeholder="요청 사항"><br>
-						<label>개인 정보 수집, 제공 동의<input type="radio" name="agree" id="agree"></input></label>
-					</div>
-					<input type="hidden" name="storeCode" th:value="${storeCode}">
-					<br>
-					<input type="submit" value="예약 신청하기">
-				</form>
-				</div>
+	<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
+	  <form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="reserveSub()">
+	    <div class="row">
+	      <div class="col sub-heading">
+	        <p>날짜 선택</p>
+	        <input type="date" name="reserveDate" required="required">
+	      </div>
+	      <div class="col sub-heading">
+	        <p>시간 선택</p>
+	        <input type="time" id="reserveTime" required="required">
+	        <input type="hidden" id="reserveTime2" name="reserveTime">
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col sub-heading">
+	        <p>인원 선택</p>
+	        <div id="head_select">
+	          <p>방문하시는 인원을 선택해주세요.</p>
+	          <input type="button" onclick="count('minus')" value="-">
+	          <span id="headnum">1</span>
+	          <input type="hidden" id="reserveHead" name="reserveHead">
+	          <input type="button" onclick="count('plus')" value="+">
+	        </div>
+	      </div>
+	      <div class="col sub-heading">
+	        <p>예약자 정보</p>
+	        <input type="text" id="reservationName" name="reservationName" placeholder="예약자" 
+	        onkeyup="nameChk()" required="required"><br>
+	        <p id="errMsg1"></p>
+	        <input type="text" id="reservationPhone" name="reservationPhone" placeholder="연락처(- 없이)" 
+	        onkeyup="phoneChk()" required="required"><br>
+	        <p id="errMsg2"></p>
+	        <input type="text" name="request" placeholder="요청 사항"><br>
+	        <label>개인 정보 수집, 제공 동의<input type="radio" name="agree" id="agree"></label>
+	      </div>
+	    </div>
+	    <input type="hidden" name="storeCode" th:value="${storeCode}">
+	    <br>
+	    <input type="submit" value="예약 신청하기">
+	  </form>
+	</div>
 </body>
 </html>
