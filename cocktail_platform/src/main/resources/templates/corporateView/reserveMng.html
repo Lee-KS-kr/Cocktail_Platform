@@ -19,8 +19,8 @@ function init(){
 		success: function(list){
 			getList(list);
 		},
-		error: function(){
-			alert('error');
+		error: function(e){
+			alert(e.statusText);
 		}
 	});
 }
