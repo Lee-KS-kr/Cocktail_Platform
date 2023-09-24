@@ -80,6 +80,7 @@ function reserveSearch() {
 	});
 }
 
+/**
 //페이지 이동
 function pagingFormSubmit(currentPage){
 		let form = document.getElementById("pagingForm");
@@ -87,6 +88,7 @@ function pagingFormSubmit(currentPage){
 		page.value = currentPage;
 		form.submit();
 }
+*/
 	
 </script>
 </head>
@@ -175,7 +177,7 @@ function pagingFormSubmit(currentPage){
 	<!-- 예약 리스트 -->
 	<section>
 		총 <span id="totalnum"></span>명 검색되었습니다.
-		<a th:href="@{corporate/store/reserveInput}"><button>수기입력</button></a>
+		<a th:href="@{/corporate/store/reserveInput}"><button>수기입력</button></a>
 		<div id="reserveList"></div>
 	</section>
 	<!-- 페이지 네비게이터 부분(추후 보완.)  -->
