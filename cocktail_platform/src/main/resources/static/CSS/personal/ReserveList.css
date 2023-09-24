@@ -166,7 +166,7 @@ a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9p
 
 th{padding-right: 20px;}
 
-
+  
 
 .flex{display: flex; }
 
@@ -184,23 +184,23 @@ input[type="text"], input[type=number], input[type=submit]{
 }
 
 .cancleReserv1{
-    width: 240px;
+    width: 260px;
 }
 
 .cancleReserv2{
-    width: 240px;
+    width: 200px;
 }
 
 .cancleReserv3{
-    width: 240px;
+    width: 210px;
 }
 .cancleReserv4{
-    width: 240px;
+    width: 290px;
 }
 
 /*예약취소 여백*/
 .cancleReserv5{
-    width: 240px;
+    width: 270px;
 }
 
 td{
