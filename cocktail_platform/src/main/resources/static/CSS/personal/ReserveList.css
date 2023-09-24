@@ -92,7 +92,7 @@ border: 1px solid #e7e7e7;
 position:relative;
 }
 
-/*배경*/
+/*ë°°ê²½*/
 .sec2{width: 83%; padding-left: 36px; padding-right: 36px; background-color:#f6f7fa; }
 
 .title1{padding-left: 20px; padding-top: 10px;}
@@ -183,11 +183,27 @@ input[type="text"], input[type=number], input[type=submit]{
     
 }
 
+.cancleReserv1{
+    width: 240px;
+}
+
+.cancleReserv2{
+    width: 240px;
+}
+
+.cancleReserv3{
+    width: 240px;
+}
+.cancleReserv4{
+    width: 240px;
+}
+
 /*예약취소 여백*/
-.cancleReserv{
-    width: 100px;
+.cancleReserv5{
+    width: 240px;
 }
 
 td{
     margin: auto;
 }
+

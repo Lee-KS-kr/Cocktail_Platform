@@ -117,21 +117,21 @@
                 <div class="con2" th:if="${#lists.isEmpty(reserveList)}">예약 내역이 없습니다.</div>
                 <table class="con2" th:if="${#lists.isEmpty(reserveList) != true}">
                     <tr th:each="rsv : ${reserveList}">
-                        <td>
+                        <td class="cancleReserv1">
                             <a th:href="@{/personal/member/reserveInfo(reserveCode=${rsv.reserveCode})}">
                                 <span th:text="${rsv.reserveCode}"></span>
                             </a>
                         </td>
-                        <td th:text="${rsv.storeName}"></td>
-                        <td th:text="${rsv.reserveDate}"></td>
-                        <td>
+                        <td th:text="${rsv.storeName}"  class="cancleReserv2"></td>
+                        <td th:text="${rsv.reserveDate}"  class="cancleReserv3"></td>
+                        <td class="cancleReserv4">
                             <span th:if="${rsv.reserveState.toString().equals('apply')}">예약 대기</span>
                             <span th:if="${rsv.reserveState.toString().equals('received')}">예약 확정</span>
                             <span th:if="${rsv.reserveState.toString().equals('refuesed')}">예약 거절</span>
                             <span th:if="${rsv.reserveState.toString().equals('finished')}">방문 완료</span>
                             <span th:if="${rsv.reserveState.toString().equals('canceled')}">예약 취소</span>
                         </td>
-                        <td class="cancleReserv">
+                        <td class="cancleReserv5">
                             <span th:if="${rsv.reserveState.toString().equals('apply')} or
                             ${rsv.reserveState.toString().equals('received')}">
                                 <a th:href="@{/personal/store/cancleReserve(reserveCode=${rsv.reserveCode})}">예약 취소</a>
