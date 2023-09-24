@@ -53,53 +53,57 @@
             </div>
             <!-- sec2 start-->
             <div class="sec2">
-                    <div class="title2">취향 카테고리 설정</div>
-                        <div class="flex">
-                            <div class="con1">
-                                <p>* 기본정보
-                                <form th:action="@{/member/update}"  method="post" onsubmit="return check();">
-                                    <table th:each="member : ${member}">
-                                        <tr>
-                                            <th>아이디</th>
-                                            <td th:text="${member.memberId}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>이름</th>
-                                            <td th:text="${member.memberName}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>이메일</th>
-                                            <td th:text="${member.email}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>전화번호</th>
-                                            <td th:text="${member.phone}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>생년월일</th>
-                                            <td th:text="${member.birthday}"></td>
-                                        </tr>
-                                        
-                                    </table>
-                                    </form>	
-                            </div>
-                            <div class="con2">
-                                <p>* 취향 정보
-                                <form th:action="@{/member/update}"  method="post">
-                                    <table th:each="member : ${member}">
-                                        <tr>
-                                            <th>맛</th>
-                                            <td th:text="${member.memberId}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>향</th>
-                                            <td th:text="${member.memberName}"></td>
-                                        </tr>
-                                    </table>
-                                    </form>	
-                            </div>
+                <div class="title2">취향 카테고리 설정</div>
+                    <div class="flex">
+                        <div class="con1">
+                            <p>* 취향 재설정
+                            <form th:action="@{/personal/member/resetTaste}"  method="post">
+                                <table>
+                                    <tr>
+                                        <th>
+                                            <p>#맛</p>
+                    
+                                            <input type="checkbox"  name="taste" value="sweet"> 단맛 
+                                            
+                                            <input type="checkbox"  name="taste" value="sour"> 신맛 
+                                            
+                                            <input type="checkbox"  name="taste" value="bitter"> 쓴맛 
+                                            
+                                            <input type="checkbox"  name="taste" value="salty"> 짠맛 
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <p>#향</p>
+                    
+                                            <input type="checkbox"  name="flavor" value="alcohol"> 알코올 향 
+                                            
+                                            <input type="checkbox"  name="flavor" value="coffee&chocolate"> 커피/초콜릿 향 
+                                            
+                                            <input type="checkbox"  name="flavor" value="general"> 일반 과일 향
+                                            
+                                            <input type="checkbox"  name="flavor" value="citrus"> 시트러스 향
+
+                                            <input type="checkbox"  name="flavor" value="tropical"> 열대과일 향
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>#알러지 유무</p>
+                    
+                                            <input type="radio"  name="status" value="yes"> 예
+
+                                            <input type="radio"  name="status" value="no"> 아니오 <br>
+                                            <p>*알러지 종류</p>
+                                            <input type="text" name="status" placeholder="예) 아몬드">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <input type="submit" value="취향 재설정">
+                            </form>	
                         </div>
                     </div>
+                </div>
             </div>
         </div>
         

@@ -111,10 +111,10 @@
 		update
 			taste
 		set
-			hasAllergy = #{hasAllergy}
-			, allergyType = #{allergyType}
-			, cocktailTaste = #{cocktailTaste}
+			cocktailTaste = #{cocktailTaste}
 			, cocktailFlavor = #{cocktailFlavor}
+			, hasAllergy = #{hasAllergy}
+			<if test="allergyType != null"> , allergyType = #{allergyType} </if>
 		where 
 			memberId = #{memberId}
 	</update>

@@ -24,9 +24,9 @@
             <a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
         </div>
         <div class="navi2">
-            <p th:text="${#authentication.name}">님 환영합니다.  &nbsp;</p>
+            <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
             <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
-            <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
+            <a th:href="@{/personal/member/myPage}">마이페이지</a>  &nbsp; &nbsp;
             <a th:href="@{/personal/searchPage}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
         </div>
     </div>
@@ -64,15 +64,6 @@
                             <th>주문 상태</th>
                         </tr>
                     </table>
-                </div>
-                <div style="display: flex;">
-                    <form th:action="@{/personal/member/orderInputTest}" method="post">
-                        <input type="text" name="orderCode" placeholder="orderCode"> <br>
-                        <input type="number" name="storeCode" value="1"> <br>
-                        <input type="text" name="totalPrice" placeholder="totalPrice"> <br>
-                        <input type="text" name="menuList" placeholder="menuList"> <br>
-                        <input type="submit" value="주문 1">
-                    </form>
                 </div>
                 <div class="con2">
                     <div th:if="${#lists.isEmpty(orderList)}">예약 내역이 없습니다.</div>

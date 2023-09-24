@@ -72,48 +72,6 @@
                         <td>예약 취소</td>
                     </tr>
                 </table>
-                <div class="table">
-                    <form th:action="@{/personal/store/reserve}" method="post">
-                        <input type="text" name="storeCode" value="1">
-                        <input type="text" name="reserveDate" placeholder="일자">
-                        <input type="text" name="reserveTime" placeholder="시간">
-                        <input type="number" name="reserveHead" placeholder="인원">
-                        <input type="text" name="reservationName" placeholder="이름">
-                        <input type="text" name="reservationPhone" placeholder="핸드폰">
-                        <input type="text" name="request" placeholder="요청">
-                        <input type="submit" value="기업1 예약">
-                    </form>
-                    <form th:action="@{/personal/store/reserve}" method="post">
-                        <input type="text" name="storeCode" value="2">
-                        <input type="text" name="reserveDate" placeholder="일자">
-                        <input type="text" name="reserveTime" placeholder="시간">
-                        <input type="number" name="reserveHead" placeholder="인원">
-                        <input type="text" name="reservationName" placeholder="이름">
-                        <input type="text" name="reservationPhone" placeholder="핸드폰">
-                        <input type="text" name="request" placeholder="요청">
-                        <input type="submit" value="기업2 예약">
-                    </form>
-                    <form th:action="@{/personal/store/reserve}" method="post">
-                        <input type="text" name="storeCode" value="3">
-                        <input type="text" name="reserveDate" placeholder="일자">
-                        <input type="text" name="reserveTime" placeholder="시간">
-                        <input type="number" name="reserveHead" placeholder="인원">
-                        <input type="text" name="reservationName" placeholder="이름">
-                        <input type="text" name="reservationPhone" placeholder="핸드폰">
-                        <input type="text" name="request" placeholder="요청">
-                        <input type="submit" value="기업3 예약">
-                    </form  >
-                    <form th:action="@{/personal/store/reserve}" method="post">
-                        <input type="text" name="storeCode" value="4">
-                        <input type="text" name="reserveDate" placeholder="일자">
-                        <input type="text" name="reserveTime" placeholder="시간">
-                        <input type="number" name="reserveHead" placeholder="인원">
-                        <input type="text" name="reservationName" placeholder="이름">
-                        <input type="text" name="reservationPhone" placeholder="핸드폰">
-                        <input type="text" name="request" placeholder="요청">
-                        <input type="submit" value="기업4 예약">
-                    </form>
-                </div>
                 <div class="con2" th:if="${#lists.isEmpty(reserveList)}">예약 내역이 없습니다.</div>
                 <table class="con2" th:if="${#lists.isEmpty(reserveList) != true}">
                     <tr th:each="rsv : ${reserveList}">
