@@ -83,7 +83,8 @@ public class MemberServiceImple implements MemberService {
 
 	@Override
 	public int updateTaste(Taste t) {
-		t = changeIntToString(t);
+		t = changeStringToInt(t);
+		log.debug("{}", t);
 		int n = dao.updateTaste(t);
 		return n;
 	}

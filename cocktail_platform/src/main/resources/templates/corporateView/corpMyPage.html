@@ -357,6 +357,7 @@ function storeChgToggle2(){
 <!-- 헤더 -->
 <header id="header" class="header">
 	<!-- 네비게이션바 -->
+<<<<<<< HEAD
     <div class="navi">  <!-- navi   -->
         <div class="navi1">
             <a th:href="@{/corporate/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
@@ -367,6 +368,25 @@ function storeChgToggle2(){
             <a th:href="@{/corporate/member/mypage}">마이페이지  &nbsp; &nbsp;</a>
         </div>
     </div>  
+=======
+	<nav id="navbar" class="navbar">
+	    <div id="logo">
+	    	<a th:href="@{/corporate/home}" class="navbar_logo">
+	       		<span>FitTail</span>
+	     	</a>
+	    </div>
+	
+    	<div class="navbar_right">
+    		<div sec:authorize="!isAuthenticated()">
+	    		<a th:href="@{/member/login}">로그인</a>
+	    	</div>
+	    	<div sec:authorize="isAuthenticated()">
+	    		<a th:href="@{/member/logout}">로그아웃</a>
+	    		<a th:href="@{/corporate/member/mypage}">마이페이지</a>
+	    	</div>
+	   </div>
+  	</nav>
+>>>>>>> 0375edc64658b8c1507054bb803929e6751f0896
   <!-- 네비게이션바 끝 -->
 </header>
 <!-- 헤더 끝 -->
@@ -457,7 +477,7 @@ function storeChgToggle2(){
 					<input type="text" id="brn" name="brn" onkeyup="brnChk()"><br>
 					<p id="errMsg3"></p>
 					전화번호
-					<input type="text" id="storePhone" name="phone" onkeyup="storePhoneChk()">
+					<input type="tel" id="storePhone" name="phone" onkeyup="storePhoneChk()">
 					<p id="errMsg4"></p>
 					영업 시간
 					<input type="text" id="runningTime" name="runningTime" onkeyup="runningTimeChk()">

@@ -129,6 +129,7 @@ public class PersonalMemberController {
 	@GetMapping("orderInfo")
 	public String orderInfo(String orderCode, Model m) {
 		Order o = oService.findOrderByOrdercode(orderCode);
+		o.setStoreName(sService.getStoreinfoByCode(o.getStoreCode()).getStoreName());
 		ArrayList<OrderTemp> list = oService.getOrdersByOrdercode(orderCode);
 		
 		m.addAttribute("order", o);
@@ -138,13 +139,16 @@ public class PersonalMemberController {
 	
 	//취향 재설정 화면
 	@GetMapping("resetTaste")
-	public String resetTaste() {
+	public String resetTaste(@AuthenticationPrincipal UserDetails user, Model m) {
+		Taste t = mService.findTasteById(user.getUsername());
+		m.addAttribute("taste", t);
 		return "personalView/resetTaste";
 	}
 	
 	//취향 재설정
 	@PostMapping("resetTaste")
 	public String resetTaste(@AuthenticationPrincipal UserDetails user, Taste t) {
+		log.debug("{}", t);
 		t.setMemberId(user.getUsername());
 		mService.updateTaste(t);
 		return "redirect:/personal/member/myPage";

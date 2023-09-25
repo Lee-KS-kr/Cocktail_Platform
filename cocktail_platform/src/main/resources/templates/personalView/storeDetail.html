@@ -67,7 +67,6 @@ $(document).ready(function () {
     init();
 });
 
-
 //별점 가져오기
 function reviewScore(){
     let score = parseFloat($('#storeReviewScore').val());
@@ -85,10 +84,13 @@ function reviewScore(){
     $('#starDiv').html(str);
 }
 
+/**storeCode 넣어주기*/
+$('#storeCode2').val(storeCode);
+
 /**인원수 선택 증감*/
 function count(type)  {
   //결과를 표시할 element
-  let headnum = document.getElementById('headnum').innerText;
+  let headnum = $('#headnum').html();
   
   //더하기/빼기
   if(type === 'plus' && headnum < 5) {
@@ -107,7 +109,7 @@ function count(type)  {
 
 //이름 유효성 검사
 function nameChk(){
-	let name = $('#memberName').val();
+	let name = $('#reservationName').val();
 	let nameLength = name.length;
 	
 	if(nameLength < 2 ||  nameLength > 9){
@@ -122,7 +124,7 @@ function nameChk(){
 
 //휴대폰 번호 유효성 검사
 function phoneChk(){
-	let phone = $('#phone').val();
+	let phone = $('#reservationPhone').val();
     let regPhone = /^010[0-9]{4}[0-9]{4}$/;
 
     if(!regPhone.test(phone)){
@@ -153,7 +155,7 @@ function agreeChk(){
 
 /**예약 폼 유효성 검사 */
 function reserveValid(){
-	if(!nameChk() || !radioChk() || !phoneChk() || !agreeChk()) {
+	if(!nameChk() || !phoneChk() || !agreeChk()) {
 		return false;
 	}
 	else return true;
@@ -161,19 +163,11 @@ function reserveValid(){
 
 /**예약 폼 제출*/
 function reserveSub(){
+	let reserveTime = $('#reserveTime').val().toString();
+	$('#reserveTime2').val(reserveTime);
 	
 	if(reserveValid){
-		$.ajax({
-			url: 'reserveInput',
-			type: 'post',
-			data: $('#reserveForm').serialize(),		
-			success: function(){
-				alert('저장되었습니다.');
-			},
-			error: function(e){
-				alert(e.statusText);
-			}
-		});
+		return true;
 	}else return false;
 }
 
@@ -186,7 +180,7 @@ function reserveSub(){
 	<!-- 네비게이션바 -->
 	<div class="navi">  <!-- Header   -->
 		<div class="navi1"> 
-			<a th:href="@{/personal/member/mainHome}">
+			<a th:href="@{/personal/home}">
 			  <img th:src="@{/image/logo_title.png}" alt="logo"></a>
 		</div>
 		<div class="navi2">
@@ -286,7 +280,7 @@ function reserveSub(){
 						</td>
 					</tr>
 					<tr>
-						<th>업체 정보</th>
+						<th colspan="2">업체 정보</th>
 					</tr>
 					<tr>
 						<td>
@@ -312,7 +306,7 @@ function reserveSub(){
 						</td>
 					</tr>
 					<tr>
-						<th>
+						<th colspan="2">
 							사업자 정보<hr>
 						</th>
 					</tr>
@@ -347,7 +341,7 @@ function reserveSub(){
 			<!-- 예약하기 탭 내용 -->
 			<div id="tab_reserve" class="tab_cont">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
-				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="return reserveSub()">
+				<form id="reserveForm" th:action="@{/personal/store/reserve}" method="post" onsubmit="reserveSub()">
 					<p>날짜 선택</p>
 					<input type="date" name="reserveDate" required="required">
 					<p>시간 선택</p>
@@ -358,7 +352,6 @@ function reserveSub(){
 					<div id="head_count">
 						<p>인원 선택</p>
 						<div id="head_select">
-							<p>1~5명만 선택 가능합니다.</p>
 							<p>방문하시는 인원을 선택해주세요.</p>
 							<input type="button" onclick="count('minus')" value="-">
 							<span id="headnum">1</span>
@@ -368,16 +361,16 @@ function reserveSub(){
 					</div>
 					<div id="reserve_info">
 						<p>예약자 정보</p>
-						<input type="text" name="reservationName" placeholder="예약자" 
+						<input type="text" id="reservationName" name="reservationName" placeholder="예약자" 
 						onkeyup="nameChk()" required="required"><br>
 						<p id="errMsg1"></p>
-						<input type="text" name="reservationPhone" placeholder="연락처"
+						<input type="text" id="reservationPhone" name="reservationPhone" placeholder="연락처(- 없이)"
 						onkeyup="phoneChk()" required="required"><br>
 						<p id="errMsg2"></p>
 						<input type="text" name="request" placeholder="요청 사항"><br>
 						<label>개인 정보 수집, 제공 동의<input type="radio" name="agree" id="agree"></label>
 					</div>
-					<input type="hidden" name="storeCode" th:value="${storeCode}">
+					<input type="hidden" id="storeCode" name="storeCode" th:value="${store.storeCode}">
 					<br>
 					<input type="submit" value="예약 신청하기">
 				</form>

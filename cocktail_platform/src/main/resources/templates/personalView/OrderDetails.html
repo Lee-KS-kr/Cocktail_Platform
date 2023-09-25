@@ -7,7 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>주문 상세보기</title>
-    <link rel="stylesheet" href="../../static/CSS/personal/OrderDetails.css">
+    <link rel="stylesheet" href="../../static/CSS/personal/OrderList.css">
+    <link rel="stylesheet" th:href="@{/CSS/personal/OrderList.css}">
     <!-- 
         <link rel="preconnect" th:href="https://fonts.googleapis.com">
         <link rel="preconnect" th:href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +53,8 @@
             <!-- sec2 start-->
             <div class="sec2">
                 <div class="title2">주문 상세</div>
-                <table class="con1">
+                <div class="con1">
+                <table>
                     <tr>
                         <td>주문 번호</td>
                         <td th:text="${order.orderCode}"></td>
@@ -60,7 +62,7 @@
                     <tr>
                         <td>매장명</td>
                         <td>
-                            <a th:href="@{/personal/store/storeDetail?storeCode=${order.storeCode}}">
+                            <a th:href="@{/personal/store/storeDetail(storeCode=${order.storeCode})}">
                                 <span th:text="${order.storeName}"></span>
                             </a>
                         </td>
@@ -92,6 +94,7 @@
                         <td th:text="${item.orderCount}"></td>
                     </tr>
                 </table>
+                </div>
             </div>
         </div>
     </div>
