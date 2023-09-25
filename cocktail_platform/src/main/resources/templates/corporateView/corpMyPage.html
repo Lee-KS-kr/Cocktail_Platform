@@ -51,7 +51,7 @@ function getList(list){
 		str += '<tr><td>이메일</td><td>' + email + '</td></tr>';
 		str += '<tr><td>이름</td><td>' + memberName + '</td></tr>';
 		str += '<tr><td>휴대폰 번호</td><td>' + formatPhoneNum(phone) + '</td></tr>';
-		str += '<><td><input type="button" id="memChgBtn" value="수정" onclick="memChgToggle()"></td>';
+		str += '<tr><td><input type="button" id="memChgBtn" value="수정" onclick="memChgToggle()"></td>';
 		str += `<td><input type="button" id="pwChgBtn" value="비밀번호 변경" onclick="location.href='resetPw'"></td></tr>`;
 	});
 	str += '</table>';
