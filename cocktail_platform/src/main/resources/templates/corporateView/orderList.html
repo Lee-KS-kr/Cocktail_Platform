@@ -42,6 +42,7 @@ function orderAccept(tempOrderkey){
 			dataType: "json",
 			success: function(){
 				alert('주문을 수락하였습니다.');
+				init();
 			},
 			error: function(e){
 				alert(e.statusText);
@@ -60,6 +61,7 @@ function orderRefuse(tempOrderkey){
 			dataType: "json",
 			success: function(){
 				alert('주문을 취소하였습니다.');
+				init();
 			},
 			error: function(e){
 				alert(e.statusText);
