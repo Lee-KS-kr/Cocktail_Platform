@@ -119,6 +119,7 @@ function addSub(){
 	//유효성 검사 충족 못하면 돌려보냄
 	if(!categoryChk() || !priceChk()) {
 		return false;
+		alert('콩쥐야..유효성 검사 망했어요,,');
 	}
 	
 	$.ajax({

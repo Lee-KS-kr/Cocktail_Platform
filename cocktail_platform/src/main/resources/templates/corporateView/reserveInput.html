@@ -21,7 +21,7 @@ $(document).ready(function () {
 /**인원수 선택 증감*/
 function count(type)  {
   //결과를 표시할 element
-  let headnum = document.getElementById('headnum').innerText;
+  let headnum = $('#headnum').html();
   
   //더하기/빼기
   if(type === 'plus' && headnum < 5) {
@@ -58,7 +58,10 @@ function nameChk(){
 		$('#errMsg1').html('이름은 2-10자로 입력해주세요.');
 		return false;
 	}
-	else return true;
+	else{
+		$('#errMsg1').html('');
+		return true;
+	}
 }
 
 /**예약자 폰번호 유효성 검사*/
