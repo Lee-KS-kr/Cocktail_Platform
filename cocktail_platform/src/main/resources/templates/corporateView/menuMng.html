@@ -96,7 +96,10 @@ function priceChk(){
 	    $('#errMsg2').html('올바른 가격을 입력해주십시오.');
 	    return false;
 	}
-	else return true;
+	else {
+		$('#errMsg2').html('');
+		return true;
+	}
 }
 
 
