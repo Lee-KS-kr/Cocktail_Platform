@@ -129,20 +129,18 @@ function addSub(){
 		alert('콩쥐야..유효성 검사 망했어요,,');
 		return false;
 	}
-	alert("실행 전");
 	$.ajax({
         url: 'addMenu',
-        method: 'post',
+        type: 'post',
         data: {formData : formData},
         contentType : false,
         processData : false,
         success: function() {
-           alert('추가되었습니다.');
+           alert("추가되었습니다.");
            addMenuToggle2();
            init();
         },
         error: function(e) {
-        	alert("오류에용");
         	alert(e.statusText);
         }
      });
