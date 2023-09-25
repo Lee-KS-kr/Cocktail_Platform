@@ -138,6 +138,7 @@ function addSub(){
      });
 }
 
+/*
 //검색어,타입 주고 결과 받아오기
 function menuSearch() {
 	var searchWord = $("#searchWord").val();
@@ -156,6 +157,7 @@ function menuSearch() {
 		}
 	});
 }
+*/
 
 /*
 //페이지 이동
@@ -240,6 +242,7 @@ function pagingFormSubmit(currentPage){
 	<section>
 		<h1>메뉴 리스트</h1>
 		<!-- 메뉴 검색 -->
+		<!--  
 		<form id="menuSearch" th:action="@{/corporate/store/menuSearch}" method="post">
 		검색 <select id="category" name="category">
             	<option value="beverage" th:selected="${category} == 'beverage'">주류</option>
@@ -249,10 +252,11 @@ function pagingFormSubmit(currentPage){
 		<input type="search" name="searchWord" th:value="${searchWord}">
 		<input type="button" value="검색" onclick="menuSearch()">
 		</form>
+	-->
 	</section>
 	<!-- 메뉴 리스트 -->
 	<section>
-		총 <span id="totalnum"></span>개 검색되었습니다.
+		<!-- 총 <span id="totalnum"></span>개 검색되었습니다. -->
 		<button onclick="addMenuToggle()">추가</button>
 		<div id="menuList"></div>
 		
