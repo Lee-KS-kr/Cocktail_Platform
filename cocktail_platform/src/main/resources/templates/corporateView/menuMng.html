@@ -129,11 +129,11 @@ function addSub(){
 		alert('콩쥐야..유효성 검사 망했어요,,');
 		return false;
 	}
-	
+	alert("실행 전");
 	$.ajax({
         url: 'addMenu',
         method: 'post',
-        data: formData,
+        data: {formData : formData},
         contentType : false,
         processData : false,
         success: function() {
@@ -142,6 +142,7 @@ function addSub(){
            init();
         },
         error: function(e) {
+        	alert("오류에용");
         	alert(e.statusText);
         }
      });
@@ -271,7 +272,7 @@ function pagingFormSubmit(currentPage){
 		
 		<!-- 메뉴 추가 폼(추가버튼 클릭 시에만 보임) -->
 		<div id="addMenuDiv" style="display:none;">
-			<form id="addMenuForm" th:action="@{/corporate/store/addMenu}" method="post"
+			<form id="addMenuForm" th:action="@{/corporate/store/addMenu1}" method="post"
 			enctype="multipart/form-data">
 				카테고리<br>
 				<select id="category" name="category">
@@ -287,7 +288,7 @@ function pagingFormSubmit(currentPage){
 		    	<input type="text" id="price" name="price" onkeyup="priceChk()" required>
 		    	<p id="errMsg2"></p>
 		    	이미지<br>
-		    	<input type="file" id="file" name="upload"><br>
+		    	<input type="file" id="file" name="upload" accept=".jpg, .jpeg, .png"><br>
 		    	<br><br>
 		    	<input type="reset" class="bottom" value="다시 쓰기">
 		    	<button type="button" onclick="addSub()">저장</button>
