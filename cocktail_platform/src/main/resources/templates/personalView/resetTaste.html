@@ -58,6 +58,7 @@
                         <div class="con1">
                             <p>* 취향 재설정
                             <form th:action="@{/personal/member/resetTaste}"  method="post">
+                            <input type="hidden" name="tasteCode" th:value="${taste.tasteCode}">
                                 <table>
                                     <tr>
                                         <th>
@@ -91,11 +92,11 @@
                                         <td>
                                             <p>#알러지 유무</p>
                     
-                                            <input type="radio"  name="status" value="yes"> 예
+                                            <input type="radio"  name="hasAllergy" value="1"> 예
 
-                                            <input type="radio"  name="status" value="no"> 아니오 <br>
+                                            <input type="radio"  name="hasAllergy" value="0"> 아니오 <br>
                                             <p>*알러지 종류</p>
-                                            <input type="text" name="status" placeholder="예) 아몬드">
+                                            <input type="text" name="allergyType" placeholder="예) 아몬드">
                                         </td>
                                     </tr>
                                 </table>

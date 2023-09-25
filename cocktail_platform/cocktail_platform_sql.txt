@@ -55,7 +55,7 @@ create table orders (
         memberId        varchar2(20)      references member(memberId) on delete set null,                   --개인회원ID
         totalPrice      number            default 0 check (totalPrice >= 0),                                --가격 총합
         menuList        varchar2(4000),                                                                     --메뉴 리스트
-        orderState      varchar2(6)       default 'done' check (orderState in ('apply', 'received', 'refused', 'finished')) --주문 상태
+        orderState      varchar2(20)       default 'done' check (orderState in ('apply', 'received', 'refused', 'finished')) --주문 상태
 );
 create sequence orders_seq;
 
@@ -64,6 +64,7 @@ create table orderTemp (
         tempOrderkey     number           primary key,                                                      --임시키                                                                                                                                                   
 		orderCode        varchar2(4000)   references Orders(orderCode) on delete set null,                  --주문 정보
 		storeCode        number           references storeInfo(storeCode) on delete set null,               --가게 코드
+		memberId        varchar2(20)      references member(memberId) on delete set null,                   --회원 ID
 		menuNum          number           references menu(menuNum) on delete set null,                      --메뉴 번호
 		menuName         varchar2(100)    not null,                                                         --메뉴 이름
 		pricePerOne      number(7)        not null default 0,                                               --메뉴 단가

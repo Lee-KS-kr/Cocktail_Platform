@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <title>메뉴 관리</title>
-<link rel="stylesheet" href="../../static/CSS/corporate/reset.css">
-<link rel="stylesheet" href="../../static/CSS/corporate/manuMng.css">
+<link rel="stylesheet" href="../CSS/corporate/reset.css">
+<link rel="stylesheet" href="../CSS/corporate/menuMng.css">
 <!-- vs code -->
 <link rel="stylesheet" th:href="@{/CSS/corporate/reset.css}">
 <link rel="stylesheet" th:href="@{/CSS/corporate/menuMng.css}">
@@ -31,18 +31,18 @@ function init(){
 	});
 }
 
+let storeCode;
 //리스트 출력
 function getList(list){
 	let str = '<table><tr><th>메뉴 번호</th><th>카테고리</th><th>이름</th><th>가격</th><th>상태</th></tr>';
 	$(list).each(function(i,item){
-		
 		str += '<tr>';
 		str += '<td>' + item.menuNum + '</td>';
 		str += '<td>' + item.category + '</td>';
-		str += '<td><a href="/corporate/store/editMenu(menuNum=' + item.menuNum + ',storeCode=' + item.storeCode + ')|">' + item.menuName + '</td>';
+		str += '<td><a href="/corporate/store/editMenu(menuNum=' + item.menuNum + ')|">' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
 		str += '<td>' + item.canOrder + '</td>';
-		str += '<td><a href="|javascript:deleteMenu(menuNum=' + item.menuNum + ',storeCode=' + item.storeCode + ')|">x</a></td>';
+		str += '<td><a href="|javascript:deleteMenu(menuNum=' + item.menuNum + ')|">x</a></td>';
 		str += '</tr>';
 	});
 	str += '</table>';
@@ -52,45 +52,104 @@ function getList(list){
 }
 
 //메뉴 삭제
-function deleteMenu(menuNum, storeCode){
+function deleteMenu(menuNum){
 	let result = confirm("메뉴를 삭제하시겠습니까?");
 	if(result == true){
-		location.href="deleteMenu?menuNum="+menuNum + '&storeCode=' + storeCode;
+		location.href="deleteMenu?menuNum="+menuNum;
 	}
 }
 
 //메뉴 추가 폼 표시
-function addMenu(){
+function addMenuToggle(){
 	$('#addMenuDiv').show();
 }
 
+/**메뉴 추가 폼 없애기*/
+function addMenuToggle2(){
+	$('#addMenuDiv').hide();
+}
+
+/**메뉴 카테고리 유효성 검사*/
+function categoryChk(){
+    if ($('input[name="category"]:checked').length === 0) {
+        $('#errMsg1').html('메뉴 카테고리를 선택해주세요.');
+        return false;
+    } else {
+        $('#errMsg1').html('');
+        return true;
+    }
+}
+
+/**메뉴 가격 유효성 검사*/
+function priceChk(){
+	let price = parseInt($('#price').val());
+	
+	//가격 0원 이하일 때
+	if(price <= 0){
+		$('#errMsg2').html('가격은 1원 이상으로 설정해주십시오.');
+		return false;
+	}
+	//가격 숫자가 아닐 때
+	else if(isNaN(price)) {
+	    $('#errMsg2').html('올바른 가격을 입력해주십시오.');
+	    return false;
+	}
+	else return true;
+}
+
+
 //메뉴 추가 폼 보내기
 function addSub(){
+	let form = $('#addMenuForm')[0];
+	//새로운 FormData 객체 생성
+	let formData = new FormData();
+	//가게 정보 폼의 요소를 문자열로 이루어진 배열로 만듦
+	let params = $('#addMenuForm').serializeArray();
+	//올린 파일을 file 변수에 넣어줌
+	let file = $('#file')[0].files[0];
+	//파일이 있으면 formData에 file을 'upload'라는 이름으로 append해준다.
+	if(file){
+		formData.append('upload',file);
+	}
+	//form 태그 안에 있는 요소들이 key, value로 들어감.
+	params.forEach(function(param){
+		formData.append(param["name"], param["value"]);
+	});
+	
+	//유효성 검사 충족 못하면 돌려보냄
+	if(!categoryChk() || !priceChk()) {
+		return false;
+		alert('콩쥐야..유효성 검사 망했어요,,');
+	}
 	
 	$.ajax({
         url: 'addMenu',
         method: 'post',
-        data: $('#addMenuForm').serialize(),
+        data: formData,
+        contentType : false,
+        processData : false,
         success: function() {
            alert('추가되었습니다.');
+           addMenuToggle2();
+           init();
         },
-        error: function() {
-           alert('error');
+        error: function(e) {
+        	alert(e.statusText);
         }
      });
 }
 
+/*
 //검색어,타입 주고 결과 받아오기
 function menuSearch() {
 	var searchWord = $("#searchWord").val();
 	var category = $("select[name='${category}']").val();
-	var storeCode = $("#storeCode").val();
 	
 	$.ajax({
 		url: 'menuSearch',
 		type:'post',
 		dataType: 'json',
-		data: {searchWord: searchWord, category: category, storeCode: storeCode},
+		data: {searchWord: searchWord, category: category},
 		success: function(list) {
 			getList(list);
 		},
@@ -99,32 +158,27 @@ function menuSearch() {
 		}
 	});
 }
+*/
 
+/*
 //페이지 이동
 function pagingFormSubmit(currentPage){
 		let form = document.getElementById("pagingForm");
 		let page = document.getElementById("page");
 		page.value = currentPage;
 		form.submit();
-}
+}*/
 	
 </script>
-<link rel="stylesheet" th:href="@{/CSS/}">
+<!-- <link rel="stylesheet" th:href="@{/CSS/}"> -->
 </head>
 <body>
 	<!-- 헤더 -->
 	<header id="header" class="header">
 		<!-- 네비게이션바 -->
 		<nav id="navbar" class="navbar">
-	    	<div class="search">
-	   			<a th:href="@{/search}" class="search_logo">
-	    			<img th:src="@{/image/btn_search.png}" alt="검색">
-	    		</a>
-	    	</div>
-	    
 		    <div id="logo">
 		    	<a th:href="@{/corporate/home}" class="navbar_logo">
-		       		<img th:src="@{/image/logo.png}" alt="logo">
 		       		<span>FitTail</span>
 		     	</a>
 		    </div>
@@ -189,19 +243,22 @@ function pagingFormSubmit(currentPage){
 	<section>
 		<h1>메뉴 리스트</h1>
 		<!-- 메뉴 검색 -->
+		<!--  
 		<form id="menuSearch" th:action="@{/corporate/store/menuSearch}" method="post">
 		검색 <select id="category" name="category">
             	<option value="beverage" th:selected="${category} == 'beverage'">주류</option>
             	<option value="food" th:selected="${category} == 'food'">안주</option>
+            	<option value="side" th:selected="${category} == 'side'">사이드</option>
         	</select>
 		<input type="search" name="searchWord" th:value="${searchWord}">
 		<input type="button" value="검색" onclick="menuSearch()">
 		</form>
+	-->
 	</section>
 	<!-- 메뉴 리스트 -->
 	<section>
-		총 <span id="totalnum"></span>개 검색되었습니다.
-		<button onclick="addMenu()">추가</button>
+		<!-- 총 <span id="totalnum"></span>개 검색되었습니다. -->
+		<button onclick="addMenuToggle()">추가</button>
 		<div id="menuList"></div>
 		
 		<!-- 메뉴 추가 폼(추가버튼 클릭 시에만 보임) -->
@@ -212,19 +269,20 @@ function pagingFormSubmit(currentPage){
 				<select id="category" name="category">
 		        	<option value="beverage" selected>주류</option>
 		        	<option value="food">안주</option>
-		    	</select><br>
+		    	</select>
+		    	<p id="errMsg1"></p>
 				메뉴명<br>
-				<input type="text" name="menuName"><br>
+				<input type="text" id="menuName" name="menuName" required><br>
 				설명<br>
-		    	<input type="text" name="menuInfo"><br>
+		    	<input type="text" id="menuInfo" name="menuInfo"><br>
 				가격<br>
-		    	<input type="text" name="price"><br>
+		    	<input type="text" id="price" name="price" onkeyup="priceChk()" required>
+		    	<p id="errMsg2"></p>
 		    	이미지<br>
-		    	<input type="file" name="upload"><br>
-		    	<input type="hidden" name="storeCode" th:value="${storeCode}">
+		    	<input type="file" id="file" name="upload"><br>
 		    	
 		    	<input type="reset" class="bottom" value="다시 쓰기">
-		    	<input type="submit" value="저장" onclick="addSub()">
+		    	<input type="button" value="저장" onclick="addSub()">
 			</form>
 		</div>
 	</section>

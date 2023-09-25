@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <title>예약 목록</title>
-<link rel="stylesheet" href="../../static/CSS/corporate/reset.css">
-<link rel="stylesheet" href="../../static/CSS/corporate/reserveMng.css">
+<link rel="stylesheet" href="../CSS/corporate/reset.css">
+<link rel="stylesheet" href="../CSS/corporate/reserveMng.css">
 <!-- vs code -->
 <link rel="stylesheet" th:href="@{/CSS/corporate/reset.css}">
 <link rel="stylesheet" th:href="@{/CSS/corporate/reserveMng.css}">
@@ -21,13 +21,13 @@ $(document).ready(function(){
 function init(){
 	$.ajax({
 		url: "reserveList",
-		type: "get",
+		type: "post",
 		dataType: "json",
 		success: function(list){
 			getList(list);
 		},
-		error: function(){
-			alert('error');
+		error: function(e){
+			alert(e.statusText);
 		}
 	});
 }
@@ -36,7 +36,18 @@ function init(){
 function reserveAccept(reserveCode, storeCode){
 	let result = confirm("예약을 수락하시겠습니까?");
 	if(result == true){
-		location.href="reserveAccept?reserveCode="+reserveCode+ '&storeCode=' + storeCode;
+		$.ajax({
+			url: "reserveAccept",
+			type: "get",
+			data: {reserveCode: reserveCode, storeCode: storeCode},
+			success: function(){
+				alert('예약을 수락하였습니다.');
+				init();
+			},
+			error: function(e){
+				alert(e.statusText);
+			}
+		});
 	}
 }
 
@@ -44,7 +55,21 @@ function reserveAccept(reserveCode, storeCode){
 function reserveRefuse(reserveCode, storeCode){
 	let result = confirm("예약을 취소하시겠습니까?");
 	if(result == true){
-		location.href="reserveRefuse?reserveCode="+reserveCode + '&storeCode=' + storeCode;
+		let result = confirm("예약을 취소하시겠습니까?");
+		if(result == true){
+			$.ajax({
+				url: "reserveRefuse",
+				type: "get",
+				data: {reserveCode: reserveCode, storeCode: storeCode},
+				success: function(){
+					alert('예약을 취소하였습니다.');
+					init();
+				},
+				error: function(e){
+					alert(e.statusText);
+				}
+			});
+		}
 	}
 }
 
@@ -55,8 +80,8 @@ function getList(list){
 		str += '<tr>';
 		str += '<td>' + item.reserveCode + '</td>';
 		str += '<td>' + item.reservationName + '</td>';
-		str += '<td><a href="|javascript:reserveAccept(reserveCode=' + item.reserveCode + ',storeCode=' + item.storeCode + ')|">수락</a></td>';
-		str += '<td><a href="|javascript:reserveRefuse(reserveCode=' + item.reserveCode + ',storeCode=' + item.storeCode + ')|">거절</a></td>';
+		str += '<td><a href="#" onclick="reserveAccept(' + item.reserveCode + ',' + item.storeCode + ')">수락</a></td>';
+		str += '<td><a href="#" onclick="reserveRefuse(' + item.reserveCode + ',' + item.storeCode + ')">거절</a></td>';
 		str += '<td>' + item.reservationPhone + '</td>';
 		str += '<td>' + item.reserveDate + '</td>';
 		str += '<td>' + item.reserveState + '</td>';
@@ -68,6 +93,7 @@ function getList(list){
 	$('#totalnum').html(total);
 }
 
+/*
 //검색어,타입 주고 결과 받아오기
 function reserveSearch() {
 	var searchWord = $("#searchWord").val();
@@ -85,8 +111,9 @@ function reserveSearch() {
 			init();
 		}
 	});
-}
+}*/
 
+/**
 //페이지 이동
 function pagingFormSubmit(currentPage){
 		let form = document.getElementById("pagingForm");
@@ -94,7 +121,8 @@ function pagingFormSubmit(currentPage){
 		page.value = currentPage;
 		form.submit();
 }
-	
+*/
+
 </script>
 </head>
 <body>
@@ -102,12 +130,6 @@ function pagingFormSubmit(currentPage){
 	<header id="header" class="header">
 		<!-- 네비게이션바 -->
 		<nav id="navbar" class="navbar">
-	    	<div class="search">
-	   			<a th:href="@{/personal/search}" class="search_logo">
-	    			<img th:src="@{/image/btn_search.png}" alt="검색">
-	    		</a>
-	    	</div>
-	    
 		    <div id="logo">
 		    	<a th:href="@{/corporate/home}" class="navbar_logo">
 		       		<span>FitTail</span>
@@ -173,7 +195,8 @@ function pagingFormSubmit(currentPage){
 	<!-- 메인 섹션 시작 -->
 	<section>
 		<h1>예약 리스트</h1>
-		<!-- 예약 검색 -->
+		<!-- 예약 검색(추후 보완) -->
+		<!-- 
 		<form id="reserveSearch" th:action="@{/corporate/store/reserveSearch}" method="get">
 		예약 기간 <input type="date" name="searchDate">
 		검색 <select id="category" name="category">
@@ -184,11 +207,12 @@ function pagingFormSubmit(currentPage){
         	<input type="search" name="searchWord" th:value="${searchWord}">
 		<input type="button" value="검색" onclick="reserveSearch()">
 		</form>
+		 -->
 	</section>
 	<!-- 예약 리스트 -->
 	<section>
-		총 <span id="totalnum"></span>명 검색되었습니다.
-		<a th:href="@{corporate/store/reserveInput}"><button>수기입력</button></a>
+		<!-- 총 <span id="totalnum"></span>명 검색되었습니다. -->
+		<a th:href="@{/corporate/store/reserveInput}"><button>수기입력</button></a>
 		<div id="reserveList"></div>
 	</section>
 	<!-- 페이지 네비게이터 부분(추후 보완.)  -->

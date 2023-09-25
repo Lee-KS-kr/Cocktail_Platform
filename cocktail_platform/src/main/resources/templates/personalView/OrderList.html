@@ -73,7 +73,7 @@
                                 <a th:href="@{/personal/member/orderInfo(orderCode=${order.orderCode})}">
                                     <span th:text="${order.orderCode}"></span> <br>
                                 </a>
-                                <a th:href="@{/perseonal/store/reviewWrite}">리뷰 작성</a>
+                                <a th:href="@{/personal/member/evaluation(orderCode=${order.orderCode})}">리뷰 작성</a>
                             </td>
                             <td th:text="${order.storeName}"></td>
                             <td th:text="${order.totalPrice}"></td>

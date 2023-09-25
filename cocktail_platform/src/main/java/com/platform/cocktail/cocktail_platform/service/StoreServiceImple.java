@@ -228,5 +228,11 @@ public class StoreServiceImple implements StoreService {
 		
 		return list;
 	}
+
+	@Override
+	public int insertMenu(Menu menu) {
+		int n = dao.insertMenu(menu);
+		return n;
+	}
 	
 }
