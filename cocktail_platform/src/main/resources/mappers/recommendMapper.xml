@@ -19,7 +19,7 @@
 	</select>
 	 
 	<!-- 님을 위한 추천 상품 -->
-	<select id="CustomizedRecommendation" resultType="Menu">
+	<select id="CustomizedRecommendation" parameterType="Taste" resultType="Menu">
 		select
     		c.cocktailName
 		from
@@ -70,16 +70,24 @@
     </select>
 	
 	<!-- 오늘 같이 비가 오는 날에는? -->
-	<select id="WeatherRecommendation" resultType="Menu">
-		
+	<select id="weatherRecommend" resultType="Menu">
+		select
+			menuName
+			
 	</select>
 
 	<!-- 친구와 많이 마셔요 -->
+	<select id="companionRecommend" parameterType="" resultType="">
+	
+	</select>
 
-	<!-- 특별한 순간을 즐기고 싶을 떄는? -->
+	<!-- 특별한 순간을 즐기고 싶을 때는? -->
+	<select id="eventRecommend" parameterType="" resultType="">
+	
+	</select>
 	
 	<!-- 내가 많이 마신 칵테일 메뉴 랭킹 -->
-	<select id="getMyTop3Cocktails" resultType="Menu">
+	<select id="RecommendForMe" resultType="Menu">
     	select 
         	menuName
         	, sum(orderCount) totalOrderCount
