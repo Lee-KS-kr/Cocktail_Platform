@@ -22,12 +22,12 @@ $(document).ready(function(){
 	<!-- 네비게이션바 -->
     <div class="navi">  <!-- navi   -->
         <div class="navi1">
-            <a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
+            <a th:href="@{/corporate/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
         </div>
         <div class="navi2">
             <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
             <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
-            <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
+            <a th:href="@{/corporate/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
         </div>
     </div>  
   <!-- 네비게이션바 끝 -->
@@ -44,7 +44,6 @@ $(document).ready(function(){
 		 		<p><span th:text="${#authentication.name}"></span>님 환영합니다.</p>
 			</div>
 	 	</div>
-
 
 		<div class="box">
 			<a th:href="@{/corporate/order/login}">주문 페이지 <img th:src="@{/image/arrow.png}" alt="arrow"></a>
