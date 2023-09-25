@@ -92,34 +92,46 @@ body {
   color: #50CCAA;
 }
 
-.main {
-  flex: 1;
+main {
+  display: flex;
   padding: 20px;
+  height: 600px;
 }
 
 .banner img {
-  max-width: 100%;
+  width: 1000px;
   height: auto;
+  margin: 10px auto;
 }
 
 .box {
+  position: fixed;
+  top: 500px;
   text-align: center;
   align-content: end;
-  background-color: #50CCAA;
+  border:1px solid #50CCAA;
+  background-color: none ;
   color: #fff;
   padding: 10px 20px;
   border-radius: 50%;
   display: inline-block;
   text-decoration: none;
-  margin-top: 20px;
   font-weight: bold;
   transition: background-color 0.3s;
 }
 
 .box:hover {
-  background-color: #36b593;
+  background-color: #50CCAA;
+  border:1px solid #353f3c;
   text-decoration: none;
+  color: #fff;
 
+}
+
+/*arrow.png*/
+img[alt="arrow"] {
+  width: 40px;
+  text-align: center;
 }
 
 /* Footer 스타일 */
