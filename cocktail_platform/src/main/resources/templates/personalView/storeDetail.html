@@ -90,7 +90,7 @@ $('#storeCode2').val(storeCode);
 /**인원수 선택 증감*/
 function count(type)  {
   //결과를 표시할 element
-  let headnum = document.getElementById('headnum').innerText;
+  let headnum = $('#headnum').html();
   
   //더하기/빼기
   if(type === 'plus' && headnum < 5) {
@@ -341,7 +341,7 @@ function reserveSub(){
 			<!-- 예약하기 탭 내용 -->
 			<div id="tab_reserve" class="tab_cont">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
-				<form id="reserveForm" th:action="@{/personal/store/reserve}" method="post" onsubmit="return reserveSub()">
+				<form id="reserveForm" th:action="@{/personal/store/reserve}" method="post" onsubmit="reserveSub()">
 					<p>날짜 선택</p>
 					<input type="date" name="reserveDate" required="required">
 					<p>시간 선택</p>
