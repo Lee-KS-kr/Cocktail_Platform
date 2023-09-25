@@ -21,7 +21,7 @@ $(document).ready(function(){
 function init(){
 	$.ajax({
 		url: "reserveList",
-		type: "get",
+		type: "post",
 		dataType: "json",
 		success: function(list){
 			getList(list);
