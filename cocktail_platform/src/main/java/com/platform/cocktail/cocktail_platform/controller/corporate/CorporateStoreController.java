@@ -110,10 +110,7 @@ public class CorporateStoreController {
 	
 	//메뉴 관리 페이지 이동
 	@GetMapping("menuMng")
-	public String menuMng(@AuthenticationPrincipal UserDetails user, Model m) {
-		StoreInfo store = sService.getStoreById(user.getUsername());
-		ArrayList<Menu> menuList = sService.getMenulistByCode(store.getStoreCode());
-		m.addAttribute("menuList", menuList);
+	public String menuMng() {
 		return "corporateView/menuMng";
 	}
 }

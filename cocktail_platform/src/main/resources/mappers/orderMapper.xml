@@ -117,7 +117,7 @@
 		from
 			orderTemp
 		where
-			orderCode = #{orderCode}
+			storeCode = #{storeCode}
 		and
 			orderState = 'apply'
 		order by

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.platform.cocktail.cocktail_platform.domain.Category;
 import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
@@ -39,12 +40,17 @@ public class CorporateOrderController {
 	private OrderService oService;
 	@Autowired
 	private MemberService mService;
-	private Member loginMember;
+	private String loginMember;
+	private int storeCode;
 	
 	@GetMapping("login")
 	public String login(@AuthenticationPrincipal UserDetails user, Model m) {
 		StoreInfo store = sService.getStoreById(user.getUsername());
+		this.storeCode = store.getStoreCode();
+		log.debug("{}", this.storeCode);
+		
 		m.addAttribute("store", store);
+		log.debug("{}", store);
 		return "corporateView/orderMain";
 	}
 	
@@ -58,13 +64,16 @@ public class CorporateOrderController {
 			if(mem ==  null) {
 				m.addAttribute("err", "아이디와 비밀번호를 다시 확인해주세요.");
 				return "redirect:/corporate/order/login";
-			}
+			} 
 			
-			this.loginMember = mem;
+			this.loginMember = mem.getMemberId();
 			log.debug("this member : {}", this.loginMember);
+		}else {
+			log.debug("비회원 로그인");
+			this.loginMember = null;
 		}
 		
-		Order o = oService.makeNewOrder(store.getStoreCode(), memberId);
+		Order o = oService.makeNewOrder(store.getStoreCode(), this.loginMember);
 		log.debug("order : {}", o);
 		m.addAttribute("order", o);
 		return "corporateView/order";
@@ -77,7 +86,7 @@ public class CorporateOrderController {
 	
 	@ResponseBody
 	@PostMapping("menu")
-	public ArrayList<Menu> menu(int storeCode, Model m) {
+	public ArrayList<Menu> menu(Model m) {
 		ArrayList<Menu> menuList = sService.getMenulistByCode(storeCode);
 		return menuList;
 	}
@@ -89,6 +98,7 @@ public class CorporateOrderController {
 		return "";
 	}
 	
+	@ResponseBody
 	@GetMapping("addToCart")
 	public void addToCart(int storeCode, String memberId, int menuNum, int orderCount,
 						@CookieValue(name="cart", defaultValue="0") String cart,
@@ -178,6 +188,27 @@ public class CorporateOrderController {
 		}
 		
 		return "corporateView/";
+	}
+	
+	@ResponseBody
+	@PostMapping("recommendList")
+	public ArrayList<Menu> recommendList(@AuthenticationPrincipal UserDetails user){
+		StoreInfo store = sService.getStoreById(user.getUsername());
+		this.storeCode = store.getStoreCode();
+		
+		ArrayList<Menu> list = new ArrayList<>();
+		return list;
+	}
+	
+	@ResponseBody
+	@PostMapping("menuCategory")
+	public ArrayList<Category> menuCategory(){
+		ArrayList<Category> list = new ArrayList<>();
+		list.add(Category.food);
+		list.add(Category.beverage);
+		list.add(Category.side);
+		
+		return list;
 	}
 	
 	@GetMapping("callStaff")

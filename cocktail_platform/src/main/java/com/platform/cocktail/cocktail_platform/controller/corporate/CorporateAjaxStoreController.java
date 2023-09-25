@@ -41,14 +41,23 @@ public class CorporateAjaxStoreController {
 		return orderList;
 	}
 	
+	// 주문 수락
 	@GetMapping("orderAccept")
 	public void orderAccept(int tempOrderkey) {
 		sService.changeOrderState(tempOrderkey, OrderState.received);
 	}
 	
+	// 주문 거절
 	@GetMapping("orderRefuse")
 	public void orderRefuse(int tempOrderkey) {
 		sService.changeOrderState(tempOrderkey, OrderState.refuesed);
+	}
+	
+	@GetMapping("menuList")
+	public ArrayList<Menu> menuList(@AuthenticationPrincipal UserDetails user){
+		StoreInfo store = sService.getStoreById(user.getUsername());
+		ArrayList<Menu> menuList = sService.getMenulistByCode(store.getStoreCode());
+		return menuList;
 	}
 	
 	@PostMapping("addMenu")
