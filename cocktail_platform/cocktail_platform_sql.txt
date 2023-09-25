@@ -55,7 +55,7 @@ create table orders (
         memberId        varchar2(20)      references member(memberId) on delete set null,                   --개인회원ID
         totalPrice      number            default 0 check (totalPrice >= 0),                                --가격 총합
         menuList        varchar2(4000),                                                                     --메뉴 리스트
-        orderState      varchar2(6)       default 'done' check (orderState in ('apply', 'received', 'refused', 'finished')) --주문 상태
+        orderState      varchar2(20)       default 'done' check (orderState in ('apply', 'received', 'refused', 'finished')) --주문 상태
 );
 create sequence orders_seq;
 
