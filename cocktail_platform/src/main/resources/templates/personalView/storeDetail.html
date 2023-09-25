@@ -113,7 +113,7 @@ function count(type)  {
 
 //이름 유효성 검사
 function nameChk(){
-	let name = $('#memberName').val();
+	let name = $('#reservationName').val();
 	let nameLength = name.length;
 	
 	if(nameLength < 2 ||  nameLength > 9){
@@ -128,7 +128,7 @@ function nameChk(){
 
 //휴대폰 번호 유효성 검사
 function phoneChk(){
-	let phone = $('#phone').val();
+	let phone = $('#reservationPhone').val();
     let regPhone = /^010[0-9]{4}[0-9]{4}$/;
 
     if(!regPhone.test(phone)){
@@ -159,7 +159,7 @@ function agreeChk(){
 
 /**예약 폼 유효성 검사 */
 function reserveValid(){
-	if(!nameChk() || !radioChk() || !phoneChk() || !agreeChk()) {
+	if(!nameChk() || !phoneChk() || !agreeChk()) {
 		return false;
 	}
 	else return true;
@@ -306,8 +306,7 @@ function reserveSub(){
 							<span>전화 번호</span>
 						</td>
 						<td>
-							<!-- th:utext(Unescaped Text), dates(타임리프 내장 객체)에 사용자 정의 함수 적용 -->
-							<span th:utext="${#dates.formatPhoneNumber(store.phone)}"></span>
+							<span th:text="${store.phone}"></span>
 						</td>
 					</tr>
 					<tr>
@@ -375,10 +374,10 @@ function reserveSub(){
 					</div>
 					<div id="reserve_info">
 						<p>예약자 정보</p>
-						<input type="text" name="reservationName" placeholder="예약자" 
+						<input type="text" id="reservationName" name="reservationName" placeholder="예약자" 
 						onkeyup="nameChk()" required="required"><br>
 						<p id="errMsg1"></p>
-						<input type="text" name="reservationPhone" placeholder="연락처"
+						<input type="text" id="reservationPhone" name="reservationPhone" placeholder="연락처"
 						onkeyup="phoneChk()" required="required"><br>
 						<p id="errMsg2"></p>
 						<input type="text" name="request" placeholder="요청 사항"><br>
