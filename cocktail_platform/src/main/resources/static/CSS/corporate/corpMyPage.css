@@ -1,73 +1,152 @@
-/* 네비게이션바 스타일 설정 */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #4CAF50; /* 변경할 색상 */
-  padding: 10px;
+.sidebar{display:flex ;}
+
+.navi{
+width: 100% ;
+height: 60px;
+background-color: #fff;
+border-bottom:2px solid #e7e7e7;
+display: flex; 
+justify-content: center;
 }
 
-/* 로고 이미지 스타일 설정 */
-.navbar_logo img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+.navi1{
+    width: 50%;
+    padding-left: 40px;
+    padding-top: 5px;
+    justify-content: center;
+    background-color: #fff;
+    z-index: 1000;
 }
 
-/* 네비게이션 바 오른쪽 영역 스타일 설정 */
-.navbar_right {
-  display: flex;
-  align-items: center;
-  margin-left: auto; /* 로고 오른쪽 */
+.navi2{
+    width: 50%;
+    background-color:#fff;
+    border-bottom: #e7e7e7;
+    display: flex;
+    justify-content: end;
+    padding-right: 40px ;
+    align-items: center;
+    margin: auto;
+}
+img[alt=logo] { width: 120px;}
+
+.body{ display: flex; }
+
+/* Main Content */
+.main {
+    display: flex;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
 }
 
-/* 네비게이션 바 링크 스타일 설정 */
-.navbar_right a {
-  text-decoration: none;
-  color: #313131;
-  margin-left: 20px;
-}
-
-/* 마이페이지 링크 스타일 설정 */
-.navbar_right a:last-child {
-  margin-left: 0;
-  margin-right: 20px; 
-}
-
-/* 사이드바 스타일 설정 */
+/* Sidebar */
 .sidebar {
-  background-color: #fff;
-  border: 1px solid #e7e7e7;
-  color: #313131;
-  padding: 20px;
-  width: 250px;
-  float: left; /* 사이드바를 왼쪽으로  */
+    width: 250px;
+    padding-right: 20px;
+    border-right: 1px solid #e7e7e7;
 }
 
-/* 사이드바 메뉴 리스트 스타일 설정 */
+/* Profile Section */
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-icon img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.profile-text p {
+    margin: 0;
+    font-weight: bold;
+    color: #313131;
+}
+
+/* Menu List */
 .nav-item ul {
-  list-style: none;
+    list-style-type: none;
+    padding: 0;
 }
 
-/* 사이드바 메뉴 아이템 스타일 설정 */
-.nav-item a {
-  text-decoration: none;
-  color: #313131;
-  display: block;
-  margin-top: 10px;
+.nav-item ul li {
+    margin-bottom: 10px;
 }
 
-/*프로필 이미지*/
-img[alt=profile]{width: 25px; height: 25px;}
-
-/*주문 페이지 text*/
-.box{
-  border: 1px solid #e7e7e7;
-  border-radius: 20px;
+.nav-item ul li a {
+    text-decoration: none;
+    color: #313131;
+    display: block;
 }
 
-/*배너 이미지*/
-img[alt=bannering]{
-  width: 800px;
+/* 회원 탈퇴 링크 */
+a[name="out"] {
+    color: #ff0000; /* 탈퇴하기 링크 색상 */
+    text-decoration: none;
 }
 
+a[name="out"]:hover {
+    text-decoration: underline;
+}
+
+/* 메인 섹션 스타일링 */
+section {
+    flex-grow: 1;
+    padding-left: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #313131;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #313131;
+}
+
+.memberInformation, .storeInformation {
+    margin-bottom: 40px;
+}
+
+/* 회원 정보 수정 폼 스타일링 */
+form {
+    margin-top: 10px;
+}
+
+form input[type="text"], form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+}
+
+/* 저장 버튼 스타일링 */
+input[type="button"] {
+    background-color: #50CCAA; /* 주조색 */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background-color: #408e83; /* 주조색에 조금 어둡게 */
+}
+
+/* 오류 메시지 스타일링 */
+#errMsg1, #errMsg2, #errMsg3, #errMsg4, #errMsg5, #errMsg6, #errMsg7 {
+    color: #ff0000; /* 오류 메시지 색상 */
+}
