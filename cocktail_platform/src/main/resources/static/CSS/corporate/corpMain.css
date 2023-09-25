@@ -64,9 +64,6 @@ body {
   border-radius: 8px;
   box-shadow: 0px 4px 20px #e2e2e2;
   display: block;
-  position: fixed;
-  top: 61px;
-  z-index:100;
 
 }
 
@@ -92,7 +89,7 @@ body {
 }
 
 .nav-item ul li a:hover {
-  color: #007BFF;
+  color: #50CCAA;
 }
 
 .main {
@@ -107,7 +104,8 @@ body {
 
 .box {
   text-align: center;
-  background-color: #007BFF;
+  align-content: end;
+  background-color: #50CCAA;
   color: #fff;
   padding: 10px 20px;
   border-radius: 50%;
@@ -119,18 +117,20 @@ body {
 }
 
 .box:hover {
-  background-color: #0056b3;
+  background-color: #36b593;
+  text-decoration: none;
+
 }
 
 /* Footer 스타일 */
 footer {
-  background-color: #f8f8f8;
+  background-color: #232323;
   padding: 20px 0;
   text-align: center;
 }
 
 .footer1 p {
   font-size: 14px;
-  color: #666;
+  color: #e7e7e7;
 }
 
