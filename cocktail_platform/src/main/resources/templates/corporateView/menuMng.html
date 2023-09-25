@@ -73,8 +73,10 @@ function addMenuToggle2(){
 
 /**메뉴 카테고리 유효성 검사*/
 function categoryChk(){
-    if ($('input[name="category"]:checked').length === 0) {
+	let subject = $('#subject').val();
+    if (!subject) {
         $('#errMsg1').html('메뉴 카테고리를 선택해주세요.');
+        $('#subject').focus();
         return false;
     } else {
         $('#errMsg1').html('');
