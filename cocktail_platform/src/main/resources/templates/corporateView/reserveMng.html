@@ -80,8 +80,8 @@ function getList(list){
 		str += '<tr>';
 		str += '<td>' + item.reserveCode + '</td>';
 		str += '<td>' + item.reservationName + '</td>';
-		str += '<td><a href="|javascript:reserveAccept(reserveCode=' + item.reserveCode + ',storeCode=' + item.storeCode + ')|">수락</a></td>';
-		str += '<td><a href="|javascript:reserveRefuse(reserveCode=' + item.reserveCode + ',storeCode=' + item.storeCode + ')|">거절</a></td>';
+		str += '<td><a href="#" onclick="reserveAccept(' + item.reserveCode + ',' + item.storeCode + ')">수락</a></td>';
+		str += '<td><a href="#" onclick="reserveRefuse(' + item.reserveCode + ',' + item.storeCode + ')">거절</a></td>';
 		str += '<td>' + item.reservationPhone + '</td>';
 		str += '<td>' + item.reserveDate + '</td>';
 		str += '<td>' + item.reserveState + '</td>';
