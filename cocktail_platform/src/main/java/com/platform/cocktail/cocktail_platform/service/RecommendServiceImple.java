@@ -22,7 +22,7 @@ public class RecommendServiceImple implements RecommendService {
 
 	@Override
 	public ArrayList<Menu> CustomizedRecommendation(Taste t) {
-		ArrayList<Menu> list = dao.CustomizedRecommendation();
+		ArrayList<Menu> list = dao.CustomizedRecommendation(t);
 		return list;
 	}
 
