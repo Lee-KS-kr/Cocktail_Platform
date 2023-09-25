@@ -108,24 +108,20 @@ main {
 
 /*주문 페이지*/
 .box {
-  width: 80%;
-  line-height: 55px;
+  margin: none;
+  width: 300px;
+  height: 80px;
+  line-height: 85px;
   justify-content: center;
-  position: fixed;
-  top: 590px;
-  left: 1230px;
   text-align: center;
-  align-content: end;
-  justify-content: center;
   background-color: #50CCAA ;
-  color: #fff;
-  padding: 10px 20px;
+  border:1px solid #50CCAA;
   border-radius: 10px;
   display: inline-block;
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.3s;
-    margin: 20px ;
+    margin: 20px auto 0px;
 
 }
 
