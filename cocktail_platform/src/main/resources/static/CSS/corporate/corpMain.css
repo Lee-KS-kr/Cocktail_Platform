@@ -106,7 +106,7 @@ main {
 
 .box {
   position: fixed;
-  top: ;
+  top: 500px;
   text-align: center;
   align-content: end;
   border:1px solid #50CCAA;
@@ -121,11 +121,17 @@ main {
 }
 
 .box:hover {
-  background-color: #fff;
-  border:1px solid #50CCAA;
+  background-color: #50CCAA;
+  border:1px solid #353f3c;
   text-decoration: none;
   color: #fff;
 
+}
+
+/*arrow.png*/
+img[alt="arrow"] {
+  width: 40px;
+  text-align: center;
 }
 
 /* Footer 스타일 */
