@@ -39,7 +39,7 @@ function orderAccept(tempOrderkey){
 		$.ajax({
 			url: "orderAccept",
 			type: "get",
-			dataType: "json",
+			data: {tempOrderkey: tempOrderkey},
 			success: function(){
 				alert('주문을 수락하였습니다.');
 				init();
@@ -58,7 +58,7 @@ function orderRefuse(tempOrderkey){
 		$.ajax({
 			url: "orderRefuse",
 			type: "get",
-			dataType: "json",
+			data: {tempOrderkey: tempOrderkey},
 			success: function(){
 				alert('주문을 취소하였습니다.');
 				init();
