@@ -123,8 +123,8 @@ function addSub(){
 	
 	//유효성 검사 충족 못하면 돌려보냄
 	if(!categoryChk() || !priceChk()) {
-		return false;
 		alert('콩쥐야..유효성 검사 망했어요,,');
+		return false;
 	}
 	
 	$.ajax({
@@ -287,7 +287,7 @@ function pagingFormSubmit(currentPage){
 		    	<input type="file" id="file" name="upload"><br>
 		    	<br><br>
 		    	<input type="reset" class="bottom" value="다시 쓰기">
-		    	<input type="button" value="저장">
+		    	<input type="button" value="저장" onclick="addSub()">
 			</form>
 		</div>
 	</section>
