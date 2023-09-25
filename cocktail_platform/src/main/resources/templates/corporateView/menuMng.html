@@ -73,8 +73,8 @@ function addMenuToggle2(){
 
 /**메뉴 카테고리 유효성 검사*/
 function categoryChk(){
-	let subject = $('#subject').val();
-    if (!subject) {
+	let subject = $("select[name=category]").val();
+    if (subject == '') {
         $('#errMsg1').html('메뉴 카테고리를 선택해주세요.');
         $('#subject').focus();
         return false;
