@@ -31,122 +31,122 @@ justify-content: center;
 img[alt=logo] { width: 120px;}
 
 .body{ display: flex; }
-
-/* Main Content */
-.main {
-    display: flex;
-    background-color: #fff;
-    border-radius: 8px;
-    margin: 20px;
-    padding: 20px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+/*========================================================================*/
+/*profile icon img*/
+img[alt=profile] { width: 30px;}
+.profile-icon{width:100%; display:flex;}
+.profile-icon p{width:100%; display:flex; margin: 8px 0px 0px 15px;}
+.profile-icon p span{margin-top: 3px;  font-weight: bold;
 }
 
-/* Sidebar */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px #e2e2e2;
+}
+
 .sidebar {
-    width: 250px;
-    padding-right: 20px;
-    border-right: 1px solid #e7e7e7;
+  width: 300px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px #e2e2e2;
+  display: block;
+  background-color: #fff;
+  border: 1px solid #e7e7e7;
+  margin: 0px 20px;
 }
 
-/* Profile Section */
-.profile {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+.sidebar-divider {
+  margin: 20px 0px;
+  border: 1px solid #e7e7e7;
 }
 
-.profile-icon img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-}
-
-.profile-text p {
-    margin: 0;
-    font-weight: bold;
-    color: #313131;
-}
-
-/* Menu List */
 .nav-item ul {
-    list-style-type: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .nav-item ul li {
-    margin-bottom: 10px;
+  margin: 20px 0;
 }
 
 .nav-item ul li a {
-    text-decoration: none;
-    color: #313131;
-    display: block;
+  text-decoration: none;
+  color: #232323;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
-/* 회원 탈퇴 링크 */
-a[name="out"] {
-    color: #ff0000; /* 탈퇴하기 링크 색상 */
-    text-decoration: none;
+.nav-item ul li a:hover {
+  color: #50CCAA;
 }
 
-a[name="out"]:hover {
-    text-decoration: underline;
+main {
+  display: flex;
+  padding: 20px;
+  height: 600px;
 }
 
-/* 메인 섹션 스타일링 */
-section {
-    flex-grow: 1;
-    padding-left: 20px;
+.banner img {
+  width: 1000px;
+  height: auto;
+  margin: 10px auto;
+  border-radius: 8px;
 }
 
-h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #313131;
+/*주문 페이지*/
+.box {
+  margin: none;
+  width: 300px;
+  height: 80px;
+  line-height: 85px;
+  justify-content: center;
+  text-align: center;
+  background-color: #50CCAA ;
+  border:1px solid #50CCAA;
+  border-radius: 10px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+    margin: 20px auto 0px;
+
 }
 
-h2 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #313131;
+.box:hover {
+  background-color: #fff;
+  border:1px solid #50CCAA;
+  text-decoration: none;
+
 }
 
-.memberInformation, .storeInformation {
-    margin-bottom: 40px;
+/*arrow.png*/
+img[alt="arrow"] {
+  width: 40px;
+  text-align: center;
 }
 
-/* 회원 정보 수정 폼 스타일링 */
-form {
-    margin-top: 10px;
+/* Footer 스타일 */
+footer {
+  background-color: #232323;
+  padding: 20px 0;
+  text-align: center;
 }
 
-form input[type="text"], form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #e7e7e7;
-    border-radius: 5px;
+.footer1 p {
+  font-size: 14px;
+  color: #e7e7e7;
 }
 
-/* 저장 버튼 스타일링 */
-input[type="button"] {
-    background-color: #50CCAA; /* 주조색 */
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-input[type="button"]:hover {
-    background-color: #408e83; /* 주조색에 조금 어둡게 */
-}
-
-/* 오류 메시지 스타일링 */
-#errMsg1, #errMsg2, #errMsg3, #errMsg4, #errMsg5, #errMsg6, #errMsg7 {
-    color: #ff0000; /* 오류 메시지 색상 */
-}
