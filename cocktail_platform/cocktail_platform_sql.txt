@@ -164,11 +164,11 @@ create sequence storeReview_seq;
 -- 메뉴평가 menuPreference 테이블
 create table menuPreference (
 		menuPreferenceNum    number        primary key,
-		menuId               varchar2(20)  references member(memberId) on delete set null,
+		memberId             varchar2(20)  references member(memberId) on delete set null,
 		menuNum              number        references menu(menuNum) on delete set null,
-		weather              varchar2(20)  check (weather < 6000),
-		ageGroup             varchar2(20)  check (ageGroup < 7000),
-		companion            varchar2(20)  check (companion< 8000),
+		weather              number  	   check (weather < 6000),
+		ageGroup             number        check (ageGroup < 7000),
+		companion            number        check (companion< 8000),
 		event                number        check (event < 9000)
 );
 create sequence menuPreference_seq;
