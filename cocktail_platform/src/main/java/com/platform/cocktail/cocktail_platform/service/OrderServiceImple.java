@@ -64,12 +64,13 @@ public class OrderServiceImple implements OrderService {
 
 	@Override
 	public Order makeNewOrder(int storeCode, String memberId) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("storeCode", storeCode);
-		map.put("memberId", memberId);
+		Order o = new Order();
+		o.setStoreCode(storeCode);
+		o.setMemberId(memberId);
 		
-		String code = dao.makeNewOrder(map);
-		Order o = findOrderByOrdercode(code);
+		String str = dao.makeNewOrder(o);
+		o = findOrderByOrdercode(str);
+		log.debug("{}", o);
 		return o;
 	}
 	

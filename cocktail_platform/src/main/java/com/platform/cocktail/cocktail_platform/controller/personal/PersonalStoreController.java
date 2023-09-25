@@ -56,16 +56,16 @@ public class PersonalStoreController {
 		log.debug("menu {}", menu);
 		return "personalView/menuDetail";
 	}
-	
-	@GetMapping("reserve")
-	public String reserve(int storeCode, String date, Model m) {
-		Schedule schedule = sService.getScheduleByCode(storeCode);
-		HashMap<String, Boolean> capacity = checkCapacity(storeCode, date);
-		
-		m.addAttribute("schedule", schedule);
-		m.addAttribute("capacity", capacity);
-		return "";
-	}
+//	
+//	@GetMapping("reserve")
+//	public String reserve(int storeCode, String date, Model m) {
+//		Schedule schedule = sService.getScheduleByCode(storeCode);
+//		HashMap<String, Boolean> capacity = checkCapacity(storeCode, date);
+//		
+//		m.addAttribute("schedule", schedule);
+//		m.addAttribute("capacity", capacity);
+//		return "";
+//	}
 	
 	@ResponseBody
 	@GetMapping("checkCapacity")
@@ -74,13 +74,14 @@ public class PersonalStoreController {
 	}
 	
 	@PostMapping("reserve")
-	public String reserve(@AuthenticationPrincipal UserDetails user, Reservation reserve) {
+	public String reserve(@AuthenticationPrincipal UserDetails user, Reservation reserve, String reserveTime) {
 		reserve.setMemberId(user.getUsername());
+		reserve.setReserveDate(reserve.getReserveDate() + " " + reserveTime);
 		reserve.setReserveState(ReservationState.apply);
 		log.debug("예약 내용 : {}", reserve);
 		sService.insertReservation(reserve);
-		//return "redirect:/personal/store/storeDetail?storeCode=" + reserve.getStoreCode();
-		return "redirect:/personal/member/reserveList";
+		return "redirect:/personal/store/storeDetail?storeCode=" + reserve.getStoreCode();
+		//return "redirect:/personal/member/reserveList";
 	}
 	
 	@GetMapping("cancleReserve")

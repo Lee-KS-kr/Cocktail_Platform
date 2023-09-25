@@ -20,7 +20,7 @@ public interface OrderDAO {
 
 	ArrayList<Order> getOrderListsByCode(int storeCode);
 
-	String makeNewOrder(HashMap<String, Object> map);
+	String makeNewOrder(Order o);
 	
 	int insertTemporderList(ArrayList<OrderTemp> list);
 	

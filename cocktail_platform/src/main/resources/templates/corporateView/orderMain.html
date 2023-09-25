@@ -53,6 +53,11 @@
 	         <input type="text" id="memberId" name="memberId" placeholder="아이디" required> <br>
 	         <input type="password" id="memberPw" name="memberPw" placeholder="비밀번호" required> <br>
 	         <input type="submit" value="로그인">
+            <!--
+            비회원 주문 실험중
+            <a th:href="@{/corporate/order/menu}">비회원 주문</a>
+            -->
+            <br> <a href="javascript:nonuser()" onclick="javascript:nonuserLogin()">비회원 주문</a>
 	       </div>
 	       </form>
           
@@ -78,11 +83,7 @@
         <p><a th:href="@{/member/join}">| 회원가입</a></p>
       </div>
       <!-- sec2 끝 -->
-      <!--
-        비회원 주문 실험중
-        <a href="javascript:nonuser()" onclick="javascript:nonuserLogin()">비회원 주문</a>
-      -->
-  <a th:href="@{/corporate/order/orderMenu}">비회원 주문</a>
+
 	</main>
 </body>
 </html>

@@ -46,18 +46,22 @@
 			orderCode desc
 	</select>
 	
-	<insert id="makeNewOrder" parameterType="HashMap" useGeneratedKeys="true" keyProperty="storeCode">
+	<insert id="makeNewOrder" parameterType="Order">
+		<selectKey resultType="String" keyProperty="orderCode" order="BEFORE">
+			select to_char(sysdate, 'yyyymmdd') || order_seq.nextval || #{storeCode}
+			from dual
+		</selectKey>
     	insert into
     		orders 
     		(orderCode
        		 , storeCode
-       		 , memberId
+       		 <if test="memberId != null"> , memberId </if>
        		 , orderState)
     	values
-    		(to_char(sysdate, 'yyyymmdd') || order_seq.nextval || #{storeCode}
+    		( #{orderCode}
        		, #{storeCode}
-       		, <if test="memberId != 'null' and memberId != ''"> #{memberId}, </if>
-       		'apply')
+       		<if test="memberId != null"> , #{memberId} </if>
+       		, 'apply')
 	</insert>
 	
 	<insert id="insertTemporderList" parameterType="OrderTemp">
@@ -111,7 +115,7 @@
 		from
 			orderTemp
 		where
-			orderCode = #{orderCode}
+			storeCode = #{storeCode}
 		and
 			orderState = 'apply'
 		order by
