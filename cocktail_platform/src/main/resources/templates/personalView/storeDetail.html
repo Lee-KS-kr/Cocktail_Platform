@@ -113,7 +113,7 @@ function count(type)  {
 
 //이름 유효성 검사
 function nameChk(){
-	let name = $('#memberName').val();
+	let name = $('#reservationName').val();
 	let nameLength = name.length;
 	
 	if(nameLength < 2 ||  nameLength > 9){
@@ -128,7 +128,7 @@ function nameChk(){
 
 //휴대폰 번호 유효성 검사
 function phoneChk(){
-	let phone = $('#phone').val();
+	let phone = $('#reservationPhone').val();
     let regPhone = /^010[0-9]{4}[0-9]{4}$/;
 
     if(!regPhone.test(phone)){
@@ -159,7 +159,7 @@ function agreeChk(){
 
 /**예약 폼 유효성 검사 */
 function reserveValid(){
-	if(!nameChk() || !radioChk() || !phoneChk() || !agreeChk()) {
+	if(!nameChk() || !phoneChk() || !agreeChk()) {
 		return false;
 	}
 	else return true;
@@ -170,11 +170,12 @@ function reserveSub(){
 	
 	if(reserveValid){
 		$.ajax({
-			url: 'reserveInput',
+			url: 'reserve',
 			type: 'post',
 			data: $('#reserveForm').serialize(),		
 			success: function(){
 				alert('저장되었습니다.');
+				init();
 			},
 			error: function(e){
 				alert(e.statusText);
@@ -306,8 +307,7 @@ function reserveSub(){
 							<span>전화 번호</span>
 						</td>
 						<td>
-							<!-- th:utext(Unescaped Text), dates(타임리프 내장 객체)에 사용자 정의 함수 적용 -->
-							<span th:utext="${#dates.formatPhoneNumber(store.phone)}"></span>
+							<span th:text="${store.phone}"></span>
 						</td>
 					</tr>
 					<tr>
@@ -354,7 +354,7 @@ function reserveSub(){
 			<!-- 예약하기 탭 내용 -->
 			<div id="tab_reserve" class="tab_cont">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
-				<form id="reserveForm" th:action="@{/corporate/store/reserveInput}" method="post" onsubmit="return reserveSub()">
+				<form id="reserveForm" th:action="@{/personal/store/reserve}" method="post">
 					<p>날짜 선택</p>
 					<input type="date" name="reserveDate" required="required">
 					<p>시간 선택</p>
@@ -375,18 +375,18 @@ function reserveSub(){
 					</div>
 					<div id="reserve_info">
 						<p>예약자 정보</p>
-						<input type="text" name="reservationName" placeholder="예약자" 
+						<input type="text" id="reservationName" name="reservationName" placeholder="예약자" 
 						onkeyup="nameChk()" required="required"><br>
 						<p id="errMsg1"></p>
-						<input type="text" name="reservationPhone" placeholder="연락처"
+						<input type="text" id="reservationPhone" name="reservationPhone" placeholder="연락처"
 						onkeyup="phoneChk()" required="required"><br>
 						<p id="errMsg2"></p>
 						<input type="text" name="request" placeholder="요청 사항"><br>
 						<label>개인 정보 수집, 제공 동의<input type="radio" name="agree" id="agree"></label>
 					</div>
-					<input type="hidden" name="storeCode" th:value="${storeCode}">
+					<input type="hidden" id="storeCode" name="storeCode" th:value="${storeCode}">
 					<br>
-					<input type="submit" value="예약 신청하기">
+					<input type="button" value="예약 신청하기" onclick="reserveSub()">
 				</form>
 			</div>
 		</div>
