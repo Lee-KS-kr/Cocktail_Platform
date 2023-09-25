@@ -31,6 +31,8 @@ img[alt=logo] { width: 120px;}
 
 .body{ display: flex; }
 /*========================================================================*/
+/*profile icon img*/
+img[alt=profile] { width: 30px;}
 
 body {
   font-family: Arial, sans-serif;
@@ -59,7 +61,7 @@ body {
 }
 
 .sidebar-divider {
-  margin: 20px 0;
+  margin: 20px 10px;
   border: 1px solid #e7e7e7;
 }
 
