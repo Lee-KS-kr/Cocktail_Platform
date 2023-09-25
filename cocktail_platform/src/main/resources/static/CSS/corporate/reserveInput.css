@@ -107,4 +107,15 @@ body {
 
 #reserve_info label {
   display: block;
+  font-weight: bold;
+}
+
+#reserve_info {
+  margin-top: 20px; /* 예약자 정보와 인원 선택 사이의 간격을 조절합니다. */
+}
+
+.error-message {
+  color: #ff0000; /* 빨간색으로 설정, 원하는 색상으로 변경 가능 */
+  font-size: 12px;
+  margin-top: 5px;
 }
