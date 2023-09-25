@@ -51,8 +51,8 @@ function getList(list){
 		str += '<tr><td>이메일</td><td>' + email + '</td></tr>';
 		str += '<tr><td>이름</td><td>' + memberName + '</td></tr>';
 		str += '<tr><td>휴대폰 번호</td><td>' + formatPhoneNum(phone) + '</td></tr>';
-		str += '<tr><td><input type="button" id="memChgBtn" value="수정" onclick="memChgToggle()"></td></tr>';
-		str += `<tr><td><input type="button" id="pwChgBtn" value="비밀번호 변경" onclick="location.href='resetPw'"></td></tr>`;
+		str += '<><td><input type="button" id="memChgBtn" value="수정" onclick="memChgToggle()"></td>';
+		str += `<td><input type="button" id="pwChgBtn" value="비밀번호 변경" onclick="location.href='resetPw'"></td></tr>`;
 	});
 	str += '</table>';
 	$('#memInfoDiv').html(str);
@@ -172,7 +172,7 @@ function getStoreList(list){
 		
 		str += '<tr><td>상호명</td><td>'+ storeName + '</td></tr>';
 		if(fileName){
-		str += '<tr><td>대표 사진</td><td><img src="/FitTail/image/store/' + fileName + '"></td></tr>';
+		str += '<tr><td class="store_image">대표 사진</td><td><img src="/FitTail/image/store/' + fileName + '"></td></tr>';
 		}
 		str += '<tr><td>사업자 번호</td><td>' + brn + '</td></tr>';
 		str += '<tr><td>가게 주소</td><td>' + address1 + ' ' + address2 + '</td></tr>';
@@ -357,23 +357,17 @@ function storeChgToggle2(){
 <!-- 헤더 -->
 <header id="header" class="header">
 	<!-- 네비게이션바 -->
-	<nav id="navbar" class="navbar">
-	    <div id="logo">
-	    	<a th:href="@{/corporate/home}" class="navbar_logo">
-	       		<span>FitTail</span>
-	     	</a>
-	    </div>
-	
-    	<div class="navbar_right">
-    		<div sec:authorize="!isAuthenticated()">
-	    		<a th:href="@{/member/login}">로그인</a>
-	    	</div>
-	    	<div sec:authorize="isAuthenticated()">
-	    		<a th:href="@{/member/logout}">로그아웃</a>
-	    		<a th:href="@{/corporate/member/mypage}">마이페이지</a>
-	    	</div>
-	   </div>
-  	</nav>
+<<<<<<< HEAD
+    <div class="navi">  <!-- navi   -->
+        <div class="navi1">
+            <a th:href="@{/corporate/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
+        </div>
+        <div class="navi2">
+            <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
+            <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
+            <a th:href="@{/corporate/member/mypage}">마이페이지  &nbsp; &nbsp;</a>
+        </div>
+    </div>  
   <!-- 네비게이션바 끝 -->
 </header>
 <!-- 헤더 끝 -->
