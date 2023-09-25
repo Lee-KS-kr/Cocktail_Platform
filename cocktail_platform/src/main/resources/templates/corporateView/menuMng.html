@@ -132,7 +132,7 @@ function addSub(){
 	$.ajax({
         url: 'addMenu',
         type: 'post',
-        data: {formData : formData},
+        data: formData,
         contentType : false,
         processData : false,
         success: function() {
@@ -270,7 +270,7 @@ function pagingFormSubmit(currentPage){
 		
 		<!-- 메뉴 추가 폼(추가버튼 클릭 시에만 보임) -->
 		<div id="addMenuDiv" style="display:none;">
-			<form id="addMenuForm" th:action="@{/corporate/store/addMenu1}" method="post"
+			<form id="addMenuForm" th:action="@{/corporate/store/addMenu}" method="post"
 			enctype="multipart/form-data">
 				카테고리<br>
 				<select id="category" name="category">
