@@ -44,12 +44,11 @@ $(document).ready(function(){
 		 		<p><span th:text="${#authentication.name}"></span>님 환영합니다.</p>
 			</div>
 	 	</div>
-
-		<a th:href="@{/corporate/order/login}"></a>
+		<!--주문 페이지 BT-->
 			<div class="box">
-				주문 페이지 <img th:src="@{/image/arrow.png}" alt="arrow">
+				<a th:href="@{/corporate/order/login}">주문 페이지 <img th:src="@{/image/arrow.png}" alt="arrow"></a>
 			</div>
-		</a>
+		
 
 		<hr class="sidebar-divider">
 
