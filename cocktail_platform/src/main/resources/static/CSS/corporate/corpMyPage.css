@@ -150,3 +150,45 @@ footer {
   color: #e7e7e7;
 }
 
+/*마이페이지 text*/
+h1{
+  width: 100%;
+  height: 80px;
+  border-radius: 10px;
+  background-color: #fff;
+  border: 1px solid #e7e7e7;
+  box-shadow: 0px 4px 10px #e7e7e7;
+}
+
+/*회원정보*/
+.memberInformation{
+  width: 50%;
+  border-radius: 10px;
+  background-color: #fff;
+  border: 1px solid #e7e7e7;
+  box-shadow: 0px 4px 10px #e7e7e7;
+}
+
+/*매장 정보*/
+.storeInformation{
+    width: 50%;
+  border-radius: 10px;
+  background-color: #fff;
+  border: 1px solid #e7e7e7;
+  box-shadow: 0px 4px 10px #e7e7e7;
+}
+
+/*매장 이미지*/
+.store_image{
+  width: 250px;
+}
+
+input[type=button]{
+  width:150px;
+  height:30px;
+  background: #50CCAA;
+  border-radius:8px;
+  margin: 10px 20px;
+  
+}
+
