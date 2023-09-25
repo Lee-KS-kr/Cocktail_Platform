@@ -51,8 +51,8 @@ function getList(list){
 		str += '<tr><td>이메일</td><td>' + email + '</td></tr>';
 		str += '<tr><td>이름</td><td>' + memberName + '</td></tr>';
 		str += '<tr><td>휴대폰 번호</td><td>' + formatPhoneNum(phone) + '</td></tr>';
-		str += '<div><input type="button" id="memChgBtn" value="수정" onclick="memChgToggle()"></div>';
-		str += `<div><input type="button" id="pwChgBtn" value="비밀번호 변경" onclick="location.href='resetPw'"></div>`;
+		str += '<input type="button" id="memChgBtn" value="수정" onclick="memChgToggle()">';
+		str += '<input type="button" id="pwChgBtn" value="비밀번호 변경" onclick="location.href='resetPw'">`;
 	});
 	str += '</table>';
 	$('#memInfoDiv').html(str);
@@ -180,7 +180,7 @@ function getStoreList(list){
 		str += '<tr><td>영업 시간</td><td>' + runningTime + '</td></tr>';
 		str += '<tr><td>휴무일</td><td>' + dayOff + '</td></tr>';
 		str += '<tr><td>가게 소개</td><td>' + info + '</td></tr>';
-		str += '<div><input type="button" id="storeChgBtn" value="수정" onclick="storeChgToggle()"></div>';
+		str += '<input type="button" id="storeChgBtn" value="수정" onclick="storeChgToggle()">';
 	});
 	str += '</table>';
 	$('#storeInfoDiv').html(str);
