@@ -64,10 +64,7 @@ public class CorporateStoreController {
 	
 	//예약 확인 페이지 이동
 	@GetMapping("reserveList")
-	public String reserveList(@AuthenticationPrincipal UserDetails user, Model m) {
-		StoreInfo store = sService.getStoreById(user.getUsername());
-		ArrayList<Reservation> reserveList = sService.getReservelistByCode(store.getStoreCode());
-		m.addAttribute("reserveList", reserveList);
+	public String reserveList() {
 		return "corporateView/reserveMng";
 	}
 	

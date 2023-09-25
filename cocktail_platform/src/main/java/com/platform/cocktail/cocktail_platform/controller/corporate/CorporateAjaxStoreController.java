@@ -17,6 +17,7 @@ import com.platform.cocktail.cocktail_platform.config.FileService;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.OrderState;
 import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
+import com.platform.cocktail.cocktail_platform.domain.Reservation;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.service.OrderService;
 import com.platform.cocktail.cocktail_platform.service.StoreService;
@@ -33,6 +34,13 @@ public class CorporateAjaxStoreController {
 	private StoreService sService;
 	@Value("${file.path.menu.location}")
 	String menuPath;
+	
+	@PostMapping("reserveList")
+	public ArrayList<Reservation> reserveList(@AuthenticationPrincipal UserDetails user){
+		StoreInfo store = sService.getStoreById(user.getUsername());
+		ArrayList<Reservation> reserveList = sService.getReservelistByCode(store.getStoreCode());
+		return reserveList;
+	}
 	
 	@PostMapping("orderList")
 	public ArrayList<OrderTemp> orderList(@AuthenticationPrincipal UserDetails user){
