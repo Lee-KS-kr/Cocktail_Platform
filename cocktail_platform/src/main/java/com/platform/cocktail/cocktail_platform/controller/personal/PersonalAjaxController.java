@@ -99,37 +99,33 @@ public class PersonalAjaxController {
 	}
 	
 	@GetMapping("weatherRecommend")
-	public ArrayList<Menu>  weatherRecommend() {
-		ArrayList<Menu> list = new ArrayList<>();
-//		list = rService.weatherRecommend();
-//		getStoreNames(list);
+	public ArrayList<Menu> weatherRecommend(String filter) {
+		ArrayList<Menu> list = rService.weatherRecommend(filter);
+		getStoreNames(list);
 		
 		return list;
 	}
 	
 	@GetMapping("ageRecommend")
-	public ArrayList<Menu>  ageRecommend() {
-		ArrayList<Menu> list = new ArrayList<>();
-//		list = rService.ageRecommend();
-//		getStoreNames(list);
+	public ArrayList<Menu>  ageRecommend(String filter) {
+		ArrayList<Menu> list = rService.ageRecommend(filter);
+		getStoreNames(list);
 		
 		return list;
 	}
 	
 	@GetMapping("companionRecommend")
-	public ArrayList<Menu>  companionRecommend() {
-		ArrayList<Menu> list = new ArrayList<>();
-//		list = rService.companionRecommend();
-//		getStoreNames(list);
+	public ArrayList<Menu>  companionRecommend(String filter) {
+		ArrayList<Menu> list = rService.companionRecommend(filter);
+		getStoreNames(list);
 		
 		return list;
 	}
 	
 	@GetMapping("eventRecommend")
-	public ArrayList<Menu> eventRecommend() {
-		ArrayList<Menu> list = new ArrayList<>();
-//		list = rService.eventRecommend();
-//		getStoreNames(list);
+	public ArrayList<Menu> eventRecommend(String filter) {
+		ArrayList<Menu> list = rService.eventRecommend(filter);
+		getStoreNames(list);
 		
 		return list;
 	}

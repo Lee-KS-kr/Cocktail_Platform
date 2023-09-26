@@ -22,6 +22,7 @@
 <!-- thymeleaf -->
   <script>
     $(document).ready(function(){
+      $(".filter").click(onFilterCilck);
       getBestCocktails();
       personalRecommend();
       weatherRecommend();
@@ -94,10 +95,11 @@
       });
     }
   
-    function weatherRecommend(){
+    function weatherRecommend(filter = ''){
       $.ajax({
         url:'weatherRecommend',
         type:'get',
+        data: {filter : filter},
         dataType:'json',
         success:function(list){
           showList("weather", list);
@@ -108,10 +110,11 @@
       });
     }
 
-    function ageRecommend(){
+    function ageRecommend(filter = ''){
       $.ajax({
         url:'ageRecommend',
         type:'get',
+        data: {filter : filter},
         dataType:'json',
         success:function(list){
           showList("age", list);
@@ -122,10 +125,11 @@
       });
     }
 
-    function companionRecommend(){
+    function companionRecommend(filter = ''){
       $.ajax({
         url:'companionRecommend',
         type:'get',
+        data: {filter : filter},
         dataType:'json',
         success:function(list){
           showList("companion", list);
@@ -136,10 +140,11 @@
       });
     }
 
-    function eventRecommend(){
+    function eventRecommend(filter = ''){
       $.ajax({
         url:'eventRecommend',
         type:'get',
+        data: {filter : filter},
         dataType:'json',
         success:function(list){
           showList("event", list);
@@ -148,6 +153,20 @@
           console.log(JSON.stringify(e));
         }
       });
+    }
+  
+    function onFilterCilck(){
+      let cls = $(this).attr('filterClass');
+      let filter = $(this).attr('filterValue');
+
+      if(cls == 'weather')
+        weatherRecommend(filter);
+      else if(cls == 'age')
+        ageRecommend(filter);
+      else if(cls == 'companion')
+        companionRecommend(filter);
+      else if(cls == 'event')
+        eventRecommend(filter);
     }
   </script>
 </head>
@@ -232,10 +251,10 @@
             </a>
           </div>
           <div class="prd_ctg">
-            <span>#맑음</span>
-            <span>#흐림</span>
-            <span>#비</span>
-            <span>#눈</span>
+            <span class="filter" filterClass="weather" filterValue="sunny">#맑음</span>
+            <span class="filter" filterClass="weather" filterValue="cloudy">#흐림</span>
+            <span class="filter" filterClass="weather" filterValue="rainy">#비</span>
+            <span class="filter" filterClass="weather" filterValue="snowy">#눈</span>
           </div>
           <div class="row" id="weather">
           </div>
@@ -251,10 +270,10 @@
             </a>
           </div>
           <div class="prd_ctg">
-            <span>#20대</span>
-            <span>#30대</span>
-            <span>#40대</span>
-            <span>#50대 이상</span>
+            <span class="filter" filterClass="age" filterValue="20">#20대</span>
+            <span class="filter" filterClass="age" filterValue="30">#30대</span>
+            <span class="filter" filterClass="age" filterValue="40">#40대</span>
+            <span class="filter" filterClass="age" filterValue="50">#50대 이상</span>
           </div>
           <div class="row" id="age">
           </div>
@@ -270,11 +289,11 @@
             </a>
           </div>
           <div class="prd_ctg">
-            <span>#혼술</span>
-            <span>#친구</span>
-            <span>#연인</span>
-            <span>#가족</span>
-            <span>#그 외</span>
+            <span class="filter" filterClass="companion" filterValue="alone">#혼술</span>
+            <span class="filter" filterClass="companion" filterValue="friend">#친구</span>
+            <span class="filter" filterClass="companion" filterValue="family">#가족</span>
+            <span class="filter" filterClass="companion" filterValue="lover">#연인</span>
+            <span class="filter" filterClass="companion" filterValue="etc">#그 외</span>
           </div>
           <div class="row" id="companion">
           </div>
@@ -290,10 +309,10 @@
             </a>
           </div>
           <div class="prd_ctg">
-            <span>#칵테일을 즐기기 위해</span>
-            <span>#분위기를 즐기기 위해</span>
-            <span>#친목을 위해</span>
-            <span>#특별한 순간을 위해</span>
+            <span class="filter" filterClass="event" filterValue="cocktail">#칵테일을 즐기기 위해</span>
+            <span class="filter" filterClass="event" filterValue="atmosphere">#분위기를 즐기기 위해</span>
+            <span class="filter" filterClass="event" filterValue="friendship">#친목을 위해</span>
+            <span class="filter" filterClass="event" filterValue="celebrate">#특별한 순간을 위해</span>
           </div>
           <div class="row" id="event">
           </div>
