@@ -60,14 +60,116 @@
 /*프로필 이미지*/
 img[alt=profile]{width: 25px; height: 25px;}
 
-/*주문 페이지 text*/
-.box{
-  border: 1px solid #e7e7e7;
-  border-radius: 20px;
+
+.nav-item ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-/*배너 이미지*/
-img[alt=bannering]{
-  width: 800px;
+.nav-item ul li {
+  margin-bottom: 10px;
+}
+
+.nav-item ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Main Section Styles */
+main {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+  width: 100%;
+  max-width: 800px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Button Styles */
+button {
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+#reserveSearch {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+#reserveSearch input[type="date"],
+#reserveSearch select,
+#reserveSearch input[type="search"] {
+  width: 150px;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+#reserveSearch input[type="button"] {
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+#reserveSearch input[type="button"]:hover {
+  background-color: #555;
+}
+*/
+
+#totalnum {
+  font-weight: bold;
+  color: #333;
+}
+
+#reserveList {
+  margin-top: 20px;
+}
+
+#reserveList table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#reserveList th, #reserveList td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+#reserveList th {
+  background-color: #333;
+  color: #fff;
+}
+
+#reserveList tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
