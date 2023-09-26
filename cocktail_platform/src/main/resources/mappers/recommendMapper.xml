@@ -39,8 +39,29 @@
 	</select>
 
 	<!-- ㅇㅇ님과 비슷한 20대가 많이 찾아요 
+	<sql id="AgeGroup20">
+        select
+            m.memberId,
+            case
+                when to_number(substr(m.birthday, 1, 4)) between extract(year from sysdate) - 29 and extract(year from sysdate) then '20대'
+                else '기타'
+            end as ageGroup,
+            ot.menuName,
+            ot.orderCount,
+            row_number() over (partition by m.memberId order by ot.orderCount DESC) AS rn
+        from member m
+        join orderTemp ot on m.memberId = ot.memberId
+        where to_number(substr(m.birthday, 1, 4)) between extract(year from sysdate) - 29 and extract(year from sysdate)
+    </sql>
     <select id="ageRecommend" resultType="Menu">
-
+        <include refid="AgeGroup20"/>
+        select
+            ageGroup,
+            menuName,
+            sum(orderCount) as totalOrderCount
+        from AgeGroup20
+        group by ageGroup, menuName
+        order by totalOrderCount desc
     </select>
     -->
 	
@@ -93,6 +114,7 @@
  			ot.menuName
  		order by
  			sum(ot.orderCount) desc
+ 		
 	</select>
 	
 	<!-- <select id="recommendForMe" resultType="Menu">
