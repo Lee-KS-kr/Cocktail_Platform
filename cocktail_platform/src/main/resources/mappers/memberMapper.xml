@@ -39,7 +39,7 @@
 				(tasteCode
 				, memberId
 				, hasAllergy
-				, <if test="allergyType != null">allergyType
+				, <if test="allergyType != '0'">allergyType
 				, </if>
 				cocktailTaste
 				, cocktailFlavor
@@ -48,7 +48,7 @@
 				taste_seq.nextval
 				, #{memberId}
 				, #{hasAllergy}
-				, <if test="allergyType != null">#{allergyType}
+				, <if test="allergyType != '0'">#{allergyType}
 				, </if>
 				#{cocktailTaste}
 				, #{cocktailFlavor}

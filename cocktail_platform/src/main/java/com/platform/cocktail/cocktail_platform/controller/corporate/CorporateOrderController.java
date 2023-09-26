@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.platform.cocktail.cocktail_platform.domain.Category;
 import com.platform.cocktail.cocktail_platform.domain.Member;
+import com.platform.cocktail.cocktail_platform.domain.MemberType;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
@@ -58,9 +59,10 @@ public class CorporateOrderController {
 	public String login(@AuthenticationPrincipal UserDetails user, String memberId, String memberPw, Model m) {
 		StoreInfo store = sService.getStoreById(user.getUsername());
 		
+		Member mem = null;
 		log.debug("{}, {}, {}", store.getStoreCode(), memberId, memberPw);
 		if(!memberId.isEmpty() && !memberPw.isEmpty()) {
-			Member mem = mService.loginToOrder(memberId, memberPw);
+			mem = mService.loginToOrder(memberId, memberPw);
 			if(mem ==  null) {
 				m.addAttribute("err", "아이디와 비밀번호를 다시 확인해주세요.");
 				return "redirect:/corporate/order/login";
@@ -68,14 +70,21 @@ public class CorporateOrderController {
 			
 			this.loginMember = mem.getMemberId();
 			log.debug("this member : {}", this.loginMember);
+			
 		}else {
 			log.debug("비회원 로그인");
 			this.loginMember = null;
+			mem = new Member();
+			mem.setMemberType(MemberType.ROLE_PERSONAL);
 		}
 		
 		Order o = oService.makeNewOrder(store.getStoreCode(), this.loginMember);
 		log.debug("order : {}", o);
-		m.addAttribute("order", o);
+		
+		m.addAttribute("orderCode", o.getOrderCode());
+		m.addAttribute("memberId", this.loginMember);
+		m.addAttribute("memberRole", mem.getMemberType());
+		
 		return "corporateView/order";
 	}
 	
