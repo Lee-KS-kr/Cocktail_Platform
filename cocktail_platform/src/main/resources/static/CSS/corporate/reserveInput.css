@@ -1,3 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans:400");
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean");
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OKGUNG';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+/*=========================================================*/
+
+
 /* Reset CSS */
 body {
     margin: 0;
@@ -17,9 +37,11 @@ body {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
-    max-width: 400px;
+    max-width: 500px;
+    margin-top: 100px;
   }
   
+
   /* Form Styles */
   form {
     text-align: left;
@@ -47,16 +69,42 @@ body {
   input[type="time"],
   input[type="text"],
   input[type="button"],
-  input[type="radio"],
-  input[type="submit"] {
-    width: 100%;
+  input[type="radio"]{
+    width: 90%;
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #e7e7e7;
     border-radius: 3px;
     font-size: 16px;
   }
+
+  input[type="submit"] {
+  background-color: #50CCAA;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: #313131;
+  font-family: 'Noto Sans KR', sans-serif; 
+  }
+
+  input[value="-"],
+  input[value="+"]{
+    width: 40px;
+    height: 40px;
+    background-color: #8ccfbd;
+  }
   
+#head_select{
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+#head_select p{
+  text-align: left;
+}
+
   /* Hidden Inputs */
   input[type="hidden"] {
     display: none;
@@ -72,12 +120,18 @@ body {
   /* Agreement Label Styles */
   label {
     font-size: 14px;
-    display: block;
     margin-top: 10px;
   }
   
-  /* Agreement Checkbox Styles */
-  #agree {
-    margin-top: 5px;
-  }
-  
+
+    /*h1*/
+    h1{
+      justify-content: center;
+      margin: 20px auto;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        color: #313131;
+        font-family: 'Noto Sans KR', sans-serif; 
+    }
+    
