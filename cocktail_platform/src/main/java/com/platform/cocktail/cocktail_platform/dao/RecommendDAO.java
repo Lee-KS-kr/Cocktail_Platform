@@ -14,12 +14,12 @@ public interface RecommendDAO {
 
 	ArrayList<Menu> CustomizedRecommendation(Taste t);
 
-	ArrayList<Menu> weatherRecommend(String filter);
+	ArrayList<Menu> weatherRecommend(int filter);
 
-	ArrayList<Menu> ageRecommend(String filter);
+	ArrayList<Menu> ageRecommend(int filter);
 
-	ArrayList<Menu> companionRecommend(String filter);
+	ArrayList<Menu> companionRecommend(int filter);
 
-	ArrayList<Menu> eventRecommend(String filter);
+	ArrayList<Menu> eventRecommend(int filter);
 
 }
