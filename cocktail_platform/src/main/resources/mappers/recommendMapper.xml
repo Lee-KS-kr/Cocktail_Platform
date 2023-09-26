@@ -4,22 +4,18 @@
 
 	<mapper namespace="com.platform.cocktail.cocktail_platform.dao.RecommendDAO">
 
-	<!-- 인기상품 -->
 	<select id="getTop3Cocktails" resultType="Menu">
     	select
-        	menuName
-        	, sum(orderCount) totalOrderCount
-        	, dense_rank() over (order by sum(orderCount) desc) menuRank
-    	from
-        	orderTemp
-    	group by
-        	menuName
-    	order by
-        	menuRank asc
+    		menuName
+  		from
+  			orderTemp
+ 		group by
+ 			menuName
+ 		order by
+ 			sum(orderCount) desc
 	</select>
 	 
-	<!-- 님을 위한 추천 상품 -->
-	<select id="CustomizedRecommendation" parameterType="Taste" resultType="Menu">
+	<select id="customizedRecommendation" parameterType="Taste" resultType="Menu">
 		select
     		c.cocktailName
 		from
@@ -52,9 +48,9 @@
 		select
 			ot.menuName
   		from
-  			orderTemp2 ot
+  			orderTemp ot
        	inner join
-       		menuPreference2 mp
+       		menuPreference mp
        	on
        		ot.menuNum = mp.menuNum
  		where
@@ -69,9 +65,9 @@
 		select
 			ot.menuName
   		from
-  			orderTemp2 ot
+  			orderTemp ot
        	inner join
-       		menuPreference2 mp 
+       		menuPreference mp 
        	on
        		ot.menuNum = mp.menuNum
  		where
@@ -86,9 +82,9 @@
 		select
 			ot.menuName
   		from
-  			orderTemp2 ot
+  			orderTemp ot
        	inner join
-       		menuPreference2 mp 
+       		menuPreference mp 
        	on
        		ot.menuNum = mp.menuNum
  		where
@@ -99,8 +95,8 @@
  			sum(ot.orderCount) desc
 	</select>
 	
-	<select id="recommendForMe" resultType="Menu">
-    	select 
+	<!-- <select id="recommendForMe" resultType="Menu">
+    	select
         	menuName
         	, sum(orderCount) totalOrderCount
         	, dense_rank() over (order by sum(orderCount) desc) menuRank
@@ -111,7 +107,7 @@
     	group by
         	menuName
     	order by
-        	menuRank asc
-	</select>
+        	menuRank ascg
+	</select> -->
 	
 	</mapper>
