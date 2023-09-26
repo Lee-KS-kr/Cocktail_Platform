@@ -50,7 +50,7 @@ function getList(list){
       str += '<tr><td>아이디</td><td>'+ memberId + '</td></tr>';
       str += '<tr><td>이메일</td><td>' + email + '</td></tr>';
       str += '<tr><td>이름</td><td>' + memberName + '</td></tr>';
-      str += '<tr><td>휴대폰 번호</td><td>' + formatPhoneNum(콜) + '</td></tr>';
+      str += '<tr><td>휴대폰 번호</td><td>' + formatPhoneNum(phone) + '</td></tr>';
       str += '<tr><td><input type="button" id="memChgBtn" value="수정" onclick="memChgToggle()"></td>';
       str += `<td><input type="button" id="pwChgBtn" value="비밀번호 변경" onclick="location.href='resetPw'"></td></tr>`;
    });
@@ -64,7 +64,7 @@ function memChgToggle(){
    $('#memberId').html(memberId);
    $('#email').html(email);
    $('#memberName').html(memberName);
-   $('#phone').val(콜);
+   $('#phone').val(phone);
    
    $('#memInfoDiv').hide();
    $('#memInfoFormDiv').show();
@@ -77,9 +77,9 @@ let phoneChk1 = false;
 /**휴대폰번호 유효성 검사*/
 function phoneChk(){
    let phone = $('#phone').val();
-    let regPhone = /^010[0-9]{4}[0-9]{4}$/;
+   let regPhone = /^010[0-9]{4}[0-9]{4}$/;
     
-    if(!regPhone.test(콜)){
+    if(!regPhone.test(phone)){
         $('#errMsg1').html('전화번호 형식이 올바르지 않습니다.');
         phoneChk1 = false;
         return false;
@@ -89,7 +89,7 @@ function phoneChk(){
         if (phone.length === 11 && phone.indexOf('-') === -1) {
            //하이픈을 추가하여 전화번호 형식으로 변환
             phone = phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
-            $('#phone').val(콜);
+            $('#phone').val(phone);
             phoneChk1 = true;
         }
         $('#errMsg1').html('');
@@ -187,9 +187,8 @@ function getStoreList(list){
 }
 
 /**번호에 하이픈 추가*/
-function formatPhoneNum(콜) {
+function formatPhoneNum(phone) {
     // 정규표현식을 사용하여 하이픈을 추가하여 전화번호 형식으로 변환
-    
     return phone.replace(/^(\d{2,3})(\d{4})(\d{4})$/, '$1-$2-$3');
 }
 
@@ -253,7 +252,7 @@ function storePhoneChk(){
        if((phone.length === 11 || phone.length === 10) && phone.indexOf('-') === -1) {
            //하이픈을 추가하여 전화번호 형식으로 변환
             phone = phone.replace(/^(\d{2,3})(\d{4})(\d{4})$/, '$1-$2-$3');
-            $('#phone').val(콜);
+            $('#phone').val(phone);
         }
         $('#errMsg4').html('');
         return true;
@@ -453,7 +452,7 @@ function storeChgToggle2(){
                <p id="errMsg2"></p>
                대표 사진<br>
                 <input type="file" id="file" name="upload"><br>
-                사업자 번호
+               사업자 번호
                <input type="text" id="brn" name="brn" onkeyup="brnChk()"><br>
                <p id="errMsg3"></p>
                전화번호
