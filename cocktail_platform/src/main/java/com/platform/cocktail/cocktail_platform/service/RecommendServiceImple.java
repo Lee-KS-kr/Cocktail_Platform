@@ -33,29 +33,36 @@ public class RecommendServiceImple implements RecommendService {
 
 	@Override
 	public ArrayList<Menu> weatherRecommend(String filter) {
-		ArrayList<Menu> list = dao.weatherRecommend(filter);
+		int newFilter = convertStringToInt(filter);
+		ArrayList<Menu> list = dao.weatherRecommend(newFilter);
 		return list;
 	}
 
 	@Override
 	public ArrayList<Menu> ageRecommend(String filter) {
-		ArrayList<Menu> list = dao.ageRecommend(filter);
+		int newFilter = convertStringToInt(filter);
+		ArrayList<Menu> list = dao.ageRecommend(newFilter);
 		return list;
 	}
 
 	@Override
 	public ArrayList<Menu> companionRecommend(String filter) {
-		ArrayList<Menu> list = dao.companionRecommend(filter);
+		int newFilter = convertStringToInt(filter);
+		ArrayList<Menu> list = dao.companionRecommend(newFilter);
 		return list;
 	}
 
 	@Override
 	public ArrayList<Menu> eventRecommend(String filter) {
-		ArrayList<Menu> list = dao.eventRecommend(filter);
+		int newFilter = convertStringToInt(filter);
+		ArrayList<Menu> list = dao.eventRecommend(newFilter);
 		return list;
 	}
 	
 	public int convertStringToInt(String before) {
+		if(before.isEmpty())
+			return 0;
+		
 		HashMap<String, Integer> codeMap = cc.codeMap();
 		return codeMap.get(before);
 	}
