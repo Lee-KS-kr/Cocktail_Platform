@@ -47,22 +47,20 @@ $(document).ready(function(){
 		let str = '<table>';
 		$(list).each(function(i,item){
 			let fileName = item.savedFilename;
-			menuNum = $('#menuNum').text();
-			storeCode = $('#storeCode').text();
+			menuNum = item.menuNum;
 			orderCount = $('#orderCount').text();
 			
 			str += '<tr>';
 			//누르면 장바구니 추가
-			str += `<td rowspan="3"><a href="|javascript:addCart('menuNum')|"><img src="/FitTail/image/menu/`+
-					fileName + `></a></td>`;
-			str += `<td><a href="|javascript:count('plus')|">+</a></td></tr>`;
+			str += '<td rowspan="3"><a href="#" onclick="addCart('+ menuNum + ')"><img src="/FitTail/image/menu/'+
+					fileName + '></a></td>';
+			str += `<td><a href="#" onclick="count('plus')">+</a></td></tr>`;
 			str += '<tr><td id="orderCount">1</td></tr>';
-			str += `<tr><td><a href="|javascript:count('minus')|">-</a></td></tr>`;
+			str += `<tr><td><a href="#" onclick="count('minus')">-</a></td></tr>`;
 			str += '<tr><td>' + item.menuName + '</td>';
-			str += `<td rowspan="2"><a href="|javascript:addCart('menuNum')|">카트에 담기</a></td></tr>`;
+			str += '<td rowspan="2"><a href="#" onclick="addCart('+ menuNum + ')">카트에 담기</a></td></tr>';
 			str += '<tr><td>' + item.price + '</td>';
-			str += '<tr><td id="menuNum" style="display:none;">' + item.menuNum + '</td>';
-			str += '<tr><td id="storeCode" style="display:none;">' + item.storeCode + '</td>';
+			str += '<tr><td id="menuNum" style="display:none;">' + menuNum + '</td>';
 		});
 		str += '</table>';
 		$('#menuList').html(str);
@@ -90,32 +88,32 @@ $(document).ready(function(){
 	$('#hbgMenu').hide();
 	//햄버거 아이콘 누르면 메뉴 보여주기
 	$('#hbgBtn').click(function(){
-		console.log('햄버거 버튼 클릭됨.');
+		alert('햄버거 버튼 클릭됨.');
 		$('#hbgMenu').animate({width: "toggle"},800);
 	});
 	//close 버튼 누르면 메뉴 감추기
 	$('#closeBtn').click(function(){
-		console.log('닫기 버튼 클릭됨.');
+		alert('닫기 버튼 클릭됨.');
 		$('#hbgMenu').fadeOut();
 		$('#hbgMenu').animate({width: "toggle"},800);
 	});
 	
 	//추천 메뉴 목록 가져오기
 	function getRecMenu(){
-		if(memberRole === 'ROLE_PERSONAL')
-			
-		$.ajax({
-			url: "recommendList",
-			type: "post",
-			data: {storeCode: storeCode},
-			dataType: "json",
-			success: function(list){
-				recMenuList(list);
-			},
-			error: function(){
-				alert('error');
-			}
-		});
+		if(memberRole === 'ROLE_PERSONAL'){
+			$.ajax({
+				url: "recommendList",
+				type: "post",
+				data: {storeCode: storeCode},
+				dataType: "json",
+				success: function(list){
+					recMenuList(list);
+				},
+				error: function(){
+					alert('error');
+				}
+			});	
+		}
 	}
 
 	//추천 메뉴 리스트 출력
@@ -158,7 +156,7 @@ $(document).ready(function(){
 		//param에 보내야 될 값들 담아주기
 		let param = {
 				memberId : memberId,
-				storecode : storecode,
+				storeCode : storeCode,
 				menuNum :  menuNum,
 				orderCount : orderCount,
 				orderCode : orderCode
