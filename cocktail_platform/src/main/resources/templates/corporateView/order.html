@@ -18,13 +18,14 @@ $(document).ready(function(){
 	allList();
 	
 	let memberId = $('#memberId').val();
-	let storeCode = $('#storeCode').text();;
+	let storeCode;
 	let menuNum; 
 	let orderCount;
 	let memberRole = $('#memberRole').html();
 
 	//전체 목록 받아오기
 	function allList(){
+		storeCode = $('#storeCode').text();
 		$.ajax({
 			url: "menu",
 			type: "post",
@@ -146,7 +147,7 @@ function menuCategory(category){
 		data: {category : category},
 		dataType: "json",
 		success: function(list){
-			getList(list);
+			menuList(list);
 		},
 		error: function(){
 			alert('error');
