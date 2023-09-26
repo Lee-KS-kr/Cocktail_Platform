@@ -15,7 +15,6 @@ import com.platform.cocktail.cocktail_platform.domain.StoreReview;
 
 @Mapper
 public interface StoreDAO {
-
 	StoreInfo getStoreById(String memberId);
 
 	int updateStoreinfo(StoreInfo store);
@@ -69,5 +68,6 @@ public interface StoreDAO {
 	ArrayList<StoreInfo> getStoreByCocktailName(String cocktailName);
 
 	int insertMenu(Menu menu);
+
 	
 }

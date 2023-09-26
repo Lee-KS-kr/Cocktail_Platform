@@ -1,121 +1,137 @@
-/* 네비게이션바 스타일 설정 */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #4CAF50; /* 변경할 색상 */
-  padding: 10px;
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans:400");
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean");
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OKGUNG';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
-/* 로고 이미지 스타일 설정 */
-.navbar_logo img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+/*=========================================================*/
 
-/* 네비게이션 바 오른쪽 영역 스타일 설정 */
-.navbar_right {
-  display: flex;
-  align-items: center;
-  margin-left: auto; /* 로고 오른쪽 */
-}
 
-/* 네비게이션 바 링크 스타일 설정 */
-.navbar_right a {
-  text-decoration: none;
-  color: #313131;
-  margin-left: 20px;
-}
-
-/* 마이페이지 링크 스타일 설정 */
-.navbar_right a:last-child {
-  margin-left: 0;
-  margin-right: 20px; 
-}
-
-/* 사이드바 스타일 설정 */
-.sidebar {
-  background-color: #fff;
-  border: 1px solid #e7e7e7;
-  color: #313131;
-  padding: 20px;
-  width: 250px;
-  float: left; /* 사이드바를 왼쪽으로  */
-}
-
-/* 사이드바 메뉴 리스트 스타일 설정 */
-.nav-item ul {
-  list-style: none;
-}
-
-/* 사이드바 메뉴 아이템 스타일 설정 */
-.nav-item a {
-  text-decoration: none;
-  color: #313131;
-  display: block;
-  margin-top: 10px;
-}
-
-/*프로필 이미지*/
-img[alt=profile]{width: 25px; height: 25px;}
-
-/*주문 페이지 text*/
-.box{
-  border: 1px solid #e7e7e7;
-  border-radius: 20px;
-}
-
-/*배너 이미지*/
-img[alt=bannering]{
-  width: 800px;
-}
-
-/* 예약 페이지 스타일 */
-.row {
-  display: flex;
-}
-
-.col {
-  flex: 1;
-  padding: 10px;
-}
-
+/* Reset CSS */
 body {
-  font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Container Styles */
+  #tab_reserve {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 500px;
+    margin-top: 100px;
+  }
+  
+
+  /* Form Styles */
+  form {
+    text-align: left;
+  }
+  
+  .row {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .col {
+    flex: 1;
+    padding: 0 10px;
+  }
+  
+  /* Sub-heading Styles */
+  .sub-heading p {
+    font-weight: bold;
+  }
+  
+  /* Input Styles */
+  input[type="date"],
+  input[type="time"],
+  input[type="text"],
+  input[type="button"],
+  input[type="radio"]{
+    width: 90%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+
+  input[type="submit"] {
+  background-color: #50CCAA;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: #313131;
+  font-family: 'Noto Sans KR', sans-serif; 
+  }
+
+  input[value="-"],
+  input[value="+"]{
+    width: 40px;
+    height: 40px;
+    background-color: #8ccfbd;
+  }
+  
+#head_select{
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
 }
 
-#tab_reserve {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
+#head_select p{
+  text-align: left;
 }
 
-/* 예약자 정보 입력 폼 스타일 */
+  /* Hidden Inputs */
+  input[type="hidden"] {
+    display: none;
+  }
+  
+  /* Error Message Styles */
+  .error-message {
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Agreement Label Styles */
+  label {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
 
-#reserve_info input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-#reserve_info input[type="radio"] {
-  margin-bottom: 10px;
-}
-
-#reserve_info label {
-  display: block;
-  font-weight: bold;
-}
-
-#reserve_info {
-  margin-top: 20px; /* 예약자 정보와 인원 선택 사이의 간격을 조절합니다. */
-}
-
-.error-message {
-  color: #ff0000; /* 빨간색으로 설정, 원하는 색상으로 변경 가능 */
-  font-size: 12px;
-  margin-top: 5px;
-}
+    /*h1*/
+    h1{
+      justify-content: center;
+      margin: 20px auto;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        color: #313131;
+        font-family: 'Noto Sans KR', sans-serif; 
+    }
+    

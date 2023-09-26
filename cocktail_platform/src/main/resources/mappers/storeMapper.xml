@@ -3,7 +3,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.platform.cocktail.cocktail_platform.dao.StoreDAO">
-	
 	<select id="getStoreById" parameterType="String" resultType="StoreInfo">
 		select
 			*
@@ -346,8 +345,8 @@
 			, menuName
 			, price
 			, category
-			<if test="menuInfo != 'null'"> , menuInfo </if>
-			<if test="originFilename != 'null"> , originFilename
+			<if test="menuInfo != null"> , menuInfo </if>
+			<if test="originFilename != null"> , originFilename
 			, savedFilename </if>
 			) 
 		values 
@@ -356,8 +355,8 @@
 			, #{menuName}
 			, #{price}
 			, #{category}
-			<if test="menuInfo != 'null'"> , #{menuInfo} </if>
-			<if test="originFilename != 'null"> , #{originFilename}
+			<if test="menuInfo != null"> , #{menuInfo} </if>
+			<if test="originFilename != null"> , #{originFilename}
 			, #{savedFilename} </if>
 			)
 	</insert>
