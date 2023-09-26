@@ -14,7 +14,6 @@
 <!-- thymeleaf -->
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
-$(document).ready(function(){
 	let memberId = $('#memberId').val();
 	let storeCode;
 	let menuNum; 
@@ -31,7 +30,6 @@ $(document).ready(function(){
 			data: {storeCode: storeCode},
 			success: function(list){
 				menuList(list);
-				alert(memberRole);
 			},
 			error: function(){
 				alert('error');
@@ -183,7 +181,6 @@ $(document).ready(function(){
 		let option = "width = 20%, height = 100%, top = 100, left = 500, location = no, scrollbars = no"
 		window.open("cart", "cartPopUp", option);
 	}
-});
 
 </script>
 </head>
