@@ -139,6 +139,12 @@ function addSub(){
            alert("추가되었습니다.");
            addMenuToggle2();
            init();
+           
+           //추가 성공 후 인풋 필드 초기화
+           $('#menuName').val(''); // 메뉴명 초기화
+           $('#menuInfo').val(''); // 설명 초기화
+           $('#price').val(''); // 가격 초기화
+           $('#file').val(''); // 파일 업로드 필드 초기화
         },
         error: function(e) {
         	alert(e.statusText);
@@ -276,6 +282,7 @@ function pagingFormSubmit(currentPage){
 				<select id="category" name="category">
 		        	<option value="beverage" selected>주류</option>
 		        	<option value="food">안주</option>
+		        	<option value="side">사이드</option>
 		    	</select>
 		    	<p id="errMsg1"></p>
 				메뉴명<br>
