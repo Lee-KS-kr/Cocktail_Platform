@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Filtail-Admin</title>
+  <link rel="stylesheet" href="./slide.css" />
+  <meta charset="UTF-8" />
+  <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../static/CSS/personal/personalmain.css">
+<!-- vs code -->
+<link rel="stylesheet" th:href="@{/CSS/personal/personalmain.css}">
+<!-- thymeleaf -->
+
+</head>
+<body>
+  
+  <div class="navi">  <!-- Header   -->
+    <div class="navi1"> 
+        <a th:href="@{/admin/home}">
+          <img th:src="@{/image/logo_title.png}" alt="logo"></a>
+    </div>
+    <div class="navi2">
+      <div sec:authorize="isAuthenticated()">
+        <span id="loggedIn" style="display: none;">true</span>
+        <span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;
+        <span><a th:href="@{/member/logout}">로그아웃</a></span>
+        <span><a th:href="@{/}">홈으로</a></span>
+      </div>
+    </div>
+  </div>  
+	<!-- End Header -->
+  <div class="flex">
+    <div class="menuData">
+      <div>
+        <a th:href="@{/admin/insertMenus}">
+          <input type="button" value="데이터 일괄 입력">
+        </a>
+      </div>
+      <div>
+        <a th:href="@{/admin/deleteMenus}">
+          <input type="button" value="데이터 일괄 삭제">
+        </a>
+      </div>
+    </div>
+
+    <div class="moveToPage">
+      <div>
+        <a th:href="@{/personal/home}">
+          <input type="button" value="개인 홈으로">
+        </a>
+      </div>
+      <div>
+        <a th:href="@{/corporate/home}">
+          <input type="button" value="기업 홈으로">
+        </a>
+      </div>
+    </div>
+
+    <div class="memberMng">
+      <div>
+        <a th:href="@{/admin/memberMng}">
+          <input type="button" value="회원 관리">
+        </a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
