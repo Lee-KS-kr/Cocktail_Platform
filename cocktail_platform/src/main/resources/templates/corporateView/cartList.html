@@ -35,14 +35,21 @@ $(document).ready(function(){
 		});
 	}
 	
+	let storeCode = $('#storeCode').text();
+	let orderCode = $('#orderCode').text();
+	let menuNum;
+	let menuName;
+	let price;
+	let orderCount;
+	
 	//메뉴 리스트 출력
 	function getList(list){
 		let str = '<table>';
 		$(list).each(function(i,item){
-			let menuNum = item.menuNum;
-			let orderCount = parseInt($('#orderCount_' + menuNum).text()) || 1;
-			let price = item.price;
-			let price2 = orderCount * price;
+			menuNum = item.menuNum;
+			orderCount = parseInt($('#orderCount_' + menuNum).text()) || 1;
+			price = item.price;
+			let pricePerItem = orderCount * price;
 			
 			str += '<tr>';
 			str += '<td colspan="3">' + item.menuName + '</td></tr>';
@@ -56,6 +63,9 @@ $(document).ready(function(){
 		str += '</table>';
 		$('#cartList').html(str);
 	}
+	
+	/**가격 총 합계 계산*/
+	//$('#totalPrice').text();
 	
 	/**카트 메뉴 삭제*/
 	function deleteCart(menuNum){
@@ -84,10 +94,19 @@ $(document).ready(function(){
 	}
 	
 	//int storeCode, String memberId, String orderCode, int[] menuNum, String[] menuName, int[] price, int[] orderCount
+	
+	
 	/**주문하기*/
 	function orderMenu(){
-		
 		let result = confirm('선택한 메뉴를 주문하시겠습니까?');
+		let data = {
+			storeCode: storeCode,
+			orderCode: orderCode,
+			menuNum: menuNum,
+			menuName: menuName,
+			price: price,
+			orderCount: orderCount
+		}
 		
 		if(result){
 			$.ajax({
@@ -119,21 +138,13 @@ $(document).ready(function(){
 	  <div class="header">
 		<h1>장바구니</h1>
 	  </div>
+	  <!-- 필요한 data -->
+	  <span id="orderCode" th:text="{orderCode}" style="display:none;"></span>
+	  <span id="storeCode" th:text="{storeCode}" style="display:none;"></span>
+	  
 	  <!-- 카트에 담은 메뉴 출력 -->
-	  <div id="cartList">
-		<div class="cart-item">
-		  <h2>상품 이름</h2>
-		  <span th:text="{orderCode}" style="display:none;"></span>
-		  <div class="cart-controls">
-			<button>+</button>
-			<span>1</span> <!-- 주문 수량 -->
-			<button>-</button>
-			<span class="price">10,000원</span> <!-- 가격 -->
-			<button class="delete-button">Del</button>
-		  </div>
-		</div>
-	  </div>
-	  <p class="cart-total">합계: <span id="totalPrice">10,000원</span></p>
+	  <div id="cartList"></div>
+	  <p class="cart-total">합계: <span id="totalPrice"></span></p>
 	  <a href="javascript:closeCart()"><button class="orderBT">닫기</button></a>
 	  <a href="javascript:orderMenu()"><button class="orderBT">주문하기</button></a>
 	</div>
