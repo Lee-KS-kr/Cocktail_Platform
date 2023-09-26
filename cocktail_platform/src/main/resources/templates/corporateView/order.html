@@ -18,7 +18,7 @@ $(document).ready(function(){
 	allList();
 	
 	let memberId = $('#memberId').val();
-	let storecode;
+	let storeCode = $('#storeCode').text();;
 	let menuNum; 
 	let orderCount;
 	let memberRole = $('#memberRole').html();
@@ -31,8 +31,7 @@ $(document).ready(function(){
 			dataType: "json",
 			data: {storeCode: storeCode},
 			success: function(list){
-				let str = menuList(list);
-				$('#menuList').html(str);
+				menuList(list);
 				alert(memberRole);
 			},
 			error: function(){
@@ -43,13 +42,13 @@ $(document).ready(function(){
 	
 	//메뉴 리스트 출력
 	function menuList(list){
-		let fileName = item.savedFilename;
-		
+
 		let str = '<table>';
 		$(list).each(function(i,item){
-			menuNum = $('#menuNum').val();
-			storecode = $('#storecode').val();
-			orderCount = $('#orderCount').val();
+			let fileName = item.savedFilename;
+			menuNum = $('#menuNum').text();
+			storeCode = $('#storeCode').text();
+			orderCount = $('#orderCount').text();
 			
 			str += '<tr>';
 			//누르면 장바구니 추가
@@ -65,18 +64,18 @@ $(document).ready(function(){
 			str += '<tr><td id="storeCode" style="display:none;">' + item.storeCode + '</td>';
 		});
 		str += '</table>';
-		return str;
+		$('#menuList').html(str);
 	}
 	
 	/**주문 수량 증감*/
 	function count(type){
-		let orderCount = document.getElementById('orderCount').innerText;
+		let orderCount = $('#orderCount').text();
 		
 		//더하기, 빼기
 		if(type === 'plus' && orderCount < 11) {
-			orderCount = parseInt(headnum) + 1;  
+			orderCount = parseInt(orderCount) + 1;  
 	  	}else if(type === 'minus' && orderCount > 1) {
-	  		orderCount = parseInt(headnum) - 1;
+	  		orderCount = parseInt(orderCount) - 1;
 	  	}else {
 			alert('주문 수량을 확인해주세요.');
 			return false;
@@ -174,7 +173,7 @@ function addCart(menuNum){
 			data: param,
 			dataType: "json",
 			success: function(list){
-				getList(list);
+				menuList(list);
 			},
 			error: function(){
 				alert('error');
@@ -215,7 +214,8 @@ function loadCart(){
  			</div>
  		</nav>
  		<section>
- 			<!-- memberId, orderCode, memberRole -->
+ 			<!-- storeCode, memberId, orderCode, memberRole -->
+ 			<span id="storeCode" th:text="${storeCode}" style="display:none;"></span>
  			<span id="memberId" th:text="${memberId}" style="display:none;"></span>
  			<span id="orderCode" th:text="${orderCode}" style="display:none;"></span>
  			<span id="memberRole" th:text="${memberRole}" style="display:none;"></span>
