@@ -130,26 +130,19 @@ function pagingFormSubmit(currentPage){
 </head>
 <body>
 	<!-- 헤더 -->
-	<header id="header" class="header">
-		<!-- 네비게이션바 -->
-		<nav id="navbar" class="navbar">
-		    <div id="logo">
-		    	<a th:href="@{/corporate/home}" class="navbar_logo">
-		       		<span>FitTail</span>
-		     	</a>
-		    </div>
-		
-	    	<div class="navbar_right">
-	    		<div sec:authorize="!isAuthenticated()">
-		    		<a th:href="@{/member/login}">로그인</a>
-		    	</div>
-		    	<div sec:authorize="isAuthenticated()">
-		    		<a th:href="@{/member/logout}">로그아웃</a>
-		    		<a th:href="@{/corporate/member/mypage}">마이페이지</a>
-		    	</div>
-		   </div>
-	  </nav>
-	  <!-- 네비게이션바 끝 -->
+<header id="header" class="header">
+	<!-- 네비게이션바 -->
+	 <div class="navi">  <!-- navi   -->
+		 <div class="navi1">
+			 <a th:href="@{/corporate/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
+		 </div>
+		 <div class="navi2">
+			 <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
+			 <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
+			 <a th:href="@{/corporate/member/mypage}">마이페이지  &nbsp; &nbsp;</a>
+		 </div>
+	 </div>  
+   <!-- 네비게이션바 끝 -->
 	</header>
 	<!-- 헤더 끝 -->
 	<!-- 메인 시작 -->
@@ -196,7 +189,6 @@ function pagingFormSubmit(currentPage){
   </section>
 	<!-- 사이드바 끝 -->
 	<!-- 메인 섹션 시작 -->
-	<section>
 		<h1>예약 리스트</h1>
 		<!-- 예약 검색(추후 보완) -->
 		<!-- 
@@ -211,7 +203,6 @@ function pagingFormSubmit(currentPage){
 		<input type="button" value="검색" onclick="reserveSearch()">
 		</form>
 		 -->
-	</section>
 	<!-- 예약 리스트 -->
 	<section>
 		<!-- 총 <span id="totalnum"></span>명 검색되었습니다. -->
