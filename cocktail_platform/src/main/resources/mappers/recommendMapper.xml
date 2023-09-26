@@ -4,37 +4,33 @@
 
 	<mapper namespace="com.platform.cocktail.cocktail_platform.dao.RecommendDAO">
 
-	<!-- 인기상품 -->
 	<select id="getTop3Cocktails" resultType="Menu">
-    	select 
-        	menuName
-        	, sum(orderCount) totalOrderCount
-        	, dense_rank() over (order by sum(orderCount) desc) menuRank
-    	from
-        	orderTemp
-    	group by
-        	menuName
-    	order by
-        	menuRank asc
+    	select
+    		menuName
+  		from
+  			orderTemp
+ 		group by
+ 			menuName
+ 		order by
+ 			sum(orderCount) desc
 	</select>
 	 
-	<!-- 님을 위한 추천 상품 -->
-	<select id="CustomizedRecommendation" parameterType="Taste" resultType="Menu">
+	<select id="customizedRecommendation" parameterType="Taste" resultType="Menu">
 		select
     		c.cocktailName
 		from
     		cocktails c
-		inner join 
-    		taste t 
-		on 
-    		c.cocktailTaste = #{cocktailTaste} 
+		inner join
+    		taste t
+		on
+    		c.cocktailTaste = #{cocktailTaste}
 		or
     		c.cocktailFlavor = #{cocktailFlavor}
     	where
     		t.memberId = #{memberId}
     	order by
     		case
-        		when 
+        		when
         			c.cocktailTaste = #{cocktailTaste}  and c.cocktailFlavor = #{cocktailFlavor} then 1
         		when
         			c.cocktailTaste = #{cocktailTaste}  or c.cocktailFlavor = #{cocktailFlavor} then 2
@@ -42,8 +38,8 @@
     	end
 	</select>
 
-	<!-- ㅇㅇ님과 비슷한 20대가 많이 찾아요 -->
-    <sql id="AgeGroup20">
+	<!-- ㅇㅇ님과 비슷한 20대가 많이 찾아요 
+	<sql id="AgeGroup20">
         select
             m.memberId,
             case
@@ -57,7 +53,6 @@
         join orderTemp ot on m.memberId = ot.memberId
         where to_number(substr(m.birthday, 1, 4)) between extract(year from sysdate) - 29 and extract(year from sysdate)
     </sql>
-
     <select id="ageRecommend" resultType="Menu">
         <include refid="AgeGroup20"/>
         select
@@ -68,29 +63,62 @@
         group by ageGroup, menuName
         order by totalOrderCount desc
     </select>
+    -->
 	
-<!-- 
-	오늘 같이 비가 오는 날에는?
 	<select id="weatherRecommend" resultType="Menu">
 		select
-			menuName
-			
+			ot.menuName
+  		from
+  			orderTemp ot
+       	inner join
+       		menuPreference mp
+       	on
+       		ot.menuNum = mp.menuNum
+ 		where
+ 			mp.weather = #{weather}
+ 		group by
+ 			ot.menuName
+ 		order by
+ 			sum(ot.orderCount) desc
 	</select>
 
-	친구와 많이 마셔요
-	<select id="companionRecommend" parameterType="" resultType="">
-	
+	<select id="companionRecommend" resultType="Menu">
+		select
+			ot.menuName
+  		from
+  			orderTemp ot
+       	inner join
+       		menuPreference mp 
+       	on
+       		ot.menuNum = mp.menuNum
+ 		where
+ 			mp.companion = #{companion}
+ 		group by
+ 			ot.menuName
+ 		order by
+ 			sum(ot.orderCount) desc
 	</select>
 
-	특별한 순간을 즐기고 싶을 때는?
-	<select id="eventRecommend" parameterType="" resultType="">
-	
+	<select id="eventRecommend" resultType="Menu">
+		select
+			ot.menuName
+  		from
+  			orderTemp ot
+       	inner join
+       		menuPreference mp 
+       	on
+       		ot.menuNum = mp.menuNum
+ 		where
+ 			mp.event = #{event}
+ 		group by
+ 			ot.menuName
+ 		order by
+ 			sum(ot.orderCount) desc
+ 		
 	</select>
-	 -->
 	
-	<!-- 내가 많이 마신 칵테일 메뉴 랭킹 -->
-	<select id="RecommendForMe" resultType="Menu">
-    	select 
+	<!-- <select id="recommendForMe" resultType="Menu">
+    	select
         	menuName
         	, sum(orderCount) totalOrderCount
         	, dense_rank() over (order by sum(orderCount) desc) menuRank
@@ -101,7 +129,7 @@
     	group by
         	menuName
     	order by
-        	menuRank asc
-	</select>
+        	menuRank ascg
+	</select> -->
 	
 	</mapper>
