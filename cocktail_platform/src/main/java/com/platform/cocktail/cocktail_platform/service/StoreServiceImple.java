@@ -231,8 +231,9 @@ public class StoreServiceImple implements StoreService {
 
 	@Override
 	public int insertMenu(Menu menu) {
+		log.debug("메뉴 저장 시도중");
 		int n = dao.insertMenu(menu);
+		log.debug("메뉴 저장 완료 {}", menu);
 		return n;
 	}
-	
 }

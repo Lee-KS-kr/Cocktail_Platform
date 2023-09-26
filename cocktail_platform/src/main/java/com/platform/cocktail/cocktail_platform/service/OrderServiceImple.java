@@ -68,8 +68,8 @@ public class OrderServiceImple implements OrderService {
 		o.setStoreCode(storeCode);
 		o.setMemberId(memberId);
 		
-		String str = dao.makeNewOrder(o);
-		o = findOrderByOrdercode(str);
+		dao.makeNewOrder(o);
+		o = findOrderByOrdercode(o.getOrderCode());
 		log.debug("{}", o);
 		return o;
 	}
