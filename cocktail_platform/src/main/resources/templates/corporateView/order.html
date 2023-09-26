@@ -99,79 +99,50 @@ $(document).ready(function(){
 		$('#hbgMenu').fadeOut();
 		$('#hbgMenu').animate({width: "toggle"},800);
 	});
-});
-
-//추천 메뉴 목록 가져오기
-function getRecMenu(){
-	//if(memberRole){
-		
-	//}
-	$.ajax({
-		url: "recommendList",
-		type: "post",
-		data: {storeCode: storeCode},
-		dataType: "json",
-		success: function(list){
-			recMenuList(list);
-		},
-		error: function(){
-			alert('error');
-		}
-	});
-}
-
-//추천 메뉴 리스트 출력
-function recMenuList(list){
-	//추천 타이틀, 키워드 표시
-	let str =
-	`<div><p><span>memberId</span>님을 위한 추천 상품</p>
-	#<span th:text="${taste.cocktailTaste}"></span>
-	#<span th:text="${taste.cocktailFlavor}"></span><br></div>`
 	
-	$(list).each(function(i,item){
-		str += '<table><tr>';
-		str += '<td><a>' + item.savedFilename + '</a></td>';
-		str += '<td>' + item.menuName + '</td>';
-		str += '<td>' + item.price + '</td>';
-		str += '</tr>';
-	});
-	str += '</table>';
-	$('#recommendList').html(str);
-}
-
-//카테고리별로 메뉴 보기
-function menuCategory(category){
-	$.ajax({
-		url: "menuCategory",
-		type: "post",
-		data: {category : category},
-		dataType: "json",
-		success: function(list){
-			menuList(list);
-		},
-		error: function(){
-			alert('error');
-		}
-	});
-}
-
-//카트에 담기
-function addCart(menuNum){
-	//param에 보내야 될 값들 담아주기
-	let param = {
-			memberId : memberId,
-			storecode : storecode,
-			menuNum :  menuNum,
-			orderCount : orderCount,
-			orderCode : orderCode
-	}
-	
-	if(confirm('장바구니에 추가하시겠습니까?')){
-		
+	//추천 메뉴 목록 가져오기
+	function getRecMenu(){
+		if(memberRole === 'ROLE_PERSONAL')
+			
 		$.ajax({
-			url: "addToCart",
-			type: "get",
-			data: param,
+			url: "recommendList",
+			type: "post",
+			data: {storeCode: storeCode},
+			dataType: "json",
+			success: function(list){
+				recMenuList(list);
+			},
+			error: function(){
+				alert('error');
+			}
+		});
+	}
+
+	//추천 메뉴 리스트 출력
+	function recMenuList(list){
+		//추천 타이틀, 키워드 표시
+		let str =
+		`<div><p><span>memberId</span>님을 위한 추천 상품</p>
+		#<span th:text="${taste.cocktailTaste}"></span>
+		#<span th:text="${taste.cocktailFlavor}"></span><br></div>`
+		
+		$(list).each(function(i,item){
+			str += '<table><tr>';
+			str += '<td><a>' + item.savedFilename + '</a></td>';
+			str += '<td>' + item.menuName + '</td>';
+			str += '<td>' + item.price + '</td>';
+			str += '</tr>';
+		});
+		str += '</table>';
+		$('#recommendList').html(str);
+	}
+
+	//카테고리별로 메뉴 보기
+	function menuCategory(category){
+		$.ajax({
+			url: "menuCategory",
+			type: "post",
+			data: {category : category},
 			dataType: "json",
 			success: function(list){
 				menuList(list);
@@ -180,13 +151,42 @@ function addCart(menuNum){
 				alert('error');
 			}
 		});
-	};
-}
+	}
 
-function loadCart(){
-	let option = "width = 20%, height = 100%, top = 100, left = 500, location = no, scrollbars = no"
-	window.open("cart", "cartPopUp", option);
-}
+	//카트에 담기
+	function addCart(menuNum){
+		//param에 보내야 될 값들 담아주기
+		let param = {
+				memberId : memberId,
+				storecode : storecode,
+				menuNum :  menuNum,
+				orderCount : orderCount,
+				orderCode : orderCode
+		}
+		
+		if(confirm('장바구니에 추가하시겠습니까?')){
+			
+			$.ajax({
+				url: "addToCart",
+				type: "get",
+				data: param,
+				dataType: "json",
+				success: function(list){
+					menuList(list);
+				},
+				error: function(){
+					alert('error');
+				}
+			});
+		};
+	}
+
+	function loadCart(){
+		let option = "width = 20%, height = 100%, top = 100, left = 500, location = no, scrollbars = no"
+		window.open("cart", "cartPopUp", option);
+	}
+});
+
 </script>
 </head>
 <body>

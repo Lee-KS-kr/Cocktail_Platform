@@ -70,20 +70,6 @@
         	<a th:href="@{/member/login}">회원 로그인
             <img th:src="@{/image/arrow.png}" alt="arrow">
           </a>
-          <!--
-            <div>
-              <div>
-                <a th:href="@{/insertMenus}">
-                  <input type="button" value="데이터 일괄 입력">
-                </a>
-              </div>
-              <div>
-                <a th:href="@{/deleteMenus}">
-                  <input type="button" value="데이터 일괄 삭제">
-                </a>
-              </div>
-            </div>
-          -->
         </div>
       </div>
     </div>
@@ -104,6 +90,11 @@
             <a th:href="@{/corporate/home}">기업 페이지
               <img th:src="@{/image/arrow.png}" alt="arrow">
             </a>
+          </p>
+
+          
+          <p sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/admin/home}">관리자 홈으로</a>
           </p>
         </div>
       </div>

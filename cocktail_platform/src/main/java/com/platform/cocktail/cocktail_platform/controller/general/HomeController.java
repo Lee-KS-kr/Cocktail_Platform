@@ -14,27 +14,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class HomeController {
-	@Autowired
-	private TestService serv;
-	@Value("${menulist.csvfile.path}")
-	private String csvFilepath;
 	
 	@GetMapping({"", "/"})
 	public String home() {
 		return "mainHome";
 	}
-	
-	@GetMapping("insertMenus")
-	public String insertMenus() throws IOException {
-		log.debug("insert menus");
-		serv.insertMenus(csvFilepath);
-		return "redirect:/";
-	}
-	
-	@GetMapping("deleteMenus")
-	public String deleteMenus() {
-		log.debug("delete menus");
-		serv.deleteMenus();
-		return "redirect:/";
-	}
+
 }
