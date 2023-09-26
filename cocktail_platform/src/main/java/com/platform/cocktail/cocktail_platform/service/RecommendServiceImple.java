@@ -60,6 +60,9 @@ public class RecommendServiceImple implements RecommendService {
 	}
 	
 	public int convertStringToInt(String before) {
+		if(before.isEmpty())
+			return 0;
+		
 		HashMap<String, Integer> codeMap = cc.codeMap();
 		return codeMap.get(before);
 	}
