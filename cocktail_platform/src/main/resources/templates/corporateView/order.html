@@ -15,39 +15,41 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-	allList();
-	
+	let memberId = $('#memberId').val();
+	let storeCode;
+	let menuNum; 
+	let orderCount;
+	let memberRole = $('#memberRole').html();
+
 	//전체 목록 받아오기
 	function allList(){
+		storeCode = $('#storeCode').text();
 		$.ajax({
 			url: "menu",
 			type: "post",
 			dataType: "json",
 			data: {storeCode: storeCode},
 			success: function(list){
-				let str = menuList(list);
-				$('#menuList').html(str);
+				menuList(list);
+				alert(memberRole);
 			},
 			error: function(){
 				alert('error');
 			}
 		});
 	}
-
-	let memberId = $('#memberId').val();
-	let storecode;
-	let menuNum; 
-	let orderCount;
-
+	//호출
+	allList();
+	
 	//메뉴 리스트 출력
 	function menuList(list){
-		let fileName = item.savedFilename;
-		
+
 		let str = '<table>';
 		$(list).each(function(i,item){
-			menuNum = $('#menuNum').val();
-			storecode = $('#storecode').val();
-			orderCount = $('#orderCount').val();
+			let fileName = item.savedFilename;
+			menuNum = $('#menuNum').text();
+			storeCode = $('#storeCode').text();
+			orderCount = $('#orderCount').text();
 			
 			str += '<tr>';
 			//누르면 장바구니 추가
@@ -63,18 +65,18 @@ $(document).ready(function(){
 			str += '<tr><td id="storeCode" style="display:none;">' + item.storeCode + '</td>';
 		});
 		str += '</table>';
-		return str;
+		$('#menuList').html(str);
 	}
 	
 	/**주문 수량 증감*/
 	function count(type){
-		let orderCount = document.getElementById('orderCount').innerText;
+		let orderCount = $('#orderCount').text();
 		
 		//더하기, 빼기
 		if(type === 'plus' && orderCount < 11) {
-			orderCount = parseInt(headnum) + 1;  
+			orderCount = parseInt(orderCount) + 1;  
 	  	}else if(type === 'minus' && orderCount > 1) {
-	  		orderCount = parseInt(headnum) - 1;
+	  		orderCount = parseInt(orderCount) - 1;
 	  	}else {
 			alert('주문 수량을 확인해주세요.');
 			return false;
@@ -101,14 +103,16 @@ $(document).ready(function(){
 
 //추천 메뉴 목록 가져오기
 function getRecMenu(){
+	//if(memberRole){
+		
+	//}
 	$.ajax({
 		url: "recommendList",
 		type: "post",
 		data: {storeCode: storeCode},
 		dataType: "json",
 		success: function(list){
-			let str = menuList(list);
-			$('#recommendList').html(str);
+			recMenuList(list);
 		},
 		error: function(){
 			alert('error');
@@ -117,10 +121,15 @@ function getRecMenu(){
 }
 
 //추천 메뉴 리스트 출력
-/*function recMenuList(list){
-	let str = '<table>';
+function recMenuList(list){
+	//추천 타이틀, 키워드 표시
+	let str =
+	`<div><p><span>memberId</span>님을 위한 추천 상품</p>
+	#<span th:text="${taste.cocktailTaste}"></span>
+	#<span th:text="${taste.cocktailFlavor}"></span><br></div>`
+	
 	$(list).each(function(i,item){
-		str += '<tr>';
+		str += '<table><tr>';
 		str += '<td><a>' + item.savedFilename + '</a></td>';
 		str += '<td>' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
@@ -128,7 +137,7 @@ function getRecMenu(){
 	});
 	str += '</table>';
 	$('#recommendList').html(str);
-}*/
+}
 
 //카테고리별로 메뉴 보기
 function menuCategory(category){
@@ -138,7 +147,7 @@ function menuCategory(category){
 		data: {category : category},
 		dataType: "json",
 		success: function(list){
-			getList(list);
+			menuList(list);
 		},
 		error: function(){
 			alert('error');
@@ -153,7 +162,8 @@ function addCart(menuNum){
 			memberId : memberId,
 			storecode : storecode,
 			menuNum :  menuNum,
-			orderCount : orderCount
+			orderCount : orderCount,
+			orderCode : orderCode
 	}
 	
 	if(confirm('장바구니에 추가하시겠습니까?')){
@@ -164,7 +174,7 @@ function addCart(menuNum){
 			data: param,
 			dataType: "json",
 			success: function(list){
-				getList(list);
+				menuList(list);
 			},
 			error: function(){
 				alert('error');
@@ -205,13 +215,14 @@ function loadCart(){
  			</div>
  		</nav>
  		<section>
- 			<div sec:authorize="isAuthenticated()">
- 				<p><span id="memberId" th:text="${#authentication.name}"></span>님을 위한 추천 상품</p>
-	 			#<span th:text="${taste.cocktailTaste}"></span>
-	 			#<span th:text="${taste.cocktailFlavor}"></span>
-	 			<!-- 추천 메뉴 출력 -->
-	 			<div id="recommendList"></div>
- 			</div>
+ 			<!-- storeCode, memberId, orderCode, memberRole -->
+ 			<span id="storeCode" th:text="${storeCode}" style="display:none;"></span>
+ 			<span id="memberId" th:text="${memberId}" style="display:none;"></span>
+ 			<span id="orderCode" th:text="${orderCode}" style="display:none;"></span>
+ 			<span id="memberRole" th:text="${memberRole}" style="display:none;"></span>
+			
+			<!-- 추천 메뉴 출력 -->
+			<div id="recommendList"></div>
  		</section>
  		<hr><br>
  		<section>
