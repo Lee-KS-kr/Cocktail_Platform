@@ -47,7 +47,7 @@ $(document).ready(function(){
 			str += '<tr>';
 			str += '<td colspan="3">' + item.menuName + '</td></tr>';
 			str += '<td><a href="javascript:deleteCart(' + menuNum + ')"><button>삭제</button></a></td></tr>';
-			str += '<tr><td><a href="javascript:count(\'plus\',' + menuNum + ')|">+</a></td>';
+			str += '<tr><td><a href="javascript:count(\'plus\',' + menuNum + ')">+</a></td>';
 			str += '<td><span id="orderCount_' + menuNum + '">' + orderCount + '</span>개</td>';
 			str += '<td><a href="javascript:count(\'minus\',' + menuNum + ')">-</a></td>';
 			str += '<td><span id="price_' + menuNum + '">' + item.price + '</span>원</td></tr>';
@@ -83,6 +83,27 @@ $(document).ready(function(){
 	    $('#orderCount_' + menuNum).text(orderCount);
 	}
 	
+	//int storeCode, String memberId, String orderCode, int[] menuNum, String[] menuName, int[] price, int[] orderCount
+	/**주문하기*/
+	function orderMenu(){
+		
+		let result = confirm('선택한 메뉴를 주문하시겠습니까?');
+		
+		if(result){
+			$.ajax({
+				url: "orderMenu",
+				type: "post",
+				data: data,
+				success: function(){
+					alert('선택한 메뉴를 주문하였습니다.');
+				},
+				error: function(e){
+					alert(e.statusText);
+				}
+			});
+		}
+	}
+	
 	/**창 닫기*/
 	function closeCart(){
 		window.close();
@@ -102,6 +123,7 @@ $(document).ready(function(){
 	  <div id="cartList">
 		<div class="cart-item">
 		  <h2>상품 이름</h2>
+		  <span th:text="{orderCode}" style="display:none;"></span>
 		  <div class="cart-controls">
 			<button>+</button>
 			<span>1</span> <!-- 주문 수량 -->
@@ -113,7 +135,7 @@ $(document).ready(function(){
 	  </div>
 	  <p class="cart-total">합계: <span id="totalPrice">10,000원</span></p>
 	  <a href="javascript:closeCart()"><button class="orderBT">닫기</button></a>
-	  <a th:href="@{/corporate/order/orderMenu}" ><button class="orderBT">주문하기</button></a>
+	  <a href="javascript:orderMenu()"><button class="orderBT">주문하기</button></a>
 	</div>
   </body>
 </html>
