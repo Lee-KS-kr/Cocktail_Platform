@@ -65,20 +65,18 @@ body {
   }
   
   /* Input Styles */
-  input[type="date"],
-  input[type="time"],
-  input[type="text"],
-  input[type="button"],
-  input[type="radio"]{
+  input{
     width: 90%;
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid #e7e7e7;
+    border: 1px solid #d5d5d5;
     border-radius: 3px;
     font-size: 16px;
   }
 
-  input[type="submit"] {
+  input[value="예약 신청하기"] {
+  width: 100%;
+  height: 30px;
   background-color: #50CCAA;
   align-items: center;
   text-align: center;
@@ -123,7 +121,9 @@ body {
     margin-top: 10px;
   }
   
-
+  #agree{
+    max-width: 20px;
+  }
     /*h1*/
     h1{
       justify-content: center;
@@ -132,6 +132,7 @@ body {
         text-align: center;
         justify-content: center;
         color: #313131;
+        font-size: 20pt;
         font-family: 'Noto Sans KR', sans-serif; 
     }
     
