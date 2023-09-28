@@ -4,7 +4,7 @@
 
 	<mapper namespace="com.platform.cocktail.cocktail_platform.dao.RecommendDAO">
 
-	<select id="getTop3Cocktails" resultType="Menu">
+	<select id="getTop3Cocktails" resultType="Cocktails">
  		select
  			c.cockailName as cocktailName
 		from
@@ -19,7 +19,7 @@
 			sum(ot.orderCount) desc
 	</select>
 	 
-	<select id="customizedRecommendation" parameterType="Taste" resultType="Menu">
+	<select id="customizedRecommendation" parameterType="Taste" resultType="Cocktails">
 		select
     		c.cocktailName
 		from
@@ -69,7 +69,7 @@
     </select>
     -->
 	
-	<select id="weatherRecommend" resultType="Menu">
+	<select id="weatherRecommend" resultType="Cocktails">
  		select
  			c.cockailName as cocktailName
 		from
@@ -84,7 +84,7 @@
 			sum(ot.orderCount) desc;
 	</select>
 
-	<select id="companionRecommend" resultType="Menu">
+	<select id="companionRecommend" resultType="Cocktails">
  		select
  			c.cockailName as cocktailName
 		from
@@ -99,7 +99,7 @@
 			sum(ot.orderCount) desc;
 	</select>
 
-	<select id="eventRecommend" resultType="Menu">
+	<select id="eventRecommend" resultType="Cocktails">
 		select
  			c.cockailName as cocktailName
 		from
@@ -114,19 +114,8 @@
 			sum(ot.orderCount) desc;
 	</select>
 	
-	<!-- <select id="recommendForMe" resultType="Menu">
-    	select
-        	menuName
-        	, sum(orderCount) totalOrderCount
-        	, dense_rank() over (order by sum(orderCount) desc) menuRank
-    	from
-        	orderTemp ot
-        where
-    		ot.memberId = #{memberId}
-    	group by
-        	menuName
-    	order by
-        	menuRank ascg
+	<!-- <select id="recommendForMe" resultType="Cocktails">
+    	
 	</select> -->
 	
 	</mapper>
