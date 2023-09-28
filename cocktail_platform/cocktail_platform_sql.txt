@@ -166,7 +166,7 @@ create table menuPreference (
 		menuPreferenceNum    number        primary key,
 		menuId               varchar2(20)  references member(memberId) on delete set null,
 		menuNum              number        references menu(menuNum) on delete set null,
-        menuName             varchar2(100) references menu(menuName) on delete set null,
+        menuName             varchar2(100) not null,
 		weather              number        check (weather < 6000),
 		ageGroup             number        check (ageGroup < 7000),
 		companion            number        check (companion< 8000),
