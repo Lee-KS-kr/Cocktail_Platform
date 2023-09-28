@@ -4,28 +4,32 @@
 
 	<mapper namespace="com.platform.cocktail.cocktail_platform.dao.RecommendDAO">
 
-	<select id="getTop3Cocktails" resultType="Menu">
-    	select
-    		menuName
-  		from
-  			orderTemp
- 		group by
- 			menuName
- 		order by
- 			sum(orderCount) desc
+	<select id="getTop3Cocktails" resultType="Cocktails">
+ 		select
+ 			c.cockailName as cocktailName
+		from
+			cocktails c
+				left join
+					orderTemp ot 
+				on
+					c.cockailName = ot.menuName
+		group by
+			c.cockailName
+		order by
+			sum(ot.orderCount) desc
 	</select>
 	 
-	<select id="customizedRecommendation" parameterType="Taste" resultType="Menu">
+	<select id="customizedRecommendation" parameterType="Taste" resultType="Cocktails">
 		select
     		c.cocktailName
 		from
     		cocktails c
-		inner join
-    		taste t
-		on
-    		c.cocktailTaste = #{cocktailTaste}
-		or
-    		c.cocktailFlavor = #{cocktailFlavor}
+				inner join
+    				taste t
+				on
+    				c.cocktailTaste = #{cocktailTaste}
+				or
+    				c.cocktailFlavor = #{cocktailFlavor}
     	where
     		t.memberId = #{memberId}
     	order by
@@ -38,98 +42,84 @@
     	end
 	</select>
 
-	<!-- ㅇㅇ님과 비슷한 20대가 많이 찾아요 
-	<sql id="AgeGroup20">
-        select
-            m.memberId,
-            case
-                when to_number(substr(m.birthday, 1, 4)) between extract(year from sysdate) - 29 and extract(year from sysdate) then '20대'
-                else '기타'
-            end as ageGroup,
-            ot.menuName,
-            ot.orderCount,
-            row_number() over (partition by m.memberId order by ot.orderCount DESC) AS rn
-        from member m
-        join orderTemp ot on m.memberId = ot.memberId
-        where to_number(substr(m.birthday, 1, 4)) between extract(year from sysdate) - 29 and extract(year from sysdate)
-    </sql>
-    <select id="ageRecommend" resultType="Menu">
-        <include refid="AgeGroup20"/>
-        select
-            ageGroup,
-            menuName,
-            sum(orderCount) as totalOrderCount
-        from AgeGroup20
-        group by ageGroup, menuName
-        order by totalOrderCount desc
+	<!-- 연령별 추천 칵테일 
+    <select id="ageRecommend" resultType="Cocktails">
+    	select 
+       		c.cockailName as cocktailName
+		from
+			cocktails c
+				inner join 
+					orderTemp ot 
+				on 
+					c.cocktailCode = ot.menuNum
+				inner join 
+					member m 
+				on 
+					ot.memberId = m.memberId
+		<where>
+    		<if test="  == #{birthday}">
+    		</if>
+    		<if test=" == #{birthday}">
+   			</if>
+   		 	<if test=" == #{birthday}">
+   		 	</if>
+    		<if test=" == #{birthday}">
+    		</if>
+  		</where>
+		group by
+			c.cockailName
+		order by
+			sum(ot.orderCount) desc
     </select>
     -->
-	
-	<select id="weatherRecommend" resultType="Menu">
-		select
-			ot.menuName
-  		from
-  			orderTemp ot
-       	inner join
-       		menuPreference mp
-       	on
-       		ot.menuNum = mp.menuNum
- 		where
- 			mp.weather = #{weather}
- 		group by
- 			ot.menuName
- 		order by
- 			sum(ot.orderCount) desc
+
+	<select id="weatherRecommend" resultType="Cocktails">
+ 		select
+ 			c.cockailName as cocktailName
+		from
+			cocktails c
+				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
+				left join orderTemp ot on c.cocktailCode = ot.menuNum
+		where
+			mp.companion = #{weather}
+		group by
+			c.cockailName
+		order by
+			sum(ot.orderCount) desc;
 	</select>
 
-	<select id="companionRecommend" resultType="Menu">
-		select
-			ot.menuName
-  		from
-  			orderTemp ot
-       	inner join
-       		menuPreference mp 
-       	on
-       		ot.menuNum = mp.menuNum
- 		where
- 			mp.companion = #{companion}
- 		group by
- 			ot.menuName
- 		order by
- 			sum(ot.orderCount) desc
+	<select id="companionRecommend" resultType="Cocktails">
+ 		select
+ 			c.cockailName as cocktailName
+		from
+			cocktails c
+				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
+				left join orderTemp ot on c.cocktailCode = ot.menuNum
+		where
+			mp.companion = #{companion}
+		group by
+			c.cockailName
+		order by
+			sum(ot.orderCount) desc;
 	</select>
 
-	<select id="eventRecommend" resultType="Menu">
+	<select id="eventRecommend" resultType="Cocktails">
 		select
-			ot.menuName
-  		from
-  			orderTemp ot
-       	inner join
-       		menuPreference mp 
-       	on
-       		ot.menuNum = mp.menuNum
- 		where
- 			mp.event = #{event}
- 		group by
- 			ot.menuName
- 		order by
- 			sum(ot.orderCount) desc
- 		
+ 			c.cockailName as cocktailName
+		from
+			cocktails c
+				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
+				left join orderTemp ot on c.cocktailCode = ot.menuNum
+		where
+			mp.companion = #{event}
+		group by
+			c.cockailName
+		order by
+			sum(ot.orderCount) desc;
 	</select>
 	
-	<!-- <select id="recommendForMe" resultType="Menu">
-    	select
-        	menuName
-        	, sum(orderCount) totalOrderCount
-        	, dense_rank() over (order by sum(orderCount) desc) menuRank
-    	from
-        	orderTemp ot
-        where
-    		ot.memberId = #{memberId}
-    	group by
-        	menuName
-    	order by
-        	menuRank ascg
+	<!-- <select id="recommendForMe" resultType="Cocktails">
+    	
 	</select> -->
 	
 	</mapper>
