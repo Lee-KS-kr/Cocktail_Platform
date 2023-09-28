@@ -70,55 +70,48 @@
     -->
 	
 	<select id="weatherRecommend" resultType="Menu">
-		select
-			ot.menuName
-  		from
-  			orderTemp ot
-       	inner join
-       		menuPreference mp
-       	on
-       		ot.menuNum = mp.menuNum
- 		where
- 			mp.weather = #{weather}
- 		group by
- 			ot.menuName
- 		order by
- 			sum(ot.orderCount) desc
+ 		select
+ 			c.cockailName as cocktailName
+		from
+			cocktails c
+				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
+				left join orderTemp ot on c.cocktailCode = ot.menuNum
+		where
+			mp.companion = #{weather}
+		group by
+			c.cockailName
+		order by
+			sum(ot.orderCount) desc;
 	</select>
 
 	<select id="companionRecommend" resultType="Menu">
-		select
-			ot.menuName
-  		from
-  			orderTemp ot
-       	inner join
-       		menuPreference mp 
-       	on
-       		ot.menuNum = mp.menuNum
- 		where
- 			mp.companion = #{companion}
- 		group by
- 			ot.menuName
- 		order by
- 			sum(ot.orderCount) desc
+ 		select
+ 			c.cockailName as cocktailName
+		from
+			cocktails c
+				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
+				left join orderTemp ot on c.cocktailCode = ot.menuNum
+		where
+			mp.companion = #{companion}
+		group by
+			c.cockailName
+		order by
+			sum(ot.orderCount) desc;
 	</select>
 
 	<select id="eventRecommend" resultType="Menu">
 		select
-			ot.menuName
-  		from
-  			orderTemp ot
-       	inner join
-       		menuPreference mp 
-       	on
-       		ot.menuNum = mp.menuNum
- 		where
- 			mp.event = #{event}
- 		group by
- 			ot.menuName
- 		order by
- 			sum(ot.orderCount) desc
- 		
+ 			c.cockailName as cocktailName
+		from
+			cocktails c
+				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
+				left join orderTemp ot on c.cocktailCode = ot.menuNum
+		where
+			mp.companion = #{event}
+		group by
+			c.cockailName
+		order by
+			sum(ot.orderCount) desc;
 	</select>
 	
 	<!-- <select id="recommendForMe" resultType="Menu">
