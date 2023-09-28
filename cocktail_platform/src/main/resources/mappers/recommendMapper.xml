@@ -5,14 +5,18 @@
 	<mapper namespace="com.platform.cocktail.cocktail_platform.dao.RecommendDAO">
 
 	<select id="getTop3Cocktails" resultType="Menu">
-    	select
-    		menuName
-  		from
-  			orderTemp
- 		group by
- 			menuName
- 		order by
- 			sum(orderCount) desc
+ 		select
+ 			c.cockailName as cocktailName
+		from
+			cocktails c
+				left join
+					orderTemp ot 
+				on
+					c.cockailName = ot.menuName
+		group by
+			c.cockailName
+		order by
+			sum(ot.orderCount) desc
 	</select>
 	 
 	<select id="customizedRecommendation" parameterType="Taste" resultType="Menu">
