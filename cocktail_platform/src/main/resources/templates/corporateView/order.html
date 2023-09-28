@@ -14,7 +14,6 @@
 <!-- thymeleaf -->
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
-$(document).ready(function(){
 	let memberId = $('#memberId').val();
 	let storeCode;
 	let menuNum; 
@@ -31,7 +30,6 @@ $(document).ready(function(){
 			data: {storeCode: storeCode},
 			success: function(list){
 				menuList(list);
-				alert(memberRole);
 			},
 			error: function(){
 				alert('error');
@@ -60,7 +58,7 @@ $(document).ready(function(){
 			str += '<tr><td>' + item.menuName + '</td>';
 			str += '<td rowspan="2"><a href="#" onclick="addCart('+ menuNum + ')">카트에 담기</a></td></tr>';
 			str += '<tr><td>' + item.price + '</td>';
-			str += '<tr><td id="menuNum" style="display:none;">' + menuNum + '</td>';
+			str += '<tr><td id="menuNum_' + menuNum + '" style="display:none;">' + menuNum + '</td>';
 		});
 		str += '</table>';
 		$('#menuList').html(str);
@@ -163,7 +161,7 @@ $(document).ready(function(){
 		}
 		
 		if(confirm('장바구니에 추가하시겠습니까?')){
-			
+			alert("addCart 함수 호출");
 			$.ajax({
 				url: "addToCart",
 				type: "get",
@@ -183,7 +181,6 @@ $(document).ready(function(){
 		let option = "width = 20%, height = 100%, top = 100, left = 500, location = no, scrollbars = no"
 		window.open("cart", "cartPopUp", option);
 	}
-});
 
 </script>
 </head>
