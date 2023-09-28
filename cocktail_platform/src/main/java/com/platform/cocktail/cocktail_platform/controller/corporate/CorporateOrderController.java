@@ -89,7 +89,14 @@ public class CorporateOrderController {
 	}
 	
 	@GetMapping("menu")
-	public String menu() {
+	public String menu(String orderCode, Model m) {
+		m.addAttribute("orderCode", orderCode);
+		m.addAttribute("memberId", this.loginMember);
+		Member mem = mService.findMemberById(this.loginMember);
+		if(mem != null)
+			m.addAttribute("memberRole", mem.getMemberType());
+		else
+			m.addAttribute("memberRole", MemberType.ROLE_PERSONAL);
 		return "corporateView/order";
 	}
 	
@@ -109,7 +116,7 @@ public class CorporateOrderController {
 	
 	@ResponseBody
 	@GetMapping("addToCart")
-	public void addToCart(int storeCode, String memberId, int menuNum, int orderCount,
+	public void addToCart(int storeCode, int menuNum, int orderCount,
 						@CookieValue(name="cart", defaultValue="0") String cart,
 						HttpServletResponse res) throws Exception {
 		cart = URLDecoder.decode(cart, "UTF-8");
@@ -159,7 +166,7 @@ public class CorporateOrderController {
 			m.addAttribute("carts", carts);
 		}
 		
-		return "corporateView/";
+		return "corporateView/cartList";
 	}
 	
 	@PostMapping("orderMenu")
@@ -196,7 +203,7 @@ public class CorporateOrderController {
 			res.addCookie(cookie1);
 		}
 		
-		return "corporateView/";
+		return "redirect:/corporate/order/menu?orderCode=" + orderCode;
 	}
 	
 	@ResponseBody

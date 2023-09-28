@@ -82,50 +82,44 @@ public class PersonalAjaxController {
 	}
 	
 	@GetMapping("getBestCocktails")
-	public ArrayList<Menu> getBestCocktails(){
-		ArrayList<Menu> list = rService.getTop3Cocktails();
-		getStoreNames(list);
+	public ArrayList<Cocktails> getBestCocktails(){
+		ArrayList<Cocktails> list = rService.getTop3Cocktails();
 		
 		return list;
 	}
 	
 	@GetMapping("customizedRecommendation")
-	public ArrayList<Menu> customizedRecommendation(@AuthenticationPrincipal UserDetails user){
+	public ArrayList<Cocktails> customizedRecommendation(@AuthenticationPrincipal UserDetails user){
 		Taste t = mService.findTasteById(user.getUsername());
-		ArrayList<Menu> list = rService.CustomizedRecommendation(t);
-		getStoreNames(list);
+		ArrayList<Cocktails> list = rService.CustomizedRecommendation(t);
 		
 		return list;
 	}
 	
 	@GetMapping("weatherRecommend")
-	public ArrayList<Menu> weatherRecommend(String filter) {
-		ArrayList<Menu> list = rService.weatherRecommend(filter);
-		getStoreNames(list);
+	public ArrayList<Cocktails> weatherRecommend(String filter) {
+		ArrayList<Cocktails> list = rService.weatherRecommend(filter);
 		
 		return list;
 	}
 	
 	@GetMapping("ageRecommend")
-	public ArrayList<Menu>  ageRecommend(String filter) {
-		ArrayList<Menu> list = rService.ageRecommend(filter);
-		getStoreNames(list);
+	public ArrayList<Cocktails>  ageRecommend(String filter) {
+		ArrayList<Cocktails> list = rService.ageRecommend(filter);
 		
 		return list;
 	}
 	
 	@GetMapping("companionRecommend")
-	public ArrayList<Menu>  companionRecommend(String filter) {
-		ArrayList<Menu> list = rService.companionRecommend(filter);
-		getStoreNames(list);
+	public ArrayList<Cocktails>  companionRecommend(String filter) {
+		ArrayList<Cocktails> list = rService.companionRecommend(filter);
 		
 		return list;
 	}
 	
 	@GetMapping("eventRecommend")
-	public ArrayList<Menu> eventRecommend(String filter) {
-		ArrayList<Menu> list = rService.eventRecommend(filter);
-		getStoreNames(list);
+	public ArrayList<Cocktails> eventRecommend(String filter) {
+		ArrayList<Cocktails> list = rService.eventRecommend(filter);
 		
 		return list;
 	}
