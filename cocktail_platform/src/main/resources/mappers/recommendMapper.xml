@@ -6,15 +6,15 @@
 
 	<select id="getTop3Cocktails" resultType="Cocktails">
  		select
- 			c.cockailName as cocktailName
+ 			c.cocktailName as cocktailName
 		from
 			cocktails c
 				left join
 					orderTemp ot 
 				on
-					c.cockailName = ot.menuName
+					c.cocktailName = ot.menuName
 		group by
-			c.cockailName
+			c.cocktailName
 		order by
 			sum(ot.orderCount) desc
 	</select>
@@ -45,7 +45,7 @@
 	<!-- 연령별 추천 칵테일 
     <select id="ageRecommend" resultType="Cocktails">
     	select 
-       		c.cockailName as cocktailName
+       		c.cocktailName as cocktailName
 		from
 			cocktails c
 				inner join 
@@ -67,7 +67,7 @@
     		</if>
   		</where>
 		group by
-			c.cockailName
+			c.cocktailName
 		order by
 			sum(ot.orderCount) desc
     </select>
@@ -75,7 +75,7 @@
 
 	<select id="weatherRecommend" resultType="Cocktails">
  		select
- 			c.cockailName as cocktailName
+ 			c.cocktailName as cocktailName
 		from
 			cocktails c
 				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
@@ -83,14 +83,14 @@
 		where
 			mp.companion = #{weather}
 		group by
-			c.cockailName
+			c.cocktailName
 		order by
 			sum(ot.orderCount) desc;
 	</select>
 
 	<select id="companionRecommend" resultType="Cocktails">
  		select
- 			c.cockailName as cocktailName
+ 			c.cocktailName as cocktailName
 		from
 			cocktails c
 				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
@@ -98,14 +98,14 @@
 		where
 			mp.companion = #{companion}
 		group by
-			c.cockailName
+			c.cocktailName
 		order by
 			sum(ot.orderCount) desc;
 	</select>
 
 	<select id="eventRecommend" resultType="Cocktails">
 		select
- 			c.cockailName as cocktailName
+ 			c.cocktailName as cocktailName
 		from
 			cocktails c
 				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
@@ -113,7 +113,7 @@
 		where
 			mp.companion = #{event}
 		group by
-			c.cockailName
+			c.cocktailName
 		order by
 			sum(ot.orderCount) desc;
 	</select>
