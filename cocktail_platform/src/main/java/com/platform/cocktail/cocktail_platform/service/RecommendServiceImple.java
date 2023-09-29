@@ -40,6 +40,15 @@ public class RecommendServiceImple implements RecommendService {
 		log.debug("customize {}", list);
 		return list;
 	}
+	
+	@Override
+	public ArrayList<Cocktails> recommendForMe(String memberId) {
+		log.debug("order recommend");
+		ArrayList<Cocktails> list = dao.recommendForMe(memberId);
+		list = getCocktailDetails(list);
+		log.debug("order recommend {}", list);
+		return list;
+	}
 
 	@Override
 	public ArrayList<Cocktails> weatherRecommend(String filter) {

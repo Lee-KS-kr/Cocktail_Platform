@@ -13,6 +13,8 @@ public interface RecommendDAO {
 	ArrayList<Cocktails> getTop3Cocktails();
 
 	ArrayList<Cocktails> CustomizedRecommendation(Taste t);
+	
+	ArrayList<Cocktails> recommendForMe(String memberId);
 
 	ArrayList<Cocktails> weatherRecommend(int filter);
 
