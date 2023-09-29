@@ -107,7 +107,7 @@
 		select
  			c.cocktailName as cocktailName
 		from
-			cocktails cz
+			cocktails c
 				inner join menuPreference mp on	c.cocktailName = mp.menuName
 				left join orderTemp ot on c.cocktailName = ot.menuName
 		where
