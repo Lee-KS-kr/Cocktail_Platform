@@ -104,4 +104,18 @@
     		cocktailName = #{cocktailName}
 	</select>
 	
+	<select id="recommendForMe" parameterType="String" resultType="Cocktails">
+    	select
+        	c.cocktailName as cocktailName
+    	from
+        	cocktails c
+        	left join orderTemp ot on c.cocktailName = ot.menuName
+        where
+    		ot.memberId = #{memberId}
+    	group by
+        	c.cocktailName
+    	order by
+        	sum(ot.orderCount) desc
+	</select>
+	
 	</mapper>
