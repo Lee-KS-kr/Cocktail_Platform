@@ -85,7 +85,7 @@
 		group by
 			c.cocktailName
 		order by
-			sum(ot.orderCount) desc;
+			sum(ot.orderCount) desc
 	</select>
 
 	<select id="companionRecommend" resultType="Cocktails">
@@ -93,14 +93,14 @@
  			c.cocktailName as cocktailName
 		from
 			cocktails c
-				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
-				left join orderTemp ot on c.cocktailCode = ot.menuNum
+				inner join menuPreference mp on	c.cockailName = mp.menuName
+				left join orderTemp ot on c.cockailName = ot.menuName
 		where
 			mp.companion = #{companion}
 		group by
 			c.cocktailName
 		order by
-			sum(ot.orderCount) desc;
+			sum(ot.orderCount) desc
 	</select>
 
 	<select id="eventRecommend" resultType="Cocktails">
@@ -108,14 +108,14 @@
  			c.cocktailName as cocktailName
 		from
 			cocktails cz
-				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
-				left join orderTemp ot on c.cocktailCode = ot.menuNum
+				inner join menuPreference mp on	c.cockailName = mp.menuName
+				left join orderTemp ot on c.cockailName = ot.menuName
 		where
 			mp.event = #{event}
 		group by
 			c.cocktailName
 		order by
-			sum(ot.orderCount) desc;
+			sum(ot.orderCount) desc
 	</select>
 	
 	<!-- <select id="getCocktailByName" parameterType="String" resultType="Cocktails">
