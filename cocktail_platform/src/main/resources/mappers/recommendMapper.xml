@@ -10,7 +10,7 @@
 		from
 			cocktails c
 				left join
-					orderTemp ot 
+					orderTemp ot
 				on
 					c.cocktailName = ot.menuName
 		group by
@@ -24,56 +24,18 @@
     		c.cocktailName
 		from
     		cocktails c
-				inner join
-    				taste t
-				on
-    				c.cocktailTaste = #{cocktailTaste}
-				or
-    				c.cocktailFlavor = #{cocktailFlavor}
+				inner join taste t on c.cocktailTaste = #{cocktailTaste} or c.cocktailFlavor = #{cocktailFlavor}
+				left join orderTemp ot on c.cocktailName = ot.menuName
     	where
     		t.memberId = #{memberId}
-    	order by
-    		case
-        		when
-        			c.cocktailTaste = #{cocktailTaste}  and c.cocktailFlavor = #{cocktailFlavor} then 1
-        		when
-        			c.cocktailTaste = #{cocktailTaste}  or c.cocktailFlavor = #{cocktailFlavor} then 2
-       				else 3
-    	end
-	</select>
-
-	<!-- 연령별 추천 칵테일 
-    <select id="ageRecommend" resultType="Cocktails">
-    	select 
-       		c.cocktailName as cocktailName
-		from
-			cocktails c
-				inner join 
-					orderTemp ot 
-				on 
-					c.cocktailCode = ot.menuNum
-				inner join 
-					member m 
-				on 
-					ot.memberId = m.memberId
-		<where>
-    		<if test="  == #{birthday}">
-    		</if>
-    		<if test=" == #{birthday}">
-   			</if>
-   		 	<if test=" == #{birthday}">
-   		 	</if>
-    		<if test=" == #{birthday}">
-    		</if>
-  		</where>
-		group by
+    	group by
 			c.cocktailName
 		order by
 			sum(ot.orderCount) desc
-    </select>
-    -->
+	</select>
 
-	<select id="weatherRecommend" resultType="Cocktails">
+	
+    <select id="weatherRecommend" parameterType="int" resultType="Cocktails">
  		select
  			c.cocktailName as cocktailName
 		from
@@ -87,8 +49,23 @@
 		order by
 			sum(ot.orderCount) desc
 	</select>
+    
+	<select id="ageRecommend" parameterType="int" resultType="Cocktails">
+ 		select
+ 			c.cocktailName as cocktailName
+		from
+			cocktails c
+				inner join menuPreference mp on	c.cocktailName = mp.menuName
+				left join orderTemp ot on c.cocktailName = ot.menuName
+		where
+			mp.age = #{age}
+		group by
+			c.cocktailName
+		order by
+			sum(ot.orderCount) desc
+	</select>
 
-	<select id="companionRecommend" resultType="Cocktails">
+	<select id="companionRecommend" parameterType="int" resultType="Cocktails">
  		select
  			c.cocktailName as cocktailName
 		from
@@ -103,7 +80,7 @@
 			sum(ot.orderCount) desc
 	</select>
 
-	<select id="eventRecommend" resultType="Cocktails">
+	<select id="eventRecommend" parameterType="int" resultType="Cocktails">
 		select
  			c.cocktailName as cocktailName
 		from
@@ -118,8 +95,27 @@
 			sum(ot.orderCount) desc
 	</select>
 	
-	<!-- <select id="getCocktailByName" parameterType="String" resultType="Cocktails">
-    	
-	</select> -->
+	<select id="getCocktailByName" parameterType="String" resultType="Cocktails">
+    	select
+    		*
+    	from
+    		cocktails
+    	where
+    		cocktailName = #{cocktailName}
+	</select>
+	
+	<select id="recommendForMe" parameterType="String" resultType="Cocktails">
+    	select
+        	c.cocktailName as cocktailName
+    	from
+        	cocktails c
+        	left join orderTemp ot on c.cocktailName = ot.menuName
+        where
+    		ot.memberId = #{memberId}
+    	group by
+        	c.cocktailName
+    	order by
+        	sum(ot.orderCount) desc
+	</select>
 	
 	</mapper>
