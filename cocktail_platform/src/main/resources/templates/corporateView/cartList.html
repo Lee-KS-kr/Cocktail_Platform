@@ -24,11 +24,8 @@ $(document).ready(function(){
 	let price;
 	let orderCount;
 	
-	orderCount = parseInt($('#orderCount_' + menuNum).text()) || 1;
+	orderCount = parseInt($('#orderCount_' + menuNum).text());
 	let pricePerItem = orderCount * price;
-	
-	/**가격 총 합계 계산*/
-	//$('#totalPrice').text();
 	
 	/**카트 메뉴 삭제*/
 	function deleteCart(menuNum){
@@ -56,6 +53,24 @@ $(document).ready(function(){
 	    $('#orderCount_' + menuNum).text(orderCount);
 	}
 	
+	/**가격 총 합계 계산*/
+	function getTotal(){
+		let totalPrice = 0;
+		
+		//각 메뉴마다 가격을 가져와서 totalPrice에 더함
+        $('.price-per-item').each(function() {
+            let pricePerItem = parseInt($(this).text());
+            totalPrice += pricePerItem;
+        });
+
+        //totalPrice를 화면에 출력
+        $('#totalPrice').text(totalPrice + '원');
+    }
+	
+	//getTotal 함수 호출
+    getTotal();
+
+
 	/**주문하기*/
 	function orderMenu(){
 		let result = confirm('선택한 메뉴를 주문하시겠습니까?');
@@ -106,14 +121,14 @@ $(document).ready(function(){
 	  <div id="cartList">
 	  	<table>
 	  		<tr>
-	  			<td>${menuName}</td>
+	  			<td>${menuList.menuName}</td>
 	  			<td><button onclick="deleteCart(menuNum)">삭제</button></td>
 	  		</tr>
 	  		<tr>
 	  			<td><a href="javascript:count(\'plus\',' + menuNum + ')">+</a></td>
-	  			<td><span id="orderCount_' + menuNum + '">' + ${orderCount} + '</span>개</td>
+	  			<td><span id="orderCount_' + menuNum + '"> + ${carts.orderCount} + </span>개</td>
 	  			<td><a href="javascript:count(\'minus\',' + menuNum + ')">-</a></td>
-	  			<td><span id="price_' + menuNum + '">' + ${price} + '</span>원</td>
+	  			<td><span class="price-per-item" id="price_' + menuNum + '"> + ${menuList.price} + </span>원</td>
 	  		</tr>
 	  	</table>
 	  	

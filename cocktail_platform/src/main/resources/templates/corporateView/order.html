@@ -23,6 +23,7 @@
 	//전체 목록 받아오기
 	function allList(){
 		storeCode = $('#storeCode').text();
+		
 		$.ajax({
 			url: "menu",
 			type: "post",
@@ -119,8 +120,8 @@
 		//추천 타이틀, 키워드 표시
 		let str =
 		`<div><p><span>memberId</span>님을 위한 추천 상품</p>
-		#<span th:text="${taste.cocktailTaste}"></span>
-		#<span th:text="${taste.cocktailFlavor}"></span><br></div>`
+		#<span th:text="${cocktailTaste}"></span>
+		#<span th:text="${cocktailFlavor}"></span><br></div>`
 		
 		$(list).each(function(i,item){
 			str += '<table><tr>';
