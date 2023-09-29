@@ -11,6 +11,8 @@ public interface RecommendService {
 
 	ArrayList<Cocktails> CustomizedRecommendation(Taste t);
 
+	ArrayList<Cocktails> recommendForMe(String username);
+
 	ArrayList<Cocktails> weatherRecommend(String filter);
 
 	ArrayList<Cocktails> ageRecommend(String filter);
@@ -18,5 +20,4 @@ public interface RecommendService {
 	ArrayList<Cocktails> companionRecommend(String filter);
 
 	ArrayList<Cocktails> eventRecommend(String filter);
-
 }

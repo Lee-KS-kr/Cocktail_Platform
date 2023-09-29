@@ -96,6 +96,13 @@ public class PersonalAjaxController {
 		return list;
 	}
 	
+	@GetMapping("recommendForMe")
+	public ArrayList<Cocktails> recommendForMe(@AuthenticationPrincipal UserDetails user){
+		ArrayList<Cocktails> list = rService.recommendForMe(user.getUsername());
+		
+		return list;
+	}
+	
 	@GetMapping("weatherRecommend")
 	public ArrayList<Cocktails> weatherRecommend(String filter) {
 		ArrayList<Cocktails> list = rService.weatherRecommend(filter);
