@@ -24,22 +24,14 @@
     		c.cocktailName
 		from
     		cocktails c
-				inner join
-    				taste t
-				on
-    				c.cocktailTaste = #{cocktailTaste}
-				or
-    				c.cocktailFlavor = #{cocktailFlavor}
+				inner join taste t on c.cocktailTaste = #{cocktailTaste} or c.cocktailFlavor = #{cocktailFlavor}
+				left join orderTemp ot on c.cocktailName = ot.menuName
     	where
     		t.memberId = #{memberId}
-    	order by
-    		case
-        		when
-        			c.cocktailTaste = #{cocktailTaste}  and c.cocktailFlavor = #{cocktailFlavor} then 1
-        		when
-        			c.cocktailTaste = #{cocktailTaste}  or c.cocktailFlavor = #{cocktailFlavor} then 2
-       				else 3
-    	end
+    	group by
+			c.cocktailName
+		order by
+			sum(ot.orderCount) desc
 	</select>
 
 	<!-- 연령별 추천 칵테일 
@@ -73,7 +65,7 @@
     </select>
     -->
 
-	<select id="weatherRecommend" resultType="Cocktails">
+	<select id="weatherRecommend" parameterType="int" resultType="Cocktails">
  		select
  			c.cocktailName as cocktailName
 		from
@@ -88,7 +80,7 @@
 			sum(ot.orderCount) desc
 	</select>
 
-	<select id="companionRecommend" resultType="Cocktails">
+	<select id="companionRecommend" parameterType="int" resultType="Cocktails">
  		select
  			c.cocktailName as cocktailName
 		from
@@ -103,7 +95,7 @@
 			sum(ot.orderCount) desc
 	</select>
 
-	<select id="eventRecommend" resultType="Cocktails">
+	<select id="eventRecommend" parameterType="int" resultType="Cocktails">
 		select
  			c.cocktailName as cocktailName
 		from
