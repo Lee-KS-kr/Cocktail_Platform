@@ -25,6 +25,7 @@
       $(".filter").click(onFilterCilck);
       getBestCocktails();
       personalRecommend();
+      orderRecommend();
       weatherRecommend();
       ageRecommend();
       companionRecommend();
@@ -48,15 +49,13 @@
     }
 
     function showList(target, list){
-      let targetDiv = $("#" +target);
-      console.log("target : " + targetDiv);
-      $(list).each(function(i, item){
-        console.log(i);
+      let targetDiv = $("#" + target);
+      targetDiv.html('');
 
+      $(list).each(function(i, item){
         if(i >= 3)
           return;
 
-        console.log(JSON.stringify(item));
         targetDiv.append(`
           <div class="box">
             <a href="/FitTail/personal/wiki?cocktailCode=${item.cocktailCode}">
@@ -79,7 +78,7 @@
 
     function personalRecommend(){
       if(isLoggedIn == 'false'){
-        $("#mainbox2").hide();
+        $("#mainbox2_1").hide();
         return;
       }
 
@@ -89,15 +88,41 @@
         type:'get',
         dataType:'json',
         success:function(list){
-          showList("recommend_row", list);
+          showList("customeRecommend", list);
         },
         error: function(e){
           console.log(JSON.stringify(e));
         }
       });
     }
+
+    function orderRecommend(){
+      if(isLoggedIn == 'false'){
+        $("#mainbox2_2").hide();
+        return;
+      }
+
+      $.ajax({
+        url:'recommendForMe',
+        type:'get',
+        dataType:'json',
+        success: function(list){
+          showList("orderRecommend", list);
+        }
+      });
+    }
   
     function weatherRecommend(filter = 'sunny'){
+      let targetText = $("#weatherText")
+      if(filter == 'sunny')
+        targetText.html('화창한');
+      else if(filter == 'cloudy')
+        targetText.html('흐린');
+      else if(filter == 'rainy')
+        targetText.html('비가 오는');
+      else
+        targetText.html('눈 내리는');
+
       $.ajax({
         url:'weatherRecommend',
         type:'get',
@@ -113,6 +138,16 @@
     }
 
     function ageRecommend(filter = '20'){
+      let targetText = $("#ageText")
+      if(filter == '20')
+        targetText.html('20대가');
+      else if(filter == '30')
+        targetText.html('30대가');
+      else if(filter == '40')
+        targetText.html('40대가');
+      else
+        targetText.html('50대 이상이');
+
       $.ajax({
         url:'ageRecommend',
         type:'get',
@@ -128,6 +163,18 @@
     }
 
     function companionRecommend(filter = 'alone'){
+      let targetText = $("#companionText")
+      if(filter == 'alone')
+        targetText.html('혼자서');
+      else if(filter == 'friend')
+        targetText.html('친구와');
+      else if(filter == 'family')
+        targetText.html('가족과');
+      else if(filter == 'lover')
+        targetText.html('연인과');
+      else
+        targetText.html('주변 사람들과');
+
       $.ajax({
         url:'companionRecommend',
         type:'get',
@@ -143,6 +190,16 @@
     }
 
     function eventRecommend(filter = 'cocktail'){
+      let targetText = $("#eventText")
+      if(filter == 'cocktail')
+        targetText.html('칵테일을');
+      else if(filter == 'atmosphere')
+        targetText.html('분위기를');
+      else if(filter == 'friendship')
+        targetText.html('우정을');
+      else
+        targetText.html('특별한 순간을');
+
       $.ajax({
         url:'eventRecommend',
         type:'get',
@@ -226,12 +283,12 @@
         </div>
       </section>
       <!-- ======= End mainbox1 : 인기상품 ======= -->
-      <!-- ======= mainbox2 : 추천상품(맞춤) ======= -->
-      <section id="mainbox2" class="mainbox1">
+      <!-- ======= mainbox2-1 : 추천상품(맞춤) ======= -->
+      <section id="mainbox2_1" class="mainbox1">
         <div class="recommend_prd">
           <div class="main_title">
             <a th:href="@{/}">
-              <strong>님을 위한 추천 상품</strong>
+              <strong> <span th:text="${#authentication.name}"></span>님을 위한 추천 상품</strong>
             </a>
           </div>
           <div class="prd_ctg">
@@ -240,7 +297,20 @@
             <span>#혼술</span>
             <span>#특별한 순간을 위해</span>
           </div>
-          <div class="row" id="recommend">
+          <div class="row" id="customeRecommend">
+          </div>
+        </div>
+      </section>
+      <!-- ======= End mainbox2-1 : 추천상품 ======= -->
+      <!-- ======= mainbox2-2 : 추천상품(주문내역) ======= -->
+      <section id="mainbox2_2" class="mainbox1">
+        <div class="recommend_prd">
+          <div class="main_title">
+            <a th:href="@{/}">
+              <strong> <span th:text="${#authentication.name}"></span>님이 많이 찾으신 상품</strong>
+            </a>
+          </div>
+          <div class="row" id="orderRecommend">
           </div>
         </div>
       </section>
@@ -250,7 +320,7 @@
         <div class="recommend_prd">
           <div class="main_title">
             <a th:href="@{/}">
-              <strong>오늘같이 비가 오는 날에는?</strong>
+              <strong>오늘같이 &nbsp;<span id="weatherText">비가 오는</span>&nbsp; 날에는?</strong>
             </a>
           </div>
           <div class="prd_ctg">
@@ -269,7 +339,7 @@
         <div class="recommend_prd">
           <div class="main_title">
             <a th:href="@{/}">
-              <strong>00님과 비슷한 20대가 많이 찾아요</strong>
+              <strong> <span id="ageText">20대가</span>&nbsp; 많이 찾아요</strong>
             </a>
           </div>
           <div class="prd_ctg">
@@ -288,7 +358,7 @@
         <div class="recommend_prd">
           <div class="main_title">
             <a th:href="@{/}">
-              <strong>친구와 많이 마셔요</strong>
+              <strong> <span id="companionText">친구와</span>&nbsp; 많이 마셔요</strong>
             </a>
           </div>
           <div class="prd_ctg">
@@ -308,7 +378,7 @@
         <div class="recommend_prd">
           <div class="main_title">
             <a th:href="@{/}">
-              <strong>특별한 순간을 즐기고 싶을 때는?</strong>
+              <strong> <span id="eventText">특별한 순간을</span>&nbsp; 즐기고 싶을 때는?</strong>
             </a>
           </div>
           <div class="prd_ctg">
