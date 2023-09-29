@@ -78,10 +78,10 @@
  			c.cocktailName as cocktailName
 		from
 			cocktails c
-				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
-				left join orderTemp ot on c.cocktailCode = ot.menuNum
+				inner join menuPreference mp on	c.cockailName = mp.menuName
+				left join orderTemp ot on c.cockailName = ot.menuName
 		where
-			mp.companion = #{weather}
+			mp.weather = #{weather}
 		group by
 			c.cocktailName
 		order by
@@ -107,18 +107,18 @@
 		select
  			c.cocktailName as cocktailName
 		from
-			cocktails c
+			cocktails cz
 				inner join menuPreference mp on	c.cocktailCode = mp.menuNum
 				left join orderTemp ot on c.cocktailCode = ot.menuNum
 		where
-			mp.companion = #{event}
+			mp.event = #{event}
 		group by
 			c.cocktailName
 		order by
 			sum(ot.orderCount) desc;
 	</select>
 	
-	<!-- <select id="recommendForMe" resultType="Cocktails">
+	<!-- <select id="getCocktailByName" parameterType="String" resultType="Cocktails">
     	
 	</select> -->
 	
