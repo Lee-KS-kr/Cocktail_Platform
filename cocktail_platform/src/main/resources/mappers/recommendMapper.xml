@@ -78,8 +78,8 @@
  			c.cocktailName as cocktailName
 		from
 			cocktails c
-				inner join menuPreference mp on	c.cockailName = mp.menuName
-				left join orderTemp ot on c.cockailName = ot.menuName
+				inner join menuPreference mp on	c.cocktailName = mp.menuName
+				left join orderTemp ot on c.cocktailName = ot.menuName
 		where
 			mp.weather = #{weather}
 		group by
@@ -93,8 +93,8 @@
  			c.cocktailName as cocktailName
 		from
 			cocktails c
-				inner join menuPreference mp on	c.cockailName = mp.menuName
-				left join orderTemp ot on c.cockailName = ot.menuName
+				inner join menuPreference mp on	c.cocktailName = mp.menuName
+				left join orderTemp ot on c.cocktailName = ot.menuName
 		where
 			mp.companion = #{companion}
 		group by
@@ -108,8 +108,8 @@
  			c.cocktailName as cocktailName
 		from
 			cocktails cz
-				inner join menuPreference mp on	c.cockailName = mp.menuName
-				left join orderTemp ot on c.cockailName = ot.menuName
+				inner join menuPreference mp on	c.cocktailName = mp.menuName
+				left join orderTemp ot on c.cocktailName = ot.menuName
 		where
 			mp.event = #{event}
 		group by
