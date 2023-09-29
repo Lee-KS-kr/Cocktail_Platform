@@ -4,22 +4,24 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.platform.cocktail.cocktail_platform.domain.Menu;
+import com.platform.cocktail.cocktail_platform.domain.Cocktails;
 import com.platform.cocktail.cocktail_platform.domain.Taste;
 
 @Mapper
 public interface RecommendDAO {
 
-	ArrayList<Menu> getTop3Cocktails();
+	ArrayList<Cocktails> getTop3Cocktails();
 
-	ArrayList<Menu> CustomizedRecommendation(Taste t);
+	ArrayList<Cocktails> CustomizedRecommendation(Taste t);
 
-	ArrayList<Menu> weatherRecommend(int filter);
+	ArrayList<Cocktails> weatherRecommend(int filter);
 
-	ArrayList<Menu> ageRecommend(int filter);
+	ArrayList<Cocktails> ageRecommend(int filter);
 
-	ArrayList<Menu> companionRecommend(int filter);
+	ArrayList<Cocktails> companionRecommend(int filter);
 
-	ArrayList<Menu> eventRecommend(int filter);
+	ArrayList<Cocktails> eventRecommend(int filter);
+
+	Cocktails getCocktailByName(String cocktailName);
 
 }
