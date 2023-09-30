@@ -40,4 +40,18 @@ public class AdminController {
 		serv.deleteMenus();
 		return "redirect:/admin/home";
 	}
+	
+	@GetMapping("insertCodes")
+	public String insertCodes() {
+		log.debug("insert codes");
+		serv.insertCodes();
+		return "redirect:/admin/home";
+	}
+	
+	@GetMapping("deleteCodes")
+	public String deleteCodes() {
+		log.debug("delete codes");
+		serv.deleteCodes();
+		return "redirect:/admin/home";
+	}
 }
