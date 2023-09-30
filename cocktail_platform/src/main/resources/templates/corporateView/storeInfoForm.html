@@ -121,8 +121,9 @@ function storeSub(){
 </head>
 <body>
 	<main>
+	<h2>매장 정보</h2>
 	<div class="storeInformation">
-			<h2>매장 정보</h2>
+			
 			<!-- 매장 정보 입력 폼 -->
 			<div id="storeInfoFormDiv">
 				<form id="storeInfoForm" th:action="@{/corporate/member/insertStoreinfo}" method="post"
@@ -132,23 +133,23 @@ function storeSub(){
 					<p id="errMsg1"></p>
 					대표 사진<br>
 		    		<input type="file" name="upload" accept=".jpg, .jpeg, .png"><br>
-		    		사업자 번호
+		    		사업자 번호<br>
 					<input type="text" id="brn" name="brn" onkeyup="brnChk()" placeholder="(- 포함)" required="required"><br>
 					<p id="errMsg2"></p>
-					전화번호
+					전화번호<br>
 					<input type="text" id="storePhone" name="phone" onkeyup="storePhoneChk()"
 					placeholder="전화번호('-' 없이 입력)" required="required">
 					<p id="errMsg3"></p>
-					영업 시간
+					영업 시간<br>
 					<input type="text" id="runningTime" name="runningTime" onkeyup="runningTimeChk()" required="required">
 					<p id="errMsg4"></p>
-					휴일
+					휴일<br>
 					<input type="text" id="dayOff" name="dayOff" onkeyup="dayOffChk()" required="required">
 					<p id="errMsg5"></p>
-					매장 소개
+					매장 소개<br>
 					<input type="text" id="info" name="info" onkeyup="infoChk()" required="required">
 					<p id="errMsg6"></p>
-					주소
+					주소<br>
 					<input type="text" name="postCode" id="postCode" placeholder="우편번호">
 					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 					<input type="text" name="address1" id="address1" placeholder="도로명주소" required="required">
@@ -156,8 +157,10 @@ function storeSub(){
 					<input type="text" name="address2" id="address2" placeholder="상세주소" required="required"><br>
 					
 					<input type="hidden" name="memberId" th:value="${memberId}">
-					<input type="reset" class="bottom" value="다시 쓰기">
-					<input type="submit" id="storeSubBtn" value="저장">
+					<div class="bt">
+						<input type="reset" class="bottom" value="다시 쓰기">
+						<input type="submit" id="storeSubBtn" value="저장">
+					</div>
 				</form>
 			</div>
 		</div>

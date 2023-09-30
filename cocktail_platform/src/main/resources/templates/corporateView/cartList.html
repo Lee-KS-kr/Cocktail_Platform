@@ -4,10 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
-<!-- 
-<link rel="stylesheet" href="../CSS/corporate/reset.css">
-<link rel="stylesheet" href="../CSS/corporate/cartList.css">
- -->
+
+<link rel="stylesheet" href="../../static/CSS/corporate/reset.css">
+<link rel="stylesheet" href="../../static/CSS/corporate/cartList.css">
+<!--  -->
 <!-- vs code -->
 <link rel="stylesheet" th:href="@{/CSS/corporate/reset.css}">
 <link rel="stylesheet" th:href="@{/CSS/corporate/cartList.css}">
@@ -122,7 +122,7 @@ $(document).ready(function(){
 	  	<table>
 	  		<tr>
 	  			<td>${menuList.menuName}</td>
-	  			<td><button onclick="deleteCart(menuNum)">삭제</button></td>
+	  			<td><button onclick="deleteCart(menuNum)" value="삭제">삭제</button></td>
 	  		</tr>
 	  		<tr>
 	  			<td><a href="javascript:count(\'plus\',' + menuNum + ')">+</a></td>

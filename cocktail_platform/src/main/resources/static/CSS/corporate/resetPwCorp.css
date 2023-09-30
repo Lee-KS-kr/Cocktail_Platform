@@ -1,73 +1,81 @@
-/* 네비게이션바 스타일 설정 */
-.navbar {
-  display: flex;
-  justify-content: space-between;
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans:400");
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean");
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OKGUNG';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+/*=========================================================*/
+body{
+  background-color: fff;
+  align-content: center;
   align-items: center;
-  background-color: #4CAF50; /* 변경할 색상 */
-  padding: 10px;
+  justify-content: center;
+
 }
 
-/* 로고 이미지 스타일 설정 */
-.navbar_logo img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}
-
-/* 네비게이션 바 오른쪽 영역 스타일 설정 */
-.navbar_right {
+h1{
+  width: 1000px; 
+  font-size: 20pt; 
+  height: 70px; 
   display: flex;
-  align-items: center;
-  margin-left: auto; /* 로고 오른쪽 */
+  justify-content: center;
+  align-items: center; 
+  margin: 0 auto;
+  font-size: 22pt;
+  font-family: 'Noto Sans KR', sans-serif; 
 }
 
-/* 네비게이션 바 링크 스타일 설정 */
-.navbar_right a {
-  text-decoration: none;
-  color: #313131;
-  margin-left: 20px;
-}
-
-/* 마이페이지 링크 스타일 설정 */
-.navbar_right a:last-child {
-  margin-left: 0;
-  margin-right: 20px; 
-}
-
-/* 사이드바 스타일 설정 */
-.sidebar {
-  background-color: #fff;
-  border: 1px solid #e7e7e7;
-  color: #313131;
+form{
+  width: 600px;
+  height: 200px;
+  border: 1px solid #313131;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10x solid #313131;
+  margin: 20px auto;
   padding: 20px;
+
+}
+
+th{
+  width: 50%;
+  margin: 10px;
+  background-color: #fff;
+  box-shadow: 0px 4px 10px solid #313131;
+  padding: 30px;
+}
+
+input{
   width: 250px;
-  float: left; /* 사이드바를 왼쪽으로  */
+  height: 30px;
+  background-color: #fff;
+  border: 1px solid #313131;
+  border-radius: 5px;
 }
 
-/* 사이드바 메뉴 리스트 스타일 설정 */
-.nav-item ul {
-  list-style: none;
-}
-
-/* 사이드바 메뉴 아이템 스타일 설정 */
-.nav-item a {
-  text-decoration: none;
+input[type=submit]{
+  width: 100px;
+  height: 30px;
+  background-color: #50CCAA;
+  border: 1px solid #313131;
+  border-radius: 5px;
   color: #313131;
-  display: block;
-  margin-top: 10px;
+  font-size: 12pt;
+  font-family: 'Noto Sans KR', sans-serif; 
+  margin: 20px auto;
+
+  /*가운데 정렬*/  
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
 }
-
-/*프로필 이미지*/
-img[alt=profile]{width: 25px; height: 25px;}
-
-/*주문 페이지 text*/
-.box{
-  border: 1px solid #e7e7e7;
-  border-radius: 20px;
-}
-
-/*배너 이미지*/
-img[alt=bannering]{
-  width: 800px;
-}
-

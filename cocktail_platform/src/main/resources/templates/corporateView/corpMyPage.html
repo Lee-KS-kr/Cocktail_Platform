@@ -376,7 +376,7 @@ function storeChgToggle2(){
       <!-- 사이드바: 프로필 -->
       <div class="profile">
          <div class="profile-icon">
-             <img th:src="@{/image/profile-icon.svg}" alt="profile">
+             <img th:src="@{/image/profile-icon.svg}" alt="프로필">
           </div>
           <div class="profile-text">
              <p><span th:text="${#authentication.name}"></span>님 환영합니다.</p>
@@ -415,68 +415,70 @@ function storeChgToggle2(){
    <!-- 메인 섹션 시작 -->
    <section>
       <h1>마이페이지</h1>
-      <div class="memberInformation">
-         <h2>회원 정보</h2>
-         <!-- 회원 정보 표시 -->
-         <div id="memInfoDiv"></div>
-         
-         <!-- 회원 정보 수정 폼 -->
-         <div id="memInfoFormDiv" style="display:none;">
-            <form id="memberInfoForm" th:action="@{/corporate/member/editPrivacyInfo}" method="post">
-               아이디
-               <span id="memberId"></span><br>
-               이름
-               <span id="memberName"></span><br>
-               휴대폰 번호
-               <input type="text" id="phone" name="phone" onkeyup="phoneChk()"><br>
-               <p id="errMsg1"></p>
-               이메일
-               <span id="email"></span><br>
-               
-               <input type="reset" class="bottom" value="다시 쓰기">
-               <input type="button" id="memSubBtn" value="저장" onclick="memChg()">
-            </form>
+         <div class="section">
+         <div class="memberInformation">
+            <h2>회원 정보</h2>
+            <!-- 회원 정보 표시 -->
+            <div id="memInfoDiv"></div>
+            
+            <!-- 회원 정보 수정 폼 -->
+            <div id="memInfoFormDiv" style="display:none;">
+               <form id="memberInfoForm" th:action="@{/corporate/member/editPrivacyInfo}" method="post">
+                  아이디
+                  <span id="memberId"></span><br>
+                  이름
+                  <span id="memberName"></span><br>
+                  휴대폰 번호
+                  <input type="text" id="phone" name="phone" onkeyup="phoneChk()"><br>
+                  <p id="errMsg1"></p>
+                  이메일
+                  <span id="email"></span><br>
+                  
+                  <input type="reset" class="bottom" value="다시 쓰기">
+                  <input type="button" id="memSubBtn" value="저장" onclick="memChg()">
+               </form>
+            </div>
          </div>
-      </div>
-      <div class="storeInformation">
-         <h2>매장 정보</h2>
-         <!-- 매장 정보 표시 -->
-         <div id="storeInfoDiv"></div>
-         
-         <!-- 매장 정보 수정 폼 -->
-         <div id="storeInfoFormDiv" style="display:none;">
-            <form id="storeInfoForm" th:action="@{/corporate/member/editStorepage}" method="post"
-            enctype="multipart/form-data">
-               가게명
-               <input type="text" id="storeName" name="storeName" onkeyup="storeNameChk()">
-               <p id="errMsg2"></p>
-               대표 사진<br>
-                <input type="file" id="file" name="upload" accept=".jpg, .jpeg, .png"><br>
-               사업자 번호
-               <input type="text" id="brn" name="brn" onkeyup="brnChk()"><br>
-               <p id="errMsg3"></p>
-               전화번호
-               <input type="tel" id="storePhone" name="phone" onkeyup="storePhoneChk()">
-               <p id="errMsg4"></p>
-               영업 시간
-               <input type="text" id="runningTime" name="runningTime" onkeyup="runningTimeChk()">
-               <p id="errMsg5"></p>
-               휴일
-               <input type="text" id="dayOff" name="dayOff" onkeyup="dayOffChk()">
-               <p id="errMsg6"></p>
-               매장 소개
-               <textarea rows="10" id="info" name="info" onkeyup="infoChk()"></textarea>
-               <p id="errMsg7"></p>
-               주소
-               <input type="text" name="postCode" id="postCode" placeholder="우편번호">
-               <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-               <input type="text" name="address1" id="address1" placeholder="도로명주소">
-               <span id="guide" style="color:#999;display:none"></span>
-               <input type="text" name="address2" id="address2" placeholder="상세주소"><br>
-               
-               <input type="reset" class="bottom" value="다시 쓰기">
-               <input type="button" id="storeSubBtn" value="변경" onclick="storeChg()">
-            </form>
+         <div class="storeInformation">
+            <h2>매장 정보</h2>
+            <!-- 매장 정보 표시 -->
+            <div id="storeInfoDiv"></div>
+            
+            <!-- 매장 정보 수정 폼 -->
+            <div id="storeInfoFormDiv" style="display:none;">
+               <form id="storeInfoForm" th:action="@{/corporate/member/editStorepage}" method="post"
+               enctype="multipart/form-data">
+                  가게명
+                  <input type="text" id="storeName" name="storeName" onkeyup="storeNameChk()">
+                  <p id="errMsg2"></p>
+                  대표 사진<br>
+                  <input type="file" id="file" name="upload" accept=".jpg, .jpeg, .png"><br>
+                  사업자 번호
+                  <input type="text" id="brn" name="brn" onkeyup="brnChk()"><br>
+                  <p id="errMsg3"></p>
+                  전화번호
+                  <input type="tel" id="storePhone" name="phone" onkeyup="storePhoneChk()">
+                  <p id="errMsg4"></p>
+                  영업 시간
+                  <input type="text" id="runningTime" name="runningTime" onkeyup="runningTimeChk()">
+                  <p id="errMsg5"></p>
+                  휴일
+                  <input type="text" id="dayOff" name="dayOff" onkeyup="dayOffChk()">
+                  <p id="errMsg6"></p>
+                  매장 소개
+                  <textarea rows="10" id="info" name="info" onkeyup="infoChk()"></textarea>
+                  <p id="errMsg7"></p>
+                  주소
+                  <input type="text" name="postCode" id="postCode" placeholder="우편번호">
+                  <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                  <input type="text" name="address1" id="address1" placeholder="도로명주소">
+                  <span id="guide" style="color:#999;display:none"></span>
+                  <input type="text" name="address2" id="address2" placeholder="상세주소"><br>
+                  
+                  <input type="reset" class="bottom" value="다시 쓰기">
+                  <input type="button" id="storeSubBtn" value="변경" onclick="storeChg()">
+               </form>
+            </div>
          </div>
       </div>
    </section>
