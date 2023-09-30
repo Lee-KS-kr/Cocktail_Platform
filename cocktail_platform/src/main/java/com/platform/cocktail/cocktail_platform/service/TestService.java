@@ -12,4 +12,8 @@ public interface TestService {
 
 	void deleteMenus();
 
+	void insertCodes();
+
+	void deleteCodes();
+
 }
