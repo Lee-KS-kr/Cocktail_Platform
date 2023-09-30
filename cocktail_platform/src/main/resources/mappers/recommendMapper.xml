@@ -58,7 +58,7 @@
 				inner join menuPreference mp on	c.cocktailName = mp.menuName
 				left join orderTemp ot on c.cocktailName = ot.menuName
 		where
-			mp.age = #{age}
+			mp.ageGroup = #{ageGroup}
 		group by
 			c.cocktailName
 		order by
