@@ -1,0 +1,121 @@
+
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans:400");
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean");
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OKGUNG';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+/*=========================================================*//* Reset CSS */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Main Styles */
+  main {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .storeInformation {
+    width: 1200px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    font-size: 32pt;
+    font-family: 'Noto Sans KR', sans-serif; 
+    margin: 40px 0px;
+
+
+
+  }
+  
+  #storeInfoFormDiv {
+    margin-top: 20px;
+  }
+  
+  /* Form Styles */
+  form {
+    text-align: left;
+  }
+  
+  form input[type="text"],
+  form input[type="file"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  form input[type="file"] {
+    margin-top: 5px;
+  }
+
+  
+  form input[type="submit"],
+  form input[type="reset"] {
+
+    background-color: #50CCAA;
+    border: 1px solid #313131;
+    border-radius: 8px;
+    color: #313131;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    
+    font-size: 12pt;
+    font-family: 'Noto Sans KR', sans-serif; 
+  }
+  
+  form input[type="submit"]:hover,
+  form input[type="reset"]:hover {
+    background-color: #555;
+  }
+  
+  /* Error Message Styles */
+  p#errMsg1,
+  p#errMsg2,
+  p#errMsg3,
+  p#errMsg4,
+  p#errMsg5,
+  p#errMsg6 {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Daum Postcode Styles */
+  #guide {
+    color: #999;
+    display: none;
+    margin-top: 5px;
+  }

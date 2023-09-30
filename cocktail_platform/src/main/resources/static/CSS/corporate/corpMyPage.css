@@ -150,35 +150,37 @@ footer {
   color: #e7e7e7;
 }
 
-/*ë§ˆì´íŽ˜ì´ì§€ text*/
+/*마이페이지 text*/
 h1{
-  width: 100%;
-  height: 80px;
-  border-radius: 10px;
-  background-color: #fff;
-  border: 1px solid #e7e7e7;
-  box-shadow: 0px 4px 10px #e7e7e7;
+  width: 1000px; font-size: 17pt; height: 70px; margin:30px 0px 20px; padding-left: 15px; 
+    border: 1px solid #d3d3d3; border-radius: 5px; background-color: #fff; display: flex; 
+    
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=0, Color=#DEDEDE)";/*IE 8*/
+    -moz-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*FF 3.5+*/
+    -webkit-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+    box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=135, Color=#DEDEDE); /*IE 5.5-7*/
+
+    display: flex; align-items: center; 
 }
 
-/*íšŒì›ì •ë³´*/
-.memberInformation{
+.section{
+  display: flex;
+  margin: 0 auto;
+}
+
+/*member Info, store Info*/
+.memberInformation, .storeInformation{
   width: 50%;
   border-radius: 10px;
   background-color: #fff;
   border: 1px solid #e7e7e7;
   box-shadow: 0px 4px 10px #e7e7e7;
+  padding: 20px;
+  margin: 0 auto;
 }
 
-/*ë§¤ìž¥ ì •ë³´*/
-.storeInformation{
-    width: 50%;
-  border-radius: 10px;
-  background-color: #fff;
-  border: 1px solid #e7e7e7;
-  box-shadow: 0px 4px 10px #e7e7e7;
-}
-
-/*ë§¤ìž¥ ì´ë¯¸ì§€*/
+/*스토어 이미지*/
 .store_image{
   width: 250px;
   border: 1px solid #e7e7e7;

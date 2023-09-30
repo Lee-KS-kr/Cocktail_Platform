@@ -1,73 +1,193 @@
-/* 네비게이션바 스타일 설정 */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #4CAF50; /* 변경할 색상 */
-  padding: 10px;
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans:400");
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean");
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OKGUNG';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
-/* 로고 이미지 스타일 설정 */
-.navbar_logo img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+/*=========================================================*/
+.sidebar{display:flex ;}
+
+.navi{
+width: 100% ;
+height: 60px;
+background-color: #fff;
+border-bottom:2px solid #e7e7e7;
+display: flex; 
+justify-content: center;
 }
 
-/* 네비게이션 바 오른쪽 영역 스타일 설정 */
-.navbar_right {
-  display: flex;
-  align-items: center;
-  margin-left: auto; /* 로고 오른쪽 */
+.navi1{
+    width: 50%;
+    padding-left: 40px;
+    padding-top: 5px;
+    justify-content: center;
+    background-color: #fff;
+    z-index: 1000;
 }
 
-/* 네비게이션 바 링크 스타일 설정 */
-.navbar_right a {
-  text-decoration: none;
-  color: #313131;
-  margin-left: 20px;
+.navi2{
+    width: 50%;
+    background-color:#fff;
+    border-bottom: #e7e7e7;
+    display: flex;
+    justify-content: end;
+    padding-right: 40px ;
+    align-items: center;
+    margin: auto;
+}
+img[alt=logo] { width: 120px;}
+
+.body{ display: flex; }
+/*========================================================================*/
+/*profile icon img*/
+img[alt=profile] { width: 30px;}
+.profile-icon{width:100%; display:flex;}
+.profile-icon p{width:100%; display:flex; margin: 8px 0px 0px 15px;}
+.profile-icon p span{margin-top: 3px;  font-weight: bold;
 }
 
-/* 마이페이지 링크 스타일 설정 */
-.navbar_right a:last-child {
-  margin-left: 0;
-  margin-right: 20px; 
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 0;
 }
 
-/* 사이드바 스타일 설정 */
-.sidebar {
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
   background-color: #fff;
   border: 1px solid #e7e7e7;
-  color: #313131;
-  padding: 20px;
-  width: 250px;
-  float: left; /* 사이드바를 왼쪽으로  */
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px #e2e2e2;
 }
 
-/* 사이드바 메뉴 리스트 스타일 설정 */
+.sidebar {
+  width: 300px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px #e2e2e2;
+  display: block;
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
+  margin: 0px 20px;
+}
+
+/*side bar - <hr>*/
+.sidebar-divider {
+  margin: 20px 0px;
+  border: 1px solid #e7e7e7;
+}
+
 .nav-item ul {
   list-style: none;
+  padding: 0;
 }
 
-/* 사이드바 메뉴 아이템 스타일 설정 */
-.nav-item a {
+.nav-item ul li {
+  margin: 20px 0;
+}
+
+.nav-item ul li a {
   text-decoration: none;
+  color: #232323;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-item ul li a:hover {
+  color: #50CCAA;
+}
+
+main {
+  display: flex;
+  padding: 20px;
+  height: 600px;
+}
+
+/* =================================================================*/
+
+/*title text*/
+h1{
+  width: 1000px; font-size: 17pt; height: 70px; margin:30px 0px 20px; padding-left: 15px; 
+    border: 1px solid #d3d3d3; border-radius: 5px; background-color: #fff; display: flex; 
+    
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=0, Color=#DEDEDE)";/*IE 8*/
+    -moz-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*FF 3.5+*/
+    -webkit-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+    box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=135, Color=#DEDEDE); /*IE 5.5-7*/
+
+    display: flex; align-items: center; 
+}
+
+form{
+  width: 980px;
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  padding: 20px;
+
+
   color: #313131;
-  display: block;
-  margin-top: 10px;
+  font-size: 12pt;
+  font-family: 'Noto Sans KR', sans-serif; 
+
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=0, Color=#DEDEDE)";/*IE 8*/
+    -moz-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*FF 3.5+*/
+    -webkit-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+    box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=135, Color=#DEDEDE); /*IE 5.5-7*/
 }
 
-/*프로필 이미지*/
-img[alt=profile]{width: 25px; height: 25px;}
-
-/*주문 페이지 text*/
-.box{
-  border: 1px solid #e7e7e7;
-  border-radius: 20px;
+/*+ BT*/
+button{
+  width: 100px;
+  height: 100px;
+  padding: 0px;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  background-color: #50CCAA;
+  border: 1px solid #313131;
+  box-shadow: 0px 4px 10px #f9f9f9;
+  border-radius: 50%;
+  align-content: end;
+  color: #fff;
+  font-size: 32pt;
+  padding-bottom: 8px;
+  font-family: 'Noto Sans KR', sans-serif; 
 }
 
-/*배너 이미지*/
-img[alt=bannering]{
-  width: 800px;
+/*탭 이름*/
+.tab_title_ul{
+  display: flex;
 }
 
+.tab_title_ul li{
+  width: 150px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border: 1px solid #313131;
+  background-color: #fff;
+  background-color: #50CCAA;
+  border-radius: 10px;
+  margin: 0px 10px;
+  color: #313131;
+  font-size: 22pt;
+  font-family: 'Noto Sans KR', sans-serif; 
+}

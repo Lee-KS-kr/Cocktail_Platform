@@ -32,31 +32,18 @@ function editSub(){
 <body>
 	<!-- 헤더 -->
 	<header id="header" class="header">
-		<!-- 네비게이션바 -->
-		<nav id="navbar" class="navbar">
-	    	<div class="search">
-	   			<a th:href="@{/search}" class="search_logo">
-	    			<img th:src="@{/image/btn_search.png}" alt="검색">
-	    		</a>
-	    	</div>
-	    
-		    <div id="logo">
-		    	<a th:href="@{/corporate/home}" class="navbar_logo">
-		       		<span>FitTail</span>
-		     	</a>
-		    </div>
-		
-	    	<div class="navbar_right">
-	    		<div sec:authorize="!isAuthenticated()">
-		    		<a th:href="@{/member/login}">로그인</a>
-		    	</div>
-		    	<div sec:authorize="isAuthenticated()">
-		    		<a th:href="@{/member/logout}">로그아웃</a>
-		    		<a th:href="@{/corporate/member/mypage}">마이페이지</a>
-		    	</div>
-		   </div>
-	  </nav>
-	  <!-- 네비게이션바 끝 -->
+   <!-- 네비게이션바 -->
+    <div class="navi">  <!-- navi   -->
+        <div class="navi1">
+            <a th:href="@{/corporate/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
+        </div>
+        <div class="navi2">
+            <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
+            <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
+            <a th:href="@{/corporate/member/mypage}">마이페이지  &nbsp; &nbsp;</a>
+        </div>
+    </div>  
+  <!-- 네비게이션바 끝 -->
 	</header>
 	<!-- 헤더 끝 -->
 	<!-- 메인 시작 -->
@@ -108,24 +95,24 @@ function editSub(){
 		<!-- 메뉴 수정 폼 -->
 		<form id="editMenuForm" th:action="@{/corporate/store/editMenu}" method="post"
 		enctype="multipart/form-data">
-		카테고리<br>
+		*카테고리<br>
 		<select id="category" name="category">
         	<option value="beverage" selected>주류</option>
         	<option value="food">안주</option>
         	<option value="side">안주</option>
     	</select><br>
-		메뉴명<br>
+		*메뉴명<br>
 		<input type="text" name="menuName" th:value="${menu.menuName}"><br>
-		설명<br>
+		*설명<br>
     	<input type="text" name="menuInfo" th:value="${menu.menuInfo}"><br>
-		가격<br>
+		*가격<br>
     	<input type="text" name="price" th:value="${menu.price}"><br>
-    	품절<br>
+    	*품절<br>
     	<select id="canOrder" name="canOrder">
         	<option value="1" selected>판매중</option>
         	<option value="0">품절</option>
     	</select><br>
-    	이미지<br>
+    	*이미지<br>
     	<input type="file" name="upload"><br>
     	<input type="hidden" name="storeCode" th:value="${menu.storeCode}">
     	

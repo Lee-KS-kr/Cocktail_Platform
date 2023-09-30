@@ -37,31 +37,17 @@ function getIndex(){
 	<!-- 헤더 -->
 	<header id="header" class="header">
 		<!-- 네비게이션바 -->
-		<nav id="navbar" class="navbar">
-		   	<div class="search">
-		  			<a th:href="@{/search}" class="search_logo">
-		   			<img th:src="@{/image/btn_search.png}" alt="검색">
-		   		</a>
-		   	</div>
-		   
-		    <div id="logo">
-		    	<a th:href="@{/personal/home}" class="navbar_logo">
-		       		<img th:src="@{/image/logo.png}" alt="logo">
-		       		<span>FitTail</span>
-		     	</a>
-		    </div>
-		
-		   	<div class="navbar_right">
-		   		<div sec:authorize="!isAuthenticated()">
-		    		<a th:href="@{/member/login}">로그인</a>
-		    	</div>
-		    	<div sec:authorize="isAuthenticated()">
-		    		<a th:href="@{/member/logout}">로그아웃</a>
-		    		<a th:href="@{/personal/member/mypage}">마이페이지</a>
-		    	</div>
-		   </div>
-		 </nav>
-		 <!-- 네비게이션바 끝 -->
+		 <div class="navi">  <!-- navi   -->
+			 <div class="navi1">
+				 <a th:href="@{/corporate/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
+			 </div>
+			 <div class="navi2">
+				 <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
+				 <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
+				 <a th:href="@{/corporate/member/mypage}">마이페이지  &nbsp; &nbsp;</a>
+			 </div>
+		 </div>  
+	   <!-- 네비게이션바 끝 -->
 	</header>
 	<!-- 헤더 끝 -->
 	<!-- 메인 시작 -->
@@ -110,15 +96,16 @@ function getIndex(){
 		<!-- 메인 섹션 시작 -->
 		<section>
 			<!-- 탭 메뉴 영역 -->
-			<section>
+			
 				<!-- 탭 이름 -->
 				<div class="tab_title">
-					<ul>
+					<ul class="tab_title_ul">
 						<li class="on">연도별</li>
 						<li>월별</li>
 						<li>일별</li>
 					</ul>
 				</div>
+			<div class="inner_box">
 				<!-- 탭 내용 -->
 				<div class="tab_cont">
 					<!-- 메뉴탭 내용 -->
@@ -141,7 +128,7 @@ function getIndex(){
 						
 					</div>
 				</div>
-			</section>
+			</div>
 		</section>
 	</main>
 </body>
