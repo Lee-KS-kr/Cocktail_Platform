@@ -152,7 +152,7 @@ function pagingFormSubmit(currentPage){
       <!-- 사이드바: 프로필 -->
       <div class="profile">
 		<div class="profile-icon">
-			<img th:src="@{/image/profile-icon.svg}" alt="profile">
+			<img th:src="@{/image/profile-icon.svg}" alt="icon">
 		 </div>
 		 <div class="profile-text">
 			<p><span th:text="${#authentication.name}"></span>님 환영합니다.</p>
@@ -187,6 +187,7 @@ function pagingFormSubmit(currentPage){
 	 <!-- 사이드바: 회원 탈퇴 -->
 	 <a th:href="@{/member/quitMember}">회원 탈퇴</a>
   </section>
+  <div class="section2">
 	<!-- 사이드바 끝 -->
 	<!-- 메인 섹션 시작 -->
 		<h1>예약 리스트</h1>
@@ -204,11 +205,11 @@ function pagingFormSubmit(currentPage){
 		</form>
 		 -->
 	<!-- 예약 리스트 -->
-	<section>
+	
 		<!-- 총 <span id="totalnum"></span>명 검색되었습니다. -->
 		<a th:href="@{/corporate/store/reserveInput}"><button>수기입력</button></a>
 		<div id="reserveList"></div>
-	</section>
+	</div>
 	<!-- 페이지 네비게이터 부분(추후 보완.)  -->
 
 </main>
