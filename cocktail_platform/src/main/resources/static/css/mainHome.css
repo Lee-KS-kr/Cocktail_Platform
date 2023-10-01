@@ -94,7 +94,7 @@ input-border-solid:     #e7e7e7
 */
 body {
   width: 100%;
-  background-color: #fff;
+  background-color: #ffffc7;
   position: fixed;
 }
 
@@ -114,9 +114,9 @@ body {
   height: 130px;
   background: rgba(255, 255, 255, 0.6);  
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px #e3e3e3 100%;
   backdrop-filter: blur(2px);
-  border: 1px solid #d4d4d4;
+  border: 1px solid #313131;
   margin: 15px;
   padding: 20px 20px 0px 20px;
   z-index: 5;
@@ -161,11 +161,14 @@ body {
   position: absolute;
   z-index: 5;
   text-decoration: none;
+  transition: 0.2s;
+  animation: ani_con cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none;
 }
 
 .content:hover {
   border: 1px solid #232323;
   background-color: #fff;
+
   width: 180px;
   height: 50px;
   border-radius: 50%;
@@ -174,7 +177,7 @@ body {
   font-family: "S-CoreDream-3Light";
   margin-top: 65px;
   margin-left: 220px;
-  transition: 0.2s;
+  transition: 1.2s ease;
 }
 
 img[alt="arrow"] {
@@ -198,339 +201,85 @@ img[alt="logo"] {
 
 /*background img - z-index : 10~50================================================================*/
 img[alt="logo"] {
-  position: absolute;
-  top: 10px;
-  left: 550px;
-  z-index: 51;
-  width: 500px;
-  animation: ani0 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;
-  animation-iteration-count: 1;
+  position: absolute; top: 0px;  left: 550px;
+  z-index: 510;  width: 500px; animation: ani0 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
 
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
+img[alt="ice1"]/*logo ani1*/ {
+  position: absolute; top: 330px;  left: 180px; transform: rotate(30deg);
+z-index: 50; width: 200px; animation: ani1 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="ice2"]/*ice ani2*/ {
+  position: absolute; top: 500px;  left: 510px; transform: rotate(10deg);
+z-index: 49; width: 180px; animation: ani2 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="ice3"]/*ice ani3*/ {
+  position: absolute; top: 0px;  left: 420px; transform: rotate(-20deg);
+z-index: 29; width: 150px; animation: ani3 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="ice4"]/*bar ani4*/ {
+  position: absolute; top: -1300px;  left: 12px; width: 200px;
+z-index: 47;  animation: ani4 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="ice5"]/*bar ani 15*/ {
+  position: absolute; top: -1200px;  left: 410px; width: 200px;
+z-index: 47;  animation: ani15 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
 
-img[alt="ice1"] {
-  position: absolute;
-  top: 380px;
-  left: -200px;
-  z-index: 50;
-  animation: ani1 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;
-  animation-iteration-count: 1;
+img[alt="water1"]/*bar ani5*/ {
+  position: absolute; top: -1000px;  left: 242px; width: 200px;
+z-index: 10; animation: ani5 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="water2"]/*bar ani6*/ {
+  position: absolute; top: -900px;  left: 100px; width: 200px;
+z-index: 11; animation: ani6 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="water3"]/*bar ani 12*/ {
+  position: absolute; top: -1400px;  left: 500px; width: 200px;
+z-index: 11; animation: ani12 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="water4"]/*bar ani3*/ {
+  position: absolute; top: -1600px;  left: 1100px; width: 200px;
+z-index: 11; animation: ani13 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="water5"]/*bar ani 14*/ {
+  position: absolute; top: -1500px;  left: 962px; width: 200px;
+z-index: 11; animation: ani14 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="water6"]/*bar ani 16*/ {
+  position: absolute; top: -1500px;  left: 662px; width: 200px;
+z-index: 11; animation: ani16 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="water6"]/*bar ani 17*/ {
+  position: absolute; top: -1200px;  left: 1450px; width: 200px;
+z-index: 11; animation: ani17 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
 
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
-img[alt="ice2"] {
-  position: absolute;
-  top: 500px;
-  left: 1100px;
-  z-index: 49;
-  animation: ani2 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;
-  animation-iteration-count: 1;
+img[alt="glass2"]/*iceCream ani7*/ {
+  position: absolute; top: 60px;  left: 150px;
+  z-index: 30;  width: 350px; animation: ani7 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
 
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
-img[alt="ice3"] {
-  position: absolute;
-  top: 0px;
-  left: 1200px;
-  z-index: 48;
-  animation: ani3 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;
-  animation-iteration-count: 1;
+img[alt="lemon1"]/*bub1 ani8*/ {
+  position: absolute; top: 300px;  left: 50px; opacity: 70%; width: 100px;
+z-index: 30; animation: ani8 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="orange1"]/*bub2 ani9*/ {
+  position: absolute; top: 250px;  left: 1330px; opacity: 50%; 
+  z-index: 30;  width: 80px; animation: ani9 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="orange2"]/*bub3 ani 10*/ {
+  position: absolute; top: -30px;  left: 900px; opacity: 50%;  
+  z-index: 30;  width: 80px; animation: ani10 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
+img[alt="cherry2"]/*cherry ani 11*/ {
+  position: absolute; top: 330px;  left: 1400px; transform: rotate(10deg);
+  z-index: 30;  width: 130px; animation: ani11 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;  animation-iteration-count: 1; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;}
 
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
-img[alt="ice4"] {
-  position: absolute;
-  top: -82px;
-  left: -12px;
-  z-index: 47;
-  animation: ani4 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;
-  animation-iteration-count: 1;
+@keyframes ani0 {0% {top: -1000px; rotate: 30deg;}  100% {top: 0px; rotate: 0deg;}}
+@keyframes ani1 {0% {top: -800px;  rotate: 45deg;}  100% {top: 330px; rotate: 0deg;}}
+@keyframes ani2 {0% {top: -1400px;  rotate: 40deg;}  100% {top: 500px; rotate: 0deg;}}
+@keyframes ani3 {0% {top: -2200px;  rotate: 30deg;}  100% {top: 0px; rotate: 0deg;}}
+@keyframes ani4 {0% {top: -2000px;}  100% {top: -1300px;}}
 
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
+@keyframes ani5 {0% {top: -1600px;}  100% {top: -1000px;}}
+@keyframes ani6 {0% {top: -2000px;}  100% {top: -900px;}}
 
-img[alt="water1"] {
-  position: absolute;
-  top: 82px;
-  left: -12px;
-  z-index: 10;
-  animation: ani5 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;
-  animation-iteration-count: 1;
+@keyframes ani7 {0% {top: -300px;  rotate: 30deg;}  100% {top: 60px;  rotate: 0deg;}}
 
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
-img[alt="water2"] {
-  position: absolute;
-  top: -200px;
-  left: -280px;
-  z-index: 11;
-  animation: ani6 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;
-  animation-iteration-count: 1;
+@keyframes ani8 {0% {top: -600px;}  100% {top: 300px;}}
+@keyframes ani9 {0% {top: -500px;}  100% {top: 250px;}}
+@keyframes ani10 {0% {top: -400px;}  100% {top: -30px;}}
+@keyframes ani11 {0% {top: -200px; rotate: -45deg;}  100% {top: 330px; rotate: 0deg;}}
+@keyframes ani12 {0% {top: -2000px;}  100% {top: -1400px;}}
+@keyframes ani13 {0% {top: -1900px;}  100% {top: -1600px;}}
+@keyframes ani14 {0% {top: -2000px;}  100% {top: -1500px;}}
+@keyframes ani15 {0% {top: -2000px;}  100% {top: -1200px;}}
+@keyframes ani16 {0% {top: -2000px;}  100% {top: -1500px;}}
+@keyframes ani17 {0% {top: -2000px;}   100% {top: -1200px;}}
 
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
+@keyframes ani_con {0% {opacity: 30%;}   100% {opacity: 100%;}}
 
-img[alt="glass2"] {
-  position: absolute;
-  top: -60px;
-  left: 250px;
-  z-index: 30;
-  width: 850px;
-  animation: ani7 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;
-  animation-iteration-count: 1;
-
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
-
-img[alt="lemon1"] {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  z-index: 30;
-  animation: ani8 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;
-  animation-iteration-count: 1;
-
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
-img[alt="orange1"] {
-  position: absolute;
-  top: 450px;
-  left: 800px;
-  z-index: 30;
-  width: 350px;
-  animation: ani9 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;
-  animation-iteration-count: 1;
-
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
-img[alt="orange2"] {
-  position: absolute;
-  top: -30px;
-  left: 1300px;
-  z-index: 30;
-  width: 500px;
-  animation: ani10 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;
-  animation-iteration-count: 1;
-
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
-img[alt="cherry2"] {
-  position: absolute;
-  top: 330px;
-  left: 1300px;
-  z-index: 30;
-  width: 100px;
-  animation: ani11 cubic-bezier(0.56, 0, 0.33, 0.99) 1.7s;
-  animation-iteration-count: 1;
-
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
-
-@keyframes ani0 {
-  0% {
-    left: 1500px;
-  }
-  100% {
-    left: 550px;
-  }
-}
-@keyframes ani1 {
-  0% {
-    left: 1600px;
-  }
-  100% {
-    left: -200px;
-  }
-}
-@keyframes ani2 {
-  0% {
-    left: 1400px;
-  }
-  100% {
-    left: 1100px;
-  }
-}
-@keyframes ani3 {
-  0% {
-    left: 2200px;
-  }
-  100% {
-    left: 1200px;
-  }
-}
-@keyframes ani4 {
-  0% {
-    left: 800px;
-  }
-  100% {
-    left: -12px;
-  }
-}
-
-@keyframes ani5 {
-  0% {
-    left: 1200px;
-  }
-  100% {
-    left: -12px;
-  }
-}
-@keyframes ani6 {
-  0% {
-    left: -450px;
-  }
-  100% {
-    left: -280px;
-  }
-}
-
-@keyframes ani7 {
-  0% {
-    left: 1600px;
-  }
-  100% {
-    left: 250px;
-  }
-}
-
-@keyframes ani8 {
-  0% {
-    left: 600px;
-  }
-  100% {
-    left: 0px;
-  }
-}
-@keyframes ani9 {
-  0% {
-    left: 1400px;
-  }
-  100% {
-    left: 800px;
-  }
-}
-@keyframes ani10 {
-  0% {
-    left: 1400px;
-  }
-  100% {
-    left: 1300px;
-  }
-}
-@keyframes ani11 {
-  0% {
-    left: 1500px;
-  }
-  100% {
-    left: 1300px;
-  }
-}

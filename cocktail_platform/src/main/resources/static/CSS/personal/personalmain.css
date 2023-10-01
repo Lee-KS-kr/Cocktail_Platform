@@ -56,7 +56,7 @@ table {
 input-border-solid:     #e7e7e7
 강조색:                 #ff5805
 폰트 컬러 :             #232323
-조보색:                 #45B783
+조보색:                 #45B783 50CCAA
 
 */
 
@@ -82,7 +82,7 @@ input-border-solid:     #e7e7e7
 body {
   margin: 0;
   padding: 0;
-  background: #f4f4f4;
+  background: #ff9670;
   text-align: center;
   justify-content: center;
 }
@@ -197,7 +197,7 @@ img[alt=search] { width: 27px; height: 27px; }
   text-align: left;
 }
 .prd_ctg {
-  background-color: #ffffff;
+  background-color: #fffde5;
   color: #353535;
   padding: 5px 10px;
   display: flex;
@@ -206,11 +206,11 @@ img[alt=search] { width: 27px; height: 27px; }
 
 /*카테고리*/
 .prd_ctg span {
-  background-color: #ff5c21;
+  height: 25px;
+  background-color: #4cb383;
   font-family: 'Noto Sans KR', sans-serif;  
-  font-weight: 200;
   margin: 10px 5px;
-  color: #fff;
+  color: #313131;
   font-size: 12pt;
   padding: 5px 10px;
   border-radius: 20px;
@@ -222,33 +222,33 @@ img[alt="banner"] {
   margin: auto;
   border-radius: 7px;
   margin: 20px 0px;
-  box-shadow: 0px 20px 30px #dad7d7;
+  box-shadow: 0px 20px 30px #f48a63;
 }
 
 /* 상품 전체 박스 */
 .mainbox1 {
   width: 1300px;
-  background-color: #fff;
-  border: 2px solid #e7e7e7;
+  background-color: #fffde5;
+  border: 2px solid #1e1c15;
   border-radius: 20px;
   text-align: left;
   margin: 40px 30px;
-  box-shadow: 0px 20px 20px #e8e8e8;
+  box-shadow: 0px 20px 20px #e68664;
 }
 
 /*======================================================*/
 
 /*상품 이미지.*/
-.boxImg{width: 350px; height:300px; box-shadow: 0px 1px 40px #efefef;}
+.boxImg{width: 350px; height:300px; box-shadow: 0px 1px 40px #e68664;}
 
 /*매장 전체보기 text*/
 .marketlist{
   margin-top: 60px;
   margin-left: 1020px;
-  color: #8c8c8c;
+  color: #313131;
   font-family: 'Noto Sans KR', sans-serif;  
   font-size: 16pt;
-  text-shadow: 0px 10px 10px #e8e8e8;
+  text-shadow: 0px 10px 10px #e68664;
   transition: 0.2s;
 
 }
@@ -262,7 +262,7 @@ img[alt="arrow"] {width: 40px;  text-align: center;}
   color: #313131;
   font-family: 'Noto Sans KR', sans-serif;  
   font-size: 16pt;
-  text-shadow: 0px 10px 10px #e8e8e8;
+  text-shadow: 0px 10px 10px #e68664;
   transition: 0.2s;
 
 }
@@ -271,7 +271,7 @@ img[alt="arrow"] {width: 40px;  text-align: center;}
 
 footer{
   height: 400px;
-  background-color: #313131;
+  background-color: #1d1d1d;
   text-align: center;
   padding:  0px 40px;
 }
