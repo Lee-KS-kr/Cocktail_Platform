@@ -93,9 +93,11 @@ body {
 width: 100% ;
 height: 60px;
 background-color: #fff;
-border-bottom:2px solid #e7e7e7;
+border-bottom:2px solid #313131;
 display: flex; 
 justify-content: center;
+color: #313131;
+font-family: 'Noto Sans KR', sans-serif;  
 }
 
 .navi1{
@@ -145,6 +147,7 @@ img[alt=search] { width: 27px; height: 27px; }
   margin: 10px auto; /* 상하 여백을 10px으로 주고 좌우 여백은 자동으로 가운데 정렬 */
   box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
   display: inline-block; /* 인라인 블록 요소로 변경하여 가운데 정렬 */
+  z-index: 20;
 }
 
 /*box 감싸는 box*/
@@ -234,6 +237,7 @@ img[alt="banner"] {
   text-align: left;
   margin: 40px 30px;
   box-shadow: 0px 20px 20px #e68664;
+  z-index: 100;
 }
 
 /*======================================================*/
@@ -274,6 +278,7 @@ footer{
   background-color: #1d1d1d;
   text-align: center;
   padding:  0px 40px;
+  z-index: 100;
 }
 
 .footer{
@@ -293,3 +298,6 @@ footer{
 }
 
 .bin{height: 70px;}
+
+img[alt=back_img1]{width: 500px; position: absolute; top: 400px; left: -150px; z-index: 1; -webkit-user-drag: none;}
+img[alt=back_img2]{width: 500px; position: absolute; top: 1200px; left: 1050px; z-index: 1; -webkit-user-drag: none;}
