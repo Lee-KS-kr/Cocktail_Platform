@@ -53,7 +53,7 @@ p[id^="errMsg"] {
   margin: 5px 0;
 }
 
-
+#errMsg1,#errMsg2, #errMsg3, #errMsg4, #errMsg5, #errMsg6, #errMsg7, #errMsg8{color: red;} 
 
 
 
