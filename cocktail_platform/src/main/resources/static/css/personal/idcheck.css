@@ -1,0 +1,153 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+* {
+    margin: 0;
+    padding: 0s;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    animation: none;
+  }
+  a:link {
+    color: #232323;
+  }
+  a:visited {
+    color: #454545;
+  }
+  a:hover {
+    color: #232323;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  ol,
+  ul {
+    list-style: none;
+  }
+  blockquote,
+  q {
+    quotes: none;
+  }
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
+    content: "";
+    content: none;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  /*색상 코드
+  배경:                   #fff
+  input-border-solid:     #e7e7e7
+  강조색:                 #ff5805
+  폰트 컬러 :             #232323
+  보조색:                 #45B783
+  
+  */
+  
+  /*=========================================================*/
+  
+  @import url("https://fonts.googleapis.com/css?family=Black+Han+Sans:400");
+  @import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean");
+  @font-face {
+    font-family: "S-CoreDream-3Light";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+      format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: '';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* 본문 배경색 및 텍스트 정렬 설정 */
+  body {
+    background-color: #ff9670;
+    text-align: center;
+  }
+  
+  /* 헤더 스타일 지정 */
+  header {
+    margin-top: 80px;
+    background-color: #ff9670;
+    color: #313131;
+    padding: 20px;
+    font-size: 24px;
+    font-family: 'Noto Sans KR', sans-serif; 
+    font-weight: bold;
+  }
+  
+  /* 폼을 감싸는 섹션 스타일 설정 */
+  section {
+    width: 60%;
+    margin: 0px auto;
+    padding: 20px;
+    background-color: #fffde5;
+    border: 1.8px solid #313131;
+    border-radius: 20px;
+  }
+  
+  /* 폼 요소 스타일 지정 */
+  form {
+    text-align: center;
+  }
+  
+  input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  input[type="submit"] {
+    background-color: #ffef57;
+    border: 1px solid #232323;
+    color: #313131;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* 결과 메시지 스타일 설정 */
+  p {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  
+  /* "ID 사용하기" 버튼 스타일 지정 */
+  input[type="button"] {
+    background-color: #50CCAA;
+    border: 1px solid #313131;
+    color: #313131;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
