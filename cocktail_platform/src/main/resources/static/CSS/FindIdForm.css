@@ -1,0 +1,127 @@
+
+/*색상 코드
+배경:                   #fff
+input-border-solid:     #e7e7e7
+강조색:                 #ff5805
+폰트 컬러 :             #232323
+조보색:                 #45B783 50CCAA
+
+*/
+
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans:400");
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean");
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OKGUNG';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+/*=========================================================*/
+
+/* 기본 스타일 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffc7;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 400px;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  color: #313131;
+  font-family: 'Noto Sans KR', sans-serif;  
+}
+
+p {
+  color: #777;
+}
+
+/* 폼 스타일 */
+table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 8px 0;
+  text-align: left;
+}
+
+th{font-weight: bold;}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="button"] {
+  padding: 10px 20px;
+  background-color: #ff7f3f;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* 추가 스타일 */
+p.error {
+  color: red;
+  font-weight: bold;
+}
+
+/* 로고 이미지 스타일 (이미지 경로를 적절히 설정해야 합니다) */
+img[alt="logo"] {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+/* 이메일 인증 관련 스타일 */
+#email2 {
+  margin-top: 10px;
+}
+
+/* 아이디 찾기 버튼 스타일 */
+#findIdButton {
+  margin-top: 20px;
+}
+
+/* 인증번호 확인 버튼 스타일 */
+#emailCheckButton {
+  margin-top: 10px;
+}
+
+/* 스팸 메일 안내 스타일 */
+#spamMailInfo {
+  color: #777;
+  margin-top: 10px;
+}
+
