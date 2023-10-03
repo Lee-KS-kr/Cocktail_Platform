@@ -154,26 +154,19 @@ a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9p
 
 th{padding-right: 20px;}
 
-input[value="전화번호 번경"],.taste, .resetpw {
-    height: 20px;
-    line-height: 10px; /*줄간격*/
+input[type=submit],.taste, .resetpw {
+    width: 120px;
+    height: 30px;
+    line-height: 3px; /*줄간격*/
     font-size: 10pt; /*폰트 크기*/
-    color: #777777; /*폰트 색상*/
-    padding: 2px;
-    border: 1px solid #e5e5e5;
-    border-radius: 3px; /*모서리 둥글기*/
-    background-color: #fff; 
+    color: #313131; /*폰트 색상*/
+    padding: 10px;
+    border: 1px solid #313131;
+    border-radius: 30px; /*모서리 둥글기*/
+    background-color: #50CCAA; 
     margin:15px 5px 0px;
 }
 
-input[value="전화번호 번경"]:hover,.taste:hover, .resetpw:hover {
-    font-size: 10pt;
-    color: #232323;
-    padding: 2px;
-    border: 1px solid #ffcfb7;
-    border-radius: 3px;
-    margin:15px 5px 0px;
-    transition: 0.1s; /*트랜지션 속도*/
-}
 .flex{display: flex; }
 
+input{ background-color: fff; border: 1px solid #313131; border-radius: 30px; padding: 5px;}

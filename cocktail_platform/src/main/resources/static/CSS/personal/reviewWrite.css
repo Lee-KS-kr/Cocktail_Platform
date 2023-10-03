@@ -47,7 +47,7 @@ border-spacing: 0;
 }
 
 /*=========================================================*/
-
+body{background-color:#fce142; }
 .sidebar{display:flex ;}
 
 .navi{
@@ -94,16 +94,23 @@ box-shadow: 4px 0px 10px solid #e7e7e7;
 /*배경*/
 .sec2{width: 83%; padding-left: 36px; padding-right: 36px; background-color:#fce142; }
 
-.title1{padding-left: 20px; padding-top: 10px;}
-.title2{ width: 100%; font-size: 22pt; height: 70px; margin:35px 0px 10px; padding-left: 10px; 
-    border-radius: 5px; background-color: #fce142; display: flex; 
-   font-weight: bold; display: flex; align-items: center; color: #232323;}
+.title2{ width: 100%; font-size: 22pt; height: 70px; 
+    display: flex;
+    text-align: center; 
+    align-content: center;
+    background-color: #fce142; 
+    display: flex; 
+    font-weight: bold; 
+    color: #232323;
+    padding: 20px;
+margin: auto;}
+
+
 
 img[alt=logo] { width: 120px;}
 img[alt=search] { width: 27px; height: 27px; }
 img[alt=icon]{width: 20px; display: flex;}
     
-.order{margin: 20px 0px;}
 
 .orderHistory[type=button] {
     width: 196px;
@@ -137,15 +144,42 @@ img[alt=icon]{width: 20px; display: flex;}
     opacity: 1;
 
 }
+
+
 a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9px;}
 
-.con1{margin: 5px 0px;}
-.con2{margin: 5px 80px;}
-
-th{padding-right: 20px;}
-.con1{ 
-    width: 100%; text-align: left; line-height: 28px; border: 1.8px solid #313131; 
+.con1, .con2{ 
+    width: 100%; 
+    text-align: left; 
+    line-height: 60px; 
+    border: 1.8px solid #313131; 
     padding: 15px; background-color: #fffde5;
     font-family: 'Noto Sans KR', sans-serif;  
-    font-weight: bold; z-index: 100; border-radius: 8px;
+    font-weight: bold; 
+    border-radius: 8px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px;
 }
+
+
+th{padding-right: 20px;}
+
+input[type=submit],.taste, .resetpw {
+    width: 300px;
+    height: 100px;
+    line-height: 3px; /*줄간격*/
+    font-size: 20pt; /*폰트 크기*/
+    color: #313131; /*폰트 색상*/
+    padding: 10px;
+    border: 1px solid #313131;
+    border-radius: 30px; /*모서리 둥글기*/
+    background-color: #50CCAA; 
+    margin:15px 5px 0px;
+}
+
+.flex{display: flex; }
+
+textarea{width: 400px; height: 150px; background-color: fff; border: 1px solid #313131; border-radius: 30px; padding: 5px;}
