@@ -99,8 +99,6 @@ box-shadow: 4px 0px 10px solid #e7e7e7;
     border-radius: 5px; background-color: #fce142; display: flex; 
    font-weight: bold; display: flex; align-items: center; color: #232323;}
 
-
-
 img[alt=logo] { width: 120px;}
 img[alt=search] { width: 27px; height: 27px; }
 img[alt=icon]{width: 20px; display: flex;}
@@ -139,41 +137,15 @@ img[alt=icon]{width: 20px; display: flex;}
     opacity: 1;
 
 }
-
-
 a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9px;}
-
-.con1, .con2{ 
-    width: 100%; text-align: left; line-height: 28px; border: 1.8px solid #313131;  
-    padding: 15px; background-color: #fffde5;
-    font-family: 'Noto Sans KR', sans-serif;  font-weight: bold; z-index: 100; border-radius: 8px;
-}
 
 .con1{margin: 5px 0px;}
 .con2{margin: 5px 80px;}
 
 th{padding-right: 20px;}
-
-input[value="전화번호 번경"],.taste, .resetpw {
-    height: 20px;
-    line-height: 10px; /*줄간격*/
-    font-size: 10pt; /*폰트 크기*/
-    color: #777777; /*폰트 색상*/
-    padding: 2px;
-    border: 1px solid #e5e5e5;
-    border-radius: 3px; /*모서리 둥글기*/
-    background-color: #fff; 
-    margin:15px 5px 0px;
+.con1{ 
+    width: 100%; text-align: left; line-height: 28px; border: 1.8px solid #313131; 
+    padding: 15px; background-color: #fffde5;
+    font-family: 'Noto Sans KR', sans-serif;  
+    font-weight: bold; z-index: 100; border-radius: 8px;
 }
-
-input[value="전화번호 번경"]:hover,.taste:hover, .resetpw:hover {
-    font-size: 10pt;
-    color: #232323;
-    padding: 2px;
-    border: 1px solid #ffcfb7;
-    border-radius: 3px;
-    margin:15px 5px 0px;
-    transition: 0.1s; /*트랜지션 속도*/
-}
-.flex{display: flex; }
-
