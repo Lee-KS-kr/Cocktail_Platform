@@ -124,8 +124,11 @@
 		#<span th:text="${cocktailFlavor}"></span><br></div>`
 		
 		$(list).each(function(i,item){
+			let fileName = item.savedFilename;
+			
 			str += '<table><tr>';
-			str += '<td><a>' + item.savedFilename + '</a></td>';
+			str += '<td><a href="#" onclick="addCart('+ menuNum + ')"><img src="/FitTail/image/menu/'+
+			fileName + '></a></td>';
 			str += '<td>' + item.menuName + '</td>';
 			str += '<td>' + item.price + '</td>';
 			str += '</tr>';
@@ -165,8 +168,8 @@
 				url: "addToCart",
 				type: "get",
 				data: param,
-				dataType: "json",
 				success: function(list){
+					alert('카트에 메뉴가 담겼습니다.');
 					menuList(list);
 				},
 				error: function(){
@@ -177,7 +180,7 @@
 	}
 
 	function loadCart(){
-		let option = "width = 20%, height = 100%, top = 100, left = 500, location = no, scrollbars = no"
+		let option = "width = 100%, height = 100%, top = 100, left = 500, location = no, scrollbars = no"
 		window.open("cart", "cartPopUp", option);
 	}
 
@@ -193,9 +196,7 @@
  					<img th:src="@{/image/logo_title.png}" alt="logo">
  				</div>
 	 			<div id="hbgMenu">
-	 				<div onclick="history.back();">
 		 				<img id="closeBtn" th:src="@{/image/close.png}" width="25px" alt="닫기 버튼">
-		 			</div>
 	 				<ul>
 	 					<li><a th:href="@{/corporate/order/callStaff}">직원 호출</a></li>
 	 					<li><a th:href="@{/corporate/order/login}">이 페이지에서 나가기</a></li>
@@ -215,7 +216,7 @@
  			<span id="memberId" th:text="${memberId}" style="display:none;"></span>
  			<span id="orderCode" th:text="${orderCode}" style="display:none;"></span>
  			<span id="memberRole" th:text="${memberRole}" style="display:none;"></span>
-			
+			<br>
 			<!-- 추천 메뉴 출력 -->
 			<div id="recommendList"></div>
  		</section>
