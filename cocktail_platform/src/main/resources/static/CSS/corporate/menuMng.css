@@ -103,7 +103,7 @@ h1{width: 100%; font-size: 22pt; height: 70px; margin:35px 0px 10px; padding-lef
  font-weight: bold; display: flex; align-items: center; color: #232323;}
 
 
-form{
+form, table{
   width: 900px;
   background-color: #fffde5;
   border: 1.8px solid #313131;
@@ -134,7 +134,7 @@ button{
   font-family: 'Noto Sans KR', sans-serif; 
 }
 
-.submitBT{  width: 80px;
+button[value="저장"]{  width: 80px;
   height: 80px;
   padding: 0px;
   justify-content: center;
