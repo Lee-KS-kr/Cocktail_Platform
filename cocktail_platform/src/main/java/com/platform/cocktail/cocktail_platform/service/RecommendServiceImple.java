@@ -20,9 +20,6 @@ public class RecommendServiceImple implements RecommendService {
 	@Autowired
 	private RecommendDAO dao;
 	
-	@Autowired
-	CodeConfig cc;
-	
 	@Override
 	public ArrayList<Cocktails> getTop3Cocktails() {
 		log.debug("top3");
@@ -53,8 +50,7 @@ public class RecommendServiceImple implements RecommendService {
 	@Override
 	public ArrayList<Cocktails> weatherRecommend(String filter) {
 		log.debug("weather");
-		int newFilter = convertStringToInt(filter);
-		ArrayList<Cocktails> list = dao.weatherRecommend(newFilter);
+		ArrayList<Cocktails> list = dao.weatherRecommend(filter);
 		list = getCocktailDetails(list);
 		log.debug("weather {} {}", filter, list);
 		return list;
@@ -62,8 +58,7 @@ public class RecommendServiceImple implements RecommendService {
 
 	@Override
 	public ArrayList<Cocktails> ageRecommend(String filter) {
-		int newFilter = convertStringToInt(filter);
-		ArrayList<Cocktails> list = dao.ageRecommend(newFilter);
+		ArrayList<Cocktails> list = dao.ageRecommend(filter);
 		list = getCocktailDetails(list);
 		log.debug("age {} {}", filter, list);
 		return list;
@@ -72,8 +67,7 @@ public class RecommendServiceImple implements RecommendService {
 	@Override
 	public ArrayList<Cocktails> companionRecommend(String filter) {
 		log.debug("companion");
-		int newFilter = convertStringToInt(filter);
-		ArrayList<Cocktails> list = dao.companionRecommend(newFilter);
+		ArrayList<Cocktails> list = dao.companionRecommend(filter);
 		list = getCocktailDetails(list);
 		log.debug("companion {} {}", filter, list);
 		return list;
@@ -82,19 +76,10 @@ public class RecommendServiceImple implements RecommendService {
 	@Override
 	public ArrayList<Cocktails> eventRecommend(String filter) {
 		log.debug("event");
-		int newFilter = convertStringToInt(filter);
-		ArrayList<Cocktails> list = dao.eventRecommend(newFilter);
+		ArrayList<Cocktails> list = dao.eventRecommend(filter);
 		list = getCocktailDetails(list);
 		log.debug("event {} {}", filter, list);
 		return list;
-	}
-	
-	public int convertStringToInt(String before) {
-		if(before.isEmpty())
-			return 0;
-		
-		HashMap<String, Integer> codeMap = cc.codeMap();
-		return codeMap.get(before);
 	}
 	
 	public ArrayList<Cocktails> getCocktailDetails(ArrayList<Cocktails> list){

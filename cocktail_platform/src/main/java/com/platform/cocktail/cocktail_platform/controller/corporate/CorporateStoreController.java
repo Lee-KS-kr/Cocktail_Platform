@@ -76,7 +76,7 @@ public class CorporateStoreController {
 	
 	@GetMapping("reserveRefuse")
 	public String reserveRefuse(int storeCode, String reserveCode) {
-		sService.changeReservationState(storeCode, reserveCode, ReservationState.refuesed);
+		sService.changeReservationState(storeCode, reserveCode, ReservationState.refused);
 		return "redirect:/corporate/store/reserveList";
 	}
 	

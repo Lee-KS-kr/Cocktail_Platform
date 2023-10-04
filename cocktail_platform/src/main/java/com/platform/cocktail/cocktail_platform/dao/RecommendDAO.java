@@ -16,13 +16,13 @@ public interface RecommendDAO {
 	
 	ArrayList<Cocktails> recommendForMe(String memberId);
 
-	ArrayList<Cocktails> weatherRecommend(int filter);
+	ArrayList<Cocktails> weatherRecommend(String filter);
 
-	ArrayList<Cocktails> ageRecommend(int filter);
+	ArrayList<Cocktails> ageRecommend(String filter);
 
-	ArrayList<Cocktails> companionRecommend(int filter);
+	ArrayList<Cocktails> companionRecommend(String filter);
 
-	ArrayList<Cocktails> eventRecommend(int filter);
+	ArrayList<Cocktails> eventRecommend(String filter);
 
 	Cocktails getCocktailByName(String cocktailName);
 
