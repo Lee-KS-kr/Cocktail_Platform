@@ -69,7 +69,7 @@ $(document).ready(function(){
 		$(list).each(function(i,item){
 			let fileName = item.savedFilename;
 			menuNum = item.menuNum;
-			orderCount = parseInt($('#orderCount_' + menuNum).text());
+			orderCount = parseInt($('#orderCount_' + menuNum).html());
 			category = item.category;
 			let src;
 			
@@ -96,7 +96,7 @@ $(document).ready(function(){
 	
 	/**주문 수량 증감*/
 	function count(type, menuNum, orderCount){
-		orderCount = parseInt($('#orderCount_' + menuNum).text());
+		orderCount = parseInt($('#orderCount_' + menuNum).html());
 		//더하기, 빼기
 		if(type === 'plus' && orderCount < 11) {
 			orderCount = parseInt(orderCount) + 1;  
@@ -176,11 +176,8 @@ $(document).ready(function(){
 
 	//카트에 담기
 	function addCart(menuNum, orderCount){
-		storeCode = $('#storeCode').text();
-		
 		//param에 보내야 될 값들 담아주기
 		let param = {
-				storeCode : storeCode,
 				menuNum :  menuNum,
 				orderCount : orderCount
 		}
