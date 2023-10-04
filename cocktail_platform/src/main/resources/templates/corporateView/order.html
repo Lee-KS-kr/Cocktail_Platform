@@ -16,7 +16,7 @@
 <script>
 $(document).ready(function(){
 	let memberId = $('#memberId').val();
-	let storeCode;
+	let storeCode = $('#storeCode').text();
 	let orderCount;
 	let menuNum;
 	let memberRole = $('#memberRole').html();
@@ -61,8 +61,6 @@ $(document).ready(function(){
 		$('#hbgBtn').show();
 	});
 	
-});
-
 	//메뉴 리스트 출력
 	function menuList(list){
 		let str = '<table>';
@@ -176,8 +174,8 @@ $(document).ready(function(){
 
 	//카트에 담기
 	function addCart(menuNum){
-		let storeCode = $('#storeCode').text();
 	    let orderCount = parseInt($('#orderCount_' + menuNum).text());
+	    let storeCode = $('#storeCode').text();
 		//param에 보내야 될 값들 담아주기
 		let param = {
 				storeCode : storeCode,
@@ -206,7 +204,7 @@ $(document).ready(function(){
 		let option = "width=100%,height=100%,top=100,left=500,location=no,scrollbars=no";
 		window.open("cart", "cartPopUp", option);
 	}
-
+});
 </script>
 </head>
 <body>
