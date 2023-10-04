@@ -121,14 +121,14 @@ $(document).ready(function(){
 	  <div id="cartList">
 	  	<table>
 	  		<tr>
-	  			<td>${menuList.menuName}</td>
+	  			<td th:text>${menuList.menuName}</td>
 	  			<td><button onclick="deleteCart(menuNum)" value="삭제">삭제</button></td>
 	  		</tr>
 	  		<tr>
 	  			<td><a href="javascript:count(\'plus\',' + menuNum + ')">+</a></td>
-	  			<td><span id="orderCount_' + menuNum + '"> + ${carts.orderCount} + </span>개</td>
+	  			<td><p id="orderCount_' + menuNum + '"><span th:text="${carts.orderCount}"></span>개</p></td>
 	  			<td><a href="javascript:count(\'minus\',' + menuNum + ')">-</a></td>
-	  			<td><span class="price-per-item" id="price_' + menuNum + '"> + ${menuList.price} + </span>원</td>
+	  			<td><p class="price-per-item" id="price_' + menuNum + '"><span th:text="${menuList.price}"></span>원</td>
 	  		</tr>
 	  	</table>
 	  	
