@@ -17,7 +17,6 @@
 $(document).ready(function(){
 	let memberId = $('#memberId').val();
 	let storeCode;
-	let menuNum; 
 	let orderCount;
 	let memberRole = $('#memberRole').html();
 	let category;
@@ -45,16 +44,20 @@ $(document).ready(function(){
 	/**햄버거 메뉴*/
 	//햄버거 메뉴 숨기기
 	$('#hbgMenu').hide();
+	$('#closeBtn').hide();
 	//햄버거 아이콘 누르면 메뉴 보여주기
 	$('#hbgBtn').click(function(){
 		alert('햄버거 버튼 클릭됨.');
-		$('#hbgMenu').animate({width: "toggle"},800);
+		$('#hbgBtn').hide();
+		$('#closeBtn').show();
+		$('#hbgMenu').show();
 	});
 	//close 버튼 누르면 메뉴 감추기
 	$('#closeBtn').click(function(){
 		alert('닫기 버튼 클릭됨.');
+		$('#closeBtn').hide();
 		$('#hbgMenu').fadeOut();
-		$('#hbgMenu').animate({width: "toggle"},800);
+		$('#hbgBtn').show();
 	});
 	
 });
@@ -64,7 +67,7 @@ $(document).ready(function(){
 		let str = '<table>';
 		$(list).each(function(i,item){
 			let fileName = item.savedFilename;
-			menuNum = item.menuNum;
+			let menuNum = item.menuNum;
 			orderCount = $('#orderCount_' + menuNum).text();
 			category = item.category;
 			let src;
@@ -91,7 +94,7 @@ $(document).ready(function(){
 	}
 	
 	/**주문 수량 증감*/
-	function count(type){
+	function count(type, menuNum){
 		let orderCount = $('#orderCount_' + menuNum).text();
 		
 		//더하기, 빼기
