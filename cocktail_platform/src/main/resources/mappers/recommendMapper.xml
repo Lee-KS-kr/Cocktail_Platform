@@ -33,76 +33,6 @@
 		order by
 			sum(ot.orderCount) desc
 	</select>
-
-	
-    <select id="weatherRecommend" parameterType="int" resultType="Cocktails">
- 		select
- 			c.cocktailName as cocktailName
-		from
-			cocktails c
-				inner join menuPreference mp on	c.cocktailName = mp.menuName
-				left join orderTemp ot on c.cocktailName = ot.menuName
-		where
-			mp.weather = #{weather}
-		group by
-			c.cocktailName
-		order by
-			sum(ot.orderCount) desc
-	</select>
-    
-	<select id="ageRecommend" parameterType="int" resultType="Cocktails">
- 		select
- 			c.cocktailName as cocktailName
-		from
-			cocktails c
-				inner join menuPreference mp on	c.cocktailName = mp.menuName
-				left join orderTemp ot on c.cocktailName = ot.menuName
-		where
-			mp.age = #{age}
-		group by
-			c.cocktailName
-		order by
-			sum(ot.orderCount) desc
-	</select>
-
-	<select id="companionRecommend" parameterType="int" resultType="Cocktails">
- 		select
- 			c.cocktailName as cocktailName
-		from
-			cocktails c
-				inner join menuPreference mp on	c.cocktailName = mp.menuName
-				left join orderTemp ot on c.cocktailName = ot.menuName
-		where
-			mp.companion = #{companion}
-		group by
-			c.cocktailName
-		order by
-			sum(ot.orderCount) desc
-	</select>
-
-	<select id="eventRecommend" parameterType="int" resultType="Cocktails">
-		select
- 			c.cocktailName as cocktailName
-		from
-			cocktails c
-				inner join menuPreference mp on	c.cocktailName = mp.menuName
-				left join orderTemp ot on c.cocktailName = ot.menuName
-		where
-			mp.event = #{event}
-		group by
-			c.cocktailName
-		order by
-			sum(ot.orderCount) desc
-	</select>
-	
-	<select id="getCocktailByName" parameterType="String" resultType="Cocktails">
-    	select
-    		*
-    	from
-    		cocktails
-    	where
-    		cocktailName = #{cocktailName}
-	</select>
 	
 	<select id="recommendForMe" parameterType="String" resultType="Cocktails">
     	select
@@ -116,6 +46,75 @@
         	c.cocktailName
     	order by
         	sum(ot.orderCount) desc
+	</select>
+	
+    <select id="weatherRecommend" parameterType="String" resultType="Cocktails">	
+ 		select
+ 			c.cocktailName as cocktailName
+		from
+			cocktails c
+				inner join menuPreference mp on	c.cocktailName = mp.menuName
+				left join orderTemp ot on c.cocktailName = ot.menuName
+		where
+ 			weather in (select cocktailInfo from codeInfo ci where ci.infoName like '%' || #{weather} || '%')
+		group by
+			c.cocktailName
+		order by
+			sum(ot.orderCount) desc
+	</select>
+    
+	<select id="ageRecommend" parameterType="String" resultType="Cocktails">
+		select
+ 			c.cocktailName as cocktailName
+		from
+			cocktails c
+				inner join menuPreference mp on	c.cocktailName = mp.menuName
+				left join orderTemp ot on c.cocktailName = ot.menuName
+		where
+ 			ageGroup in (select cocktailInfo from codeInfo ci where ci.infoName like '%' || #{ageGroup} || '%')
+		group by
+			c.cocktailName
+		order by
+			sum(ot.orderCount) desc
+	</select>
+
+	<select id="companionRecommend" parameterType="String" resultType="Cocktails">
+		select
+ 			c.cocktailName as cocktailName
+		from
+			cocktails c
+				inner join menuPreference mp on	c.cocktailName = mp.menuName
+				left join orderTemp ot on c.cocktailName = ot.menuName
+		where
+ 			companion in (select cocktailInfo from codeInfo ci where ci.infoName like '%' || #{companion} || '%')
+		group by
+			c.cocktailName
+		order by
+			sum(ot.orderCount) desc
+	</select>
+
+	<select id="eventRecommend" parameterType="String" resultType="Cocktails">
+		select
+ 			c.cocktailName as cocktailName
+		from
+			cocktails c
+				inner join menuPreference mp on	c.cocktailName = mp.menuName
+				left join orderTemp ot on c.cocktailName = ot.menuName
+		where
+ 			event in (select cocktailInfo from codeInfo ci where ci.infoName like '%' || #{event} || '%')
+		group by
+			c.cocktailName
+		order by
+			sum(ot.orderCount) desc
+	</select>
+	
+	<select id="getCocktailByName" parameterType="String" resultType="Cocktails">
+    	select
+    		*
+    	from
+    		cocktails
+    	where
+    		cocktailName = #{cocktailName}
 	</select>
 	
 	</mapper>

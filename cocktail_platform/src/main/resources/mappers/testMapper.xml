@@ -46,4 +46,12 @@
 	<delete id="deleteAllMenus">
 		delete from menu
 	</delete>
+	
+	<insert id="insertCodes" parameterType="CodeInfo">
+		insert into codeInfo values (#{cocktailInfo}, #{infoName}) 
+	</insert>
+	
+	<delete id="deleteAllCodes">
+		delete from codeInfo
+	</delete>
 </mapper>
