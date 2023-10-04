@@ -20,6 +20,7 @@ $(document).ready(function(){
 	let menuNum; 
 	let orderCount;
 	let memberRole = $('#memberRole').html();
+	let category;
 
 	//전체 목록 받아오기
 	function allList(){
@@ -60,17 +61,23 @@ $(document).ready(function(){
 
 	//메뉴 리스트 출력
 	function menuList(list){
-
 		let str = '<table>';
 		$(list).each(function(i,item){
 			let fileName = item.savedFilename;
 			menuNum = item.menuNum;
 			orderCount = $('#orderCount_' + menuNum).text();
+			category = item.category;
+			let src;
+			
+			if(category === 'beverage'){
+				src = '/FitTail/image/cocktails/';
+			}
+			else src = '/FitTail/image/menu/';
 			
 			str += '<tr>';
 			//누르면 장바구니 추가
-			str += '<td rowspan="3"><a href="#" onclick="addCart('+ menuNum + ')"><img src="/FitTail/image/menu/'+
-					fileName + '"></a></td>';
+			str += '<td rowspan="3"><a href="#" onclick="addCart('+ menuNum + ')"><img src="'+ src
+					+ fileName + '"></a></td>';
 			str += `<td><a href="#" onclick="count('plus')">+</a></td></tr>`;
 			str += '<tr><td id="orderCount_' + menuNum + '">1</td></tr>';
 			str += `<tr><td><a href="#" onclick="count('minus')">-</a></td></tr>`;
@@ -129,10 +136,15 @@ $(document).ready(function(){
 		
 		$(list).each(function(i,item){
 			let fileName = item.savedFilename;
+			let src;
+			
+			if(category === 'beverage'){
+				src = '/FitTail/image/cocktails/';
+			}
+			else src = '/FitTail/image/menu/';
 			
 			str += '<table><tr>';
-			str += '<td><a href="#" onclick="addCart('+ menuNum + ')"><img src="/FitTail/image/menu/'+
-			fileName + '"></a></td>';
+			str += '<td><a href="#" onclick="addCart('+ menuNum + ')"><img src="' + src + fileName + '"></a></td>';
 			str += '<td>' + item.menuName + '</td>';
 			str += '<td>' + item.price + '</td>';
 			str += '</tr>';
