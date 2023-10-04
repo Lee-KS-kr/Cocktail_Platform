@@ -4,10 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 페이지</title>
-
+<!--
 <link rel="stylesheet" href="../../static/CSS/corporate/reset.css">
 <link rel="stylesheet" href="../../static/CSS/corporate/order.css">
-<!--  -->
+  -->
 <!-- vs code -->
 <link rel="stylesheet" th:href="@{/CSS/corporate/reset.css}">
 <link rel="stylesheet" th:href="@{/CSS/corporate/order.css}">
@@ -65,7 +65,7 @@ $(document).ready(function(){
 		$(list).each(function(i,item){
 			let fileName = item.savedFilename;
 			menuNum = item.menuNum;
-			orderCount = $('#orderCount').text();
+			orderCount = $('#orderCount_' + menuNum).text();
 			
 			str += '<tr>';
 			//누르면 장바구니 추가
