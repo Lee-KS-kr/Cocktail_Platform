@@ -30,7 +30,6 @@ $(document).ready(function(){
 		menuNum = button.getAttribute("data-menu-num");
 		let result = confirm('선택한 메뉴를 삭제하시겠습니까?');
 		if(result == true){
-			location.href="deleteCart?menuNum="+menuNum;
 			$.ajax({
 				url: "deleteCart",
 				type: "post",
@@ -70,7 +69,7 @@ $(document).ready(function(){
 		
 		//각 메뉴마다 가격을 가져와서 totalPrice에 더함
         $('.price-per-item').each(function() {
-            let pricePerItem = parseInt($(this).text());
+            let pricePerItem = parseInt($('#orderCount_' + menuNum).text()) * price;
             totalPrice += pricePerItem;
         });
 
@@ -85,6 +84,8 @@ $(document).ready(function(){
 	/**주문하기*/
 	function orderMenu(){
 		let currentOrderCount = parseInt($('#orderCount_' + menuNum).html());
+		let menuNum = $('#menuNum_' + menu.menuNum).text();
+		
 		let result = confirm('선택한 메뉴를 주문하시겠습니까?');
 		let data = {
 			storeCode: storeCode,
@@ -140,11 +141,11 @@ $(document).ready(function(){
 	  			<td><button onclick="deleteCart(this)" data-menu-num="${menu.menuNum}" value="삭제">삭제</button></td>
 	  		</tr>
 	  		<tr>
-	  			<td><a href="javascript:count('plus', ${menu.menuNum})">+</a></td>
+	  			<td><a href="count('plus', ${menu.menuNum})">+</a></td>
 	  			<td th:each="cart: ${carts}" th:if="${cart[0] == menu.menuNum}">
-	  				<p id="orderCount_ + menuNum + "><span th:text="${cart[1]}"></span>개</p>
+	  				<p id="orderCount_${menuNum}"><span th:text="${cart[1]}"></span>개</p>
   				</td>
-	  			<td><a href="javascript:count('minus', ${menu.menuNum})">-</a></td>
+	  			<td><a href="count('minus', ${menu.menuNum})">-</a></td>
 	  			<td>
 	  				<p class="price-per-item" id="price_${menu.menuNum}">
 	  				<span th:text="${menu.price}"></span>원
@@ -154,8 +155,8 @@ $(document).ready(function(){
 	  	
 	  </div>
 	  <p class="cart-total">합계: <span id="totalPrice"></span></p>
-	  <a href="javascript:closeCart()"><button class="orderBT">닫기</button></a>
-	  <a href="javascript:orderMenu()"><button class="orderBT">주문하기</button></a>
+	  <button class="orderBT" onclick="closeCart()">닫기</button>
+	  <button class="orderBT" onclick="orderMenu()">주문하기</button>
 	</div>
   </body>
 </html>
