@@ -90,7 +90,7 @@ function getList(list){
 		str += '<td>' + item.reservationPhone + '</td>';
 		str += '<td>' + item.reserveDate + '</td>';
 		str += '<td>' + item.reserveHead + '<span>명</span></td>';
-		str += '<td>' + reserveState + '</td>';
+		str += '<td>' + reserveState2 + '</td>';
 		if(reserveState == 'apply'){
 			str += '<td><a href="#" onclick="reserveAccept(' + item.reserveCode + ',' + item.storeCode + ')">수락</a></td>';
 			str += '<td><a href="#" onclick="reserveRefuse(' + item.reserveCode + ',' + item.storeCode + ')">거절</a></td>';		
