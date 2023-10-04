@@ -38,6 +38,12 @@ let storeCode;
 function getList(list){
 	let str = '<table><tr><th>메뉴 번호</th><th>카테고리</th><th>이름</th><th>가격</th><th>상태</th></tr>';
 	$(list).each(function(i,item){
+		let category = item.category;
+		let category2;
+		if(category == 'food') category2 = '안주';
+		else if(category == 'beverage') category2 = '주류';
+		if(category == 'side') category2 = '사이드';
+		
 		let canOrder = item.canOrder;
 		let canOrder2;
 		if(canOrder) canOrder2 = '주문 가능';
@@ -45,7 +51,7 @@ function getList(list){
 		
 		str += '<tr>';
 		str += '<td>' + item.menuNum + '</td>';
-		str += '<td>' + item.category + '</td>';
+		str += '<td>' + category2 + '</td>';
 		str += '<td><a href="/corporate/store/editMenu(menuNum=' + item.menuNum + ')">' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
 		str += '<td>' + canOrder2 + '</td>';
