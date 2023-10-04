@@ -69,7 +69,7 @@ $(document).ready(function(){
 		$(list).each(function(i,item){
 			let fileName = item.savedFilename;
 			menuNum = item.menuNum;
-			orderCount = 0;
+			orderCount = parseInt($('#orderCount_' + menuNum).text());
 			category = item.category;
 			let src;
 			
