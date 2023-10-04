@@ -14,6 +14,7 @@
 <!-- thymeleaf -->
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
+$(document).ready(function(){
 	let memberId = $('#memberId').val();
 	let storeCode;
 	let menuNum; 
@@ -40,6 +41,23 @@
 	//호출
 	allList();
 	
+	/**햄버거 메뉴*/
+	//햄버거 메뉴 숨기기
+	$('#hbgMenu').hide();
+	//햄버거 아이콘 누르면 메뉴 보여주기
+	$('#hbgBtn').click(function(){
+		alert('햄버거 버튼 클릭됨.');
+		$('#hbgMenu').animate({width: "toggle"},800);
+	});
+	//close 버튼 누르면 메뉴 감추기
+	$('#closeBtn').click(function(){
+		alert('닫기 버튼 클릭됨.');
+		$('#hbgMenu').fadeOut();
+		$('#hbgMenu').animate({width: "toggle"},800);
+	});
+	
+});
+
 	//메뉴 리스트 출력
 	function menuList(list){
 
@@ -52,7 +70,7 @@
 			str += '<tr>';
 			//누르면 장바구니 추가
 			str += '<td rowspan="3"><a href="#" onclick="addCart('+ menuNum + ')"><img src="/FitTail/image/menu/'+
-					fileName + '></a></td>';
+					fileName + '"></a></td>';
 			str += `<td><a href="#" onclick="count('plus')">+</a></td></tr>`;
 			str += '<tr><td id="orderCount">1</td></tr>';
 			str += `<tr><td><a href="#" onclick="count('minus')">-</a></td></tr>`;
@@ -82,20 +100,6 @@
 		//결과 출력
 	  	$("#orderCount").text(orderCount);
 	}
-	
-	//햄버거 메뉴 숨기기
-	$('#hbgMenu').hide();
-	//햄버거 아이콘 누르면 메뉴 보여주기
-	$('#hbgBtn').click(function(){
-		alert('햄버거 버튼 클릭됨.');
-		$('#hbgMenu').animate({width: "toggle"},800);
-	});
-	//close 버튼 누르면 메뉴 감추기
-	$('#closeBtn').click(function(){
-		alert('닫기 버튼 클릭됨.');
-		$('#hbgMenu').fadeOut();
-		$('#hbgMenu').animate({width: "toggle"},800);
-	});
 	
 	//추천 메뉴 목록 가져오기
 	function getRecMenu(){
@@ -128,7 +132,7 @@
 			
 			str += '<table><tr>';
 			str += '<td><a href="#" onclick="addCart('+ menuNum + ')"><img src="/FitTail/image/menu/'+
-			fileName + '></a></td>';
+			fileName + '"></a></td>';
 			str += '<td>' + item.menuName + '</td>';
 			str += '<td>' + item.price + '</td>';
 			str += '</tr>';
@@ -180,7 +184,7 @@
 	}
 
 	function loadCart(){
-		let option = "width = 100%, height = 100%, top = 100, left = 500, location = no, scrollbars = no"
+		let option = "width=100%,height=100%,top=100,left=500,location=no,scrollbars=no";
 		window.open("cart", "cartPopUp", option);
 	}
 
