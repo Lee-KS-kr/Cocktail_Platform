@@ -34,7 +34,7 @@ img[alt=logo] { width: 120px;}
 .body{ display: flex; }
 /*========================================================================*/
 /*profile icon img*/
-img[alt=profile] { width: 27px;}
+img[alt=icon] { width: 27px;}
 
 
 body {
@@ -105,10 +105,10 @@ h1{width: 100%; font-size: 22pt; height: 70px; margin:35px 0px 10px; padding-lef
 
 form{
   width: 900px;
-  background-color: #fff;
-  border: 1px solid #d3d3d3;
-  border-radius: 5px;
-  padding: 20px;
+  background-color: #fffde5;
+  border: 1.8px solid #313131;
+  border-radius: 15px;
+  padding: 30px;
 
 
   color: #313131;
@@ -117,7 +117,7 @@ form{
 }
 
 /*+ BT*/
-button{
+.bt{
   width: 80px;
   height: 80px;
   padding: 0px;
@@ -132,6 +132,8 @@ button{
   font-size: 32pt;
   padding-bottom: 8px;
   font-family: 'Noto Sans KR', sans-serif; 
+  position: absolute;
+  left: 1300px;
 }
 
 .submitBT{  width: 80px;
@@ -146,15 +148,11 @@ button{
   align-content: end;
   color: #313131;
   font-size: 12pt;
-  padding-bottom: 8px;
   font-family: 'Noto Sans KR', sans-serif; }
 
   input{
   width: 300px;  
-  height: 50px;
-    
-  border: 1px solid #313131;
-  border-radius: 30px;
+  height: 30px;
   background-color: #fff;
 
   }
