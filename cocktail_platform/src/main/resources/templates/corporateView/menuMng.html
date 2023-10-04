@@ -126,7 +126,7 @@ function addSub(){
 	
 	//유효성 검사 충족 못하면 돌려보냄
 	if(!categoryChk() || !priceChk()) {
-		alert('콩쥐야..유효성 검사 망했어요,,');
+		alert('입력한 값을 확인해주세요.');
 		return false;
 	}
 	$.ajax({
@@ -263,7 +263,7 @@ function pagingFormSubmit(currentPage){
 	<!-- 메뉴 리스트 -->
 		<!-- 총 <span id="totalnum"></span>개 검색되었습니다. -->
 		<button onclick="addMenuToggle()">+</button>
-		<div id="menuList">
+		<div id="menuList"></div>
 		
 		<!-- 메뉴 추가 폼(추가버튼 클릭 시에만 보임) -->
 		<div id="addMenuDiv" style="display:none;">
@@ -291,7 +291,7 @@ function pagingFormSubmit(currentPage){
 			</form>
 		</div>
 	</section>
-	
+	</main>
 
 </body>
 </html>
