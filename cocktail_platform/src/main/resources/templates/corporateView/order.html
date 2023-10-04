@@ -80,13 +80,13 @@ $(document).ready(function(){
 			
 			str += '<tr>';
 			//누르면 장바구니 추가
-			str += '<td rowspan="3"><a href="#" onclick="addCart('+ menuNum + ')"><img src="'+ src
+			str += '<td rowspan="3"><a href="#" onclick="addCart('+ menuNum + ',' + orderCount + ')"><img src="'+ src
 					+ fileName + '"></a></td>';
 			str += `<td><a href="#" onclick="count('plus',${menuNum},${orderCount})">+</a></td></tr>`;
 			str += '<tr><td id="orderCount_' + menuNum + '">0</td></tr>';
 			str += `<tr><td><a href="#" onclick="count('minus',${menuNum},${orderCount})">-</a></td></tr>`;
 			str += '<tr><td>' + item.menuName + '</td>';
-			str += '<td rowspan="2"><a href="#" onclick="addCart('+ menuNum + ')">카트에 담기</a></td></tr>';
+			str += '<td rowspan="2"><a href="#" onclick="addCart('+ menuNum + ',' + orderCount + ')">카트에 담기</a></td></tr>';
 			str += '<tr><td>' + item.price + '</td>';
 			str += '<tr><td id="menuNum_' + menuNum + '" style="display:none;">' + menuNum + '</td>';
 		});
@@ -96,6 +96,7 @@ $(document).ready(function(){
 	
 	/**주문 수량 증감*/
 	function count(type, menuNum, orderCount){
+		orderCount = parseInt($('#orderCount_' + menuNum).text());
 		//더하기, 빼기
 		if(type === 'plus' && orderCount < 11) {
 			orderCount = parseInt(orderCount) + 1;  
@@ -148,7 +149,7 @@ $(document).ready(function(){
 			else src = '/FitTail/image/menu/';
 			
 			str += '<table><tr>';
-			str += '<td><a href="#" onclick="addCart('+ menuNum + ')"><img src="' + src + fileName + '"></a></td>';
+			str += '<td><a href="#" onclick="addCart('+ menuNum + ',' + orderCount + ')"><img src="' + src + fileName + '"></a></td>';
 			str += '<td>' + item.menuName + '</td>';
 			str += '<td>' + item.price + '</td>';
 			str += '</tr>';
@@ -174,7 +175,9 @@ $(document).ready(function(){
 	}
 
 	//카트에 담기
-	function addCart(menuNum){
+	function addCart(menuNum, orderCount){
+		storeCode = $('#storeCode').text();
+		
 		//param에 보내야 될 값들 담아주기
 		let param = {
 				storeCode : storeCode,
