@@ -158,8 +158,10 @@ justify-content: center;
 }
 
 .con_box img {
-  max-width: 500px;
+  max-width: 100%;
   height: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .con_box a {
