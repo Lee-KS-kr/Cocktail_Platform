@@ -72,7 +72,7 @@ $(document).ready(function(){
 			str += '<td rowspan="3"><a href="#" onclick="addCart('+ menuNum + ')"><img src="/FitTail/image/menu/'+
 					fileName + '"></a></td>';
 			str += `<td><a href="#" onclick="count('plus')">+</a></td></tr>`;
-			str += '<tr><td id="orderCount">1</td></tr>';
+			str += '<tr><td id="orderCount_' + menuNum + '">1</td></tr>';
 			str += `<tr><td><a href="#" onclick="count('minus')">-</a></td></tr>`;
 			str += '<tr><td>' + item.menuName + '</td>';
 			str += '<td rowspan="2"><a href="#" onclick="addCart('+ menuNum + ')">카트에 담기</a></td></tr>';
@@ -98,7 +98,7 @@ $(document).ready(function(){
 		}
 		
 		//결과 출력
-	  	$("#orderCount").text(orderCount);
+	  	$("#orderCount_" + menuNum).text(orderCount);
 	}
 	
 	//추천 메뉴 목록 가져오기
