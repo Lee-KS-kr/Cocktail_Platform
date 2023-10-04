@@ -142,7 +142,7 @@ img[alt=search] { width: 27px; height: 27px;  z-index: 50;}
 /* 제품 상자 스타일 */
 .box {
   background-color: #ffffff;
-  border: 1px solid #ddd;
+  border: 1.8px solid #313131;
   padding: 20px;
   
   margin: 10px auto; /* 상하 여백을 10px으로 주고 좌우 여백은 자동으로 가운데 정렬 */
