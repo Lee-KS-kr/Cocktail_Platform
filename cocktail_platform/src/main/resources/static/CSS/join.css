@@ -3,7 +3,7 @@
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #ffffc7;
   border-radius: 10px;
 }
 
@@ -11,7 +11,7 @@
 .title {
   font-size: 24px;
   text-align: center;
-  color: #FF661A;
+  color: #ff9670;
   margin-bottom: 20px;
 }
 
@@ -28,27 +28,52 @@ input[type="tel"] {
 }
 
 /* 버튼 스타일 */
-input[type="submit"],
-input[type="reset"] {
+input[type="submit"]
+ {
   width: calc(50% - 5px);
   padding: 10px;
-  background-color: #FF661A;
+  background-color: #ff9670;
   border: none;
   border-radius: 5px;
-  color: #fff;
+  color: #313131;
   font-size: 16px;
   cursor: pointer;
+  transition: 0.7s;
 }
 
 /* 버튼 호버 효과 */
-input[type="submit"]:hover,
-input[type="reset"]:hover {
-  background-color: #FF4500;
+input[type="submit"]:hover{
+  background-color: #f38b65;
+  transition: 0.7s;
+
 }
+
+/* 버튼 스타일 */
+
+input[type="reset"] {
+  width: calc(50% - 5px);
+  padding: 10px;
+  background-color: #4cb383;
+  border: none;
+  border-radius: 5px;
+  color: #313131;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.7s;
+}
+
+/* 버튼 호버 효과 */
+
+input[type="reset"]:hover {
+  background-color: #44a779;
+  transition: 0.7s;
+
+}
+
 
 /* 에러 메시지 스타일 */
 p[id^="errMsg"] {
-  color: #FF661A;
+  color: red;
   font-size: 14px;
   margin: 5px 0;
 }
