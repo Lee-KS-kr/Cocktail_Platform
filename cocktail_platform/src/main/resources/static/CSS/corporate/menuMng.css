@@ -132,6 +132,7 @@ button{
   font-size: 32pt;
   padding-bottom: 8px;
   font-family: 'Noto Sans KR', sans-serif; 
+  margin: 10px;
 }
 
 button[value="저장"]{  width: 80px;
