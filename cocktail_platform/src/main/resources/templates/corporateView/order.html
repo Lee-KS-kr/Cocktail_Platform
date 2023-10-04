@@ -17,7 +17,7 @@
 $(document).ready(function(){
 	let memberId = $('#memberId').val();
 	let storeCode = $('#storeCode').text();
-	let orderCount;
+	let orderCount = 0;
 	let menuNum;
 	let memberRole = $('#memberRole').html();
 	let category;
@@ -96,20 +96,20 @@ $(document).ready(function(){
 	
 	/**주문 수량 증감*/
 	function count(type, menuNum, orderCount){
-		orderCount = parseInt($('#orderCount_' + menuNum).html());
+		let currentOrderCount = parseInt($('#orderCount_' + menuNum).html());
 		//더하기, 빼기
-		if(type === 'plus' && orderCount < 11) {
-			orderCount = parseInt(orderCount) + 1;  
-	  	}else if(type === 'minus' && orderCount > 0) {
-	  		orderCount = parseInt(orderCount) - 1;
+		if(type === 'plus' && currentOrderCount < 11) {
+			currentOrderCount = parseInt(currentOrderCount) + 1;  
+	  	}else if(type === 'minus' && currentOrderCount > 0) {
+	  		currentOrderCount = parseInt(currentOrderCount) - 1;
 	  	}else {
 			alert('주문 수량을 확인해주세요.');
 			return false;
 		}
 		
 		//결과 출력
-	  	$("#orderCount_" + menuNum).text(orderCount);
-		return orderCount;
+	  	$("#orderCount_" + menuNum).text(currentOrderCount);
+		return currentOrderCount;
 	}
 	
 	//추천 메뉴 목록 가져오기
@@ -175,11 +175,12 @@ $(document).ready(function(){
 	}
 
 	//카트에 담기
-	function addCart(menuNum, orderCount){
+	function addCart(menuNum){
+		let currentOrderCount = parseInt($('#orderCount_' + menuNum).html());
 		//param에 보내야 될 값들 담아주기
 		let param = {
 				menuNum :  menuNum,
-				orderCount : orderCount
+				orderCount : currentOrderCount
 		}
 		
 		if(confirm('장바구니에 추가하시겠습니까?')){
