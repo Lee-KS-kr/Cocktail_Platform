@@ -97,7 +97,7 @@ justify-content: center;
 .search {
   border: 1px solid #313131;
   background-color: #fffde5;
-  box-shadow: 0px 5px 10px #e68664;
+  box-shadow: 0px 5px 10px #e5e5e5;
   border-radius: 80px;
   padding: 20px;
   text-align: center;
@@ -148,7 +148,7 @@ justify-content: center;
 .con_box {
   background-color: #fff;
   border: 1.8px solid #313131;
-  border-radius: 10px;
+  border-radius: 15px;
   margin: 10px;
   padding: 10px;
   text-align: center;
@@ -183,9 +183,12 @@ img[alt="con_box${i}"]{
 /*이미지 오버플로우 히든*/
 .con_box1{
   overflow: hidden;
-  width: 250px;
+  display: flex;
+  justify-content: center;
+  width: 280px;
   height: 250px;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .con_box div p{
