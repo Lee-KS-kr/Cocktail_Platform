@@ -125,7 +125,7 @@ $(document).ready(function(){
 	  		</tr>
 	  		<tr>
 	  			<td><a href="javascript:count(\'plus\',' + menuNum + ')">+</a></td>
-	  			<td><p id="orderCount_' + menuNum + '"><span th:text="${carts[1].orderCount}"></span>개</p></td>
+	  			<td><p id="orderCount_' + menuNum + '"><span th:text="${carts[1]}"></span>개</p></td>
 	  			<td><a href="javascript:count(\'minus\',' + menuNum + ')">-</a></td>
 	  			<td><p class="price-per-item" id="price_' + menuNum + '"><span th:text="${menuList.price}"></span>원</td>
 	  		</tr>
