@@ -17,7 +17,7 @@
 $(document).ready(function(){
 	let memberId = $('#memberId').val();
 	let storeCode = $('#storeCode').text();
-	let orderCount = parseInt($('#orderCount_' + menuNum).text());
+	let orderCount;
 	let menuNum;
 	let memberRole = $('#memberRole').html();
 	let category;
@@ -69,7 +69,7 @@ $(document).ready(function(){
 		$(list).each(function(i,item){
 			let fileName = item.savedFilename;
 			menuNum = item.menuNum;
-			orderCount = $('#orderCount_' + menuNum).text();
+			orderCount = parseInt($('#orderCount_' + menuNum).text());
 			category = item.category;
 			let src;
 			
