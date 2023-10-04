@@ -132,8 +132,6 @@ form{
   font-size: 32pt;
   padding-bottom: 8px;
   font-family: 'Noto Sans KR', sans-serif; 
-  position: absolute;
-  left: 1300px;
 }
 
 .submitBT{  width: 80px;
