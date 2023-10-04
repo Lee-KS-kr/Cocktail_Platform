@@ -189,9 +189,9 @@ $(document).ready(function(){
 				url: "addToCart",
 				type: "get",
 				data: param,
-				success: function(list){
+				success: function(){
 					alert('카트에 메뉴가 담겼습니다.');
-					menuList(list);
+					allList();
 				},
 				error: function(){
 					alert('error');
