@@ -114,6 +114,7 @@ $(document).ready(function(){
 	//추천 메뉴 목록 가져오기
 	function getRecMenu(){
 		if(memberRole === 'ROLE_PERSONAL'){
+			let storeCode = $('#storeCode').text(); 
 			$.ajax({
 				url: "recommendList",
 				type: "post",
@@ -138,6 +139,7 @@ $(document).ready(function(){
 		#<span th:text="${cocktailFlavor}"></span><br></div>`
 		
 		$(list).each(function(i,item){
+			let menuNum = item.menuNum;
 			let fileName = item.savedFilename;
 			let src;
 			
@@ -174,6 +176,8 @@ $(document).ready(function(){
 
 	//카트에 담기
 	function addCart(menuNum){
+		let storeCode = $('#storeCode').text();
+	    let orderCount = parseInt($('#orderCount_' + menuNum).text());
 		//param에 보내야 될 값들 담아주기
 		let param = {
 				storeCode : storeCode,
