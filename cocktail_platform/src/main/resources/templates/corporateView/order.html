@@ -95,7 +95,8 @@ $(document).ready(function(){
 	}
 	
 	/**주문 수량 증감*/
-	function count(type){
+	function count(type, menuNum){
+		let orderCount = $('#orderCount_' + menuNum).text(); // 변수 초기화
 		//더하기, 빼기
 		if(type === 'plus' && orderCount < 11) {
 			orderCount = parseInt(orderCount) + 1;  
