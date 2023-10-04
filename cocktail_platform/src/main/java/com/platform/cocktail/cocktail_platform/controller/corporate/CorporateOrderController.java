@@ -56,7 +56,10 @@ public class CorporateOrderController {
 	}
 	
 	@PostMapping("login")
-	public String login(@AuthenticationPrincipal UserDetails user, String memberId, String memberPw, Model m) {
+	public String login(@AuthenticationPrincipal UserDetails user, 
+			String memberId, String memberPw, Model m,
+			@CookieValue(name="cart", defaultValue="0") String cart,
+			HttpServletResponse res) {
 		StoreInfo store = sService.getStoreById(user.getUsername());
 		
 		Member mem = null;
@@ -84,6 +87,12 @@ public class CorporateOrderController {
 		m.addAttribute("orderCode", o.getOrderCode());
 		m.addAttribute("memberId", this.loginMember);
 		m.addAttribute("memberRole", mem.getMemberType());
+		
+		cart = "0";
+		Cookie cookie1 = new Cookie("cart", cart);
+		cookie1.setMaxAge(0);
+		res.addCookie(cookie1);
+		log.debug("cart cookie reset {}", cookie1.getValue());
 		
 		return "corporateView/order";
 	}
@@ -116,17 +125,24 @@ public class CorporateOrderController {
 	
 	@ResponseBody
 	@GetMapping("addToCart")
-	public void addToCart(int storeCode, int menuNum, int orderCount,
+	public void addToCart(int menuNum, int orderCount,
 						@CookieValue(name="cart", defaultValue="0") String cart,
 						HttpServletResponse res) throws Exception {
 		cart = URLDecoder.decode(cart, "UTF-8");
 
 		findCookie:
 		if(!cart.equals("0")) {
+			log.debug("cart : {}", cart);
 			String[] orders = cart.split(",");
+			for (String str : orders) 
+				log.debug("str {}", str);
+			
 			for(int i = 0; i < orders.length; i++) {
 				String[] ms = orders[i].split("_");
 				if(ms[0].equals(String.valueOf(menuNum))) {
+					for (String s : ms) 
+						log.debug("ms s {}", s);
+					
 					int count = Integer.parseInt(ms[1]) + orderCount;
 					ms[1] = String.valueOf(count);
 					orders[i] = ms[0] + "_" + ms[1];
@@ -135,17 +151,16 @@ public class CorporateOrderController {
 				}
 			}
 			
-			String temp = menuNum + "_" + orderCount;
-			cart += temp;
-			
-		} else {
-			String temp = menuNum + "_" + orderCount;
-			cart += temp;
+			cart += "/";
 		}
+		
+		String temp = menuNum + "_" + orderCount;
+		cart += temp;
 		
 		Cookie cookie1 = new Cookie("cart", cart);
 		cookie1.setMaxAge(24 * 60 * 60);
 		res.addCookie(cookie1);
+		log.debug("cart {}", cart);
 	}
 	
 	@GetMapping("cart")
@@ -155,7 +170,7 @@ public class CorporateOrderController {
 		if(cart.equals("0")) {
 			m.addAttribute("err", "카트에 담긴 음식이 없습니다.");
 		} else {
-			String[] menus = cart.split(",");
+			String[] menus = cart.split("/");
 			String[][] carts = new String[menus.length][2];
 			ArrayList<Menu> menuList = sService.getMenulistByNum(menus);
 			
@@ -178,7 +193,7 @@ public class CorporateOrderController {
 		if(cart.equals("0")) {
 			m.addAttribute("err", "카트에 담긴 음식이 없습니다.");
 		} else {
-			String[] menus = cart.split(",");
+			String[] menus = cart.split("/");
 			int[] menuNum = new int[menus.length];
 			int[] price = new int[menus.length]; 
 			int[] orderCount = new int[menus.length]; 

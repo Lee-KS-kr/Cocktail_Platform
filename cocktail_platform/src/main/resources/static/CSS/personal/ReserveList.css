@@ -89,16 +89,16 @@ position:relative;
 box-shadow: 4px 0px 10px solid #e7e7e7;
 }
 
-/*배경*/
+/*ë°°ê²½*/
 .sec2{width: 83%; padding-left: 36px; padding-right: 36px; background-color:#fce142; }
 
-.title1{padding-left: 20px; padding-top: 10px;}
+
 .title2{ width: 100%; font-size: 22pt; height: 70px; margin:35px 0px 10px; padding-left: 10px; 
     border-radius: 5px; background-color: #fce142; display: flex; 
     font-weight: bold; display: flex; align-items: center; color: #232323;}
 
 img[alt=logo] { width: 120px;}
-img[alt=search] { width: 27px; height: 27px; }
+img[alt=search] { width: 27px; height: 27px;}
 img[alt=icon]{width: 20px; display: flex;}
 
 .order{margin: 20px 0px;}
@@ -135,27 +135,21 @@ img[alt=icon]{width: 20px; display: flex;}
 }
 a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9px;}
 
-.con1{margin: 5px 0px;}
-.con2{margin: 5px 80px;}
-
-th{padding-right: 20px;}
 .con1, .con2{ 
-    width: 100%; text-align: left; line-height: 28px; border: 1.8px solid #313131;  
-    padding: 15px; background-color: #fffde5;
-    font-family: 'Noto Sans KR', sans-serif;  font-weight: bold; z-index: 100; border-radius: 8px;
-}
-.table{ 
-    width: 990px;
-    background-color: #fff;
-}
-
-input[type="text"], input[type=number], input[type=submit]{
-    width: 135px;
-    margin: 10px 0px;
-    margin-left: 2px;
-    padding: auto;
-    
+    width: 100%; 
+    line-height: 28px;
+    background-color: #fffde5;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold; 
+    border-radius: 10px;
+    padding: 30px;
+    margin: 20px 0px;
+    text-align:center;
 }
 
 
-
+.cancleReserv1{width:230px;}
+.cancleReserv2{width:200px;}
+.cancleReserv3{width:250px;}
+.cancleReserv4{width:260px;}
+.cancleReserv5{width:230px;}

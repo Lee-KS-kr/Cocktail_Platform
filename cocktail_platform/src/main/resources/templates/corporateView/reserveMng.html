@@ -57,21 +57,19 @@ function reserveAccept(reserveCode, storeCode){
 function reserveRefuse(reserveCode, storeCode){
 	let result = confirm("예약을 취소하시겠습니까?");
 	if(result == true){
-		let result = confirm("예약을 취소하시겠습니까?");
-		if(result == true){
-			$.ajax({
-				url: "reserveRefuse",
-				type: "get",
-				data: {reserveCode: reserveCode, storeCode: storeCode},
-				success: function(){
-					alert('예약을 취소하였습니다.');
-					init();
-				},
-				error: function(e){
-					alert(e.statusText);
-				}
-			});
-		}
+		
+		$.ajax({
+			url: "reserveRefuse",
+			type: "get",
+			data: {reserveCode: reserveCode, storeCode: storeCode},
+			success: function(){
+				alert('예약을 취소하였습니다.');
+				init();
+			},
+			error: function(e){
+				alert(e.statusText);
+			}
+		});
 	}
 }
 
@@ -79,15 +77,24 @@ function reserveRefuse(reserveCode, storeCode){
 function getList(list){
 	let str = '<table><tr><th>예약 번호</th><th>예약자</th><th>연락처</th><th>예약 일시</th><th>예약 인원</th><th>처리 현황</th></tr>';
 	$(list).each(function(i,item){
+		let reserveState = item.reserveState;
+		let reserveState2;
+		
+		if(reserveState == 'apply') reserveState2 = '대기';
+		else if(reserveState == 'received') reserveState2 = '수락';
+		else if(reserveState == 'refused') reserveState2 = '거절';
+		
 		str += '<tr>';
 		str += '<td>' + item.reserveCode + '</td>';
 		str += '<td>' + item.reservationName + '</td>';
 		str += '<td>' + item.reservationPhone + '</td>';
 		str += '<td>' + item.reserveDate + '</td>';
 		str += '<td>' + item.reserveHead + '<span>명</span></td>';
-		str += '<td>' + item.reserveState + '</td>';
-		str += '<td><a href="#" onclick="reserveAccept(' + item.reserveCode + ',' + item.storeCode + ')">수락</a></td>';
-		str += '<td><a href="#" onclick="reserveRefuse(' + item.reserveCode + ',' + item.storeCode + ')">거절</a></td>';
+		str += '<td>' + reserveState2 + '</td>';
+		if(reserveState == 'apply'){
+			str += '<td><a href="#" onclick="reserveAccept(' + item.reserveCode + ',' + item.storeCode + ')">수락</a></td>';
+			str += '<td><a href="#" onclick="reserveRefuse(' + item.reserveCode + ',' + item.storeCode + ')">거절</a></td>';		
+		}
 		str += '</tr>';
 	});
 	str += '</table>';

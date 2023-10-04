@@ -41,17 +41,35 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans:400");
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean");
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
-/*=========================================================*/
+@font-face {
+  font-family: '';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+/*=========================================================
+  font-family: 'Noto Sans KR', sans-serif;  */
 p {
   color: #6c6c6c;
   margin-top: 5px;
 }
+
+body{background-color:#ffffc7}
 .navi {
   width: 100%;
   height: 60px;
   padding-top: 85px;
-  background-color: #fff;
+  background-color: #ffffc7;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,10 +77,10 @@ p {
 }
 
 .logo {
-  width: 500px;
+  width: 300px;
   position: fixed;
-  top: 20px;
-  left: 540px;
+  top: 80px;
+  left: 640px;
   z-index: 10;
   
   /*이미지 선택과 드래그 방지*/
@@ -83,6 +101,7 @@ body {
   align-items: center;
   text-align: center;
   position: fixed;
+  overflow: hidden;
 }
 .sec1 {
   display: flex;
@@ -94,12 +113,16 @@ body {
   left: 520px;
   z-index: 1000;
   /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.19);
+  background: #ffffc7;
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8.8px);
   -webkit-backdrop-filter: blur(8.8px);
-  border: 1px solid rgb(217, 217, 217);
+  border: 1.8px solid #313131;
+  background: rgba(255, 255, 255, 0.6);  
+  border-radius: 16px;
+  box-shadow: 0 4px 30px #e3e3e3 100%;
+  backdrop-filter: blur(2px);
 }
 
 .inner_body {
@@ -138,7 +161,7 @@ input {
   border-radius: 4px;
   padding: 4px;
   background-color: #ffffff;
-  box-shadow: 0px 5px 10px #ebebeb;
+  border: 1.8px solid #313131;
   margin: 7px 0px;
 }
 input[value="로그인"] {
@@ -147,14 +170,14 @@ input[value="로그인"] {
   border: 0;
   border-radius: 4px;
   padding: 4px;
-  background-color: #ff661a;
-  box-shadow: 0px 5px 10px #d5d2d2;
-  color: #fff;
+  background-color: #ff9670;
+  border: 1.8px solid #313131;
+  color: #313131;
 }
 
-img[alt="sns_icon1"] {width: 30px; z-index: 100;}
-img[alt="sns_icon2"] {width: 30px; z-index: 100;}
-img[alt="sns_icon3"] {width: 30px; z-index: 100;}
+img[alt="sns_icon1"] {width: 30px; z-index: 100; opacity: 80%;}
+img[alt="sns_icon2"] {width: 30px; z-index: 100; opacity: 80%;}
+img[alt="sns_icon3"] {width: 30px; z-index: 100; opacity: 80%;}
 
 
 a:link {color: #232323;}
@@ -163,21 +186,6 @@ a:hover {color: #232323;}
 
 a{text-decoration: none;}
 
-img[alt="water1"] {
-  position: fixed;
-  top: -100px;
-  left: 210px;
-  z-index: 1;
-
-  /*이미지 선택과 드래그 방지*/
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
+/*배경 그림*/
+img[alt=img1]{z-index: 1; width: 500px; position: fixed; top: 20px; left:-100px;}
+img[alt=img2]{z-index: 1; width: 500px; position: fixed; top: 700px; left: 1200px;}

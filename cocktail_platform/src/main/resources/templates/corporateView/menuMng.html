@@ -38,13 +38,18 @@ let storeCode;
 function getList(list){
 	let str = '<table><tr><th>메뉴 번호</th><th>카테고리</th><th>이름</th><th>가격</th><th>상태</th></tr>';
 	$(list).each(function(i,item){
+		let canOrder = item.canOrder;
+		let canOrder2;
+		if(canOrder) canOrder2 = '주문 가능';
+		else canOrder2 = '주문 불가';
+		
 		str += '<tr>';
 		str += '<td>' + item.menuNum + '</td>';
 		str += '<td>' + item.category + '</td>';
 		str += '<td><a href="/corporate/store/editMenu(menuNum=' + item.menuNum + ')">' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
-		str += '<td>' + item.canOrder + '</td>';
-		str += '<td><a href="|javascript:deleteMenu(menuNum=' + item.menuNum + ')|">x</a></td>';
+		str += '<td>' + canOrder2 + '</td>';
+		str += '<td><a href="#" onclick="deleteMenu(menuNum=' + item.menuNum + ')">x</a></td>';
 		str += '</tr>';
 	});
 	str += '</table>';
@@ -57,7 +62,20 @@ function getList(list){
 function deleteMenu(menuNum){
 	let result = confirm("메뉴를 삭제하시겠습니까?");
 	if(result == true){
-		location.href="deleteMenu?menuNum="+menuNum;
+		$.ajax({
+	        url: 'deleteMenu',
+	        type: 'post',
+	        data: {menuNum : menuNum},
+	        contentType : false,
+	        processData : false,
+	        success: function() {
+	           alert("메뉴가 삭제되었습니다.");
+	           init();
+	        },
+	        error: function(e) {
+	        	alert(e.statusText);
+	        }
+	     });
 	}
 }
 
@@ -263,8 +281,8 @@ function pagingFormSubmit(currentPage){
 	<!-- 메뉴 리스트 -->
 		<!-- 총 <span id="totalnum"></span>개 검색되었습니다. -->
 
-		<button onclick="addMenuToggle()" class="bt">+</button>
-		<div id="menuList">
+		<button onclick="addMenuToggle()">+</button>
+		<div id="menuList"></div>
 		
 		<!-- 메뉴 추가 폼(추가버튼 클릭 시에만 보임) -->
 		<div id="addMenuDiv" style="display:none;">
@@ -288,7 +306,7 @@ function pagingFormSubmit(currentPage){
 		    	<input type="file" id="file" name="upload" accept=".jpg, .jpeg, .png"><br>
 		    	<br><br>
 		    	<input type="reset" class="bottom" value="다시 쓰기">
-		    	<button type="button" onclick="addSub()" class="submitBT">저장</button>
+		    	<button type="button" onclick="addSub()" value="저장">저장</button>
 			</form>
 		</div>
 	</section>
