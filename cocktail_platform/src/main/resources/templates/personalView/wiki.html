@@ -15,8 +15,73 @@
         <!-- vs code
     -->
     <link rel="stylesheet" th:href="@{/CSS/personal/wiki.css}">
-    <!-- thymeleaf
-    -->
+    <!-- thymeleaf -->
+    <script>
+    $(document).ready(function(){
+      $(".filter").click(onFilterCilck);
+      getBestCocktails();
+    });
+
+    let isLoggedIn = null;
+    function getBestCocktails(){
+      isLoggedIn = $("#loggedIn").html();
+      $.ajax({
+        url:'getBestCocktails',
+        type:'get',
+        dataType:'json',
+        success:function(list){
+          showList("best3", list);
+        },
+        error:function(e){
+          console.log(JSON.stringify(e));
+        }
+      });
+    }
+
+    function showList(target, list){
+      let targetDiv = $("#" + target);
+      targetDiv.html('');
+
+      $(list).each(function(i, item){
+        if(i >= 3)
+          return;
+
+        targetDiv.append(`
+          <div class="box">
+            <a href="/FitTail/personal/wiki?cocktailCode=${item.cocktailCode}">
+              <img
+                src="/FitTail/image/cocktails/${item.savedFilename}"
+                class="boxImg"
+                alt="${target}${i}"
+              />
+              <strong class="pd_title">${item.cocktailName}</strong><br>
+              <br>
+              <p>
+                Eum ad dolor et. Autem aut fugiat debitis voluptatem
+                consequuntur sit. Et veritatis id.
+              </p>
+            </a>
+          </div>
+          `);
+      });
+    }
+    
+    function onFilterCilck(){
+        let cls = $(this).attr('filterClass');
+        let filter = $(this).attr('filterValue');
+        console.log("class : " + cls + " filter : " + filter);
+
+        if(cls == 'weather')
+          weatherRecommend(filter);
+        else if(cls == 'age')
+          ageRecommend(filter);
+        else if(cls == 'companion')
+          companionRecommend(filter);
+        else if(cls == 'event')
+          eventRecommend(filter);
+      }
+    </script>
+    
 </head>
 <body>
 <div class="body">
@@ -148,72 +213,20 @@
         </div>
     </div>
 
-    <!--상품 스토어 =================================================-->
-    <section id="mainbox1" class="mainbox1">
+    <!-- ======= mainbox1 : 인기상품 ======= -->
+      <section id="top3" class="mainbox1">
         <div class="best_prd">
           <div class="main_title">
             <a th:href="@{/}">
               <strong>인기 상품</strong><br>
             </a>
           </div>
-          <div class="row">
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="인기 상품"
-                />
-              </a>
-              <p><b>칵테일대모험</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">얼린 초딩</strong><br>
-              </a>
-              <p>
-                Eum ad dolor et. Autem aut fugiat debitis voluptatem
-                consequuntur sit. Et veritatis id.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="인기 상품"
-                />
-              </a>
-              <p><b>칵테일대모험</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">슈의 미용실</strong><br>
-              </a>
-              <p>
-                Repudiandae amet nihil natus in distinctio suscipit id.
-                Doloremque ducimus ea sit non.
-              </p>
-            </div>
-
-            <div class="box">
-              <a th:href="@{/}">
-                <img
-                  th:src="@{/image/temp.jpg}"
-                  class="boxImg"
-                  alt="인기 상품"
-                />
-              </a>
-              <p><b>칵테일대모험</b></p>
-              <a th:href="@{/}">
-                <strong class="pd_title">농협은행</strong><br>
-              </a>
-              <p>
-                Quam rem vitae est autem molestias explicabo debitis sint. Vero
-                aliquid quidem commodi.
-              </p>
-            </div>
+          <div class="row" id="best3">
+            
           </div>
         </div>
       </section>
-    <!--상품 스토어END =================================================-->
+      <!-- ======= End mainbox1 : 인기상품 ======= -->
 </div>
 </body>
 </html>
