@@ -41,7 +41,7 @@ $(document).ready(function(){
 		//더하기, 빼기
 		if(type === 'plus' && orderCount < 11) {
 			orderCount = orderCount + 1;  
-	  	}else if(type === 'minus' && orderCount > 1) {
+	  	}else if(type === 'minus' && orderCount > 0) {
 	  		orderCount = orderCount - 1;
 	  	}else {
 			alert('주문 수량을 확인해주세요.');
