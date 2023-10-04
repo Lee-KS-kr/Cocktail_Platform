@@ -61,6 +61,8 @@ $(document).ready(function(){
 		$('#hbgBtn').show();
 	});
 	
+});
+
 	//메뉴 리스트 출력
 	function menuList(list){
 		let str = '<table>';
@@ -94,7 +96,7 @@ $(document).ready(function(){
 	
 	/**주문 수량 증감*/
 	function count(type, menuNum){
-		orderCount = parseInt($('#orderCount_' + menuNum).text()); // 변수 초기화
+		let orderCount = parseInt($('#orderCount_' + menuNum).text()); // 변수 초기화
 		//더하기, 빼기
 		if(type === 'plus' && orderCount < 11) {
 			orderCount = parseInt(orderCount) + 1;  
@@ -112,6 +114,7 @@ $(document).ready(function(){
 	//추천 메뉴 목록 가져오기
 	function getRecMenu(){
 		if(memberRole === 'ROLE_PERSONAL'){
+			let storeCode = $('#storeCode').text(); 
 			$.ajax({
 				url: "recommendList",
 				type: "post",
@@ -136,6 +139,7 @@ $(document).ready(function(){
 		#<span th:text="${cocktailFlavor}"></span><br></div>`
 		
 		$(list).each(function(i,item){
+			let menuNum = item.menuNum;
 			let fileName = item.savedFilename;
 			let src;
 			
@@ -172,6 +176,8 @@ $(document).ready(function(){
 
 	//카트에 담기
 	function addCart(menuNum){
+		let storeCode = $('#storeCode').text();
+	    let orderCount = parseInt($('#orderCount_' + menuNum).text());
 		//param에 보내야 될 값들 담아주기
 		let param = {
 				storeCode : storeCode,
@@ -200,7 +206,7 @@ $(document).ready(function(){
 		let option = "width=100%,height=100%,top=100,left=500,location=no,scrollbars=no";
 		window.open("cart", "cartPopUp", option);
 	}
-});
+
 </script>
 </head>
 <body>

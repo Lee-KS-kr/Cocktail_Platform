@@ -16,7 +16,6 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-	
 	let storeCode = $('#storeCode').text();
 	let orderCode = $('#orderCode').text();
 	let menuNum;
@@ -126,7 +125,7 @@ $(document).ready(function(){
 	  		</tr>
 	  		<tr>
 	  			<td><a href="javascript:count(\'plus\',' + menuNum + ')">+</a></td>
-	  			<td><p id="orderCount_' + menuNum + '"><span th:text="${carts.orderCount}"></span>개</p></td>
+	  			<td><p id="orderCount_' + menuNum + '"><span th:text="${carts[1].orderCount}"></span>개</p></td>
 	  			<td><a href="javascript:count(\'minus\',' + menuNum + ')">-</a></td>
 	  			<td><p class="price-per-item" id="price_' + menuNum + '"><span th:text="${menuList.price}"></span>원</td>
 	  		</tr>
