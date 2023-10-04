@@ -116,7 +116,7 @@ font-family: 'Noto Sans KR', sans-serif;
     justify-content: end;
     padding-right: 40px ;
     align-items: center;
-    margin: auto;
+    margin: auto 0px;
 }
 
 #main {
@@ -160,10 +160,7 @@ img[alt=search] { width: 27px; height: 27px;  z-index: 50;}
   margin: auto;
   margin-bottom: 40px;
  z-index: 50;}
-.boxImg {
-  max-width: 100%;
-  height: auto;
- z-index: 50;}
+
 
 /*카테고리 title*/
 .main_title strong {
@@ -225,8 +222,8 @@ img[alt="banner"] {
   width: 1300px;
   margin: auto;
   border-radius: 7px;
+  border: 1px solid #313131;
   margin: 20px 0px;
-  box-shadow: 0px 20px 30px #f48a63;
  z-index: 50;}
 
 /* 상품 전체 박스 */
@@ -244,7 +241,7 @@ img[alt="banner"] {
 /*======================================================*/
 
 /*상품 이미지.*/
-.boxImg{width: 350px; height:300px; box-shadow: 0px 1px 40px #e68664; z-index: 50;}
+.boxImg{width: 350px; height:300px; box-shadow: 0px 4px 40px #ededed; z-index: 50;}
 
 /*매장 전체보기 text*/
 .marketlist{
