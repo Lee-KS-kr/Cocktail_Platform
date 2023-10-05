@@ -134,21 +134,22 @@
       width: 30px;
       height: 30px;
    position: absolute;
-   top: 100px;
-   left: 1400px;
+   top: 130px;
+   left: 1170px;
     }
   /*=====================================================*/
   
   table{
    display: flex;
    justify-content:center;
-  background-color:red;
+  background-color:#fff;
    border: 1.8px solid #313131;
    border-radius: 50px;
    margin: 40px 300px;
+    padding: 20px;
   }
   
-  .menu_img{
+  img[alt="menu_img"]{
    width: 200px;
   }
   
@@ -158,3 +159,11 @@
    font-weight: bold;
     font-family: 'Noto Sans KR', sans-serif;  
   }
+
+.price{
+   font-size: 20pt;
+   color: #9b9b9b;
+   font-weight: bold;
+    font-family: 'Noto Sans KR', sans-serif; 
+  margin: 10px 0px;
+}
