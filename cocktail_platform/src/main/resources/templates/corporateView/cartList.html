@@ -21,7 +21,7 @@ $(document).ready(function(){
 	let menuNum;
 	let menuName;
 	let price;
-	let orderCount;
+	let orderCount = 0;
 	
 	let pricePerItem = orderCount * price;
 	
@@ -141,11 +141,11 @@ $(document).ready(function(){
 	  			<td><button onclick="deleteCart(this)" data-menu-num="${menu.menuNum}" value="삭제">삭제</button></td>
 	  		</tr>
 	  		<tr>
-	  			<td><a href="count('plus', ${menu.menuNum})">+</a></td>
+	  			<td><span th:onclick="count('plus', ${menu.menuNum})">+</span></td>
 	  			<td th:each="cart: ${carts}" th:if="${cart[0] == menu.menuNum}">
 	  				<p id="orderCount_${menuNum}"><span th:text="${cart[1]}"></span>개</p>
   				</td>
-	  			<td><a href="count('minus', ${menu.menuNum})">-</a></td>
+	  			<td><span th:onclick="count('minus', ${menu.menuNum})">-</span></td>
 	  			<td>
 	  				<p class="price-per-item" id="price_${menu.menuNum}">
 	  				<span th:text="${menu.price}"></span>원
