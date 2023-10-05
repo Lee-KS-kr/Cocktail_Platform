@@ -79,7 +79,8 @@ $(document).ready(function () {
 
 //별점 가져오기
 function reviewScore(){
-    let score = parseFloat($('#storeReviewScore').val());
+    let score = parseFloat($('#storeReviewScore').html());
+	console.log("review score " + score);
     let str1 = '';
 
     for(let i = 0 ; i < 5; i++){  
@@ -214,7 +215,7 @@ function reserveSub(){
 			<div><span th:text="${store.storeName}" class="s_name"></span></div>
 			<div>
 				<div id="starDiv" class="s_star"></div>
-				<div><span th:text="${store.storeReviewScore}"></span>/5</div>
+				<div><span th:text="${store.storeReviewScore}" id="storeReviewScore"></span>/5</div>
 			</div>
 		</div>
 	</div>
