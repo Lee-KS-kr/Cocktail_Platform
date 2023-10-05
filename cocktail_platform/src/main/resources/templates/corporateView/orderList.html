@@ -80,7 +80,7 @@ function getList(list){
 		str += '<td>' + item.orderCount + '</td>';
 		str += '<td>' + item.pricePerOne + '</td>';
 		str += '<td><button onclick="orderAccept(tempOrderkey=' + item.tempOrderkey + ')" value="수락">수락</button></td>';
-		str += '<td><button onclic="orderRefuse(tempOrderkey=' + item.tempOrderkey + ')" value="거절">거절</button></td>';
+		str += '<td><button onclick="orderRefuse(tempOrderkey=' + item.tempOrderkey + ')" value="거절">거절</button></td>';
 		str += '</tr>';
 	});
 	str += '</table>';
