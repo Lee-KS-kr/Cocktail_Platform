@@ -7,30 +7,33 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
-	
-	
+	getPrice();
 });
 
-//가격
-let pricePerItem = parseInt(pricePerOne) * parseInt(orderCount);
+//가격 구하기
+function getPrice(){
+	let pricePerOne = $('#pricePerOne_' + menuNum).html();
+	let orderCount = $('#orderCount_' + menuNum).html();
+	let pricePerItem = parseInt(pricePerOne) * parseInt(orderCount);
+	
+	$('#price_' + menuNum).html(pricePerItem);
+}
 </script>
 </head>
 <body>
 	<div>
 		<p>주문 내역</p>
-		<table th:each="list: ${list}">
-			<tr>
-				<th>메뉴명</th>
-				<th>개수</th>
-				<th>가격</th>
-			</tr>
-			<tr>
-				<td th:text="${list.menuName}"></td>
-				<td th:text="${list.orderCount}"></td>
-				<td th:text="${list.menuName}"></td>
-			</tr>
-		</table>
-		
+		<div th:each="list: ${list}">
+			<span th:text="${list.menuNum}" style="display:none;"></span>
+			<span id="'pricePerOne_' + ${menuNum}" th:text="${list.pricePerOne}" style="display:none;"></span>
+			<span>메뉴</span>
+			<span th:text="${list.menuName}"></span>
+			<span>개수</span>
+			<span id="'orderCount_' + ${menuNum}" th:text="${list.orderCount}"></span>
+			<span>가격</span>
+			<span id="'price_' + ${menuNum}"></span>
+			
+		</div>
 		<p></p>
 	</div>
 </body>
