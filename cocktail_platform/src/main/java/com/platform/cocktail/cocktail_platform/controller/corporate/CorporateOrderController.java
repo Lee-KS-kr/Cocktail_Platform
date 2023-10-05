@@ -244,6 +244,7 @@ public class CorporateOrderController {
 	@ResponseBody
 	@PostMapping("menuCategory")
 	public ArrayList<Menu> menuCategory(Category category){
+		log.debug("category {}", category);
 		ArrayList<Menu> list = sService.getMenuByCategory(this.storeCode, category);
 		
 		return list;
