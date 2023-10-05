@@ -3,6 +3,7 @@ package com.platform.cocktail.cocktail_platform.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.platform.cocktail.cocktail_platform.domain.Category;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.OrderState;
 import com.platform.cocktail.cocktail_platform.domain.Reservation;
@@ -61,5 +62,7 @@ public interface StoreService {
 	int insertMenu(Menu menu);
 
 	ArrayList<StoreInfo> searchStore(String searchWord);
+
+	ArrayList<Menu> getMenuByCategory(int storeCode, Category category);
 
 }

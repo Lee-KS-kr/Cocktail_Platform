@@ -159,10 +159,13 @@ public class CorporateOrderController {
 			}
 			
 			cart += "/";
+			String temp = menuNum + "_" + orderCount;
+			cart += temp;
+		} else {			
+			String temp = menuNum + "_" + orderCount;
+			cart += temp;
 		}
 		
-		String temp = menuNum + "_" + orderCount;
-		cart += temp;
 		
 		Cookie cookie1 = new Cookie("cart", cart);
 		cookie1.setMaxAge(24 * 60 * 60);
@@ -240,11 +243,8 @@ public class CorporateOrderController {
 	
 	@ResponseBody
 	@PostMapping("menuCategory")
-	public ArrayList<Category> menuCategory(){
-		ArrayList<Category> list = new ArrayList<>();
-		list.add(Category.food);
-		list.add(Category.beverage);
-		list.add(Category.side);
+	public ArrayList<Menu> menuCategory(Category category){
+		ArrayList<Menu> list = sService.getMenuByCategory(this.storeCode, category);
 		
 		return list;
 	}

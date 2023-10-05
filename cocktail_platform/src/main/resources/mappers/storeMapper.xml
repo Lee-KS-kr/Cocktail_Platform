@@ -336,8 +336,6 @@
 				left join storeReview sr on si.storeCode = sr.storeCode
 		where
 			menu.menuName = #{menu.menuName}
-		group by
-			menu.menuName
 		order by
 			sr.storeReviewScore desc
 	</select>
@@ -374,6 +372,12 @@
 			storeName like '%' || #{searchWord} || '%'
 		order by
 			storeCode
+	</select>
+	
+	<select id="getMenuByCategory" parameterType="Menu" resultType="Menu">
+		select *
+		from menu
+		where storeCode = ${storeCode} and category = #{category}
 	</select>
 	
 </mapper>
