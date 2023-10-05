@@ -45,6 +45,7 @@ public class CorporateOrderController {
 	private MemberService mService;
 	private String loginMember;
 	private int storeCode;
+	private String orderCode;
 	
 	@GetMapping("login")
 	public String login(@AuthenticationPrincipal UserDetails user, Model m) {
@@ -84,9 +85,10 @@ public class CorporateOrderController {
 		}
 		
 		Order o = oService.makeNewOrder(store.getStoreCode(), this.loginMember);
+		this.orderCode = o.getOrderCode();
 		log.debug("order : {}", o);
 		
-		m.addAttribute("orderCode", o.getOrderCode());
+		m.addAttribute("orderCode", orderCode);
 		m.addAttribute("memberId", this.loginMember);
 		m.addAttribute("memberRole", mem.getMemberType());
 		
@@ -176,6 +178,7 @@ public class CorporateOrderController {
 			for(int i = 0; i < menus.length; i++)
 				carts[i] = menus[i].split("_");
 			
+			m.addAttribute("orderCode", this.orderCode);
 			m.addAttribute("menuList", menuList);
 			m.addAttribute("carts", carts);
 		}
@@ -254,10 +257,11 @@ public class CorporateOrderController {
 	}
 	
 	@GetMapping("payment")
-	public String payment(String orderCode) {
-		oService.finishOrderByCode(orderCode);
+	public String payment() {
+		oService.finishOrderByCode(this.orderCode);
 		this.storeCode = 0;
 		this.loginMember = null;
+		this.orderCode = null;
 		
 		return "redirect:/corporate/order/login";
 	}

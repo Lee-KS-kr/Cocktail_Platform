@@ -75,7 +75,7 @@
 				, pricePerOne
 				, orderCount)
 			values
-				(#{tempOrderkey}
+				(orderTemp_seq.nextval
 				, #{orderCode}
 				, #{storeCode}
 				, #{menuNum}
@@ -88,16 +88,11 @@
 		update 
 			orders
 		set
-			, orderDate = sysdate
-			, totalPrice = #{totalPrice}
-			, <if test="orderState != null and orderState != ''">
-            orderState = #{orderState}
-            , </if>
-		 	 menuList = #{menuList}
+			totalPrice = #{totalPrice}
+			, orderState = #{orderState}
+            , menuList = #{menuList}
 		where 
-			storeCode = #{storeCode}
-		and
-			memberid = #{memberid}
+			orderCode = #{orderCode}
 	</update>
 	
 	<select id="getMenulistByOrdercode" parameterType="String" resultType="Menu">
