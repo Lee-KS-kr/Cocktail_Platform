@@ -162,7 +162,7 @@ $(document).ready(function(){
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('plus', this.getAttribute('menuNum'))|">+</a></td>
 	  			<td>
 	  				<p class="order-count" th:id="'orderCount_' + ${menu.menuNum}">
-	  					<span th:each="item : ${carts[1]}">
+	  					<span th:each="item : ${carts}">
 	  						<span th:text="${item[1]}"></span>개
 	  					</span>
 	  				</p>
