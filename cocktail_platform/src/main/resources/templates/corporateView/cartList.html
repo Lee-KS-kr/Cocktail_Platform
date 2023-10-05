@@ -160,7 +160,7 @@ $(document).ready(function(){
 	  			<td><button th:onclick="deleteCart(${menu.menuNum})" value="삭제">삭제</button></td>
 	  		</tr>
 	  		<tr>
-	  			<td><a th:onclick="count('plus', [[${menu.menuNum}]])|">+</a></td>
+	  			<td><a th:onclick="count('plus', [[${menu.menuNum}]])">+</a></td>
 	  			<td>
 	  				<p class="order-count">
 						<span th:text="${carts[i.index][1]}" th:id="'orderCount_' + ${menu.menuNum}"></span>개
@@ -168,7 +168,7 @@ $(document).ready(function(){
 	  					</span> -->
 	  				</p>
   				</td>
-	  			<td><a th:onclick="count('minus',[[${menu.menuNum}]])|">- &nbsp;</a></td>
+	  			<td><a th:onclick="count('minus',[[${menu.menuNum}]])">- &nbsp;</a></td>
 	  			<td>
 	  				<span th:id="'price2_' + ${menu.menuNum}" th:text="${menu.price}" style="display:none;"></span>
 	  				<span class="price-per-item" th:id="'price_' + ${menu.menuNum}"></span>원
