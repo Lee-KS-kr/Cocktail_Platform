@@ -52,15 +52,20 @@ $(document).ready(function () {
 	
   	//리스트 출력
     function getList(list){
-    	let str = '<table><tr>';
+    	let str = '<table>';
     	$(list).each(function(i,item){
     		let fileName = item.savedFilename;
+			console.log(item.category.toString());
     		
-    		str += '<td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
-    				+ '"><img src="/FitTail/image/cocktails/' + fileName + '" class="store_img"></a></td></tr>';
-			str += '<tr><td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
-					+ '">' + item.menuName + '</a></td></tr>';
-    		str += '<tr><td>' + item.price + '</td>';
+    		str += '<tr><td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
+    				+ '">';
+			if(item.category.toString() == 'beverage')
+				str += '<img src="/FitTail/image/cocktails/' + fileName + '" class="store_img"></a></td>';
+			else
+				str += '<img src="/FitTail/image/menu/' + fileName + '" class="store_img"></a></td>';
+			str += '<td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
+					+ '">' + item.menuName + '</a><br>';
+    		str += '<span class="price">' = item.price + '</span></td>';
     		str += '</tr>';
     	});
     	str += '</table>';
@@ -179,32 +184,23 @@ function reserveSub(){
 <link rel="stylesheet" th:href="@{/CSS/personal/storeDetail.css}">
 <link rel="stylesheet" href="../../static/CSS/personal/storeDetail.css">
 </head>
-<body>
-<!-- 헤더 -->
-<header id="header" class="header">
-	<!-- 네비게이션바 -->
-	<div class="navi">  <!-- Header   -->
-		<div class="navi1"> 
-			<a th:href="@{/personal/home}">
-			  <img th:src="@{/image/logo_title.png}" alt="logo"></a>
-		</div>
-		<div class="navi2">
-		  <div sec:authorize="!isAuthenticated()">
-			<a th:href="@{/member/login}">로그인</a>
-			<a th:href="@{/personal/searchPage}">
-			  <img th:src="@{/image/btn_search.png}" alt="search"></a>
-		  </div>
-		  <div sec:authorize="isAuthenticated()">
-			<span><a th:href="@{/member/logout}">로그아웃</a></span>
-			<span><a th:href="@{/personal/member/myPage}">마이페이지</a></span>
-			<a th:href="@{/personal/searchPage}">
-			  <img th:src="@{/image/btn_search.png}" alt="search"></a>
-		  </div>
-	   </div>
-	</div>  
-  <!-- 네비게이션바 끝 -->
-</header>
-<!-- 헤더 끝 -->
+<body><!-- 헤더 -->
+	<header id="header" class="header">
+		<!-- 네비게이션바 -->
+		<div class="navi">  <!-- navi   -->
+			<div class="navi1">
+				<a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
+			</div>
+			<div class="navi2">
+				<p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
+				<a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
+				<a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
+				<a th:href="@{/personal/searchPage}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
+			</div>
+		</div>   
+	  <!-- 네비게이션바 끝 -->
+	</header>
+	<!-- 헤더 끝 -->
 <!-- 메인 시작 -->
 <main>
 	<!-- 기본 매장 정보 영역(매장 이미지, 매장명, 별점) -->
