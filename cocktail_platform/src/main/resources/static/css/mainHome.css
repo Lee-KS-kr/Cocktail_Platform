@@ -81,17 +81,6 @@ input-border-solid:     #e7e7e7
   font-style: normal;
 }
 
-/*.logo {
-  width: 60%;
-  height: 400px;
-  margin-bottom: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-    background-color: antiquewhite;
-}
-*/
 body {
   width: 100%;
   background-color: #ffffc7;
