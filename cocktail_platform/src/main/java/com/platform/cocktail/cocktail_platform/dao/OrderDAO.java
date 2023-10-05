@@ -22,9 +22,9 @@ public interface OrderDAO {
 
 	int makeNewOrder(Order o);
 	
-	int insertTemporderList(ArrayList<OrderTemp> list);
+	int insertTemporderList(OrderTemp ot);
 	
-	int updateOrder(Order o	);
+	int updateOrder(Order o);
 
 	ArrayList<Menu> getMenulistByOrdercode(String orderCode);
 

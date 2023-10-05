@@ -50,10 +50,12 @@ $(document).ready(function(){
 	/**주문하기*/
 	function orderMenu(){
 		if(confirm('선택한 메뉴를 주문하시겠습니까?')){
+			let orderCode = $("#orderCode").html();
+			console.log("order code" + orderCode);
 			$.ajax({
 				url: "orderMenu",
 				type: "post",
-				data: {orderCode: $("#orderCode").html()},
+				data: {orderCode: orderCode},
 				success: function(){
 					alert('선택한 메뉴를 주문하였습니다.');
 					closeCart();
