@@ -2,6 +2,7 @@ package com.platform.cocktail.cocktail_platform.controller.corporate;
 
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.Cookie;
@@ -133,20 +134,26 @@ public class CorporateOrderController {
 		findCookie:
 		if(!cart.equals("0")) {
 			log.debug("cart : {}", cart);
-			String[] orders = cart.split(",");
+			String[] orders = cart.split("/");
 			for (String str : orders) 
 				log.debug("str {}", str);
 			
 			for(int i = 0; i < orders.length; i++) {
 				String[] ms = orders[i].split("_");
-				if(ms[0].equals(String.valueOf(menuNum))) {
+				// ms[0].equals(String.valueOf(menuNum))
+				if(Integer.parseInt(ms[0]) == menuNum) {
 					for (String s : ms) 
 						log.debug("ms s {}", s);
 					
 					int count = Integer.parseInt(ms[1]) + orderCount;
 					ms[1] = String.valueOf(count);
+					log.debug("new order count : {}", count);
 					orders[i] = ms[0] + "_" + ms[1];
-					cart = StringUtils.join(orders);
+					log.debug("new order i {} {}", orders[i], i);
+					
+					ArrayList<String> orderList = new ArrayList<>(Arrays.asList(orders));
+					cart = StringUtils.join(orderList, '/');
+					log.debug("new cart {}", cart);
 					break findCookie;
 				}
 			}
@@ -160,7 +167,7 @@ public class CorporateOrderController {
 		Cookie cookie1 = new Cookie("cart", cart);
 		cookie1.setMaxAge(24 * 60 * 60);
 		res.addCookie(cookie1);
-		log.debug("cart {}", cart);
+		log.debug("newest cart {}", cart);
 	}
 	
 	@GetMapping("cart")

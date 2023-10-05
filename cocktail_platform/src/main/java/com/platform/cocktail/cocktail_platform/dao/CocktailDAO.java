@@ -17,8 +17,6 @@ public interface CocktailDAO {
 
 	String getIngredientNameByCode(int cocktailBase);
 
-	ArrayList<StoreInfo> searchStore(String searchWord);
-
 	ArrayList<Cocktails> searchCocktail(String searchWord);
 
 	ArrayList<Ingredients> searchIngredient(String searchWord);
