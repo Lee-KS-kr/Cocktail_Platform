@@ -221,25 +221,25 @@ function loadCart(){
  		<nav>
  			<div id="hbgBar">
  				<div id="btn">
+	 				<img id="hbgBtn" th:src="@{/image/hbg_icon.png}" width="25px" alt="햄버거메뉴아이콘">
  					<img th:src="@{/image/logo_title.png}" alt="logo">
  				</div>
 	 			<div id="hbgMenu">
-						<img id="hbgBtn" th:src="@{/image/hbg_icon.png}" width="25px" alt="햄버거메뉴아이콘">
 		 				<img id="closeBtn" th:src="@{/image/close.png}" width="25px" alt="닫기 버튼">
 	 				<ul>
 	 					<li><a th:href="@{/corporate/order/callStaff}">직원 호출</a></li>
-	 					<li><a th:href="@{/corporate/order/login}">나가기</a></li>
+	 					<li><a th:href="@{/corporate/order/login}">이 페이지에서 나가기</a></li>
 	 				</ul>
 	 			</div>
  			</div>
+ 			<div id="navBar">
+	 			<p>테이블 9</p>
+	 			<button onclick="menuCategory('beverage')" value="주류">주류</button>
+	 			<button onclick="menuCategory('food')" value="안주류">안주류</button>
+	 			<button onclick="menuCategory('side')" value="사이드">사이드</button>
+ 			</div>
  		</nav>
  		<section>
-			<div id="navBar">
-				<p>테이블 9</p>
-				<button onclick="menuCategory('beverage')" value="주류">주류</button>
-				<button onclick="menuCategory('food')" value="안주류">안주류</button>
-				<button onclick="menuCategory('side')" value="사이드">사이드</button>
-			</div>
  			<!-- storeCode, memberId, orderCode, memberRole -->
  			<span id="storeCode" th:text="${storeCode}" style="display:none;"></span>
  			<span id="memberId" th:text="${memberId}" style="display:none;"></span>
