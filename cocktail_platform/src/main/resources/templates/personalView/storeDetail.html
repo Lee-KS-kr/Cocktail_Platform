@@ -221,7 +221,7 @@ function reserveSub(){
 	<!-- 탭 메뉴 영역 -->
 	<section>
 		<!-- 탭 이름 -->
-		<div>
+		<div class="tab_div">
 			<ul class="tab_title">
 				<li class="tab_link on" data-tab="tab_menu">메뉴</li>
 				<li class="tab_link" data-tab="tab_review">리뷰</li>
@@ -231,14 +231,11 @@ function reserveSub(){
 		</div>
 		<br>
 		<!-- 탭 내용 -->
-		<div>
+		<div class="tab_menu_div">
 			<!-- 메뉴탭 내용 -->
 			<div id="tab_menu" class="tab_cont on">
 				<!-- 대표 메뉴 사진
 				<div id="menu_img">
-					<img th:src="">
-					<img th:src="">
-					<img th:src="">
 					<img th:src="">
 				</div> -->
 				<p>인기 메뉴</p>
@@ -259,7 +256,7 @@ function reserveSub(){
 			<!-- 매장 정보 탭 내용 -->
 			<div id="tab_storeInfo" class="tab_cont">
 				<!-- 매장 소개, 업체 정보(영업시간, 전화번호, 매장주소, 부가정보), 업체 정보(상호명, 사업자 등록번호), 원재료 정보 출력 -->
-				<table th:each="store: ${store}">
+				<table th:each="store: ${store}" class="t_c_table">
 					<tr>
 						<th colspan="2">
 							<span>매장 소개</span>
@@ -317,22 +314,15 @@ function reserveSub(){
 							<span th:text="${store.brn}"></span>
 						</td>
 					</tr>
-					<!--
-						<tr>
-							<th>
-								<span>원재료 정보</span><hr>
-							</th>
-							<td>
-								<span th:text="${ingredient.ingredientName}"></span>
-							</td>
-						</tr> 
-					 -->
 				</table>
 			</div>
 			<!-- 예약하기 탭 내용 -->
 			<div id="tab_reserve" class="tab_cont">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
-				<form id="reserveForm" th:action="@{/personal/store/reserve}" method="post" onsubmit="reserveSub()">
+				<form id="reserveForm" th:action="@{/personal/store/reserve}" method="post" onsubmit="reserveSub()" class="reserveForm">
+					<div class="re_date"></div>
+					<div class="re_time"></div>
+					
 					<p>날짜 선택</p>
 					<input type="date" name="reserveDate" required="required">
 					<p>시간 선택</p>
@@ -340,7 +330,7 @@ function reserveSub(){
 						<input type="time" id="reserveTime" required="required">
 						<input type="hidden" id="reserveTime2" name="reserveTime">
 					</div>
-					<div id="head_count">
+					<div id="head_count" class="head_count">
 						<p>인원 선택</p>
 						<div id="head_select">
 							<p>방문하시는 인원을 선택해주세요.</p>
@@ -350,7 +340,7 @@ function reserveSub(){
 							<input type="button" onclick="count('plus')" value="+">
 						</div>
 					</div>
-					<div id="reserve_info">
+					<div id="reserve_info" class="reserve_info">
 						<p>예약자 정보</p>
 						<input type="text" id="reservationName" name="reservationName" placeholder="예약자" 
 						onkeyup="nameChk()" required="required"><br>

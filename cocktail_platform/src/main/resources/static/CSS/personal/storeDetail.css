@@ -4,13 +4,13 @@
 */
 
 *{
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    text-decoration: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
 }
 a:link { color: #232323; }
 a:visited { color:#454545; }
@@ -49,266 +49,166 @@ border-spacing: 0;
 @import url("https://fonts.googleapis.com/css?family=Black+Han+Sans:400");
 @import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean");
 @font-face {
-  font-family: "S-CoreDream-3Light";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
+font-family: "S-CoreDream-3Light";
+src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+  format("woff");
+font-weight: normal;
+font-style: normal;
 }
 @font-face {
-  font-family: 'OKGUNG';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
+font-family: 'OKGUNG';
+src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+font-weight: normal;
+font-style: normal;
 }
 
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
 /*=========================================================*/
 body{background-color: #f8f8f8;}
-img[alt="logo"] {
-  width: 120px;
-  justify-content: center;
-  margin: auto;
-  float: left;
-}
+
 img[alt=search] { width: 27px; height: 27px; }
 
-.navi{
-width: 100% ;
-height: 60px;
-display: flex;
-background-color: #fff;
-border-bottom:2px solid #e7e7e7;
-justify-content: center;
-}
 
-.navi1{
+.sidebar{display:flex ;}
+
+.navi{
+    width: 100% ;
+    height: 60px;
+    background-color: #fff;
+    border-bottom:2px solid #313131;
+    display: flex; 
+    justify-content: center;
+    color: #313131;
+    font-family: 'Noto Sans KR', sans-serif;  
+    }
+  
+  .navi1{
     width: 50%;
     padding-left: 40px;
     padding-top: 5px;
     justify-content: center;
     background-color: #fff;
-}
-
-.navi2{
+  }
+  
+  .navi2{
     width: 50%;
     background-color:#fff;
     border-bottom: #e7e7e7;
     display: flex;
     justify-content: end;
+    padding-right: 40px ;
+    align-items: center;
     margin: auto;
-    margin-right: 40px;
-
-}
-/*상품 스토어 =============================================*/
-/* 상품 전체 박스 */
-.mainbox1 {
-    width: 1300px;
-    background-color: #fff;
-    border: 2px solid #e7e7e7;
-    border-radius: 20px;
-    text-align: left;
-    margin: 40px 30px;
-    box-shadow: 0px 20px 20px #e8e8e8;
-    margin: 0 auto;
   }
-/*카테고리 title*/
-.main_title strong {
-    display: flex;
-    justify-content: center;
-    color: #313131;
-    font-family: 'Noto Sans KR', sans-serif;  
-    font-size: 32pt;
-    margin-top: 25px;
-}
-/*box 감싸는 box*/
-.row{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: #fff;
-    margin: auto;
-    margin-bottom: 40px;
-  }
-
-  /* 제품 상자 스타일 */
-.box {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    
-    margin: 10px auto; /* 상하 여백을 10px으로 주고 좌우 여백은 자동으로 가운데 정렬 */
-    box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
-    display: inline-block; /* 인라인 블록 요소로 변경하여 가운데 정렬 */
-  }
-
-  .boxImg {
-    max-width: 100%;
-    height: auto;
-  }
-  /*상품명*/
-.pd_title {  
-    font-family: 'Noto Sans KR', sans-serif;  
-    color: 313131;
-    font-size: 16pt;
-    font-weight: bold;
-    text-align: left;
-    font-size: 18px;
-    float: left;
-  }
-
-/*상품 스토어 END =============================================*/
-.sidebar{display:flex ;}
-
-.navi{
-  width: 100% ;
-  height: 60px;
-  background-color: #fff;
-  border-bottom:2px solid #313131;
-  display: flex; 
-  justify-content: center;
-  color: #313131;
-  font-family: 'Noto Sans KR', sans-serif;  
-  }
-
-.navi1{
-  width: 50%;
-  padding-left: 40px;
-  padding-top: 5px;
-  justify-content: center;
-  background-color: #fff;
-}
-
-.navi2{
-  width: 50%;
-  background-color:#fff;
-  border-bottom: #e7e7e7;
-  display: flex;
-  justify-content: end;
-  padding-right: 40px ;
-  align-items: center;
-  margin: auto;
-}
 img[alt=logo] { width: 120px;}
 
 .body{ display: flex; }
 /*========================================================================*/
-/*profile icon img*/
-img[alt=icon] { width: 27px;}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #50CCAA;
-  margin: 0;
-  padding: 0;
-}
-
-
 main {
-  padding: 100px;
-}
-
-/*ì£¼ë¬¸ íŽ˜ì´ì§€*/
-.box {
-  width: 300px;
-  height: 80px;
-  line-height: 85px;
-  justify-content: center;
-  text-align: center;
-  background-color: #fff ;
-  border:1.8px solid #313131;
-  border-radius: 30px;
-  display: inline-block;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  margin: 20px auto 0px;
-}
-
-.box:hover {
-  background-color: #fff;
-  border:1.8px solid #313131;
-  text-decoration: none;
-}
-
-/*arrow.png*/
-img[alt="arrow"] {
-  width: 40px;
-  text-align: center;
+padding: 100px 200px;
+    background-color: #ff9670;
 }
 
 /*마이페이지 text*/
 h1{
-  width: 100%; font-size: 22pt; height: 70px; margin:35px 0px 10px; padding-left: 10px; 
-  border-radius: 5px; background-color: #50CCAA; display: flex; 
- font-weight: bold; display: flex; align-items: center; color: #232323;}
+width: 100%; font-size: 22pt; height: 70px; margin:35px 0px 10px; padding-left: 10px; 
+border-radius: 5px; background-color: #50CCAA; display: flex; 
+font-weight: bold; display: flex; align-items: center; color: #232323;}
 
 table{
-    width: 100%;
-  line-height: 40px;
-  justify-content: center;
-  text-align: center;
-  background-color: #fff ;
-  border:1.8px solid #313131;
-  color: #414141;
-  border-radius: 10px;
-  display: inline-block;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s;
-    margin: 20px auto 0px;
-  padding:20px 30px;
-
-}
-
-table{
-  width: 100%;
+width: 100%;
 line-height: 40px;
 justify-content: center;
 text-align: center;
-background-color: #3aff93 ;
+background-color: #06ff76 ;
 border:1.8px solid #313131;
 color: #414141;
 border-radius: 10px;
 text-decoration: none;
 font-weight: bold;
 transition: background-color 0.3s;
-  margin: 20px auto 0px;
+margin: 20px auto 0px;
 padding:20px 30px;
+}
 
+.store_box{
+  background-color: #ffffc7;  
+  box-shadow: 0px 20px 20px #e68664;
+  border: 2px solid #313131;
+  border-radius: 20px;
+  display:flex;
+  margin:0px 20px;
+  padding:20px;
+}
+.s_box_left{
+  width: 50%;
+}
+.s_box_right{
+  width: 50%;
 }
 
 /*store name*/
 .s_name{
 height:50px;
-border: 1.8px solid #313131;
-border-radius: 50px;
-background-color: #fff;
-font-size: 22pt;
-padding: 20px;
-margin: 20px;
+font-size: 35pt;
+font-weight:bold; 
+font-family: 'Noto Sans KR', sans-serif;
+margin:20px 0px 10px;
 }
 
 .s_img{
-width: 400px;
+width: 500px;
 height: 400px;
 border-radius: 20px;
-margin: 20px;
 }
 
 .s_img img{
-    width:400px;
+width:500px;
+border-radius: 20px;
+border: 1.8px solid #313131;
 }
 
 .s_star{
 font-size: 22px;
-color: orange;
 }
 
 td div{
-  width: 300px;
-  height: 300px;
-  overflow: hidden;
+width: 300px;
+height: 300px;
+overflow: hidden;
+border-radius: 10px;
 }
 
 .tab_title{display:flex;}
+
+.s_box_right div{
+  display: flex;
+}
+
+/*별점 img*/
+.starimg{
+  width: 35px;
+  margin: 20px 2px;
+}
+
+/*별점 text*/
+.s_box_right div div{
+  color: #545454;
+  font-size: 15pt;
+  font-weight: bold;
+  line-height:70px;
+}
+
+/*매장 이미지, 매장 이름, 별점 끝================*/
+
+.tab_div{
+  width: 100%;
+  background-color: #ffffc7;
+  border: 2px solid #313131;
+  border-radius: 20px;
+  display:flex;
+  margin:0px 20px;
+  padding:20px;
+}
+
+
