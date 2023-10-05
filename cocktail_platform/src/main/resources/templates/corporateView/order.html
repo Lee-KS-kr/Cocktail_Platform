@@ -80,7 +80,9 @@ function menuList(list){
 		
 		str += '<tr>';
 		//누르면 장바구니 추가
-		str += `<td rowspan="3"><a href="#" onclick="addCart(${menuNum},${orderCount})"><img src="${src}"></a></td>`;
+		if(fileName){
+			str += `<td rowspan="3"><a href="#" onclick="addCart(${menuNum},${orderCount})"><img src="${src}"></a></td>`;
+		}
 		str += `<td><a href="#" onclick="count('plus',${menuNum},${orderCount})">+</a></td></tr>`;
 		str += '<tr><td id="orderCount_' + menuNum + '">0</td></tr>';
 		str += `<tr><td><a href="#" onclick="count('minus',${menuNum},${orderCount})">-</a></td></tr>`;
@@ -120,6 +122,7 @@ function getRecMenu(){
 			data: {storeCode: storeCode},
 			dataType: "json",
 			success: function(list){
+				alert(JSON.stringify(list));
 				recMenuList(list);
 			},
 			error: function(){
@@ -148,7 +151,9 @@ function recMenuList(list){
 		else src = '/FitTail/image/menu/';
 		
 		str += '<table><tr>';
-		str += '<td><a href="#" onclick="addCart('+ menuNum + ',' + orderCount + ')"><img src="' + src + fileName + '"></a></td>';
+		if(fileName){
+			str += '<td><a href="#" onclick="addCart('+ menuNum + ',' + orderCount + ')"><img src="' + src + fileName + '"></a></td>';
+		}
 		str += '<td>' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
 		str += '</tr>';
@@ -166,7 +171,7 @@ function menuCategory(category){
 		data: {category : category},
 		dataType: "json",
 		success: function(list){
-			alert('카테고리 불러오겟습니도');
+			alert(JSON.stringify(list));
 			menuList(list);
 		},
 		error: function(){
@@ -184,7 +189,7 @@ function addCart(menuNum){
 			orderCount : currentOrderCount
 	}
 	
-	if(confirm('장바구니에 추가하시겠습니까?')){
+	if(confirm('장바구니에 추가하시겠습니까?') && currentOrderCount != 0){
 		alert("addCart 함수 호출");
 		$.ajax({
 			url: "addToCart",

@@ -171,7 +171,8 @@ function reserveSub(){
 }
 
 </script>
-<link rel="stylesheet" th:href="@{/CSS/personal/personalmain.css}">
+<link rel="stylesheet" th:href="@{/CSS/personal/storeDetail.css}">
+<link rel="stylesheet" href="../../static/CSS/personal/storeDetail.css">
 </head>
 <body>
 <!-- 헤더 -->
@@ -207,17 +208,17 @@ function reserveSub(){
 			<tr>
 				<td>
 					<span th:text="${store.storeCode}" id="storeCode" style="display:none;"></span>
-					<span th:text="${store.storeName}"></span>
+					<span th:text="${store.storeName}" class="s_name"></span>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<img th:src="@{/image/store/} + ${store.savedFilename}">
+					<div class="s_img"><img th:src="@{/image/store/} + ${store.savedFilename}"></div>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<div id="starDiv"></div>
+					<div id="starDiv" class="s_star"></div>
 				</td>
 				<td>
 					<p><span th:text="${store.storeReviewScore}"></span>/5<p>

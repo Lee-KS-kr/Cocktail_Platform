@@ -206,3 +206,42 @@ table{
 }
 
 table th{color: #ffc123; font-weight:bold; font-size: 12pt;}
+
+table{
+  width: 100%;
+line-height: 40px;
+justify-content: center;
+text-align: center;
+background-color: #fff ;
+border:1.8px solid #313131;
+color: #414141;
+border-radius: 10px;
+display: inline-block;
+text-decoration: none;
+font-weight: bold;
+transition: background-color 0.3s;
+  margin: 20px auto 0px;
+padding:20px 30px;
+
+}
+
+/*store name*/
+.s_name{
+width:300px;
+height:50px;
+border: 1.8px solid #313131;
+border-radius: 40px;
+background-color: blue;
+}
+
+.s_img{
+width: 400px;
+height: 400px;
+border-radius: 20px;
+
+}
+
+.s_star{
+font-size: 22px;
+color: orange;
+}
