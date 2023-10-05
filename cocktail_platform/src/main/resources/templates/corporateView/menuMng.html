@@ -52,7 +52,7 @@ function getList(list){
 		str += '<tr>';
 		str += '<td>' + item.menuNum + '</td>';
 		str += '<td>' + category2 + '</td>';
-		str += '<td><a href="/corporate/store/editMenu?menuNum=' + item.menuNum + ')">' + item.menuName + '</td>';
+		str += '<td><a href="/corporate/store/editMenu?menuNum=' + item.menuNum + '">' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
 		str += '<td>' + canOrder2 + '</td>';
 		str += '<td><a href="#" onclick="deleteMenu(menuNum=' + item.menuNum + ')">x</a></td>';
@@ -285,9 +285,9 @@ function pagingFormSubmit(currentPage){
 		</form>
 	-->
 	<!-- 메뉴 리스트 -->
-		<!-- 총 <span id="totalnum"></span>개 검색되었습니다. -->
 
 		<button onclick="addMenuToggle()">+</button>
+		총 <span id="totalnum"></span>개 검색되었습니다.
 		<div id="menuList"></div>
 		
 		<!-- 메뉴 추가 폼(추가버튼 클릭 시에만 보임) -->

@@ -88,13 +88,13 @@ function getList(list){
 
 		str += '<tr>';
 		str += '<td>' + item.orderCode + '</td>';
-		str += '<td>' + item.menuNum + '</td>';
+		str += '<td>' + item.menuName + '</td>';
 		str += '<td>' + item.orderCount + '</td>';
 		str += '<td>' + item.pricePerOne + '</td>';
-		str += '<td>' + item.state + '</td>';
+		str += '<td>' + state2 + '</td>';
 		if(state == 'apply'){
-			str += '<td><button onclick="orderAccept(' + item.tempOrderkey + ')" value="수락">수락</button></td>';
-			str += '<td><button onclick="orderRefuse(' + item.tempOrderkey + ')" value="거절">거절</button></td>';		
+			str += '<td><button onclick="orderAccept(' + tempOrderkey + ')" value="수락">수락</button></td>';
+			str += '<td><button onclick="orderRefuse(' + tempOrderkey + ')" value="거절">거절</button></td>';		
 		}
 		str += '</tr>';
 	});
