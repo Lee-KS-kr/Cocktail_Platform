@@ -331,13 +331,15 @@
 		select 
 			*
 		from
-			storeInfo
-		join
-			menu
-		on
-			storeInfo.storeCode = menu.storeCode
+			storeInfo si
+				inner join menu on si.storeCode = menu.storeCode
+				left join storeReview sr on si.storeCode = sr.storeCode
 		where
 			menu.menuName = #{menu.menuName}
+		group by
+			menu.menuName
+		order by
+			sr.storeReviewScore desc
 	</select>
 	
 	<insert id="insertMenu" parameterType="Menu">
