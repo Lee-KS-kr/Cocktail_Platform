@@ -74,9 +74,9 @@ function menuList(list){
 		let src;
 		
 		if(category === 'beverage'){
-			src = '/FitTail/image/cocktails/'+savedFilename;
+			src = '/FitTail/image/cocktails/'+fileName;
 		}
-		else src = '/FitTail/image/menu/'+savedFilename;
+		else src = '/FitTail/image/menu/'+fileName;
 		
 		str += '<tr>';
 		//누르면 장바구니 추가
@@ -184,7 +184,7 @@ function addCart(menuNum){
 			orderCount : currentOrderCount
 	}
 	
-	if(confirm('장바구니에 추가하시겠습니까?') && currentOrderCount != 0){
+	if(confirm('장바구니에 추가하시겠습니까?')){
 		alert("addCart 함수 호출");
 		$.ajax({
 			url: "addToCart",
