@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.platform.cocktail.cocktail_platform.config.CodeConfig;
 import com.platform.cocktail.cocktail_platform.dao.StoreDAO;
+import com.platform.cocktail.cocktail_platform.domain.Category;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.MenuPreference;
 import com.platform.cocktail.cocktail_platform.domain.OrderState;
@@ -250,4 +251,15 @@ public class StoreServiceImple implements StoreService {
 		log.debug("{}", list);
 		return list;
 	}
+
+	@Override
+	public ArrayList<Menu> getMenuByCategory(int storeCode, Category category) {
+		Menu menu = new Menu();
+		menu.setStoreCode(storeCode);
+		menu.setCategory(category);
+		
+		ArrayList<Menu> list = dao.getMenuByCategory(menu);
+		return list;
+	}
+	
 }

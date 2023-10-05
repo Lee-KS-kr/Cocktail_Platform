@@ -374,4 +374,10 @@
 			storeCode
 	</select>
 	
+	<select id="getMenuByCategory" parameterType="Menu" resultType="Menu">
+		select *
+		from menu
+		where storeCode = ${storeCode} and category = #{category}
+	</select>
+	
 </mapper>

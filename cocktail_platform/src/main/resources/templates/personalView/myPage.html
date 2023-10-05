@@ -101,21 +101,25 @@
                             <table>
                                 <tr>
                                     <th>맛</th>
-                                    <td th:each="item : ${taste.taste}" id="tasteList">
-                                        <span th:if="${item} == 'sweet'">단맛</span>
-                                        <span th:if="${item} == 'sour'">신맛</span>
-                                        <span th:if="${item} == 'bitter'">쓴맛</span>
-                                        <span th:if="${item} == 'salty'">짠맛</span>
+                                    <td>
+                                        <span th:each="item : ${taste.taste}" id="tasteList">
+                                            <span th:if="${item} == 'sweet'">단맛</span>
+                                            <span th:if="${item} == 'sour'">신맛</span>
+                                            <span th:if="${item} == 'bitter'">쓴맛</span>
+                                            <span th:if="${item} == 'salty'">짠맛</span>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>향</th>
-                                    <td  th:each="item : ${taste.flavor}" id="flavorList">
-                                        <span th:if="${item} == 'alcohol'">알코올향</span>
-                                        <span th:if="${item} == 'coffee&chocolate'">커피/초콜릿향</span>
-                                        <span th:if="${item} == 'general'">과일향</span>
-                                        <span th:if="${item} == 'citrus'">시트러스향</span>
-                                        <span th:if="${item} == 'tropical'">트로피컬향</span>
+                                    <td>
+                                        <span th:each="item : ${taste.flavor}" id="flavorList">
+                                            <span th:if="${item} == 'alcohol'">알코올향</span>
+                                            <span th:if="${item} == 'coffee&chocolate'">커피/초콜릿향</span>
+                                            <span th:if="${item} == 'general'">과일향</span>
+                                            <span th:if="${item} == 'citrus'">시트러스향</span>
+                                            <span th:if="${item} == 'tropical'">트로피컬향</span>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
