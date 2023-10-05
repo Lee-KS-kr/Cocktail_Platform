@@ -149,7 +149,7 @@ $(document).ready(function(){
 	  
 	  <!-- 카트에 담은 메뉴 출력 -->
 	  <div id="cartList">
-	  	<table th:each="menu: ${menuList}" th:if="${menuList != null}">
+	  	<table th:each="menu, i: ${menuList}" th:if="${menuList != null}">
 	  		<!-- null일 경우 에러메세지 출력 -->
 	  		<tbody><tr><td th:if="${menuList == null}">장바구니에 담긴 상품이 없습니다.</td></tr></tbody>
 	  		<!-- null이 아닐 경우 메뉴 출력 -->
@@ -164,9 +164,9 @@ $(document).ready(function(){
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('plus', this.getAttribute('menuNum'))|">+</a></td>
 	  			<td>
 	  				<p class="order-count">
-	  					<span th:each="item : ${carts}">
-	  						<span th:text="${item[1]}" th:id="'orderCount_' + ${menu.menuNum}"></span>개
-	  					</span>
+						<span th:text="${carts[i.index][1]}" th:id="'orderCount_' + ${menu.menuNum}"></span>개
+	  					<!-- <span th:each="item : ${carts}">
+	  					</span> -->
 	  				</p>
   				</td>
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('minus',this.getAttribute('menuNum'))|">- &nbsp;</a></td>
