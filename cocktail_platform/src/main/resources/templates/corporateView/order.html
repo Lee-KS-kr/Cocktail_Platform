@@ -4,10 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 페이지</title>
-<!--
+<!--  -->
 <link rel="stylesheet" href="../../static/CSS/corporate/reset.css">
 <link rel="stylesheet" href="../../static/CSS/corporate/order.css">
-  -->
+
 <!-- vs code -->
 <link rel="stylesheet" th:href="@{/CSS/corporate/reset.css}">
 <link rel="stylesheet" th:href="@{/CSS/corporate/order.css}">
@@ -66,7 +66,7 @@ function allList(){
 
 //메뉴 리스트 출력
 function menuList(list){
-	let str = '<table>';
+	let str = '<table class="menulist">';
 	$(list).each(function(i,item){
 		let fileName = item.savedFilename;
 		menuNum = item.menuNum;
@@ -84,13 +84,13 @@ function menuList(list){
 		if(fileName){
 			str += `<td rowspan="3"><a href="#" onclick="addCart(${menuNum},${orderCount})"><img src="${src}"></a></td>`;
 		}
-		str += `<td><a href="#" onclick="count('plus',${menuNum},${orderCount})">+</a></td></tr>`;
-		str += '<tr><td id="orderCount_' + menuNum + '">0</td></tr>';
-		str += `<tr><td><a href="#" onclick="count('minus',${menuNum},${orderCount})">-</a></td></tr>`;
-		str += '<tr><td>' + item.menuName + '</td>';
+		str += `<td><a href="#" onclick="count('plus',${menuNum},${orderCount})"class="p">+</a></td></tr>`;
+		str += '<tr><td id="orderCount_' + menuNum + '" class="menunum">0</td></tr>';
+		str += `<tr><td><a href="#" onclick="count('minus',${menuNum},${orderCount})"class="m">-</a></td></tr>`;
+		str += '<tr><td class="name">' + item.menuName + '</td>';
 		str += '<td rowspan="2"><button onclick="addCart('+ menuNum + ',' + orderCount + ')" value="카트에 담기" class="cart">카트에 담기</button></td></tr>';
-		str += '<tr><td>' + item.price + '</td>';
-		str += '<tr><td id="menuNum_' + menuNum + '" style="display:none;">' + menuNum + '</td>';
+		str += '<tr><td class="price">' + item.price + '</td>';
+		str += '<tr><td id="menuNum_' + menuNum + '" style="display:none;" class="num">' + menuNum + '</td>';
 	});
 	str += '</table>';
 	$('#menuList').html(str);
@@ -221,25 +221,25 @@ function loadCart(){
  		<nav>
  			<div id="hbgBar">
  				<div id="btn">
-	 				<img id="hbgBtn" th:src="@{/image/hbg_icon.png}" width="25px" alt="햄버거메뉴아이콘">
  					<img th:src="@{/image/logo_title.png}" alt="logo">
  				</div>
 	 			<div id="hbgMenu">
+						<img id="hbgBtn" th:src="@{/image/hbg_icon.png}" width="25px" alt="햄버거메뉴아이콘">
 		 				<img id="closeBtn" th:src="@{/image/close.png}" width="25px" alt="닫기 버튼">
 	 				<ul>
 	 					<li><a th:href="@{/corporate/order/callStaff}">직원 호출</a></li>
-	 					<li><a th:href="@{/corporate/order/login}">이 페이지에서 나가기</a></li>
+	 					<li><a th:href="@{/corporate/order/login}">나가기</a></li>
 	 				</ul>
 	 			</div>
  			</div>
- 			<div id="navBar">
-	 			<p>테이블 9</p>
-	 			<button onclick="menuCategory('beverage')" value="주류">주류</button>
-	 			<button onclick="menuCategory('food')" value="안주류">안주류</button>
-	 			<button onclick="menuCategory('side')" value="사이드">사이드</button>
- 			</div>
  		</nav>
  		<section>
+			<div id="navBar">
+				<p>테이블 9</p>
+				<button onclick="menuCategory('beverage')" value="주류">주류</button>
+				<button onclick="menuCategory('food')" value="안주류">안주류</button>
+				<button onclick="menuCategory('side')" value="사이드">사이드</button>
+			</div>
  			<!-- storeCode, memberId, orderCode, memberRole -->
  			<span id="storeCode" th:text="${storeCode}" style="display:none;"></span>
  			<span id="memberId" th:text="${memberId}" style="display:none;"></span>

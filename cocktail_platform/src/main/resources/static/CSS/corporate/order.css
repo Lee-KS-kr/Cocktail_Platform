@@ -61,133 +61,11 @@ body {
   padding: 0;
 }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border: 1.8px solid #313131;
-  border-radius: 8px;
-}
-
-.sidebar {
-  width: 300px;
-  padding: 20px;
-  border-radius: 8px;
-  display: block;
-  background-color: #fff;
-  border: 1.8px solid #313131;
-  margin: 0px 20px;
-}
-
-/*side bar - <hr>*/   
-.sidebar-divider {
-  margin: 20px 0px;
-  border: 1px solid #313131;
-}
-
-.nav-item ul {
-  list-style: none;
-  padding: 0;
-}
-
-.nav-item ul li {
-  margin: 20px 0;
-}
-
-.nav-item ul li a {
-  text-decoration: none;
-  color: #232323;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.nav-item ul li a:hover {
-  color: #50CCAA;
-}
-
 main {
   display: flex;
   padding: 20px;
   height: 600px;
 }
-
-/*ì£¼ë¬¸ íŽ˜ì´ì§€*/
-.box {
-  width: 300px;
-  height: 80px;
-  line-height: 85px;
-  justify-content: center;
-  text-align: center;
-  background-color: #fff ;
-  border:1.8px solid #313131;
-  border-radius: 30px;
-  display: inline-block;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s;
-    margin: 20px auto 0px;
-
-}
-
-.box:hover {
-  background-color: #fff;
-  border:1.8px solid #313131;
-  text-decoration: none;
-
-}
-
-/*arrow.png*/
-img[alt="arrow"] {
-  width: 40px;
-  text-align: center;
-}
-
-/* Footer ìŠ¤íƒ€ì¼ */
-footer {
-  background-color: #232323;
-  padding: 20px 0;
-  text-align: center;
-}
-
-.footer1 p {
-  font-size: 14px;
-  color: #e7e7e7;
-}
-
-/*마이페이지 text*/
-h1{
-  width: 100%; font-size: 22pt; height: 70px; margin:35px 0px 10px; padding-left: 10px; 
-  border-radius: 5px; background-color: #50CCAA; display: flex; 
- font-weight: bold; display: flex; align-items: center; color: #232323;}
-
-.section{
-  display: flex;
-  margin: 0 auto;
-  width: 1000px;
-}
-
-/*member Info, store Info*/
-.memberInformation, .storeInformation{
-  width: 45%;
-  border-radius: 10px;
-  background-color: #fff;
-  border: 1.8px solid #313131;
-  padding: 20px;
-  margin: 0 auto;
-}
-
-/*스토어 이미지*/
-.store_image{
-  width: 250px;
-}
-
-input[value="수정"]{
-  margin: 10px 30px;
-  
-}
-
-h2{font-weight:bold; font-family: 'Noto Sans KR', sans-serif;  }
 
 table{
     width: 100%;
@@ -240,8 +118,6 @@ table th{color: #ffc123; font-weight:bold; font-size: 12pt;}
   border: 1px solid #ccc;
   
 }
-
-
 button{
     width:150px;
   line-height:40px;
@@ -263,3 +139,19 @@ button{
   justify-content: center;
   margin: auto;
 }
+
+#navBar{
+  display: flex;
+  justify-content: center;
+}
+
+/*햄버거 메뉴*/
+.hbgMenu ul li{
+  width:150px;
+line-height:40px;
+background-color: #1e65ff;
+border: 1.8px solid #313131;
+border-radius:30px;
+margin: 10px 5px;
+display: flex;
+justify-content: center;}
