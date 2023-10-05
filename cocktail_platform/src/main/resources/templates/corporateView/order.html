@@ -88,7 +88,7 @@ function menuList(list){
 		str += '<tr><td id="orderCount_' + menuNum + '">0</td></tr>';
 		str += `<tr><td><a href="#" onclick="count('minus',${menuNum},${orderCount})">-</a></td></tr>`;
 		str += '<tr><td>' + item.menuName + '</td>';
-		str += '<td rowspan="2"><button onclick="addCart('+ menuNum + ',' + orderCount + ')" value="카트에 담기">카트에 담기</button></td></tr>';
+		str += '<td rowspan="2"><button onclick="addCart('+ menuNum + ',' + orderCount + ')" value="카트에 담기" class="cart">카트에 담기</button></td></tr>';
 		str += '<tr><td>' + item.price + '</td>';
 		str += '<tr><td id="menuNum_' + menuNum + '" style="display:none;">' + menuNum + '</td>';
 	});
@@ -251,7 +251,6 @@ function loadCart(){
  		</section>
  		<hr><br>
  		<section>
-	 		<p>전체상품</p>
 	 		<!-- 전체 메뉴 출력 -->
 	 		<div id="menuList"></div><br>
  		</section>
@@ -263,7 +262,5 @@ function loadCart(){
  			</div>
  		</section>
 	</main>
-	<footer>
-	</footer>
 </body>
 </html>
