@@ -165,6 +165,17 @@ h1{
 }
 
 button{
+  width:50px;
+  line-height:40px;
+  background-color: #ff7676;
+  border: 1.8px solid #313131;
+  border-radius:30px;
+  margin: 10px 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.input_bt{
   width:150px;
   height:40px;
   line-height:40px;
