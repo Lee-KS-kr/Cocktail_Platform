@@ -19,11 +19,6 @@ $(document).ready(function(){
 	let storeCode = $('#storeCode').text();
 	let orderCode = $('#orderCode').text();
 	
-	/**카트에 담긴 데이터 string으로 변환 후 담아주기*/
-	var cartArrayData = carts[1];
-	var cartArrayString = cartArrayData.toString();
-	$(`#cart_${menuNum}`).html(cartArrayString);
-	
 	/**주문 수량 증감*/
 	function count(type, menuNum){
 		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).html());
@@ -166,7 +161,7 @@ $(document).ready(function(){
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('plus', this.getAttribute('menuNum'))|">+</a></td>
 	  			<td>
 	  				<p class="order-count" th:id="'orderCount_' + ${menu.menuNum}">
-	  					<span id="'cart_' + ${menu.menuNum}"></span>개
+	  					<span th:text="${carts[1]}"></span>개
 	  				</p>
   				</td>
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('minus',this.getAttribute('menuNum'))|">- &nbsp;</a></td>
