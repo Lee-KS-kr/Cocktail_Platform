@@ -338,7 +338,6 @@
 			menu.menuName = #{menu.menuName}
 		order by
 			sr.storeReviewScore desc
-		limit 5
 	</select>
 	
 	<insert id="insertMenu" parameterType="Menu">
