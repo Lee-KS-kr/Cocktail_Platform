@@ -99,12 +99,11 @@ $(document).ready(function(){
 	}
 
 	/**주문하기*/
-	function orderMenu(menuNum){
+	function orderMenu(){
 		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).html());
 		let menuName = $(`#menuName_${menuNum}`).html();
 		let price = parseInt($(`#price_${menuNum}`).html());
 		
-		alert(menuNum);
 		let result = confirm('선택한 메뉴를 주문하시겠습니까?');
 		let data = {
 			storeCode: storeCode,
@@ -161,7 +160,7 @@ $(document).ready(function(){
 	  			<td><button th:onclick="deleteCart(${menu.menuNum})" value="삭제">삭제</button></td>
 	  		</tr>
 	  		<tr>
-	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('plus', this.getAttribute('menuNum'))|">+</a></td>
+	  			<td><a th:menuNum="${menu.menuNum}" th:onclick="count('plus', this.getAttribute('menuNum'))|">+</a></td>
 	  			<td>
 	  				<p class="order-count">
 						<span th:text="${carts[i.index][1]}" th:id="'orderCount_' + ${menu.menuNum}"></span>개
@@ -169,17 +168,17 @@ $(document).ready(function(){
 	  					</span> -->
 	  				</p>
   				</td>
-	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('minus',this.getAttribute('menuNum'))|">- &nbsp;</a></td>
+	  			<td><a th:menuNum="${menu.menuNum}" th:onclick="count('minus',this.getAttribute('menuNum'))|">- &nbsp;</a></td>
 	  			<td>
 	  				<span th:id="'price2_' + ${menu.menuNum}" th:text="${menu.price}" style="display:none;"></span>
-	  				<p class="price-per-item" th:id="'price_' + ${menu.menuNum}"></p>원
+	  				<span class="price-per-item" th:id="'price_' + ${menu.menuNum}"></span>원
   				</td>
 	  		</tr>
 	  	</table>
 		<div>
-			<p class="cart-total">합계: <span id="totalPrice"></span></p>
+			<p class="cart-total">합계: <span id="totalPrice"></span>원</p>
 	 		<button class="orderBT" onclick="closeCart()">닫기</button>
-	 		<button class="orderBT" th:onclick="orderMenu(${menu.menuNum})">주문하기</button>
+	 		<button class="orderBT" th:onclick="orderMenu()">주문하기</button>
 		</div>
 	  </div>
 	</div>
