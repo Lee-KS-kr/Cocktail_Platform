@@ -18,16 +18,9 @@
 $(document).ready(function(){
 	let storeCode = $('#storeCode').text();
 	let orderCode = $('#orderCode').text();
-	let menuNum;
-	let menuName;
-	let price;
-	let orderCount;
-	
-	let pricePerItem;
 	
 	/**카트 메뉴 삭제*/
-	function deleteCart(button){
-		menuNum = $(this).attr('id').split('_')[1]; //menuNum 추출
+	function deleteCart(menuNum){
 		let result = confirm('선택한 메뉴를 삭제하시겠습니까?');
 		if(result == true){
 			$.ajax({
@@ -59,8 +52,24 @@ $(document).ready(function(){
 		}
 		
 		//결과 출력
-	    $(`#orderCount_menuNum`).text(currentOrderCount);
+	    $('#orderCount_' + menuNum).text(currentOrderCount);
+		
+		//가격 업데이트
+		updatePrice(menuNum, currentOrderCount);
+		
 		return currentOrderCount;
+	}
+	
+	/** 가격 업데이트 */
+	function updatePrice(menuNum, currentOrderCount) {
+	    let pricePerItem = parseInt($(`#orderCount_${menuNum}`).text()) * parseInt($(`#price_${menuNum}`).text());
+	    if(!isNaN(pricePerItem)) {
+	        $(`#price_${menuNum}`).text(pricePerItem + '원');
+	    } else {
+	        $(`#price_${menuNum}`).text('0원');
+	    }
+	  	//getTotal 함수 호출
+	    getTotal();
 	}
 	
 	/**가격 총 합계 계산*/
@@ -69,24 +78,30 @@ $(document).ready(function(){
 		
 		//각 메뉴마다 가격을 가져와서 totalPrice에 더함
         $('.price-per-item').each(function() {
-        	menuNum = $(this).attr('id').split('_')[1]; //menuNum 추출
-            pricePerItem = parseInt($('#orderCount_' + menuNum).text()) * parseInt($('#price_' + menuNum).text());
-            totalPrice += pricePerItem;
+        	let menuNum = $(this).attr('id').split('_')[1]; //menuNum 추출
+            let pricePerItem = parseInt($(`#orderCount_${menuNum}`).text()) * parseInt($(`#price_${menuNum}`).text());
+            
+         	//만약 숫자가 NaN이 아니라면 더함
+            if(!isNaN(pricePerItem)) {
+                totalPrice += pricePerItem;
+            }
         });
-
+		
         //totalPrice를 화면에 출력
-        $('#totalPrice').text(totalPrice + '원');
+        if (!isNaN(totalPrice)) {
+            $('#totalPrice').text(totalPrice + '원');
+        } else {
+            $('#totalPrice').text('0원'); //totalPrice가 NaN이라면 0원으로 출력
+        }
     }
-	
-	//getTotal 함수 호출
-    getTotal();
-
 
 	/**주문하기*/
-	function orderMenu(){
-		let currentOrderCount = parseInt($(`#orderCount_${menu.menuNum}`).html());
-		let menuNum = $(`#menuNum_${menuNum}`).text();
+	function orderMenu(menuNum){
+		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).html());
+		let menuName = $(`#menuName_${menuNum}`).text();
+		let price = parseInt($(`#price_${menuNum}`).text());
 		
+		alert(menuNum);
 		let result = confirm('선택한 메뉴를 주문하시겠습니까?');
 		let data = {
 			storeCode: storeCode,
@@ -140,27 +155,32 @@ $(document).ready(function(){
 	  		<tr>
 	  			<td>
 	  				<span th:text="${menu.menuName}"></span>
-	  				<span id="menuNum_${menuNum}" th:text="${menu.menuNum}" style="display:none;"></span>
+	  				<span th:id="'menuNum_' + ${menuNum}" th:text="${menu.menuNum}" style="display:none;"></span>
   				</td>
 	  			<td><button th:onclick="deleteCart(${menu.menuNum})" value="삭제">삭제</button></td>
 	  		</tr>
 	  		<tr>
-	  			<td><a th:onclick="count('plus', ${menu.menuNum})">+</a></td>
-	  			<td th:each="cart: ${carts}" th:if="${cart[0] == menu.menuNum}">
-	  				<p id="orderCount_${menuNum}"><span th:text="${cart[1]}"></span>개</p>
+	  			<td><a th:menuNum="${menu.menuNum}" th:onclick="count('plus', this.getAttribute('menuNum'))">+</a></td>
+	  			<td th:each="cart: ${carts}">
+	  				<p th:id="'orderCount_' + ${menuNum}"><span th:text="${cart[1]}"></span>개</p>
   				</td>
-	  			<td><a th:onclick="count('minus', ${menu.menuNum})">-</a></td>
+	  			<td><a th:menuNum="${menu.menuNum}" th:onclick="count('minus',this.getAttribute('menuNum'))">-</a></td>
 	  			<td>
-	  				<p class="price-per-item" id="price_${menu.menuNum}">
+	  				<p class="price-per-item" th:id="'price_' + ${menu.menuNum}">
 	  				<span th:text="${menu.price}"></span>원
   				</td>
 	  		</tr>
+	  		<tr>
+	  			<td>
+	  				<p class="cart-total">합계: <span id="totalPrice"></span></p>
+	  			</td>
+	  		</tr>
+	  		<tr>
+	  			<td><button class="orderBT" onclick="closeCart()">닫기</button>
+	  			<button class="orderBT" th:onclick="orderMenu(${menu.menuNum})">주문하기</button></td>
+	  		</tr>
 	  	</table>
-	  	
 	  </div>
-	  <p class="cart-total">합계: <span id="totalPrice"></span></p>
-	  <button class="orderBT" onclick="closeCart()">닫기</button>
-	  <button class="orderBT" onclick="orderMenu()">주문하기</button>
 	</div>
   </body>
 </html>

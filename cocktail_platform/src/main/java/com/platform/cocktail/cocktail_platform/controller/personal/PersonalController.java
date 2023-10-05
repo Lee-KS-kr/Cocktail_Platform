@@ -37,6 +37,7 @@ public class PersonalController {
 	@GetMapping("wiki")
 	public String wiki(int cocktailCode, Model m) {
 		Cocktails cocktail = cService.findCocktailByCode(cocktailCode);
+		log.debug("cocktail {}", cocktail);
 		ArrayList<StoreInfo> storeList = sService.getStoreByCocktailName(cocktail.getCocktailName());
 		
 		m.addAttribute("cocktail", cocktail);

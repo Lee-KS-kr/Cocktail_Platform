@@ -365,4 +365,15 @@
 			)
 	</insert>
 	
+	<select id="searchStore" parameterType="String" resultType="StoreInfo">
+		select
+			*
+		from
+			storeInfo
+		where
+			storeName like '%' || #{searchWord} || '%'
+		order by
+			storeCode
+	</select>
+	
 </mapper>
