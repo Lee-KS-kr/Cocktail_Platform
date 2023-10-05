@@ -45,7 +45,7 @@ public interface StoreDAO {
 
 	int insertStoreReview(StoreReview review);
 
-	int insertMenuPreference(ArrayList<MenuPreference> list);
+	int insertMenuPreference(MenuPreference mp);
 
 	int getCapacityByCode(int storeCode);
 
@@ -72,6 +72,8 @@ public interface StoreDAO {
 	ArrayList<StoreInfo> searchStore(String searchWord);
 
 	ArrayList<Menu> getMenuByCategory(Menu menu);
+
+	StoreReview getScoreReviewByCode(String orderCode);
 
 	
 }
