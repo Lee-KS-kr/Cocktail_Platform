@@ -21,7 +21,7 @@ $(document).ready(function(){
 	
 	/**주문 수량 증감*/
 	function count(type, menuNum){
-		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).text());
+		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).html());
 		
 		//더하기, 빼기
 		if(type === 'plus' && currentOrderCount < 11) {
@@ -44,15 +44,16 @@ $(document).ready(function(){
 	
 	/** 가격 업데이트 */
 	function updatePrice(menuNum, currentOrderCount) {
-	    let pricePerItem = parseInt($(`#orderCount_${menuNum}`).text()) * parseInt($(`#price_${menuNum}`).text());
+	    let pricePerItem = parseInt(currentOrderCount) * parseInt($(`#price_${menuNum}`).html());
 	    if(!isNaN(pricePerItem)) {
 	        $(`#price_${menuNum}`).text(pricePerItem + '원');
 	    } else {
 	        $(`#price_${menuNum}`).text('0원');
 	    }
-	  	//getTotal 함수 호출
-	    getTotal();
 	}
+	
+	//getTotal 함수 호출
+    getTotal();
 	
 	/**가격 총 합계 계산*/
 	function getTotal(){
@@ -61,7 +62,7 @@ $(document).ready(function(){
 		//각 메뉴마다 가격을 가져와서 totalPrice에 더함
         $('.price-per-item').each(function() {
         	let menuNum = $(this).attr('id').split('_')[1]; //menuNum 추출
-            let pricePerItem = parseInt($(`#orderCount_${menuNum}`).text()) * parseInt($(`#price_${menuNum}`).text());
+            let pricePerItem = parseInt($(`#orderCount_${menuNum}`).html()) * parseInt($(`#price_${menuNum}`).html());
             
          	//만약 숫자가 NaN이 아니라면 더함
             if(!isNaN(pricePerItem)) {
@@ -71,9 +72,9 @@ $(document).ready(function(){
 		
         //totalPrice를 화면에 출력
         if (!isNaN(totalPrice)) {
-            $('#totalPrice').text(totalPrice + '원');
+            $('#totalPrice').html(totalPrice + '원');
         } else {
-            $('#totalPrice').text('0원'); //totalPrice가 NaN이라면 0원으로 출력
+            $('#totalPrice').html('0원'); //totalPrice가 NaN이라면 0원으로 출력
         }
     }
 	
@@ -99,7 +100,7 @@ $(document).ready(function(){
 	function orderMenu(menuNum){
 		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).html());
 		let menuName = $(`#menuName_${menuNum}`).text();
-		let price = parseInt($(`#price_${menuNum}`).text());
+		let price = parseInt($(`#price_${menuNum}`).html());
 		
 		alert(menuNum);
 		let result = confirm('선택한 메뉴를 주문하시겠습니까?');
@@ -159,8 +160,12 @@ $(document).ready(function(){
 	  		</tr>
 	  		<tr>
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('plus', this.getAttribute('menuNum'))|">+</a></td>
-	  			<td th:each="cart: ${carts}">
-	  				<p th:id="'orderCount_' + ${menuNum}"><span th:text="${cart[1]}"></span>개</p>
+	  			<td>
+	  				<p class="order-count" th:id="'orderCount_' + ${menu.menuNum}">
+	  					<span th:each="item : ${carts}">
+	  						<span th:text="${item[1]}"></span>개
+	  					</span>
+	  				</p>
   				</td>
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('minus',this.getAttribute('menuNum'))|">- &nbsp;</a></td>
 	  			<td>
@@ -168,18 +173,12 @@ $(document).ready(function(){
 	  				<span th:text="${menu.price}"></span>원
   				</td>
 	  		</tr>
-	  		<tr>
-	  			<td colspan="4">
-	  				<p class="cart-total">합계: <span id="totalPrice"></span></p>
-	  			</td>
-	  		</tr>
-	  		<tr>
-	  			<td>
-	  				<button class="orderBT" onclick="closeCart()">닫기</button>
-	  				<button class="orderBT" th:onclick="orderMenu(${menu.menuNum})">주문하기</button>
-  				</td>
-	  		</tr>
 	  	</table>
+		<div>
+			<p class="cart-total">합계: <span id="totalPrice"></span></p>
+	 		<button class="orderBT" onclick="closeCart()">닫기</button>
+	 		<button class="orderBT" th:onclick="orderMenu(${menu.menuNum})">주문하기</button>
+		</div>
 	  </div>
 	</div>
   </body>

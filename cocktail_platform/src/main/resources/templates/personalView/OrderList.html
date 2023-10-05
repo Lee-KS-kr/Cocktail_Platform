@@ -8,10 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>주문내역</title>
  
-    <link rel="stylesheet" href="../../static/CSS/personal/OrderList.css">
-   
-  <!-- vs code  -->
-   <link rel="stylesheet" th:href="@{/CSS/personal/OrderList.css}">
+    <!-- 
+    <link rel="stylesheet" href="../../static/CSS/personal/OrderList.css"> 
+    vs code  -->
+
+    <link rel="stylesheet" th:href="@{/CSS/personal/OrderList.css}">
+
     <!-- thymeleaf
     -->
 </head>
@@ -64,17 +66,27 @@
                 <div class="con2">
                     <div th:if="${#lists.isEmpty(orderList)}">예약 내역이 없습니다.</div>
                     <table th:if="${#lists.isEmpty(orderList) != true}">
-                        <tr th:each="order : ${orderList}">
+                        <tr th:each="order : ${orderList}" class="orderRow">
                             <td> 
                                 <a th:href="@{/personal/member/orderInfo(orderCode=${order.orderCode})}">
                                     <span th:text="${order.orderCode}"></span> <br>
                                 </a>
-                                <a th:href="@{/personal/member/evaluation(orderCode=${order.orderCode})}">리뷰 작성</a>
+                                <span th:if="${order.isReviewDone} != true">
+                                    <a th:href="@{/personal/member/evaluation(orderCode=${order.orderCode})}">리뷰 작성</a>
+                                </span>
                             </td>
                             <td th:text="${order.storeName}"></td>
-                            <td th:text="${order.totalPrice}"></td>
+                            <td>
+                                <span th:text="${order.totalPrice}"></span>원 &nbsp;&nbsp;&nbsp;
+                            </td>
                             <td th:text="${order.orderDate}"></td>
-                            <td th:text="${order.orderState}"></td>
+                            <td>
+                                &nbsp;&nbsp;&nbsp;
+                                <span th:if="${order.orderState.toString().equals('apply')}">대기</span>
+                                <span th:if="${order.orderState.toString().equals('received')}">수락</span>
+                                <span th:if="${order.orderState.toString().equals('refused')}">거절</span>
+                                <span th:if="${order.orderState.toString().equals('finished')}">완료</span>
+                            </td>
                         </tr>
                     </table>
                 </div>

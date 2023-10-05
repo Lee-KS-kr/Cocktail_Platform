@@ -178,16 +178,16 @@
 				, memberId
 				, storeReviewScore
 				, storeReviewText
-				, reviewDate
-				, savedFilename)
+				<if test="originFilename != null"> , originFilename
+				, savedFilename </if> )
 		values
-				(storeReviewNum_seq.nextval
+				(storeReview_seq.nextval
 				, #{storeCode}
 				, #{memberId}
 				, #{storeReviewScore}
 				, #{storeReviewText}
-				, to_char(sysdate, 'yyyymmdd')
-				, #{savedFilename})
+				<if test="originFilename != null and originFilename != ''"> , #{originFilename}
+				, #{savedFilename} </if> )
 	</insert>
 	
 	<insert id="insertMenuPreference" parameterType="MenuPreference">
@@ -323,8 +323,6 @@
 			storeReview
 		where
 			storeCode = #{storeCode}
-		order by
-			storeReviewScore desc
 	</select>
 	
 	<select id="getStoreByCocktailName" parameterType="String" resultType="StoreInfo">
@@ -343,7 +341,7 @@
 					sr.storeReviewScore desc
 				)
 		where
-			rownum between 0 and 4
+			rownum between 0 and 5
 	</select>
 	
 	<insert id="insertMenu" parameterType="Menu">
@@ -383,7 +381,13 @@
 	<select id="getMenuByCategory" parameterType="Menu" resultType="Menu">
 		select *
 		from menu
-		where storeCode = ${storeCode} and category = #{category}
+		where storeCode = #{storeCode} and category = #{category}
+	</select>
+	
+	<select id="getScoreReviewByCode" parameterType="String" resultType="StoreReview">
+		select *
+		from storeReview
+		where orderCode = #{orderCode}
 	</select>
 	
 </mapper>

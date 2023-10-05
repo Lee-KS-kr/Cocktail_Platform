@@ -8,6 +8,9 @@
 <title>가게 상세 페이지</title>
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
+	
+let storeCode = null;
+
 $(document).ready(function () {
 	// 처음 로딩될 때 모든 탭 내용을 감춤
 	$(".tab_cont").hide();
@@ -31,7 +34,7 @@ $(document).ready(function () {
   	
   	//전체 메뉴 목록 받아오기
     function init(){
-    	let storeCode = $('#storeCode').html();
+    	storeCode = $('#storeCode').html();
     	
     	$.ajax({
     		url: "menuList",
@@ -49,15 +52,21 @@ $(document).ready(function () {
 	
   	//리스트 출력
     function getList(list){
-    	let str = '<table><tr>';
+    	let str = '<table>';
     	$(list).each(function(i,item){
     		let fileName = item.savedFilename;
+			console.log(item.category.toString());
     		
-    		str += '<td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
-    				+ '"><img src="/FitTail/image/cocktails/' + fileName + '" class="store_img"></a></td></tr>';
-			str += '<tr><td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
-					+ '">' + item.menuName + '</a></td></tr>';
-    		str += '<tr><td class="price">' + item.price + '</td>';
+    		str += '<tr><td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
+    				+ '">';
+			if(item.category.toString() == 'beverage')
+				str += '<img src="/FitTail/image/cocktails/' + fileName + '" class="store_img"></a></td>';
+			else
+				str += '<img src="/FitTail/image/menu/' + fileName + '" class="store_img"></a></td>';
+			
+			str += '<td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
+					+ '">' + item.menuName + '</a><br>';
+    		str += '<span class="price">' + item.price + '</span></td>';
     		str += '</tr>';
     	});
     	str += '</table>';
@@ -67,9 +76,11 @@ $(document).ready(function () {
     reviewScore();
 });
 
+
 //별점 가져오기
 function reviewScore(){
-    let score = parseFloat($('#storeReviewScore').val());
+    let score = parseFloat($('#storeReviewScore').html());
+	console.log("review score " + score);
     let str1 = '';
 
     for(let i = 0 ; i < 5; i++){  
@@ -204,7 +215,7 @@ function reserveSub(){
 			<div><span th:text="${store.storeName}" class="s_name"></span></div>
 			<div>
 				<div id="starDiv" class="s_star"></div>
-				<div><span th:text="${store.storeReviewScore}"></span>/5</div>
+				<div><span th:text="${store.storeReviewScore}" id="storeReviewScore"></span>/5</div>
 			</div>
 		</div>
 	</div>
@@ -225,6 +236,7 @@ function reserveSub(){
 		<div class="tab_menu_div">
 			<!-- 메뉴탭 내용 -->
 			<div id="tab_menu" class="tab_cont on">
+				<div id="menuList"></div>
 				<!-- 대표 메뉴 사진
 				<div id="menu_img">
 					<img th:src="">
