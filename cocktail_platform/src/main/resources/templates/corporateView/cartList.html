@@ -131,9 +131,7 @@ $(document).ready(function(){
 	function closeCart(){
 		window.close();
 	}
-	
 });
-
 </script>
 </head>
 
@@ -150,7 +148,7 @@ $(document).ready(function(){
 	  <div id="cartList">
 	  	<table th:each="menu: ${menuList}" th:if="${menuList != null}">
 	  		<!-- null일 경우 에러메세지 출력 -->
-	  		<tbody th:if="${menuList == null}" th:text="${err}"></tbody>
+	  		<tbody th:if="${menuList == null}">장바구니에 담긴 상품이 없습니다.</tbody>
 	  		<!-- null이 아닐 경우 메뉴 출력 -->
 	  		<tr>
 	  			<td>
@@ -164,7 +162,7 @@ $(document).ready(function(){
 	  			<td th:each="cart: ${carts}">
 	  				<p th:id="'orderCount_' + ${menuNum}"><span th:text="${cart[1]}"></span>개</p>
   				</td>
-	  			<td><a th:menuNum="${menu.menuNum}" th:onclick="count('minus',this.getAttribute('menuNum'))">-</a></td>
+	  			<td><a th:menuNum="${menu.menuNum}" th:onclick="count('minus',this.getAttribute('menuNum'))">-</a>&nbsp;</td>
 	  			<td>
 	  				<p class="price-per-item" th:id="'price_' + ${menu.menuNum}">
 	  				<span th:text="${menu.price}"></span>원

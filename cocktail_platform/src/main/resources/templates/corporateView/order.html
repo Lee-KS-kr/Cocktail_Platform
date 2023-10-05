@@ -182,6 +182,7 @@ function menuCategory(category){
 
 //카트에 담기
 function addCart(menuNum){
+	let con = confirm('장바구니에 추가하시겠습니까?')
 	let currentOrderCount = parseInt($('#orderCount_' + menuNum).html());
 	//param에 보내야 될 값들 담아주기
 	let param = {
@@ -189,7 +190,8 @@ function addCart(menuNum){
 			orderCount : currentOrderCount
 	}
 	
-	if(confirm('장바구니에 추가하시겠습니까?') && currentOrderCount != 0){
+	if(con && currentOrderCount == 0) alert('주문 수량을 선택해주세요.');
+	else if(con && currentOrderCount != 0){
 		alert("addCart 함수 호출");
 		$.ajax({
 			url: "addToCart",
