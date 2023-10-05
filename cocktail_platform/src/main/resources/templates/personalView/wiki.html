@@ -167,12 +167,14 @@
         </div>
         <div class="store_list">
             <div class="inside_box" th:each="store : ${storeList}">
-                <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image"></div>
-                <div>
+                <a th:href="@{/personal/store/storeDetail?(storeCode=${store.storeCode})}">
+                  <div><img th:src="@{/image/store/} + ${store.savedFilename}" alt="store_image"></div>
+                  <div>
                     <div th:text="${store.storeName}"></div>
                     <div th:text="${store.address1}"></div>
                     <div th:text="${store.storeReviewScore}" class="store_score"></div>
-                </div>
+                  </div>
+                </a>
             </div>
             <!--
 

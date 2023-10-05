@@ -173,14 +173,12 @@ $(document).ready(function(){
 	  				<span th:text="${menu.price}"></span>원
   				</td>
 	  		</tr>
-	  		<tr>
-	  			<td colspan="4">
-	  				<p class="cart-total">합계: <span id="totalPrice"></span></p>
-	  			</td>
-	  		</tr>
 	  	</table>
- 		<button class="orderBT" onclick="closeCart()">닫기</button>
- 		<button class="orderBT" th:onclick="orderMenu(${menu.menuNum})">주문하기</button>
+		<div>
+			<p class="cart-total">합계: <span id="totalPrice"></span></p>
+	 		<button class="orderBT" onclick="closeCart()">닫기</button>
+	 		<button class="orderBT" th:onclick="orderMenu(${menu.menuNum})">주문하기</button>
+		</div>
 	  </div>
 	</div>
   </body>
