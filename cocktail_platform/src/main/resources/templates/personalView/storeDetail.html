@@ -63,9 +63,10 @@ $(document).ready(function () {
 				str += '<img src="/FitTail/image/cocktails/' + fileName + '" class="store_img"></a></td>';
 			else
 				str += '<img src="/FitTail/image/menu/' + fileName + '" class="store_img"></a></td>';
+			
 			str += '<td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
 					+ '">' + item.menuName + '</a><br>';
-    		str += '<span class="price">' = item.price + '</span></td>';
+    		str += '<span class="price">' + item.price + '</span></td>';
     		str += '</tr>';
     	});
     	str += '</table>';
