@@ -27,7 +27,7 @@
 				inner join taste t on c.cocktailTaste = #{cocktailTaste} or c.cocktailFlavor = #{cocktailFlavor}
 				left join orderTemp ot on c.cocktailName = ot.menuName
     	where
-    		t.memberId = #{memberId}
+    		ot.memberId = #{memberId}
     	group by
 			c.cocktailName
 		order by
