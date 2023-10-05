@@ -65,4 +65,6 @@ public interface StoreService {
 
 	ArrayList<Menu> getMenuByCategory(int storeCode, Category category);
 
+	boolean getReviewWrote(String orderCode);
+
 }

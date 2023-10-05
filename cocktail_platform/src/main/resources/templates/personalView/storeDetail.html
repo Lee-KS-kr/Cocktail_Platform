@@ -8,6 +8,9 @@
 <title>가게 상세 페이지</title>
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
+	
+let storeCode = null;
+
 $(document).ready(function () {
 	// 처음 로딩될 때 모든 탭 내용을 감춤
 	$(".tab_cont").hide();
@@ -31,7 +34,7 @@ $(document).ready(function () {
   	
   	//전체 메뉴 목록 받아오기
     function init(){
-    	let storeCode = $('#storeCode').html();
+    	storeCode = $('#storeCode').html();
     	
     	$.ajax({
     		url: "menuList",
@@ -66,6 +69,7 @@ $(document).ready(function () {
     init();
     reviewScore();
 });
+
 
 //별점 가져오기
 function reviewScore(){
@@ -234,16 +238,13 @@ function reserveSub(){
 		<div class="tab_menu_div">
 			<!-- 메뉴탭 내용 -->
 			<div id="tab_menu" class="tab_cont on">
+				<div id="menuList"></div>
 				<!-- 대표 메뉴 사진
 				<div id="menu_img">
 					<img th:src="">
 				</div> -->
-				<p>인기 메뉴</p>
-				<div id="popularList"></div>
 				<!-- 전체 메뉴 리스트 출력 -->
 				<!-- 메뉴 이름, 메뉴 설명, 가격, 이미지 -->
-				<p>전체 메뉴</p>
-				<div id="menuList"></div>
 			</div>
 			<!-- 리뷰탭 내용 -->
 			<div id="tab_review" class="tab_cont">
@@ -351,7 +352,7 @@ function reserveSub(){
 						<input type="text" name="request" placeholder="요청 사항"><br>
 						<label>개인 정보 수집, 제공 동의<input type="radio" name="agree" id="agree"></label>
 					</div>
-					<input type="hidden" id="storeCode" name="storeCode" th:value="${store.storeCode}">
+					<input type="hidden" id="storeCode2" name="storeCode" th:value="${store.storeCode}">
 					<br>
 					<input type="submit" value="예약 신청하기">
 				</form>

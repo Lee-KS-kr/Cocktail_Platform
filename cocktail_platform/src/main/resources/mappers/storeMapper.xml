@@ -178,16 +178,16 @@
 				, memberId
 				, storeReviewScore
 				, storeReviewText
-				, reviewDate
-				, savedFilename)
+				<if test="originFilename != null"> , originFilename
+				, savedFilename </if> )
 		values
-				(storeReviewNum_seq.nextval
+				(storeReview_seq.nextval
 				, #{storeCode}
 				, #{memberId}
 				, #{storeReviewScore}
 				, #{storeReviewText}
-				, to_char(sysdate, 'yyyymmdd')
-				, #{savedFilename})
+				<if test="originFilename != null and originFilename != ''"> , #{originFilename}
+				, #{savedFilename} </if> )
 	</insert>
 	
 	<insert id="insertMenuPreference" parameterType="MenuPreference">
@@ -383,7 +383,13 @@
 	<select id="getMenuByCategory" parameterType="Menu" resultType="Menu">
 		select *
 		from menu
-		where storeCode = ${storeCode} and category = #{category}
+		where storeCode = #{storeCode} and category = #{category}
+	</select>
+	
+	<select id="getScoreReviewByCode" parameterType="String" resultType="StoreReview">
+		select *
+		from storeReview
+		where orderCode = #{orderCode}
 	</select>
 	
 </mapper>
