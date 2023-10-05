@@ -25,10 +25,9 @@
 		from
 			cocktails
 		where
-			cocktailTaste like '%' || (select cocktailTaste from taste where memberId = #{memberId}) || '%' 
+			cocktailTaste like (select cocktailTaste from taste where memberId = #{memberId})
 	</select>
-	
-	<select id="recommendForMe" parameterType="String" resultType="Cocktails">
+0	<select id="recommendForMe" parameterType="String" resultType="Cocktails">
     	select
         	c.cocktailName as cocktailName
     	from
