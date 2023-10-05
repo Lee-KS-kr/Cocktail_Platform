@@ -21,7 +21,7 @@
 	 
 	<select id="customizedRecommendation" parameterType="Taste" resultType="Cocktails">
 		 select
-    		c.cockailName
+    		c.cockailName as cocktailName
 		from
 			taste t
 		join
