@@ -8,7 +8,8 @@
 <title>메뉴 상세</title>
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script></script>
-<link rel="stylesheet" th:href="@{/CSS/personal/personalmain.css}">
+<link rel="stylesheet" th:href="@{/CSS/personal/menuDetail.css}">
+<link rel="stylesheet" href="../../static/CSS/personal/menuDetail.css">
 </head>
 <body>
 <!-- 헤더 -->
@@ -53,12 +54,12 @@
 			</tr>
 			<tr>
 				<td>
-					<span th:text="${menu.menuNum}" id="menuNum" style="display:none;"></span>
-					<span th:text="${menu.menuName}"></span>
+					<span th:text="${menu.menuNum}" id="menuNum" style="display:none;" ></span>
+					<span th:text="${menu.menuName}" class="name"></span>
 				</td>
 			</tr>
 			<tr>
-				<td th:text="${menu.price}"></td>
+				<td th:text="${menu.price}" class="price"></td>
 			</tr>
 			<tr>
 				<td th:text="${menu.menuInfo}"></td>
