@@ -23,7 +23,7 @@ $(document).ready(function(){
 	let price;
 	let orderCount = 0;
 	
-	let pricePerItem = orderCount * price;
+	let pricePerItem;
 	
 	/**카트 메뉴 삭제*/
 	function deleteCart(button){
@@ -69,12 +69,12 @@ $(document).ready(function(){
 		
 		//각 메뉴마다 가격을 가져와서 totalPrice에 더함
         $('.price-per-item').each(function() {
-            let pricePerItem = parseInt($('#orderCount_' + menuNum).text()) * price;
+            pricePerItem = parseInt($('#orderCount_' + menuNum).text()) * price;
             totalPrice += pricePerItem;
         });
 
         //totalPrice를 화면에 출력
-        $('#totalPrice').text(totalPrice + '원');
+        $('#totalPrice').text(parseInt(totalPrice) + '원');
     }
 	
 	//getTotal 함수 호출
