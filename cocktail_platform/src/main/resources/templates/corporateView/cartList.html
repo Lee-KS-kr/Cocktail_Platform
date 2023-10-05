@@ -27,7 +27,7 @@ $(document).ready(function(){
 	
 	/**카트 메뉴 삭제*/
 	function deleteCart(button){
-		menuNum = button.getAttribute("data-menu-num");
+		menuNum = $(this).attr('id').split('_')[1]; //menuNum 추출
 		let result = confirm('선택한 메뉴를 삭제하시겠습니까?');
 		if(result == true){
 			$.ajax({
@@ -45,8 +45,8 @@ $(document).ready(function(){
 	}
 	
 	/**주문 수량 증감*/
-	function count(type, menuNum, orderCount){
-		let currentOrderCount = parseInt($('#orderCount_' + menuNum).text());
+	function count(type, menuNum){
+		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).text());
 		
 		//더하기, 빼기
 		if(type === 'plus' && currentOrderCount < 11) {
@@ -59,7 +59,7 @@ $(document).ready(function(){
 		}
 		
 		//결과 출력
-	    $('#orderCount_' + menuNum).text(currentOrderCount);
+	    $(`#orderCount_menuNum`).text(currentOrderCount);
 		return currentOrderCount;
 	}
 	
@@ -84,8 +84,8 @@ $(document).ready(function(){
 
 	/**주문하기*/
 	function orderMenu(){
-		let currentOrderCount = parseInt($('#orderCount_' + menuNum).html());
-		let menuNum = $('#menuNum_' + menu.menuNum).text();
+		let currentOrderCount = parseInt($(`#orderCount_${menu.menuNum}`).html());
+		let menuNum = $(`#menuNum_${menuNum}`).text();
 		
 		let result = confirm('선택한 메뉴를 주문하시겠습니까?');
 		let data = {
@@ -145,11 +145,11 @@ $(document).ready(function(){
 	  			<td><button th:onclick="deleteCart(${menu.menuNum})" value="삭제">삭제</button></td>
 	  		</tr>
 	  		<tr>
-	  			<td><a th:onclick="|javascript:count('plus', ${menu.menuNum})|">+</a></td>
+	  			<td><a th:onclick="count('plus', ${menu.menuNum})">+</a></td>
 	  			<td th:each="cart: ${carts}" th:if="${cart[0] == menu.menuNum}">
 	  				<p id="orderCount_${menuNum}"><span th:text="${cart[1]}"></span>개</p>
   				</td>
-	  			<td><a th:onclick="|javascript:count('minus', ${menu.menuNum})|">-</a></td>
+	  			<td><a th:onclick="count('minus', ${menu.menuNum})">-</a></td>
 	  			<td>
 	  				<p class="price-per-item" id="price_${menu.menuNum}">
 	  				<span th:text="${menu.price}"></span>원
