@@ -102,15 +102,12 @@ h1{width: 100%; font-size: 22pt; height: 70px; margin:35px 0px 10px; padding-lef
   border-radius: 5px; background-color: #50CCAA; display: flex; 
  font-weight: bold; display: flex; align-items: center; color: #232323;}
 
-
-form, table{
+ form, table{
   width: 900px;
   background-color: #fffde5;
-  border: 1.8px solid #313131;
   border-radius: 15px;
   padding: 30px;
-
-
+  margin-top:20px;
   color: #313131;
   font-size: 12pt;
   font-family: 'Noto Sans KR', sans-serif; 
@@ -133,8 +130,14 @@ button{
   font-family: 'Noto Sans KR', sans-serif; 
   margin: 10px;
 }
+  input{
+  width: 300px;  
+  height: 30px;
+  background-color: #fff;
+  border: 1px solid #313131;
+  }
 
-button[value="저장"]{  width: 80px;
+button[value="save"], input[type=save]{  width: 80px;
   height: 80px;
   padding: 0px;
   justify-content: center;
@@ -147,9 +150,3 @@ button[value="저장"]{  width: 80px;
   font-size: 12pt;
   font-family: 'Noto Sans KR', sans-serif; }
 
-  input{
-  width: 300px;  
-  height: 30px;
-  background-color: #fff;
-
-  }
