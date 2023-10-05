@@ -52,15 +52,20 @@ $(document).ready(function () {
 	
   	//리스트 출력
     function getList(list){
-    	let str = '<table><tr>';
+    	let str = '<table>';
     	$(list).each(function(i,item){
     		let fileName = item.savedFilename;
+			console.log(item.category.toString());
     		
-    		str += '<td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
-    				+ '"><img src="/FitTail/image/cocktails/' + fileName + '" class="store_img"></a></td></tr>';
-			str += '<tr><td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
-					+ '">' + item.menuName + '</a></td></tr>';
-    		str += '<tr><td class="price">' + item.price + '</td>';
+    		str += '<tr><td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
+    				+ '">';
+			if(item.category.toString() == 'beverage')
+				str += '<img src="/FitTail/image/cocktails/' + fileName + '" class="store_img"></a></td>';
+			else
+				str += '<img src="/FitTail/image/menu/' + fileName + '" class="store_img"></a></td>';
+			str += '<td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
+					+ '">' + item.menuName + '</a><br>';
+    		str += item.price + '</td>';
     		str += '</tr>';
     	});
     	str += '</table>';
