@@ -57,7 +57,7 @@ $(document).ready(function () {
     				+ '"><img src="/FitTail/image/cocktails/' + fileName + '" class="store_img"></a></td></tr>';
 			str += '<tr><td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
 					+ '">' + item.menuName + '</a></td></tr>';
-    		str += '<tr><td>' + item.price + '</td>';
+    		str += '<tr><td class="price">' + item.price + '</td>';
     		str += '</tr>';
     	});
     	str += '</table>';
