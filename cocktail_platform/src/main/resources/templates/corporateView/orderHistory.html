@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>주문 내역</title>
+<script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
+<script>
+$(document).ready(function(){
+	getPrice();
+	getTotal();
+	$('#closeBtn').click(closeHistory);
+});
+
+//메뉴별 가격 변수
+let pricePerItem;
+
+/**메뉴별 가격 구하기*/
+function getPrice(){
+	let pricePerOne = $('#pricePerOne_' + menuNum).html();
+	let orderCount = $('#orderCount_' + menuNum).html();
+	pricePerItem = parseInt(pricePerOne) * parseInt(orderCount);
+	
+	$('#price_' + menuNum).html(pricePerItem);
+}
+
+/**가격 총 합계 계산*/
+function getTotal(){
+	let totalPrice = 0;
+	
+	//각 메뉴마다 가격을 가져와서 totalPrice에 더함
+    $('.price-per-item').each(function() {
+    	let menuNum = $(this).attr('id').split('_')[1]; //menuNum 추출
+		console.log("pricePerItem " + pricePerItem);
+        
+     	//만약 숫자가 NaN이 아니라면 더함
+        if(!isNaN(pricePerItem)) {
+            totalPrice += pricePerItem;
+			console.log('total price ' + totalPrice);
+        }
+    });
+	
+    //totalPrice를 화면에 출력
+    if (!isNaN(totalPrice)) {
+        $('#totalPrice').html(totalPrice);
+    } else {
+        $('#totalPrice').html(0); //totalPrice가 NaN이라면 0원으로 출력
+    }
+}
+
+/**창 닫기*/
+function closeHistory(){
+	window.close();
+}
+</script>
+</head>
+<body>
+	<div>
+		<p>주문 내역</p>
+		<div th:each="list: ${list}">
+			<span th:text="${list.menuNum}" style="display:none;"></span>
+			<span id="'pricePerOne_' + ${menuNum}" th:text="${list.pricePerOne}" style="display:none;"></span>
+			<span th:text="${list.menuName}"></span>&nbsp;
+			x<span id="'orderCount_' + ${menuNum}" th:text="${list.orderCount}"></span>&nbsp;
+			<span class="price-per-item" id="'price_' + ${menuNum}"></span>원
+		</div>
+		<p class="menu-total">합계: <span id="totalPrice"></span>원</p>
+ 		<button id="closeBtn">닫기</button>
+ 		<a th:href="@{/corporate/order/payment}"><button id="orderBtn">결제하기</button></a>
+	</div>
+</body>
+</html>

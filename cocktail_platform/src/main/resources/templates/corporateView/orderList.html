@@ -91,6 +91,7 @@ function getList(list){
 		str += '<td>' + item.menuNum + '</td>';
 		str += '<td>' + item.orderCount + '</td>';
 		str += '<td>' + item.pricePerOne + '</td>';
+		str += '<td>' + item.state + '</td>';
 		if(state == 'apply'){
 			str += '<td><button onclick="orderAccept(' + item.tempOrderkey + ')" value="수락">수락</button></td>';
 			str += '<td><button onclick="orderRefuse(' + item.tempOrderkey + ')" value="거절">거절</button></td>';		
