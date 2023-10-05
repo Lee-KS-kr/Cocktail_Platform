@@ -39,13 +39,13 @@ $(document).ready(function(){
 		
 		//가격 업데이트
 		updatePrice(menuNum, currentOrderCount);
-		
-		return currentOrderCount;
 	}
 	
 	/** 가격 업데이트 */
 	function updatePrice(menuNum, currentOrderCount) {
 	    let pricePerItem = parseInt(currentOrderCount) * parseInt($(`#price_${menuNum}`).html());
+	    $('#price_' + menuNum).html(pricePerItem);
+	    
 	    return isNaN(pricePerItem) ? 0 : pricePerItem;
 	}
 	
@@ -166,8 +166,7 @@ $(document).ready(function(){
   				</td>
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('minus',this.getAttribute('menuNum'))|">- &nbsp;</a></td>
 	  			<td>
-	  				<p class="price-per-item" th:id="'price_' + ${menu.menuNum}">
-	  				<span th:text="${menu.price}"></span>원
+	  				<p class="price-per-item" th:id="'price_' + ${menu.menuNum}"></p>원
   				</td>
 	  		</tr>
 	  	</table>
