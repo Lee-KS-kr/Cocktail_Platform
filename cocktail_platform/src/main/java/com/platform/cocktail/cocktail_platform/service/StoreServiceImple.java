@@ -75,7 +75,7 @@ public class StoreServiceImple implements StoreService {
 		if(state == OrderState.refuesed)
 			n = dao.deleteOrder(tempOrderkey);
 		else {
-			t.setState(OrderState.received);
+			t.setOrderState(state);
 		}
 		
 		return n;
