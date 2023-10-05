@@ -24,6 +24,7 @@ $(document).ready(function(){
 
 	//호출
 	allList();
+	getRecMenu();
 	
 	/**햄버거 메뉴*/
 	//햄버거 메뉴 숨기기
@@ -226,9 +227,9 @@ function loadCart(){
  			</div>
  			<div id="navBar">
 	 			<p>테이블 9</p>
-	 			<span><a th:href="|javascript:menuCategory('bevarage')|">주류</a></span>
-	 			<span><a th:href="|javascript:menuCategory('food')|">안주류</a></span>
-	 			<span><a th:href="|javascript:menuCategory('side')|">사이드</a></span>
+	 			<button onclick="menuCategory('bevarage')" value="주류">주류</button>
+	 			<button onclick="menuCategory('food')" value="안주류">안주류</button>
+	 			<button onclick="menuCategory('side')" value="사이드">사이드</button>
  			</div>
  		</nav>
  		<section>
