@@ -160,13 +160,13 @@ border-radius: 10px;
   display: flex;
 }
 
-/*별점 img*/
+/*ë³„ì  img*/
 .starimg{
   width: 35px;
   margin: 20px 2px;
 }
 
-/*별점 text*/
+/*ë³„ì  text*/
 .s_box_right div div{
   color: #545454;
   font-size: 15pt;
@@ -174,7 +174,7 @@ border-radius: 10px;
   line-height:70px;
 }
 
-/*매장 이미지, 매장 이름, 별점 끝================*/
+/*ë§¤ìž¥ ì´ë¯¸ì§€, ë§¤ìž¥ ì´ë¦„, ë³„ì  ë================*/
 
 .tab_div{
   width: 1036px;
@@ -222,7 +222,7 @@ padding:20px 30px;
 
 }
 
-/*활성화*/
+/*í™œì„±í™”*/
 .on{
   font-weight:bold;
   background-color: #fff;
@@ -243,4 +243,116 @@ display: inline-block;
 
 .price{
   color: #585858
+}
+
+/*======================================================*/
+.t_c_table{
+  background-color:#fff;
+  display:flex;
+  justify-content:center;
+  padding: 30px;
+}
+
+.t_c_table th{
+    background-color:#FFE71B;
+  border-radius: 10px;
+}
+
+/*============================================*/
+/* 테이블 전체에 적용되는 스타일 */
+.t_c_table {
+  width: 100%; /* 테이블 전체 너비 설정 */
+  border-collapse: collapse; /* 테이블 셀 경계 병합 */
+  margin-bottom: 20px; /* 아래쪽 여백 설정 */
+}
+
+/* 테이블 헤더에 적용되는 스타일 */
+.t_c_table th {
+  background-color: #FFE71B;
+  color: #313131;
+  padding: 10px; /* 셀 안 여백 설정 */
+  text-align: center;
+}
+
+/* 테이블 셀에 적용되는 스타일 */
+.t_c_table td {
+  padding: 10px;
+}
+
+/* 첫 번째 열의 폭을 설정하여 왼쪽 정렬로 만듭니다. */
+.t_c_table td:first-child {
+  width: 150px; /* 첫 번째 열의 폭 설정 */
+}
+
+/*매장정보 끝===================================================*/
+
+/* 예약 폼 스타일링 */
+.reserveForm {
+  max-width: 500px; /* 폼의 최대 너비 설정 */
+  margin: 0 auto; /* 가운데 정렬 */
+  padding: 20px; /* 내부 여백 설정 */
+  border: 1.8px solid #313131; /* 테두리 스타일 설정 */
+  background-color: #fff; /* 배경색 설정 */
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* 입력 필드 스타일링 */
+.reserveForm input[type="date"],
+.reserveForm input[type="time"],
+.reserveForm input[type="text"],
+.reserveForm input[type="button"],
+.reserveForm input[type="submit"],
+.reserveForm input[type="radio"] {
+  width: 97%; /* 입력 필드 너비 100% 설정 */
+  padding: 10px; /* 내부 여백 설정 */
+  margin-bottom: 10px; /* 하단 여백 설정 */
+  border: 1px solid #ccc; /* 테두리 스타일 설정 */
+    border-radius: 15px;
+
+}
+
+/* 예약자 정보 입력 필드 스타일링 */
+#reservationName,
+#reservationPhone {
+  margin-bottom: 5px; /* 예약자 정보 입력 필드 사이 여백 설정 */
+}
+
+/* 에러 메시지 스타일링 */
+#errMsg1,
+#errMsg2 {
+  color: red; /* 에러 메시지 텍스트 색상 설정 */
+  font-size: 14px; /* 에러 메시지 글꼴 크기 설정 */
+}
+
+/* 버튼 스타일링 */
+input[type="button"],
+input[type="submit"] {
+  background-color: #FFE71B; /* 버튼 배경색 설정 */
+  color: #313131; /* 버튼 텍스트 색상 설정 */
+  cursor: pointer; /* 커서 모양 변경 */
+  border: 1.8px solid #313131; /* 테두리 없애기 */
+  border-radius: 15px; /* 버튼 모서리 둥글게 만들기 */
+}
+
+/* 라벨 스타일링 */
+label {
+  display: block; /* 라벨 블록 요소로 설정 */
+  margin-bottom: 10px; /* 라벨 아래 여백 설정 */
+}
+
+/* 폼 그룹 스타일링 */
+.re_date,
+.re_time,
+.head_count,
+.reserve_info {
+  border: 1px solid #ccc; /* 폼 그룹 테두리 스타일 설정 */
+  padding: 10px; /* 내부 여백 설정 */
+  margin-bottom: 20px; /* 하단 여백 설정 */
+}
+
+/* "인원 선택" 메시지 스타일링 */
+#head_select p {
+  font-style: italic; /* 이탤릭체로 설정 */
+  font-size: 14px; /* 글꼴 크기 설정 */
 }
