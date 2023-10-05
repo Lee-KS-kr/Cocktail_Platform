@@ -4,10 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
-
+<!--
 <link rel="stylesheet" href="../../static/CSS/corporate/reset.css">
 <link rel="stylesheet" href="../../static/CSS/corporate/cartList.css">
-<!--  -->
+  -->
 <!-- vs code -->
 <link rel="stylesheet" th:href="@{/CSS/corporate/reset.css}">
 <link rel="stylesheet" th:href="@{/CSS/corporate/cartList.css}">
@@ -21,7 +21,7 @@ $(document).ready(function(){
 	let menuNum;
 	let menuName;
 	let price;
-	let orderCount = 0;
+	let orderCount;
 	
 	let pricePerItem;
 	
@@ -69,12 +69,13 @@ $(document).ready(function(){
 		
 		//각 메뉴마다 가격을 가져와서 totalPrice에 더함
         $('.price-per-item').each(function() {
-            pricePerItem = parseInt($('#orderCount_' + menuNum).text()) * price;
+        	menuNum = $(this).attr('id').split('_')[1]; //menuNum 추출
+            pricePerItem = parseInt($('#orderCount_' + menuNum).text()) * parseInt($('#price_' + menuNum).text());
             totalPrice += pricePerItem;
         });
 
         //totalPrice를 화면에 출력
-        $('#totalPrice').text(parseInt(totalPrice) + '원');
+        $('#totalPrice').text(totalPrice + '원');
     }
 	
 	//getTotal 함수 호출
@@ -132,20 +133,23 @@ $(document).ready(function(){
 	  
 	  <!-- 카트에 담은 메뉴 출력 -->
 	  <div id="cartList">
-	  	<table th:each="menu: ${menuList}">
+	  	<table th:each="menu: ${menuList}" th:if="${menuList != null}">
+	  		<!-- null일 경우 에러메세지 출력 -->
+	  		<tbody th:if="${menuList == null}" th:text="${err}"></tbody>
+	  		<!-- null이 아닐 경우 메뉴 출력 -->
 	  		<tr>
 	  			<td>
 	  				<span th:text="${menu.menuName}"></span>
 	  				<span id="menuNum_${menuNum}" th:text="${menu.menuNum}" style="display:none;"></span>
   				</td>
-	  			<td><button onclick="deleteCart(this)" data-menu-num="${menu.menuNum}" value="삭제">삭제</button></td>
+	  			<td><button th:onclick="deleteCart(${menu.menuNum})" value="삭제">삭제</button></td>
 	  		</tr>
 	  		<tr>
-	  			<td><span th:onclick="count('plus', ${menu.menuNum})">+</span></td>
+	  			<td><a th:onclick="|javascript:count('plus', ${menu.menuNum})|">+</a></td>
 	  			<td th:each="cart: ${carts}" th:if="${cart[0] == menu.menuNum}">
 	  				<p id="orderCount_${menuNum}"><span th:text="${cart[1]}"></span>개</p>
   				</td>
-	  			<td><span th:onclick="count('minus', ${menu.menuNum})">-</span></td>
+	  			<td><a th:onclick="|javascript:count('minus', ${menu.menuNum})|">-</a></td>
 	  			<td>
 	  				<p class="price-per-item" id="price_${menu.menuNum}">
 	  				<span th:text="${menu.price}"></span>원
