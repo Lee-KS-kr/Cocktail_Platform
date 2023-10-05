@@ -99,7 +99,7 @@ $(document).ready(function(){
 	function orderMenu(menuNum){
 		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).html());
 		let menuName = $(`#menuName_${menuNum}`).text();
-		let price = parseInt($(`#price_${menuNum}`).text());
+		let price = parseInt($(`#price_${menuNum}`).html());
 		
 		alert(menuNum);
 		let result = confirm('선택한 메뉴를 주문하시겠습니까?');
