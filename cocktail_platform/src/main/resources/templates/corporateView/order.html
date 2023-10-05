@@ -213,6 +213,11 @@ function loadCart(){
 	let option = "width=500,height=700,top=100,left=200,location=no,scrollbars=no";
 	window.open("cart", "cartPopUp", option);
 }
+
+function loadHistory(){
+	let option = "width=500,height=700,top=100,left=200,location=no,scrollbars=no";
+	window.open("orderList", "historyPopUp", option);
+}
 </script>
 </head>
 <body>
@@ -256,7 +261,7 @@ function loadCart(){
  		</section>
  		<section id="bottom">
  			<div id="bottomTab">
- 				<a th:href="@{/corporate/order/orderList}"><button>주문 내역</button></a>
+ 				<a href="javascript:loadHistory()" target="_self"><button>주문 내역</button></a>
  				<a th:href="@{/corporate/order/payment}"><button>결제하기</button></a>
  				<a href="javascript:loadCart()" target="_self"><button>장바구니</button></a>
  			</div>
