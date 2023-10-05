@@ -80,7 +80,9 @@ function menuList(list){
 		
 		str += '<tr>';
 		//누르면 장바구니 추가
-		str += `<td rowspan="3"><a href="#" onclick="addCart(${menuNum},${orderCount})"><img src="${src}"></a></td>`;
+		if(fileName){
+			str += `<td rowspan="3"><a href="#" onclick="addCart(${menuNum},${orderCount})"><img src="${src}"></a></td>`;
+		}
 		str += `<td><a href="#" onclick="count('plus',${menuNum},${orderCount})">+</a></td></tr>`;
 		str += '<tr><td id="orderCount_' + menuNum + '">0</td></tr>';
 		str += `<tr><td><a href="#" onclick="count('minus',${menuNum},${orderCount})">-</a></td></tr>`;
@@ -148,7 +150,9 @@ function recMenuList(list){
 		else src = '/FitTail/image/menu/';
 		
 		str += '<table><tr>';
-		str += '<td><a href="#" onclick="addCart('+ menuNum + ',' + orderCount + ')"><img src="' + src + fileName + '"></a></td>';
+		if(fileName){
+			str += '<td><a href="#" onclick="addCart('+ menuNum + ',' + orderCount + ')"><img src="' + src + fileName + '"></a></td>';
+		}
 		str += '<td>' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
 		str += '</tr>';
