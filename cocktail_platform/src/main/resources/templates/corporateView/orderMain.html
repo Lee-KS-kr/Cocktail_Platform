@@ -40,8 +40,6 @@
   }
 </script>
 
-<link rel="stylesheet" href="../../static/CSS/login.css" />
-<link rel="stylesheet" th:href="@{/CSS/login.css}" />
 </head>
 
 <body>
@@ -55,8 +53,8 @@
 	      <form id="login" th:action="@{/corporate/order/login}" method="post">
 	       <div class="input">
           <div class="in_un">
-          <div class="un_f">회원 주문</div>
-          <a href="javascript:nonuser()" onclick="javascript:nonuserLogin()"><div class="un_f">비회원 주문</div></a>
+            <div class="un_f">회원 주문</div>
+            <a href="javascript:nonuser()" onclick="javascript:nonuserLogin()"><div>비회원 주문</div></a>
           </div>
 	        <input type="text" id="memberId" name="memberId" placeholder="아이디" required> <br>
 	        <input type="password" id="memberPw" name="memberPw" placeholder="비밀번호" required> <br>
