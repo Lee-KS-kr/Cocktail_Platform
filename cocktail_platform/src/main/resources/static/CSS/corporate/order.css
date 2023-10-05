@@ -68,10 +68,10 @@ main {
 }
 
 table{
-    width: 100%;
+    width: 500px;
   justify-content: center;
   text-align: center;
-  background-color: #fff ;
+  background-color: #50a0ff ;
   border:1.8px solid #313131;
   color: #414141;
   border-radius: 40px;
@@ -80,44 +80,10 @@ table{
     margin: 20px auto 0px;
   padding:20px;
  margin-left:250p;
-}
-
-table th{color: #ffc123; font-weight:bold; font-size: 12pt;}
-
-/* Recommend Menu Styles */
-#recommendList table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-#recommendList img {
-  max-width: 100px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-
-
-/* Menu List Styles */
-#menuList table {
-  width: 600px;
-  border-collapse: collapse;
   display: flex;
-  justify-content:center;
 }
 
-#menuList img {
-  max-width:120px;
-}
 
-#menuList td {
-  width:200px;
-  padding: 20px;
-  text-align: center;
-  border: 1px solid #ccc;
-  
-}
 button{
     width:150px;
   line-height:40px;
@@ -128,17 +94,7 @@ button{
   display: flex;
   justify-content: center;
 }
-.cart{
-    width:150px;
-  line-height:40px;
-  background-color: #ffd229;
-  border: 1.8px solid #313131;
-  border-radius:10px;
-  margin: 10px 5px;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-}
+
 
 #navBar{
   display: flex;
@@ -155,3 +111,69 @@ border-radius:30px;
 margin: 10px 5px;
 display: flex;
 justify-content: center;}
+
+.
+.menulist{
+  background-color: #709dff;
+
+}
+.menulist img{
+  width: 300px;
+  height: 300px;
+border: 1.8px solid #313131;
+border-radius:30px;
+background-color: #fff;
+
+  
+}
+
+.menulist .name{
+  color: #313131;
+  position: relative;
+  top: -400px;
+  left: 234px;
+  font-size: 20pt;
+  font-weight: bold;
+  font-family: 'Noto Sans KR', sans-serif;  
+}
+
+.menulist .price{
+  color: #989898;
+  position: relative;
+  top: -390px;
+  left: 234px;
+  font-size: 18pt;
+  font-family: 'Noto Sans KR', sans-serif; 
+}
+
+.menulist .p, .menulist .m{
+  color: #fff;
+  position: relative;
+  top: -640px;
+  left: 7px;
+  font-size: 32pt;
+  font-weight: bold;
+  font-family: 'Noto Sans KR', sans-serif; 
+}
+
+.menulist .menunum{
+    color: #313131;
+  position: relative;
+  top: -630px;
+  left: 7px;
+  font-size: 22pt;
+  font-weight: bold;
+  font-family: 'Noto Sans KR', sans-serif; 
+}
+
+.cart{
+    width:150px;
+  line-height:40px;
+  background-color: #ffd229;
+  border: 1.8px solid #313131;
+  border-radius:10px;
+  margin: 10px 5px;
+  position: relative;
+  top: -650px;
+  left: 7px;
+}
