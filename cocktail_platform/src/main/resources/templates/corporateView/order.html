@@ -184,7 +184,7 @@ function addCart(menuNum){
 			orderCount : currentOrderCount
 	}
 	
-	if(confirm('장바구니에 추가하시겠습니까?')){
+	if(confirm('장바구니에 추가하시겠습니까?') && currentOrderCount != 0){
 		alert("addCart 함수 호출");
 		$.ajax({
 			url: "addToCart",
