@@ -22,8 +22,7 @@ $(document).ready(function(){
 	/**주문 수량 증감*/
 	function count(type, menuNum){
 		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).html());
-		alert(menuNum);
-		alert(currentOrderCount);
+
 		//더하기, 빼기
 		if(type === 'plus' && currentOrderCount < 11) {
 			currentOrderCount = currentOrderCount + 1;  
@@ -44,7 +43,7 @@ $(document).ready(function(){
 	/** 가격 업데이트 */
 	function updatePrice(menuNum, currentOrderCount) {
 		console.log("updatePrice " + menuNum + " , " + currentOrderCount);
-	    let pricePerItem = parseInt(currentOrderCount) * parseInt($(`#orderCount_${menuNum}`).html());
+	    let pricePerItem = parseInt(currentOrderCount) * parseInt($(`#price2_${menuNum}`).html());
 		console.log("parse currentOrderCount : " + parseInt(currentOrderCount));
 		console.log("parse ordercount : " + parseInt($(`#orderCount_${menuNum}`).html()));
 		console.log("updatePrice pricePerItem : " + pricePerItem);
@@ -63,7 +62,7 @@ $(document).ready(function(){
 		//각 메뉴마다 가격을 가져와서 totalPrice에 더함
         $('.price-per-item').each(function() {
         	let menuNum = $(this).attr('id').split('_')[1]; //menuNum 추출
-            let pricePerItem = updatePrice(menuNum, parseInt($(`#orderCount_${menuNum}`).html()));
+            let pricePerItem = updatePrice(menuNum, parseInt($(`#price2_${menuNum}`).html()));
 			console.log("pricePerItem " + pricePerItem);
             
          	//만약 숫자가 NaN이 아니라면 더함
@@ -172,7 +171,8 @@ $(document).ready(function(){
   				</td>
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('minus',this.getAttribute('menuNum'))|">- &nbsp;</a></td>
 	  			<td>
-	  				<p class="price-per-item" th:id="'price_' + ${menu.menuNum}"></p>
+	  				<span th:id="'price2_' + ${menu.menuNum}" th:text="${menu.price}" style="display:none;"></span>
+	  				<p class="price-per-item" th:id="'price_' + ${menu.menuNum}"></p>원
   				</td>
 	  		</tr>
 	  	</table>
