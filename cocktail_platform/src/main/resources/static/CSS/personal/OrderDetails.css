@@ -142,7 +142,7 @@ img[alt=icon]{width: 27px;}
 a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9px;}
 
 .con1, .con2{ 
-    width: 100%; text-align: left; line-height: 28px; border: 1.8px solid #313131;  
+    width: 90%; text-align: left; line-height: 28px; border: 1.8px solid #313131;  
     padding: 15px; background-color: #fffde5;
     font-family: 'Noto Sans KR', sans-serif;  font-weight: bold; z-index: 100; border-radius: 8px;
 }
