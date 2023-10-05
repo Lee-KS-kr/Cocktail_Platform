@@ -341,7 +341,7 @@
 					sr.storeReviewScore desc
 				)
 		where
-			rownum between 0 and 4
+			rownum between 0 and 5
 	</select>
 	
 	<insert id="insertMenu" parameterType="Menu">
