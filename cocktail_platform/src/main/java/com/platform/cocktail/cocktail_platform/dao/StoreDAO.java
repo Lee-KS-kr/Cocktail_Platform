@@ -71,5 +71,7 @@ public interface StoreDAO {
 
 	ArrayList<StoreInfo> searchStore(String searchWord);
 
+	ArrayList<Menu> getMenuByCategory(Menu menu);
+
 	
 }
