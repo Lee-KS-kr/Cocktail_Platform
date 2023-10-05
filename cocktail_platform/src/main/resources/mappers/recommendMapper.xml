@@ -20,31 +20,7 @@
 	</select>
 	 
 	<select id="customizedRecommendation" parameterType="Taste" resultType="Cocktails">
-		select
-        	c.cocktailName as cocktailName
-    	from
-        	cocktails c
-        	left join orderTemp ot on c.cocktailName = ot.menuName
-        where
-    			ot.memberId = #{memberId}
-    		and
-    			c.cocktailTaste like '%' || #{cocktailTaste} || '%'
-    	group by
-        	c.cocktailName
-    	order by
-        	sum(ot.orderCount) desc
-        	
-        select
-        	c.cockailName
-		from
-			taste t
-			join cocktails c on t.cocktailTaste = c.cocktailTaste
-		where
-			t.memberId = #{memberId} and c.cocktailTaste = #{cocktailTaste}
-	</select>
-	
-	<select id="recommendForMe" parameterType="String" resultType="Cocktails">
-    	select
+		 select
     		c.cockailName
 		from
 			taste t
@@ -58,6 +34,20 @@
 			c.cockailName
 		order by
 			sum(ot.orderCount) desc
+	</select>
+	
+	<select id="recommendForMe" parameterType="String" resultType="Cocktails">
+    	select
+        	c.cocktailName as cocktailName
+    	from
+        	cocktails c
+        	left join orderTemp ot on c.cocktailName = ot.menuName
+        where
+    		ot.memberId = #{memberId}
+    	group by
+        	c.cocktailName
+    	order by
+        	sum(ot.orderCount) desc
 	</select>
 	
     <select id="weatherRecommend" parameterType="String" resultType="Cocktails">	
