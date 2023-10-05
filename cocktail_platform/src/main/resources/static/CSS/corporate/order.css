@@ -1,3 +1,21 @@
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans:400");
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean");
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OKGUNG';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+/*=========================================================*/
 .sidebar{display:flex ;}
 
 .navi{
@@ -164,20 +182,84 @@ h1{
   width: 250px;
 }
 
-input[type=button]{
-  width:150px;
-  height:30px;
-  background-color: #ff7676;
-  border: 1.8px solid #313131;
-  border-radius:30px;
-  margin: 10px 20px;
-  display: flex;
-  justify-content: center;
-  
-}
-
 input[value="수정"]{
   margin: 10px 30px;
   
 }
+
 h2{font-weight:bold; font-family: 'Noto Sans KR', sans-serif;  }
+
+table{
+    width: 100%;
+  justify-content: center;
+  text-align: center;
+  background-color: #fff ;
+  border:1.8px solid #313131;
+  color: #414141;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: bold;
+    margin: 20px auto 0px;
+  padding:20px;
+ margin-left:250p;
+}
+
+table th{color: #ffc123; font-weight:bold; font-size: 12pt;}
+
+/* Recommend Menu Styles */
+#recommendList table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#recommendList img {
+  max-width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+/* Menu List Styles */
+#menuList table {
+  width: 600px;
+  border-collapse: collapse;
+  display: flex;
+  justify-content:center;
+}
+
+#menuList img {
+  max-width:120px;
+}
+
+#menuList td {
+  width:200px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+  
+}
+
+
+button{
+    width:150px;
+  line-height:40px;
+  background-color: #ff7676;
+  border: 1.8px solid #313131;
+  border-radius:30px;
+  margin: 10px 5px;
+  display: flex;
+  justify-content: center;
+}
+.cart{
+    width:150px;
+  line-height:40px;
+  background-color: #ffd229;
+  border: 1.8px solid #313131;
+  border-radius:10px;
+  margin: 10px 5px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
