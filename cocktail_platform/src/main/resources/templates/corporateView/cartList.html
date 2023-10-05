@@ -50,9 +50,10 @@ $(document).ready(function(){
 	    } else {
 	        $(`#price_${menuNum}`).text('0원');
 	    }
-	  	//getTotal 함수 호출
-	    getTotal();
 	}
+	
+	//getTotal 함수 호출
+    getTotal();
 	
 	/**가격 총 합계 계산*/
 	function getTotal(){
@@ -177,13 +178,9 @@ $(document).ready(function(){
 	  				<p class="cart-total">합계: <span id="totalPrice"></span></p>
 	  			</td>
 	  		</tr>
-	  		<tr>
-	  			<td>
-	  				<button class="orderBT" onclick="closeCart()">닫기</button>
-	  				<button class="orderBT" th:onclick="orderMenu(${menu.menuNum})">주문하기</button>
-  				</td>
-	  		</tr>
 	  	</table>
+ 		<button class="orderBT" onclick="closeCart()">닫기</button>
+ 		<button class="orderBT" th:onclick="orderMenu(${menu.menuNum})">주문하기</button>
 	  </div>
 	</div>
   </body>
