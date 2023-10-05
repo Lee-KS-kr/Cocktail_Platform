@@ -10,6 +10,7 @@
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    text-decoration: none;
 }
 a:link { color: #232323; }
 a:visited { color:#454545; }
@@ -47,25 +48,28 @@ border-spacing: 0;
 
 /*=========================================================*/
 
+.sidebar{display:flex ;}
+
 .navi{
-width: 100% ;
-height: 60px;
-background-color: #fff;
-border-bottom:2px solid #e7e7e7;
-display: flex; 
-justify-content: center;
-}
-
-
-.navi1{
+    width: 100% ;
+    height: 60px;
+    background-color: #fff;
+    border-bottom:2px solid #313131;
+    display: flex; 
+    justify-content: center;
+    color: #313131;
+    font-family: 'Noto Sans KR', sans-serif;  
+    }
+  
+  .navi1{
     width: 50%;
     padding-left: 40px;
     padding-top: 5px;
     justify-content: center;
     background-color: #fff;
-}
-
-.navi2{
+  }
+  
+  .navi2{
     width: 50%;
     background-color:#fff;
     border-bottom: #e7e7e7;
@@ -74,53 +78,31 @@ justify-content: center;
     padding-right: 40px ;
     align-items: center;
     margin: auto;
-}
+  }
 
 .body{ display: flex; }
 
-.sideber{display: flex;}
 .sec1{
-width: 17%;
+width: 16%;
 height: 700px;
 padding: 15px;
-background-color: #F7F7F7;
+background-color: #fffde5;
 position:relative;
-}
-
-.title2{font-size: 17pt; height: 70px;  display: flex; align-items: center; 
-    border: 1px solid #d3d3d3;
-    background-color: #fff;
-    position:relative;
-
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=0, Color=#DEDEDE)";/*IE 8*/
-    -moz-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*FF 3.5+*/
-    -webkit-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
-    box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=135, Color=#DEDEDE); /*IE 5.5-7*/
+box-shadow: 4px 0px 10px solid #e7e7e7;
 }
 
 /*배경*/
-.sec2{width: 83%; padding-left: 36px; padding-right: 36px; background-color:#f6f7fa}
+.sec2{width: 83%; padding-left: 36px; padding-right: 36px; background-color:#fce142; }
 
 .title1{padding-left: 20px; padding-top: 10px;}
-.title2{font-size: 17pt; height: 70px; margin:30px 0px 20px; padding-left: 15px; 
-    border: 1px solid #d3d3d3; border-radius: 5px; background-color: #fff; 
-    display: flex; align-items: center; 
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=0, Color=#DEDEDE)";/*IE 8*/
-    -moz-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*FF 3.5+*/
-    -webkit-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
-    box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=135, Color=#DEDEDE); /*IE 5.5-7*/
+.title2{ width: 100%; font-size: 22pt; height: 70px; margin:35px 0px 10px; padding-left: 10px; 
+    border-radius: 5px; background-color: #fce142; display: flex; 
+   font-weight: bold; display: flex; align-items: center; color: #232323;}
 
-    display: flex; align-items: center; }
-
-
-.sections{background-color: #406fcd;}
-
-img[alt=logo] { width: 120px; margin-top: 8px;}
+img[alt=logo] { width: 120px;}
 img[alt=search] { width: 27px; height: 27px; }
-img[alt=icon]{width: 20px; display: flex;}
-
+img[alt=icon]{width: 27px;}
+    
 .order{margin: 20px 0px;}
 
 .orderHistory[type=button] {
@@ -129,70 +111,58 @@ img[alt=icon]{width: 20px; display: flex;}
     margin: 5px;
     padding-left: 15px;
     border-radius: 6px;
-    background-color: #f6f7fa;
-    border-radius: 5px;
-    background-color: #FFF;
-
+    background-color: #fffde5;
+    border-radius: 50px;
+    border: 1px solid #fffde5;
     text-align: start;
     opacity: 0.7;
+    color: #000000;
+    font-weight: bold;
+    font-family: 'Noto Sans KR', sans-serif;  
 }
+
 .orderHistory:hover[type=button] {
     width: 196px;
     height: 35px;
     margin: 5px;
     padding-left: 15px;
     border-radius: 6px;
-    background-color: #e5e5e5;
-    border-radius: 5px;
-    background-color: #FF661A;
+    background-color: #000;
+    border: 1px solid #000;
+    border-radius: 50px;
     color: #fff;
-    border: 1px solid #e5e5e5;
+    transition: 0.15s;
     text-align: start;
+    font-weight: bold;
     opacity: 1;
 
 }
 
-a[name=out] {padding-left: 20px; position: absolute; bottom: 30px; font-size: 9px;}
-a[name=out] {position: absolute; bottom: 20px;}
 
-a[name=out] {padding-left: 20px; position: absolute; bottom: 100px; font-size: 9px;}
+a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9px;}
 
-.con1, .con2{ text-align: left; line-height: 28px; border: 1px solid #d3d3d3; border-radius: 5px; margin: 5px 0px; padding: 15px; background-color: #fff;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=0, Color=#DEDEDE)";/*IE 8*/
-    -moz-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*FF 3.5+*/
-    -webkit-box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
-    box-shadow: 0 2px 9px 3px rgba(237, 237, 237, 0.7);/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=135, Color=#DEDEDE); /*IE 5.5-7*/
+.con1, .con2{ 
+    width: 90%; text-align: left; line-height: 28px; border: 1.8px solid #313131;  
+    padding: 15px; background-color: #fffde5;
+    font-family: 'Noto Sans KR', sans-serif;  font-weight: bold; z-index: 100; border-radius: 8px;
 }
 
-.con1{padding-bottom: 30px;}
 
 th{padding-right: 20px;}
 
-input[value="변경"], .resetpw {
-    height: 20px;
-    line-height: 10px; /*줄간격*/
+input[type=submit],.taste, .resetpw {
+    width: 120px;
+    height: 30px;
+    line-height: 3px; /*줄간격*/
     font-size: 10pt; /*폰트 크기*/
-    color: #777777; /*폰트 색상*/
-    margin: 0px 15px;
-    padding: 2px;
-    border: 1px solid #e5e5e5;
-    border-radius: 3px; /*모서리 둥글기*/
-    background-color: #fff; 
+    color: #313131; /*폰트 색상*/
+    padding: 10px;
+    border: 1px solid #313131;
+    border-radius: 30px; /*모서리 둥글기*/
+    background-color: #50CCAA; 
+    margin:15px 5px 0px;
 }
 
-input[value="변경"]:hover, .resetpw:hover {
-    font-size: 10pt;
-    color: #232323;
-    margin: 0px 15px;
-    padding: 2px;
-    border: 1px solid #c0c0c0;
-    border-radius: 3px;
+.flex{display: flex; }
 
-    transition: 0.1s; /*트랜지션 속도*/
-}
-
-.resetpw{
-    position: absolute;
-    right: 32px;
-}
+input{ background-color: fff; border: 1px solid #313131; border-radius: 30px; padding: 5px;}

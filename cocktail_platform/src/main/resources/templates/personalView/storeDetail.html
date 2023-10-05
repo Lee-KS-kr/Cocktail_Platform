@@ -341,9 +341,7 @@ function reserveSub(){
 			<!-- 예약하기 탭 내용 -->
 			<div id="tab_reserve" class="tab_cont">
 				<!-- 날짜 선택(캘린더),시간 선택, 인원 선택, 예약자 정보 출력 -->
-				<form id="reserveForm" th:action="@{/personal/store/reserve}" method="post" onsubmit="reserveSub()" class="reserveForm">
-
-					
+				<form id="reserveForm" th:action="@{/personal/store/reserve}" method="post" onsubmit="reserveSub()" class="reserveForm">	
 					<p>날짜 선택</p>
 					<input type="date" name="reserveDate" required="required">
 					<p>시간 선택</p>
