@@ -64,6 +64,7 @@ $(document).ready(function () {
     	$('#menuList').html(str);
     }
     init();
+    reviewScore();
 });
 
 //별점 가져오기
@@ -203,28 +204,18 @@ function reserveSub(){
 <!-- 메인 시작 -->
 <main>
 	<!-- 기본 매장 정보 영역(매장 이미지, 매장명, 별점) -->
-	<div>
-		<table>
-			<tr>
-				<td>
-					<span th:text="${store.storeCode}" id="storeCode" style="display:none;"></span>
-					<span th:text="${store.storeName}" class="s_name"></span>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="s_img"><img th:src="@{/image/store/} + ${store.savedFilename}"></div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div id="starDiv" class="s_star"></div>
-				</td>
-				<td>
-					<p><span th:text="${store.storeReviewScore}"></span>/5<p>
-				</td>
-			</tr>
-		</table>
+	<div class="store_box">
+		<div class="s_box_left">
+			<div><span th:text="${store.storeCode}" id="storeCode" style="display:none;"></span></div>
+			<div class="s_img"><img th:src="@{/image/store/} + ${store.savedFilename}"></div>
+		</div>
+		<div class="s_box_right">
+			<div><span th:text="${store.storeName}" class="s_name"></span></div>
+			<div>
+				<div id="starDiv" class="s_star"></div>
+				<div><span th:text="${store.storeReviewScore}"></span>/5</div>
+			</div>
+		</div>
 	</div>
 	<br>
 	<!-- 탭 메뉴 영역 -->
@@ -232,8 +223,8 @@ function reserveSub(){
 		<!-- 탭 이름 -->
 		<div>
 			<ul class="tab_title">
-				<li class="tab_link on" data-tab="tab_menu">메뉴(<span></span>)</li>
-				<li class="tab_link" data-tab="tab_review">리뷰(<span></span>)</li>
+				<li class="tab_link on" data-tab="tab_menu">메뉴</li>
+				<li class="tab_link" data-tab="tab_review">리뷰</li>
 				<li class="tab_link" data-tab="tab_storeInfo">매장 정보</li>
 				<li class="tab_link" data-tab="tab_reserve">예약하기</li>
 			</ul>
