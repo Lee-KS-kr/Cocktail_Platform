@@ -166,7 +166,7 @@ $(document).ready(function(){
   				</td>
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('minus',this.getAttribute('menuNum'))|">- &nbsp;</a></td>
 	  			<td>
-	  				<p class="price-per-item" th:id="'price_' + ${menu.menuNum}"></p>원
+	  				<p class="price-per-item" th:id="'price_' + ${menu.menuNum}" th:text="${menu.price * menu.orderCount} + '원'"></p>
   				</td>
 	  		</tr>
 	  	</table>
