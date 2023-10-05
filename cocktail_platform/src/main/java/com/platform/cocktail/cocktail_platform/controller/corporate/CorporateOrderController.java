@@ -25,6 +25,7 @@ import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.MemberType;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
+import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.service.MemberService;
 import com.platform.cocktail.cocktail_platform.service.OrderService;
@@ -182,8 +183,9 @@ public class CorporateOrderController {
 		return "corporateView/cartList";
 	}
 	
+	@ResponseBody
 	@PostMapping("orderMenu")
-	public String orderMenu(int storeCode, String memberId, String orderCode, 
+	public void orderMenu(int storeCode, String memberId, String orderCode, 
 						@CookieValue(name="cart", defaultValue="0") String cart,
 						HttpServletResponse res, Model m) throws Exception {
 		
@@ -215,8 +217,6 @@ public class CorporateOrderController {
 			cookie1.setMaxAge(0);
 			res.addCookie(cookie1);
 		}
-		
-		return "redirect:/corporate/order/menu?orderCode=" + orderCode;
 	}
 	
 	@ResponseBody
@@ -238,14 +238,25 @@ public class CorporateOrderController {
 		return list;
 	}
 	
+	@GetMapping("orderList")
+	public String orderList(String orderCode, Model m) {
+		ArrayList<OrderTemp> list = oService.getOrdersByOrdercode(orderCode);
+		m.addAttribute("list", list);
+		
+		return "corporateView/";
+	}
+	
 	@GetMapping("callStaff")
 	public String callStaff(String orderCode) {
 		return "corporateView/";
 	}
 	
-	@PostMapping("payment")
-	public String payment(int storeCode, String memberId, String orderCode) {
+	@GetMapping("payment")
+	public String payment(String orderCode) {
 		oService.finishOrderByCode(orderCode);
-		return "corporateView/";
+		this.storeCode = 0;
+		this.loginMember = null;
+		
+		return "redirect:/corporate/order/login";
 	}
 }
