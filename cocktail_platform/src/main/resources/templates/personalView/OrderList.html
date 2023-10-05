@@ -79,9 +79,9 @@
                             <td th:text="${order.totalPrice}"></td>
                             <td th:text="${order.orderDate}"></td>
                             <td>
-                            	<p th:if="${order.orderState} == 'apply'">대기</p>
-                            	<p th:if="${order.orderState} == 'received'">수락</p>
-                            	<p th:if="${order.orderState} == 'refused'">거절</p>
+                            	<p th:if="${order.orderState == 'apply'}">대기</p>
+                            	<p th:if="${order.orderState == 'received'}">수락</p>
+                            	<p th:if="${order.orderState == 'refused'}">거절</p>
                            	</td>
                         </tr>
                     </table>
