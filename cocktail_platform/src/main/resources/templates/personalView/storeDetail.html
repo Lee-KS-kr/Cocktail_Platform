@@ -8,6 +8,9 @@
 <title>가게 상세 페이지</title>
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
+	
+let storeCode = null;
+
 $(document).ready(function () {
 	// 처음 로딩될 때 모든 탭 내용을 감춤
 	$(".tab_cont").hide();
@@ -31,7 +34,7 @@ $(document).ready(function () {
   	
   	//전체 메뉴 목록 받아오기
     function init(){
-    	let storeCode = $('#storeCode').html();
+    	storeCode = $('#storeCode').html();
     	
     	$.ajax({
     		url: "menuList",
@@ -66,6 +69,7 @@ $(document).ready(function () {
     init();
     reviewScore();
 });
+
 
 //별점 가져오기
 function reviewScore(){
@@ -234,6 +238,7 @@ function reserveSub(){
 		<div class="tab_menu_div">
 			<!-- 메뉴탭 내용 -->
 			<div id="tab_menu" class="tab_cont on">
+				<div id="menuList"></div>
 				<!-- 대표 메뉴 사진
 				<div id="menu_img">
 					<img th:src="">
