@@ -17,7 +17,7 @@
 $(document).ready(function(){
 	let memberId = $('#memberId').val();
 	let storeCode = $('#storeCode').text();
-	let orderCount = 0;
+	let orderCount;
 	let menuNum;
 	let memberRole = $('#memberRole').html();
 	let category;
@@ -69,7 +69,7 @@ function menuList(list){
 	$(list).each(function(i,item){
 		let fileName = item.savedFilename;
 		menuNum = item.menuNum;
-		orderCount = parseInt($('#orderCount_' + menuNum).html());
+		orderCount = parseInt($('#orderCount_' + menuNum).html() || 0);
 		category = item.category;
 		let src;
 		
@@ -116,6 +116,7 @@ function count(type, menuNum, orderCount){
 //추천 메뉴 목록 가져오기
 function getRecMenu(){
 	if(memberRole === 'ROLE_PERSONAL'){
+		alert('추천 목록 가져오겟습니도');
 		$.ajax({
 			url: "recommendList",
 			type: "post",
@@ -143,6 +144,8 @@ function recMenuList(list){
 	$(list).each(function(i,item){
 		let menuNum = item.menuNum;
 		let fileName = item.savedFilename;
+		category = item.category;
+		orderCount = parseInt($('#orderCount_' + menuNum).html() || 0);
 		let src;
 		
 		if(category === 'beverage'){
