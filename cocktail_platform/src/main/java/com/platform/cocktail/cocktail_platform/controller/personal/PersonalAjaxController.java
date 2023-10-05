@@ -60,7 +60,7 @@ public class PersonalAjaxController {
 	@GetMapping("searchStore")
 	public ArrayList<StoreInfo> searchStore(String searchWord){
 		log.debug("category : {} searchword : {} ", searchWord);
-		ArrayList<StoreInfo> list = cService.searchStore(searchWord);
+		ArrayList<StoreInfo> list = sService.searchStore(searchWord);
 		log.debug("list : {}", list);
 		return list;
 	}

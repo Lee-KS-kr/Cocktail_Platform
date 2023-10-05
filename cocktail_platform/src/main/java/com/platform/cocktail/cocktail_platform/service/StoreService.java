@@ -60,4 +60,6 @@ public interface StoreService {
 
 	int insertMenu(Menu menu);
 
+	ArrayList<StoreInfo> searchStore(String searchWord);
+
 }

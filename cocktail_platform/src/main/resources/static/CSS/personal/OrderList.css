@@ -56,7 +56,6 @@ table {
 
 /*=========================================================*/
 
-
 .sidebar{display:flex ;}
 
 .navi{
@@ -71,135 +70,197 @@ table {
   }
 
 .navi1{
-    width: 50%;
-    padding-left: 40px;
-    padding-top: 5px;
-    justify-content: center;
-    background-color: #fff;
+  width: 50%;
+  padding-left: 40px;
+  padding-top: 5px;
+  justify-content: center;
+  background-color: #fff;
 }
 
 .navi2{
-    width: 50%;
-    background-color:#fff;
-    border-bottom: #e7e7e7;
-    display: flex;
-    justify-content: end;
-    padding-right: 40px ;
-    align-items: center;
-    margin: auto;
-}
-
-
-.body {
+  width: 50%;
+  background-color:#fff;
+  border-bottom: #e7e7e7;
   display: flex;
-}
-
-.sideber {
-  display: flex;
-}
-.sec1{
-  width: 16%;
-  height: 700px;
-  padding: 15px;
-  background-color: #fffde5;
-  position:relative;
-  box-shadow: 4px 0px 10px solid #e7e7e7;
-  }
-
-
-/*배경*/
-.sec2{width: 83%; padding-left: 36px; padding-right: 36px; background-color:#fce142; }
-
-.title1{padding-left: 20px; padding-top: 10px;}
-.title2{ width: 100%; font-size: 22pt; height: 70px; margin:35px 0px 10px; padding-left: 10px; 
-    border-radius: 5px; background-color: #fce142; display: flex; 
-   font-weight: bold; display: flex; align-items: center; color: #232323;}
-
-   img[alt=logo] { width: 120px;}
-   img[alt=search] { width: 27px; height: 27px; }
-   img[alt=icon]{width: 20px; display: flex;}
-   .order{margin: 20px 0px;}
-
-
-   .orderHistory[type=button] {
-    width: 196px;
-    height: 35px;
-    margin: 5px;
-    padding-left: 15px;
-    border-radius: 6px;
-    background-color: #fffde5;
-    border-radius: 50px;
-    border: 1px solid #fffde5;
-    text-align: start;
-    opacity: 0.7;
-    color: #000000;
-    font-weight: bold;
-    font-family: 'Noto Sans KR', sans-serif;  
-}
-
-.orderHistory:hover[type=button] {
-    width: 196px;
-    height: 35px;
-    margin: 5px;
-    padding-left: 15px;
-    border-radius: 6px;
-    background-color: #000;
-    border: 1px solid #000;
-    border-radius: 50px;
-    color: #fff;
-    transition: 0.15s;
-    text-align: start;
-    font-weight: bold;
-    opacity: 1;
-
-}
-a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9px;}
-
-.con1, .con2{ 
-    width: 98%; text-align: left; line-height: 28px; border: 1.8px solid #313131; border-radius: 5px; 
-    padding: 15px; background-color: #fffde5;
-    font-family: 'Noto Sans KR', sans-serif;  font-weight: bold; z-index: 100;
-}
-
-.con1{margin: 5px 0px;}
-th{padding-right: 20px;}
-
-input[value="변경"],
-.resetpw {
-  height: 20px;
-  line-height: 10px; /*줄간격*/
-  font-size: 10pt; /*폰트 크기*/
-  color: #777777; /*폰트 색상*/
-  padding: 2px;
-  border: 1px solid #e5e5e5;
-  border-radius: 3px; /*모서리 둥글기*/
-  background-color: #fff; 
-  margin:15px 5px 0px;
-}
-
-input[value="변경"]:hover,
-.resetpw:hover {
-  font-size: 10pt;
-  color: #232323;
-  padding: 2px;
-  border: 1px solid #ffcfb7;
-  border-radius: 3px;
-  margin:15px 5px 0px;
-  transition: 0.1s; /*트랜지션 속도*/
-}
-
-.resetpw {
-  position: absolute;
-  right: 32px;
-}
-table,
-th,
-td {
+  justify-content: end;
+  padding-right: 40px ;
+  align-items: center;
   margin: auto;
 }
+img[alt=logo] { width: 120px;}
 
-th,
-td {
-  padding: 0px 60px;
+.body{ display: flex; }
+/*========================================================================*/
+/*profile icon img*/
+img[alt=icon] { width: 27px;}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #50CCAA;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1.8px solid #313131;
+  border-radius: 8px;
+}
+
+.sidebar {
+  width: 300px;
+  padding: 20px;
+  border-radius: 8px;
+  display: block;
+  background-color: #fff;
+  border: 1.8px solid #313131;
+  margin: 0px 20px;
+}
+
+/*side bar - <hr>*/   
+.sidebar-divider {
+  margin: 20px 0px;
+  border: 1px solid #313131;
+}
+
+.nav-item ul {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-item ul li {
+  margin: 20px 0;
+}
+
+.nav-item ul li a {
+  text-decoration: none;
+  color: #232323;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-item ul li a:hover {
+  color: #50CCAA;
+}
+
+main {
+  display: flex;
+  padding: 20px;
+  height: 600px;
+}
+
+/*ì£¼ë¬¸ íŽ˜ì´ì§€*/
+.box {
+  width: 300px;
+  height: 80px;
+  line-height: 85px;
+  justify-content: center;
+  text-align: center;
+  background-color: #fff ;
+  border:1.8px solid #313131;
+  border-radius: 30px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+    margin: 20px auto 0px;
+
+}
+
+.box:hover {
+  background-color: #fff;
+  border:1.8px solid #313131;
+  text-decoration: none;
+
+}
+
+/*arrow.png*/
+img[alt="arrow"] {
+  width: 40px;
   text-align: center;
 }
+
+/* Footer ìŠ¤íƒ€ì¼ */
+footer {
+  background-color: #232323;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer1 p {
+  font-size: 14px;
+  color: #e7e7e7;
+}
+
+/*마이페이지 text*/
+h1{
+  width: 100%; font-size: 22pt; height: 70px; margin:35px 0px 10px; padding-left: 10px; 
+  border-radius: 5px; background-color: #50CCAA; display: flex; 
+ font-weight: bold; display: flex; align-items: center; color: #232323;}
+
+.section{
+  display: flex;
+  margin: 0 auto;
+  width: 1000px;
+}
+
+/*member Info, store Info*/
+.memberInformation, .storeInformation{
+  width: 45%;
+  border-radius: 10px;
+  background-color: #fff;
+  border: 1.8px solid #313131;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+/*스토어 이미지*/
+.store_image{
+  width: 250px;
+}
+
+button{
+  width:150px;
+  height:40px;
+  line-height:40px;
+  background-color: #ff7676;
+  border: 1.8px solid #313131;
+  border-radius:30px;
+  margin: 10px 20px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 123px;
+  left: 560px;
+  
+}
+
+input[value="수정"]{
+  margin: 10px 30px;
+  
+}
+
+h2{font-weight:bold; font-family: 'Noto Sans KR', sans-serif;  }
+
+table{
+    width: 100%;
+  line-height: 40px;
+  justify-content: center;
+  text-align: center;
+  background-color: #fff ;
+  border:1.8px solid #313131;
+  color: #414141;
+  border-radius: 10px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+    margin: 20px auto 0px;
+  padding:20px 30px;
+
+}
+
+table th{color: #ffc123; font-weight:bold; font-size: 12pt;}

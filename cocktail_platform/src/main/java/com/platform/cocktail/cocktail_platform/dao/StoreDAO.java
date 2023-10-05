@@ -69,5 +69,7 @@ public interface StoreDAO {
 
 	int insertMenu(Menu menu);
 
+	ArrayList<StoreInfo> searchStore(String searchWord);
+
 	
 }
