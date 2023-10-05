@@ -74,11 +74,11 @@ function reviewScore(){
 
     for(let i = 0 ; i < 5; i++){  
         if(i < Math.floor(score)){  // 정수 부분은 full 별표시
-        	str1 += '<img src="/FitTail/image/cocktail_colored.png">';
+        	str1 += '<img src="/FitTail/image/cocktail_colored.png" class="starimg">';
         } else if(score % 1 !== 0 && i === Math.floor(score)){ //0.5 단위인 경우 반 별표시
-        	str1 += '<img src="/FitTail/image/cocktail_half.png">';
+        	str1 += '<img src="/FitTail/image/cocktail_half.png" class="starimg">';
         } else {
-        	str1 += '<img src="/FitTail/image/cocktail_non.png">'; // 나머지는 빈 별표시
+        	str1 += '<img src="/FitTail/image/cocktail_non.png" class="starimg">'; // 나머지는 빈 별표시
         }
     }
     $('#starDiv').html(str1);
