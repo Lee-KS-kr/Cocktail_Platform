@@ -148,34 +148,36 @@ $(document).ready(function(){
 	  <div id="cartList">
 	  	<table th:each="menu: ${menuList}" th:if="${menuList != null}">
 	  		<!-- null일 경우 에러메세지 출력 -->
-	  		<tbody th:if="${menuList == null}">장바구니에 담긴 상품이 없습니다.</tbody>
+	  		<tbody><tr><td th:if="${menuList == null}">장바구니에 담긴 상품이 없습니다.</td></tr></tbody>
 	  		<!-- null이 아닐 경우 메뉴 출력 -->
 	  		<tr>
-	  			<td>
+	  			<td colspan="3">
 	  				<span th:text="${menu.menuName}"></span>
 	  				<span th:id="'menuNum_' + ${menuNum}" th:text="${menu.menuNum}" style="display:none;"></span>
   				</td>
 	  			<td><button th:onclick="deleteCart(${menu.menuNum})" value="삭제">삭제</button></td>
 	  		</tr>
 	  		<tr>
-	  			<td><a th:menuNum="${menu.menuNum}" th:onclick="count('plus', this.getAttribute('menuNum'))">+</a></td>
+	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('plus', this.getAttribute('menuNum'))|">+</a></td>
 	  			<td th:each="cart: ${carts}">
 	  				<p th:id="'orderCount_' + ${menuNum}"><span th:text="${cart[1]}"></span>개</p>
   				</td>
-	  			<td><a th:menuNum="${menu.menuNum}" th:onclick="count('minus',this.getAttribute('menuNum'))">-</a>&nbsp;</td>
+	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('minus',this.getAttribute('menuNum'))|">- &nbsp;</a></td>
 	  			<td>
 	  				<p class="price-per-item" th:id="'price_' + ${menu.menuNum}">
 	  				<span th:text="${menu.price}"></span>원
   				</td>
 	  		</tr>
 	  		<tr>
-	  			<td>
+	  			<td colspan="4">
 	  				<p class="cart-total">합계: <span id="totalPrice"></span></p>
 	  			</td>
 	  		</tr>
 	  		<tr>
-	  			<td><button class="orderBT" onclick="closeCart()">닫기</button>
-	  			<button class="orderBT" th:onclick="orderMenu(${menu.menuNum})">주문하기</button></td>
+	  			<td>
+	  				<button class="orderBT" onclick="closeCart()">닫기</button>
+	  				<button class="orderBT" th:onclick="orderMenu(${menu.menuNum})">주문하기</button>
+  				</td>
 	  		</tr>
 	  	</table>
 	  </div>
