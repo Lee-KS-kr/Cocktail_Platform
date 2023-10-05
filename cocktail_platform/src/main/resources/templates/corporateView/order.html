@@ -17,10 +17,11 @@
 $(document).ready(function(){
 	let memberId = $('#memberId').val();
 	let storeCode = $('#storeCode').text();
-	let orderCount = 0;
+	let orderCount;
 	let menuNum;
 	let memberRole = $('#memberRole').html();
 	let category;
+	let currentOrderCount;
 
 	//호출
 	allList();
@@ -69,7 +70,7 @@ function menuList(list){
 	$(list).each(function(i,item){
 		let fileName = item.savedFilename;
 		menuNum = item.menuNum;
-		orderCount = parseInt($('#orderCount_' + menuNum).html());
+		orderCount = parseInt($('#orderCount_' + menuNum).html() || 0);
 		category = item.category;
 		let src;
 		
@@ -97,7 +98,7 @@ function menuList(list){
 	
 /**주문 수량 증감*/
 function count(type, menuNum, orderCount){
-	let currentOrderCount = parseInt($('#orderCount_' + menuNum).html());
+	currentOrderCount = parseInt($('#orderCount_' + menuNum).html());
 	//더하기, 빼기
 	if(type === 'plus' && currentOrderCount < 11) {
 		currentOrderCount = parseInt(currentOrderCount) + 1;  
@@ -110,12 +111,12 @@ function count(type, menuNum, orderCount){
 		
 	//결과 출력
   	$("#orderCount_" + menuNum).text(currentOrderCount);
-	return currentOrderCount;
 }
 
 //추천 메뉴 목록 가져오기
 function getRecMenu(){
 	if(memberRole === 'ROLE_PERSONAL'){
+		alert('추천 목록 가져오겟습니도');
 		$.ajax({
 			url: "recommendList",
 			type: "post",
@@ -143,6 +144,8 @@ function recMenuList(list){
 	$(list).each(function(i,item){
 		let menuNum = item.menuNum;
 		let fileName = item.savedFilename;
+		category = item.category;
+		orderCount = parseInt($('#orderCount_' + menuNum).html() || 0);
 		let src;
 		
 		if(category === 'beverage'){
@@ -180,8 +183,8 @@ function menuCategory(category){
 
 //카트에 담기
 function addCart(menuNum){
-	let con = confirm('장바구니에 추가하시겠습니까?')
-	let currentOrderCount = parseInt($('#orderCount_' + menuNum).html());
+	let con = confirm('장바구니에 추가하시겠습니까?');
+	currentOrderCount = parseInt($('#orderCount_' + menuNum).html());
 	//param에 보내야 될 값들 담아주기
 	let param = {
 			menuNum :  menuNum,
@@ -200,7 +203,7 @@ function addCart(menuNum){
 				allList();
 			},
 			error: function(){
-				alert('error');
+				alert(currentOrderCount);
 			}
 		});
 	};

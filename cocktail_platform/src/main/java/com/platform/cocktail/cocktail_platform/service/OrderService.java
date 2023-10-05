@@ -27,4 +27,5 @@ public interface OrderService {
 	ArrayList<OrderTemp> getTemporderlistByCode(int storeCode);
 
 	ArrayList<Menu> getMenusByCode(String orderCode);
+
 }

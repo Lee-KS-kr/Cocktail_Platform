@@ -65,6 +65,7 @@
                     <div class="flex">
                         <form th:action="@{/personal/member/evaluation}"  method="post" onsubmit="return check()">
                         <input type="hidden" th:value="${store.storeCode}" name="storeCode">
+                        <input type="hidden" th:value="${orderCode}" name="orderCode">
                         <div class="con1">
                             <table>
                                 <tr>

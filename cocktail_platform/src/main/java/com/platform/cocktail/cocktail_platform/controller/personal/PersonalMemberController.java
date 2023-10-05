@@ -119,6 +119,7 @@ public class PersonalMemberController {
 		for (Order o : list) {
 			StoreInfo s = sService.getStoreinfoByCode(o.getStoreCode());
 			o.setStoreName(s.getStoreName());
+			o.setReviewDone(sService.getReviewWrote(o.getOrderCode()));
 		}
 		
 		m.addAttribute("orderList", list);
@@ -163,7 +164,8 @@ public class PersonalMemberController {
 		
 		m.addAttribute("list", list);
 		m.addAttribute("store", store);
-		log.debug("store {}, list {}", store, list);
+		m.addAttribute("orderCode", orderCode);
+		log.debug("ordercode {}, store {}, list {}", orderCode, store, list);
 		return "personalView/reviewWrite";
 	}
 	
@@ -189,18 +191,9 @@ public class PersonalMemberController {
 			event[0] = str;
 		}
 		
-		review.setMemberid(user.getUsername());
+		review.setMemberId(user.getUsername());
 		log.debug("review {}", review);
 		sService.insertReview(review, menuNum, weather, ageGroup, companion, event);
-		return "redirect:/personal/member/reserveList";
-	}
-	
-	@PostMapping("orderInputTest")
-	public String orderInputTest(@AuthenticationPrincipal UserDetails user, Order o) {
-		o.setMemberId(user.getUsername());
-		o.setOrderState(OrderState.finished);
-		log.debug("order : {}", o);
-		tService.inputOrderTest(o);
 		return "redirect:/personal/member/orderList";
 	}
 }

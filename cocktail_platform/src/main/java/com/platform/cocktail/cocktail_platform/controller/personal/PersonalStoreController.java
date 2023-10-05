@@ -56,16 +56,6 @@ public class PersonalStoreController {
 		log.debug("menu {}", menu);
 		return "personalView/menuDetail";
 	}
-//	
-//	@GetMapping("reserve")
-//	public String reserve(int storeCode, String date, Model m) {
-//		Schedule schedule = sService.getScheduleByCode(storeCode);
-//		HashMap<String, Boolean> capacity = checkCapacity(storeCode, date);
-//		
-//		m.addAttribute("schedule", schedule);
-//		m.addAttribute("capacity", capacity);
-//		return "";
-//	}
 	
 	@ResponseBody
 	@GetMapping("checkCapacity")
@@ -81,7 +71,6 @@ public class PersonalStoreController {
 		log.debug("예약 내용 : {}", reserve);
 		sService.insertReservation(reserve);
 		return "redirect:/personal/store/storeDetail?storeCode=" + reserve.getStoreCode();
-		//return "redirect:/personal/member/reserveList";
 	}
 	
 	@GetMapping("cancleReserve")
@@ -89,26 +78,4 @@ public class PersonalStoreController {
 		sService.changeReservationState(0, reserveCode, ReservationState.canceled);
 		return "redirect:/personal/member/reserveList";
 	}
-	
-//	@GetMapping("writeReview")
-//	public String writeReview(String orderCode, Model m) {
-//		Order o = oService.findOrderByOrdercode(orderCode);
-//		StoreInfo store = sService.getStoreinfoByCode(o.getStoreCode());
-//		ArrayList<Menu> list = oService.getMenusByCode(orderCode);
-//		
-//		m.addAttribute("list", list);
-//		m.addAttribute("store", store);
-//		log.debug("store {}, list {}", store, list);
-//		return "personalView/reviewWrite";
-//	}
-//	
-//	@PostMapping("writeReview")
-//	public String writeReview(@AuthenticationPrincipal UserDetails user, StoreReview review,
-//			int[] menuNums, String[] weathers, String[] ageGroups, String[] companions, String[] events) {
-//		review.setMemberid(user.getUsername());
-//		ArrayList<MenuPreference> list = new ArrayList<>();
-//		log.debug("review : {}", review);
-//
-//		return "redirect:/";
-//	}
 }

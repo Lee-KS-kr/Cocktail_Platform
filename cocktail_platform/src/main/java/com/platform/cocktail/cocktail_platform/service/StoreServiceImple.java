@@ -105,6 +105,7 @@ public class StoreServiceImple implements StoreService {
 	@Override
 	public StoreInfo getStoreinfoByCode(int storeCode) {
 		StoreInfo info = dao.getStoreinfoByCode(storeCode);
+		info.setStoreReviewScore(dao.getReviewScoreByCode(storeCode));
 		return info;
 	}
 
@@ -127,26 +128,25 @@ public class StoreServiceImple implements StoreService {
 	@Override
 	public int insertReview(StoreReview review, int[] menuNum, String[] weather, String[] ageGroup, String[] companion,
 			String[] event) {
-		ArrayList<MenuPreference> list = new ArrayList<>();
 		HashMap<String, Integer> map = cc.codeMap();
+		
+		int n = dao.insertStoreReview(review);
+		log.debug("{}", review);
 		
 		for (int i = 0; i < menuNum.length; i++) {
 			MenuPreference mp 
 				= MenuPreference.builder()
 								.menuNum(menuNum[i])
-								.memberId(review.getMemberid())
+								.memberId(review.getMemberId())
 								.weather(map.get(weather[i]))
 								.ageGroup(map.get(ageGroup[i]))
 								.companion(map.get(companion[i]))
 								.event(map.get(event[i]))
 								.build();
 			
-			list.add(mp);
+			dao.insertMenuPreference(mp);
+			log.debug("mp {}", mp);
 		}
-		
-		dao.insertStoreReview(review);
-		log.debug("{}, {}", review, list);
-		int n = dao.insertMenuPreference(list);
 		
 		return n;
 	}
@@ -260,6 +260,12 @@ public class StoreServiceImple implements StoreService {
 		
 		ArrayList<Menu> list = dao.getMenuByCategory(menu);
 		return list;
+	}
+
+	@Override
+	public boolean getReviewWrote(String orderCode) {
+		StoreReview review = dao.getScoreReviewByCode(orderCode);
+		return review != null;
 	}
 	
 }

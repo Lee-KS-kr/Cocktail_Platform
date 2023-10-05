@@ -79,8 +79,8 @@ function getList(list){
 		str += '<td>' + item.menuNum + '</td>';
 		str += '<td>' + item.orderCount + '</td>';
 		str += '<td>' + item.pricePerOne + '</td>';
-		str += '<td><a href="|javascript:orderAccept(tempOrderkey=' + item.tempOrderkey + ')|">수락</a></td>';
-		str += '<td><a href="|javascript:orderRefuse(tempOrderkey=' + item.tempOrderkey + ')|">거절</a></td>';
+		str += '<td><button onclick="orderAccept(tempOrderkey=' + item.tempOrderkey + ')" value="수락">수락</button></td>';
+		str += '<td><button onclick="orderRefuse(tempOrderkey=' + item.tempOrderkey + ')" value="거절">거절</button></td>';
 		str += '</tr>';
 	});
 	str += '</table>';
