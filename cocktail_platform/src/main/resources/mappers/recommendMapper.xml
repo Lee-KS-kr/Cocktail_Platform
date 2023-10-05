@@ -21,12 +21,20 @@
 	 
 	<select id="customizedRecommendation" parameterType="Taste" resultType="Cocktails">
 		select
-			cocktailName
-		from
-			cocktails
-		where
-			cocktailTaste like (select cocktailTaste from taste where memberId = #{memberId})
+        	c.cocktailName as cocktailName
+    	from
+        	cocktails c
+        	left join orderTemp ot on c.cocktailName = ot.menuName
+        where
+    			ot.memberId = #{memberId}
+    		and
+    			c.cocktailTaste like '%' || #{cocktailTaste} || '%'
+    	group by
+        	c.cocktailName
+    	order by
+        	sum(ot.orderCount) desc
 	</select>
+	
 	<select id="recommendForMe" parameterType="String" resultType="Cocktails">
     	select
         	c.cocktailName as cocktailName
