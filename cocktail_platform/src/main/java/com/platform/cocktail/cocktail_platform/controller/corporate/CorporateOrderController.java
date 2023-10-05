@@ -185,7 +185,7 @@ public class CorporateOrderController {
 	
 	@ResponseBody
 	@PostMapping("orderMenu")
-	public void orderMenu(int storeCode, String memberId, String orderCode, 
+	public void orderMenu(String orderCode, 
 						@CookieValue(name="cart", defaultValue="0") String cart,
 						HttpServletResponse res, Model m) throws Exception {
 		
@@ -200,6 +200,7 @@ public class CorporateOrderController {
 			String[] menuName = new String[menus.length];
 
 			ArrayList<Menu> menuList = sService.getMenulistByNum(menus);
+			log.debug("menuList {} ", menuList);
 			for(int i = 0; i < menus.length; i++) {
 				String[] str = menus[i].split("_");
 				int num = Integer.parseInt(str[0]);
@@ -210,7 +211,8 @@ public class CorporateOrderController {
 				price[i] = menuList.stream().filter(x -> x.getMenuNum() == num).collect(Collectors.toList()).get(0).getPrice();
 			}
 			
-			oService.inputOrder(storeCode, memberId, orderCode, menuNum, menuName, price, orderCount);
+			log.debug("insert {} {} {} {} {} {} {}", storeCode, loginMember, orderCode, menuNum, menuName, price, orderCount);
+			oService.inputOrder(this.storeCode, this.loginMember, orderCode, menuNum, menuName, price, orderCount);
 			
 			cart = "0";
 			Cookie cookie1 = new Cookie("cart", cart);
