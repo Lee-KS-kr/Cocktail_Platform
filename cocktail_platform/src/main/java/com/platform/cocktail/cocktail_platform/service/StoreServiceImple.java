@@ -105,6 +105,7 @@ public class StoreServiceImple implements StoreService {
 	@Override
 	public StoreInfo getStoreinfoByCode(int storeCode) {
 		StoreInfo info = dao.getStoreinfoByCode(storeCode);
+		info.setStoreReviewScore(dao.getReviewScoreByCode(storeCode));
 		return info;
 	}
 
