@@ -41,7 +41,9 @@ public class CorporateStoreController {
 		StoreInfo store = sService.getStoreById(user.getUsername());
 		ArrayList<Order> orderList = oService.getOrderListsByCode(store.getStoreCode());
 		m.addAttribute("orderList", orderList);
-		return "corporateView/";
+		
+		log.debug("orderlist {}", orderList);
+		return "corporateView/salesMng";
 	}
 	
 	@GetMapping("salesInput")
@@ -109,5 +111,13 @@ public class CorporateStoreController {
 	@GetMapping("menuMng")
 	public String menuMng() {
 		return "corporateView/menuMng";
+	}
+	
+	@GetMapping("editMenu")
+	public String editMenu(int menuNum, Model m) {
+		Menu menu = sService.getMenuInfoByNum(menuNum);
+		m.addAttribute("menu", menu);
+		
+		return "corporateView/editMenu";
 	}
 }

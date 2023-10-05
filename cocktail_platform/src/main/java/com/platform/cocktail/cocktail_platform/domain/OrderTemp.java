@@ -16,5 +16,5 @@ public class OrderTemp {
 	String menuName;
 	int pricePerOne;
 	int orderCount;
-	OrderState state;
+	OrderState orderState;
 }
