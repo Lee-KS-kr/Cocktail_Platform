@@ -80,7 +80,8 @@ border-spacing: 0;
   margin: auto;
 }
 
-.body{ display: flex; }
+.body{ display: flex; background-color: #fffde5;
+}
 
 .sec1{
 width: 16%;
@@ -149,8 +150,6 @@ a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9p
   font-family: 'Noto Sans KR', sans-serif;  font-weight: bold; z-index: 100; border-radius: 8px;
 }
 
-.con1{margin: 5px 0px;}
-.con2{margin: 5px 80px;}
 
 th{padding-right: 20px;}
 
