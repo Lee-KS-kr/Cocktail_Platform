@@ -328,16 +328,22 @@
 	</select>
 	
 	<select id="getStoreByCocktailName" parameterType="String" resultType="StoreInfo">
-		select 
+		select
 			*
-		from
-			storeInfo si
-				inner join menu on si.storeCode = menu.storeCode
-				left join storeReview sr on si.storeCode = sr.storeCode
+		from (
+				select 
+					si.*, rownum
+				from
+					storeInfo si
+						inner join menu on si.storeCode = menu.storeCode
+						left join storeReview sr on si.storeCode = sr.storeCode
+				where
+					menu.menuName = #{menu.menuName}
+				order by
+					sr.storeReviewScore desc
+				)
 		where
-			menu.menuName = #{menu.menuName}
-		order by
-			sr.storeReviewScore desc
+			rownum between 0 and 4;
 	</select>
 	
 	<insert id="insertMenu" parameterType="Menu">
