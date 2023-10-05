@@ -160,13 +160,13 @@ border-radius: 10px;
   display: flex;
 }
 
-/*별점 img*/
+/*ë³„ì  img*/
 .starimg{
   width: 35px;
   margin: 20px 2px;
 }
 
-/*별점 text*/
+/*ë³„ì  text*/
 .s_box_right div div{
   color: #545454;
   font-size: 15pt;
@@ -174,7 +174,7 @@ border-radius: 10px;
   line-height:70px;
 }
 
-/*매장 이미지, 매장 이름, 별점 끝================*/
+/*ë§¤ìž¥ ì´ë¯¸ì§€, ë§¤ìž¥ ì´ë¦„, ë³„ì  ë================*/
 
 .tab_div{
   width: 1036px;
@@ -222,7 +222,7 @@ padding:20px 30px;
 
 }
 
-/*활성화*/
+/*í™œì„±í™”*/
 .on{
   font-weight:bold;
   background-color: #fff;
@@ -244,3 +244,43 @@ display: inline-block;
 .price{
   color: #585858
 }
+
+/*======================================================*/
+.t_c_table{
+  background-color:#fff;
+  display:flex;
+  justify-content:center;
+  padding: 30px;
+}
+
+.t_c_table th{
+    background-color:#2CCF3A;
+  border-radius: 10px;
+}
+
+/*============================================*/
+/* 테이블 전체에 적용되는 스타일 */
+.t_c_table {
+  width: 100%; /* 테이블 전체 너비 설정 */
+  border-collapse: collapse; /* 테이블 셀 경계 병합 */
+  margin-bottom: 20px; /* 아래쪽 여백 설정 */
+}
+
+/* 테이블 헤더에 적용되는 스타일 */
+.t_c_table th {
+  background-color: #3b3b3b;
+  color: #fff;
+  padding: 10px; /* 셀 안 여백 설정 */
+  text-align: center;
+}
+
+/* 테이블 셀에 적용되는 스타일 */
+.t_c_table td {
+  padding: 10px;
+}
+
+/* 첫 번째 열의 폭을 설정하여 왼쪽 정렬로 만듭니다. */
+.t_c_table td:first-child {
+  width: 150px; /* 첫 번째 열의 폭 설정 */
+}
+
