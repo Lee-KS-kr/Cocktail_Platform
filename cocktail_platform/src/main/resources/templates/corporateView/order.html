@@ -76,19 +76,18 @@ function menuList(list){
 		let src;
 		
 		if(category === 'beverage'){
-			src = '/FitTail/image/cocktails/';
+			src = '/FitTail/image/cocktails/'+fileName;
 		}
-		else src = '/FitTail/image/menu/';
+		else src = '/FitTail/image/menu/'+fileName;
 		
 		str += '<tr>';
 		//누르면 장바구니 추가
-		str += '<td rowspan="3"><a href="#" onclick="addCart('+ menuNum + ',' + orderCount + ')"><img src="'+ src
-				+ fileName + '"></a></td>';
+		str += '<td rowspan="3"><a href="#" onclick="addCart('+ menuNum + ',' + orderCount + ')"><img src="'+ src +'"></a></td>';
 		str += `<td><a href="#" onclick="count('plus',${menuNum},${orderCount})">+</a></td></tr>`;
 		str += '<tr><td id="orderCount_' + menuNum + '">0</td></tr>';
 		str += `<tr><td><a href="#" onclick="count('minus',${menuNum},${orderCount})">-</a></td></tr>`;
 		str += '<tr><td>' + item.menuName + '</td>';
-		str += '<td rowspan="2"><a href="#" onclick="addCart('+ menuNum + ',' + orderCount + ')">카트에 담기</a></td></tr>';
+		str += '<td rowspan="2"><button onclick="addCart('+ menuNum + ',' + orderCount + ')" value="카트에 담기">카트에 담기</button></td></tr>';
 		str += '<tr><td>' + item.price + '</td>';
 		str += '<tr><td id="menuNum_' + menuNum + '" style="display:none;">' + menuNum + '</td>';
 	});
