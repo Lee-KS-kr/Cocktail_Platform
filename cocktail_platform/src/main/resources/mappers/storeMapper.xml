@@ -318,7 +318,7 @@
 	
 	<select id="getReviewScoreByCode" parameterType="int" resultType="float">
 		select
-			avg(storeReviewScore) storeReviewScore
+			avg(nvl(storeReviewScore,0)) storeReviewScore
 		from
 			storeReview
 		where
