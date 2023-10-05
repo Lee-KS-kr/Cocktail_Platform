@@ -48,6 +48,19 @@ $(document).ready(function () {
     			alert('error');
     		}
     	});
+
+		$.ajax({
+			url:"reviewList",
+			type:"get",
+			dataType:"json",
+			data: {storeCode: storeCode},
+			success: function(list){
+				getReviewList(list);
+			},
+			error: function(e){
+				console.log(JSON.stringify(e));
+			}
+		});
     }
 	
   	//리스트 출력
@@ -55,8 +68,6 @@ $(document).ready(function () {
     	let str = '<table>';
     	$(list).each(function(i,item){
     		let fileName = item.savedFilename;
-			console.log(item.category.toString());
-    		
     		str += '<tr><td><a href="/FitTail/personal/store/menuInfo?menuNum=' + item.menuNum 
     				+ '">';
 			if(item.category.toString() == 'beverage')
@@ -75,6 +86,18 @@ $(document).ready(function () {
     init();
     reviewScore();
 });
+
+function getReviewList(list){
+	let str = '<table>';
+		$(list).each(function(i, item){
+			str += '<tr><td><br><strong>'+ item.memberId +'</strong>';
+			str += '<br>' + item.storeReviewScore + ' / 5';
+			str += '<br>' + item.storeReviewText;
+			str += '<br>' + item.reviewDate + '</td></tr>';
+		});
+	str += '</table>';
+	$('#reviewList').html(str);
+}
 
 
 //별점 가져오기
@@ -248,8 +271,8 @@ function reserveSub(){
 			<div id="tab_review" class="tab_cont">
 				<!-- 별점, 리뷰 리스트(아이디, 별점, 사진, 리뷰 내용, 취향 태그) 출력 -->
 				<div id="star"></div>
-				<p><span th:text="${store.storeReviewScore}"></span>/5</p>
-				<hr>
+				<p>총 별점 : <span th:text="${store.storeReviewScore}"></span>/5</p>
+				<br>
 				<div id="reviewList"></div>
 			</div>
 			<!-- 매장 정보 탭 내용 -->
