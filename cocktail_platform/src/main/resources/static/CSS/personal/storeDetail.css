@@ -356,3 +356,49 @@ label {
   font-style: italic; /* 이탤릭체로 설정 */
   font-size: 14px; /* 글꼴 크기 설정 */
 }
+/* 리뷰 시작=======================================================*/
+/* 리뷰 목록 테이블 스타일링 */
+#reviewList table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+    border-radius: 20px;
+
+}
+
+#reviewList table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+#reviewList table tr:nth-child(even) {
+  background-color: #f2f2f2; /* 짝수 행 배경색 설정 */
+}
+
+#reviewList table strong {
+  font-weight: bold; /* 강조 텍스트를 굵게 표시 */
+}
+
+/* 그림자 효과 제거 */
+#tab_review {
+  box-shadow: none;
+}
+
+/* 한글 주석 */
+/* 리뷰 별점 */
+#star {
+  /* 여기에 별점 스타일을 추가하세요 */
+}
+
+/* 리뷰 평점 */
+#star p {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* 리뷰 목록 */
+#reviewList {
+  /* 여기에 리뷰 목록 스타일을 추가하세요 */
+}
