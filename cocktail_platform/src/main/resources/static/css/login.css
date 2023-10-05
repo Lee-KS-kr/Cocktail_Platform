@@ -130,7 +130,7 @@ body {
   height: 300px;
   border: 0;
   border-radius: 4px;
-  padding: 60px 26px 0px;
+  padding: 30px 26px 0px;
 }
 
 .input {
@@ -187,6 +187,5 @@ a:hover {color: #232323;}
 a{text-decoration: none;}
 
 /*배경 그림*/
-/*ë°°ê²½ ê·¸ë¦¼*/
 img[alt=img1]{z-index: 1; width: 500px; position: fixed; top: -20px; left:-100px;}
 img[alt=img2]{z-index: 1; width: 500px; position: fixed; top: 280px; left: 1200px;}
