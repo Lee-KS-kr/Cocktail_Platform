@@ -160,7 +160,9 @@ $(document).ready(function(){
 	  		<tr>
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('plus', this.getAttribute('menuNum'))|">+</a></td>
 	  			<td>
-	  				<p class="order-count" th:id="'orderCount_' + ${menu.menuNum}"><span>개</span></p>
+	  				<p class="order-count" th:id="'orderCount_' + ${menu.menuNum}" th:text="${cart[1]}">
+	  					<span>개</span>
+	  				</p>
   				</td>
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('minus',this.getAttribute('menuNum'))|">- &nbsp;</a></td>
 	  			<td>
