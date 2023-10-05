@@ -47,7 +47,7 @@ border-spacing: 0;
 }
 
 /*=========================================================*/
-body{background-color:#fce142; }
+    body{background-color:#fce142;}
 .sidebar{display:flex ;}
 
 .navi{
@@ -82,6 +82,9 @@ body{background-color:#fce142; }
 
 .body{ display: flex; }
 
+.main{display:flex;
+     justify-content:center;}
+
 .sec1{
 width: 16%;
 height: 700px;
@@ -91,14 +94,14 @@ position:relative;
 box-shadow: 4px 0px 10px solid #e7e7e7;
 }
 
-/*배경*/
+/*ë°°ê²½*/
 .sec2{width: 83%; padding-left: 36px; padding-right: 36px; background-color:#fce142; }
 
 .title2{ width: 100%; font-size: 22pt; height: 70px; 
     display: flex;
     text-align: center; 
     align-content: center;
-    background-color: #fce142; 
+    background-color: red; 
     display: flex; 
     font-weight: bold; 
     color: #232323;
@@ -170,16 +173,16 @@ th{padding-right: 20px;}
 input[type=submit],.taste, .resetpw {
     width: 300px;
     height: 100px;
-    line-height: 3px; /*줄간격*/
-    font-size: 20pt; /*폰트 크기*/
-    color: #313131; /*폰트 색상*/
+    line-height: 3px; /*ì¤„ê°„ê²©*/
+    font-size: 20pt; /*í°íŠ¸ í¬ê¸°*/
+    color: #313131; /*í°íŠ¸ ìƒ‰ìƒ*/
     padding: 10px;
     border: 1px solid #313131;
-    border-radius: 30px; /*모서리 둥글기*/
+    border-radius: 30px; /*ëª¨ì„œë¦¬ ë‘¥ê¸€ê¸°*/
     background-color: #50CCAA; 
     margin:15px 5px 0px;
 }
 
 .flex{display: flex; }
 
-textarea{width: 400px; height: 150px; background-color: fff; border: 1px solid #313131; border-radius: 30px; padding: 5px;}
+input[name="storeReviewText"]{width: 400px; height: 150px; background-color: fff; border: 1px solid #313131; border-radius: 30px; padding: 5px;}
