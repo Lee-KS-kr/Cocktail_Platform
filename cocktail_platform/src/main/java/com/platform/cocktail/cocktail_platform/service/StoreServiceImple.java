@@ -95,9 +95,9 @@ public class StoreServiceImple implements StoreService {
 	@Override
 	public ArrayList<StoreInfo> getAllStorelist() {
 		ArrayList<StoreInfo> list = dao.getAllStorelist();
-//		for (StoreInfo s : list) 
-//			s.setStoreReviewScore(dao.getReviewScoreByCode(s.getStoreCode()));
-//		
+		for (StoreInfo s : list) 
+			s.setStoreReviewScore(dao.getReviewScoreByCode(s.getStoreCode()));
+		
 		return list;
 	}
 
@@ -223,8 +223,12 @@ public class StoreServiceImple implements StoreService {
 	@Override
 	public ArrayList<StoreInfo> getStoreByCocktailName(String cocktailName) {
 		ArrayList<StoreInfo> list = dao.getStoreByCocktailName(cocktailName);
-		for (StoreInfo s : list) 
+		log.debug("{}", list);
+		for (StoreInfo s : list) {
+			log.debug("before {}", s);
 			s.setStoreReviewScore(dao.getReviewScoreByCode(s.getStoreCode()));
+			log.debug("after s {}", s);
+		}
 		
 		return list;
 	}
@@ -235,5 +239,15 @@ public class StoreServiceImple implements StoreService {
 		int n = dao.insertMenu(menu);
 		log.debug("메뉴 저장 완료 {}", menu);
 		return n;
+	}
+
+	@Override
+	public ArrayList<StoreInfo> searchStore(String searchWord) {
+		ArrayList<StoreInfo> list = dao.searchStore(searchWord);
+		for (StoreInfo s : list) 
+			s.setStoreReviewScore(dao.getReviewScoreByCode(s.getStoreCode()));
+		
+		log.debug("{}", list);
+		return list;
 	}
 }

@@ -94,12 +94,6 @@ public class CocktailServiceImple implements CocktailService {
 		return c;
 	}
 
-	@Override
-	public ArrayList<StoreInfo> searchStore(String searchWord) {
-		ArrayList<StoreInfo> list = dao.searchStore(searchWord);
-		log.debug("{}", list);
-		return list;
-	}
 
 	@Override
 	public ArrayList<Cocktails> searchCocktail(String searchWord) {
