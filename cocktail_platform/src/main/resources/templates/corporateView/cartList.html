@@ -22,7 +22,8 @@ $(document).ready(function(){
 	/**주문 수량 증감*/
 	function count(type, menuNum){
 		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).html());
-		
+		alert(menuNum);
+		alert(currentOrderCount);
 		//더하기, 빼기
 		if(type === 'plus' && currentOrderCount < 11) {
 			currentOrderCount = currentOrderCount + 1;  
@@ -45,11 +46,7 @@ $(document).ready(function(){
 	/** 가격 업데이트 */
 	function updatePrice(menuNum, currentOrderCount) {
 	    let pricePerItem = parseInt(currentOrderCount) * parseInt($(`#price_${menuNum}`).html());
-	    if(!isNaN(pricePerItem)) {
-	        $(`#price_${menuNum}`).text(pricePerItem + '원');
-	    } else {
-	        $(`#price_${menuNum}`).text('0원');
-	    }
+	    return isNaN(pricePerItem) ? 0 : pricePerItem;
 	}
 	
 	//getTotal 함수 호출
@@ -62,7 +59,7 @@ $(document).ready(function(){
 		//각 메뉴마다 가격을 가져와서 totalPrice에 더함
         $('.price-per-item').each(function() {
         	let menuNum = $(this).attr('id').split('_')[1]; //menuNum 추출
-            let pricePerItem = parseInt($(`#orderCount_${menuNum}`).html()) * parseInt($(`#price_${menuNum}`).html());
+            let pricePerItem = updatePrice(menuNum, parseInt($(`#orderCount_${menuNum}`).html()));
             
          	//만약 숫자가 NaN이 아니라면 더함
             if(!isNaN(pricePerItem)) {

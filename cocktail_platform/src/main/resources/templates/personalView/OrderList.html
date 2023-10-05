@@ -9,32 +9,31 @@
     <title>주문내역</title>
  
     <!-- 
-    <link rel="stylesheet" href="../../static/CSS/personal/OrderList.css">
+    <link rel="stylesheet" href="../../static/CSS/personal/OrderList.css"> 
     vs code  -->
 
     <link rel="stylesheet" th:href="@{/CSS/personal/OrderList.css}">
+
     <!-- thymeleaf
     -->
 </head>
 <body>
-   <!-- ------navi------   -->
-    <div class="navi">  
+   
+    <div class="navi">  <!-- navi   -->
         <div class="navi1">
             <a th:href="@{/personal/home}"><img th:src="@{/image/logo_title.png}" alt="logo"></a>
         </div>
         <div class="navi2">
             <p><span th:text="${#authentication.name}"></span>님 환영합니다.  &nbsp;</p>
             <a th:href="@{/member/logout}">로그아웃  &nbsp;</a>
-            <a th:href="@{/personal/member/myPage}">마이페이지</a>  &nbsp; &nbsp;
+            <a th:href="@{/personal/member/myPage}">마이페이지  &nbsp; &nbsp;</a>
             <a th:href="@{/personal/searchPage}"><img th:src="@{/image/btn_search.png}" alt="search"></a>
         </div>
-    </div>
-    <!-- ------navi end------  -->
-
+    </div>  
     <!-- main -->
     <div class="main">
         <!-- sidebar-->
-        <div class="sideber">
+        <div class="sidebar">
             <!-- sec1 start-->
             <div class="sec1">
                 <div class="order">
@@ -52,7 +51,7 @@
             </div>
             <!-- sec2 start-->
             <div class="sec2">
-            <div class="title2">주문 내역</div>
+                <div class="title2">주문 내역</div>
                 <div class="con1">
                     <table>
                         <tr>
@@ -92,10 +91,9 @@
                     </table>
                 </div>
             </div>
-
-
+            </div>
         </div>
+        
     </div>
 </body>
 </html>
-
