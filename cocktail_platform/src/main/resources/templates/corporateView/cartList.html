@@ -19,8 +19,62 @@ $(document).ready(function(){
 	let storeCode = $('#storeCode').html();
 	let orderCode = $('#orderCode').html();
 	
-	/**주문 수량 증감*/
-	function count(type, menuNum){
+	//count(type, menuNum);
+	$(".countBtn").click(count);
+	$(".delBtn").click(deleteCart);
+	$('#orderBtn').click(orderMenu);
+	$('#closeBtn').click(closeCart);
+	//updatePrice(menuNum, currentOrderCount);
+	//getTotal 함수 호출
+    getTotal();	
+});
+
+	/**카트 메뉴 삭제*/
+	function deleteCart(menuNum){
+		let result = confirm('선택한 메뉴를 삭제하시겠습니까?');
+		if(result == true){
+			$.ajax({
+				url: "deleteCart",
+				type: "post",
+				data: {menuNum : menuNum},
+				success: function(){
+					alert('선택하신 메뉴를 삭제하였습니다.');
+				},
+				error: function(){
+					alert('error');
+				}
+			});
+		}
+	}
+
+	/**주문하기*/
+	function orderMenu(){
+		if(confirm('선택한 메뉴를 주문하시겠습니까?')){
+			$.ajax({
+				url: "orderMenu",
+				type: "post",
+				data: {orderCode: $("#orderCode").html()},
+				success: function(){
+					alert('선택한 메뉴를 주문하였습니다.');
+					closeCart();
+				},
+				error: function(e){
+					alert(e.statusText);
+				}
+			});
+		}
+	}
+
+/**창 닫기*/
+function closeCart(){
+		window.close();
+	}
+
+/**주문 수량 증감*/
+function count(){
+		let type = $(this).attr("countType");
+		let menuNum = $(this).attr("menuNum");
+
 		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).html());
 
 		//더하기, 빼기
@@ -39,7 +93,7 @@ $(document).ready(function(){
 		//가격 업데이트
 		updatePrice(menuNum, currentOrderCount);
 	}
-	
+
 	/** 가격 업데이트 */
 	function updatePrice(menuNum, currentOrderCount) {
 		console.log("updatePrice " + menuNum + " , " + currentOrderCount);
@@ -51,9 +105,6 @@ $(document).ready(function(){
 	    
 	    return isNaN(pricePerItem) ? 0 : pricePerItem;
 	}
-	
-	//getTotal 함수 호출
-    getTotal();
 	
 	/**가격 총 합계 계산*/
 	function getTotal(){
@@ -79,61 +130,7 @@ $(document).ready(function(){
             $('#totalPrice').html(0); //totalPrice가 NaN이라면 0원으로 출력
         }
     }
-	
-	/**카트 메뉴 삭제*/
-	function deleteCart(menuNum){
-		let result = confirm('선택한 메뉴를 삭제하시겠습니까?');
-		if(result == true){
-			$.ajax({
-				url: "deleteCart",
-				type: "post",
-				data: {menuNum : menuNum},
-				success: function(){
-					alert('선택하신 메뉴를 삭제하였습니다.');
-				},
-				error: function(){
-					alert('error');
-				}
-			});
-		}
-	}
 
-	/**주문하기*/
-	function orderMenu(){
-		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).html());
-		let menuName = $(`#menuName_${menuNum}`).html();
-		let price = parseInt($(`#price_${menuNum}`).html());
-		
-		let result = confirm('선택한 메뉴를 주문하시겠습니까?');
-		let data = {
-			storeCode: storeCode,
-			orderCode: orderCode,
-			menuNum: menuNum,
-			menuName: menuName,
-			price: price,
-			orderCount: currentOrderCount
-		}
-		
-		if(result){
-			$.ajax({
-				url: "orderMenu",
-				type: "post",
-				data: data,
-				success: function(){
-					alert('선택한 메뉴를 주문하였습니다.');
-				},
-				error: function(e){
-					alert(e.statusText);
-				}
-			});
-		}
-	}
-	
-	/**창 닫기*/
-	function closeCart(){
-		window.close();
-	}
-});
 </script>
 </head>
 
@@ -157,10 +154,10 @@ $(document).ready(function(){
 	  				<span th:text="${menu.menuName}"></span>
 	  				<span th:id="'menuNum_' + ${menuNum}" th:text="${menu.menuNum}" style="display:none;"></span>
   				</td>
-	  			<td><button th:onclick="deleteCart(${menu.menuNum})" value="삭제">삭제</button></td>
+	  			<td><button class="delBtn" th:menuNum="${menu.menuNum}" value="삭제">삭제</button></td>
 	  		</tr>
 	  		<tr>
-	  			<td><a th:onclick="count('plus', [[${menu.menuNum}]])">+</a></td>
+	  			<td><a class="countBtn" countType="plus" th:menuNum="${menu.menuNum}">+</a></td>
 	  			<td>
 	  				<p class="order-count">
 						<span th:text="${carts[i.index][1]}" th:id="'orderCount_' + ${menu.menuNum}"></span>개
@@ -168,7 +165,7 @@ $(document).ready(function(){
 	  					</span> -->
 	  				</p>
   				</td>
-	  			<td><a th:onclick="count('minus',[[${menu.menuNum}]])">- &nbsp;</a></td>
+	  			<td><a class="countBtn" countType="minus" th:menuNum="${menu.menuNum}">- &nbsp;</a></td>
 	  			<td>
 	  				<span th:id="'price2_' + ${menu.menuNum}" th:text="${menu.price}" style="display:none;"></span>
 	  				<span class="price-per-item" th:id="'price_' + ${menu.menuNum}"></span>원
@@ -177,8 +174,8 @@ $(document).ready(function(){
 	  	</table>
 		<div>
 			<p class="cart-total">합계: <span id="totalPrice"></span>원</p>
-	 		<button class="orderBT" onclick="closeCart()">닫기</button>
-	 		<button class="orderBT" th:onclick="orderMenu()">주문하기</button>
+	 		<button class="orderBT" id="closeBtn">닫기</button>
+	 		<button class="orderBT" id="orderBtn">주문하기</button>
 		</div>
 	  </div>
 	</div>
