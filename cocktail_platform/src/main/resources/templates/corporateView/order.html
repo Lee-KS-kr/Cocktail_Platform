@@ -234,9 +234,9 @@ function loadCart(){
  			</div>
  			<div id="navBar">
 	 			<p>테이블 9</p>
-	 			<button onclick="menuCategory('beverage')" value="주류">주류</button>
-	 			<button onclick="menuCategory('food')" value="안주류">안주류</button>
-	 			<button onclick="menuCategory('side')" value="사이드">사이드</button>
+	 			<button onclick="menuCategory('beverage')" value="주류" class="1">주류</button>
+	 			<button onclick="menuCategory('food')" value="안주류" class="2">안주류</button>
+	 			<button onclick="menuCategory('side')" value="사이드" class="3">사이드</button>
  			</div>
  		</nav>
  		<section>
@@ -256,9 +256,9 @@ function loadCart(){
  		</section>
  		<section id="bottom">
  			<div id="bottomTab">
- 				<a th:href="@{/corporate/order/orderList}"><button>주문 내역</button></a>
- 				<a th:href="@{/corporate/order/payment}"><button>결제하기</button></a>
- 				<a href="javascript:loadCart()" target="_self"><button>장바구니</button></a>
+ 				<a th:href="@{/corporate/order/orderList}"><button class="4">주문 내역</button></a>
+ 				<a th:href="@{/corporate/order/payment}"><button class="5">결제하기</button></a>
+ 				<a href="javascript:loadCart()" target="_self"><button class="6">장바구니</button></a>
  			</div>
  		</section>
 	</main>
