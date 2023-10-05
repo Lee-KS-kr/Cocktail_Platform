@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 public class StoreReview {
 	int storeReviewNum;
 	int storeCode;
-	String memberid;
+	String orderCode;
+	String memberId;
 	int storeReviewScore;
 	String storeReviewText;
 	String reviewDate;

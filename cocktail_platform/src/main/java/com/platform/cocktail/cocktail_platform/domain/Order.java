@@ -16,4 +16,5 @@ public class Order {
 	String menuList;
 	OrderState orderState;
 	String storeName;
+	boolean isReviewDone;
 }

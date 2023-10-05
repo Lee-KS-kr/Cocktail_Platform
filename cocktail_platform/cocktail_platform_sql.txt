@@ -152,6 +152,7 @@ create sequence favorite_seq;
 create table storeReview (
         storeReviewNum        number        primary key,
 		storeCode             number        references storeInfo(storeCode) on delete set null,
+		orderCode             varchar2(4000)   references Orders(orderCode) on delete set null, 
 		memberId              varchar2(20)  references member(memberId) on delete set null,
 		storeReviewScore      number        check (storeReviewScore in (0, 1, 2, 3, 4, 5)),
 		storeReviewText       varchar2(500) not null,
