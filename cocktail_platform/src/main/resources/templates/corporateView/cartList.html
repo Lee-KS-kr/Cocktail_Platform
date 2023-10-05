@@ -21,7 +21,7 @@ $(document).ready(function(){
 	
 	/**주문 수량 증감*/
 	function count(type, menuNum){
-		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).text());
+		let currentOrderCount = parseInt($(`#orderCount_${menuNum}`).html());
 		
 		//더하기, 빼기
 		if(type === 'plus' && currentOrderCount < 11) {
@@ -44,7 +44,7 @@ $(document).ready(function(){
 	
 	/** 가격 업데이트 */
 	function updatePrice(menuNum, currentOrderCount) {
-	    let pricePerItem = parseInt(currentOrderCount) * parseInt($(`#price_${menuNum}`).text());
+	    let pricePerItem = parseInt(currentOrderCount) * parseInt($(`#price_${menuNum}`).html());
 	    if(!isNaN(pricePerItem)) {
 	        $(`#price_${menuNum}`).text(pricePerItem + '원');
 	    } else {
@@ -61,7 +61,7 @@ $(document).ready(function(){
 		//각 메뉴마다 가격을 가져와서 totalPrice에 더함
         $('.price-per-item').each(function() {
         	let menuNum = $(this).attr('id').split('_')[1]; //menuNum 추출
-            let pricePerItem = parseInt($(`#orderCount_${menuNum}`).text()) * parseInt($(`#price_${menuNum}`).text());
+            let pricePerItem = parseInt($(`#orderCount_${menuNum}`).html()) * parseInt($(`#price_${menuNum}`).html());
             
          	//만약 숫자가 NaN이 아니라면 더함
             if(!isNaN(pricePerItem)) {
@@ -71,9 +71,9 @@ $(document).ready(function(){
 		
         //totalPrice를 화면에 출력
         if (!isNaN(totalPrice)) {
-            $('#totalPrice').text(totalPrice + '원');
+            $('#totalPrice').html(totalPrice + '원');
         } else {
-            $('#totalPrice').text('0원'); //totalPrice가 NaN이라면 0원으로 출력
+            $('#totalPrice').html('0원'); //totalPrice가 NaN이라면 0원으로 출력
         }
     }
 	
@@ -160,8 +160,8 @@ $(document).ready(function(){
 	  		<tr>
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('plus', this.getAttribute('menuNum'))|">+</a></td>
 	  			<td>
-	  				<p class="order-count" th:id="'orderCount_' + ${menu.menuNum}" th:text="${cart[1]}">
-	  					<span>개</span>
+	  				<p class="order-count" th:id="'orderCount_' + ${menu.menuNum}">
+	  					<span th:text="${cart[1]}">개</span>
 	  				</p>
   				</td>
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('minus',this.getAttribute('menuNum'))|">- &nbsp;</a></td>
