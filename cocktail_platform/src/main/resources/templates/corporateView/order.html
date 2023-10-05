@@ -162,12 +162,14 @@ function recMenuList(list){
 
 //카테고리별로 메뉴 보기
 function menuCategory(category){
+	alert('카테고리 냠냠');
 	$.ajax({
 		url: "menuCategory",
 		type: "post",
 		data: {category : category},
 		dataType: "json",
 		success: function(list){
+			alert('카테고리 불러오겟습니도');
 			menuList(list);
 		},
 		error: function(){
