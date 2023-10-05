@@ -92,8 +92,8 @@ function getList(list){
 		str += '<td>' + item.reserveHead + '<span>명</span></td>';
 		str += '<td>' + reserveState2 + '</td>';
 		if(reserveState == 'apply'){
-			str += '<td><a href="#" onclick="reserveAccept(' + item.reserveCode + ',' + item.storeCode + ')">수락</a></td>';
-			str += '<td><a href="#" onclick="reserveRefuse(' + item.reserveCode + ',' + item.storeCode + ')">거절</a></td>';		
+			str += '<td><button onclick="reserveAccept(' + item.reserveCode + ',' + item.storeCode + ')">수락</button></td>';
+			str += '<td><button onclick="reserveRefuse(' + item.reserveCode + ',' + item.storeCode + ')">거절</button></td>';		
 		}
 		str += '</tr>';
 	});
