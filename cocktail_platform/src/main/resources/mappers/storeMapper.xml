@@ -323,6 +323,8 @@
 			storeReview
 		where
 			storeCode = #{storeCode}
+		order by
+			storeReviewScore desc
 	</select>
 	
 	<select id="getStoreByCocktailName" parameterType="String" resultType="StoreInfo">
