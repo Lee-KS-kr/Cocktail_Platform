@@ -46,6 +46,8 @@ public class CorporateAjaxStoreController {
 	public ArrayList<OrderTemp> orderList(@AuthenticationPrincipal UserDetails user){
 		StoreInfo store = sService.getStoreById(user.getUsername());
 		ArrayList<OrderTemp> orderList = oService.getTemporderlistByCode(store.getStoreCode());
+		
+		log.debug("order list {}", orderList);
 		return orderList;
 	}
 	
