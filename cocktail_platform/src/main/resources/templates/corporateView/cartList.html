@@ -62,7 +62,7 @@ $(document).ready(function(){
 		//각 메뉴마다 가격을 가져와서 totalPrice에 더함
         $('.price-per-item').each(function() {
         	let menuNum = $(this).attr('id').split('_')[1]; //menuNum 추출
-            let pricePerItem = updatePrice(menuNum, parseInt($(`#price2_${menuNum}`).html()));
+            let pricePerItem = updatePrice(menuNum, parseInt($(`#orderCount_${menuNum}`).html()));
 			console.log("pricePerItem " + pricePerItem);
             
          	//만약 숫자가 NaN이 아니라면 더함
