@@ -133,27 +133,16 @@ public class CorporateOrderController {
 
 		findCookie:
 		if(!cart.equals("0")) {
-			log.debug("cart : {}", cart);
-			String[] orders = cart.split("/");
-			for (String str : orders) 
-				log.debug("str {}", str);
-			
+			String[] orders = cart.split("/");			
 			for(int i = 0; i < orders.length; i++) {
 				String[] ms = orders[i].split("_");
-				// ms[0].equals(String.valueOf(menuNum))
-				if(Integer.parseInt(ms[0]) == menuNum) {
-					for (String s : ms) 
-						log.debug("ms s {}", s);
-					
+				if(Integer.parseInt(ms[0]) == menuNum) {					
 					int count = Integer.parseInt(ms[1]) + orderCount;
 					ms[1] = String.valueOf(count);
-					log.debug("new order count : {}", count);
 					orders[i] = ms[0] + "_" + ms[1];
-					log.debug("new order i {} {}", orders[i], i);
 					
 					ArrayList<String> orderList = new ArrayList<>(Arrays.asList(orders));
 					cart = StringUtils.join(orderList, '/');
-					log.debug("new cart {}", cart);
 					break findCookie;
 				}
 			}
@@ -165,7 +154,6 @@ public class CorporateOrderController {
 			String temp = menuNum + "_" + orderCount;
 			cart += temp;
 		}
-		
 		
 		Cookie cookie1 = new Cookie("cart", cart);
 		cookie1.setMaxAge(24 * 60 * 60);
