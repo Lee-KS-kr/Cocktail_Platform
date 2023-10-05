@@ -21,6 +21,7 @@ $(document).ready(function(){
 	let menuNum;
 	let memberRole = $('#memberRole').html();
 	let category;
+	let finalOrderCount;
 
 	//호출
 	allList();
@@ -110,7 +111,7 @@ function count(type, menuNum, orderCount){
 		
 	//결과 출력
   	$("#orderCount_" + menuNum).text(currentOrderCount);
-	return currentOrderCount;
+	finalOrderCount = parseInt($("#orderCount_" + menuNum).text());
 }
 
 //추천 메뉴 목록 가져오기
@@ -182,12 +183,12 @@ function menuCategory(category){
 }
 
 //카트에 담기
-function addCart(menuNum,orderCount){
+function addCart(menuNum){
 	let con = confirm('장바구니에 추가하시겠습니까?')
 	//param에 보내야 될 값들 담아주기
 	let param = {
 			menuNum :  menuNum,
-			orderCount : orderCount
+			orderCount : finalOrderCount
 	}
 	
 	if(con && orderCount == 0) alert('주문 수량을 선택해주세요.');
