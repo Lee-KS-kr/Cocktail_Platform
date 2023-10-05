@@ -21,9 +21,9 @@ $(document).ready(function(){
 	let menuNum;
 	let menuName;
 	let price;
-	let orderCount;
+	let orderCount = 0;
 	
-	let pricePerItem = orderCount * price;
+	let pricePerItem;
 	
 	/**카트 메뉴 삭제*/
 	function deleteCart(button){
@@ -69,12 +69,12 @@ $(document).ready(function(){
 		
 		//각 메뉴마다 가격을 가져와서 totalPrice에 더함
         $('.price-per-item').each(function() {
-            let pricePerItem = parseInt($('#orderCount_' + menuNum).text()) * price;
+            pricePerItem = parseInt($('#orderCount_' + menuNum).text()) * price;
             totalPrice += pricePerItem;
         });
 
         //totalPrice를 화면에 출력
-        $('#totalPrice').text(totalPrice + '원');
+        $('#totalPrice').text(parseInt(totalPrice) + '원');
     }
 	
 	//getTotal 함수 호출
@@ -141,11 +141,11 @@ $(document).ready(function(){
 	  			<td><button onclick="deleteCart(this)" data-menu-num="${menu.menuNum}" value="삭제">삭제</button></td>
 	  		</tr>
 	  		<tr>
-	  			<td><a href="count('plus', ${menu.menuNum})">+</a></td>
+	  			<td><span th:onclick="count('plus', ${menu.menuNum})">+</span></td>
 	  			<td th:each="cart: ${carts}" th:if="${cart[0] == menu.menuNum}">
 	  				<p id="orderCount_${menuNum}"><span th:text="${cart[1]}"></span>개</p>
   				</td>
-	  			<td><a href="count('minus', ${menu.menuNum})">-</a></td>
+	  			<td><span th:onclick="count('minus', ${menu.menuNum})">-</span></td>
 	  			<td>
 	  				<p class="price-per-item" id="price_${menu.menuNum}">
 	  				<span th:text="${menu.price}"></span>원
