@@ -264,7 +264,8 @@ public class StoreServiceImple implements StoreService {
 
 	@Override
 	public boolean getReviewWrote(String orderCode) {
-		return dao.getScoreReviewByCode(orderCode) != null;
+		StoreReview review = dao.getScoreReviewByCode(orderCode);
+		return review != null;
 	}
 	
 }

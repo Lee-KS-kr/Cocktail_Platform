@@ -72,7 +72,7 @@
                                 <a th:href="@{/personal/member/orderInfo(orderCode=${order.orderCode})}">
                                     <span th:text="${order.orderCode}"></span> <br>
                                 </a>
-                                <span th:if="${order.isReviewDone} != 'true'">
+                                <span th:if="${order.isReviewDone} != true">
                                     <a th:href="@{/personal/member/evaluation(orderCode=${order.orderCode})}">리뷰 작성</a>
                                 </span>
                             </td>
