@@ -172,12 +172,12 @@ $(document).ready(function(){
 	  			<td><a th:menuNum="${menu.menuNum}" th:href="|javascript:count('minus',this.getAttribute('menuNum'))|">- &nbsp;</a></td>
 	  			<td>
 	  				<span th:id="'price2_' + ${menu.menuNum}" th:text="${menu.price}" style="display:none;"></span>
-	  				<p class="price-per-item" th:id="'price_' + ${menu.menuNum}"></p>원
+	  				<span class="price-per-item" th:id="'price_' + ${menu.menuNum}"></span>원
   				</td>
 	  		</tr>
 	  	</table>
 		<div>
-			<p class="cart-total">합계: <span id="totalPrice"></span></p>
+			<p class="cart-total">합계: <span id="totalPrice"></span>원</p>
 	 		<button class="orderBT" onclick="closeCart()">닫기</button>
 	 		<button class="orderBT" th:onclick="orderMenu(${menu.menuNum})">주문하기</button>
 		</div>
