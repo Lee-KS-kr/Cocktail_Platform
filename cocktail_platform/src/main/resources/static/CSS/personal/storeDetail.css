@@ -132,7 +132,7 @@ padding:20px 30px;
 }
 
 .store_box{
-  background-color: #ffffc7;  
+  background-color: #fff;  
   box-shadow: 0px 20px 20px #e68664;
   border: 2px solid #313131;
   border-radius: 20px;
@@ -160,6 +160,7 @@ margin:20px 0px 10px;
 width: 500px;
 height: 400px;
 border-radius: 20px;
+overflow:hidden;
 }
 
 .s_img img{
@@ -202,13 +203,32 @@ border-radius: 10px;
 /*매장 이미지, 매장 이름, 별점 끝================*/
 
 .tab_div{
-  width: 100%;
+  width: 1036px;
   background-color: #ffffc7;
   border: 2px solid #313131;
-  border-radius: 20px;
+  border-radius: 20px 20px 0px 0px;
   display:flex;
   margin:0px 20px;
   padding:20px;
 }
+/*ul*/
+.tab_title{
+  list-style-type: none; 
+  padding: 0;
+  margin:auto;
+}
 
+/*li*/
+.tab_link{
+  width: 250px;
+  text-align:center;
+  font-size:12pt;
+  border-left:0.5px solid #313131;
+  border-right:0.5px solid #313131;
+}
 
+/*list cocktail img*/
+.store_img{
+  width:250px;
+  
+}
