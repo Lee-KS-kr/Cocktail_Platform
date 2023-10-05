@@ -97,23 +97,18 @@ box-shadow: 4px 0px 10px solid #e7e7e7;
 /*ë°°ê²½*/
 .sec2{width: 83%; padding-left: 36px; padding-right: 36px; background-color:#fce142; }
 
-.title2{ width: 100%; font-size: 22pt; height: 70px; 
-    display: flex;
-    text-align: center; 
-    align-content: center;
-    background-color: red; 
-    display: flex; 
-    font-weight: bold; 
-    color: #232323;
-    padding: 20px;
-margin: auto;}
-
-
+.title2{ width: 100%; font-size: 22pt; 
+display: flex; 
+display: flex; 
+font-weight: bold; 
+color: #232323;
+padding: 20px;
+margin: 20px 0px 0px;
+display:flex;
+justify-content:center;}
 
 img[alt=logo] { width: 120px;}
 img[alt=search] { width: 27px; height: 27px; }
-img[alt=icon]{width: 20px; display: flex;}
-    
 
 .orderHistory[type=button] {
     width: 196px;
@@ -148,7 +143,6 @@ img[alt=icon]{width: 20px; display: flex;}
 
 }
 
-
 a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9px;}
 
 .con1, .con2{ 
@@ -170,19 +164,23 @@ a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9p
 
 th{padding-right: 20px;}
 
-input[type=submit],.taste, .resetpw {
-    width: 300px;
-    height: 100px;
-    line-height: 3px; /*ì¤„ê°„ê²©*/
-    font-size: 20pt; /*í°íŠ¸ í¬ê¸°*/
-    color: #313131; /*í°íŠ¸ ìƒ‰ìƒ*/
+/*저장 BT*/
+input[type=submit] {
+    width: 200px;
+    height: 40px;
+    line-height: 3px; 
+    font-size: 12pt; 
+    color: #313131; 
     padding: 10px;
-    border: 1px solid #313131;
-    border-radius: 30px; /*ëª¨ì„œë¦¬ ë‘¥ê¸€ê¸°*/
+    border: 1.8px solid #313131;
+    border-radius: 30px; 
     background-color: #50CCAA; 
-    margin:15px 5px 0px;
+    margin:15px 5px 120px;
+    display:flex;
+    justify-content:center;
+    margin-left: 200px;
 }
 
 .flex{display: flex; }
 
-input[name="storeReviewText"]{width: 400px; height: 150px; background-color: fff; border: 1px solid #313131; border-radius: 30px; padding: 5px;}
+textarea{width: 400px; height: 150px; background-color: fff; border: 1px solid #313131; border-radius: 30px; padding: 5px;}
