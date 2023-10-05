@@ -178,8 +178,8 @@ button{
 .input_bt{
   width:150px;
   height:40px;
-  line-height:5px;
-  background-color: #ff3c3c;
+  line-height:40px;
+  background-color: #fce142;
   border: 1.8px solid #313131;
   border-radius:30px;
   margin: 10px 20px;
