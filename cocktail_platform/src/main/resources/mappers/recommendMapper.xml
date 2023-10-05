@@ -20,20 +20,16 @@
 	</select>
 	 
 	<select id="customizedRecommendation" parameterType="Taste" resultType="Cocktails">
-		 select
-    		c.cockailName as cocktailName
+		select
+			c.cockailName as cocktailName
 		from
-			taste t
-		join
-			cocktails c on t.cocktailTaste = c.cocktailTaste
-		join
-			orderTemp ot on t.memberId = ot.memberId
+			cocktail c
+		left join
+			taste t1 on c.cocktailTaste = t.cocktailTaste
+		right join
+			taste t2 on c.cocktailFlavor = t.cocktailFlavor
 		where
-			t.memberId = #{memberId} and c.cocktailTaste = #{cocktailTaste}
-		group by
-			c.cockailName
-		order by
-			sum(ot.orderCount) desc
+			t1.memberId = #{memberId}
 	</select>
 	
 	<select id="recommendForMe" parameterType="String" resultType="Cocktails">
