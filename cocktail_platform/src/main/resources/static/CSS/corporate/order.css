@@ -29,27 +29,8 @@
   font-family: 'Noto Sans KR', sans-serif;  
   }
 
-.navi1{
-  width: 50%;
-  padding-left: 40px;
-  padding-top: 5px;
-  justify-content: center;
-  background-color: #fff;
-}
-
-.navi2{
-  width: 50%;
-  background-color:#fff;
-  border-bottom: #e7e7e7;
-  display: flex;
-  justify-content: end;
-  padding-right: 40px ;
-  align-items: center;
-  margin: auto;
-}
 img[alt=logo] { width: 120px;}
 
-.body{ display: flex; }
 /*========================================================================*/
 /*profile icon img*/
 img[alt=icon] { width: 27px;}
@@ -62,7 +43,6 @@ body {
 }
 
 main {
-  display: flex;
   padding: 20px;
   height: 600px;
 }
@@ -112,9 +92,10 @@ margin: 10px 5px;
 display: flex;
 justify-content: center;}
 
-
+.
 .menulist{
   background-color: #709dff;
+  margin: auto;
 
 }
 .menulist img{
@@ -176,4 +157,9 @@ background-color: #fff;
   position: relative;
   top: -150px;
   left: 7px;
+}
+
+#bottomTab{
+  display: flex;
+  justify-content:center;
 }
