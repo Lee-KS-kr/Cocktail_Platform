@@ -90,6 +90,7 @@ public class OrderServiceImple implements OrderService {
 	@Override
 	public int finishOrderByCode(String orderCode) {
 		Order o = findOrderByOrdercode(orderCode);
+		log.debug("order {}", o);
 		o.setOrderState(OrderState.finished);
 		int n = dao.updateOrder(o);
 		

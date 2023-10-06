@@ -244,11 +244,11 @@ public class CorporateOrderController {
 	}
 	
 	@GetMapping("orderList")
-	public String orderList(String orderCode, Model m) {
-		ArrayList<OrderTemp> list = oService.getOrdersByOrdercode(orderCode);
+	public String orderList(Model m) {
+		ArrayList<OrderTemp> list = oService.getOrdersByOrdercode(this.orderCode);
 		m.addAttribute("list", list);
 		
-		return "corporateView/";
+		return "corporateView/orderHistory";
 	}
 	
 	@GetMapping("callStaff")
