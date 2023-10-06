@@ -91,6 +91,7 @@ public class PersonalAjaxController {
 	@GetMapping("customizedRecommendation")
 	public ArrayList<Cocktails> customizedRecommendation(@AuthenticationPrincipal UserDetails user){
 		Taste t = mService.findTasteById(user.getUsername());
+		log.debug("t {}", t);
 		ArrayList<Cocktails> list = rService.CustomizedRecommendation(t);
 		
 		return list;

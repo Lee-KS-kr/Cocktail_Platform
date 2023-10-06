@@ -3,6 +3,7 @@ package com.platform.cocktail.cocktail_platform.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,7 +57,19 @@ public class OrderServiceImple implements OrderService {
 		
 		ArrayList<OrderTemp> list = makeTempOrderList(o, menuNum, menuName, price, orderCount);
 		
-		dao.insertTemporderList(list);
+		for (OrderTemp ot : list) 
+			dao.insertTemporderList(ot);
+				
+		String str = "";
+		int totalprice = 0;
+		for (int i = 0; i < orderCount.length; i++) {
+			str += menuName[i];
+			if(i != orderCount.length - 1)
+				str += ",";
+			totalprice += price[i] * orderCount[i];
+		}
+		o.setMenuList(str);
+		o.setTotalPrice(totalprice);
 		int n = dao.updateOrder(o);
 		
 		return n;
@@ -77,17 +90,12 @@ public class OrderServiceImple implements OrderService {
 	@Override
 	public int finishOrderByCode(String orderCode) {
 		Order o = findOrderByOrdercode(orderCode);
+		log.debug("order {}", o);
 		o.setOrderState(OrderState.finished);
 		int n = dao.updateOrder(o);
 		
 		return n;
 	}
-
-//	@Override
-//	public ArrayList<Menu> getMenulistByOrdercode(String orderCode) {
-//		ArrayList<Menu> list = dao.getMenulistByOrdercode(orderCode);
-//		return list;
-//	}
 
 	public ArrayList<OrderTemp> makeTempOrderList(Order o, int[] menuNum, String[] menuName, int[] price, int[] orderCount){
 		StringBuilder menuList = new StringBuilder();
@@ -98,6 +106,7 @@ public class OrderServiceImple implements OrderService {
 			OrderTemp t = 
 				OrderTemp.builder()
 					.orderCode(o.getOrderCode())
+					.storeCode(o.getStoreCode())
 					.menuNum(menuNum[i])
 					.menuName(menuName[i])
 					.pricePerOne(price[i])

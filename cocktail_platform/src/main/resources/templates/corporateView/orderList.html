@@ -74,13 +74,28 @@ function orderRefuse(tempOrderkey){
 function getList(list){
 	let str = '<table><tr><th>번호</th><th>메뉴</th><th>주문 수량</th><th>총 금액</th><th>현황</th></tr>';
 	$(list).each(function(i,item){
+		let state = item.orderState;
+		console.log(state);
+		let state2;
+		let tempOrderkey = item.tempOrderkey;
+		let orderCode = item.orderCode;
+		
+		if(state == 'apply') state2 = '대기';
+		else if(state == 'received') state2 = '수락';
+		else if(state == 'refused') state2 = '거절';
+		else if(state == 'finished') state2 = '완료';
+		else if(state == 'canceled') state2 = '취소';
+
 		str += '<tr>';
 		str += '<td>' + item.orderCode + '</td>';
-		str += '<td>' + item.menuNum + '</td>';
+		str += '<td>' + item.menuName + '</td>';
 		str += '<td>' + item.orderCount + '</td>';
 		str += '<td>' + item.pricePerOne + '</td>';
-		str += '<td><button onclick="orderAccept(tempOrderkey=' + item.tempOrderkey + ')" value="수락">수락</button></td>';
-		str += '<td><button onclick="orderRefuse(tempOrderkey=' + item.tempOrderkey + ')" value="거절">거절</button></td>';
+		str += '<td>' + state2 + '</td>';
+		if(state == 'apply'){
+			str += '<td><button onclick="orderAccept(' + tempOrderkey + ')" value="수락">수락</button></td>';
+			str += '<td><button onclick="orderRefuse(' + tempOrderkey + ')" value="거절">거절</button></td>';		
+		}
 		str += '</tr>';
 	});
 	str += '</table>';
@@ -139,9 +154,11 @@ function getList(list){
 				<li>
 					<a th:href="@{/corporate/store/orderList}">주문 관리</a>
 				</li>
+				<!-- 
 				<li>
 					<a th:href="@{/corporate/store/salesMng}">매출 관리</a>
 				</li>
+				 -->
 			</ul>
 		</div>
         

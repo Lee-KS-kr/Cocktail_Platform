@@ -37,6 +37,8 @@
 			*
 		from
 			reservation
+		where 
+			storeCode = #{storeCode}
 		order by
 			reserveDate desc
 	</select>

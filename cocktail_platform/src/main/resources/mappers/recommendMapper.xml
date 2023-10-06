@@ -1,8 +1,8 @@
-	<!DOCTYPE mapper
+<!DOCTYPE mapper
         	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-	<mapper namespace="com.platform.cocktail.cocktail_platform.dao.RecommendDAO">
+<mapper namespace="com.platform.cocktail.cocktail_platform.dao.RecommendDAO">
 
 	<select id="getTop3Cocktails" resultType="Cocktails">
  		select
@@ -21,13 +21,18 @@
 	 
 	<select id="customizedRecommendation" parameterType="Taste" resultType="Cocktails">
 		select
-			cocktailName
+			c.cockailName as cocktailName
 		from
-			cocktails
+			cocktail c
+		left join
+			taste t1 on c.cocktailTaste = t.cocktailTaste
+		right join
+			taste t2 on c.cocktailFlavor = t.cocktailFlavor
 		where
-			cocktailTaste like (select cocktailTaste from taste where memberId = #{memberId})
+			t1.memberId = #{memberId}
 	</select>
-0	<select id="recommendForMe" parameterType="String" resultType="Cocktails">
+	
+	<select id="recommendForMe" parameterType="String" resultType="Cocktails">
     	select
         	c.cocktailName as cocktailName
     	from
@@ -110,4 +115,4 @@
     		cocktailName = #{cocktailName}
 	</select>
 	
-	</mapper>
+</mapper>

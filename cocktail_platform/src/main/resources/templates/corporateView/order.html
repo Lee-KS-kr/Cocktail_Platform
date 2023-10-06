@@ -116,7 +116,6 @@ function count(type, menuNum, orderCount){
 //추천 메뉴 목록 가져오기
 function getRecMenu(){
 	if(memberRole === 'ROLE_PERSONAL'){
-		alert('추천 목록 가져오겟습니도');
 		$.ajax({
 			url: "recommendList",
 			type: "post",
@@ -183,7 +182,7 @@ function menuCategory(category){
 
 //카트에 담기
 function addCart(menuNum){
-	let con = confirm('장바구니에 추가하시겠습니까?');
+	let result = confirm('장바구니에 추가하시겠습니까?');
 	currentOrderCount = parseInt($('#orderCount_' + menuNum).html());
 	//param에 보내야 될 값들 담아주기
 	let param = {
@@ -191,9 +190,8 @@ function addCart(menuNum){
 			orderCount : currentOrderCount
 	}
 	
-	if(con && currentOrderCount == 0) alert('주문 수량을 선택해주세요.');
-	else if(con && currentOrderCount != 0){
-		alert("addCart 함수 호출");
+	if(result && currentOrderCount == 0) alert('주문 수량을 선택해주세요.');
+	else if(result && currentOrderCount != 0){
 		$.ajax({
 			url: "addToCart",
 			type: "get",
@@ -211,7 +209,26 @@ function addCart(menuNum){
 
 function loadCart(){
 	let option = "width=500,height=700,top=100,left=200,location=no,scrollbars=no";
-	window.open("cart", "cartPopUp", option);
+	var cartPopup;
+	cartPopup = window.open("cart", "cartPopUp", option);
+	cartPopup.focus();
+}
+
+function loadHistory(){
+	let option = "width=500,height=700,top=100,left=200,location=no,scrollbars=no";
+	var historyPopup;
+	historyPopup = window.open("orderList", "historyPopUp", option);
+	historyPopup.focus();
+}
+
+function callStaff(){
+	let result = confirm('직원을 호출하시겠습니까?');
+	if(result){
+		let option = "width=500,height=300,top=100,left=200,location=no,scrollbars=no";
+		var callStaffPopup;
+		callStaffPopup = window.open("callStaff", "callStaffPopUp", option);
+		callStaffPopup.focus();
+	}
 }
 </script>
 </head>
@@ -227,7 +244,8 @@ function loadCart(){
 	 			<div id="hbgMenu">
 		 				<img id="closeBtn" th:src="@{/image/close.png}" width="25px" alt="닫기 버튼">
 	 				<ul>
-	 					<li><a th:href="@{/corporate/order/callStaff}">직원 호출</a></li>
+	 					<li><a href="javascript:callStaff()" target="_self">직원 호출</a></li>
+	 					<!-- th:href="@{/corporate/order/callStaff}" -->
 	 					<li><a th:href="@{/corporate/order/login}">이 페이지에서 나가기</a></li>
 	 				</ul>
 	 			</div>
@@ -255,7 +273,7 @@ function loadCart(){
  		</section>
  		<section id="bottom">
  			<div id="bottomTab">
- 				<a th:href="@{/corporate/order/orderList}"><button class="4">주문 내역</button></a>
+ 				<a href="javascript:loadHistory()" target="_self"><button class="4">주문 내역</button></a>
  				<a th:href="@{/corporate/order/payment}"><button class="5">결제하기</button></a>
  				<a href="javascript:loadCart()" target="_self"><button class="6">장바구니</button></a>
  			</div>

@@ -185,9 +185,11 @@ function pagingFormSubmit(currentPage){
 		   <li>
 			  <a th:href="@{/corporate/store/orderList}">주문 관리</a>
 		   </li>
+		   <!-- 
 		   <li>
 			  <a th:href="@{/corporate/store/salesMng}">매출 관리</a>
 		   </li>
+		    -->
 		</ul>
 	 </div>
 	   
@@ -213,10 +215,10 @@ function pagingFormSubmit(currentPage){
 		<input type="button" value="검색" onclick="reserveSearch()">
 		</form>
 		 -->
-	<!-- 예약 리스트 -->
 	
-		<!-- 총 <span id="totalnum"></span>명 검색되었습니다. -->
 		<a th:href="@{/corporate/store/reserveInput}"><button class="input_bt">수기입력</button></a>
+		<!-- 예약 리스트 -->
+		총 <span id="totalnum"></span>건 검색되었습니다.
 		<div id="reserveList"></div>
 	</div>
 	<!-- 페이지 네비게이터 부분(추후 보완.)  -->

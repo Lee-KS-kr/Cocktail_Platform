@@ -25,6 +25,7 @@ import com.platform.cocktail.cocktail_platform.domain.Member;
 import com.platform.cocktail.cocktail_platform.domain.MemberType;
 import com.platform.cocktail.cocktail_platform.domain.Menu;
 import com.platform.cocktail.cocktail_platform.domain.Order;
+import com.platform.cocktail.cocktail_platform.domain.OrderTemp;
 import com.platform.cocktail.cocktail_platform.domain.StoreInfo;
 import com.platform.cocktail.cocktail_platform.service.MemberService;
 import com.platform.cocktail.cocktail_platform.service.OrderService;
@@ -44,6 +45,7 @@ public class CorporateOrderController {
 	private MemberService mService;
 	private String loginMember;
 	private int storeCode;
+	private String orderCode;
 	
 	@GetMapping("login")
 	public String login(@AuthenticationPrincipal UserDetails user, Model m) {
@@ -83,9 +85,10 @@ public class CorporateOrderController {
 		}
 		
 		Order o = oService.makeNewOrder(store.getStoreCode(), this.loginMember);
+		this.orderCode = o.getOrderCode();
 		log.debug("order : {}", o);
 		
-		m.addAttribute("orderCode", o.getOrderCode());
+		m.addAttribute("orderCode", orderCode);
 		m.addAttribute("memberId", this.loginMember);
 		m.addAttribute("memberRole", mem.getMemberType());
 		
@@ -175,6 +178,7 @@ public class CorporateOrderController {
 			for(int i = 0; i < menus.length; i++)
 				carts[i] = menus[i].split("_");
 			
+			m.addAttribute("orderCode", this.orderCode);
 			m.addAttribute("menuList", menuList);
 			m.addAttribute("carts", carts);
 		}
@@ -182,8 +186,9 @@ public class CorporateOrderController {
 		return "corporateView/cartList";
 	}
 	
+	@ResponseBody
 	@PostMapping("orderMenu")
-	public String orderMenu(int storeCode, String memberId, String orderCode, 
+	public void orderMenu(String orderCode, 
 						@CookieValue(name="cart", defaultValue="0") String cart,
 						HttpServletResponse res, Model m) throws Exception {
 		
@@ -198,6 +203,7 @@ public class CorporateOrderController {
 			String[] menuName = new String[menus.length];
 
 			ArrayList<Menu> menuList = sService.getMenulistByNum(menus);
+			log.debug("menuList {} ", menuList);
 			for(int i = 0; i < menus.length; i++) {
 				String[] str = menus[i].split("_");
 				int num = Integer.parseInt(str[0]);
@@ -208,15 +214,14 @@ public class CorporateOrderController {
 				price[i] = menuList.stream().filter(x -> x.getMenuNum() == num).collect(Collectors.toList()).get(0).getPrice();
 			}
 			
-			oService.inputOrder(storeCode, memberId, orderCode, menuNum, menuName, price, orderCount);
+			log.debug("insert {} {} {} {} {} {} {}", storeCode, loginMember, orderCode, menuNum, menuName, price, orderCount);
+			oService.inputOrder(this.storeCode, this.loginMember, orderCode, menuNum, menuName, price, orderCount);
 			
 			cart = "0";
 			Cookie cookie1 = new Cookie("cart", cart);
 			cookie1.setMaxAge(0);
 			res.addCookie(cookie1);
 		}
-		
-		return "redirect:/corporate/order/menu?orderCode=" + orderCode;
 	}
 	
 	@ResponseBody
@@ -238,14 +243,26 @@ public class CorporateOrderController {
 		return list;
 	}
 	
+	@GetMapping("orderList")
+	public String orderList(Model m) {
+		ArrayList<OrderTemp> list = oService.getOrdersByOrdercode(this.orderCode);
+		m.addAttribute("list", list);
+		
+		return "corporateView/orderHistory";
+	}
+	
 	@GetMapping("callStaff")
 	public String callStaff(String orderCode) {
 		return "corporateView/";
 	}
 	
-	@PostMapping("payment")
-	public String payment(int storeCode, String memberId, String orderCode) {
-		oService.finishOrderByCode(orderCode);
-		return "corporateView/";
+	@GetMapping("payment")
+	public String payment() {
+		oService.finishOrderByCode(this.orderCode);
+		this.storeCode = 0;
+		this.loginMember = null;
+		this.orderCode = null;
+		
+		return "redirect:/corporate/order/login";
 	}
 }

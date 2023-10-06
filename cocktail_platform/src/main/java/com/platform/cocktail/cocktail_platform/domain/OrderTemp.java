@@ -12,9 +12,10 @@ import lombok.NoArgsConstructor;
 public class OrderTemp {
 	int tempOrderkey;
 	String orderCode;
+	int storeCode;
 	int menuNum;
 	String menuName;
 	int pricePerOne;
 	int orderCount;
-	OrderState state;
+	OrderState orderState;
 }

@@ -31,7 +31,7 @@ public class RecommendServiceImple implements RecommendService {
 
 	@Override
 	public ArrayList<Cocktails> CustomizedRecommendation(Taste t) {
-		log.debug("customize");
+		log.debug("customize taste {}", t);
 		ArrayList<Cocktails> list = dao.CustomizedRecommendation(t);
 		list = getCocktailDetails(list);
 		log.debug("customize {}", list);
