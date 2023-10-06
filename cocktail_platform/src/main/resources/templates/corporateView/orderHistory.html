@@ -59,10 +59,10 @@ function closeHistory(){
 		<p>주문 내역</p>
 		<div th:each="list: ${list}">
 			<span th:text="${list.menuNum}" style="display:none;"></span>
-			<span id="'pricePerOne_' + ${menuNum}" th:text="${list.pricePerOne}" style="display:none;"></span>
+			<span id="'pricePerOne_' + ${list.menuNum}" th:text="${list.pricePerOne}" style="display:none;"></span>
 			<span th:text="${list.menuName}"></span>&nbsp;
 			x<span id="'orderCount_' + ${list.menuNum}" th:text="${list.orderCount}"></span>&nbsp;
-			<span class="price-per-item" id="'price_' + ${menuNum}"></span>원
+			<span class="price-per-item" id="'price_' + ${list.menuNum}"></span>원
 		</div>
 		<p class="menu-total">합계: <span id="totalPrice"></span>원</p>
  		<button id="closeBtn">닫기</button>
