@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #50CCAA;
+    margin: 0;
+    padding: 0;
+  }
+p{font-size: 32pt; font-weight: bold; color: #313131;}
+button{
+    width:150px;
+  line-height:40px;
+  background-color: #ff7676;
+  border: 1.8px solid #313131;
+  border-radius:30px;
+  margin: 10px 5px;
+  display: flex;
+  justify-content: center;
+}

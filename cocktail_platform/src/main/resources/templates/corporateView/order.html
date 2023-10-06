@@ -256,6 +256,13 @@ function callStaff(){
 	 			<button onclick="menuCategory('side')" value="사이드" class="3">사이드</button>
  			</div>
  		</nav>
+		 <section id="bottom">
+			<div id="bottomTab">
+				<a href="javascript:loadHistory()" target="_self"><button class="4">주문 내역</button></a>
+				<a th:href="@{/corporate/order/payment}"><button class="5">결제하기</button></a>
+				<a href="javascript:loadCart()" target="_self"><button class="6">장바구니</button></a>
+			</div>
+		</section>
  		<section>
  			<!-- storeCode, memberId, orderCode, memberRole -->
  			<span id="storeCode" th:text="${storeCode}" style="display:none;"></span>
@@ -271,13 +278,7 @@ function callStaff(){
 	 		<!-- 전체 메뉴 출력 -->
 	 		<div id="menuList"></div><br>
  		</section>
- 		<section id="bottom">
- 			<div id="bottomTab">
- 				<a href="javascript:loadHistory()" target="_self"><button class="4">주문 내역</button></a>
- 				<a th:href="@{/corporate/order/payment}"><button class="5">결제하기</button></a>
- 				<a href="javascript:loadCart()" target="_self"><button class="6">장바구니</button></a>
- 			</div>
- 		</section>
+ 		
 	</main>
 </body>
 </html>
