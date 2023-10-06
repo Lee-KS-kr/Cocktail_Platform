@@ -11,9 +11,8 @@
 				memberId
 				, memberPw
 				, memberName
-				, <if test="phone != null">phone
-				, </if>
-				birthday
+				<if test="phone != null"> , phone </if>
+				<if test="birthday != null"> , birthday </if>
 				, email
 				, memberType
 				, gender
@@ -23,9 +22,8 @@
 				#{memberId}
 				, #{memberPw}
 				, #{memberName}
-				, <if test="phone != null">#{phone}
-				, </if>
-				#{birthday}
+				<if test="phone != null">, #{phone} </if>
+				<if test="birthday != null"> , #{birthday} </if>
 				, #{email}
 				, #{memberType}
 				, #{gender}

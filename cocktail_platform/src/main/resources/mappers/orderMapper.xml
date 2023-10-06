@@ -12,7 +12,7 @@
 		where
 			memberId = #{memberId}
 		order by
-			orderCode desc
+			orderdate desc
 	</select>
 	
 	<select id="findOrderByOrdercode" parameterType="String" resultType="Order">

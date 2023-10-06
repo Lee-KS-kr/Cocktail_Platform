@@ -83,4 +83,9 @@ public class CorporateAjaxStoreController {
 		log.debug("저장할 글 : {}", menu);
 		sService.insertMenu(menu);
 	}
+	
+	@PostMapping("deleteMenu")
+	public void deleteMenu(int menuNum) {
+		sService.deleteMenuByNum(menuNum);
+	}
 }
