@@ -139,6 +139,7 @@ public class OrderServiceImple implements OrderService {
 		log.debug("{}", tempList);
 		for (OrderTemp t : tempList) {
 			Menu m = dao.findMenuByNum(t.getMenuNum());
+			if(m == null) continue;
 			list.add(m);
 			log.debug("{}", m);
 		}
