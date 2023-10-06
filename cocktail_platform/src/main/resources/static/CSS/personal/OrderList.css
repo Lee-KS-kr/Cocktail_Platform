@@ -151,7 +151,7 @@ a[name=out] {padding-left: 20px; position: absolute; bottom: 50px; font-size: 9p
 }
 
 
-th{padding-right: 20px;}
+th{padding:0px 70px; margin:auto; text-align:center;}
 
 input[type=submit],.taste, .resetpw {
   width: 120px;
@@ -169,3 +169,7 @@ input[type=submit],.taste, .resetpw {
 .flex{display: flex; }
 
 input{ background-color: fff; border: 1px solid #313131; border-radius: 30px; padding: 5px;}
+
+.con2 td{
+    padding-left: 83px;
+}
