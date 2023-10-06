@@ -15,6 +15,7 @@
 <script th:src="@{/jQuery/jquery-3.7.0.js}"></script>
 <script>
 $(document).ready(function(){
+	let menuNum;
 	init();
 });
 
@@ -67,6 +68,7 @@ function getList(list){
 //메뉴 삭제
 function deleteMenu(menuNum){
 	let result = confirm("메뉴를 삭제하시겠습니까?");
+	console.log(menuNum);
 	if(result == true){
 		$.ajax({
 	        url: 'deleteMenu',
