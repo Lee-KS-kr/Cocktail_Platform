@@ -63,7 +63,7 @@
             <div class="con">
                 <div class="title2">좋은 시간을 보내셨나요?</div>
                     <div class="flex">
-                        <form th:action="@{/personal/member/evaluation}"  method="post" onsubmit="return check()">
+                    	<form th:action="@{/personal/member/evaluation}" method="post" onsubmit="return check()">
                         <input type="hidden" th:value="${store.storeCode}" name="storeCode">
                         <input type="hidden" th:value="${orderCode}" name="orderCode">
                         <div class="con1">
@@ -96,7 +96,7 @@
                                     <td>매장에 대한 리뷰를 남겨주세요!</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" name="storeReviewText"> </input></td>
+                                    <td><input type="text" name="storeReviewText"></td>
                                 </tr>
                             </table>
                         </div>
