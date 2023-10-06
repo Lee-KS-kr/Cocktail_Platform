@@ -55,7 +55,7 @@ function getList(list){
 		str += '<td><a href="/corporate/store/editMenu?menuNum=' + item.menuNum + '">' + item.menuName + '</td>';
 		str += '<td>' + item.price + '</td>';
 		str += '<td>' + canOrder2 + '</td>';
-		str += '<td><a href="#" onclick="deleteMenu(menuNum=' + item.menuNum + ')">x</a></td>';
+		str += '<td><a href="#" onclick="deleteMenu(' + item.menuNum + ')">x</a></td>';
 		str += '</tr>';
 	});
 	str += '</table>';
