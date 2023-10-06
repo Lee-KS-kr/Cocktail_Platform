@@ -81,7 +81,7 @@ button{
   justify-content: center;
 }
 
-/*í–„ë²„ê±° ë©”ë‰´*/
+/*Ã­â€“â€žÃ«Â²â€žÃªÂ±Â° Ã«Â©â€Ã«â€°Â´*/
 .hbgMenu ul li{
   width:150px;
 line-height:40px;
@@ -92,6 +92,7 @@ margin: 10px 5px;
 display: flex;
 justify-content: center;}
 
+.
 .menulist{
   background-color: #709dff;
   margin: auto;
@@ -118,7 +119,7 @@ background-color: #fff;
 }
 
 .menulist .price{
-  color: #989898;
+  color: #505050;
   position: relative;
   top: -390px;
   left: 234px;
