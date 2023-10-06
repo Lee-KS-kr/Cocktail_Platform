@@ -100,7 +100,7 @@ img[alt=logo] { width: 120px;}
 .body{ display: flex; }
 /*========================================================================*/
 main {
-padding: 100px 200px;
+padding: 100px 300px;
 background-color: #ff9670;
 }
 
@@ -160,13 +160,13 @@ border-radius: 10px;
   display: flex;
 }
 
-/*ë³„ì  img*/
+/*Ã«Â³â€žÃ¬Â Â img*/
 .starimg{
   width: 35px;
   margin: 20px 2px;
 }
 
-/*ë³„ì  text*/
+/*Ã«Â³â€žÃ¬Â Â text*/
 .s_box_right div div{
   color: #545454;
   font-size: 15pt;
@@ -174,7 +174,7 @@ border-radius: 10px;
   line-height:70px;
 }
 
-/*ë§¤ìž¥ ì´ë¯¸ì§€, ë§¤ìž¥ ì´ë¦„, ë³„ì  ë================*/
+/*Ã«Â§Â¤Ã¬Å¾Â¥ Ã¬ÂÂ´Ã«Â¯Â¸Ã¬Â§â‚¬, Ã«Â§Â¤Ã¬Å¾Â¥ Ã¬ÂÂ´Ã«Â¦â€ž, Ã«Â³â€žÃ¬Â Â Ã«ÂÂ================*/
 
 .tab_div{
   width: 1036px;
@@ -222,7 +222,7 @@ padding:20px 30px;
 
 }
 
-/*í™œì„±í™”*/
+/*Ã­â„¢Å“Ã¬â€žÂ±Ã­â„¢â€*/
 .on{
   font-weight:bold;
   background-color: #fff;
@@ -259,105 +259,105 @@ display: inline-block;
 }
 
 /*============================================*/
-/* 테이블 전체에 적용되는 스타일 */
+/* í…Œì´ë¸” ì „ì²´ì— ì ìš©ë˜ëŠ” ìŠ¤íƒ€ì¼ */
 .t_c_table {
-  width: 100%; /* 테이블 전체 너비 설정 */
-  border-collapse: collapse; /* 테이블 셀 경계 병합 */
-  margin-bottom: 20px; /* 아래쪽 여백 설정 */
+  width: 100%; /* í…Œì´ë¸” ì „ì²´ ë„ˆë¹„ ì„¤ì • */
+  border-collapse: collapse; /* í…Œì´ë¸” ì…€ ê²½ê³„ ë³‘í•© */
+  margin-bottom: 20px; /* ì•„ëž˜ìª½ ì—¬ë°± ì„¤ì • */
 }
 
-/* 테이블 헤더에 적용되는 스타일 */
+/* í…Œì´ë¸” í—¤ë”ì— ì ìš©ë˜ëŠ” ìŠ¤íƒ€ì¼ */
 .t_c_table th {
   background-color: #FFE71B;
   color: #313131;
-  padding: 10px; /* 셀 안 여백 설정 */
+  padding: 10px; /* ì…€ ì•ˆ ì—¬ë°± ì„¤ì • */
   text-align: center;
 }
 
-/* 테이블 셀에 적용되는 스타일 */
+/* í…Œì´ë¸” ì…€ì— ì ìš©ë˜ëŠ” ìŠ¤íƒ€ì¼ */
 .t_c_table td {
   padding: 10px;
 }
 
-/* 첫 번째 열의 폭을 설정하여 왼쪽 정렬로 만듭니다. */
+/* ì²« ë²ˆì§¸ ì—´ì˜ í­ì„ ì„¤ì •í•˜ì—¬ ì™¼ìª½ ì •ë ¬ë¡œ ë§Œë“­ë‹ˆë‹¤. */
 .t_c_table td:first-child {
-  width: 150px; /* 첫 번째 열의 폭 설정 */
+  width: 150px; /* ì²« ë²ˆì§¸ ì—´ì˜ í­ ì„¤ì • */
 }
 
-/*매장정보 끝===================================================*/
+/*ë§¤ìž¥ì •ë³´ ë===================================================*/
 
-/* 예약 폼 스타일링 */
+/* ì˜ˆì•½ í¼ ìŠ¤íƒ€ì¼ë§ */
 .reserveForm {
-  max-width: 500px; /* 폼의 최대 너비 설정 */
-  margin: 0 auto; /* 가운데 정렬 */
-  padding: 20px; /* 내부 여백 설정 */
-  border: 1.8px solid #313131; /* 테두리 스타일 설정 */
-  background-color: #fff; /* 배경색 설정 */
+  max-width: 500px; /* í¼ì˜ ìµœëŒ€ ë„ˆë¹„ ì„¤ì • */
+  margin: 0 auto; /* ê°€ìš´ë° ì •ë ¬ */
+  padding: 20px; /* ë‚´ë¶€ ì—¬ë°± ì„¤ì • */
+  border: 1.8px solid #313131; /* í…Œë‘ë¦¬ ìŠ¤íƒ€ì¼ ì„¤ì • */
+  background-color: #fff; /* ë°°ê²½ìƒ‰ ì„¤ì • */
   border-radius: 15px;
   text-align: center;
 }
 
-/* 입력 필드 스타일링 */
+/* ìž…ë ¥ í•„ë“œ ìŠ¤íƒ€ì¼ë§ */
 .reserveForm input[type="date"],
 .reserveForm input[type="time"],
 .reserveForm input[type="text"],
 .reserveForm input[type="button"],
 .reserveForm input[type="submit"],
 .reserveForm input[type="radio"] {
-  width: 97%; /* 입력 필드 너비 100% 설정 */
-  padding: 10px; /* 내부 여백 설정 */
-  margin-bottom: 10px; /* 하단 여백 설정 */
-  border: 1px solid #ccc; /* 테두리 스타일 설정 */
+  width: 97%; /* ìž…ë ¥ í•„ë“œ ë„ˆë¹„ 100% ì„¤ì • */
+  padding: 10px; /* ë‚´ë¶€ ì—¬ë°± ì„¤ì • */
+  margin-bottom: 10px; /* í•˜ë‹¨ ì—¬ë°± ì„¤ì • */
+  border: 1px solid #ccc; /* í…Œë‘ë¦¬ ìŠ¤íƒ€ì¼ ì„¤ì • */
     border-radius: 15px;
 
 }
 
-/* 예약자 정보 입력 필드 스타일링 */
+/* ì˜ˆì•½ìž ì •ë³´ ìž…ë ¥ í•„ë“œ ìŠ¤íƒ€ì¼ë§ */
 #reservationName,
 #reservationPhone {
-  margin-bottom: 5px; /* 예약자 정보 입력 필드 사이 여백 설정 */
+  margin-bottom: 5px; /* ì˜ˆì•½ìž ì •ë³´ ìž…ë ¥ í•„ë“œ ì‚¬ì´ ì—¬ë°± ì„¤ì • */
 }
 
-/* 에러 메시지 스타일링 */
+/* ì—ëŸ¬ ë©”ì‹œì§€ ìŠ¤íƒ€ì¼ë§ */
 #errMsg1,
 #errMsg2 {
-  color: red; /* 에러 메시지 텍스트 색상 설정 */
-  font-size: 14px; /* 에러 메시지 글꼴 크기 설정 */
+  color: red; /* ì—ëŸ¬ ë©”ì‹œì§€ í…ìŠ¤íŠ¸ ìƒ‰ìƒ ì„¤ì • */
+  font-size: 14px; /* ì—ëŸ¬ ë©”ì‹œì§€ ê¸€ê¼´ í¬ê¸° ì„¤ì • */
 }
 
-/* 버튼 스타일링 */
+/* ë²„íŠ¼ ìŠ¤íƒ€ì¼ë§ */
 input[type="button"],
 input[type="submit"] {
-  background-color: #FFE71B; /* 버튼 배경색 설정 */
-  color: #313131; /* 버튼 텍스트 색상 설정 */
-  cursor: pointer; /* 커서 모양 변경 */
-  border: 1.8px solid #313131; /* 테두리 없애기 */
-  border-radius: 15px; /* 버튼 모서리 둥글게 만들기 */
+  background-color: #FFE71B; /* ë²„íŠ¼ ë°°ê²½ìƒ‰ ì„¤ì • */
+  color: #313131; /* ë²„íŠ¼ í…ìŠ¤íŠ¸ ìƒ‰ìƒ ì„¤ì • */
+  cursor: pointer; /* ì»¤ì„œ ëª¨ì–‘ ë³€ê²½ */
+  border: 1.8px solid #313131; /* í…Œë‘ë¦¬ ì—†ì• ê¸° */
+  border-radius: 15px; /* ë²„íŠ¼ ëª¨ì„œë¦¬ ë‘¥ê¸€ê²Œ ë§Œë“¤ê¸° */
 }
 
-/* 라벨 스타일링 */
+/* ë¼ë²¨ ìŠ¤íƒ€ì¼ë§ */
 label {
-  display: block; /* 라벨 블록 요소로 설정 */
-  margin-bottom: 10px; /* 라벨 아래 여백 설정 */
+  display: block; /* ë¼ë²¨ ë¸”ë¡ ìš”ì†Œë¡œ ì„¤ì • */
+  margin-bottom: 10px; /* ë¼ë²¨ ì•„ëž˜ ì—¬ë°± ì„¤ì • */
 }
 
-/* 폼 그룹 스타일링 */
+/* í¼ ê·¸ë£¹ ìŠ¤íƒ€ì¼ë§ */
 .re_date,
 .re_time,
 .head_count,
 .reserve_info {
-  border: 1px solid #ccc; /* 폼 그룹 테두리 스타일 설정 */
-  padding: 10px; /* 내부 여백 설정 */
-  margin-bottom: 20px; /* 하단 여백 설정 */
+  border: 1px solid #ccc; /* í¼ ê·¸ë£¹ í…Œë‘ë¦¬ ìŠ¤íƒ€ì¼ ì„¤ì • */
+  padding: 10px; /* ë‚´ë¶€ ì—¬ë°± ì„¤ì • */
+  margin-bottom: 20px; /* í•˜ë‹¨ ì—¬ë°± ì„¤ì • */
 }
 
-/* "인원 선택" 메시지 스타일링 */
+/* "ì¸ì› ì„ íƒ" ë©”ì‹œì§€ ìŠ¤íƒ€ì¼ë§ */
 #head_select p {
-  font-style: italic; /* 이탤릭체로 설정 */
-  font-size: 14px; /* 글꼴 크기 설정 */
+  font-style: italic; /* ì´íƒ¤ë¦­ì²´ë¡œ ì„¤ì • */
+  font-size: 14px; /* ê¸€ê¼´ í¬ê¸° ì„¤ì • */
 }
-/* 리뷰 시작=======================================================*/
-/* 리뷰 목록 테이블 스타일링 */
+/* ë¦¬ë·° ì‹œìž‘=======================================================*/
+/* ë¦¬ë·° ëª©ë¡ í…Œì´ë¸” ìŠ¤íƒ€ì¼ë§ */
 #reviewList table {
   width: 100%;
   border-collapse: collapse;
@@ -373,32 +373,32 @@ label {
 }
 
 #reviewList table tr:nth-child(even) {
-  background-color: #f2f2f2; /* 짝수 행 배경색 설정 */
+  background-color: #f2f2f2; /* ì§ìˆ˜ í–‰ ë°°ê²½ìƒ‰ ì„¤ì • */
 }
 
 #reviewList table strong {
-  font-weight: bold; /* 강조 텍스트를 굵게 표시 */
+  font-weight: bold; /* ê°•ì¡° í…ìŠ¤íŠ¸ë¥¼ êµµê²Œ í‘œì‹œ */
 }
 
-/* 그림자 효과 제거 */
+/* ê·¸ë¦¼ìž íš¨ê³¼ ì œê±° */
 #tab_review {
   box-shadow: none;
 }
 
-/* 한글 주석 */
-/* 리뷰 별점 */
+/* í•œê¸€ ì£¼ì„ */
+/* ë¦¬ë·° ë³„ì  */
 #star {
-  /* 여기에 별점 스타일을 추가하세요 */
+  /* ì—¬ê¸°ì— ë³„ì  ìŠ¤íƒ€ì¼ì„ ì¶”ê°€í•˜ì„¸ìš” */
 }
 
-/* 리뷰 평점 */
+/* ë¦¬ë·° í‰ì  */
 #star p {
   font-size: 18px;
   font-weight: bold;
   margin: 10px 0;
 }
 
-/* 리뷰 목록 */
+/* ë¦¬ë·° ëª©ë¡ */
 #reviewList {
-  /* 여기에 리뷰 목록 스타일을 추가하세요 */
+  /* ì—¬ê¸°ì— ë¦¬ë·° ëª©ë¡ ìŠ¤íƒ€ì¼ì„ ì¶”ê°€í•˜ì„¸ìš” */
 }
