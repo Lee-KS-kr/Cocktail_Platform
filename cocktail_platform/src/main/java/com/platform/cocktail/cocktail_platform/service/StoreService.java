@@ -67,4 +67,6 @@ public interface StoreService {
 
 	boolean getReviewWrote(String orderCode);
 
+	int deleteMenuByNum(int menuNum);
+
 }

@@ -253,7 +253,7 @@ public class CorporateOrderController {
 	
 	@GetMapping("callStaff")
 	public String callStaff(String orderCode) {
-		return "corporateView/";
+		return "/callStaff";
 	}
 	
 	@GetMapping("payment")
@@ -263,6 +263,11 @@ public class CorporateOrderController {
 		this.loginMember = null;
 		this.orderCode = null;
 		
+		return "corporateView/finishPayment";
+	}
+	
+	@GetMapping("finishPayment")
+	public String finishPayment() {
 		return "redirect:/corporate/order/login";
 	}
 }

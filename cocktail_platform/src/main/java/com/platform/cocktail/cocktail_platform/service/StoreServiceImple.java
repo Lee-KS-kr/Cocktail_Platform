@@ -267,5 +267,11 @@ public class StoreServiceImple implements StoreService {
 		StoreReview review = dao.getScoreReviewByCode(orderCode);
 		return review != null;
 	}
+
+	@Override
+	public int deleteMenuByNum(int menuNum) {
+		int n = dao.deleteMenuMyNum(menuNum);
+		return n;
+	}
 	
 }

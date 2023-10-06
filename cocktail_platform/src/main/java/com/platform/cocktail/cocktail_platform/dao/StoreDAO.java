@@ -75,5 +75,7 @@ public interface StoreDAO {
 
 	StoreReview getScoreReviewByCode(String orderCode);
 
+	int deleteMenuMyNum(int menuNum);
+
 	
 }

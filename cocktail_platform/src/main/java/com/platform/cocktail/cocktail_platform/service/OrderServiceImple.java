@@ -70,6 +70,8 @@ public class OrderServiceImple implements OrderService {
 		}
 		o.setMenuList(str);
 		o.setTotalPrice(totalprice);
+		
+		log.debug("input order {}", o);
 		int n = dao.updateOrder(o);
 		
 		return n;
@@ -90,8 +92,8 @@ public class OrderServiceImple implements OrderService {
 	@Override
 	public int finishOrderByCode(String orderCode) {
 		Order o = findOrderByOrdercode(orderCode);
-		log.debug("order {}", o);
 		o.setOrderState(OrderState.finished);
+		log.debug("order {}", o);
 		int n = dao.updateOrder(o);
 		
 		return n;
