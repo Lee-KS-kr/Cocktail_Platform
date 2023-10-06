@@ -184,3 +184,8 @@ input[type=submit] {
 .flex{display: flex; }
 
 textarea{width: 400px; height: 150px; background-color: fff; border: 1px solid #313131; border-radius: 30px; padding: 5px;}
+
+
+img[alt=cocktail_image]{
+    width: 200px;
+}
