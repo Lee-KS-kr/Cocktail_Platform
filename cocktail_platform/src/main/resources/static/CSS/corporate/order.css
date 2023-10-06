@@ -101,7 +101,7 @@ button{
   justify-content: center;
 }
 
-/*햄버거 메뉴*/
+/*í–„ë²„ê±° ë©”ë‰´*/
 .hbgMenu ul li{
   width:150px;
 line-height:40px;
@@ -112,7 +112,7 @@ margin: 10px 5px;
 display: flex;
 justify-content: center;}
 
-.
+
 .menulist{
   background-color: #709dff;
 
@@ -149,7 +149,7 @@ background-color: #fff;
 .menulist .p, .menulist .m{
   color: #fff;
   position: relative;
-  top: -640px;
+  top: -150px;
   left: 7px;
   font-size: 32pt;
   font-weight: bold;
@@ -159,7 +159,7 @@ background-color: #fff;
 .menulist .menunum{
     color: #313131;
   position: relative;
-  top: -630px;
+  top: -140px;
   left: 7px;
   font-size: 22pt;
   font-weight: bold;
@@ -174,6 +174,6 @@ background-color: #fff;
   border-radius:10px;
   margin: 10px 5px;
   position: relative;
-  top: -650px;
+  top: -150px;
   left: 7px;
 }
