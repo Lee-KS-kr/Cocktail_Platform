@@ -86,6 +86,7 @@ public class CorporateAjaxStoreController {
 	
 	@PostMapping("deleteMenu")
 	public void deleteMenu(int menuNum) {
+		log.debug("delete menu num {}", menuNum);
 		sService.deleteMenuByNum(menuNum);
 	}
 }
