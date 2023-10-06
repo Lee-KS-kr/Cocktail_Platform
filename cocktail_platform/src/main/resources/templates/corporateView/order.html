@@ -116,7 +116,6 @@ function count(type, menuNum, orderCount){
 //추천 메뉴 목록 가져오기
 function getRecMenu(){
 	if(memberRole === 'ROLE_PERSONAL'){
-		alert('추천 목록 가져오겟습니도');
 		$.ajax({
 			url: "recommendList",
 			type: "post",
@@ -193,7 +192,6 @@ function addCart(menuNum){
 	
 	if(result && currentOrderCount == 0) alert('주문 수량을 선택해주세요.');
 	else if(result && currentOrderCount != 0){
-		alert("addCart 함수 호출");
 		$.ajax({
 			url: "addToCart",
 			type: "get",
@@ -222,6 +220,16 @@ function loadHistory(){
 	historyPopup = window.open("orderList", "historyPopUp", option);
 	historyPopup.focus();
 }
+
+function callStaff(){
+	let result = confirm('직원을 호출하시겠습니까?');
+	if(result){
+		let option = "width=500,height=300,top=100,left=200,location=no,scrollbars=no";
+		var callStaffPopup;
+		callStaffPopup = window.open("callStaff", "callStaffPopUp", option);
+		callStaffPopup.focus();
+	}
+}
 </script>
 </head>
 <body>
@@ -236,7 +244,8 @@ function loadHistory(){
 	 			<div id="hbgMenu">
 		 				<img id="closeBtn" th:src="@{/image/close.png}" width="25px" alt="닫기 버튼">
 	 				<ul>
-	 					<li><a th:href="@{/corporate/order/callStaff}">직원 호출</a></li>
+	 					<li><a href="javascript:callStaff()" target="_self">직원 호출</a></li>
+	 					<!-- th:href="@{/corporate/order/callStaff}" -->
 	 					<li><a th:href="@{/corporate/order/login}">이 페이지에서 나가기</a></li>
 	 				</ul>
 	 			</div>

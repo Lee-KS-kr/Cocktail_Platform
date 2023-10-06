@@ -257,9 +257,11 @@ function pagingFormSubmit(currentPage){
 				<li>
 					<a th:href="@{/corporate/store/orderList}">주문 관리</a>
 				</li>
+				<!--  
 				<li>
 					<a th:href="@{/corporate/store/salesMng}">매출 관리</a>
 				</li>
+				-->
 			</ul>
 		</div>
         
@@ -287,6 +289,7 @@ function pagingFormSubmit(currentPage){
 	<!-- 메뉴 리스트 -->
 
 		<button onclick="addMenuToggle()">+</button>
+		<br>
 		총 <span id="totalnum"></span>개 검색되었습니다.
 		<div id="menuList"></div>
 		
