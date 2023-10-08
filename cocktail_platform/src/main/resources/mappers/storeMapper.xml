@@ -177,6 +177,7 @@
 			storeReview
 				(storeReviewNum
 				, storeCode
+				, orderCode
 				, memberId
 				, storeReviewScore
 				, storeReviewText
@@ -185,6 +186,7 @@
 		values
 				(storeReview_seq.nextval
 				, #{storeCode}
+				, #{orderCode}
 				, #{memberId}
 				, #{storeReviewScore}
 				, #{storeReviewText}
